@@ -28,16 +28,23 @@ import 'methods/functions.dart' as functions_methods;
 class ProjectNamespace {
   final ClientConfig _config;
   ProjectNamespace(ClientConfig config) : _config = config;
+
   /// Analyzes the database for security and performance issues. Returns a list of issues categorized by severity (ERROR, WARN, INFO). Requires read access to the project and Data API enabled.
-  Future<GetProjectAdvisorSecurityIssuesResponse>
-      getAdvisorSecurityIssues(
-          {required String projectId,
-          SdkOptional<String> branchId = const SdkOmitted(),
-          SdkOptional<String> databaseName = const SdkOmitted(),
-          SdkOptional<AdvisorCategory> category = const SdkOmitted(),
-          SdkOptional<GetProjectAdvisorSecurityIssuesMinSeverity> minSeverity = const SdkOmitted(),
-          RequestOptions? requestOptions}) async {
-    return project_methods.getProjectAdvisorSecurityIssues(_config, projectId: projectId, branchId: branchId, databaseName: databaseName, category: category, minSeverity: minSeverity, requestOptions: requestOptions);
+  Future<GetProjectAdvisorSecurityIssuesResponse> getAdvisorSecurityIssues(
+      {required String projectId,
+      SdkOptional<String> branchId = const SdkOmitted(),
+      SdkOptional<String> databaseName = const SdkOmitted(),
+      SdkOptional<AdvisorCategory> category = const SdkOmitted(),
+      SdkOptional<GetProjectAdvisorSecurityIssuesMinSeverity> minSeverity =
+          const SdkOmitted(),
+      RequestOptions? requestOptions}) async {
+    return project_methods.getProjectAdvisorSecurityIssues(_config,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        category: category,
+        minSeverity: minSeverity,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves a list of projects for the specified organization. If using a personal API key, include the `org_id` parameter to specify which organization to work with. If using an org API key, `org_id` is automatically inferred from the key. For more information, see [Manage organizations using the Neon API](https://neon.com/docs/manage/orgs-api) and [Manage projects](https://neon.com/docs/manage/projects/).
@@ -49,14 +56,22 @@ class ProjectNamespace {
       SdkOptional<int> timeout = const SdkOmitted(),
       SdkOptional<bool> recoverable = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.listProjects(_config, cursor: cursor, limit: limit, search: search, orgId: orgId, timeout: timeout, recoverable: recoverable, requestOptions: requestOptions);
+    return project_methods.listProjects(_config,
+        cursor: cursor,
+        limit: limit,
+        search: search,
+        orgId: orgId,
+        timeout: timeout,
+        recoverable: recoverable,
+        requestOptions: requestOptions);
   }
 
   /// Creates a Neon project within an organization. If using a personal API key, include the `org_id` parameter to specify which organization to create the project in. If using an org API key, `org_id` is automatically inferred from the key. Plan limits define how many projects you can create. For more information, see [Manage projects](https://neon.com/docs/manage/projects/). You can specify a region and Postgres version in the request body. Neon supports Postgres 14 through 18, with 19 rolling out to enabled regions. For supported regions and `region_id` values, see [Regions](https://neon.com/docs/introduction/regions/).
   Future<ProjectResponse> create(
       {required ProjectCreateRequestProject project,
       RequestOptions? requestOptions}) async {
-    return project_methods.createProject(_config, project: project, requestOptions: requestOptions);
+    return project_methods.createProject(_config,
+        project: project, requestOptions: requestOptions);
   }
 
   /// Retrieves a list of projects shared with your Neon account. For more information, see [Manage projects](https://neon.com/docs/manage/projects/).
@@ -66,13 +81,19 @@ class ProjectNamespace {
       SdkOptional<String> search = const SdkOmitted(),
       SdkOptional<int> timeout = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.listSharedProjects(_config, cursor: cursor, limit: limit, search: search, timeout: timeout, requestOptions: requestOptions);
+    return project_methods.listSharedProjects(_config,
+        cursor: cursor,
+        limit: limit,
+        search: search,
+        timeout: timeout,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves information about the specified project. Returned details include the project settings, compute configuration, history retention, owner information, and current usage metrics.
   Future<ProjectResponse> get_(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return project_methods.getProject(_config, projectId: projectId, requestOptions: requestOptions);
+    return project_methods.getProject(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Updates configurable properties of a Neon project, including its name, project settings, default endpoint settings, and history retention period. Supply the required `project` object and include only the properties you want to change. The response includes the updated project and any operations associated with the update.
@@ -82,19 +103,22 @@ class ProjectNamespace {
       {required String projectId,
       required ProjectUpdateRequestProject project,
       RequestOptions? requestOptions}) async {
-    return project_methods.updateProject(_config, projectId: projectId, project: project, requestOptions: requestOptions);
+    return project_methods.updateProject(_config,
+        projectId: projectId, project: project, requestOptions: requestOptions);
   }
 
   /// Deletes the specified project and all its endpoints, branches, databases, and users. Deleted projects can be recovered within 7 days using `POST /projects/{project_id}/recover`. To list recoverable projects, use `GET /projects?recoverable=true`.
   Future<ProjectResponse> delete(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return project_methods.deleteProject(_config, projectId: projectId, requestOptions: requestOptions);
+    return project_methods.deleteProject(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Recovers a deleted project within the 7-day deletion recovery period. Restores branches, endpoints, settings, and connection strings. Some integrations require manual reconfiguration after recovery. To list recoverable projects, use `GET /projects?recoverable=true`.
   Future<ProjectRecoverResponse> recover(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return project_methods.recoverProject(_config, projectId: projectId, requestOptions: requestOptions);
+    return project_methods.recoverProject(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Lists users who have access to a project, including each permission ID, the granted-to email address, and the grant date. Use the permission ID to identify a specific project access grant when you need to revoke it.
@@ -102,7 +126,8 @@ class ProjectNamespace {
   /// Retrieves details about users who have access to the project, including the permission `id`, the granted-to email address, and the date project access was granted.
   Future<ProjectPermissions> listPermissions(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return project_methods.listProjectPermissions(_config, projectId: projectId, requestOptions: requestOptions);
+    return project_methods.listProjectPermissions(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Grants project access to the account associated with an email address. Supply the recipient's `email` in the request body to create a project permission. The response includes the new permission's identifier and grant details.
@@ -112,7 +137,8 @@ class ProjectNamespace {
       {required String projectId,
       required String email,
       RequestOptions? requestOptions}) async {
-    return project_methods.grantProjectPermission(_config, projectId: projectId, email: email, requestOptions: requestOptions);
+    return project_methods.grantProjectPermission(_config,
+        projectId: projectId, email: email, requestOptions: requestOptions);
   }
 
   /// Lists organization members and their project roles for an organization-owned project. The members shown depend on the authenticated user's access: VIEWER and EDITOR see members with effective project access, while ADMIN also sees unassigned organization members. Use `limit` and the response's `pagination.next` cursor to retrieve subsequent pages.
@@ -123,7 +149,11 @@ class ProjectNamespace {
       SdkOptional<String> cursor = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.listProjectMembers(_config, projectId: projectId, cursor: cursor, limit: limit, requestOptions: requestOptions);
+    return project_methods.listProjectMembers(_config,
+        projectId: projectId,
+        cursor: cursor,
+        limit: limit,
+        requestOptions: requestOptions);
   }
 
   /// Sets or updates an organization's member's explicit role on a project. Provide `role` as `viewer`, `editor`, or `admin` to set the corresponding project permission. If the authenticated user is demoting themself, set `confirm_self_demotion` to true.
@@ -135,7 +165,12 @@ class ProjectNamespace {
       required ProjectRole role,
       SdkOptional<bool> confirmSelfDemotion = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.setProjectMemberRole(_config, projectId: projectId, memberId: memberId, role: role, confirmSelfDemotion: confirmSelfDemotion, requestOptions: requestOptions);
+    return project_methods.setProjectMemberRole(_config,
+        projectId: projectId,
+        memberId: memberId,
+        role: role,
+        confirmSelfDemotion: confirmSelfDemotion,
+        requestOptions: requestOptions);
   }
 
   /// Removes an organization's member's explicit role on a project. The member's organization-role default project permission continues to apply, and the operation is a no-op if no explicit role exists. If removing your own role would remove your effective management access, confirm the change with `confirm_self_lockout`.
@@ -146,7 +181,11 @@ class ProjectNamespace {
       required String memberId,
       SdkOptional<bool> confirmSelfLockout = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.removeProjectMemberRole(_config, projectId: projectId, memberId: memberId, confirmSelfLockout: confirmSelfLockout, requestOptions: requestOptions);
+    return project_methods.removeProjectMemberRole(_config,
+        projectId: projectId,
+        memberId: memberId,
+        confirmSelfLockout: confirmSelfLockout,
+        requestOptions: requestOptions);
   }
 
   /// Revokes a user's access to a project using the ID of the access permission. Retrieve the permission ID by listing project access, then provide it with the project identifier. The response includes the permission's grant and revocation details.
@@ -156,7 +195,10 @@ class ProjectNamespace {
       {required String projectId,
       required String permissionId,
       RequestOptions? requestOptions}) async {
-    return project_methods.revokeProjectPermission(_config, projectId: projectId, permissionId: permissionId, requestOptions: requestOptions);
+    return project_methods.revokeProjectPermission(_config,
+        projectId: projectId,
+        permissionId: permissionId,
+        requestOptions: requestOptions);
   }
 
   /// Lists the shared preload libraries available for the specified project's Postgres version. Use the list to choose libraries for the project's `settings.preload_libraries` configuration; activating these libraries requires a compute restart.
@@ -164,7 +206,8 @@ class ProjectNamespace {
   /// Returns the shared preload libraries available for the specified project's Postgres version. Shared preload libraries are Postgres extensions that require the `shared_preload_libraries` setting and a compute restart to activate. Use this list to determine which libraries can be enabled in the project's `settings.preload_libraries` configuration.
   Future<AvailablePreloadLibraries> getAvailablePreloadLibraries(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return project_methods.getAvailablePreloadLibraries(_config, projectId: projectId, requestOptions: requestOptions);
+    return project_methods.getAvailablePreloadLibraries(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Creates a transfer request for the specified project. The request expires after a set period. To accept the request, the recipient calls `PUT /projects/{project_id}/transfer_requests/{request_id}` or uses the Neon Console claim link. The optional `ru` parameter redirects the recipient after acceptance.
@@ -172,7 +215,10 @@ class ProjectNamespace {
       {required String projectId,
       SdkOptional<int> ttlSeconds = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.createProjectTransferRequest(_config, projectId: projectId, ttlSeconds: ttlSeconds, requestOptions: requestOptions);
+    return project_methods.createProjectTransferRequest(_config,
+        projectId: projectId,
+        ttlSeconds: ttlSeconds,
+        requestOptions: requestOptions);
   }
 
   /// Accepts a transfer request for the specified project, transferring it to the specified organization or user. If org_id is not passed, the project will be transferred to the current user or organization account.
@@ -181,13 +227,18 @@ class ProjectNamespace {
       required String requestId,
       SdkOptional<String> orgId = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.acceptProjectTransferRequest(_config, projectId: projectId, requestId: requestId, orgId: orgId, requestOptions: requestOptions);
+    return project_methods.acceptProjectTransferRequest(_config,
+        projectId: projectId,
+        requestId: requestId,
+        orgId: orgId,
+        requestOptions: requestOptions);
   }
 
   /// Returns the JWKS URLs available for verifying JWTs used as the authentication mechanism for the specified project.
   Future<ProjectJWKSResponse> getJwks(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return project_methods.getProjectJwks(_config, projectId: projectId, requestOptions: requestOptions);
+    return project_methods.getProjectJwks(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Adds a JWKS URL to the specified project for verifying JWTs used as the authentication mechanism. The URL must be a valid HTTPS URL that returns a JSON Web Key Set. The `provider_name` field allows you to specify which authentication provider you're using (e.g., Clerk, Auth0, AWS Cognito). The `branch_id` scopes the JWKS URL to specific branches; if not specified, it applies to all branches. The `role_names` scopes the URL to specific roles; if not specified, default roles are used (`authenticator`, `authenticated`, `anonymous`). The `jwt_audience` specifies which `aud` values are accepted in JWTs.
@@ -200,7 +251,15 @@ class ProjectNamespace {
       SdkOptional<List<String>> roleNames = const SdkOmitted(),
       SdkOptional<bool> skipRoleCreation = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.addProjectJwks(_config, projectId: projectId, jwksUrl: jwksUrl, providerName: providerName, branchId: branchId, jwtAudience: jwtAudience, roleNames: roleNames, skipRoleCreation: skipRoleCreation, requestOptions: requestOptions);
+    return project_methods.addProjectJwks(_config,
+        projectId: projectId,
+        jwksUrl: jwksUrl,
+        providerName: providerName,
+        branchId: branchId,
+        jwtAudience: jwtAudience,
+        roleNames: roleNames,
+        skipRoleCreation: skipRoleCreation,
+        requestOptions: requestOptions);
   }
 
   /// Removes the specified JWKS URL from the project. JWTs signed by keys from the removed URL can no longer authenticate to the project's endpoints.
@@ -208,7 +267,8 @@ class ProjectNamespace {
       {required String projectId,
       required String jwksId,
       RequestOptions? requestOptions}) async {
-    return project_methods.deleteProjectJwks(_config, projectId: projectId, jwksId: jwksId, requestOptions: requestOptions);
+    return project_methods.deleteProjectJwks(_config,
+        projectId: projectId, jwksId: jwksId, requestOptions: requestOptions);
   }
 
   /// Retrieves a connection URI for the specified database. The URI uses the standard PostgreSQL connection string format. Set `pooled=true` to include the `-pooler` suffix for a connection pooler URI.
@@ -220,13 +280,21 @@ class ProjectNamespace {
       SdkOptional<String> endpointId = const SdkOmitted(),
       SdkOptional<bool> pooled = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return project_methods.getConnectionUri(_config, projectId: projectId, databaseName: databaseName, roleName: roleName, branchId: branchId, endpointId: endpointId, pooled: pooled, requestOptions: requestOptions);
+    return project_methods.getConnectionUri(_config,
+        projectId: projectId,
+        databaseName: databaseName,
+        roleName: roleName,
+        branchId: branchId,
+        endpointId: endpointId,
+        pooled: pooled,
+        requestOptions: requestOptions);
   }
 
   /// Lists VPC endpoint restrictions for the specified Neon project.
   Future<VPCEndpointsResponse> listVpcEndpoints(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return project_methods.listProjectVpcEndpoints(_config, projectId: projectId, requestOptions: requestOptions);
+    return project_methods.listProjectVpcEndpoints(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Sets or updates a VPC endpoint restriction for a Neon project. When a VPC endpoint restriction is set, the project only accepts connections from the specified VPC. A VPC endpoint can be set as a restriction only after it is assigned to the parent organization of the Neon project.
@@ -235,7 +303,11 @@ class ProjectNamespace {
       required String vpcEndpointId,
       required String label,
       RequestOptions? requestOptions}) async {
-    return project_methods.assignProjectVpcEndpoint(_config, projectId: projectId, vpcEndpointId: vpcEndpointId, label: label, requestOptions: requestOptions);
+    return project_methods.assignProjectVpcEndpoint(_config,
+        projectId: projectId,
+        vpcEndpointId: vpcEndpointId,
+        label: label,
+        requestOptions: requestOptions);
   }
 
   /// Removes the specified VPC endpoint restriction from a Neon project.
@@ -243,14 +315,17 @@ class ProjectNamespace {
       {required String projectId,
       required String vpcEndpointId,
       RequestOptions? requestOptions}) async {
-    return project_methods.deleteProjectVpcEndpoint(_config, projectId: projectId, vpcEndpointId: vpcEndpointId, requestOptions: requestOptions);
+    return project_methods.deleteProjectVpcEndpoint(_config,
+        projectId: projectId,
+        vpcEndpointId: vpcEndpointId,
+        requestOptions: requestOptions);
   }
-
 }
 
 class ApiKeyNamespace {
   final ClientConfig _config;
   ApiKeyNamespace(ClientConfig config) : _config = config;
+
   /// Retrieves the API keys for your Neon account. The response does not include API key tokens. A token is only provided when creating an API key. API keys can also be managed in the Neon Console. For more information, see [Manage API keys](https://neon.com/docs/manage/api-keys/).
   Future<List<ApiKeysListResponseItem>> list(
       {RequestOptions? requestOptions}) async {
@@ -260,26 +335,31 @@ class ApiKeyNamespace {
   /// Creates an API key. The `key_name` is a user-specified name for the key. Returns an `id` and `key`; the `key` is a randomly generated, 64-bit token required to access the Neon API. Store the key securely — it is only returned once. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/).
   Future<ApiKeyCreateResponse> create(
       {required String keyName, RequestOptions? requestOptions}) async {
-    return api_key_methods.createApiKey(_config, keyName: keyName, requestOptions: requestOptions);
+    return api_key_methods.createApiKey(_config,
+        keyName: keyName, requestOptions: requestOptions);
   }
 
   /// Revokes the specified API key. An API key that is no longer needed can be revoked. This action cannot be reversed. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/).
   Future<ApiKeyRevokeResponse> revoke(
       {required int keyId, RequestOptions? requestOptions}) async {
-    return api_key_methods.revokeApiKey(_config, keyId: keyId, requestOptions: requestOptions);
+    return api_key_methods.revokeApiKey(_config,
+        keyId: keyId, requestOptions: requestOptions);
   }
-
 }
 
 class OperationNamespace {
   final ClientConfig _config;
   OperationNamespace(ClientConfig config) : _config = config;
+
   /// Retrieves details for the specified operation. An operation is an action performed on a Neon project resource.
   Future<OperationResponse> get_(
       {required String projectId,
       required String operationId,
       RequestOptions? requestOptions}) async {
-    return operation_methods.getOperation(_config, projectId: projectId, operationId: operationId, requestOptions: requestOptions);
+    return operation_methods.getOperation(_config,
+        projectId: projectId,
+        operationId: operationId,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves a list of operations for the specified Neon project. The number of operations returned can be large. To paginate the response, issue an initial request with a `limit` value. Then, add the `cursor` value that was returned in the response to the next request. Operations older than 6 months may be deleted from our systems. If you need more history than that, you should store your own history.
@@ -288,20 +368,25 @@ class OperationNamespace {
       SdkOptional<String> cursor = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return operation_methods.listOperation(_config, projectId: projectId, cursor: cursor, limit: limit, requestOptions: requestOptions);
+    return operation_methods.listOperation(_config,
+        projectId: projectId,
+        cursor: cursor,
+        limit: limit,
+        requestOptions: requestOptions);
   }
-
 }
 
 class DataApiNamespace {
   final ClientConfig _config;
   DataApiNamespace(ClientConfig config) : _config = config;
+
   /// Creates a new instance of Neon Data API in the specified branch. The Data API exposes a REST interface over the branch database. The `database_name` path parameter determines which database the API serves.
   Future<DataAPICreateResponse> create(
       {required String projectId,
       required String branchId,
       required String databaseName,
-      SdkOptional<DataAPICreateRequestAuthProvider> authProvider = const SdkOmitted(),
+      SdkOptional<DataAPICreateRequestAuthProvider> authProvider =
+          const SdkOmitted(),
       SdkOptional<String> jwksUrl = const SdkOmitted(),
       SdkOptional<String> providerName = const SdkOmitted(),
       SdkOptional<String> jwtAudience = const SdkOmitted(),
@@ -309,7 +394,18 @@ class DataApiNamespace {
       SdkOptional<bool> skipAuthSchema = const SdkOmitted(),
       SdkOptional<DataAPISettings> settings = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return data_api_methods.createDataApi(_config, projectId: projectId, branchId: branchId, databaseName: databaseName, authProvider: authProvider, jwksUrl: jwksUrl, providerName: providerName, jwtAudience: jwtAudience, addDefaultGrants: addDefaultGrants, skipAuthSchema: skipAuthSchema, settings: settings, requestOptions: requestOptions);
+    return data_api_methods.createDataApi(_config,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        authProvider: authProvider,
+        jwksUrl: jwksUrl,
+        providerName: providerName,
+        jwtAudience: jwtAudience,
+        addDefaultGrants: addDefaultGrants,
+        skipAuthSchema: skipAuthSchema,
+        settings: settings,
+        requestOptions: requestOptions);
   }
 
   /// Updates the Neon Data API configuration for the specified branch. You can optionally provide settings to update the Data API configuration. The schema cache is always refreshed as part of this operation.
@@ -319,7 +415,12 @@ class DataApiNamespace {
       required String databaseName,
       SdkOptional<DataAPISettings> settings = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return data_api_methods.updateDataApi(_config, projectId: projectId, branchId: branchId, databaseName: databaseName, settings: settings, requestOptions: requestOptions);
+    return data_api_methods.updateDataApi(_config,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        settings: settings,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the Neon Data API for the specified branch. Existing connections using the Data API endpoint will fail after deletion.
@@ -328,7 +429,11 @@ class DataApiNamespace {
       required String branchId,
       required String databaseName,
       RequestOptions? requestOptions}) async {
-    return data_api_methods.deleteDataApi(_config, projectId: projectId, branchId: branchId, databaseName: databaseName, requestOptions: requestOptions);
+    return data_api_methods.deleteDataApi(_config,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the Neon Data API configuration for the specified branch, including endpoint URL, enabled state, and database settings.
@@ -337,14 +442,18 @@ class DataApiNamespace {
       required String branchId,
       required String databaseName,
       RequestOptions? requestOptions}) async {
-    return data_api_methods.getDataApi(_config, projectId: projectId, branchId: branchId, databaseName: databaseName, requestOptions: requestOptions);
+    return data_api_methods.getDataApi(_config,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        requestOptions: requestOptions);
   }
-
 }
 
 class AuthLegacyNamespace {
   final ClientConfig _config;
   AuthLegacyNamespace(ClientConfig config) : _config = config;
+
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth` instead. Removal scheduled for March 1, 2026. Use this endpoint if the frontend integration flow can't be used.
   ///
   /// **Deprecated:** this operation is deprecated and may be removed in a future release.
@@ -355,7 +464,13 @@ class AuthLegacyNamespace {
       SdkOptional<String> databaseName = const SdkOmitted(),
       SdkOptional<String> roleName = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.createAuthLegacyIntegration(_config, authProvider: authProvider, projectId: projectId, branchId: branchId, databaseName: databaseName, roleName: roleName, requestOptions: requestOptions);
+    return auth_legacy_methods.createAuthLegacyIntegration(_config,
+        authProvider: authProvider,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        roleName: roleName,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/domains` instead. Removal scheduled for March 1, 2026.
@@ -363,7 +478,10 @@ class AuthLegacyNamespace {
   /// **Deprecated:** this operation is deprecated and may be removed in a future release.
   Future<NeonAuthRedirectURIWhitelistResponse> listRedirectUriWhitelistDomains(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.listAuthLegacyRedirectUriWhitelistDomains(_config, projectId: projectId, requestOptions: requestOptions);
+    return auth_legacy_methods.listAuthLegacyRedirectUriWhitelistDomains(
+        _config,
+        projectId: projectId,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/domains` instead. Removal scheduled for March 1, 2026.
@@ -374,7 +492,12 @@ class AuthLegacyNamespace {
       required String domain,
       required NeonAuthSupportedAuthProvider authProvider,
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.addAuthLegacyDomainToRedirectUriWhitelist(_config, projectId: projectId, domain: domain, authProvider: authProvider, requestOptions: requestOptions);
+    return auth_legacy_methods.addAuthLegacyDomainToRedirectUriWhitelist(
+        _config,
+        projectId: projectId,
+        domain: domain,
+        authProvider: authProvider,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/domains` instead. Removal scheduled for March 1, 2026.
@@ -385,7 +508,12 @@ class AuthLegacyNamespace {
       required NeonAuthSupportedAuthProvider authProvider,
       required List<NeonAuthDeleteDomainFromRedirectURIWhitelistItem> domains,
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.deleteAuthLegacyDomainFromRedirectUriWhitelist(_config, projectId: projectId, authProvider: authProvider, domains: domains, requestOptions: requestOptions);
+    return auth_legacy_methods.deleteAuthLegacyDomainFromRedirectUriWhitelist(
+        _config,
+        projectId: projectId,
+        authProvider: authProvider,
+        domains: domains,
+        requestOptions: requestOptions);
   }
 
   /// Generates SDK or API Keys for the auth provider. These might be called different things depending on the auth provider you're using, but are generally used for setting up the frontend and backend SDKs.
@@ -393,7 +521,10 @@ class AuthLegacyNamespace {
       {required String projectId,
       required NeonAuthSupportedAuthProvider authProvider,
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.createAuthLegacyProviderSdkKeys(_config, projectId: projectId, authProvider: authProvider, requestOptions: requestOptions);
+    return auth_legacy_methods.createAuthLegacyProviderSdkKeys(_config,
+        projectId: projectId,
+        authProvider: authProvider,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/users` instead. Removal scheduled for March 1, 2026. The user will be created in your neon_auth.users_sync table and automatically propagated to your auth project, whether Neon-managed or provider-owned.
@@ -405,7 +536,12 @@ class AuthLegacyNamespace {
       required String email,
       SdkOptional<String> name = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.createAuthLegacyUser(_config, projectId: projectId, authProvider: authProvider, email: email, name: name, requestOptions: requestOptions);
+    return auth_legacy_methods.createAuthLegacyUser(_config,
+        projectId: projectId,
+        authProvider: authProvider,
+        email: email,
+        name: name,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/users/{auth_user_id}` instead. Removal scheduled for March 1, 2026.
@@ -415,16 +551,21 @@ class AuthLegacyNamespace {
       {required String projectId,
       required String authUserId,
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.deleteAuthLegacyUser(_config, projectId: projectId, authUserId: authUserId, requestOptions: requestOptions);
+    return auth_legacy_methods.deleteAuthLegacyUser(_config,
+        projectId: projectId,
+        authUserId: authUserId,
+        requestOptions: requestOptions);
   }
 
   /// Transfers ownership of your Neon-managed auth project to your own auth provider account.
-  Future<NeonAuthTransferAuthProviderProjectResponse>
-      transferProvider(
-          {required String projectId,
-          required NeonAuthSupportedAuthProvider authProvider,
-          RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.transferAuthLegacyProvider(_config, projectId: projectId, authProvider: authProvider, requestOptions: requestOptions);
+  Future<NeonAuthTransferAuthProviderProjectResponse> transferProvider(
+      {required String projectId,
+      required NeonAuthSupportedAuthProvider authProvider,
+      RequestOptions? requestOptions}) async {
+    return auth_legacy_methods.transferAuthLegacyProvider(_config,
+        projectId: projectId,
+        authProvider: authProvider,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth` instead. Removal scheduled for March 1, 2026.
@@ -432,7 +573,8 @@ class AuthLegacyNamespace {
   /// **Deprecated:** this operation is deprecated and may be removed in a future release.
   Future<ListNeonAuthIntegrationsResponse> listIntegrations(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.listAuthLegacyIntegrations(_config, projectId: projectId, requestOptions: requestOptions);
+    return auth_legacy_methods.listAuthLegacyIntegrations(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers` instead. Removal scheduled for March 1, 2026.
@@ -440,7 +582,8 @@ class AuthLegacyNamespace {
   /// **Deprecated:** this operation is deprecated and may be removed in a future release.
   Future<ListNeonAuthOauthProvidersResponse> listOauthProviders(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.listAuthLegacyOauthProviders(_config, projectId: projectId, requestOptions: requestOptions);
+    return auth_legacy_methods.listAuthLegacyOauthProviders(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers` instead. Removal scheduled for March 1, 2026.
@@ -453,7 +596,13 @@ class AuthLegacyNamespace {
       SdkOptional<String> clientSecret = const SdkOmitted(),
       SdkOptional<String> microsoftTenantId = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.addAuthLegacyOauthProvider(_config, projectId: projectId, id: id, clientId: clientId, clientSecret: clientSecret, microsoftTenantId: microsoftTenantId, requestOptions: requestOptions);
+    return auth_legacy_methods.addAuthLegacyOauthProvider(_config,
+        projectId: projectId,
+        id: id,
+        clientId: clientId,
+        clientSecret: clientSecret,
+        microsoftTenantId: microsoftTenantId,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers/{oauth_provider_id}` instead. Removal scheduled for March 1, 2026.
@@ -466,7 +615,13 @@ class AuthLegacyNamespace {
       SdkOptional<String> clientSecret = const SdkOmitted(),
       SdkOptional<String> microsoftTenantId = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.updateAuthLegacyOauthProvider(_config, projectId: projectId, oauthProviderId: oauthProviderId, clientId: clientId, clientSecret: clientSecret, microsoftTenantId: microsoftTenantId, requestOptions: requestOptions);
+    return auth_legacy_methods.updateAuthLegacyOauthProvider(_config,
+        projectId: projectId,
+        oauthProviderId: oauthProviderId,
+        clientId: clientId,
+        clientSecret: clientSecret,
+        microsoftTenantId: microsoftTenantId,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers/{oauth_provider_id}` instead. Removal scheduled for March 1, 2026.
@@ -476,7 +631,10 @@ class AuthLegacyNamespace {
       {required String projectId,
       required NeonAuthOauthProviderId oauthProviderId,
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.deleteAuthLegacyOauthProvider(_config, projectId: projectId, oauthProviderId: oauthProviderId, requestOptions: requestOptions);
+    return auth_legacy_methods.deleteAuthLegacyOauthProvider(_config,
+        projectId: projectId,
+        oauthProviderId: oauthProviderId,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/email_provider` instead. Removal scheduled for March 1, 2026.
@@ -484,7 +642,8 @@ class AuthLegacyNamespace {
   /// **Deprecated:** this operation is deprecated and may be removed in a future release.
   Future<NeonAuthEmailServerConfigResponse> getEmailServer(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.getAuthLegacyEmailServer(_config, projectId: projectId, requestOptions: requestOptions);
+    return auth_legacy_methods.getAuthLegacyEmailServer(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Updates the email server configuration for a Neon project. This operation is closing down and will be removed on March 1, 2026. Use `PATCH /projects/{project_id}/branches/{branch_id}/auth/email_provider` instead.
@@ -496,7 +655,8 @@ class AuthLegacyNamespace {
       {required String projectId,
       required NeonAuthEmailServerConfig body,
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.updateAuthLegacyEmailServer(_config, projectId: projectId, body: body, requestOptions: requestOptions);
+    return auth_legacy_methods.updateAuthLegacyEmailServer(_config,
+        projectId: projectId, body: body, requestOptions: requestOptions);
   }
 
   /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth` instead. Removal scheduled for March 1, 2026.
@@ -507,20 +667,27 @@ class AuthLegacyNamespace {
       required NeonAuthSupportedAuthProvider authProvider,
       SdkOptional<bool> deleteData = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_legacy_methods.deleteAuthLegacyIntegration(_config, projectId: projectId, authProvider: authProvider, deleteData: deleteData, requestOptions: requestOptions);
+    return auth_legacy_methods.deleteAuthLegacyIntegration(_config,
+        projectId: projectId,
+        authProvider: authProvider,
+        deleteData: deleteData,
+        requestOptions: requestOptions);
   }
-
 }
 
 class AuthNamespace {
   final ClientConfig _config;
   AuthNamespace(ClientConfig config) : _config = config;
+
   /// Retrieves the Neon Auth integration details for the specified branch, including the auth provider type and integration status.
   Future<NeonAuthIntegration> get_(
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuth(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.getAuth(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Enables Neon Auth for the specified branch by connecting it to an authentication provider. Creating the integration provisions the `neon_auth` schema in the branch database, which stores user identity data synchronized from the provider.
@@ -530,7 +697,12 @@ class AuthNamespace {
       required NeonAuthSupportedAuthProvider authProvider,
       SdkOptional<String> databaseName = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.createAuth(_config, projectId: projectId, branchId: branchId, authProvider: authProvider, databaseName: databaseName, requestOptions: requestOptions);
+    return auth_methods.createAuth(_config,
+        projectId: projectId,
+        branchId: branchId,
+        authProvider: authProvider,
+        databaseName: databaseName,
+        requestOptions: requestOptions);
   }
 
   /// Disables the Neon Auth integration for the specified branch, removing the connection to the authentication provider. If `delete_data` is `true`, also deletes the `neon_auth` schema and all associated tables from the branch database. The integration can be re-enabled by calling `POST /projects/{project_id}/branches/{branch_id}/auth`.
@@ -539,7 +711,11 @@ class AuthNamespace {
       required String branchId,
       SdkOptional<bool> deleteData = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.disableAuth(_config, projectId: projectId, branchId: branchId, deleteData: deleteData, requestOptions: requestOptions);
+    return auth_methods.disableAuth(_config,
+        projectId: projectId,
+        branchId: branchId,
+        deleteData: deleteData,
+        requestOptions: requestOptions);
   }
 
   /// Lists the trusted domains in the redirect URI whitelist for the specified branch. Only domains in this list are permitted as redirect targets after authentication.
@@ -547,7 +723,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.listAuthTrustedDomains(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.listAuthTrustedDomains(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Adds a domain to the redirect URI whitelist for the specified branch. Only domains in this list are permitted as redirect targets after authentication.
@@ -557,7 +736,12 @@ class AuthNamespace {
       required String domain,
       required NeonAuthSupportedAuthProvider authProvider,
       RequestOptions? requestOptions}) async {
-    return auth_methods.addAuthTrustedDomain(_config, projectId: projectId, branchId: branchId, domain: domain, authProvider: authProvider, requestOptions: requestOptions);
+    return auth_methods.addAuthTrustedDomain(_config,
+        projectId: projectId,
+        branchId: branchId,
+        domain: domain,
+        authProvider: authProvider,
+        requestOptions: requestOptions);
   }
 
   /// Removes a domain from the redirect URI whitelist for the specified branch. After removal, the domain can no longer be used as a redirect target after authentication.
@@ -567,7 +751,12 @@ class AuthNamespace {
       required NeonAuthSupportedAuthProvider authProvider,
       required List<NeonAuthDeleteDomainFromRedirectURIWhitelistItem> domains,
       RequestOptions? requestOptions}) async {
-    return auth_methods.deleteAuthTrustedDomain(_config, projectId: projectId, branchId: branchId, authProvider: authProvider, domains: domains, requestOptions: requestOptions);
+    return auth_methods.deleteAuthTrustedDomain(_config,
+        projectId: projectId,
+        branchId: branchId,
+        authProvider: authProvider,
+        domains: domains,
+        requestOptions: requestOptions);
   }
 
   /// Creates a new user in the Neon Auth user directory for the specified branch. The user is created in the `neon_auth.users_sync` table and can immediately authenticate using the branch's configured auth providers.
@@ -577,7 +766,12 @@ class AuthNamespace {
       required String email,
       SdkOptional<String> name = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.createAuthUser(_config, projectId: projectId, branchId: branchId, email: email, name: name, requestOptions: requestOptions);
+    return auth_methods.createAuthUser(_config,
+        projectId: projectId,
+        branchId: branchId,
+        email: email,
+        name: name,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the specified user from the Neon Auth user directory for the specified branch. Removes the user record from `neon_auth.users_sync`. This action cannot be undone.
@@ -586,7 +780,11 @@ class AuthNamespace {
       required String branchId,
       required String authUserId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.deleteAuthUser(_config, projectId: projectId, branchId: branchId, authUserId: authUserId, requestOptions: requestOptions);
+    return auth_methods.deleteAuthUser(_config,
+        projectId: projectId,
+        branchId: branchId,
+        authUserId: authUserId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the role of a user in the Neon Auth user directory for the specified branch. The role controls the user's level of access within the Neon Auth integration.
@@ -596,7 +794,12 @@ class AuthNamespace {
       required String authUserId,
       required List<String> roles,
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthUserRole(_config, projectId: projectId, branchId: branchId, authUserId: authUserId, roles: roles, requestOptions: requestOptions);
+    return auth_methods.updateAuthUserRole(_config,
+        projectId: projectId,
+        branchId: branchId,
+        authUserId: authUserId,
+        roles: roles,
+        requestOptions: requestOptions);
   }
 
   /// Lists the OAuth providers configured for the specified branch's Neon Auth integration.
@@ -604,7 +807,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.listAuthOauthProviders(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.listAuthOauthProviders(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Adds an OAuth provider configuration to the specified branch's Neon Auth integration. After adding, users can authenticate using the configured provider.
@@ -616,7 +822,14 @@ class AuthNamespace {
       SdkOptional<String> clientSecret = const SdkOmitted(),
       SdkOptional<String> microsoftTenantId = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.addAuthOauthProvider(_config, projectId: projectId, branchId: branchId, id: id, clientId: clientId, clientSecret: clientSecret, microsoftTenantId: microsoftTenantId, requestOptions: requestOptions);
+    return auth_methods.addAuthOauthProvider(_config,
+        projectId: projectId,
+        branchId: branchId,
+        id: id,
+        clientId: clientId,
+        clientSecret: clientSecret,
+        microsoftTenantId: microsoftTenantId,
+        requestOptions: requestOptions);
   }
 
   /// Updates an OAuth provider for the specified project.
@@ -628,7 +841,14 @@ class AuthNamespace {
       SdkOptional<String> clientSecret = const SdkOmitted(),
       SdkOptional<String> microsoftTenantId = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthOauthProvider(_config, projectId: projectId, branchId: branchId, oauthProviderId: oauthProviderId, clientId: clientId, clientSecret: clientSecret, microsoftTenantId: microsoftTenantId, requestOptions: requestOptions);
+    return auth_methods.updateAuthOauthProvider(_config,
+        projectId: projectId,
+        branchId: branchId,
+        oauthProviderId: oauthProviderId,
+        clientId: clientId,
+        clientSecret: clientSecret,
+        microsoftTenantId: microsoftTenantId,
+        requestOptions: requestOptions);
   }
 
   /// Deletes an OAuth provider from the specified project.
@@ -637,7 +857,11 @@ class AuthNamespace {
       required String branchId,
       required NeonAuthOauthProviderId oauthProviderId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.deleteAuthOauthProvider(_config, projectId: projectId, branchId: branchId, oauthProviderId: oauthProviderId, requestOptions: requestOptions);
+    return auth_methods.deleteAuthOauthProvider(_config,
+        projectId: projectId,
+        branchId: branchId,
+        oauthProviderId: oauthProviderId,
+        requestOptions: requestOptions);
   }
 
   /// Sends a test email using the SMTP server settings supplied in the request body to verify connectivity and credentials. The request body must include the full SMTP server settings (`host`, `port`, `username`, `password`, `sender_email`, `sender_name`) and the `recipient_email` address. Deprecated: to test a branch's already-saved configuration, use `sendNeonAuthEmailProviderTest`, which reuses the stored SMTP password server-side so the caller never has to re-supply (or be able to read) it. This endpoint remains available for testing an unsaved full configuration and for non-Better-Auth providers.
@@ -654,7 +878,17 @@ class AuthNamespace {
       required String senderName,
       required String recipientEmail,
       RequestOptions? requestOptions}) async {
-    return auth_methods.sendAuthTestEmail(_config, projectId: projectId, branchId: branchId, host: host, port: port, username: username, password: password, senderEmail: senderEmail, senderName: senderName, recipientEmail: recipientEmail, requestOptions: requestOptions);
+    return auth_methods.sendAuthTestEmail(_config,
+        projectId: projectId,
+        branchId: branchId,
+        host: host,
+        port: port,
+        username: username,
+        password: password,
+        senderEmail: senderEmail,
+        senderName: senderName,
+        recipientEmail: recipientEmail,
+        requestOptions: requestOptions);
   }
 
   /// Sends a test email using the branch's already-saved custom SMTP configuration. Only the `recipient_email` is provided — the stored SMTP settings and password are used server-side, so the caller does not need to re-supply (or be able to read) the password. This avoids the GET response's masked password being sent back, which would fail SMTP authentication. Requires a configured custom SMTP provider on a Better Auth integration. A shared provider, a missing configuration, or a non-Better-Auth integration is rejected.
@@ -663,7 +897,11 @@ class AuthNamespace {
       required String branchId,
       required String recipientEmail,
       RequestOptions? requestOptions}) async {
-    return auth_methods.sendAuthEmailProviderTest(_config, projectId: projectId, branchId: branchId, recipientEmail: recipientEmail, requestOptions: requestOptions);
+    return auth_methods.sendAuthEmailProviderTest(_config,
+        projectId: projectId,
+        branchId: branchId,
+        recipientEmail: recipientEmail,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the email and password authentication configuration for the specified branch's Neon Auth integration, including whether it is enabled and the email verification method.
@@ -671,7 +909,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuthEmailAndPasswordConfig(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.getAuthEmailAndPasswordConfig(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the email and password authentication configuration for the specified branch's Neon Auth integration. Only the fields provided in the request body are updated.
@@ -679,14 +920,25 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       SdkOptional<bool> enabled = const SdkOmitted(),
-      SdkOptional<NeonAuthEmailVerificationMethod> emailVerificationMethod = const SdkOmitted(),
+      SdkOptional<NeonAuthEmailVerificationMethod> emailVerificationMethod =
+          const SdkOmitted(),
       SdkOptional<bool> requireEmailVerification = const SdkOmitted(),
       SdkOptional<bool> autoSignInAfterVerification = const SdkOmitted(),
       SdkOptional<bool> sendVerificationEmailOnSignUp = const SdkOmitted(),
       SdkOptional<bool> sendVerificationEmailOnSignIn = const SdkOmitted(),
       SdkOptional<bool> disableSignUp = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthEmailAndPasswordConfig(_config, projectId: projectId, branchId: branchId, enabled: enabled, emailVerificationMethod: emailVerificationMethod, requireEmailVerification: requireEmailVerification, autoSignInAfterVerification: autoSignInAfterVerification, sendVerificationEmailOnSignUp: sendVerificationEmailOnSignUp, sendVerificationEmailOnSignIn: sendVerificationEmailOnSignIn, disableSignUp: disableSignUp, requestOptions: requestOptions);
+    return auth_methods.updateAuthEmailAndPasswordConfig(_config,
+        projectId: projectId,
+        branchId: branchId,
+        enabled: enabled,
+        emailVerificationMethod: emailVerificationMethod,
+        requireEmailVerification: requireEmailVerification,
+        autoSignInAfterVerification: autoSignInAfterVerification,
+        sendVerificationEmailOnSignUp: sendVerificationEmailOnSignUp,
+        sendVerificationEmailOnSignIn: sendVerificationEmailOnSignIn,
+        disableSignUp: disableSignUp,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the email provider configuration for the specified branch's Neon Auth integration, including the provider type and server settings.
@@ -694,7 +946,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuthEmailProvider(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.getAuthEmailProvider(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the email provider configuration for a branch's Neon Auth integration. Use the `standard` fields to configure SMTP settings and the sender identity; Better Auth integrations merge omitted fields, while Legacy Stack Auth integrations require all six standard fields on each update. Returns the updated email provider configuration.
@@ -705,7 +960,11 @@ class AuthNamespace {
       required String branchId,
       required NeonAuthEmailServerConfig body,
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthEmailProvider(_config, projectId: projectId, branchId: branchId, body: body, requestOptions: requestOptions);
+    return auth_methods.updateAuthEmailProvider(_config,
+        projectId: projectId,
+        branchId: branchId,
+        body: body,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the localhost allow setting for the specified branch's Neon Auth integration. When enabled, authentication flows work from `localhost` without adding it to the redirect URI whitelist.
@@ -713,7 +972,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuthAllowLocalhost(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.getAuthAllowLocalhost(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the localhost allow setting for the specified branch's Neon Auth integration. When enabled, authentication flows work from `localhost` without adding it to the redirect URI whitelist.
@@ -722,7 +984,11 @@ class AuthNamespace {
       required String branchId,
       required bool allowLocalhost,
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthAllowLocalhost(_config, projectId: projectId, branchId: branchId, allowLocalhost: allowLocalhost, requestOptions: requestOptions);
+    return auth_methods.updateAuthAllowLocalhost(_config,
+        projectId: projectId,
+        branchId: branchId,
+        allowLocalhost: allowLocalhost,
+        requestOptions: requestOptions);
   }
 
   /// Returns all plugin configurations for Neon Auth in a single response. This endpoint aggregates organization, email provider, email and password, OAuth providers, and localhost settings.
@@ -730,7 +996,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuthPluginConfigs(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.getAuthPluginConfigs(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the organization plugin configuration for Neon Auth. The organization plugin enables multi-tenant organization support.
@@ -740,10 +1009,19 @@ class AuthNamespace {
       SdkOptional<bool> enabled = const SdkOmitted(),
       SdkOptional<int> organizationLimit = const SdkOmitted(),
       SdkOptional<int> membershipLimit = const SdkOmitted(),
-      SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole> creatorRole = const SdkOmitted(),
+      SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole> creatorRole =
+          const SdkOmitted(),
       SdkOptional<bool> sendInvitationEmail = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthOrganizationPlugin(_config, projectId: projectId, branchId: branchId, enabled: enabled, organizationLimit: organizationLimit, membershipLimit: membershipLimit, creatorRole: creatorRole, sendInvitationEmail: sendInvitationEmail, requestOptions: requestOptions);
+    return auth_methods.updateAuthOrganizationPlugin(_config,
+        projectId: projectId,
+        branchId: branchId,
+        enabled: enabled,
+        organizationLimit: organizationLimit,
+        membershipLimit: membershipLimit,
+        creatorRole: creatorRole,
+        sendInvitationEmail: sendInvitationEmail,
+        requestOptions: requestOptions);
   }
 
   /// Updates the auth configuration for the branch. Currently supports updating the application name used in auth emails.
@@ -752,7 +1030,11 @@ class AuthNamespace {
       required String branchId,
       required String name,
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthConfig(_config, projectId: projectId, branchId: branchId, name: name, requestOptions: requestOptions);
+    return auth_methods.updateAuthConfig(_config,
+        projectId: projectId,
+        branchId: branchId,
+        name: name,
+        requestOptions: requestOptions);
   }
 
   /// Updates the magic link plugin configuration for Neon Auth. The magic link plugin enables passwordless authentication via email magic links.
@@ -763,7 +1045,13 @@ class AuthNamespace {
       SdkOptional<int> expiresIn = const SdkOmitted(),
       SdkOptional<bool> disableSignUp = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthMagicLinkPlugin(_config, projectId: projectId, branchId: branchId, enabled: enabled, expiresIn: expiresIn, disableSignUp: disableSignUp, requestOptions: requestOptions);
+    return auth_methods.updateAuthMagicLinkPlugin(_config,
+        projectId: projectId,
+        branchId: branchId,
+        enabled: enabled,
+        expiresIn: expiresIn,
+        disableSignUp: disableSignUp,
+        requestOptions: requestOptions);
   }
 
   /// Returns the phone number plugin configuration for Neon Auth. The phone number plugin enables phone-based OTP authentication.
@@ -771,7 +1059,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuthPhoneNumberPlugin(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.getAuthPhoneNumberPlugin(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the phone number plugin configuration for Neon Auth. Only the fields provided in the request body are updated; omitted fields retain their current values. The phone number plugin enables phone-based OTP authentication. OTP codes are delivered via the `send.otp` webhook event with `delivery_preference: "sms"`. A webhook must be configured with the `send.otp` event enabled for SMS delivery to work.
@@ -781,7 +1072,12 @@ class AuthNamespace {
       SdkOptional<bool> enabled = const SdkOmitted(),
       SdkOptional<int> otpExpiresIn = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthPhoneNumberPlugin(_config, projectId: projectId, branchId: branchId, enabled: enabled, otpExpiresIn: otpExpiresIn, requestOptions: requestOptions);
+    return auth_methods.updateAuthPhoneNumberPlugin(_config,
+        projectId: projectId,
+        branchId: branchId,
+        enabled: enabled,
+        otpExpiresIn: otpExpiresIn,
+        requestOptions: requestOptions);
   }
 
   /// Returns the OAuth provider plugin configuration for Neon Auth. The OAuth provider plugin lets Neon Auth act as an OAuth 2.1 authorization server for your own clients, such as MCP clients.
@@ -789,7 +1085,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuthOAuthProviderPlugin(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.getAuthOAuthProviderPlugin(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the OAuth provider plugin configuration for Neon Auth. Only the fields provided in the request body are updated; omitted fields retain their current values. A provided `resources` list replaces the stored list. A provided `mcp` object replaces the stored MCP configuration and must include `resource`. The plugin can only be enabled on the project's root branch.
@@ -800,9 +1099,18 @@ class AuthNamespace {
       SdkOptional<String> loginPage = const SdkOmitted(),
       SdkOptional<String> consentPage = const SdkOmitted(),
       SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp = const SdkOmitted(),
-      SdkOptional<List<NeonAuthOAuthProviderResource>> resources = const SdkOmitted(),
+      SdkOptional<List<NeonAuthOAuthProviderResource>> resources =
+          const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthOAuthProviderPlugin(_config, projectId: projectId, branchId: branchId, enabled: enabled, loginPage: loginPage, consentPage: consentPage, mcp: mcp, resources: resources, requestOptions: requestOptions);
+    return auth_methods.updateAuthOAuthProviderPlugin(_config,
+        projectId: projectId,
+        branchId: branchId,
+        enabled: enabled,
+        loginPage: loginPage,
+        consentPage: consentPage,
+        mcp: mcp,
+        resources: resources,
+        requestOptions: requestOptions);
   }
 
   /// Lists the OAuth clients registered for the branch's Neon Auth OAuth provider. Client secrets are never returned.
@@ -810,7 +1118,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.listAuthOAuthClients(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.listAuthOAuthClients(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Registers an OAuth client with the branch's Neon Auth OAuth provider. For `confidential` clients the response includes the `client_secret`, which is shown only once. Every entry in `resources` must be configured on the OAuth provider plugin.
@@ -823,7 +1134,15 @@ class AuthNamespace {
       required List<String> resources,
       SdkOptional<bool> skipConsent = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.createAuthOAuthClient(_config, projectId: projectId, branchId: branchId, name: name, redirectUris: redirectUris, type_: type_, resources: resources, skipConsent: skipConsent, requestOptions: requestOptions);
+    return auth_methods.createAuthOAuthClient(_config,
+        projectId: projectId,
+        branchId: branchId,
+        name: name,
+        redirectUris: redirectUris,
+        type_: type_,
+        resources: resources,
+        skipConsent: skipConsent,
+        requestOptions: requestOptions);
   }
 
   /// Returns an OAuth client registered with the branch's Neon Auth OAuth provider. The client secret is never returned.
@@ -832,7 +1151,11 @@ class AuthNamespace {
       required String branchId,
       required String clientId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuthOAuthClient(_config, projectId: projectId, branchId: branchId, clientId: clientId, requestOptions: requestOptions);
+    return auth_methods.getAuthOAuthClient(_config,
+        projectId: projectId,
+        branchId: branchId,
+        clientId: clientId,
+        requestOptions: requestOptions);
   }
 
   /// Updates an OAuth client. Only the fields provided in the request body are updated. A provided `resources` list replaces the client's stored list. The client `type` cannot be changed.
@@ -846,7 +1169,16 @@ class AuthNamespace {
       SdkOptional<bool> disabled = const SdkOmitted(),
       SdkOptional<List<String>> resources = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthOAuthClient(_config, projectId: projectId, branchId: branchId, clientId: clientId, name: name, redirectUris: redirectUris, skipConsent: skipConsent, disabled: disabled, resources: resources, requestOptions: requestOptions);
+    return auth_methods.updateAuthOAuthClient(_config,
+        projectId: projectId,
+        branchId: branchId,
+        clientId: clientId,
+        name: name,
+        redirectUris: redirectUris,
+        skipConsent: skipConsent,
+        disabled: disabled,
+        resources: resources,
+        requestOptions: requestOptions);
   }
 
   /// Deletes an OAuth client. Tokens already issued to the client are not revoked.
@@ -855,7 +1187,11 @@ class AuthNamespace {
       required String branchId,
       required String clientId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.deleteAuthOAuthClient(_config, projectId: projectId, branchId: branchId, clientId: clientId, requestOptions: requestOptions);
+    return auth_methods.deleteAuthOAuthClient(_config,
+        projectId: projectId,
+        branchId: branchId,
+        clientId: clientId,
+        requestOptions: requestOptions);
   }
 
   /// Generates a new secret for a confidential OAuth client and invalidates the previous one. The new secret is shown only once.
@@ -864,7 +1200,11 @@ class AuthNamespace {
       required String branchId,
       required String clientId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.rotateAuthOAuthClientSecret(_config, projectId: projectId, branchId: branchId, clientId: clientId, requestOptions: requestOptions);
+    return auth_methods.rotateAuthOAuthClientSecret(_config,
+        projectId: projectId,
+        branchId: branchId,
+        clientId: clientId,
+        requestOptions: requestOptions);
   }
 
   /// Returns the webhook configuration for the specified branch's Neon Auth integration, including the endpoint URL and the events that trigger it.
@@ -872,7 +1212,10 @@ class AuthNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return auth_methods.getAuthWebhookConfig(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return auth_methods.getAuthWebhookConfig(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the webhook configuration for the specified branch's Neon Auth integration. Webhooks notify an external endpoint when auth events occur, such as user creation or sign-in.
@@ -881,23 +1224,32 @@ class AuthNamespace {
       required String branchId,
       required bool enabled,
       SdkOptional<String> webhookUrl = const SdkOmitted(),
-      SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>> enabledEvents = const SdkOmitted(),
+      SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>> enabledEvents =
+          const SdkOmitted(),
       SdkOptional<int> timeoutSeconds = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return auth_methods.updateAuthWebhookConfig(_config, projectId: projectId, branchId: branchId, enabled: enabled, webhookUrl: webhookUrl, enabledEvents: enabledEvents, timeoutSeconds: timeoutSeconds, requestOptions: requestOptions);
+    return auth_methods.updateAuthWebhookConfig(_config,
+        projectId: projectId,
+        branchId: branchId,
+        enabled: enabled,
+        webhookUrl: webhookUrl,
+        enabledEvents: enabledEvents,
+        timeoutSeconds: timeoutSeconds,
+        requestOptions: requestOptions);
   }
-
 }
 
 class BranchNamespace {
   final ClientConfig _config;
   BranchNamespace(ClientConfig config) : _config = config;
+
   /// Creates a branch in the specified project. No request body is required, but you can specify one to create a compute endpoint or select a non-default parent branch. By default, the branch is created from the project's default branch with no compute endpoint, and the branch name is auto-generated. To access the branch, add a `read_write` endpoint. Each branch supports one read-write endpoint and multiple read-only endpoints. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
   Future<BranchResponse> create(
       {required String projectId,
       SdkOptional<BranchCreateRequest> body = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return branch_methods.createBranch(_config, projectId: projectId, body: body, requestOptions: requestOptions);
+    return branch_methods.createBranch(_config,
+        projectId: projectId, body: body, requestOptions: requestOptions);
   }
 
   /// Retrieves a list of branches for the specified project. Each Neon project has a root branch named `main`. A `branch_id` value has a `br-` prefix. A project may contain child branches that were branched from `main` or from another branch. A parent branch is identified by the `parent_id` value, which is the `id` of the parent branch. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
@@ -910,7 +1262,15 @@ class BranchNamespace {
       SdkOptional<int> limit = const SdkOmitted(),
       SdkOptional<bool> includeDeleted = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return branch_methods.listBranch(_config, projectId: projectId, search: search, sortBy: sortBy, cursor: cursor, sortOrder: sortOrder, limit: limit, includeDeleted: includeDeleted, requestOptions: requestOptions);
+    return branch_methods.listBranch(_config,
+        projectId: projectId,
+        search: search,
+        sortBy: sortBy,
+        cursor: cursor,
+        sortOrder: sortOrder,
+        limit: limit,
+        includeDeleted: includeDeleted,
+        requestOptions: requestOptions);
   }
 
   /// Creates a branch with anonymized data using PostgreSQL Anonymizer for static masking. Supply `branch_create` to configure the branch and optionally provide `masking_rules` or set `start_anonymization` to true to apply masking rules and start anonymization during creation. This endpoint is in beta; the response includes the created branch, operations, and any endpoints specified in the request.
@@ -920,7 +1280,8 @@ class BranchNamespace {
       {required String projectId,
       required BranchAnonymizedCreateRequest body,
       RequestOptions? requestOptions}) async {
-    return branch_methods.createBranchAnonymized(_config, projectId: projectId, body: body, requestOptions: requestOptions);
+    return branch_methods.createBranchAnonymized(_config,
+        projectId: projectId, body: body, requestOptions: requestOptions);
   }
 
   /// Retrieves the total number of branches in the specified project. Supports an optional `search` parameter to count branches matching a name filter.
@@ -928,7 +1289,8 @@ class BranchNamespace {
       {required String projectId,
       SdkOptional<String> search = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return branch_methods.countBranch(_config, projectId: projectId, search: search, requestOptions: requestOptions);
+    return branch_methods.countBranch(_config,
+        projectId: projectId, search: search, requestOptions: requestOptions);
   }
 
   /// Retrieves information about the specified branch. A `branch_id` value has a `br-` prefix. Each Neon project is initially created with a root and default branch named `main`. A project can contain one or more branches. A parent branch is identified by a `parent_id` value, which is the `id` of the parent branch. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
@@ -936,7 +1298,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.getBranch(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.getBranch(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the specified branch from a project and places all compute endpoints into an idle state, breaking existing client connections. The deletion completes after all operations finish. You cannot delete a project's root or default branch, or a branch that has a child branch. A project must have at least one branch. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
@@ -944,7 +1309,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.deleteBranch(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.deleteBranch(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the specified branch. For more information, see [Manage branches](https://neon.com/docs/manage/branches/).
@@ -953,7 +1321,11 @@ class BranchNamespace {
       required String branchId,
       required BranchUpdateRequestBranch branch,
       RequestOptions? requestOptions}) async {
-    return branch_methods.updateBranch(_config, projectId: projectId, branchId: branchId, branch: branch, requestOptions: requestOptions);
+    return branch_methods.updateBranch(_config,
+        projectId: projectId,
+        branchId: branchId,
+        branch: branch,
+        requestOptions: requestOptions);
   }
 
   /// Restores a branch to an earlier state in its own or another branch's history by specifying an LSN or timestamp. Creates a new branch from the historical state.
@@ -965,7 +1337,14 @@ class BranchNamespace {
       SdkOptional<String> sourceTimestamp = const SdkOmitted(),
       SdkOptional<String> preserveUnderName = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return branch_methods.restoreBranch(_config, projectId: projectId, branchId: branchId, sourceBranchId: sourceBranchId, sourceLsn: sourceLsn, sourceTimestamp: sourceTimestamp, preserveUnderName: preserveUnderName, requestOptions: requestOptions);
+    return branch_methods.restoreBranch(_config,
+        projectId: projectId,
+        branchId: branchId,
+        sourceBranchId: sourceBranchId,
+        sourceLsn: sourceLsn,
+        sourceTimestamp: sourceTimestamp,
+        preserveUnderName: preserveUnderName,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the database schema. Specify `lsn` or `timestamp` (not both) to read at a point in time; omit both to read from the database's head.
@@ -977,7 +1356,14 @@ class BranchNamespace {
       SdkOptional<String> timestamp = const SdkOmitted(),
       SdkOptional<String> format = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return branch_methods.getBranchSchema(_config, projectId: projectId, branchId: branchId, dbName: dbName, lsn: lsn, timestamp: timestamp, format: format, requestOptions: requestOptions);
+    return branch_methods.getBranchSchema(_config,
+        projectId: projectId,
+        branchId: branchId,
+        dbName: dbName,
+        lsn: lsn,
+        timestamp: timestamp,
+        format: format,
+        requestOptions: requestOptions);
   }
 
   /// Compares the schema from the specified database with another branch's schema.
@@ -991,7 +1377,16 @@ class BranchNamespace {
       SdkOptional<String> baseLsn = const SdkOmitted(),
       SdkOptional<String> baseTimestamp = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return branch_methods.compareBranchSchema(_config, projectId: projectId, branchId: branchId, dbName: dbName, baseBranchId: baseBranchId, lsn: lsn, timestamp: timestamp, baseLsn: baseLsn, baseTimestamp: baseTimestamp, requestOptions: requestOptions);
+    return branch_methods.compareBranchSchema(_config,
+        projectId: projectId,
+        branchId: branchId,
+        dbName: dbName,
+        baseBranchId: baseBranchId,
+        lsn: lsn,
+        timestamp: timestamp,
+        baseLsn: baseLsn,
+        baseTimestamp: baseTimestamp,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the masking rules for the specified anonymized branch. Masking rules define how sensitive data should be anonymized using PostgreSQL Anonymizer. **Note**: This endpoint is currently in Beta.
@@ -999,7 +1394,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.getMaskingRules(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.getMaskingRules(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the masking rules for the specified anonymized branch. Masking rules define how sensitive data should be anonymized using PostgreSQL Anonymizer. **Note**: This endpoint is currently in Beta.
@@ -1008,7 +1406,11 @@ class BranchNamespace {
       required String branchId,
       required List<MaskingRule> maskingRules,
       RequestOptions? requestOptions}) async {
-    return branch_methods.updateMaskingRules(_config, projectId: projectId, branchId: branchId, maskingRules: maskingRules, requestOptions: requestOptions);
+    return branch_methods.updateMaskingRules(_config,
+        projectId: projectId,
+        branchId: branchId,
+        maskingRules: maskingRules,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the current status of an anonymized branch, including its state and progress information. This endpoint allows you to monitor the anonymization process from initialization through completion. Only anonymized branches will have status information available. **Note**: This endpoint is currently in Beta.
@@ -1016,7 +1418,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.getAnonymizedBranchStatus(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.getAnonymizedBranchStatus(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Starts the anonymization process for an anonymized branch that is in the initialized, error, or anonymized state. This will apply all defined masking rules to anonymize sensitive data in the branch databases. The branch must be an anonymized branch to start anonymization. **Note**: This endpoint is currently in Beta.
@@ -1024,7 +1429,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.startAnonymization(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.startAnonymization(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Sets the specified branch as the project's default branch. The default designation is automatically removed from the previous default branch. For more information, see [Manage branches](https://neon.com/docs/manage/branches/).
@@ -1032,7 +1440,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.setBranchDefault(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.setBranchDefault(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Finalizes a branch restore from a snapshot, making the restored branch function as the original branch it replaced. Use this operation only for branches created with `restoreSnapshot` and `finalize_restore` set to `false`; you can optionally provide a replacement name with `name`. The operation reassigns computes to the restored branch, restarting them, and renames both branches.
@@ -1043,7 +1454,11 @@ class BranchNamespace {
       required String branchId,
       SdkOptional<String> name = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return branch_methods.finalizeRestoreBranch(_config, projectId: projectId, branchId: branchId, name: name, requestOptions: requestOptions);
+    return branch_methods.finalizeRestoreBranch(_config,
+        projectId: projectId,
+        branchId: branchId,
+        name: name,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves a list of compute endpoints for the specified branch. Neon permits only one read-write compute endpoint per branch. A branch can have multiple read-only compute endpoints.
@@ -1051,7 +1466,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.listBranchEndpoints(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.listBranchEndpoints(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves a list of databases for the specified branch. A branch can have multiple databases. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
@@ -1059,7 +1477,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.listBranchDatabases(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.listBranchDatabases(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Creates a database in the specified branch. A branch can have multiple databases. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
@@ -1068,7 +1489,11 @@ class BranchNamespace {
       required String branchId,
       required DatabaseCreateRequestDatabase database,
       RequestOptions? requestOptions}) async {
-    return branch_methods.createBranchDatabase(_config, projectId: projectId, branchId: branchId, database: database, requestOptions: requestOptions);
+    return branch_methods.createBranchDatabase(_config,
+        projectId: projectId,
+        branchId: branchId,
+        database: database,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves information about the specified database. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
@@ -1077,7 +1502,11 @@ class BranchNamespace {
       required String branchId,
       required String databaseName,
       RequestOptions? requestOptions}) async {
-    return branch_methods.getBranchDatabase(_config, projectId: projectId, branchId: branchId, databaseName: databaseName, requestOptions: requestOptions);
+    return branch_methods.getBranchDatabase(_config,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        requestOptions: requestOptions);
   }
 
   /// Updates the specified database in the branch. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
@@ -1087,7 +1516,12 @@ class BranchNamespace {
       required String databaseName,
       required DatabaseUpdateRequestDatabase database,
       RequestOptions? requestOptions}) async {
-    return branch_methods.updateBranchDatabase(_config, projectId: projectId, branchId: branchId, databaseName: databaseName, database: database, requestOptions: requestOptions);
+    return branch_methods.updateBranchDatabase(_config,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        database: database,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the specified database from the branch. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
@@ -1096,7 +1530,11 @@ class BranchNamespace {
       required String branchId,
       required String databaseName,
       RequestOptions? requestOptions}) async {
-    return branch_methods.deleteBranchDatabase(_config, projectId: projectId, branchId: branchId, databaseName: databaseName, requestOptions: requestOptions);
+    return branch_methods.deleteBranchDatabase(_config,
+        projectId: projectId,
+        branchId: branchId,
+        databaseName: databaseName,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves a list of Postgres roles from the specified branch. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
@@ -1104,7 +1542,10 @@ class BranchNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return branch_methods.listBranchRoles(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return branch_methods.listBranchRoles(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Creates a Postgres role in the specified branch. For related information, see [Manage roles](https://neon.com/docs/manage/roles/). Connections established to the active compute endpoint will be dropped. If the compute endpoint is idle, the endpoint becomes active for a short period of time and is suspended afterward.
@@ -1113,7 +1554,11 @@ class BranchNamespace {
       required String branchId,
       required RoleCreateRequestRole role,
       RequestOptions? requestOptions}) async {
-    return branch_methods.createBranchRole(_config, projectId: projectId, branchId: branchId, role: role, requestOptions: requestOptions);
+    return branch_methods.createBranchRole(_config,
+        projectId: projectId,
+        branchId: branchId,
+        role: role,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves details about the specified role. In Neon, the terms "role" and "user" are synonymous. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
@@ -1122,7 +1567,11 @@ class BranchNamespace {
       required String branchId,
       required String roleName,
       RequestOptions? requestOptions}) async {
-    return branch_methods.getBranchRole(_config, projectId: projectId, branchId: branchId, roleName: roleName, requestOptions: requestOptions);
+    return branch_methods.getBranchRole(_config,
+        projectId: projectId,
+        branchId: branchId,
+        roleName: roleName,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the specified Postgres role from the branch. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
@@ -1131,7 +1580,11 @@ class BranchNamespace {
       required String branchId,
       required String roleName,
       RequestOptions? requestOptions}) async {
-    return branch_methods.deleteBranchRole(_config, projectId: projectId, branchId: branchId, roleName: roleName, requestOptions: requestOptions);
+    return branch_methods.deleteBranchRole(_config,
+        projectId: projectId,
+        branchId: branchId,
+        roleName: roleName,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the password for the specified Postgres role, if possible. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
@@ -1140,7 +1593,11 @@ class BranchNamespace {
       required String branchId,
       required String roleName,
       RequestOptions? requestOptions}) async {
-    return branch_methods.getBranchRolePassword(_config, projectId: projectId, branchId: branchId, roleName: roleName, requestOptions: requestOptions);
+    return branch_methods.getBranchRolePassword(_config,
+        projectId: projectId,
+        branchId: branchId,
+        roleName: roleName,
+        requestOptions: requestOptions);
   }
 
   /// Resets the password for the specified Postgres role. Returns a new password and operations. The new password is ready to use when the last operation finishes. The old password remains valid until last operation finishes. Connections to the compute endpoint are dropped. If idle, the compute endpoint becomes active for a short period of time. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
@@ -1149,20 +1606,27 @@ class BranchNamespace {
       required String branchId,
       required String roleName,
       RequestOptions? requestOptions}) async {
-    return branch_methods.resetBranchRolePassword(_config, projectId: projectId, branchId: branchId, roleName: roleName, requestOptions: requestOptions);
+    return branch_methods.resetBranchRolePassword(_config,
+        projectId: projectId,
+        branchId: branchId,
+        roleName: roleName,
+        requestOptions: requestOptions);
   }
-
 }
 
 class RealtimeNamespace {
   final ClientConfig _config;
   RealtimeNamespace(ClientConfig config) : _config = config;
+
   /// Retrieves whether Realtime is enabled for the branch, whether a change is still being applied, and, once provisioned, its invocation URL and allowed origins. The shared secret is returned by `GET /projects/{project_id}/branches/{branch_id}/realtime/secret`.
   Future<Realtime> get_(
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return realtime_methods.getRealtime(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return realtime_methods.getRealtime(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Enables Realtime for the branch, or applies new options to an enabled branch. Provisioning is asynchronous; poll the Realtime state until it is no longer pending.
@@ -1171,7 +1635,11 @@ class RealtimeNamespace {
       required String branchId,
       SdkOptional<List<String>> allowedOrigins = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return realtime_methods.enableRealtime(_config, projectId: projectId, branchId: branchId, allowedOrigins: allowedOrigins, requestOptions: requestOptions);
+    return realtime_methods.enableRealtime(_config,
+        projectId: projectId,
+        branchId: branchId,
+        allowedOrigins: allowedOrigins,
+        requestOptions: requestOptions);
   }
 
   /// Disables Realtime for the branch and discards its shared secret. Deprovisioning is asynchronous.
@@ -1179,7 +1647,10 @@ class RealtimeNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return realtime_methods.disableRealtime(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return realtime_methods.disableRealtime(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the secret the application backend issues Realtime tokens with. Requires permission to read the project's credentials. Returns 404 while Realtime is disabled or before the secret is provisioned. After a rotation, this returns the previous secret until `pending` is false.
@@ -1187,7 +1658,10 @@ class RealtimeNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return realtime_methods.getRealtimeSecret(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return realtime_methods.getRealtimeSecret(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Replaces the branch's Realtime shared secret. Rotation is asynchronous: once the Realtime state is no longer pending, the previous secret stops working and `GET /projects/{project_id}/branches/{branch_id}/realtime/secret` returns the new one.
@@ -1195,26 +1669,33 @@ class RealtimeNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return realtime_methods.rotateRealtimeSecret(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return realtime_methods.rotateRealtimeSecret(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
-
 }
 
 class EndpointNamespace {
   final ClientConfig _config;
   EndpointNamespace(ClientConfig config) : _config = config;
+
   /// Creates a compute endpoint for the specified branch. A compute endpoint is a Neon compute instance. There is a maximum of one read-write compute endpoint per branch. If the specified branch already has a read-write compute endpoint, the operation fails. A branch can have multiple read-only compute endpoints. For more information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
   Future<EndpointOperations> create(
       {required String projectId,
       required EndpointCreateRequestEndpoint endpoint,
       RequestOptions? requestOptions}) async {
-    return endpoint_methods.createEndpoint(_config, projectId: projectId, endpoint: endpoint, requestOptions: requestOptions);
+    return endpoint_methods.createEndpoint(_config,
+        projectId: projectId,
+        endpoint: endpoint,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves a list of compute endpoints for the specified project. A compute endpoint is a Neon compute instance. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
   Future<EndpointsResponse> list(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return endpoint_methods.listEndpoint(_config, projectId: projectId, requestOptions: requestOptions);
+    return endpoint_methods.listEndpoint(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Retrieves information about the specified compute endpoint. A compute endpoint is a Neon compute instance. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
@@ -1222,7 +1703,10 @@ class EndpointNamespace {
       {required String projectId,
       required String endpointId,
       RequestOptions? requestOptions}) async {
-    return endpoint_methods.getEndpoint(_config, projectId: projectId, endpointId: endpointId, requestOptions: requestOptions);
+    return endpoint_methods.getEndpoint(_config,
+        projectId: projectId,
+        endpointId: endpointId,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the specified compute endpoint. A compute endpoint is a Neon compute instance. Deleting a compute endpoint drops existing network connections to the compute endpoint. The deletion is completed when the last operation in the chain finishes successfully. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
@@ -1230,7 +1714,10 @@ class EndpointNamespace {
       {required String projectId,
       required String endpointId,
       RequestOptions? requestOptions}) async {
-    return endpoint_methods.deleteEndpoint(_config, projectId: projectId, endpointId: endpointId, requestOptions: requestOptions);
+    return endpoint_methods.deleteEndpoint(_config,
+        projectId: projectId,
+        endpointId: endpointId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the specified compute endpoint. An `endpoint_id` has an `ep-` prefix. A `branch_id` has a `br-` prefix. For more information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/). If the returned list of operations is not empty, the compute endpoint is not ready to use. The client must wait for the last operation to finish before using the compute endpoint. If the compute endpoint was idle before the update, it becomes active for a short period of time, and the control plane suspends it again after the update.
@@ -1239,7 +1726,11 @@ class EndpointNamespace {
       required String endpointId,
       required EndpointUpdateRequestEndpoint endpoint,
       RequestOptions? requestOptions}) async {
-    return endpoint_methods.updateEndpoint(_config, projectId: projectId, endpointId: endpointId, endpoint: endpoint, requestOptions: requestOptions);
+    return endpoint_methods.updateEndpoint(_config,
+        projectId: projectId,
+        endpointId: endpointId,
+        endpoint: endpoint,
+        requestOptions: requestOptions);
   }
 
   /// Starts a compute endpoint. The compute endpoint is ready to use after the last operation in the chain finishes successfully. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
@@ -1247,7 +1738,10 @@ class EndpointNamespace {
       {required String projectId,
       required String endpointId,
       RequestOptions? requestOptions}) async {
-    return endpoint_methods.startEndpoint(_config, projectId: projectId, endpointId: endpointId, requestOptions: requestOptions);
+    return endpoint_methods.startEndpoint(_config,
+        projectId: projectId,
+        endpointId: endpointId,
+        requestOptions: requestOptions);
   }
 
   /// Suspends the specified compute endpoint. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
@@ -1255,7 +1749,10 @@ class EndpointNamespace {
       {required String projectId,
       required String endpointId,
       RequestOptions? requestOptions}) async {
-    return endpoint_methods.suspendEndpoint(_config, projectId: projectId, endpointId: endpointId, requestOptions: requestOptions);
+    return endpoint_methods.suspendEndpoint(_config,
+        projectId: projectId,
+        endpointId: endpointId,
+        requestOptions: requestOptions);
   }
 
   /// Restarts the specified compute endpoint by immediately suspending it and then starting it again. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
@@ -1263,14 +1760,17 @@ class EndpointNamespace {
       {required String projectId,
       required String endpointId,
       RequestOptions? requestOptions}) async {
-    return endpoint_methods.restartEndpoint(_config, projectId: projectId, endpointId: endpointId, requestOptions: requestOptions);
+    return endpoint_methods.restartEndpoint(_config,
+        projectId: projectId,
+        endpointId: endpointId,
+        requestOptions: requestOptions);
   }
-
 }
 
 class ConsumptionNamespace {
   final ClientConfig _config;
   ConsumptionNamespace(ClientConfig config) : _config = config;
+
   /// Retrieves consumption metrics for Scale, Business, and Enterprise plan projects. History begins at the time of upgrade. Results are ordered by time in ascending order (oldest to newest). Issuing a call to this API does not wake a project's compute endpoint.
   Future<ConsumptionHistoryPerProjectResponse> getHistoryPerProject(
       {required String from,
@@ -1283,55 +1783,84 @@ class ConsumptionNamespace {
       SdkOptional<bool> includeV1Metrics = const SdkOmitted(),
       SdkOptional<List<String>> metrics = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return consumption_methods.getConsumptionHistoryPerProject(_config, from: from, to: to, granularity: granularity, cursor: cursor, limit: limit, projectIds: projectIds, orgId: orgId, includeV1Metrics: includeV1Metrics, metrics: metrics, requestOptions: requestOptions);
+    return consumption_methods.getConsumptionHistoryPerProject(_config,
+        from: from,
+        to: to,
+        granularity: granularity,
+        cursor: cursor,
+        limit: limit,
+        projectIds: projectIds,
+        orgId: orgId,
+        includeV1Metrics: includeV1Metrics,
+        metrics: metrics,
+        requestOptions: requestOptions);
   }
 
   /// Returns consumption metrics for up to `limit` projects per page. If `project_ids` is omitted, projects in the organization are included across pages (use `cursor`). If `project_ids` is provided, the response is limited to those projects (up to 100). Available for accounts on Launch, Scale, Agent, Business, and Enterprise plans. History starts when the account upgrades to an eligible plan. The `metrics` query parameter is required. Supported values: `compute_unit_seconds`, `root_branch_bytes_month`, `child_branch_bytes_month`, `instant_restore_bytes_month`, `public_network_transfer_bytes`, `private_network_transfer_bytes`, `extra_branches_month`, `snapshot_storage_bytes_month`. Consumption metrics within each project are returned in ascending time order (oldest first). This request does not wake project computes.
-  Future<ConsumptionHistoryPerProjectV2Response>
-      getHistoryPerProjectV2(
-          {required String from,
-          required String to,
-          required ConsumptionHistoryGranularity granularity,
-          required String orgId,
-          required List<String> metrics,
-          SdkOptional<String> cursor = const SdkOmitted(),
-          SdkOptional<int> limit = const SdkOmitted(),
-          SdkOptional<List<String>> projectIds = const SdkOmitted(),
-          RequestOptions? requestOptions}) async {
-    return consumption_methods.getConsumptionHistoryPerProjectV2(_config, from: from, to: to, granularity: granularity, orgId: orgId, metrics: metrics, cursor: cursor, limit: limit, projectIds: projectIds, requestOptions: requestOptions);
+  Future<ConsumptionHistoryPerProjectV2Response> getHistoryPerProjectV2(
+      {required String from,
+      required String to,
+      required ConsumptionHistoryGranularity granularity,
+      required String orgId,
+      required List<String> metrics,
+      SdkOptional<String> cursor = const SdkOmitted(),
+      SdkOptional<int> limit = const SdkOmitted(),
+      SdkOptional<List<String>> projectIds = const SdkOmitted(),
+      RequestOptions? requestOptions}) async {
+    return consumption_methods.getConsumptionHistoryPerProjectV2(_config,
+        from: from,
+        to: to,
+        granularity: granularity,
+        orgId: orgId,
+        metrics: metrics,
+        cursor: cursor,
+        limit: limit,
+        projectIds: projectIds,
+        requestOptions: requestOptions);
   }
 
   /// Returns consumption metrics for each branch across one or more projects listed in `project_ids` (1 to 100 projects). Available for accounts on paid usage-based Launch, Scale, Agent, and Enterprise plans. History starts when the account first ingests branch-level consumption data. The `metrics` query parameter is required. Only these six values are supported on this endpoint: `compute_unit_seconds`, `root_branch_bytes_month`, `child_branch_bytes_month`, `instant_restore_bytes_month`, `public_network_transfer_bytes`, `private_network_transfer_bytes`. This endpoint does not support `extra_branches_month` or `snapshot_storage_bytes_month`. Use `GET /consumption_history/v2/projects` for those. Consumption metrics within each branch are returned in ascending time order (oldest first). This request does not wake project computes.
-  Future<ConsumptionHistoryPerBranchV2Response>
-      getHistoryPerBranchV2(
-          {required List<String> projectIds,
-          required String from,
-          required String to,
-          required ConsumptionHistoryGranularity granularity,
-          required String orgId,
-          required List<String> metrics,
-          SdkOptional<String> cursor = const SdkOmitted(),
-          SdkOptional<int> limit = const SdkOmitted(),
-          SdkOptional<List<String>> branchIds = const SdkOmitted(),
-          RequestOptions? requestOptions}) async {
-    return consumption_methods.getConsumptionHistoryPerBranchV2(_config, projectIds: projectIds, from: from, to: to, granularity: granularity, orgId: orgId, metrics: metrics, cursor: cursor, limit: limit, branchIds: branchIds, requestOptions: requestOptions);
+  Future<ConsumptionHistoryPerBranchV2Response> getHistoryPerBranchV2(
+      {required List<String> projectIds,
+      required String from,
+      required String to,
+      required ConsumptionHistoryGranularity granularity,
+      required String orgId,
+      required List<String> metrics,
+      SdkOptional<String> cursor = const SdkOmitted(),
+      SdkOptional<int> limit = const SdkOmitted(),
+      SdkOptional<List<String>> branchIds = const SdkOmitted(),
+      RequestOptions? requestOptions}) async {
+    return consumption_methods.getConsumptionHistoryPerBranchV2(_config,
+        projectIds: projectIds,
+        from: from,
+        to: to,
+        granularity: granularity,
+        orgId: orgId,
+        metrics: metrics,
+        cursor: cursor,
+        limit: limit,
+        branchIds: branchIds,
+        requestOptions: requestOptions);
   }
-
 }
 
 class OrganizationsNamespace {
   final ClientConfig _config;
   OrganizationsNamespace(ClientConfig config) : _config = config;
+
   /// Retrieves details for the specified organization, including its name, plan, and configuration.
   Future<Organization> get_(
       {required String orgId, RequestOptions? requestOptions}) async {
-    return organizations_methods.getOrganization(_config, orgId: orgId, requestOptions: requestOptions);
+    return organizations_methods.getOrganization(_config,
+        orgId: orgId, requestOptions: requestOptions);
   }
 
   /// Retrieves the API keys for the specified organization. The response does not include API key tokens. A token is only provided when creating an API key. API keys can also be managed in the Neon Console. For more information, see [Manage API keys](https://neon.com/docs/manage/api-keys/).
   Future<List<OrgApiKeysListResponseItem>> listApiKeys(
       {required String orgId, RequestOptions? requestOptions}) async {
-    return organizations_methods.listOrganizationsApiKeys(_config, orgId: orgId, requestOptions: requestOptions);
+    return organizations_methods.listOrganizationsApiKeys(_config,
+        orgId: orgId, requestOptions: requestOptions);
   }
 
   /// Creates an API key for the specified organization. The `key_name` is a user-specified name for the key. Returns an `id` and `key`; the `key` is a randomly generated, 64-bit token required to access the Neon API. Store the key securely — it is only returned once. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/).
@@ -1339,7 +1868,8 @@ class OrganizationsNamespace {
       {required String orgId,
       required OrgApiKeyCreateRequest body,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.createOrganizationsApiKey(_config, orgId: orgId, body: body, requestOptions: requestOptions);
+    return organizations_methods.createOrganizationsApiKey(_config,
+        orgId: orgId, body: body, requestOptions: requestOptions);
   }
 
   /// Revokes the specified organization API key. An API key that is no longer needed can be revoked. This action cannot be reversed. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/).
@@ -1347,13 +1877,15 @@ class OrganizationsNamespace {
       {required String orgId,
       required int keyId,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.revokeOrganizationsApiKey(_config, orgId: orgId, keyId: keyId, requestOptions: requestOptions);
+    return organizations_methods.revokeOrganizationsApiKey(_config,
+        orgId: orgId, keyId: keyId, requestOptions: requestOptions);
   }
 
   /// Returns the configured monthly spending limit for the specified organization. `spending_limit_cents: null` indicates that no limit is currently set. Available to organization members with read access on Launch and Scale plans only.
   Future<SpendingLimitResponse> getSpendingLimit(
       {required String orgId, RequestOptions? requestOptions}) async {
-    return organizations_methods.getOrganizationSpendingLimit(_config, orgId: orgId, requestOptions: requestOptions);
+    return organizations_methods.getOrganizationSpendingLimit(_config,
+        orgId: orgId, requestOptions: requestOptions);
   }
 
   /// Sets the monthly spending limit for the specified organization. To remove a previously configured limit, send a DELETE request to this endpoint. When a limit is configured, email notifications are sent at 80% and 100% of the limit. Computes are not suspended when the limit is reached. Available to organization admins on Launch and Scale plans only.
@@ -1361,13 +1893,17 @@ class OrganizationsNamespace {
       {required String orgId,
       required int spendingLimitCents,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.setOrganizationSpendingLimit(_config, orgId: orgId, spendingLimitCents: spendingLimitCents, requestOptions: requestOptions);
+    return organizations_methods.setOrganizationSpendingLimit(_config,
+        orgId: orgId,
+        spendingLimitCents: spendingLimitCents,
+        requestOptions: requestOptions);
   }
 
   /// Removes the configured monthly spending limit for the specified organization. Idempotent — removing an already-unset limit still succeeds. Available to organization admins on Launch and Scale plans only.
   Future<Map<String, dynamic>> deleteSpendingLimit(
       {required String orgId, RequestOptions? requestOptions}) async {
-    return organizations_methods.deleteOrganizationSpendingLimit(_config, orgId: orgId, requestOptions: requestOptions);
+    return organizations_methods.deleteOrganizationSpendingLimit(_config,
+        orgId: orgId, requestOptions: requestOptions);
   }
 
   /// Retrieves a paginated list of members for the specified organization.
@@ -1378,7 +1914,13 @@ class OrganizationsNamespace {
       SdkOptional<SchemaSchema> sortOrder = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return organizations_methods.listOrganizationsMembers(_config, orgId: orgId, sortBy: sortBy, cursor: cursor, sortOrder: sortOrder, limit: limit, requestOptions: requestOptions);
+    return organizations_methods.listOrganizationsMembers(_config,
+        orgId: orgId,
+        sortBy: sortBy,
+        cursor: cursor,
+        sortOrder: sortOrder,
+        limit: limit,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves information about the specified organization member.
@@ -1386,7 +1928,8 @@ class OrganizationsNamespace {
       {required String orgId,
       required String memberId,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.getOrganizationMember(_config, orgId: orgId, memberId: memberId, requestOptions: requestOptions);
+    return organizations_methods.getOrganizationMember(_config,
+        orgId: orgId, memberId: memberId, requestOptions: requestOptions);
   }
 
   /// Updates the role of an existing member in the specified organization. The requested role must be valid for the organization. Only organization admins can call this endpoint.
@@ -1395,7 +1938,11 @@ class OrganizationsNamespace {
       required String memberId,
       required MemberRole role,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.updateOrganizationMember(_config, orgId: orgId, memberId: memberId, role: role, requestOptions: requestOptions);
+    return organizations_methods.updateOrganizationMember(_config,
+        orgId: orgId,
+        memberId: memberId,
+        role: role,
+        requestOptions: requestOptions);
   }
 
   /// Removes the specified member from the organization. Only organization admins can perform this action. The last admin in an organization cannot be removed.
@@ -1403,13 +1950,15 @@ class OrganizationsNamespace {
       {required String orgId,
       required String memberId,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.removeOrganizationMember(_config, orgId: orgId, memberId: memberId, requestOptions: requestOptions);
+    return organizations_methods.removeOrganizationMember(_config,
+        orgId: orgId, memberId: memberId, requestOptions: requestOptions);
   }
 
   /// Retrieves pending and accepted invitations for the specified organization.
   Future<OrganizationInvitationsResponse> listInvitations(
       {required String orgId, RequestOptions? requestOptions}) async {
-    return organizations_methods.listOrganizationsInvitations(_config, orgId: orgId, requestOptions: requestOptions);
+    return organizations_methods.listOrganizationsInvitations(_config,
+        orgId: orgId, requestOptions: requestOptions);
   }
 
   /// Creates invitations for a specific organization. If the invited user has an existing account, they automatically join as a member. If they don't yet have an account, they are invited to create one, after which they become a member. Each invited user receives an email notification.
@@ -1417,7 +1966,8 @@ class OrganizationsNamespace {
       {required String orgId,
       required List<OrganizationInviteCreateRequest> invitations,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.createOrganizationInvitations(_config, orgId: orgId, invitations: invitations, requestOptions: requestOptions);
+    return organizations_methods.createOrganizationInvitations(_config,
+        orgId: orgId, invitations: invitations, requestOptions: requestOptions);
   }
 
   /// Transfers selected projects, identified by their IDs, from your organization to another specified organization.
@@ -1426,13 +1976,18 @@ class OrganizationsNamespace {
       required String destinationOrgId,
       required List<String> projectIds,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.transferOrganizationsProjects(_config, sourceOrgId: sourceOrgId, destinationOrgId: destinationOrgId, projectIds: projectIds, requestOptions: requestOptions);
+    return organizations_methods.transferOrganizationsProjects(_config,
+        sourceOrgId: sourceOrgId,
+        destinationOrgId: destinationOrgId,
+        projectIds: projectIds,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the list of VPC endpoints for the specified Neon organization across all regions.
   Future<VPCEndpointsWithRegionResponse> listVpcEndpointsAllRegions(
       {required String orgId, RequestOptions? requestOptions}) async {
-    return organizations_methods.listOrganizationVpcEndpointsAllRegions(_config, orgId: orgId, requestOptions: requestOptions);
+    return organizations_methods.listOrganizationVpcEndpointsAllRegions(_config,
+        orgId: orgId, requestOptions: requestOptions);
   }
 
   /// Retrieves the list of VPC endpoints for the specified Neon organization.
@@ -1440,7 +1995,8 @@ class OrganizationsNamespace {
       {required String orgId,
       required String regionId,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.listOrganizationVpcEndpoints(_config, orgId: orgId, regionId: regionId, requestOptions: requestOptions);
+    return organizations_methods.listOrganizationVpcEndpoints(_config,
+        orgId: orgId, regionId: regionId, requestOptions: requestOptions);
   }
 
   /// Retrieves the current state and configuration details of a specified VPC endpoint.
@@ -1449,7 +2005,11 @@ class OrganizationsNamespace {
       required String regionId,
       required String vpcEndpointId,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.getOrganizationsVpcEndpoint(_config, orgId: orgId, regionId: regionId, vpcEndpointId: vpcEndpointId, requestOptions: requestOptions);
+    return organizations_methods.getOrganizationsVpcEndpoint(_config,
+        orgId: orgId,
+        regionId: regionId,
+        vpcEndpointId: vpcEndpointId,
+        requestOptions: requestOptions);
   }
 
   /// Assigns a VPC endpoint to a Neon organization or updates its existing assignment.
@@ -1459,7 +2019,12 @@ class OrganizationsNamespace {
       required String vpcEndpointId,
       required String label,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.assignOrganizationVpcEndpoint(_config, orgId: orgId, regionId: regionId, vpcEndpointId: vpcEndpointId, label: label, requestOptions: requestOptions);
+    return organizations_methods.assignOrganizationVpcEndpoint(_config,
+        orgId: orgId,
+        regionId: regionId,
+        vpcEndpointId: vpcEndpointId,
+        label: label,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the VPC endpoint from the specified Neon organization. If you delete a VPC endpoint from a Neon organization, that VPC endpoint cannot be added back to the Neon organization.
@@ -1468,36 +2033,43 @@ class OrganizationsNamespace {
       required String regionId,
       required String vpcEndpointId,
       RequestOptions? requestOptions}) async {
-    return organizations_methods.deleteOrganizationVpcEndpoint(_config, orgId: orgId, regionId: regionId, vpcEndpointId: vpcEndpointId, requestOptions: requestOptions);
+    return organizations_methods.deleteOrganizationVpcEndpoint(_config,
+        orgId: orgId,
+        regionId: regionId,
+        vpcEndpointId: vpcEndpointId,
+        requestOptions: requestOptions);
   }
-
 }
 
 class RegionNamespace {
   final ClientConfig _config;
   RegionNamespace(ClientConfig config) : _config = config;
+
   /// Lists supported Neon regions. **Note:** Not all regions are available to all organizations. Pass the `org_id` parameter to get an accurate list of regions available to your organization.
   Future<ActiveRegionsResponse> getActive(
       {SdkOptional<String> orgId = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return region_methods.getActiveRegions(_config, orgId: orgId, requestOptions: requestOptions);
+    return region_methods.getActiveRegions(_config,
+        orgId: orgId, requestOptions: requestOptions);
   }
-
 }
 
 class UsersNamespace {
   final ClientConfig _config;
   UsersNamespace(ClientConfig config) : _config = config;
+
   /// Retrieves information about the currently authenticated Neon user, including account identifiers, plan details, and linked auth accounts.
   Future<CurrentUserInfoResponse> getCurrentInfo(
       {RequestOptions? requestOptions}) async {
-    return users_methods.getCurrentUserInfo(_config, requestOptions: requestOptions);
+    return users_methods.getCurrentUserInfo(_config,
+        requestOptions: requestOptions);
   }
 
   /// Retrieves the organizations that the currently authenticated user belongs to. When called with an organization- or project-scoped API key (which is not tied to a user), this returns the single organization that owns the key.
   Future<OrganizationsResponse> getCurrentOrganizations(
       {RequestOptions? requestOptions}) async {
-    return users_methods.getCurrentUserOrganizations(_config, requestOptions: requestOptions);
+    return users_methods.getCurrentUserOrganizations(_config,
+        requestOptions: requestOptions);
   }
 
   /// Deprecated. Personal accounts have been migrated to organizations, so this operation no longer applies. Removal scheduled for July 1, 2026.
@@ -1507,20 +2079,24 @@ class UsersNamespace {
       {required String destinationOrgId,
       required List<String> projectIds,
       RequestOptions? requestOptions}) async {
-    return users_methods.transferUsersProjects(_config, destinationOrgId: destinationOrgId, projectIds: projectIds, requestOptions: requestOptions);
+    return users_methods.transferUsersProjects(_config,
+        destinationOrgId: destinationOrgId,
+        projectIds: projectIds,
+        requestOptions: requestOptions);
   }
 
   /// Returns authentication details for the credentials used in the request, including the credential type (API key, Bearer token, or OAuth session) and the associated identity.
   Future<AuthDetailsResponse> getAuthDetails(
       {RequestOptions? requestOptions}) async {
-    return users_methods.getAuthDetails(_config, requestOptions: requestOptions);
+    return users_methods.getAuthDetails(_config,
+        requestOptions: requestOptions);
   }
-
 }
 
 class SnapshotNamespace {
   final ClientConfig _config;
   SnapshotNamespace(ClientConfig config) : _config = config;
+
   /// Creates a snapshot from the specified branch. This operation may initiate an asynchronous process.
   Future<CreateSnapshotResponse> create(
       {required String projectId,
@@ -1530,13 +2106,21 @@ class SnapshotNamespace {
       SdkOptional<String> name = const SdkOmitted(),
       SdkOptional<String> expiresAt = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return snapshot_methods.createSnapshot(_config, projectId: projectId, branchId: branchId, lsn: lsn, timestamp: timestamp, name: name, expiresAt: expiresAt, requestOptions: requestOptions);
+    return snapshot_methods.createSnapshot(_config,
+        projectId: projectId,
+        branchId: branchId,
+        lsn: lsn,
+        timestamp: timestamp,
+        name: name,
+        expiresAt: expiresAt,
+        requestOptions: requestOptions);
   }
 
   /// Lists the snapshots for the specified project. Each snapshot represents a point-in-time backup of the project data.
   Future<ListSnapshotsResponse> list(
       {required String projectId, RequestOptions? requestOptions}) async {
-    return snapshot_methods.listSnapshots(_config, projectId: projectId, requestOptions: requestOptions);
+    return snapshot_methods.listSnapshots(_config,
+        projectId: projectId, requestOptions: requestOptions);
   }
 
   /// Deletes a specified snapshot from a project. Use `project_id` and `snapshot_id` to identify the project and snapshot. Deletion is asynchronous; the response includes operation details for tracking progress.
@@ -1546,7 +2130,10 @@ class SnapshotNamespace {
       {required String projectId,
       required String snapshotId,
       RequestOptions? requestOptions}) async {
-    return snapshot_methods.deleteSnapshot(_config, projectId: projectId, snapshotId: snapshotId, requestOptions: requestOptions);
+    return snapshot_methods.deleteSnapshot(_config,
+        projectId: projectId,
+        snapshotId: snapshotId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the name or expiration time of a project snapshot. Supply the `snapshot` object with the fields to change; omitting `expires_at` leaves the current expiration unchanged, while sending `null` clears it. A 200 response returns the updated snapshot.
@@ -1557,7 +2144,11 @@ class SnapshotNamespace {
       required String snapshotId,
       required SnapshotUpdateRequestSnapshot snapshot,
       RequestOptions? requestOptions}) async {
-    return snapshot_methods.updateSnapshot(_config, projectId: projectId, snapshotId: snapshotId, snapshot: snapshot, requestOptions: requestOptions);
+    return snapshot_methods.updateSnapshot(_config,
+        projectId: projectId,
+        snapshotId: snapshotId,
+        snapshot: snapshot,
+        requestOptions: requestOptions);
   }
 
   /// Restores the specified snapshot to a new branch, and optionally finalizes the restore operation to replace the original branch.
@@ -1569,7 +2160,14 @@ class SnapshotNamespace {
       SdkOptional<String> targetBranchId = const SdkOmitted(),
       SdkOptional<bool> finalizeRestore = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return snapshot_methods.restoreSnapshot(_config, projectId: projectId, snapshotId: snapshotId, name: name, name_2: name_2, targetBranchId: targetBranchId, finalizeRestore: finalizeRestore, requestOptions: requestOptions);
+    return snapshot_methods.restoreSnapshot(_config,
+        projectId: projectId,
+        snapshotId: snapshotId,
+        name: name,
+        name_2: name_2,
+        targetBranchId: targetBranchId,
+        finalizeRestore: finalizeRestore,
+        requestOptions: requestOptions);
   }
 
   /// Returns the backup schedule for the specified branch, including the configured snapshot frequencies.
@@ -1577,7 +2175,10 @@ class SnapshotNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return snapshot_methods.getSnapshotSchedule(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return snapshot_methods.getSnapshotSchedule(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Updates the backup schedule for the specified branch. The schedule defines how often automatic snapshots are created (for example, `daily` or `weekly`). Requires a paid plan.
@@ -1586,22 +2187,32 @@ class SnapshotNamespace {
       required String branchId,
       required List<BackupScheduleItem> schedule,
       RequestOptions? requestOptions}) async {
-    return snapshot_methods.setSnapshotSchedule(_config, projectId: projectId, branchId: branchId, schedule: schedule, requestOptions: requestOptions);
+    return snapshot_methods.setSnapshotSchedule(_config,
+        projectId: projectId,
+        branchId: branchId,
+        schedule: schedule,
+        requestOptions: requestOptions);
   }
-
 }
 
 class BucketsNamespace {
   final ClientConfig _config;
   BucketsNamespace(ClientConfig config) : _config = config;
+
   /// Creates a new branchable object storage bucket on the specified branch. Buckets are managed by the Neon Platform branchable object storage service. **Note**: This endpoint is currently in Beta.
   Future<BucketResponse> create(
       {required String projectId,
       required String branchId,
       required String name,
-      SdkOptional<BucketCreateRequestAccessLevel> accessLevel = const SdkOmitted(),
+      SdkOptional<BucketCreateRequestAccessLevel> accessLevel =
+          const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return buckets_methods.createBuckets(_config, projectId: projectId, branchId: branchId, name: name, accessLevel: accessLevel, requestOptions: requestOptions);
+    return buckets_methods.createBuckets(_config,
+        projectId: projectId,
+        branchId: branchId,
+        name: name,
+        accessLevel: accessLevel,
+        requestOptions: requestOptions);
   }
 
   /// Lists branchable object storage buckets visible on the specified branch, including those inherited from ancestor branches. **Note**: This endpoint is currently in Beta.
@@ -1609,7 +2220,10 @@ class BucketsNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return buckets_methods.listBuckets(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return buckets_methods.listBuckets(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the named bucket from the specified branch. **Note**: This endpoint is currently in Beta.
@@ -1618,7 +2232,11 @@ class BucketsNamespace {
       required String branchId,
       required String bucketName,
       RequestOptions? requestOptions}) async {
-    return buckets_methods.deleteBuckets(_config, projectId: projectId, branchId: branchId, bucketName: bucketName, requestOptions: requestOptions);
+    return buckets_methods.deleteBuckets(_config,
+        projectId: projectId,
+        branchId: branchId,
+        bucketName: bucketName,
+        requestOptions: requestOptions);
   }
 
   /// Lists objects visible in the named bucket on the specified branch, including those inherited from ancestor branches. Listing is served by the user's session (no customer S3 credentials required). When `delimiter` is supplied (typically `/`), keys are collapsed into common prefixes (`folders`) so callers can render a folder-style browser; keys that do not contain the delimiter after `prefix` are returned as `objects`. **Note**: This endpoint is currently in Beta.
@@ -1631,12 +2249,36 @@ class BucketsNamespace {
       SdkOptional<String> cursor = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return buckets_methods.listBucketsObjects(_config, projectId: projectId, branchId: branchId, bucketName: bucketName, prefix: prefix, delimiter: delimiter, cursor: cursor, limit: limit, requestOptions: requestOptions);
+    return buckets_methods.listBucketsObjects(_config,
+        projectId: projectId,
+        branchId: branchId,
+        bucketName: bucketName,
+        prefix: prefix,
+        delimiter: delimiter,
+        cursor: cursor,
+        limit: limit,
+        requestOptions: requestOptions);
   }
 
   /// Lists objects visible in the named bucket on the specified branch, including those inherited from ancestor branches. Listing is served by the user's session (no customer S3 credentials required). When `delimiter` is supplied (typically `/`), keys are collapsed into common prefixes (`folders`) so callers can render a folder-style browser; keys that do not contain the delimiter after `prefix` are returned as `objects`. **Note**: This endpoint is currently in Beta.
-  Stream<BucketObject> listObjectsPaginated({required String projectId, required String branchId, required String bucketName, String? prefix, String? delimiter, String? cursor, int? limit, RequestOptions? requestOptions}) async* {
-    yield* buckets_methods.listBucketsObjectsPaginated(_config, projectId: projectId, branchId: branchId, bucketName: bucketName, prefix: prefix, delimiter: delimiter, cursor: cursor, limit: limit, requestOptions: requestOptions);
+  Stream<BucketObject> listObjectsPaginated(
+      {required String projectId,
+      required String branchId,
+      required String bucketName,
+      String? prefix,
+      String? delimiter,
+      String? cursor,
+      int? limit,
+      RequestOptions? requestOptions}) async* {
+    yield* buckets_methods.listBucketsObjectsPaginated(_config,
+        projectId: projectId,
+        branchId: branchId,
+        bucketName: bucketName,
+        prefix: prefix,
+        delimiter: delimiter,
+        cursor: cursor,
+        limit: limit,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the named object from the bucket on the specified branch. Served by the user's session (no customer S3 credentials required). **Note**: This endpoint is currently in Beta.
@@ -1646,7 +2288,12 @@ class BucketsNamespace {
       required String bucketName,
       required String objectKey,
       RequestOptions? requestOptions}) async {
-    return buckets_methods.deleteBucketsObject(_config, projectId: projectId, branchId: branchId, bucketName: bucketName, objectKey: objectKey, requestOptions: requestOptions);
+    return buckets_methods.deleteBucketsObject(_config,
+        projectId: projectId,
+        branchId: branchId,
+        bucketName: bucketName,
+        objectKey: objectKey,
+        requestOptions: requestOptions);
   }
 
   /// Streams the raw bytes of the named object from the bucket on the specified branch, including objects inherited from ancestor branches. Served by the user's session (no customer S3 credentials required). The body is returned as `application/octet-stream` so a browser treats it as a download; the `Content-Length` and `ETag` response headers echo the stored object metadata. BINARY-STREAM EXCEPTION TO THE BUILD-GENERATED-TYPES RULE (#7029): the successful 200 body is the raw object stream, proxied verbatim from the platform object storage admin endpoint. It is modeled as an `application/octet-stream` binary body (not a JSON response schema) and is streamed without buffering the whole object in memory. Error responses still use the generated `GeneralError` shape. **Note**: This endpoint is currently in Beta.
@@ -1656,7 +2303,12 @@ class BucketsNamespace {
       required String bucketName,
       required String objectKey,
       RequestOptions? requestOptions}) async {
-    return buckets_methods.getBucketsObject(_config, projectId: projectId, branchId: branchId, bucketName: bucketName, objectKey: objectKey, requestOptions: requestOptions);
+    return buckets_methods.getBucketsObject(_config,
+        projectId: projectId,
+        branchId: branchId,
+        bucketName: bucketName,
+        objectKey: objectKey,
+        requestOptions: requestOptions);
   }
 
   /// Soft-deletes every object on the specified branch whose key starts with `prefix`, in a single call. Intended to back a "delete folder" action in an object browser: a `prefix` of `app/avatars/` removes every object beneath that folder. Served by the user's session (no customer S3 credentials required). `prefix` must be non-empty, end with `/`, be at most 1024 bytes, and contain no control characters - a partial-segment prefix cannot accidentally delete sibling keys. Returns the number of objects soft-deleted (`deleted`), which may be 0 when no live object matched the prefix on this branch. Only objects physically present on this branch are tombstoned; objects inherited from an ancestor branch via copy-on-write (not materialized on this branch) are out of scope. **Note**: This endpoint is currently in Beta.
@@ -1666,7 +2318,12 @@ class BucketsNamespace {
       required String bucketName,
       required String prefix,
       RequestOptions? requestOptions}) async {
-    return buckets_methods.deleteBucketsObjectsByPrefix(_config, projectId: projectId, branchId: branchId, bucketName: bucketName, prefix: prefix, requestOptions: requestOptions);
+    return buckets_methods.deleteBucketsObjectsByPrefix(_config,
+        projectId: projectId,
+        branchId: branchId,
+        bucketName: bucketName,
+        prefix: prefix,
+        requestOptions: requestOptions);
   }
 
   /// Returns a presigned URL that transfers bytes directly to or from the object's bucket on the specified branch, without the caller ever handling S3 credentials. The `operation` field selects the direction: - `upload` returns a presigned `PUT` URL (the caller `PUT`s the file bytes straight to `url` with the returned `headers`). Authorized with project write access. - `download` returns a presigned `GET` URL (the caller `GET`s the bytes straight from `url`). Authorized with project read access. The platform mints a short-lived credential and builds the SigV4-signed URL against the branch's S3 data-plane host, returning it together with the HTTP method, any headers the caller must echo, and the URL's expiry. Served by the user's session (no customer S3 credentials required). **Note**: This endpoint is currently in Beta.
@@ -1679,40 +2336,54 @@ class BucketsNamespace {
       SdkOptional<String> contentType = const SdkOmitted(),
       SdkOptional<int> expiresInSeconds = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return buckets_methods.presignBucketsObject(_config, projectId: projectId, branchId: branchId, bucketName: bucketName, objectKey: objectKey, operation: operation, contentType: contentType, expiresInSeconds: expiresInSeconds, requestOptions: requestOptions);
+    return buckets_methods.presignBucketsObject(_config,
+        projectId: projectId,
+        branchId: branchId,
+        bucketName: bucketName,
+        objectKey: objectKey,
+        operation: operation,
+        contentType: contentType,
+        expiresInSeconds: expiresInSeconds,
+        requestOptions: requestOptions);
   }
-
 }
 
 class StorageNamespace {
   final ClientConfig _config;
   StorageNamespace(ClientConfig config) : _config = config;
+
   /// Returns whether branchable object storage is usable for the specified branch. A 200 response means the branch is registered in the object storage service and the S3 data plane will accept requests for it. A 404 response includes a `reason` field indicating why object storage is unavailable. **Note**: This endpoint is currently in Beta.
   Future<BranchStorage> get_(
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return storage_methods.getStorage(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return storage_methods.getStorage(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
-
 }
 
 class AiGatewayNamespace {
   final ClientConfig _config;
   AiGatewayNamespace(ClientConfig config) : _config = config;
+
   /// Returns the AI Gateway endpoint host for the specified branch, used to render code-snippet base URLs. A 200 response means the branch is registered and this region serves the AI gateway. A 404 response includes a `reason` field indicating why the gateway is unavailable. **Note**: This endpoint is currently in Beta.
   Future<BranchAiGateway> get_(
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return ai_gateway_methods.getAiGateway(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return ai_gateway_methods.getAiGateway(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
-
 }
 
 class LogsNamespace {
   final ClientConfig _config;
   LogsNamespace(ClientConfig config) : _config = config;
+
   /// Returns logs emitted by services running on the specified branch, ordered by timestamp according to `sort_order`. All supplied filters are combined with `AND`: a record is returned only when it matches every filter. `minimum_severity` and `severity_text` are independent filters, so setting both requires a record to clear the severity floor *and* match the exact severity text. Supply `logql` instead of the structured filters to run a raw LogQL expression. Combining it with any structured filter is rejected rather than silently ignored; `limit`, `sort_order`, and the time window still apply, because those bound the query rather than form part of the expression. Give the window either as `since` — a duration ending at `end_time`, or at the current time when `end_time` is omitted — or as an explicit `start_time`. Supplying both is rejected. A single response holds at most 1,000 records. When `is_truncated` is `true`, pass the returned `next_cursor` back as `cursor` to fetch the next page, repeating the time range and every filter unchanged. If no time range is supplied, the query covers the previous hour. The maximum supported time range is seven days. `end_time` is exclusive. **Note**: This endpoint is currently in Private Beta.
   Future<ProjectBranchLogsQueryResponse> query(
       {required String projectId,
@@ -1722,17 +2393,36 @@ class LogsNamespace {
       SdkOptional<String> endTime = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       SdkOptional<String> cursor = const SdkOmitted(),
-      SdkOptional<ProjectBranchLogsQueryRequestSortOrder> sortOrder = const SdkOmitted(),
+      SdkOptional<ProjectBranchLogsQueryRequestSortOrder> sortOrder =
+          const SdkOmitted(),
       SdkOptional<ProjectBranchLogSource> source = const SdkOmitted(),
       SdkOptional<String> serviceName = const SdkOmitted(),
       SdkOptional<String> scopeName = const SdkOmitted(),
-      SdkOptional<ProjectBranchLogSeverity> minimumSeverity = const SdkOmitted(),
+      SdkOptional<ProjectBranchLogSeverity> minimumSeverity =
+          const SdkOmitted(),
       SdkOptional<String> severityText = const SdkOmitted(),
       SdkOptional<String> bodyContains = const SdkOmitted(),
       SdkOptional<String> traceId = const SdkOmitted(),
       SdkOptional<String> logql = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return logs_methods.queryLogs(_config, projectId: projectId, branchId: branchId, since: since, startTime: startTime, endTime: endTime, limit: limit, cursor: cursor, sortOrder: sortOrder, source: source, serviceName: serviceName, scopeName: scopeName, minimumSeverity: minimumSeverity, severityText: severityText, bodyContains: bodyContains, traceId: traceId, logql: logql, requestOptions: requestOptions);
+    return logs_methods.queryLogs(_config,
+        projectId: projectId,
+        branchId: branchId,
+        since: since,
+        startTime: startTime,
+        endTime: endTime,
+        limit: limit,
+        cursor: cursor,
+        sortOrder: sortOrder,
+        source: source,
+        serviceName: serviceName,
+        scopeName: scopeName,
+        minimumSeverity: minimumSeverity,
+        severityText: severityText,
+        bodyContains: bodyContains,
+        traceId: traceId,
+        logql: logql,
+        requestOptions: requestOptions);
   }
 
   /// Lists the low-cardinality log fields observed on this branch whose distinct values can be discovered with the log field-values endpoint. The set is computed per branch and grows as new fields are observed, so treat it as data rather than a fixed list: discover a field here, then pass it as `field_name` to the field-values endpoint. **Note**: This endpoint is currently in Private Beta.
@@ -1740,7 +2430,10 @@ class LogsNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return logs_methods.listLogsFields(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return logs_methods.listLogsFields(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Lists the distinct values observed for a low-cardinality log field in the requested time range. Call the log fields endpoint first to learn which `field_name` values this branch supports; a field that branch has never emitted is rejected with `unknown_field`. Give the window either as `since` or as an explicit `start_time`; supplying both is rejected. If neither is given, the previous six hours are used. The maximum supported time range is seven days. **Note**: This endpoint is currently in Private Beta.
@@ -1754,14 +2447,23 @@ class LogsNamespace {
       SdkOptional<ProjectBranchLogSource> source = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return logs_methods.listLogsFieldValues(_config, projectId: projectId, branchId: branchId, fieldName: fieldName, since: since, startTime: startTime, endTime: endTime, source: source, limit: limit, requestOptions: requestOptions);
+    return logs_methods.listLogsFieldValues(_config,
+        projectId: projectId,
+        branchId: branchId,
+        fieldName: fieldName,
+        since: since,
+        startTime: startTime,
+        endTime: endTime,
+        source: source,
+        limit: limit,
+        requestOptions: requestOptions);
   }
-
 }
 
 class CredentialsNamespace {
   final ClientConfig _config;
   CredentialsNamespace(ClientConfig config) : _config = config;
+
   /// Creates a scoped service credential for a specified project branch. Provide `scopes` and `principal_type` to define the credential's capabilities and principal. The endpoint is in beta, and returns `api_token` and `s3_secret_access_key` only once; they are not stored server-side.
   ///
   /// Issues a new scoped service credential anchored to the specified branch. The response carries `api_token` and `s3_secret_access_key` exactly once — they are not stored server-side. **Note**: This endpoint is currently in Beta.
@@ -1772,7 +2474,13 @@ class CredentialsNamespace {
       required CreateCredentialRequestPrincipalType principalType,
       SdkOptional<String> name = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return credentials_methods.createCredential(_config, projectId: projectId, branchId: branchId, scopes: scopes, principalType: principalType, name: name, requestOptions: requestOptions);
+    return credentials_methods.createCredential(_config,
+        projectId: projectId,
+        branchId: branchId,
+        scopes: scopes,
+        principalType: principalType,
+        name: name,
+        requestOptions: requestOptions);
   }
 
   /// Returns metadata for customer-issued credentials on the branch. Secrets are never included. **Note**: This endpoint is currently in Beta.
@@ -1780,7 +2488,10 @@ class CredentialsNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return credentials_methods.listCredentials(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return credentials_methods.listCredentials(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Soft-deletes the credential. Idempotent. **Note**: This endpoint is currently in Beta.
@@ -1789,7 +2500,11 @@ class CredentialsNamespace {
       required String branchId,
       required String tokenId,
       RequestOptions? requestOptions}) async {
-    return credentials_methods.revokeCredential(_config, projectId: projectId, branchId: branchId, tokenId: tokenId, requestOptions: requestOptions);
+    return credentials_methods.revokeCredential(_config,
+        projectId: projectId,
+        branchId: branchId,
+        tokenId: tokenId,
+        requestOptions: requestOptions);
   }
 
   /// Returns the live `api_token` and `s3_secret_access_key` of an existing credential, so a credential whose issuance response was lost can be recovered without minting a new one. This is a POST with an explicit `/reveal` verb so the secrets never ride a GET, where they would land in access logs, browser history and proxy caches. Revoked and expired credentials return 404, as does a `token_id` that does not belong to this project. A credential issued before secret retrieval was supported has no recoverable secret and returns 409 — rotate it to obtain one. **Note**: This endpoint is currently in Beta.
@@ -1798,7 +2513,11 @@ class CredentialsNamespace {
       required String branchId,
       required String tokenId,
       RequestOptions? requestOptions}) async {
-    return credentials_methods.revealCredential(_config, projectId: projectId, branchId: branchId, tokenId: tokenId, requestOptions: requestOptions);
+    return credentials_methods.revealCredential(_config,
+        projectId: projectId,
+        branchId: branchId,
+        tokenId: tokenId,
+        requestOptions: requestOptions);
   }
 
   /// Replaces the secret material on an existing scoped credential in place. `token_id` is preserved — it is the `AWS_ACCESS_KEY_ID` for S3-compatible clients, so the access key id your application already holds keeps working and only the secret changes. This is the analog of resetting a Postgres password, not of issuing a second credential. The response carries the new `api_token` and `s3_secret_access_key` exactly once. Rotation is **not** idempotent: retrying after an ambiguous timeout mints another secret and supersedes the previous replacement, so a retry does not recover a lost response — it only invalidates the secret you did not receive. If you lose the response, issue a replacement credential and revoke this one. The old secret stops authenticating as soon as the rotation commits. Where a region caches credentials on its data-plane verifiers, a replica may briefly keep accepting the old secret — and rejecting the new one — until its cache entry expires; where it does not, the cutover is immediate apart from requests already in flight. Either way the changeover is not atomic across replicas, so retry an unexpected authentication failure right after rotating rather than treating the new secret as bad. `last_used_at` continues to report the logical credential's prior usage and says nothing about whether the new secret has been used yet. Only a live, unexpired, unrevoked customer-managed (`user`) credential on a live project and live branch is eligible. Anything else — including the platform-internal `function` and `system` credentials — is reported as not found, indistinguishable from an unknown `token_id`. **Note**: This endpoint is currently in Beta.
@@ -1807,14 +2526,18 @@ class CredentialsNamespace {
       required String branchId,
       required String tokenId,
       RequestOptions? requestOptions}) async {
-    return credentials_methods.rotateCredential(_config, projectId: projectId, branchId: branchId, tokenId: tokenId, requestOptions: requestOptions);
+    return credentials_methods.rotateCredential(_config,
+        projectId: projectId,
+        branchId: branchId,
+        tokenId: tokenId,
+        requestOptions: requestOptions);
   }
-
 }
 
 class FunctionsNamespace {
   final ClientConfig _config;
   FunctionsNamespace(ClientConfig config) : _config = config;
+
   /// Lists functions on the specified branch. **Note**: This endpoint is currently in Beta.
   Future<NeonFunctionsListResponse> list(
       {required String projectId,
@@ -1822,7 +2545,12 @@ class FunctionsNamespace {
       SdkOptional<String> cursor = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return functions_methods.listFunctions(_config, projectId: projectId, branchId: branchId, cursor: cursor, limit: limit, requestOptions: requestOptions);
+    return functions_methods.listFunctions(_config,
+        projectId: projectId,
+        branchId: branchId,
+        cursor: cursor,
+        limit: limit,
+        requestOptions: requestOptions);
   }
 
   /// Returns the function identified by its slug. **Note**: This endpoint is currently in Beta.
@@ -1831,7 +2559,11 @@ class FunctionsNamespace {
       required String branchId,
       required String slug,
       RequestOptions? requestOptions}) async {
-    return functions_methods.getFunctions(_config, projectId: projectId, branchId: branchId, slug: slug, requestOptions: requestOptions);
+    return functions_methods.getFunctions(_config,
+        projectId: projectId,
+        branchId: branchId,
+        slug: slug,
+        requestOptions: requestOptions);
   }
 
   /// Updates the function's mutable metadata — currently only the display `name`. A string sets the display name; `null` clears it, after which the function's `name` falls back to its slug. Leading and trailing whitespace is trimmed; a whitespace-only name is rejected. Acts only on a function owned by the branch: a slug that is only inherited from an ancestor branch returns 404 — rename it on the branch that owns it. Like every other change on a branch, a rename is isolated per branch: a branch forked before the rename keeps the name it had at fork time. **Note**: This endpoint is currently in Beta.
@@ -1841,7 +2573,12 @@ class FunctionsNamespace {
       required String slug,
       required String? name,
       RequestOptions? requestOptions}) async {
-    return functions_methods.updateFunctions(_config, projectId: projectId, branchId: branchId, slug: slug, name: name, requestOptions: requestOptions);
+    return functions_methods.updateFunctions(_config,
+        projectId: projectId,
+        branchId: branchId,
+        slug: slug,
+        name: name,
+        requestOptions: requestOptions);
   }
 
   /// Deletes the function identified by its slug. **Note**: This endpoint is currently in Beta.
@@ -1850,7 +2587,11 @@ class FunctionsNamespace {
       required String branchId,
       required String slug,
       RequestOptions? requestOptions}) async {
-    return functions_methods.deleteFunctions(_config, projectId: projectId, branchId: branchId, slug: slug, requestOptions: requestOptions);
+    return functions_methods.deleteFunctions(_config,
+        projectId: projectId,
+        branchId: branchId,
+        slug: slug,
+        requestOptions: requestOptions);
   }
 
   /// Creates a deployment for a function on a branch. Supply at least one of `zip`, `environment`, or `runtime`; omitted fields inherit the function's latest version. The first deployment must include `zip`, and the newest deployment becomes active.
@@ -1864,7 +2605,14 @@ class FunctionsNamespace {
       SdkOptional<FunctionDeployRequestRuntime> runtime = const SdkOmitted(),
       SdkOptional<String> environment = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return functions_methods.createFunctionsDeployment(_config, projectId: projectId, branchId: branchId, slug: slug, zip: zip, runtime: runtime, environment: environment, requestOptions: requestOptions);
+    return functions_methods.createFunctionsDeployment(_config,
+        projectId: projectId,
+        branchId: branchId,
+        slug: slug,
+        zip: zip,
+        runtime: runtime,
+        environment: environment,
+        requestOptions: requestOptions);
   }
 
   /// Lists the complete project-bounded set of triggers visible on the branch, ordered by `trigger_id`. An inherited trigger keeps its project-wide ID and configuration, and is disabled on the child until explicitly enabled there. The supported trigger types are `schedule` and `storage_object_created`. A storage-object-created trigger watches one exact bucket and fires only after an object upload succeeds. **Note**: This endpoint is currently in Beta.
@@ -1872,7 +2620,10 @@ class FunctionsNamespace {
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
-    return functions_methods.listFunctionsTriggers(_config, projectId: projectId, branchId: branchId, requestOptions: requestOptions);
+    return functions_methods.listFunctionsTriggers(_config,
+        projectId: projectId,
+        branchId: branchId,
+        requestOptions: requestOptions);
   }
 
   /// Creates a trigger for a function visible on a branch. Set `type` to `schedule` or `storage_object_created` and provide the matching configuration; schedule expressions use five numeric cron fields interpreted in UTC. The trigger name must be unique among triggers visible on the branch, including inherited triggers.
@@ -1883,7 +2634,11 @@ class FunctionsNamespace {
       required String branchId,
       required TriggerCreateRequest body,
       RequestOptions? requestOptions}) async {
-    return functions_methods.createFunctionsTrigger(_config, projectId: projectId, branchId: branchId, body: body, requestOptions: requestOptions);
+    return functions_methods.createFunctionsTrigger(_config,
+        projectId: projectId,
+        branchId: branchId,
+        body: body,
+        requestOptions: requestOptions);
   }
 
   /// Returns the trigger visible on the branch. The supported trigger types are `schedule` and `storage_object_created`. **Note**: This endpoint is currently in Beta.
@@ -1892,7 +2647,11 @@ class FunctionsNamespace {
       required String branchId,
       required String triggerId,
       RequestOptions? requestOptions}) async {
-    return functions_methods.getFunctionsTrigger(_config, projectId: projectId, branchId: branchId, triggerId: triggerId, requestOptions: requestOptions);
+    return functions_methods.getFunctionsTrigger(_config,
+        projectId: projectId,
+        branchId: branchId,
+        triggerId: triggerId,
+        requestOptions: requestOptions);
   }
 
   /// Updates a branch trigger using a partial configuration. Set `type` to the existing trigger kind and provide at least one other field to change; supported kinds are `schedule` and `storage_object_created`. Editing an inherited trigger creates a child-local shadow that remains disabled unless you explicitly enable it; disabling a trigger does not cancel occurrences already committed for delivery.
@@ -1904,7 +2663,12 @@ class FunctionsNamespace {
       required String triggerId,
       required TriggerUpdateRequest body,
       RequestOptions? requestOptions}) async {
-    return functions_methods.updateFunctionsTrigger(_config, projectId: projectId, branchId: branchId, triggerId: triggerId, body: body, requestOptions: requestOptions);
+    return functions_methods.updateFunctionsTrigger(_config,
+        projectId: projectId,
+        branchId: branchId,
+        triggerId: triggerId,
+        body: body,
+        requestOptions: requestOptions);
   }
 
   /// Deletes a branch-local trigger or writes a branch-local tombstone for an inherited trigger so it does not reappear. Deletion stops future scheduling or storage-event matching but does not cancel invocations already committed for delivery. The supported trigger types are `schedule` and `storage_object_created`. **Note**: This endpoint is currently in Beta.
@@ -1913,7 +2677,11 @@ class FunctionsNamespace {
       required String branchId,
       required String triggerId,
       RequestOptions? requestOptions}) async {
-    return functions_methods.deleteFunctionsTrigger(_config, projectId: projectId, branchId: branchId, triggerId: triggerId, requestOptions: requestOptions);
+    return functions_methods.deleteFunctionsTrigger(_config,
+        projectId: projectId,
+        branchId: branchId,
+        triggerId: triggerId,
+        requestOptions: requestOptions);
   }
 
   /// Registers a customer-owned domain (for example `dashboard.acme.com`) on the branch and points it at a target entity, chosen by `entity_type` + `entity_id`. In v1 only `entity_type: function` is supported (an unsupported type is rejected with `400`), where `entity_id` is the function slug and the function must already exist on the branch (else `404`). The response includes the `cname_target` the customer must point their domain at with a CNAME record; the domain goes live only once that DNS resolves and a certificate is issued on the first request. A domain already registered to another resource is rejected with `409` and no detail about the owner. Re-registering the same domain for the same entity is idempotent. **Note**: This endpoint is currently in Beta.
@@ -1924,7 +2692,13 @@ class FunctionsNamespace {
       required String entityType,
       required String entityId,
       RequestOptions? requestOptions}) async {
-    return functions_methods.registerFunctionsCustomDomain(_config, projectId: projectId, branchId: branchId, domain: domain, entityType: entityType, entityId: entityId, requestOptions: requestOptions);
+    return functions_methods.registerFunctionsCustomDomain(_config,
+        projectId: projectId,
+        branchId: branchId,
+        domain: domain,
+        entityType: entityType,
+        entityId: entityId,
+        requestOptions: requestOptions);
   }
 
   /// Lists all custom domains registered on the branch, across every target entity. **Note**: This endpoint is currently in Beta.
@@ -1934,7 +2708,12 @@ class FunctionsNamespace {
       SdkOptional<String> cursor = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
-    return functions_methods.listFunctionsCustomDomains(_config, projectId: projectId, branchId: branchId, cursor: cursor, limit: limit, requestOptions: requestOptions);
+    return functions_methods.listFunctionsCustomDomains(_config,
+        projectId: projectId,
+        branchId: branchId,
+        cursor: cursor,
+        limit: limit,
+        requestOptions: requestOptions);
   }
 
   /// Removes a custom domain registered on the branch and stops routing it. **Note**: This endpoint is currently in Beta.
@@ -1943,9 +2722,12 @@ class FunctionsNamespace {
       required String branchId,
       required String domain,
       RequestOptions? requestOptions}) async {
-    return functions_methods.deleteFunctionsCustomDomain(_config, projectId: projectId, branchId: branchId, domain: domain, requestOptions: requestOptions);
+    return functions_methods.deleteFunctionsCustomDomain(_config,
+        projectId: projectId,
+        branchId: branchId,
+        domain: domain,
+        requestOptions: requestOptions);
   }
-
 }
 
 class Neon {
@@ -2019,5 +2801,4 @@ class Neon {
     logging.enabled = enabled ?? true;
     return logging;
   }
-
 }

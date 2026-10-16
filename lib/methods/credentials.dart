@@ -43,12 +43,15 @@ Future<CreateCredentialResponse> createCredential(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'createCredential',
-          fromJsonRaw: (value) => CreateCredentialResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              CreateCredentialResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Returns metadata for customer-issued credentials on the branch. Secrets are never included. **Note**: This endpoint is currently in Beta.
 ///
@@ -68,10 +71,12 @@ Future<ListCredentialsResponse> listCredentials(ClientConfig config,
           operationId: 'listCredentials',
           fromJsonRaw: (value) => ListCredentialsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Soft-deletes the credential. Idempotent. **Note**: This endpoint is currently in Beta.
 ///
@@ -92,10 +97,13 @@ Future<void> revokeCredential(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'revokeCredential',
           options: requestOptions,
-          errors: {'404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>),
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Returns the live `api_token` and `s3_secret_access_key` of an existing credential, so a credential whose issuance response was lost can be recovered without minting a new one. This is a POST with an explicit `/reveal` verb so the secrets never ride a GET, where they would land in access logs, browser history and proxy caches. Revoked and expired credentials return 404, as does a `token_id` that does not belong to this project. A credential issued before secret retrieval was supported has no recoverable secret and returns 409 — rotate it to obtain one. **Note**: This endpoint is currently in Beta.
 ///
@@ -115,12 +123,17 @@ Future<CredentialSecret> revealCredential(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'revealCredential',
-          fromJsonRaw: (value) => CredentialSecret.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              CredentialSecret.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '409': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>),
+        '409': (value) => GeneralError.fromJson(value as Map<String, dynamic>),
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Replaces the secret material on an existing scoped credential in place. `token_id` is preserved — it is the `AWS_ACCESS_KEY_ID` for S3-compatible clients, so the access key id your application already holds keeps working and only the secret changes. This is the analog of resetting a Postgres password, not of issuing a second credential. The response carries the new `api_token` and `s3_secret_access_key` exactly once. Rotation is **not** idempotent: retrying after an ambiguous timeout mints another secret and supersedes the previous replacement, so a retry does not recover a lost response — it only invalidates the secret you did not receive. If you lose the response, issue a replacement credential and revoke this one. The old secret stops authenticating as soon as the rotation commits. Where a region caches credentials on its data-plane verifiers, a replica may briefly keep accepting the old secret — and rejecting the new one — until its cache entry expires; where it does not, the cutover is immediate apart from requests already in flight. Either way the changeover is not atomic across replicas, so retry an unexpected authentication failure right after rotating rather than treating the new secret as bad. `last_used_at` continues to report the logical credential's prior usage and says nothing about whether the new secret has been used yet. Only a live, unexpired, unrevoked customer-managed (`user`) credential on a live project and live branch is eligible. Anything else — including the platform-internal `function` and `system` credentials — is reported as not found, indistinguishable from an unknown `token_id`. **Note**: This endpoint is currently in Beta.
 ///
@@ -142,6 +155,9 @@ Future<RotateCredentialResponse> rotateCredential(ClientConfig config,
           operationId: 'rotateCredential',
           fromJsonRaw: (value) => RotateCredentialResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }

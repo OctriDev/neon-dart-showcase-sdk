@@ -8,218 +8,325 @@ part of 'branch.dart';
 class DatabaseUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Properties to update on the database.
   final DatabaseUpdateRequestDatabase database;
 
   const DatabaseUpdateRequest({required this.database});
 
-  DatabaseUpdateRequest Function({DatabaseUpdateRequestDatabase database}) get copyWith => _copyWith;
+  DatabaseUpdateRequest Function({DatabaseUpdateRequestDatabase database})
+      get copyWith => _copyWith;
 
-  DatabaseUpdateRequest _copyWith({Object? database = sdkOmittedValue}) => DatabaseUpdateRequest(
-    database: identical(database, sdkOmittedValue) ? this.database : database as DatabaseUpdateRequestDatabase,
-  );
+  DatabaseUpdateRequest _copyWith({Object? database = sdkOmittedValue}) =>
+      DatabaseUpdateRequest(
+        database: identical(database, sdkOmittedValue)
+            ? this.database
+            : database as DatabaseUpdateRequestDatabase,
+      );
 
-  factory DatabaseUpdateRequest.fromJson(Map<String, dynamic> json) => DatabaseUpdateRequest(
-    database: (json['database'] != null ? DatabaseUpdateRequestDatabase.fromJson(json['database'] as Map<String, dynamic>) : null)!,
-  );
+  factory DatabaseUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      DatabaseUpdateRequest(
+        database: (json['database'] != null
+            ? DatabaseUpdateRequestDatabase.fromJson(
+                json['database'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'database': database.toJson(),
-  };
+        'database': database.toJson(),
+      };
 }
 
 /// Typed representation of the `MaskingRule` API schema.
 class MaskingRule {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The name of the database containing the table to be masked
   final String databaseName;
+
   /// The name of the schema containing the table to be masked
   final String schemaName;
+
   /// The name of the table containing the column to be masked
   final String tableName;
+
   /// The name of the column to be masked
   final String columnName;
+
   /// The PostgreSQL Anonymizer masking function to apply. Can be a predefined function (e.g., 'anon.random_string(10)', 'anon.fake_email()') or a custom function definition (e.g., 'anon.hash(column_name)')
   final SdkOptional<String> maskingFunction;
+
   /// A literal value to set on the column when masking.
   final SdkOptional<String> maskingValue;
 
-  const MaskingRule({required this.databaseName, required this.schemaName, required this.tableName, required this.columnName, this.maskingFunction = const SdkOmitted(), this.maskingValue = const SdkOmitted()});
+  const MaskingRule(
+      {required this.databaseName,
+      required this.schemaName,
+      required this.tableName,
+      required this.columnName,
+      this.maskingFunction = const SdkOmitted(),
+      this.maskingValue = const SdkOmitted()});
 
-  MaskingRule Function({String databaseName, String schemaName, String tableName, String columnName, SdkOptional<String> maskingFunction, SdkOptional<String> maskingValue}) get copyWith => _copyWith;
+  MaskingRule Function(
+      {String databaseName,
+      String schemaName,
+      String tableName,
+      String columnName,
+      SdkOptional<String> maskingFunction,
+      SdkOptional<String> maskingValue}) get copyWith => _copyWith;
 
-  MaskingRule _copyWith({Object? databaseName = sdkOmittedValue, Object? schemaName = sdkOmittedValue, Object? tableName = sdkOmittedValue, Object? columnName = sdkOmittedValue, Object? maskingFunction = sdkOmittedValue, Object? maskingValue = sdkOmittedValue}) => MaskingRule(
-    databaseName: identical(databaseName, sdkOmittedValue) ? this.databaseName : databaseName as String,
-    schemaName: identical(schemaName, sdkOmittedValue) ? this.schemaName : schemaName as String,
-    tableName: identical(tableName, sdkOmittedValue) ? this.tableName : tableName as String,
-    columnName: identical(columnName, sdkOmittedValue) ? this.columnName : columnName as String,
-    maskingFunction: identical(maskingFunction, sdkOmittedValue) ? this.maskingFunction : maskingFunction as SdkOptional<String>,
-    maskingValue: identical(maskingValue, sdkOmittedValue) ? this.maskingValue : maskingValue as SdkOptional<String>,
-  );
+  MaskingRule _copyWith(
+          {Object? databaseName = sdkOmittedValue,
+          Object? schemaName = sdkOmittedValue,
+          Object? tableName = sdkOmittedValue,
+          Object? columnName = sdkOmittedValue,
+          Object? maskingFunction = sdkOmittedValue,
+          Object? maskingValue = sdkOmittedValue}) =>
+      MaskingRule(
+        databaseName: identical(databaseName, sdkOmittedValue)
+            ? this.databaseName
+            : databaseName as String,
+        schemaName: identical(schemaName, sdkOmittedValue)
+            ? this.schemaName
+            : schemaName as String,
+        tableName: identical(tableName, sdkOmittedValue)
+            ? this.tableName
+            : tableName as String,
+        columnName: identical(columnName, sdkOmittedValue)
+            ? this.columnName
+            : columnName as String,
+        maskingFunction: identical(maskingFunction, sdkOmittedValue)
+            ? this.maskingFunction
+            : maskingFunction as SdkOptional<String>,
+        maskingValue: identical(maskingValue, sdkOmittedValue)
+            ? this.maskingValue
+            : maskingValue as SdkOptional<String>,
+      );
 
   factory MaskingRule.fromJson(Map<String, dynamic> json) => MaskingRule(
-    databaseName: (json['database_name'] as String?)!,
-    schemaName: (json['schema_name'] as String?)!,
-    tableName: (json['table_name'] as String?)!,
-    columnName: (json['column_name'] as String?)!,
-    maskingFunction: json['masking_function'] != null ? SdkPresent((json['masking_function'] as String?)!) : const SdkOmitted(),
-    maskingValue: json['masking_value'] != null ? SdkPresent((json['masking_value'] as String?)!) : const SdkOmitted(),
-  );
+        databaseName: (json['database_name'] as String?)!,
+        schemaName: (json['schema_name'] as String?)!,
+        tableName: (json['table_name'] as String?)!,
+        columnName: (json['column_name'] as String?)!,
+        maskingFunction: json['masking_function'] != null
+            ? SdkPresent((json['masking_function'] as String?)!)
+            : const SdkOmitted(),
+        maskingValue: json['masking_value'] != null
+            ? SdkPresent((json['masking_value'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'database_name': databaseName,
-    'schema_name': schemaName,
-    'table_name': tableName,
-    'column_name': columnName,
-    ...switch (maskingFunction) {
-      SdkPresent<String>(value: final value) => {'masking_function': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (maskingValue) {
-      SdkPresent<String>(value: final value) => {'masking_value': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'database_name': databaseName,
+        'schema_name': schemaName,
+        'table_name': tableName,
+        'column_name': columnName,
+        ...switch (maskingFunction) {
+          SdkPresent<String>(value: final value) => {
+              'masking_function': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (maskingValue) {
+          SdkPresent<String>(value: final value) => {
+              'masking_value': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `MaskingRulesResponse` API schema.
 class MaskingRulesResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// List of masking rules for the branch
   final List<MaskingRule> maskingRules;
 
   const MaskingRulesResponse({required this.maskingRules});
 
-  MaskingRulesResponse Function({List<MaskingRule> maskingRules}) get copyWith => _copyWith;
+  MaskingRulesResponse Function({List<MaskingRule> maskingRules})
+      get copyWith => _copyWith;
 
-  MaskingRulesResponse _copyWith({Object? maskingRules = sdkOmittedValue}) => MaskingRulesResponse(
-    maskingRules: identical(maskingRules, sdkOmittedValue) ? this.maskingRules : maskingRules as List<MaskingRule>,
-  );
+  MaskingRulesResponse _copyWith({Object? maskingRules = sdkOmittedValue}) =>
+      MaskingRulesResponse(
+        maskingRules: identical(maskingRules, sdkOmittedValue)
+            ? this.maskingRules
+            : maskingRules as List<MaskingRule>,
+      );
 
-  factory MaskingRulesResponse.fromJson(Map<String, dynamic> json) => MaskingRulesResponse(
-    maskingRules: ((json['masking_rules'] as List?)?.map((e) => MaskingRule.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory MaskingRulesResponse.fromJson(Map<String, dynamic> json) =>
+      MaskingRulesResponse(
+        maskingRules: ((json['masking_rules'] as List?)
+            ?.map((e) => MaskingRule.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'masking_rules': maskingRules.map((item) => item.toJson()).toList(),
-  };
+        'masking_rules': maskingRules.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Typed representation of the `MaskingRulesUpdateRequest` API schema.
 class MaskingRulesUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// List of masking rules to apply to the branch. This will replace all existing masking rules for the branch.
   final List<MaskingRule> maskingRules;
 
   const MaskingRulesUpdateRequest({required this.maskingRules});
 
-  MaskingRulesUpdateRequest Function({List<MaskingRule> maskingRules}) get copyWith => _copyWith;
+  MaskingRulesUpdateRequest Function({List<MaskingRule> maskingRules})
+      get copyWith => _copyWith;
 
-  MaskingRulesUpdateRequest _copyWith({Object? maskingRules = sdkOmittedValue}) => MaskingRulesUpdateRequest(
-    maskingRules: identical(maskingRules, sdkOmittedValue) ? this.maskingRules : maskingRules as List<MaskingRule>,
-  );
+  MaskingRulesUpdateRequest _copyWith(
+          {Object? maskingRules = sdkOmittedValue}) =>
+      MaskingRulesUpdateRequest(
+        maskingRules: identical(maskingRules, sdkOmittedValue)
+            ? this.maskingRules
+            : maskingRules as List<MaskingRule>,
+      );
 
-  factory MaskingRulesUpdateRequest.fromJson(Map<String, dynamic> json) => MaskingRulesUpdateRequest(
-    maskingRules: ((json['masking_rules'] as List?)?.map((e) => MaskingRule.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory MaskingRulesUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      MaskingRulesUpdateRequest(
+        maskingRules: ((json['masking_rules'] as List?)
+            ?.map((e) => MaskingRule.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'masking_rules': maskingRules.map((item) => item.toJson()).toList(),
-  };
+        'masking_rules': maskingRules.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Properties of the role to create.
 class RoleCreateRequestRole {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The role name. Cannot exceed 63 bytes in length.
   final String name;
+
   /// Whether to create a role that cannot login.
   final SdkOptional<bool> noLogin;
 
-  const RoleCreateRequestRole({required this.name, this.noLogin = const SdkOmitted()});
+  const RoleCreateRequestRole(
+      {required this.name, this.noLogin = const SdkOmitted()});
 
-  RoleCreateRequestRole Function({String name, SdkOptional<bool> noLogin}) get copyWith => _copyWith;
+  RoleCreateRequestRole Function({String name, SdkOptional<bool> noLogin})
+      get copyWith => _copyWith;
 
-  RoleCreateRequestRole _copyWith({Object? name = sdkOmittedValue, Object? noLogin = sdkOmittedValue}) => RoleCreateRequestRole(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    noLogin: identical(noLogin, sdkOmittedValue) ? this.noLogin : noLogin as SdkOptional<bool>,
-  );
+  RoleCreateRequestRole _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? noLogin = sdkOmittedValue}) =>
+      RoleCreateRequestRole(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        noLogin: identical(noLogin, sdkOmittedValue)
+            ? this.noLogin
+            : noLogin as SdkOptional<bool>,
+      );
 
-  factory RoleCreateRequestRole.fromJson(Map<String, dynamic> json) => RoleCreateRequestRole(
-    name: (json['name'] as String?)!,
-    noLogin: json['no_login'] != null ? SdkPresent((json['no_login'] as bool?)!) : const SdkOmitted(),
-  );
+  factory RoleCreateRequestRole.fromJson(Map<String, dynamic> json) =>
+      RoleCreateRequestRole(
+        name: (json['name'] as String?)!,
+        noLogin: json['no_login'] != null
+            ? SdkPresent((json['no_login'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    ...switch (noLogin) {
-      SdkPresent<bool>(value: final value) => {'no_login': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'name': name,
+        ...switch (noLogin) {
+          SdkPresent<bool>(value: final value) => {
+              'no_login': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `RoleCreateRequest` API schema.
 class RoleCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Properties of the role to create.
   final RoleCreateRequestRole role;
 
   const RoleCreateRequest({required this.role});
 
-  RoleCreateRequest Function({RoleCreateRequestRole role}) get copyWith => _copyWith;
+  RoleCreateRequest Function({RoleCreateRequestRole role}) get copyWith =>
+      _copyWith;
 
-  RoleCreateRequest _copyWith({Object? role = sdkOmittedValue}) => RoleCreateRequest(
-    role: identical(role, sdkOmittedValue) ? this.role : role as RoleCreateRequestRole,
-  );
+  RoleCreateRequest _copyWith({Object? role = sdkOmittedValue}) =>
+      RoleCreateRequest(
+        role: identical(role, sdkOmittedValue)
+            ? this.role
+            : role as RoleCreateRequestRole,
+      );
 
-  factory RoleCreateRequest.fromJson(Map<String, dynamic> json) => RoleCreateRequest(
-    role: (json['role'] != null ? RoleCreateRequestRole.fromJson(json['role'] as Map<String, dynamic>) : null)!,
-  );
+  factory RoleCreateRequest.fromJson(Map<String, dynamic> json) =>
+      RoleCreateRequest(
+        role: (json['role'] != null
+            ? RoleCreateRequestRole.fromJson(
+                json['role'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'role': role.toJson(),
-  };
+        'role': role.toJson(),
+      };
 }
 
 /// Typed representation of the `RoleOperations` API schema.
 class RoleOperations {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Role details for the requested database role. The `password` field is included in the response when a role is created or its password is reset, and is not returned in subsequent read requests. Store it securely at that time.
   final Role role;
+
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
 
   const RoleOperations({required this.role, required this.operations});
 
-  RoleOperations Function({Role role, List<Operation> operations}) get copyWith => _copyWith;
+  RoleOperations Function({Role role, List<Operation> operations})
+      get copyWith => _copyWith;
 
-  RoleOperations _copyWith({Object? role = sdkOmittedValue, Object? operations = sdkOmittedValue}) => RoleOperations(
-    role: identical(role, sdkOmittedValue) ? this.role : role as Role,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
+  RoleOperations _copyWith(
+          {Object? role = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      RoleOperations(
+        role: identical(role, sdkOmittedValue) ? this.role : role as Role,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
 
   factory RoleOperations.fromJson(Map<String, dynamic> json) => RoleOperations(
-    role: (json['role'] != null ? Role.fromJson(json['role'] as Map<String, dynamic>) : null)!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+        role: (json['role'] != null
+            ? Role.fromJson(json['role'] as Map<String, dynamic>)
+            : null)!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'role': role.toJson(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
+        'role': role.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Typed representation of the `RolePasswordResponse` API schema.
 class RolePasswordResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The role password
   final String password;
 
@@ -227,23 +334,28 @@ class RolePasswordResponse {
 
   RolePasswordResponse Function({String password}) get copyWith => _copyWith;
 
-  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) => RolePasswordResponse(
-    password: identical(password, sdkOmittedValue) ? this.password : password as String,
-  );
+  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) =>
+      RolePasswordResponse(
+        password: identical(password, sdkOmittedValue)
+            ? this.password
+            : password as String,
+      );
 
-  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) => RolePasswordResponse(
-    password: (json['password'] as String?)!,
-  );
+  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) =>
+      RolePasswordResponse(
+        password: (json['password'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'password': password,
-  };
+        'password': password,
+      };
 }
 
 /// Typed representation of the `RoleResponse` API schema.
 class RoleResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Role details for the requested database role. The `password` field is included in the response when a role is created or its password is reset, and is not returned in subsequent read requests. Store it securely at that time.
   final Role role;
 
@@ -252,14 +364,16 @@ class RoleResponse {
   RoleResponse Function({Role role}) get copyWith => _copyWith;
 
   RoleResponse _copyWith({Object? role = sdkOmittedValue}) => RoleResponse(
-    role: identical(role, sdkOmittedValue) ? this.role : role as Role,
-  );
+        role: identical(role, sdkOmittedValue) ? this.role : role as Role,
+      );
 
   factory RoleResponse.fromJson(Map<String, dynamic> json) => RoleResponse(
-    role: (json['role'] != null ? Role.fromJson(json['role'] as Map<String, dynamic>) : null)!,
-  );
+        role: (json['role'] != null
+            ? Role.fromJson(json['role'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'role': role.toJson(),
-  };
+        'role': role.toJson(),
+      };
 }

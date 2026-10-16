@@ -8,124 +8,242 @@ part of 'models.dart';
 class DataAPISettings {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Enable aggregates feature
   final SdkOptional<bool> dbAggregatesEnabled;
+
   /// Database role to use for anonymous requests
   final SdkOptional<String> dbAnonRole;
+
   /// Extra schemas to add to the search path
   final SdkOptional<String> dbExtraSearchPath;
+
   /// Hard limit on the number of rows returned in a single Data API response. No limit when unset.
   final SdkOptional<int> dbMaxRows;
+
   /// List of schemas to expose via the API. Default: ["public"]
   final SdkOptional<List<String>> dbSchemas;
+
   /// JWT claim key to use for role extraction
   final SdkOptional<String> jwtRoleClaimKey;
+
   /// Maximum lifetime of the Data API's JWT cache, in seconds.
   final SdkOptional<int> jwtCacheMaxLifetime;
+
   /// OpenAPI specification mode (ignore-privileges, disabled)
   final SdkOptional<String> openapiMode;
+
   /// CORS allowed origins
   final SdkOptional<String> serverCorsAllowedOrigins;
+
   /// When enabled, the Data API adds `Server-Timing` headers to each response showing database execution and internal processing time. Default: disabled.
   final SdkOptional<bool> serverTimingEnabled;
 
-  const DataAPISettings({this.dbAggregatesEnabled = const SdkOmitted(), this.dbAnonRole = const SdkOmitted(), this.dbExtraSearchPath = const SdkOmitted(), this.dbMaxRows = const SdkOmitted(), this.dbSchemas = const SdkOmitted(), this.jwtRoleClaimKey = const SdkOmitted(), this.jwtCacheMaxLifetime = const SdkOmitted(), this.openapiMode = const SdkOmitted(), this.serverCorsAllowedOrigins = const SdkOmitted(), this.serverTimingEnabled = const SdkOmitted()});
+  const DataAPISettings(
+      {this.dbAggregatesEnabled = const SdkOmitted(),
+      this.dbAnonRole = const SdkOmitted(),
+      this.dbExtraSearchPath = const SdkOmitted(),
+      this.dbMaxRows = const SdkOmitted(),
+      this.dbSchemas = const SdkOmitted(),
+      this.jwtRoleClaimKey = const SdkOmitted(),
+      this.jwtCacheMaxLifetime = const SdkOmitted(),
+      this.openapiMode = const SdkOmitted(),
+      this.serverCorsAllowedOrigins = const SdkOmitted(),
+      this.serverTimingEnabled = const SdkOmitted()});
 
-  DataAPISettings Function({SdkOptional<bool> dbAggregatesEnabled, SdkOptional<String> dbAnonRole, SdkOptional<String> dbExtraSearchPath, SdkOptional<int> dbMaxRows, SdkOptional<List<String>> dbSchemas, SdkOptional<String> jwtRoleClaimKey, SdkOptional<int> jwtCacheMaxLifetime, SdkOptional<String> openapiMode, SdkOptional<String> serverCorsAllowedOrigins, SdkOptional<bool> serverTimingEnabled}) get copyWith => _copyWith;
+  DataAPISettings Function(
+      {SdkOptional<bool> dbAggregatesEnabled,
+      SdkOptional<String> dbAnonRole,
+      SdkOptional<String> dbExtraSearchPath,
+      SdkOptional<int> dbMaxRows,
+      SdkOptional<List<String>> dbSchemas,
+      SdkOptional<String> jwtRoleClaimKey,
+      SdkOptional<int> jwtCacheMaxLifetime,
+      SdkOptional<String> openapiMode,
+      SdkOptional<String> serverCorsAllowedOrigins,
+      SdkOptional<bool> serverTimingEnabled}) get copyWith => _copyWith;
 
-  DataAPISettings _copyWith({Object? dbAggregatesEnabled = sdkOmittedValue, Object? dbAnonRole = sdkOmittedValue, Object? dbExtraSearchPath = sdkOmittedValue, Object? dbMaxRows = sdkOmittedValue, Object? dbSchemas = sdkOmittedValue, Object? jwtRoleClaimKey = sdkOmittedValue, Object? jwtCacheMaxLifetime = sdkOmittedValue, Object? openapiMode = sdkOmittedValue, Object? serverCorsAllowedOrigins = sdkOmittedValue, Object? serverTimingEnabled = sdkOmittedValue}) => DataAPISettings(
-    dbAggregatesEnabled: identical(dbAggregatesEnabled, sdkOmittedValue) ? this.dbAggregatesEnabled : dbAggregatesEnabled as SdkOptional<bool>,
-    dbAnonRole: identical(dbAnonRole, sdkOmittedValue) ? this.dbAnonRole : dbAnonRole as SdkOptional<String>,
-    dbExtraSearchPath: identical(dbExtraSearchPath, sdkOmittedValue) ? this.dbExtraSearchPath : dbExtraSearchPath as SdkOptional<String>,
-    dbMaxRows: identical(dbMaxRows, sdkOmittedValue) ? this.dbMaxRows : dbMaxRows as SdkOptional<int>,
-    dbSchemas: identical(dbSchemas, sdkOmittedValue) ? this.dbSchemas : dbSchemas as SdkOptional<List<String>>,
-    jwtRoleClaimKey: identical(jwtRoleClaimKey, sdkOmittedValue) ? this.jwtRoleClaimKey : jwtRoleClaimKey as SdkOptional<String>,
-    jwtCacheMaxLifetime: identical(jwtCacheMaxLifetime, sdkOmittedValue) ? this.jwtCacheMaxLifetime : jwtCacheMaxLifetime as SdkOptional<int>,
-    openapiMode: identical(openapiMode, sdkOmittedValue) ? this.openapiMode : openapiMode as SdkOptional<String>,
-    serverCorsAllowedOrigins: identical(serverCorsAllowedOrigins, sdkOmittedValue) ? this.serverCorsAllowedOrigins : serverCorsAllowedOrigins as SdkOptional<String>,
-    serverTimingEnabled: identical(serverTimingEnabled, sdkOmittedValue) ? this.serverTimingEnabled : serverTimingEnabled as SdkOptional<bool>,
-  );
+  DataAPISettings _copyWith(
+          {Object? dbAggregatesEnabled = sdkOmittedValue,
+          Object? dbAnonRole = sdkOmittedValue,
+          Object? dbExtraSearchPath = sdkOmittedValue,
+          Object? dbMaxRows = sdkOmittedValue,
+          Object? dbSchemas = sdkOmittedValue,
+          Object? jwtRoleClaimKey = sdkOmittedValue,
+          Object? jwtCacheMaxLifetime = sdkOmittedValue,
+          Object? openapiMode = sdkOmittedValue,
+          Object? serverCorsAllowedOrigins = sdkOmittedValue,
+          Object? serverTimingEnabled = sdkOmittedValue}) =>
+      DataAPISettings(
+        dbAggregatesEnabled: identical(dbAggregatesEnabled, sdkOmittedValue)
+            ? this.dbAggregatesEnabled
+            : dbAggregatesEnabled as SdkOptional<bool>,
+        dbAnonRole: identical(dbAnonRole, sdkOmittedValue)
+            ? this.dbAnonRole
+            : dbAnonRole as SdkOptional<String>,
+        dbExtraSearchPath: identical(dbExtraSearchPath, sdkOmittedValue)
+            ? this.dbExtraSearchPath
+            : dbExtraSearchPath as SdkOptional<String>,
+        dbMaxRows: identical(dbMaxRows, sdkOmittedValue)
+            ? this.dbMaxRows
+            : dbMaxRows as SdkOptional<int>,
+        dbSchemas: identical(dbSchemas, sdkOmittedValue)
+            ? this.dbSchemas
+            : dbSchemas as SdkOptional<List<String>>,
+        jwtRoleClaimKey: identical(jwtRoleClaimKey, sdkOmittedValue)
+            ? this.jwtRoleClaimKey
+            : jwtRoleClaimKey as SdkOptional<String>,
+        jwtCacheMaxLifetime: identical(jwtCacheMaxLifetime, sdkOmittedValue)
+            ? this.jwtCacheMaxLifetime
+            : jwtCacheMaxLifetime as SdkOptional<int>,
+        openapiMode: identical(openapiMode, sdkOmittedValue)
+            ? this.openapiMode
+            : openapiMode as SdkOptional<String>,
+        serverCorsAllowedOrigins:
+            identical(serverCorsAllowedOrigins, sdkOmittedValue)
+                ? this.serverCorsAllowedOrigins
+                : serverCorsAllowedOrigins as SdkOptional<String>,
+        serverTimingEnabled: identical(serverTimingEnabled, sdkOmittedValue)
+            ? this.serverTimingEnabled
+            : serverTimingEnabled as SdkOptional<bool>,
+      );
 
-  factory DataAPISettings.fromJson(Map<String, dynamic> json) => DataAPISettings(
-    dbAggregatesEnabled: json['db_aggregates_enabled'] != null ? SdkPresent((json['db_aggregates_enabled'] as bool?)!) : const SdkOmitted(),
-    dbAnonRole: json['db_anon_role'] != null ? SdkPresent((json['db_anon_role'] as String?)!) : const SdkOmitted(),
-    dbExtraSearchPath: json['db_extra_search_path'] != null ? SdkPresent((json['db_extra_search_path'] as String?)!) : const SdkOmitted(),
-    dbMaxRows: json['db_max_rows'] != null ? SdkPresent(((json['db_max_rows'] as num?)?.toInt())!) : const SdkOmitted(),
-    dbSchemas: json['db_schemas'] != null ? SdkPresent(((json['db_schemas'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
-    jwtRoleClaimKey: json['jwt_role_claim_key'] != null ? SdkPresent((json['jwt_role_claim_key'] as String?)!) : const SdkOmitted(),
-    jwtCacheMaxLifetime: json['jwt_cache_max_lifetime'] != null ? SdkPresent(((json['jwt_cache_max_lifetime'] as num?)?.toInt())!) : const SdkOmitted(),
-    openapiMode: json['openapi_mode'] != null ? SdkPresent((json['openapi_mode'] as String?)!) : const SdkOmitted(),
-    serverCorsAllowedOrigins: json['server_cors_allowed_origins'] != null ? SdkPresent((json['server_cors_allowed_origins'] as String?)!) : const SdkOmitted(),
-    serverTimingEnabled: json['server_timing_enabled'] != null ? SdkPresent((json['server_timing_enabled'] as bool?)!) : const SdkOmitted(),
-  );
+  factory DataAPISettings.fromJson(Map<String, dynamic> json) =>
+      DataAPISettings(
+        dbAggregatesEnabled: json['db_aggregates_enabled'] != null
+            ? SdkPresent((json['db_aggregates_enabled'] as bool?)!)
+            : const SdkOmitted(),
+        dbAnonRole: json['db_anon_role'] != null
+            ? SdkPresent((json['db_anon_role'] as String?)!)
+            : const SdkOmitted(),
+        dbExtraSearchPath: json['db_extra_search_path'] != null
+            ? SdkPresent((json['db_extra_search_path'] as String?)!)
+            : const SdkOmitted(),
+        dbMaxRows: json['db_max_rows'] != null
+            ? SdkPresent(((json['db_max_rows'] as num?)?.toInt())!)
+            : const SdkOmitted(),
+        dbSchemas: json['db_schemas'] != null
+            ? SdkPresent(((json['db_schemas'] as List?)
+                ?.map((e) => e as String)
+                .toList())!)
+            : const SdkOmitted(),
+        jwtRoleClaimKey: json['jwt_role_claim_key'] != null
+            ? SdkPresent((json['jwt_role_claim_key'] as String?)!)
+            : const SdkOmitted(),
+        jwtCacheMaxLifetime: json['jwt_cache_max_lifetime'] != null
+            ? SdkPresent(((json['jwt_cache_max_lifetime'] as num?)?.toInt())!)
+            : const SdkOmitted(),
+        openapiMode: json['openapi_mode'] != null
+            ? SdkPresent((json['openapi_mode'] as String?)!)
+            : const SdkOmitted(),
+        serverCorsAllowedOrigins: json['server_cors_allowed_origins'] != null
+            ? SdkPresent((json['server_cors_allowed_origins'] as String?)!)
+            : const SdkOmitted(),
+        serverTimingEnabled: json['server_timing_enabled'] != null
+            ? SdkPresent((json['server_timing_enabled'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (dbAggregatesEnabled) {
-      SdkPresent<bool>(value: final value) => {'db_aggregates_enabled': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (dbAnonRole) {
-      SdkPresent<String>(value: final value) => {'db_anon_role': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (dbExtraSearchPath) {
-      SdkPresent<String>(value: final value) => {'db_extra_search_path': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (dbMaxRows) {
-      SdkPresent<int>(value: final value) => {'db_max_rows': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (dbSchemas) {
-      SdkPresent<List<String>>(value: final value) => {'db_schemas': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (jwtRoleClaimKey) {
-      SdkPresent<String>(value: final value) => {'jwt_role_claim_key': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (jwtCacheMaxLifetime) {
-      SdkPresent<int>(value: final value) => {'jwt_cache_max_lifetime': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (openapiMode) {
-      SdkPresent<String>(value: final value) => {'openapi_mode': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (serverCorsAllowedOrigins) {
-      SdkPresent<String>(value: final value) => {'server_cors_allowed_origins': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (serverTimingEnabled) {
-      SdkPresent<bool>(value: final value) => {'server_timing_enabled': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (dbAggregatesEnabled) {
+          SdkPresent<bool>(value: final value) => {
+              'db_aggregates_enabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (dbAnonRole) {
+          SdkPresent<String>(value: final value) => {
+              'db_anon_role': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (dbExtraSearchPath) {
+          SdkPresent<String>(value: final value) => {
+              'db_extra_search_path': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (dbMaxRows) {
+          SdkPresent<int>(value: final value) => {
+              'db_max_rows': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (dbSchemas) {
+          SdkPresent<List<String>>(value: final value) => {
+              'db_schemas': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (jwtRoleClaimKey) {
+          SdkPresent<String>(value: final value) => {
+              'jwt_role_claim_key': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (jwtCacheMaxLifetime) {
+          SdkPresent<int>(value: final value) => {
+              'jwt_cache_max_lifetime': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (openapiMode) {
+          SdkPresent<String>(value: final value) => {
+              'openapi_mode': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (serverCorsAllowedOrigins) {
+          SdkPresent<String>(value: final value) => {
+              'server_cors_allowed_origins': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (serverTimingEnabled) {
+          SdkPresent<bool>(value: final value) => {
+              'server_timing_enabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Update Neon Data API
 class DataAPIUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Configuration settings for the Neon Data API.
   final SdkOptional<DataAPISettings> settings;
 
   const DataAPIUpdateRequest({this.settings = const SdkOmitted()});
 
-  DataAPIUpdateRequest Function({SdkOptional<DataAPISettings> settings}) get copyWith => _copyWith;
+  DataAPIUpdateRequest Function({SdkOptional<DataAPISettings> settings})
+      get copyWith => _copyWith;
 
-  DataAPIUpdateRequest _copyWith({Object? settings = sdkOmittedValue}) => DataAPIUpdateRequest(
-    settings: identical(settings, sdkOmittedValue) ? this.settings : settings as SdkOptional<DataAPISettings>,
-  );
+  DataAPIUpdateRequest _copyWith({Object? settings = sdkOmittedValue}) =>
+      DataAPIUpdateRequest(
+        settings: identical(settings, sdkOmittedValue)
+            ? this.settings
+            : settings as SdkOptional<DataAPISettings>,
+      );
 
-  factory DataAPIUpdateRequest.fromJson(Map<String, dynamic> json) => DataAPIUpdateRequest(
-    settings: json['settings'] != null ? SdkPresent((json['settings'] != null ? DataAPISettings.fromJson(json['settings'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-  );
+  factory DataAPIUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      DataAPIUpdateRequest(
+        settings: json['settings'] != null
+            ? SdkPresent((json['settings'] != null
+                ? DataAPISettings.fromJson(
+                    json['settings'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (settings) {
-      SdkPresent<DataAPISettings>(value: final value) => {'settings': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (settings) {
+          SdkPresent<DataAPISettings>(value: final value) => {
+              'settings': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

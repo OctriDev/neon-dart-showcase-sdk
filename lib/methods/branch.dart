@@ -22,12 +22,15 @@ Future<BranchResponse> createBranch(ClientConfig config,
           body: SdkUtils.unwrapOptional(body),
           decoder: SdkResponseDecoder.json,
           operationId: 'createBranch',
-          fromJsonRaw: (value) => BranchResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              BranchResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves a list of branches for the specified project. Each Neon project has a root branch named `main`. A `branch_id` value has a `br-` prefix. A project may contain child branches that were branched from `main` or from another branch. A parent branch is identified by the `parent_id` value, which is the `id` of the parent branch. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
 ///
@@ -63,21 +66,32 @@ Future<BranchesResponse> listBranch(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches',
           config: config,
           query: {
-            'search': SdkQueryValue(SdkUtils.unwrapOptional(search), style: 'form', explode: true),
-            'sort_by': SdkQueryValue(SdkUtils.unwrapOptional(sortBy), style: 'form', explode: true),
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
-            'sort_order': SdkQueryValue(SdkUtils.unwrapOptional(sortOrder), style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true),
-            'include_deleted': SdkQueryValue(SdkUtils.unwrapOptional(includeDeleted), style: 'form', explode: true)
+            'search': SdkQueryValue(SdkUtils.unwrapOptional(search),
+                style: 'form', explode: true),
+            'sort_by': SdkQueryValue(SdkUtils.unwrapOptional(sortBy),
+                style: 'form', explode: true),
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
+                style: 'form', explode: true),
+            'sort_order': SdkQueryValue(SdkUtils.unwrapOptional(sortOrder),
+                style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
+                style: 'form', explode: true),
+            'include_deleted': SdkQueryValue(
+                SdkUtils.unwrapOptional(includeDeleted),
+                style: 'form',
+                explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listBranch',
-          fromJsonRaw: (value) => BranchesResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              BranchesResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Creates a branch with anonymized data using PostgreSQL Anonymizer for static masking. Supply `branch_create` to configure the branch and optionally provide `masking_rules` or set `start_anonymization` to true to apply masking rules and start anonymization during creation. This endpoint is in beta; the response includes the created branch, operations, and any endpoints specified in the request.
 ///
@@ -98,10 +112,12 @@ Future<BranchResponse> createBranchAnonymized(ClientConfig config,
           operationId: 'createBranchAnonymized',
           fromJsonRaw: (value) => BranchResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves the total number of branches in the specified project. Supports an optional `search` parameter to count branches matching a name filter.
 ///
@@ -117,16 +133,19 @@ Future<BranchesCountResponse> countBranch(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/count',
           config: config,
           query: {
-            'search': SdkQueryValue(SdkUtils.unwrapOptional(search), style: 'form', explode: true)
+            'search': SdkQueryValue(SdkUtils.unwrapOptional(search),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'countBranch',
           fromJsonRaw: (value) => value as BranchesCountResponse,
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves information about the specified branch. A `branch_id` value has a `br-` prefix. Each Neon project is initially created with a root and default branch named `main`. A project can contain one or more branches. A parent branch is identified by a `parent_id` value, which is the `id` of the parent branch. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
 ///
@@ -146,10 +165,12 @@ Future<BranchResponse> getBranch(ClientConfig config,
           operationId: 'getBranch',
           fromJsonRaw: (value) => BranchResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deletes the specified branch from a project and places all compute endpoints into an idle state, breaking existing client connections. The deletion completes after all operations finish. You cannot delete a project's root or default branch, or a branch that has a child branch. A project must have at least one branch. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
 ///
@@ -169,10 +190,12 @@ Future<BranchOperations> deleteBranch(ClientConfig config,
           operationId: 'deleteBranch',
           fromJsonRaw: (value) => BranchOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates the specified branch. For more information, see [Manage branches](https://neon.com/docs/manage/branches/).
 ///
@@ -194,12 +217,15 @@ Future<BranchOperations> updateBranch(ClientConfig config,
           body: {'branch': branch},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateBranch',
-          fromJsonRaw: (value) => BranchOperations.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              BranchOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Restores a branch to an earlier state in its own or another branch's history by specifying an LSN or timestamp. Creates a new branch from the historical state.
 ///
@@ -246,12 +272,15 @@ Future<BranchOperations> restoreBranch(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'restoreBranch',
-          fromJsonRaw: (value) => BranchOperations.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              BranchOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves the database schema. Specify `lsn` or `timestamp` (not both) to read at a point in time; omit both to read from the database's head.
 ///
@@ -281,18 +310,24 @@ Future<BranchSchemaResponse> getBranchSchema(ClientConfig config,
           config: config,
           query: {
             'db_name': SdkQueryValue(dbName, style: 'form', explode: true),
-            'lsn': SdkQueryValue(SdkUtils.unwrapOptional(lsn), style: 'form', explode: true),
-            'timestamp': SdkQueryValue(SdkUtils.unwrapOptional(timestamp), style: 'form', explode: true),
-            'format': SdkQueryValue(SdkUtils.unwrapOptional(format), style: 'form', explode: true)
+            'lsn': SdkQueryValue(SdkUtils.unwrapOptional(lsn),
+                style: 'form', explode: true),
+            'timestamp': SdkQueryValue(SdkUtils.unwrapOptional(timestamp),
+                style: 'form', explode: true),
+            'format': SdkQueryValue(SdkUtils.unwrapOptional(format),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'getBranchSchema',
-          fromJsonRaw: (value) => BranchSchemaResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              BranchSchemaResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Compares the schema from the specified database with another branch's schema.
 ///
@@ -317,7 +352,8 @@ Future<BranchSchemaCompareResponse> compareBranchSchema(ClientConfig config,
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   if (baseBranchId is SdkPresent<String>) {
-    sdkValidatePattern('base_branch_id', baseBranchId.value, '^[a-z0-9-]{1,60}\$');
+    sdkValidatePattern(
+        'base_branch_id', baseBranchId.value, '^[a-z0-9-]{1,60}\$');
   }
   if (timestamp is SdkPresent<String>) {
     sdkValidateDateTime('timestamp', timestamp.value);
@@ -331,20 +367,32 @@ Future<BranchSchemaCompareResponse> compareBranchSchema(ClientConfig config,
           config: config,
           query: {
             'db_name': SdkQueryValue(dbName, style: 'form', explode: true),
-            'base_branch_id': SdkQueryValue(SdkUtils.unwrapOptional(baseBranchId), style: 'form', explode: true),
-            'lsn': SdkQueryValue(SdkUtils.unwrapOptional(lsn), style: 'form', explode: true),
-            'timestamp': SdkQueryValue(SdkUtils.unwrapOptional(timestamp), style: 'form', explode: true),
-            'base_lsn': SdkQueryValue(SdkUtils.unwrapOptional(baseLsn), style: 'form', explode: true),
-            'base_timestamp': SdkQueryValue(SdkUtils.unwrapOptional(baseTimestamp), style: 'form', explode: true)
+            'base_branch_id': SdkQueryValue(
+                SdkUtils.unwrapOptional(baseBranchId),
+                style: 'form',
+                explode: true),
+            'lsn': SdkQueryValue(SdkUtils.unwrapOptional(lsn),
+                style: 'form', explode: true),
+            'timestamp': SdkQueryValue(SdkUtils.unwrapOptional(timestamp),
+                style: 'form', explode: true),
+            'base_lsn': SdkQueryValue(SdkUtils.unwrapOptional(baseLsn),
+                style: 'form', explode: true),
+            'base_timestamp': SdkQueryValue(
+                SdkUtils.unwrapOptional(baseTimestamp),
+                style: 'form',
+                explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'compareBranchSchema',
-          fromJsonRaw: (value) => BranchSchemaCompareResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => BranchSchemaCompareResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves the masking rules for the specified anonymized branch. Masking rules define how sensitive data should be anonymized using PostgreSQL Anonymizer. **Note**: This endpoint is currently in Beta.
 ///
@@ -364,10 +412,12 @@ Future<MaskingRulesResponse> getMaskingRules(ClientConfig config,
           operationId: 'getMaskingRules',
           fromJsonRaw: (value) => MaskingRulesResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates the masking rules for the specified anonymized branch. Masking rules define how sensitive data should be anonymized using PostgreSQL Anonymizer. **Note**: This endpoint is currently in Beta.
 ///
@@ -389,22 +439,25 @@ Future<MaskingRulesResponse> updateMaskingRules(ClientConfig config,
           body: {'masking_rules': maskingRules},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateMaskingRules',
-          fromJsonRaw: (value) => MaskingRulesResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              MaskingRulesResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves the current status of an anonymized branch, including its state and progress information. This endpoint allows you to monitor the anonymization process from initialization through completion. Only anonymized branches will have status information available. **Note**: This endpoint is currently in Beta.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The branch ID
-Future<AnonymizedBranchStatusResponse>
-    getAnonymizedBranchStatus(ClientConfig config,
-        {required String projectId,
-        required String branchId,
-        RequestOptions? requestOptions}) async {
+Future<AnonymizedBranchStatusResponse> getAnonymizedBranchStatus(
+    ClientConfig config,
+    {required String projectId,
+    required String branchId,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -415,10 +468,12 @@ Future<AnonymizedBranchStatusResponse>
           operationId: 'getAnonymizedBranchStatus',
           fromJsonRaw: (value) => AnonymizedBranchStatusResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Starts the anonymization process for an anonymized branch that is in the initialized, error, or anonymized state. This will apply all defined masking rules to anonymize sensitive data in the branch databases. The branch must be an anonymized branch to start anonymization. **Note**: This endpoint is currently in Beta.
 ///
@@ -438,10 +493,12 @@ Future<AnonymizedBranchStatusResponse> startAnonymization(ClientConfig config,
           operationId: 'startAnonymization',
           fromJsonRaw: (value) => AnonymizedBranchStatusResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Sets the specified branch as the project's default branch. The default designation is automatically removed from the previous default branch. For more information, see [Manage branches](https://neon.com/docs/manage/branches/).
 ///
@@ -461,10 +518,12 @@ Future<BranchOperations> setBranchDefault(ClientConfig config,
           operationId: 'setBranchDefault',
           fromJsonRaw: (value) => BranchOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Finalizes a branch restore from a snapshot, making the restored branch function as the original branch it replaced. Use this operation only for branches created with `restoreSnapshot` and `finalize_restore` set to `false`; you can optionally provide a replacement name with `name`. The operation reassigns computes to the restored branch, restarting them, and renames both branches.
 ///
@@ -487,12 +546,15 @@ Future<OperationsResponse> finalizeRestoreBranch(ClientConfig config,
           body: {'name': SdkUtils.unwrapOptional(name)},
           decoder: SdkResponseDecoder.json,
           operationId: 'finalizeRestoreBranch',
-          fromJsonRaw: (value) => OperationsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              OperationsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves a list of compute endpoints for the specified branch. Neon permits only one read-write compute endpoint per branch. A branch can have multiple read-only compute endpoints.
 ///
@@ -512,10 +574,12 @@ Future<EndpointsResponse> listBranchEndpoints(ClientConfig config,
           operationId: 'listBranchEndpoints',
           fromJsonRaw: (value) => EndpointsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves a list of databases for the specified branch. A branch can have multiple databases. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
 ///
@@ -535,10 +599,12 @@ Future<DatabasesResponse> listBranchDatabases(ClientConfig config,
           operationId: 'listBranchDatabases',
           fromJsonRaw: (value) => DatabasesResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Creates a database in the specified branch. A branch can have multiple databases. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
 ///
@@ -559,12 +625,15 @@ Future<DatabaseOperations> createBranchDatabase(ClientConfig config,
           body: {'database': database},
           decoder: SdkResponseDecoder.json,
           operationId: 'createBranchDatabase',
-          fromJsonRaw: (value) => DatabaseOperations.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              DatabaseOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves information about the specified database. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
 ///
@@ -586,10 +655,12 @@ Future<DatabaseResponse> getBranchDatabase(ClientConfig config,
           operationId: 'getBranchDatabase',
           fromJsonRaw: (value) => DatabaseResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates the specified database in the branch. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
 ///
@@ -612,12 +683,15 @@ Future<DatabaseOperations> updateBranchDatabase(ClientConfig config,
           body: {'database': database},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateBranchDatabase',
-          fromJsonRaw: (value) => DatabaseOperations.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              DatabaseOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deletes the specified database from the branch. For related information, see [Manage databases](https://neon.com/docs/manage/databases/).
 ///
@@ -639,10 +713,12 @@ Future<DatabaseOperations> deleteBranchDatabase(ClientConfig config,
           operationId: 'deleteBranchDatabase',
           fromJsonRaw: (value) => DatabaseOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves a list of Postgres roles from the specified branch. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
 ///
@@ -662,10 +738,12 @@ Future<RolesResponse> listBranchRoles(ClientConfig config,
           operationId: 'listBranchRoles',
           fromJsonRaw: (value) => RolesResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Creates a Postgres role in the specified branch. For related information, see [Manage roles](https://neon.com/docs/manage/roles/). Connections established to the active compute endpoint will be dropped. If the compute endpoint is idle, the endpoint becomes active for a short period of time and is suspended afterward.
 ///
@@ -686,12 +764,15 @@ Future<RoleOperations> createBranchRole(ClientConfig config,
           body: {'role': role},
           decoder: SdkResponseDecoder.json,
           operationId: 'createBranchRole',
-          fromJsonRaw: (value) => RoleOperations.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              RoleOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves details about the specified role. In Neon, the terms "role" and "user" are synonymous. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
 ///
@@ -713,10 +794,12 @@ Future<RoleResponse> getBranchRole(ClientConfig config,
           operationId: 'getBranchRole',
           fromJsonRaw: (value) => RoleResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deletes the specified Postgres role from the branch. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
 ///
@@ -738,10 +821,12 @@ Future<RoleOperations> deleteBranchRole(ClientConfig config,
           operationId: 'deleteBranchRole',
           fromJsonRaw: (value) => RoleOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves the password for the specified Postgres role, if possible. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
 ///
@@ -761,12 +846,17 @@ Future<RolePasswordResponse> getBranchRolePassword(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getBranchRolePassword',
-          fromJsonRaw: (value) => RolePasswordResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              RolePasswordResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '412': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>),
+        '412': (value) => GeneralError.fromJson(value as Map<String, dynamic>),
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Resets the password for the specified Postgres role. Returns a new password and operations. The new password is ready to use when the last operation finishes. The old password remains valid until last operation finishes. Connections to the compute endpoint are dropped. If idle, the compute endpoint becomes active for a short period of time. For related information, see [Manage roles](https://neon.com/docs/manage/roles/).
 ///
@@ -788,6 +878,9 @@ Future<RoleOperations> resetBranchRolePassword(ClientConfig config,
           operationId: 'resetBranchRolePassword',
           fromJsonRaw: (value) => RoleOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }

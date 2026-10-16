@@ -8,217 +8,332 @@ part of 'branch.dart';
 class BranchSchemaResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Branch schema expressed as SQL DDL statements.
   final SdkOptional<String> sql;
+
   /// Branch schema represented as a structured JSON object, parallel to the SQL DDL in `sql`.
   final SdkOptional<BranchSchemaJSON> json;
 
-  const BranchSchemaResponse({this.sql = const SdkOmitted(), this.json = const SdkOmitted()});
+  const BranchSchemaResponse(
+      {this.sql = const SdkOmitted(), this.json = const SdkOmitted()});
 
-  BranchSchemaResponse Function({SdkOptional<String> sql, SdkOptional<BranchSchemaJSON> json}) get copyWith => _copyWith;
+  BranchSchemaResponse Function(
+      {SdkOptional<String> sql,
+      SdkOptional<BranchSchemaJSON> json}) get copyWith => _copyWith;
 
-  BranchSchemaResponse _copyWith({Object? sql = sdkOmittedValue, Object? json = sdkOmittedValue}) => BranchSchemaResponse(
-    sql: identical(sql, sdkOmittedValue) ? this.sql : sql as SdkOptional<String>,
-    json: identical(json, sdkOmittedValue) ? this.json : json as SdkOptional<BranchSchemaJSON>,
-  );
+  BranchSchemaResponse _copyWith(
+          {Object? sql = sdkOmittedValue, Object? json = sdkOmittedValue}) =>
+      BranchSchemaResponse(
+        sql: identical(sql, sdkOmittedValue)
+            ? this.sql
+            : sql as SdkOptional<String>,
+        json: identical(json, sdkOmittedValue)
+            ? this.json
+            : json as SdkOptional<BranchSchemaJSON>,
+      );
 
-  factory BranchSchemaResponse.fromJson(Map<String, dynamic> json) => BranchSchemaResponse(
-    sql: json['sql'] != null ? SdkPresent((json['sql'] as String?)!) : const SdkOmitted(),
-    json: json['json'] != null ? SdkPresent((json['json'] != null ? BranchSchemaJSON.fromJson(json['json'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-  );
+  factory BranchSchemaResponse.fromJson(Map<String, dynamic> json) =>
+      BranchSchemaResponse(
+        sql: json['sql'] != null
+            ? SdkPresent((json['sql'] as String?)!)
+            : const SdkOmitted(),
+        json: json['json'] != null
+            ? SdkPresent((json['json'] != null
+                ? BranchSchemaJSON.fromJson(
+                    json['json'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (sql) {
-      SdkPresent<String>(value: final value) => {'sql': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (json) {
-      SdkPresent<BranchSchemaJSON>(value: final value) => {'json': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (sql) {
+          SdkPresent<String>(value: final value) => {
+              'sql': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (json) {
+          SdkPresent<BranchSchemaJSON>(value: final value) => {
+              'json': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Branch attributes to update. Supply only the fields you want to change, for example `name` or `protected`.
 class BranchUpdateRequestBranch {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// New display name for the branch.
   final SdkOptional<String> name;
+
   /// Whether the branch is protected. Protected branches (and their computes) cannot be deleted, archived, or reset, and block deletion of the project. Can be gated by `protected_branches_only` in the IP allowlist. Paid plans only.
   final SdkOptional<bool> protected;
+
   /// The timestamp when the branch is scheduled to expire and be automatically deleted. Must be set by the client following the [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) format with precision up to seconds (such as 2025-06-09T18:02:16Z). Deletion is performed by a background job and may not occur exactly at the specified time. If this field is set to null, the expiration timestamp is removed. Access to this feature is currently limited to participants in the Early Access Program.
   final SdkOptional<String?> expiresAt;
 
-  const BranchUpdateRequestBranch({this.name = const SdkOmitted(), this.protected = const SdkOmitted(), this.expiresAt = const SdkOmitted()});
+  const BranchUpdateRequestBranch(
+      {this.name = const SdkOmitted(),
+      this.protected = const SdkOmitted(),
+      this.expiresAt = const SdkOmitted()});
 
-  BranchUpdateRequestBranch Function({SdkOptional<String> name, SdkOptional<bool> protected, SdkOptional<String?> expiresAt}) get copyWith => _copyWith;
+  BranchUpdateRequestBranch Function(
+      {SdkOptional<String> name,
+      SdkOptional<bool> protected,
+      SdkOptional<String?> expiresAt}) get copyWith => _copyWith;
 
-  BranchUpdateRequestBranch _copyWith({Object? name = sdkOmittedValue, Object? protected = sdkOmittedValue, Object? expiresAt = sdkOmittedValue}) => BranchUpdateRequestBranch(
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-    protected: identical(protected, sdkOmittedValue) ? this.protected : protected as SdkOptional<bool>,
-    expiresAt: identical(expiresAt, sdkOmittedValue) ? this.expiresAt : expiresAt as SdkOptional<String?>,
-  );
+  BranchUpdateRequestBranch _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? protected = sdkOmittedValue,
+          Object? expiresAt = sdkOmittedValue}) =>
+      BranchUpdateRequestBranch(
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+        protected: identical(protected, sdkOmittedValue)
+            ? this.protected
+            : protected as SdkOptional<bool>,
+        expiresAt: identical(expiresAt, sdkOmittedValue)
+            ? this.expiresAt
+            : expiresAt as SdkOptional<String?>,
+      );
 
-  factory BranchUpdateRequestBranch.fromJson(Map<String, dynamic> json) => BranchUpdateRequestBranch(
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-    protected: json['protected'] != null ? SdkPresent((json['protected'] as bool?)!) : const SdkOmitted(),
-    expiresAt: json.containsKey('expires_at') ? SdkPresent(json['expires_at'] as String?) : const SdkOmitted(),
-  );
+  factory BranchUpdateRequestBranch.fromJson(Map<String, dynamic> json) =>
+      BranchUpdateRequestBranch(
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+        protected: json['protected'] != null
+            ? SdkPresent((json['protected'] as bool?)!)
+            : const SdkOmitted(),
+        expiresAt: json.containsKey('expires_at')
+            ? SdkPresent(json['expires_at'] as String?)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (protected) {
-      SdkPresent<bool>(value: final value) => {'protected': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (expiresAt) {
-      SdkPresent<String?>(value: final value) => {'expires_at': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (protected) {
+          SdkPresent<bool>(value: final value) => {
+              'protected': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (expiresAt) {
+          SdkPresent<String?>(value: final value) => {
+              'expires_at': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `BranchUpdateRequest` API schema.
 class BranchUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Branch attributes to update. Supply only the fields you want to change, for example `name` or `protected`.
   final BranchUpdateRequestBranch branch;
 
   const BranchUpdateRequest({required this.branch});
 
-  BranchUpdateRequest Function({BranchUpdateRequestBranch branch}) get copyWith => _copyWith;
+  BranchUpdateRequest Function({BranchUpdateRequestBranch branch})
+      get copyWith => _copyWith;
 
-  BranchUpdateRequest _copyWith({Object? branch = sdkOmittedValue}) => BranchUpdateRequest(
-    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as BranchUpdateRequestBranch,
-  );
+  BranchUpdateRequest _copyWith({Object? branch = sdkOmittedValue}) =>
+      BranchUpdateRequest(
+        branch: identical(branch, sdkOmittedValue)
+            ? this.branch
+            : branch as BranchUpdateRequestBranch,
+      );
 
-  factory BranchUpdateRequest.fromJson(Map<String, dynamic> json) => BranchUpdateRequest(
-    branch: (json['branch'] != null ? BranchUpdateRequestBranch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
-  );
+  factory BranchUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      BranchUpdateRequest(
+        branch: (json['branch'] != null
+            ? BranchUpdateRequestBranch.fromJson(
+                json['branch'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'branch': branch.toJson(),
-  };
+        'branch': branch.toJson(),
+      };
 }
 
 /// Typed representation of the `ConnectionURIsOptionalResponse` API schema.
 class ConnectionURIsOptionalResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Connection URIs for the compute endpoint, including credentials.
   final SdkOptional<List<ConnectionDetails>> connectionUris;
 
-  const ConnectionURIsOptionalResponse({this.connectionUris = const SdkOmitted()});
+  const ConnectionURIsOptionalResponse(
+      {this.connectionUris = const SdkOmitted()});
 
-  ConnectionURIsOptionalResponse Function({SdkOptional<List<ConnectionDetails>> connectionUris}) get copyWith => _copyWith;
+  ConnectionURIsOptionalResponse Function(
+          {SdkOptional<List<ConnectionDetails>> connectionUris})
+      get copyWith => _copyWith;
 
-  ConnectionURIsOptionalResponse _copyWith({Object? connectionUris = sdkOmittedValue}) => ConnectionURIsOptionalResponse(
-    connectionUris: identical(connectionUris, sdkOmittedValue) ? this.connectionUris : connectionUris as SdkOptional<List<ConnectionDetails>>,
-  );
+  ConnectionURIsOptionalResponse _copyWith(
+          {Object? connectionUris = sdkOmittedValue}) =>
+      ConnectionURIsOptionalResponse(
+        connectionUris: identical(connectionUris, sdkOmittedValue)
+            ? this.connectionUris
+            : connectionUris as SdkOptional<List<ConnectionDetails>>,
+      );
 
-  factory ConnectionURIsOptionalResponse.fromJson(Map<String, dynamic> json) => ConnectionURIsOptionalResponse(
-    connectionUris: json['connection_uris'] != null ? SdkPresent(((json['connection_uris'] as List?)?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
-  );
+  factory ConnectionURIsOptionalResponse.fromJson(Map<String, dynamic> json) =>
+      ConnectionURIsOptionalResponse(
+        connectionUris: json['connection_uris'] != null
+            ? SdkPresent(((json['connection_uris'] as List?)
+                ?.map((e) =>
+                    ConnectionDetails.fromJson(e as Map<String, dynamic>))
+                .toList())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (connectionUris) {
-      SdkPresent<List<ConnectionDetails>>(value: final value) => {'connection_uris': value.map((item) => item.toJson()).toList(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (connectionUris) {
+          SdkPresent<List<ConnectionDetails>>(value: final value) => {
+              'connection_uris': value.map((item) => item.toJson()).toList(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Configuration for the new Postgres database.
 class DatabaseCreateRequestDatabase {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Name of the database to create.
   final String name;
+
   /// The name of the role that owns the database
   final String ownerName;
 
-  const DatabaseCreateRequestDatabase({required this.name, required this.ownerName});
+  const DatabaseCreateRequestDatabase(
+      {required this.name, required this.ownerName});
 
-  DatabaseCreateRequestDatabase Function({String name, String ownerName}) get copyWith => _copyWith;
+  DatabaseCreateRequestDatabase Function({String name, String ownerName})
+      get copyWith => _copyWith;
 
-  DatabaseCreateRequestDatabase _copyWith({Object? name = sdkOmittedValue, Object? ownerName = sdkOmittedValue}) => DatabaseCreateRequestDatabase(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    ownerName: identical(ownerName, sdkOmittedValue) ? this.ownerName : ownerName as String,
-  );
+  DatabaseCreateRequestDatabase _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? ownerName = sdkOmittedValue}) =>
+      DatabaseCreateRequestDatabase(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        ownerName: identical(ownerName, sdkOmittedValue)
+            ? this.ownerName
+            : ownerName as String,
+      );
 
-  factory DatabaseCreateRequestDatabase.fromJson(Map<String, dynamic> json) => DatabaseCreateRequestDatabase(
-    name: (json['name'] as String?)!,
-    ownerName: (json['owner_name'] as String?)!,
-  );
+  factory DatabaseCreateRequestDatabase.fromJson(Map<String, dynamic> json) =>
+      DatabaseCreateRequestDatabase(
+        name: (json['name'] as String?)!,
+        ownerName: (json['owner_name'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'owner_name': ownerName,
-  };
+        'name': name,
+        'owner_name': ownerName,
+      };
 }
 
 /// Typed representation of the `DatabaseCreateRequest` API schema.
 class DatabaseCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Configuration for the new Postgres database.
   final DatabaseCreateRequestDatabase database;
 
   const DatabaseCreateRequest({required this.database});
 
-  DatabaseCreateRequest Function({DatabaseCreateRequestDatabase database}) get copyWith => _copyWith;
+  DatabaseCreateRequest Function({DatabaseCreateRequestDatabase database})
+      get copyWith => _copyWith;
 
-  DatabaseCreateRequest _copyWith({Object? database = sdkOmittedValue}) => DatabaseCreateRequest(
-    database: identical(database, sdkOmittedValue) ? this.database : database as DatabaseCreateRequestDatabase,
-  );
+  DatabaseCreateRequest _copyWith({Object? database = sdkOmittedValue}) =>
+      DatabaseCreateRequest(
+        database: identical(database, sdkOmittedValue)
+            ? this.database
+            : database as DatabaseCreateRequestDatabase,
+      );
 
-  factory DatabaseCreateRequest.fromJson(Map<String, dynamic> json) => DatabaseCreateRequest(
-    database: (json['database'] != null ? DatabaseCreateRequestDatabase.fromJson(json['database'] as Map<String, dynamic>) : null)!,
-  );
+  factory DatabaseCreateRequest.fromJson(Map<String, dynamic> json) =>
+      DatabaseCreateRequest(
+        database: (json['database'] != null
+            ? DatabaseCreateRequestDatabase.fromJson(
+                json['database'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'database': database.toJson(),
-  };
+        'database': database.toJson(),
+      };
 }
 
 /// Typed representation of the `DatabaseOperations` API schema.
 class DatabaseOperations {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Database object returned by the operation.
   final Database database;
+
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
 
   const DatabaseOperations({required this.database, required this.operations});
 
-  DatabaseOperations Function({Database database, List<Operation> operations}) get copyWith => _copyWith;
+  DatabaseOperations Function({Database database, List<Operation> operations})
+      get copyWith => _copyWith;
 
-  DatabaseOperations _copyWith({Object? database = sdkOmittedValue, Object? operations = sdkOmittedValue}) => DatabaseOperations(
-    database: identical(database, sdkOmittedValue) ? this.database : database as Database,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
+  DatabaseOperations _copyWith(
+          {Object? database = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      DatabaseOperations(
+        database: identical(database, sdkOmittedValue)
+            ? this.database
+            : database as Database,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
 
-  factory DatabaseOperations.fromJson(Map<String, dynamic> json) => DatabaseOperations(
-    database: (json['database'] != null ? Database.fromJson(json['database'] as Map<String, dynamic>) : null)!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory DatabaseOperations.fromJson(Map<String, dynamic> json) =>
+      DatabaseOperations(
+        database: (json['database'] != null
+            ? Database.fromJson(json['database'] as Map<String, dynamic>)
+            : null)!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'database': database.toJson(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
+        'database': database.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Typed representation of the `DatabaseResponse` API schema.
 class DatabaseResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Database object returned by the operation.
   final Database database;
 
@@ -226,50 +341,77 @@ class DatabaseResponse {
 
   DatabaseResponse Function({Database database}) get copyWith => _copyWith;
 
-  DatabaseResponse _copyWith({Object? database = sdkOmittedValue}) => DatabaseResponse(
-    database: identical(database, sdkOmittedValue) ? this.database : database as Database,
-  );
+  DatabaseResponse _copyWith({Object? database = sdkOmittedValue}) =>
+      DatabaseResponse(
+        database: identical(database, sdkOmittedValue)
+            ? this.database
+            : database as Database,
+      );
 
-  factory DatabaseResponse.fromJson(Map<String, dynamic> json) => DatabaseResponse(
-    database: (json['database'] != null ? Database.fromJson(json['database'] as Map<String, dynamic>) : null)!,
-  );
+  factory DatabaseResponse.fromJson(Map<String, dynamic> json) =>
+      DatabaseResponse(
+        database: (json['database'] != null
+            ? Database.fromJson(json['database'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'database': database.toJson(),
-  };
+        'database': database.toJson(),
+      };
 }
 
 /// Properties to update on the database.
 class DatabaseUpdateRequestDatabase {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Name of the database to update.
   final SdkOptional<String> name;
+
   /// The name of the role that owns the database
   final SdkOptional<String> ownerName;
 
-  const DatabaseUpdateRequestDatabase({this.name = const SdkOmitted(), this.ownerName = const SdkOmitted()});
+  const DatabaseUpdateRequestDatabase(
+      {this.name = const SdkOmitted(), this.ownerName = const SdkOmitted()});
 
-  DatabaseUpdateRequestDatabase Function({SdkOptional<String> name, SdkOptional<String> ownerName}) get copyWith => _copyWith;
+  DatabaseUpdateRequestDatabase Function(
+      {SdkOptional<String> name,
+      SdkOptional<String> ownerName}) get copyWith => _copyWith;
 
-  DatabaseUpdateRequestDatabase _copyWith({Object? name = sdkOmittedValue, Object? ownerName = sdkOmittedValue}) => DatabaseUpdateRequestDatabase(
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-    ownerName: identical(ownerName, sdkOmittedValue) ? this.ownerName : ownerName as SdkOptional<String>,
-  );
+  DatabaseUpdateRequestDatabase _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? ownerName = sdkOmittedValue}) =>
+      DatabaseUpdateRequestDatabase(
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+        ownerName: identical(ownerName, sdkOmittedValue)
+            ? this.ownerName
+            : ownerName as SdkOptional<String>,
+      );
 
-  factory DatabaseUpdateRequestDatabase.fromJson(Map<String, dynamic> json) => DatabaseUpdateRequestDatabase(
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-    ownerName: json['owner_name'] != null ? SdkPresent((json['owner_name'] as String?)!) : const SdkOmitted(),
-  );
+  factory DatabaseUpdateRequestDatabase.fromJson(Map<String, dynamic> json) =>
+      DatabaseUpdateRequestDatabase(
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+        ownerName: json['owner_name'] != null
+            ? SdkPresent((json['owner_name'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (ownerName) {
-      SdkPresent<String>(value: final value) => {'owner_name': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (ownerName) {
+          SdkPresent<String>(value: final value) => {
+              'owner_name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

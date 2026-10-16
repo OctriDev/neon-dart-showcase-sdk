@@ -8,232 +8,368 @@ part of 'organizations.dart';
 class OrgApiKeysListResponseItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The API key's unique numeric ID. Distinct from the API key token (`key`).
   final int id;
+
   /// The user-specified API key name
   final String name;
+
   /// A timestamp indicating when the API key was created
   final String createdAt;
+
   /// The user data of the user that created this API key.
   final ApiKeyCreatorData createdBy;
+
   /// A timestamp indicating when the API was last used
   final SdkOptional<String?> lastUsedAt;
+
   /// The IP address from which the API key was last used
   final String lastUsedFromAddr;
+
   /// If set, the API key can access only this project
   final SdkOptional<String> projectId;
 
-  const OrgApiKeysListResponseItem({required this.id, required this.name, required this.createdAt, required this.createdBy, this.lastUsedAt = const SdkOmitted(), required this.lastUsedFromAddr, this.projectId = const SdkOmitted()});
+  const OrgApiKeysListResponseItem(
+      {required this.id,
+      required this.name,
+      required this.createdAt,
+      required this.createdBy,
+      this.lastUsedAt = const SdkOmitted(),
+      required this.lastUsedFromAddr,
+      this.projectId = const SdkOmitted()});
 
-  OrgApiKeysListResponseItem Function({int id, String name, String createdAt, ApiKeyCreatorData createdBy, SdkOptional<String?> lastUsedAt, String lastUsedFromAddr, SdkOptional<String> projectId}) get copyWith => _copyWith;
+  OrgApiKeysListResponseItem Function(
+      {int id,
+      String name,
+      String createdAt,
+      ApiKeyCreatorData createdBy,
+      SdkOptional<String?> lastUsedAt,
+      String lastUsedFromAddr,
+      SdkOptional<String> projectId}) get copyWith => _copyWith;
 
-  OrgApiKeysListResponseItem _copyWith({Object? id = sdkOmittedValue, Object? name = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? createdBy = sdkOmittedValue, Object? lastUsedAt = sdkOmittedValue, Object? lastUsedFromAddr = sdkOmittedValue, Object? projectId = sdkOmittedValue}) => OrgApiKeysListResponseItem(
-    id: identical(id, sdkOmittedValue) ? this.id : id as int,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
-    createdBy: identical(createdBy, sdkOmittedValue) ? this.createdBy : createdBy as ApiKeyCreatorData,
-    lastUsedAt: identical(lastUsedAt, sdkOmittedValue) ? this.lastUsedAt : lastUsedAt as SdkOptional<String?>,
-    lastUsedFromAddr: identical(lastUsedFromAddr, sdkOmittedValue) ? this.lastUsedFromAddr : lastUsedFromAddr as String,
-    projectId: identical(projectId, sdkOmittedValue) ? this.projectId : projectId as SdkOptional<String>,
-  );
+  OrgApiKeysListResponseItem _copyWith(
+          {Object? id = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue,
+          Object? createdBy = sdkOmittedValue,
+          Object? lastUsedAt = sdkOmittedValue,
+          Object? lastUsedFromAddr = sdkOmittedValue,
+          Object? projectId = sdkOmittedValue}) =>
+      OrgApiKeysListResponseItem(
+        id: identical(id, sdkOmittedValue) ? this.id : id as int,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as String,
+        createdBy: identical(createdBy, sdkOmittedValue)
+            ? this.createdBy
+            : createdBy as ApiKeyCreatorData,
+        lastUsedAt: identical(lastUsedAt, sdkOmittedValue)
+            ? this.lastUsedAt
+            : lastUsedAt as SdkOptional<String?>,
+        lastUsedFromAddr: identical(lastUsedFromAddr, sdkOmittedValue)
+            ? this.lastUsedFromAddr
+            : lastUsedFromAddr as String,
+        projectId: identical(projectId, sdkOmittedValue)
+            ? this.projectId
+            : projectId as SdkOptional<String>,
+      );
 
-  factory OrgApiKeysListResponseItem.fromJson(Map<String, dynamic> json) => OrgApiKeysListResponseItem(
-    id: ((json['id'] as num?)?.toInt())!,
-    name: (json['name'] as String?)!,
-    createdAt: (json['created_at'] as String?)!,
-    createdBy: (json['created_by'] != null ? ApiKeyCreatorData.fromJson(json['created_by'] as Map<String, dynamic>) : null)!,
-    lastUsedAt: json.containsKey('last_used_at') ? SdkPresent(json['last_used_at'] as String?) : const SdkOmitted(),
-    lastUsedFromAddr: (json['last_used_from_addr'] as String?)!,
-    projectId: json['project_id'] != null ? SdkPresent((json['project_id'] as String?)!) : const SdkOmitted(),
-  );
+  factory OrgApiKeysListResponseItem.fromJson(Map<String, dynamic> json) =>
+      OrgApiKeysListResponseItem(
+        id: ((json['id'] as num?)?.toInt())!,
+        name: (json['name'] as String?)!,
+        createdAt: (json['created_at'] as String?)!,
+        createdBy: (json['created_by'] != null
+            ? ApiKeyCreatorData.fromJson(
+                json['created_by'] as Map<String, dynamic>)
+            : null)!,
+        lastUsedAt: json.containsKey('last_used_at')
+            ? SdkPresent(json['last_used_at'] as String?)
+            : const SdkOmitted(),
+        lastUsedFromAddr: (json['last_used_from_addr'] as String?)!,
+        projectId: json['project_id'] != null
+            ? SdkPresent((json['project_id'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'created_at': createdAt,
-    'created_by': createdBy.toJson(),
-    ...switch (lastUsedAt) {
-      SdkPresent<String?>(value: final value) => {'last_used_at': value,},
-      _ => const <String, dynamic>{},
-    },
-    'last_used_from_addr': lastUsedFromAddr,
-    ...switch (projectId) {
-      SdkPresent<String>(value: final value) => {'project_id': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'id': id,
+        'name': name,
+        'created_at': createdAt,
+        'created_by': createdBy.toJson(),
+        ...switch (lastUsedAt) {
+          SdkPresent<String?>(value: final value) => {
+              'last_used_at': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'last_used_from_addr': lastUsedFromAddr,
+        ...switch (projectId) {
+          SdkPresent<String>(value: final value) => {
+              'project_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `SpendingLimitResponse` API schema.
 class SpendingLimitResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Monthly spending cap in cents. `null` indicates that no limit is currently configured.
   final int? spendingLimitCents;
 
   const SpendingLimitResponse({required this.spendingLimitCents});
 
-  SpendingLimitResponse Function({int? spendingLimitCents}) get copyWith => _copyWith;
+  SpendingLimitResponse Function({int? spendingLimitCents}) get copyWith =>
+      _copyWith;
 
-  SpendingLimitResponse _copyWith({Object? spendingLimitCents = sdkOmittedValue}) => SpendingLimitResponse(
-    spendingLimitCents: identical(spendingLimitCents, sdkOmittedValue) ? this.spendingLimitCents : spendingLimitCents as int?,
-  );
+  SpendingLimitResponse _copyWith(
+          {Object? spendingLimitCents = sdkOmittedValue}) =>
+      SpendingLimitResponse(
+        spendingLimitCents: identical(spendingLimitCents, sdkOmittedValue)
+            ? this.spendingLimitCents
+            : spendingLimitCents as int?,
+      );
 
-  factory SpendingLimitResponse.fromJson(Map<String, dynamic> json) => SpendingLimitResponse(
-    spendingLimitCents: json.containsKey('spending_limit_cents') ? (json['spending_limit_cents'] as num?)?.toInt() : throw ArgumentError.value(null, 'spending_limit_cents', 'Required property is missing'),
-  );
+  factory SpendingLimitResponse.fromJson(Map<String, dynamic> json) =>
+      SpendingLimitResponse(
+        spendingLimitCents: json.containsKey('spending_limit_cents')
+            ? (json['spending_limit_cents'] as num?)?.toInt()
+            : throw ArgumentError.value(
+                null, 'spending_limit_cents', 'Required property is missing'),
+      );
 
   Map<String, dynamic> toJson() => {
-    'spending_limit_cents': spendingLimitCents,
-  };
+        'spending_limit_cents': spendingLimitCents,
+      };
 }
 
 /// Typed representation of the `SpendingLimitUpdateRequest` API schema.
 class SpendingLimitUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Monthly spending cap in cents. Must be positive. To remove a previously configured limit, send a DELETE request to the spending_limit endpoint — `0` and `null` are rejected here. The cap is alert-only: notifications fire at 80% and 100%, but computes are not suspended. Setting a cap below the period's already-accrued spend is permitted and will trigger the over-limit notification on the next worker run.
   final int spendingLimitCents;
 
   const SpendingLimitUpdateRequest({required this.spendingLimitCents});
 
-  SpendingLimitUpdateRequest Function({int spendingLimitCents}) get copyWith => _copyWith;
+  SpendingLimitUpdateRequest Function({int spendingLimitCents}) get copyWith =>
+      _copyWith;
 
-  SpendingLimitUpdateRequest _copyWith({Object? spendingLimitCents = sdkOmittedValue}) => SpendingLimitUpdateRequest(
-    spendingLimitCents: identical(spendingLimitCents, sdkOmittedValue) ? this.spendingLimitCents : spendingLimitCents as int,
-  );
+  SpendingLimitUpdateRequest _copyWith(
+          {Object? spendingLimitCents = sdkOmittedValue}) =>
+      SpendingLimitUpdateRequest(
+        spendingLimitCents: identical(spendingLimitCents, sdkOmittedValue)
+            ? this.spendingLimitCents
+            : spendingLimitCents as int,
+      );
 
-  factory SpendingLimitUpdateRequest.fromJson(Map<String, dynamic> json) => SpendingLimitUpdateRequest(
-    spendingLimitCents: ((json['spending_limit_cents'] as num?)?.toInt())!,
-  );
+  factory SpendingLimitUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      SpendingLimitUpdateRequest(
+        spendingLimitCents: ((json['spending_limit_cents'] as num?)?.toInt())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'spending_limit_cents': spendingLimitCents,
-  };
+        'spending_limit_cents': spendingLimitCents,
+      };
 }
 
 /// Typed representation of the `VPCEndpointDetails` API schema.
 class VPCEndpointDetails {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Cloud provider identifier for the VPC endpoint.
   final String vpcEndpointId;
+
   /// A descriptive label for the VPC endpoint
   final String label;
+
   /// The current state of the VPC endpoint. `new` means the endpoint has just been configured and is pending acceptance by Neon. `accepted` means the VPC connection has been accepted by Neon.
   final String state;
+
   /// The number of projects that are restricted to use this VPC endpoint.
   final int numRestrictedProjects;
+
   /// A list of example projects that are restricted to use this VPC endpoint. There are at most 3 projects in the list, even if more projects are restricted.
   final List<String> exampleRestrictedProjects;
 
-  const VPCEndpointDetails({required this.vpcEndpointId, required this.label, required this.state, required this.numRestrictedProjects, required this.exampleRestrictedProjects});
+  const VPCEndpointDetails(
+      {required this.vpcEndpointId,
+      required this.label,
+      required this.state,
+      required this.numRestrictedProjects,
+      required this.exampleRestrictedProjects});
 
-  VPCEndpointDetails Function({String vpcEndpointId, String label, String state, int numRestrictedProjects, List<String> exampleRestrictedProjects}) get copyWith => _copyWith;
+  VPCEndpointDetails Function(
+      {String vpcEndpointId,
+      String label,
+      String state,
+      int numRestrictedProjects,
+      List<String> exampleRestrictedProjects}) get copyWith => _copyWith;
 
-  VPCEndpointDetails _copyWith({Object? vpcEndpointId = sdkOmittedValue, Object? label = sdkOmittedValue, Object? state = sdkOmittedValue, Object? numRestrictedProjects = sdkOmittedValue, Object? exampleRestrictedProjects = sdkOmittedValue}) => VPCEndpointDetails(
-    vpcEndpointId: identical(vpcEndpointId, sdkOmittedValue) ? this.vpcEndpointId : vpcEndpointId as String,
-    label: identical(label, sdkOmittedValue) ? this.label : label as String,
-    state: identical(state, sdkOmittedValue) ? this.state : state as String,
-    numRestrictedProjects: identical(numRestrictedProjects, sdkOmittedValue) ? this.numRestrictedProjects : numRestrictedProjects as int,
-    exampleRestrictedProjects: identical(exampleRestrictedProjects, sdkOmittedValue) ? this.exampleRestrictedProjects : exampleRestrictedProjects as List<String>,
-  );
+  VPCEndpointDetails _copyWith(
+          {Object? vpcEndpointId = sdkOmittedValue,
+          Object? label = sdkOmittedValue,
+          Object? state = sdkOmittedValue,
+          Object? numRestrictedProjects = sdkOmittedValue,
+          Object? exampleRestrictedProjects = sdkOmittedValue}) =>
+      VPCEndpointDetails(
+        vpcEndpointId: identical(vpcEndpointId, sdkOmittedValue)
+            ? this.vpcEndpointId
+            : vpcEndpointId as String,
+        label: identical(label, sdkOmittedValue) ? this.label : label as String,
+        state: identical(state, sdkOmittedValue) ? this.state : state as String,
+        numRestrictedProjects: identical(numRestrictedProjects, sdkOmittedValue)
+            ? this.numRestrictedProjects
+            : numRestrictedProjects as int,
+        exampleRestrictedProjects:
+            identical(exampleRestrictedProjects, sdkOmittedValue)
+                ? this.exampleRestrictedProjects
+                : exampleRestrictedProjects as List<String>,
+      );
 
-  factory VPCEndpointDetails.fromJson(Map<String, dynamic> json) => VPCEndpointDetails(
-    vpcEndpointId: (json['vpc_endpoint_id'] as String?)!,
-    label: (json['label'] as String?)!,
-    state: (json['state'] as String?)!,
-    numRestrictedProjects: ((json['num_restricted_projects'] as num?)?.toInt())!,
-    exampleRestrictedProjects: ((json['example_restricted_projects'] as List?)?.map((e) => e as String).toList())!,
-  );
+  factory VPCEndpointDetails.fromJson(Map<String, dynamic> json) =>
+      VPCEndpointDetails(
+        vpcEndpointId: (json['vpc_endpoint_id'] as String?)!,
+        label: (json['label'] as String?)!,
+        state: (json['state'] as String?)!,
+        numRestrictedProjects:
+            ((json['num_restricted_projects'] as num?)?.toInt())!,
+        exampleRestrictedProjects:
+            ((json['example_restricted_projects'] as List?)
+                ?.map((e) => e as String)
+                .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'vpc_endpoint_id': vpcEndpointId,
-    'label': label,
-    'state': state,
-    'num_restricted_projects': numRestrictedProjects,
-    'example_restricted_projects': exampleRestrictedProjects,
-  };
+        'vpc_endpoint_id': vpcEndpointId,
+        'label': label,
+        'state': state,
+        'num_restricted_projects': numRestrictedProjects,
+        'example_restricted_projects': exampleRestrictedProjects,
+      };
 }
 
 /// Typed representation of the `VPCEndpointsWithRegionResponse` API schema.
 class VPCEndpointsWithRegionResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// VPC endpoints associated with the region.
   final List<VPCEndpointWithRegion> endpoints;
 
   const VPCEndpointsWithRegionResponse({required this.endpoints});
 
-  VPCEndpointsWithRegionResponse Function({List<VPCEndpointWithRegion> endpoints}) get copyWith => _copyWith;
+  VPCEndpointsWithRegionResponse Function(
+      {List<VPCEndpointWithRegion> endpoints}) get copyWith => _copyWith;
 
-  VPCEndpointsWithRegionResponse _copyWith({Object? endpoints = sdkOmittedValue}) => VPCEndpointsWithRegionResponse(
-    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as List<VPCEndpointWithRegion>,
-  );
+  VPCEndpointsWithRegionResponse _copyWith(
+          {Object? endpoints = sdkOmittedValue}) =>
+      VPCEndpointsWithRegionResponse(
+        endpoints: identical(endpoints, sdkOmittedValue)
+            ? this.endpoints
+            : endpoints as List<VPCEndpointWithRegion>,
+      );
 
-  factory VPCEndpointsWithRegionResponse.fromJson(Map<String, dynamic> json) => VPCEndpointsWithRegionResponse(
-    endpoints: ((json['endpoints'] as List?)?.map((e) => VPCEndpointWithRegion.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory VPCEndpointsWithRegionResponse.fromJson(Map<String, dynamic> json) =>
+      VPCEndpointsWithRegionResponse(
+        endpoints: ((json['endpoints'] as List?)
+            ?.map((e) =>
+                VPCEndpointWithRegion.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'endpoints': endpoints.map((item) => item.toJson()).toList(),
-  };
+        'endpoints': endpoints.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Required object value serialized in the `endpoints[]` wire field.
 class VPCEndpointWithRegionVariant1 {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The region where the VPC endpoint is located
   final String regionId;
 
   const VPCEndpointWithRegionVariant1({required this.regionId});
 
-  VPCEndpointWithRegionVariant1 Function({String regionId}) get copyWith => _copyWith;
+  VPCEndpointWithRegionVariant1 Function({String regionId}) get copyWith =>
+      _copyWith;
 
-  VPCEndpointWithRegionVariant1 _copyWith({Object? regionId = sdkOmittedValue}) => VPCEndpointWithRegionVariant1(
-    regionId: identical(regionId, sdkOmittedValue) ? this.regionId : regionId as String,
-  );
+  VPCEndpointWithRegionVariant1 _copyWith(
+          {Object? regionId = sdkOmittedValue}) =>
+      VPCEndpointWithRegionVariant1(
+        regionId: identical(regionId, sdkOmittedValue)
+            ? this.regionId
+            : regionId as String,
+      );
 
-  factory VPCEndpointWithRegionVariant1.fromJson(Map<String, dynamic> json) => VPCEndpointWithRegionVariant1(
-    regionId: (json['region_id'] as String?)!,
-  );
+  factory VPCEndpointWithRegionVariant1.fromJson(Map<String, dynamic> json) =>
+      VPCEndpointWithRegionVariant1(
+        regionId: (json['region_id'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'region_id': regionId,
-  };
+        'region_id': regionId,
+      };
 }
 
 /// Typed representation of the `VPCEndpointWithRegion` API schema.
 class VPCEndpointWithRegion {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Cloud provider identifier for the VPC endpoint.
   final String vpcEndpointId;
+
   /// A descriptive label for the VPC endpoint
   final String label;
+
   /// The region where the VPC endpoint is located
   final String regionId;
 
-  const VPCEndpointWithRegion({required this.vpcEndpointId, required this.label, required this.regionId});
+  const VPCEndpointWithRegion(
+      {required this.vpcEndpointId,
+      required this.label,
+      required this.regionId});
 
-  VPCEndpointWithRegion Function({String vpcEndpointId, String label, String regionId}) get copyWith => _copyWith;
+  VPCEndpointWithRegion Function(
+      {String vpcEndpointId,
+      String label,
+      String regionId}) get copyWith => _copyWith;
 
-  VPCEndpointWithRegion _copyWith({Object? vpcEndpointId = sdkOmittedValue, Object? label = sdkOmittedValue, Object? regionId = sdkOmittedValue}) => VPCEndpointWithRegion(
-    vpcEndpointId: identical(vpcEndpointId, sdkOmittedValue) ? this.vpcEndpointId : vpcEndpointId as String,
-    label: identical(label, sdkOmittedValue) ? this.label : label as String,
-    regionId: identical(regionId, sdkOmittedValue) ? this.regionId : regionId as String,
-  );
+  VPCEndpointWithRegion _copyWith(
+          {Object? vpcEndpointId = sdkOmittedValue,
+          Object? label = sdkOmittedValue,
+          Object? regionId = sdkOmittedValue}) =>
+      VPCEndpointWithRegion(
+        vpcEndpointId: identical(vpcEndpointId, sdkOmittedValue)
+            ? this.vpcEndpointId
+            : vpcEndpointId as String,
+        label: identical(label, sdkOmittedValue) ? this.label : label as String,
+        regionId: identical(regionId, sdkOmittedValue)
+            ? this.regionId
+            : regionId as String,
+      );
 
-  factory VPCEndpointWithRegion.fromJson(Map<String, dynamic> json) => VPCEndpointWithRegion(
-    vpcEndpointId: (json['vpc_endpoint_id'] as String?)!,
-    label: (json['label'] as String?)!,
-    regionId: (json['region_id'] as String?)!,
-  );
+  factory VPCEndpointWithRegion.fromJson(Map<String, dynamic> json) =>
+      VPCEndpointWithRegion(
+        vpcEndpointId: (json['vpc_endpoint_id'] as String?)!,
+        label: (json['label'] as String?)!,
+        regionId: (json['region_id'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'vpc_endpoint_id': vpcEndpointId,
-    'label': label,
-    'region_id': regionId,
-  };
+        'vpc_endpoint_id': vpcEndpointId,
+        'label': label,
+        'region_id': regionId,
+      };
 }

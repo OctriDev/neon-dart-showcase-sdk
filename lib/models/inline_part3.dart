@@ -10,14 +10,19 @@ enum StorageObjectCreatedTriggerCreateRequestType {
 
   static StorageObjectCreatedTriggerCreateRequestType fromJson(String value) {
     switch (value) {
-      case 'storage_object_created': return StorageObjectCreatedTriggerCreateRequestType.storageObjectCreated;
-      default: throw ArgumentError('Unknown StorageObjectCreatedTriggerCreateRequestType: $value');
+      case 'storage_object_created':
+        return StorageObjectCreatedTriggerCreateRequestType
+            .storageObjectCreated;
+      default:
+        throw ArgumentError(
+            'Unknown StorageObjectCreatedTriggerCreateRequestType: $value');
     }
   }
 
   String toJson() {
     switch (this) {
-      case StorageObjectCreatedTriggerCreateRequestType.storageObjectCreated: return 'storage_object_created';
+      case StorageObjectCreatedTriggerCreateRequestType.storageObjectCreated:
+        return 'storage_object_created';
     }
   }
 
@@ -31,14 +36,19 @@ enum StorageObjectCreatedTriggerUpdateRequestType {
 
   static StorageObjectCreatedTriggerUpdateRequestType fromJson(String value) {
     switch (value) {
-      case 'storage_object_created': return StorageObjectCreatedTriggerUpdateRequestType.storageObjectCreated;
-      default: throw ArgumentError('Unknown StorageObjectCreatedTriggerUpdateRequestType: $value');
+      case 'storage_object_created':
+        return StorageObjectCreatedTriggerUpdateRequestType
+            .storageObjectCreated;
+      default:
+        throw ArgumentError(
+            'Unknown StorageObjectCreatedTriggerUpdateRequestType: $value');
     }
   }
 
   String toJson() {
     switch (this) {
-      case StorageObjectCreatedTriggerUpdateRequestType.storageObjectCreated: return 'storage_object_created';
+      case StorageObjectCreatedTriggerUpdateRequestType.storageObjectCreated:
+        return 'storage_object_created';
     }
   }
 
@@ -47,12 +57,12 @@ enum StorageObjectCreatedTriggerUpdateRequestType {
 }
 
 final class ListOrganizationsMembersSortBy {
-
   final String value;
 
   const ListOrganizationsMembersSortBy._(this.value);
 
-  factory ListOrganizationsMembersSortBy.fromJson(String value) => ListOrganizationsMembersSortBy._(value);
+  factory ListOrganizationsMembersSortBy.fromJson(String value) =>
+      ListOrganizationsMembersSortBy._(value);
 
   static const email = ListOrganizationsMembersSortBy._('email');
   static const role = ListOrganizationsMembersSortBy._('role');
@@ -60,21 +70,24 @@ final class ListOrganizationsMembersSortBy {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ListOrganizationsMembersSortBy && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ListOrganizationsMembersSortBy && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 final class GetProjectAdvisorSecurityIssuesMinSeverity {
-
   final String value;
 
   const GetProjectAdvisorSecurityIssuesMinSeverity._(this.value);
 
-  factory GetProjectAdvisorSecurityIssuesMinSeverity.fromJson(String value) => GetProjectAdvisorSecurityIssuesMinSeverity._(value);
+  factory GetProjectAdvisorSecurityIssuesMinSeverity.fromJson(String value) =>
+      GetProjectAdvisorSecurityIssuesMinSeverity._(value);
 
   static const info = GetProjectAdvisorSecurityIssuesMinSeverity._('INFO');
   static const warn = GetProjectAdvisorSecurityIssuesMinSeverity._('WARN');
@@ -82,16 +95,19 @@ final class GetProjectAdvisorSecurityIssuesMinSeverity {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is GetProjectAdvisorSecurityIssuesMinSeverity && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is GetProjectAdvisorSecurityIssuesMinSeverity &&
+      other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 final class ListBranchSortBy {
-
   final String value;
 
   const ListBranchSortBy._(this.value);
@@ -104,12 +120,15 @@ final class ListBranchSortBy {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ListBranchSortBy && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ListBranchSortBy && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 class GetProjectAdvisorSecurityIssuesResponse {
@@ -119,149 +138,219 @@ class GetProjectAdvisorSecurityIssuesResponse {
 
   const GetProjectAdvisorSecurityIssuesResponse({required this.issues});
 
-  GetProjectAdvisorSecurityIssuesResponse Function({List<AdvisorIssue> issues}) get copyWith => _copyWith;
+  GetProjectAdvisorSecurityIssuesResponse Function({List<AdvisorIssue> issues})
+      get copyWith => _copyWith;
 
-  GetProjectAdvisorSecurityIssuesResponse _copyWith({Object? issues = sdkOmittedValue}) => GetProjectAdvisorSecurityIssuesResponse(
-    issues: identical(issues, sdkOmittedValue) ? this.issues : issues as List<AdvisorIssue>,
-  );
+  GetProjectAdvisorSecurityIssuesResponse _copyWith(
+          {Object? issues = sdkOmittedValue}) =>
+      GetProjectAdvisorSecurityIssuesResponse(
+        issues: identical(issues, sdkOmittedValue)
+            ? this.issues
+            : issues as List<AdvisorIssue>,
+      );
 
-  factory GetProjectAdvisorSecurityIssuesResponse.fromJson(Map<String, dynamic> json) => GetProjectAdvisorSecurityIssuesResponse(
-    issues: ((json['issues'] as List?)?.map((e) => AdvisorIssue.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory GetProjectAdvisorSecurityIssuesResponse.fromJson(
+          Map<String, dynamic> json) =>
+      GetProjectAdvisorSecurityIssuesResponse(
+        issues: ((json['issues'] as List?)
+            ?.map((e) => AdvisorIssue.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'issues': issues.map((item) => item.toJson()).toList(),
-  };
+        'issues': issues.map((item) => item.toJson()).toList(),
+      };
 }
 
 class CreateProjectTransferRequestRequestBody {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Number of seconds the transfer request stays valid before it expires. Defaults to 86400 (24 hours).
   final SdkOptional<int> ttlSeconds;
 
-  const CreateProjectTransferRequestRequestBody({this.ttlSeconds = const SdkOmitted()});
+  const CreateProjectTransferRequestRequestBody(
+      {this.ttlSeconds = const SdkOmitted()});
 
-  CreateProjectTransferRequestRequestBody Function({SdkOptional<int> ttlSeconds}) get copyWith => _copyWith;
+  CreateProjectTransferRequestRequestBody Function(
+      {SdkOptional<int> ttlSeconds}) get copyWith => _copyWith;
 
-  CreateProjectTransferRequestRequestBody _copyWith({Object? ttlSeconds = sdkOmittedValue}) => CreateProjectTransferRequestRequestBody(
-    ttlSeconds: identical(ttlSeconds, sdkOmittedValue) ? this.ttlSeconds : ttlSeconds as SdkOptional<int>,
-  );
+  CreateProjectTransferRequestRequestBody _copyWith(
+          {Object? ttlSeconds = sdkOmittedValue}) =>
+      CreateProjectTransferRequestRequestBody(
+        ttlSeconds: identical(ttlSeconds, sdkOmittedValue)
+            ? this.ttlSeconds
+            : ttlSeconds as SdkOptional<int>,
+      );
 
-  factory CreateProjectTransferRequestRequestBody.fromJson(Map<String, dynamic> json) => CreateProjectTransferRequestRequestBody(
-    ttlSeconds: json['ttl_seconds'] != null ? SdkPresent(((json['ttl_seconds'] as num?)?.toInt())!) : const SdkOmitted(),
-  );
+  factory CreateProjectTransferRequestRequestBody.fromJson(
+          Map<String, dynamic> json) =>
+      CreateProjectTransferRequestRequestBody(
+        ttlSeconds: json['ttl_seconds'] != null
+            ? SdkPresent(((json['ttl_seconds'] as num?)?.toInt())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (ttlSeconds) {
-      SdkPresent<int>(value: final value) => {'ttl_seconds': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (ttlSeconds) {
+          SdkPresent<int>(value: final value) => {
+              'ttl_seconds': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 class AcceptProjectTransferRequestRequestBody {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The Neon organization ID to transfer the project to. If not provided, the project will be transferred to the current user or organization account.
   final SdkOptional<String> orgId;
 
-  const AcceptProjectTransferRequestRequestBody({this.orgId = const SdkOmitted()});
+  const AcceptProjectTransferRequestRequestBody(
+      {this.orgId = const SdkOmitted()});
 
-  AcceptProjectTransferRequestRequestBody Function({SdkOptional<String> orgId}) get copyWith => _copyWith;
+  AcceptProjectTransferRequestRequestBody Function({SdkOptional<String> orgId})
+      get copyWith => _copyWith;
 
-  AcceptProjectTransferRequestRequestBody _copyWith({Object? orgId = sdkOmittedValue}) => AcceptProjectTransferRequestRequestBody(
-    orgId: identical(orgId, sdkOmittedValue) ? this.orgId : orgId as SdkOptional<String>,
-  );
+  AcceptProjectTransferRequestRequestBody _copyWith(
+          {Object? orgId = sdkOmittedValue}) =>
+      AcceptProjectTransferRequestRequestBody(
+        orgId: identical(orgId, sdkOmittedValue)
+            ? this.orgId
+            : orgId as SdkOptional<String>,
+      );
 
-  factory AcceptProjectTransferRequestRequestBody.fromJson(Map<String, dynamic> json) => AcceptProjectTransferRequestRequestBody(
-    orgId: json['org_id'] != null ? SdkPresent((json['org_id'] as String?)!) : const SdkOmitted(),
-  );
+  factory AcceptProjectTransferRequestRequestBody.fromJson(
+          Map<String, dynamic> json) =>
+      AcceptProjectTransferRequestRequestBody(
+        orgId: json['org_id'] != null
+            ? SdkPresent((json['org_id'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (orgId) {
-      SdkPresent<String>(value: final value) => {'org_id': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (orgId) {
+          SdkPresent<String>(value: final value) => {
+              'org_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 class DeleteAuthLegacyIntegrationRequestBody {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// If true, deletes the `neon_auth` schema from the database
   final SdkOptional<bool> deleteData;
 
-  const DeleteAuthLegacyIntegrationRequestBody({this.deleteData = const SdkOmitted()});
+  const DeleteAuthLegacyIntegrationRequestBody(
+      {this.deleteData = const SdkOmitted()});
 
-  DeleteAuthLegacyIntegrationRequestBody Function({SdkOptional<bool> deleteData}) get copyWith => _copyWith;
+  DeleteAuthLegacyIntegrationRequestBody Function(
+      {SdkOptional<bool> deleteData}) get copyWith => _copyWith;
 
-  DeleteAuthLegacyIntegrationRequestBody _copyWith({Object? deleteData = sdkOmittedValue}) => DeleteAuthLegacyIntegrationRequestBody(
-    deleteData: identical(deleteData, sdkOmittedValue) ? this.deleteData : deleteData as SdkOptional<bool>,
-  );
+  DeleteAuthLegacyIntegrationRequestBody _copyWith(
+          {Object? deleteData = sdkOmittedValue}) =>
+      DeleteAuthLegacyIntegrationRequestBody(
+        deleteData: identical(deleteData, sdkOmittedValue)
+            ? this.deleteData
+            : deleteData as SdkOptional<bool>,
+      );
 
-  factory DeleteAuthLegacyIntegrationRequestBody.fromJson(Map<String, dynamic> json) => DeleteAuthLegacyIntegrationRequestBody(
-    deleteData: json['delete_data'] != null ? SdkPresent((json['delete_data'] as bool?)!) : const SdkOmitted(),
-  );
+  factory DeleteAuthLegacyIntegrationRequestBody.fromJson(
+          Map<String, dynamic> json) =>
+      DeleteAuthLegacyIntegrationRequestBody(
+        deleteData: json['delete_data'] != null
+            ? SdkPresent((json['delete_data'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (deleteData) {
-      SdkPresent<bool>(value: final value) => {'delete_data': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (deleteData) {
+          SdkPresent<bool>(value: final value) => {
+              'delete_data': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 class DisableAuthRequestBody {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// If true, deletes the `neon_auth` schema from the database
   final SdkOptional<bool> deleteData;
 
   const DisableAuthRequestBody({this.deleteData = const SdkOmitted()});
 
-  DisableAuthRequestBody Function({SdkOptional<bool> deleteData}) get copyWith => _copyWith;
+  DisableAuthRequestBody Function({SdkOptional<bool> deleteData})
+      get copyWith => _copyWith;
 
-  DisableAuthRequestBody _copyWith({Object? deleteData = sdkOmittedValue}) => DisableAuthRequestBody(
-    deleteData: identical(deleteData, sdkOmittedValue) ? this.deleteData : deleteData as SdkOptional<bool>,
-  );
+  DisableAuthRequestBody _copyWith({Object? deleteData = sdkOmittedValue}) =>
+      DisableAuthRequestBody(
+        deleteData: identical(deleteData, sdkOmittedValue)
+            ? this.deleteData
+            : deleteData as SdkOptional<bool>,
+      );
 
-  factory DisableAuthRequestBody.fromJson(Map<String, dynamic> json) => DisableAuthRequestBody(
-    deleteData: json['delete_data'] != null ? SdkPresent((json['delete_data'] as bool?)!) : const SdkOmitted(),
-  );
+  factory DisableAuthRequestBody.fromJson(Map<String, dynamic> json) =>
+      DisableAuthRequestBody(
+        deleteData: json['delete_data'] != null
+            ? SdkPresent((json['delete_data'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (deleteData) {
-      SdkPresent<bool>(value: final value) => {'delete_data': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (deleteData) {
+          SdkPresent<bool>(value: final value) => {
+              'delete_data': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 class FinalizeRestoreBranchRequestBody {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Name for the replaced branch. If omitted, a unique name is generated.
   final SdkOptional<String> name;
 
   const FinalizeRestoreBranchRequestBody({this.name = const SdkOmitted()});
 
-  FinalizeRestoreBranchRequestBody Function({SdkOptional<String> name}) get copyWith => _copyWith;
+  FinalizeRestoreBranchRequestBody Function({SdkOptional<String> name})
+      get copyWith => _copyWith;
 
-  FinalizeRestoreBranchRequestBody _copyWith({Object? name = sdkOmittedValue}) => FinalizeRestoreBranchRequestBody(
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-  );
+  FinalizeRestoreBranchRequestBody _copyWith(
+          {Object? name = sdkOmittedValue}) =>
+      FinalizeRestoreBranchRequestBody(
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+      );
 
-  factory FinalizeRestoreBranchRequestBody.fromJson(Map<String, dynamic> json) => FinalizeRestoreBranchRequestBody(
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-  );
+  factory FinalizeRestoreBranchRequestBody.fromJson(
+          Map<String, dynamic> json) =>
+      FinalizeRestoreBranchRequestBody(
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 class CreateSnapshotResponse {
@@ -270,22 +359,37 @@ class CreateSnapshotResponse {
   final Snapshot snapshot;
   final List<Operation> operations;
 
-  const CreateSnapshotResponse({required this.snapshot, required this.operations});
+  const CreateSnapshotResponse(
+      {required this.snapshot, required this.operations});
 
-  CreateSnapshotResponse Function({Snapshot snapshot, List<Operation> operations}) get copyWith => _copyWith;
+  CreateSnapshotResponse Function(
+      {Snapshot snapshot,
+      List<Operation> operations}) get copyWith => _copyWith;
 
-  CreateSnapshotResponse _copyWith({Object? snapshot = sdkOmittedValue, Object? operations = sdkOmittedValue}) => CreateSnapshotResponse(
-    snapshot: identical(snapshot, sdkOmittedValue) ? this.snapshot : snapshot as Snapshot,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
+  CreateSnapshotResponse _copyWith(
+          {Object? snapshot = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      CreateSnapshotResponse(
+        snapshot: identical(snapshot, sdkOmittedValue)
+            ? this.snapshot
+            : snapshot as Snapshot,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
 
-  factory CreateSnapshotResponse.fromJson(Map<String, dynamic> json) => CreateSnapshotResponse(
-    snapshot: (json['snapshot'] != null ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>) : null)!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory CreateSnapshotResponse.fromJson(Map<String, dynamic> json) =>
+      CreateSnapshotResponse(
+        snapshot: (json['snapshot'] != null
+            ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>)
+            : null)!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'snapshot': snapshot.toJson(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
+        'snapshot': snapshot.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
 }

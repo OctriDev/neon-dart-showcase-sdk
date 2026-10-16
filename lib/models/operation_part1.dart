@@ -8,6 +8,7 @@ part of 'operation.dart';
 class OperationResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// An asynchronous action Neon performs on your resources (for example, starting a compute or creating a branch). Fields such as `action`, `status`, and `total_duration_ms` describe the operation and its progress.
   final Operation operation;
 
@@ -15,15 +16,21 @@ class OperationResponse {
 
   OperationResponse Function({Operation operation}) get copyWith => _copyWith;
 
-  OperationResponse _copyWith({Object? operation = sdkOmittedValue}) => OperationResponse(
-    operation: identical(operation, sdkOmittedValue) ? this.operation : operation as Operation,
-  );
+  OperationResponse _copyWith({Object? operation = sdkOmittedValue}) =>
+      OperationResponse(
+        operation: identical(operation, sdkOmittedValue)
+            ? this.operation
+            : operation as Operation,
+      );
 
-  factory OperationResponse.fromJson(Map<String, dynamic> json) => OperationResponse(
-    operation: (json['operation'] != null ? Operation.fromJson(json['operation'] as Map<String, dynamic>) : null)!,
-  );
+  factory OperationResponse.fromJson(Map<String, dynamic> json) =>
+      OperationResponse(
+        operation: (json['operation'] != null
+            ? Operation.fromJson(json['operation'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'operation': operation.toJson(),
-  };
+        'operation': operation.toJson(),
+      };
 }

@@ -101,183 +101,232 @@ void main() {
   final config = SdkConfig.getConfig();
 
   group('generated SDK methods', () {
-    test("acceptProjectTransferRequest reaches the mock and decodes its response", () async {
+    test(
+        "acceptProjectTransferRequest reaches the mock and decodes its response",
+        () async {
       await sdk_methods_0.acceptProjectTransferRequest(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         requestId: (jsonDecode("\"a\"") as String),
-        orgId: SdkPresent<String>((jsonDecode("\"org-cool-darkness-12345678\"") as String)),
+        orgId: SdkPresent<String>(
+            (jsonDecode("\"org-cool-darkness-12345678\"") as String)),
       );
     });
 
-    test("acceptProjectTransferRequest answers 406 with its declared error body", () async {
+    test(
+        "acceptProjectTransferRequest answers 406 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/406';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.acceptProjectTransferRequest(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        requestId: (jsonDecode("\"a\"") as String),
-        orgId: SdkPresent<String>((jsonDecode("\"org-cool-darkness-12345678\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          requestId: (jsonDecode("\"a\"") as String),
+          orgId: SdkPresent<String>(
+              (jsonDecode("\"org-cool-darkness-12345678\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 406);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"reasons\":[{\"message\":\"example text\",\"code\":\"code\"}]}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"reasons\":[{\"message\":\"example text\",\"code\":\"code\"}]}")),
         isNull,
       );
     });
 
-    test("addAuthLegacyDomainToRedirectUriWhitelist reaches the mock and decodes its response", () async {
+    test(
+        "addAuthLegacyDomainToRedirectUriWhitelist reaches the mock and decodes its response",
+        () async {
       await sdk_methods_1.addAuthLegacyDomainToRedirectUriWhitelist(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         domain: (jsonDecode("\"https://example.com\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
       );
     });
 
-    test("addAuthLegacyDomainToRedirectUriWhitelist answers 418 with its declared error body", () async {
+    test(
+        "addAuthLegacyDomainToRedirectUriWhitelist answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.addAuthLegacyDomainToRedirectUriWhitelist(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        domain: (jsonDecode("\"https://example.com\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          domain: (jsonDecode("\"https://example.com\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("addAuthLegacyOauthProvider reaches the mock and decodes its response", () async {
+    test("addAuthLegacyOauthProvider reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.addAuthLegacyOauthProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        id: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
+        id: NeonAuthOauthProviderId.fromJson(
+            jsonDecode("\"google\"") as String),
         clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
-        clientSecret: SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
-        microsoftTenantId: SdkPresent<String>((jsonDecode("\"microsoft_tenant-1\"") as String)),
+        clientSecret:
+            SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
+        microsoftTenantId: SdkPresent<String>(
+            (jsonDecode("\"microsoft_tenant-1\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}"),
         ),
         isNull,
       );
     });
 
-    test("addAuthLegacyOauthProvider answers 418 with its declared error body", () async {
+    test("addAuthLegacyOauthProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.addAuthLegacyOauthProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        id: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
-        clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
-        clientSecret: SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
-        microsoftTenantId: SdkPresent<String>((jsonDecode("\"microsoft_tenant-1\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          id: NeonAuthOauthProviderId.fromJson(
+              jsonDecode("\"google\"") as String),
+          clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
+          clientSecret:
+              SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
+          microsoftTenantId: SdkPresent<String>(
+              (jsonDecode("\"microsoft_tenant-1\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("addAuthOauthProvider reaches the mock and decodes its response", () async {
+    test("addAuthOauthProvider reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.addAuthOauthProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        id: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
+        id: NeonAuthOauthProviderId.fromJson(
+            jsonDecode("\"google\"") as String),
         clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
-        clientSecret: SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
-        microsoftTenantId: SdkPresent<String>((jsonDecode("\"microsoft_tenant-1\"") as String)),
+        clientSecret:
+            SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
+        microsoftTenantId: SdkPresent<String>(
+            (jsonDecode("\"microsoft_tenant-1\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}"),
         ),
         isNull,
       );
     });
 
-    test("addAuthOauthProvider answers 418 with its declared error body", () async {
+    test("addAuthOauthProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.addAuthOauthProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        id: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
-        clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
-        clientSecret: SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
-        microsoftTenantId: SdkPresent<String>((jsonDecode("\"microsoft_tenant-1\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          id: NeonAuthOauthProviderId.fromJson(
+              jsonDecode("\"google\"") as String),
+          clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
+          clientSecret:
+              SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
+          microsoftTenantId: SdkPresent<String>(
+              (jsonDecode("\"microsoft_tenant-1\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("addAuthTrustedDomain reaches the mock and decodes its response", () async {
+    test("addAuthTrustedDomain reaches the mock and decodes its response",
+        () async {
       await sdk_methods_2.addAuthTrustedDomain(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         domain: (jsonDecode("\"https://example.com\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
       );
     });
 
-    test("addAuthTrustedDomain answers 418 with its declared error body", () async {
+    test("addAuthTrustedDomain answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.addAuthTrustedDomain(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        domain: (jsonDecode("\"https://example.com\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          domain: (jsonDecode("\"https://example.com\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -289,14 +338,19 @@ void main() {
         jwksUrl: (jsonDecode("\"https://example.com\"") as String),
         providerName: (jsonDecode("\"Example Name\"") as String),
         branchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        jwtAudience: SdkPresent<String>((jsonDecode("\"jwt_audience\"") as String)),
-        roleNames: SdkPresent<List<String>>((jsonDecode("[\"Example Name\"]") as List).map((element) => (element as String)).toList()),
+        jwtAudience:
+            SdkPresent<String>((jsonDecode("\"jwt_audience\"") as String)),
+        roleNames: SdkPresent<List<String>>(
+            (jsonDecode("[\"Example Name\"]") as List)
+                .map((element) => (element as String))
+                .toList()),
         skipRoleCreation: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"jwks\":{\"id\":\"id-1\",\"project_id\":\"a\",\"branch_id\":\"a\",\"jwks_url\":\"https://example.com\",\"provider_name\":\"Example Name\",\"created_at\":\"2024-01-01T00:00:00Z\",\"updated_at\":\"2024-01-01T00:00:00Z\",\"jwt_audience\":\"jwt_audience\",\"role_names\":[\"Example Name\"]},\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
+          SdkUtils.decodeJson(
+              "{\"jwks\":{\"id\":\"id-1\",\"project_id\":\"a\",\"branch_id\":\"a\",\"jwks_url\":\"https://example.com\",\"provider_name\":\"Example Name\",\"created_at\":\"2024-01-01T00:00:00Z\",\"updated_at\":\"2024-01-01T00:00:00Z\",\"jwt_audience\":\"jwt_audience\",\"role_names\":[\"Example Name\"]},\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
         ),
         isNull,
       );
@@ -308,27 +362,36 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.addProjectJwks(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        jwksUrl: (jsonDecode("\"https://example.com\"") as String),
-        providerName: (jsonDecode("\"Example Name\"") as String),
-        branchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        jwtAudience: SdkPresent<String>((jsonDecode("\"jwt_audience\"") as String)),
-        roleNames: SdkPresent<List<String>>((jsonDecode("[\"Example Name\"]") as List).map((element) => (element as String)).toList()),
-        skipRoleCreation: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          jwksUrl: (jsonDecode("\"https://example.com\"") as String),
+          providerName: (jsonDecode("\"Example Name\"") as String),
+          branchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
+          jwtAudience:
+              SdkPresent<String>((jsonDecode("\"jwt_audience\"") as String)),
+          roleNames: SdkPresent<List<String>>(
+              (jsonDecode("[\"Example Name\"]") as List)
+                  .map((element) => (element as String))
+                  .toList()),
+          skipRoleCreation: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("assignOrganizationVpcEndpoint reaches the mock and decodes its response", () async {
+    test(
+        "assignOrganizationVpcEndpoint reaches the mock and decodes its response",
+        () async {
       await sdk_methods_3.assignOrganizationVpcEndpoint(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -338,30 +401,36 @@ void main() {
       );
     });
 
-    test("assignOrganizationVpcEndpoint answers 418 with its declared error body", () async {
+    test(
+        "assignOrganizationVpcEndpoint answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.assignOrganizationVpcEndpoint(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        regionId: (jsonDecode("\"region-1\"") as String),
-        vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
-        label: (jsonDecode("\"label\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          regionId: (jsonDecode("\"region-1\"") as String),
+          vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
+          label: (jsonDecode("\"label\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("assignProjectVpcEndpoint reaches the mock and decodes its response", () async {
+    test("assignProjectVpcEndpoint reaches the mock and decodes its response",
+        () async {
       await sdk_methods_0.assignProjectVpcEndpoint(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -370,29 +439,34 @@ void main() {
       );
     });
 
-    test("assignProjectVpcEndpoint answers 418 with its declared error body", () async {
+    test("assignProjectVpcEndpoint answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.assignProjectVpcEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
-        label: (jsonDecode("\"label\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
+          label: (jsonDecode("\"label\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("compareBranchSchema reaches the mock and decodes its response", () async {
+    test("compareBranchSchema reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.compareBranchSchema(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -400,9 +474,11 @@ void main() {
         dbName: (jsonDecode("\"Example Name\"") as String),
         baseBranchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
         lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
-        timestamp: SdkPresent<String>((jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
+        timestamp: SdkPresent<String>(
+            (jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
         baseLsn: SdkPresent<String>((jsonDecode("\"base_lsn\"") as String)),
-        baseTimestamp: SdkPresent<String>((jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
+        baseTimestamp: SdkPresent<String>(
+            (jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
       );
       expect(
         mismatch(
@@ -413,29 +489,35 @@ void main() {
       );
     });
 
-    test("compareBranchSchema answers 418 with its declared error body", () async {
+    test("compareBranchSchema answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.compareBranchSchema(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        dbName: (jsonDecode("\"Example Name\"") as String),
-        baseBranchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
-        timestamp: SdkPresent<String>((jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
-        baseLsn: SdkPresent<String>((jsonDecode("\"base_lsn\"") as String)),
-        baseTimestamp: SdkPresent<String>((jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          dbName: (jsonDecode("\"Example Name\"") as String),
+          baseBranchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
+          lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
+          timestamp: SdkPresent<String>(
+              (jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
+          baseLsn: SdkPresent<String>((jsonDecode("\"base_lsn\"") as String)),
+          baseTimestamp: SdkPresent<String>(
+              (jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -461,17 +543,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.countBranch(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -484,7 +569,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":165434,\"key\":\"9v1faketcjbl4sn1013keyd43n2a8qlfakeog8yvp40hx16keyjo1bpds4y2dfms3\",\"name\":\"mykey\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":\"629982cc-de05-43db-ae16-28f2399c4910\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":165434,\"key\":\"9v1faketcjbl4sn1013keyd43n2a8qlfakeog8yvp40hx16keyjo1bpds4y2dfms3\",\"name\":\"mykey\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":\"629982cc-de05-43db-ae16-28f2399c4910\"}"),
         ),
         isNull,
       );
@@ -496,16 +582,19 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_5.createApiKey(
-        config,
-        keyName: (jsonDecode("\"mykey\"") as String),
-      );
+          config,
+          keyName: (jsonDecode("\"mykey\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -515,13 +604,16 @@ void main() {
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        databaseName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
+        databaseName:
+            SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"pub_client_key\":\"pub_client_key\",\"secret_server_key\":\"secret_server_key\",\"jwks_url\":\"https://example.com\",\"schema_name\":\"Example Name\",\"table_name\":\"Example Name\",\"base_url\":\"https://example.com\"}"),
+          SdkUtils.decodeJson(
+              "{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"pub_client_key\":\"pub_client_key\",\"secret_server_key\":\"secret_server_key\",\"jwks_url\":\"https://example.com\",\"schema_name\":\"Example Name\",\"table_name\":\"Example Name\",\"base_url\":\"https://example.com\"}"),
         ),
         isNull,
       );
@@ -533,106 +625,136 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_2.createAuth(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        databaseName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+          databaseName:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createAuthLegacyIntegration reaches the mock and decodes its response", () async {
+    test(
+        "createAuthLegacyIntegration reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.createAuthLegacyIntegration(
         config,
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
         projectId: (jsonDecode("\"wispy-forest-12345678\"") as String),
         branchId: (jsonDecode("\"br-cool-darkness-12345678\"") as String),
-        databaseName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        roleName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        databaseName:
+            SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        roleName:
+            SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"pub_client_key\":\"pub_client_key\",\"secret_server_key\":\"secret_server_key\",\"jwks_url\":\"https://example.com\",\"schema_name\":\"Example Name\",\"table_name\":\"Example Name\",\"base_url\":\"https://example.com\"}"),
+          SdkUtils.decodeJson(
+              "{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"pub_client_key\":\"pub_client_key\",\"secret_server_key\":\"secret_server_key\",\"jwks_url\":\"https://example.com\",\"schema_name\":\"Example Name\",\"table_name\":\"Example Name\",\"base_url\":\"https://example.com\"}"),
         ),
         isNull,
       );
     });
 
-    test("createAuthLegacyIntegration answers 418 with its declared error body", () async {
+    test("createAuthLegacyIntegration answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.createAuthLegacyIntegration(
-        config,
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        projectId: (jsonDecode("\"wispy-forest-12345678\"") as String),
-        branchId: (jsonDecode("\"br-cool-darkness-12345678\"") as String),
-        databaseName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        roleName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-      );
+          config,
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+          projectId: (jsonDecode("\"wispy-forest-12345678\"") as String),
+          branchId: (jsonDecode("\"br-cool-darkness-12345678\"") as String),
+          databaseName:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          roleName:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createAuthLegacyProviderSdkKeys reaches the mock and decodes its response", () async {
+    test(
+        "createAuthLegacyProviderSdkKeys reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.createAuthLegacyProviderSdkKeys(
         config,
         projectId: (jsonDecode("\"wispy-forest-12345678\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"pub_client_key\":\"pub_client_key\",\"secret_server_key\":\"secret_server_key\",\"jwks_url\":\"https://example.com\",\"schema_name\":\"Example Name\",\"table_name\":\"Example Name\",\"base_url\":\"https://example.com\"}"),
+          SdkUtils.decodeJson(
+              "{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"pub_client_key\":\"pub_client_key\",\"secret_server_key\":\"secret_server_key\",\"jwks_url\":\"https://example.com\",\"schema_name\":\"Example Name\",\"table_name\":\"Example Name\",\"base_url\":\"https://example.com\"}"),
         ),
         isNull,
       );
     });
 
-    test("createAuthLegacyProviderSdkKeys answers 418 with its declared error body", () async {
+    test(
+        "createAuthLegacyProviderSdkKeys answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.createAuthLegacyProviderSdkKeys(
-        config,
-        projectId: (jsonDecode("\"wispy-forest-12345678\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"wispy-forest-12345678\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createAuthLegacyUser reaches the mock and decodes its response", () async {
+    test("createAuthLegacyUser reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.createAuthLegacyUser(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
         email: (jsonDecode("\"user@example.com\"") as String),
         name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
       );
@@ -645,71 +767,92 @@ void main() {
       );
     });
 
-    test("createAuthLegacyUser answers 418 with its declared error body", () async {
+    test("createAuthLegacyUser answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.createAuthLegacyUser(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        email: (jsonDecode("\"user@example.com\"") as String),
-        name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+          email: (jsonDecode("\"user@example.com\"") as String),
+          name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createAuthOAuthClient reaches the mock and decodes its response", () async {
+    test("createAuthOAuthClient reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.createAuthOAuthClient(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         name: (jsonDecode("\"Example Name\"") as String),
-        redirectUris: (jsonDecode("[\"https://example.com\"]") as List).map((element) => (element as String)).toList(),
-        type_: NeonAuthOAuthClientType.fromJson(jsonDecode("\"confidential\"") as String),
-        resources: (jsonDecode("[\"resources\"]") as List).map((element) => (element as String)).toList(),
+        redirectUris: (jsonDecode("[\"https://example.com\"]") as List)
+            .map((element) => (element as String))
+            .toList(),
+        type_: NeonAuthOAuthClientType.fromJson(
+            jsonDecode("\"confidential\"") as String),
+        resources: (jsonDecode("[\"resources\"]") as List)
+            .map((element) => (element as String))
+            .toList(),
         skipConsent: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"client_id\":\"client-1\",\"name\":\"Example Name\",\"type\":\"confidential\",\"redirect_uris\":[\"https://example.com\"],\"resources\":[\"resources\"],\"skip_consent\":false,\"disabled\":false,\"created_at\":\"2024-01-01T00:00:00Z\",\"client_secret\":\"client_secret\"}"),
+          SdkUtils.decodeJson(
+              "{\"client_id\":\"client-1\",\"name\":\"Example Name\",\"type\":\"confidential\",\"redirect_uris\":[\"https://example.com\"],\"resources\":[\"resources\"],\"skip_consent\":false,\"disabled\":false,\"created_at\":\"2024-01-01T00:00:00Z\",\"client_secret\":\"client_secret\"}"),
         ),
         isNull,
       );
     });
 
-    test("createAuthOAuthClient answers 418 with its declared error body", () async {
+    test("createAuthOAuthClient answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.createAuthOAuthClient(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        name: (jsonDecode("\"Example Name\"") as String),
-        redirectUris: (jsonDecode("[\"https://example.com\"]") as List).map((element) => (element as String)).toList(),
-        type_: NeonAuthOAuthClientType.fromJson(jsonDecode("\"confidential\"") as String),
-        resources: (jsonDecode("[\"resources\"]") as List).map((element) => (element as String)).toList(),
-        skipConsent: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          name: (jsonDecode("\"Example Name\"") as String),
+          redirectUris: (jsonDecode("[\"https://example.com\"]") as List)
+              .map((element) => (element as String))
+              .toList(),
+          type_: NeonAuthOAuthClientType.fromJson(
+              jsonDecode("\"confidential\"") as String),
+          resources: (jsonDecode("[\"resources\"]") as List)
+              .map((element) => (element as String))
+              .toList(),
+          skipConsent: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -737,19 +880,22 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_2.createAuthUser(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        email: (jsonDecode("\"user@example.com\"") as String),
-        name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          email: (jsonDecode("\"user@example.com\"") as String),
+          name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -758,12 +904,17 @@ void main() {
       final actual = await sdk_methods_4.createBranch(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        body: SdkPresent<BranchCreateRequest>(BranchCreateRequest.fromJson((jsonDecode("{\"branch\":{\"parent_id\":\"br-aged-salad-637688\",\"name\":\"mybranch\"}}") as Map).cast<String, dynamic>())),
+        body: SdkPresent<
+            BranchCreateRequest>(BranchCreateRequest.fromJson((jsonDecode(
+                    "{\"branch\":{\"parent_id\":\"br-aged-salad-637688\",\"name\":\"mybranch\"}}")
+                as Map)
+            .cast<String, dynamic>())),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"endpoints\":[{\"host\":\"ep-silent-smoke-806639.us-east-2.aws.neon.tech\",\"id\":\"ep-silent-smoke-806639\",\"name\":\"My cool compute\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"creation_source\":\"console\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"suspend_timeout_seconds\":0,\"provisioner\":\"k8s-neonvm\"}],\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}],\"roles\":[{\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"}],\"databases\":[{\"id\":834686,\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"neondb\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"}],\"connection_uris\":[{\"connection_uri\":\"https://example.com\",\"connection_parameters\":{\"database\":\"database\",\"password\":\"password\",\"role\":\"role\",\"host\":\"host\",\"pooler_host\":\"pooler_host\"}}]}"),
+          SdkUtils.decodeJson(
+              "{\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"endpoints\":[{\"host\":\"ep-silent-smoke-806639.us-east-2.aws.neon.tech\",\"id\":\"ep-silent-smoke-806639\",\"name\":\"My cool compute\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"creation_source\":\"console\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"suspend_timeout_seconds\":0,\"provisioner\":\"k8s-neonvm\"}],\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}],\"roles\":[{\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"}],\"databases\":[{\"id\":834686,\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"neondb\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"}],\"connection_uris\":[{\"connection_uri\":\"https://example.com\",\"connection_parameters\":{\"database\":\"database\",\"password\":\"password\",\"role\":\"role\",\"host\":\"host\",\"pooler_host\":\"pooler_host\"}}]}"),
         ),
         isNull,
       );
@@ -775,106 +926,140 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.createBranch(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        body: SdkPresent<BranchCreateRequest>(BranchCreateRequest.fromJson((jsonDecode("{\"branch\":{\"parent_id\":\"br-aged-salad-637688\",\"name\":\"mybranch\"}}") as Map).cast<String, dynamic>())),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          body: SdkPresent<
+              BranchCreateRequest>(BranchCreateRequest.fromJson((jsonDecode(
+                      "{\"branch\":{\"parent_id\":\"br-aged-salad-637688\",\"name\":\"mybranch\"}}")
+                  as Map)
+              .cast<String, dynamic>())),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createBranchAnonymized reaches the mock and decodes its response", () async {
+    test("createBranchAnonymized reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.createBranchAnonymized(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        body: BranchAnonymizedCreateRequest.fromJson((jsonDecode("{\"annotation_value\":{\"github-commit-ref\":\"github-branch-name\"},\"branch_create\":{\"endpoints\":[{\"type\":\"read_only\",\"settings\":{\"pg_settings\":{\"key\":\"key\"},\"pgbouncer_settings\":{\"key\":\"key\"},\"preload_libraries\":{\"use_defaults\":false,\"enabled_libraries\":[\"enabled_libraries\"]}},\"autoscaling_limit_min_cu\":0.25,\"autoscaling_limit_max_cu\":0.25,\"provisioner\":\"k8s-neonvm\",\"suspend_timeout_seconds\":-1}],\"branch\":{\"parent_id\":\"a\",\"name\":\"Example Name\",\"parent_lsn\":\"parent_lsn\",\"parent_timestamp\":\"2024-02-26T12:00:00Z\",\"protected\":false,\"realtime\":{\"allowed_origins\":[\"*\"]},\"archived\":false,\"init_source\":\"parent-data\",\"expires_at\":\"2025-06-09T18:02:16Z\"}},\"masking_rules\":[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}],\"start_anonymization\":false}") as Map).cast<String, dynamic>()),
+        body: BranchAnonymizedCreateRequest.fromJson((jsonDecode(
+                    "{\"annotation_value\":{\"github-commit-ref\":\"github-branch-name\"},\"branch_create\":{\"endpoints\":[{\"type\":\"read_only\",\"settings\":{\"pg_settings\":{\"key\":\"key\"},\"pgbouncer_settings\":{\"key\":\"key\"},\"preload_libraries\":{\"use_defaults\":false,\"enabled_libraries\":[\"enabled_libraries\"]}},\"autoscaling_limit_min_cu\":0.25,\"autoscaling_limit_max_cu\":0.25,\"provisioner\":\"k8s-neonvm\",\"suspend_timeout_seconds\":-1}],\"branch\":{\"parent_id\":\"a\",\"name\":\"Example Name\",\"parent_lsn\":\"parent_lsn\",\"parent_timestamp\":\"2024-02-26T12:00:00Z\",\"protected\":false,\"realtime\":{\"allowed_origins\":[\"*\"]},\"archived\":false,\"init_source\":\"parent-data\",\"expires_at\":\"2025-06-09T18:02:16Z\"}},\"masking_rules\":[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}],\"start_anonymization\":false}")
+                as Map)
+            .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"endpoints\":[{\"host\":\"ep-silent-smoke-806639.us-east-2.aws.neon.tech\",\"id\":\"ep-silent-smoke-806639\",\"name\":\"My cool compute\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"creation_source\":\"console\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"suspend_timeout_seconds\":0,\"provisioner\":\"k8s-neonvm\"}],\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}],\"roles\":[{\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"}],\"databases\":[{\"id\":834686,\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"neondb\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"}],\"connection_uris\":[{\"connection_uri\":\"https://example.com\",\"connection_parameters\":{\"database\":\"database\",\"password\":\"password\",\"role\":\"role\",\"host\":\"host\",\"pooler_host\":\"pooler_host\"}}]}"),
+          SdkUtils.decodeJson(
+              "{\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"endpoints\":[{\"host\":\"ep-silent-smoke-806639.us-east-2.aws.neon.tech\",\"id\":\"ep-silent-smoke-806639\",\"name\":\"My cool compute\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"creation_source\":\"console\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"suspend_timeout_seconds\":0,\"provisioner\":\"k8s-neonvm\"}],\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}],\"roles\":[{\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"}],\"databases\":[{\"id\":834686,\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"neondb\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"}],\"connection_uris\":[{\"connection_uri\":\"https://example.com\",\"connection_parameters\":{\"database\":\"database\",\"password\":\"password\",\"role\":\"role\",\"host\":\"host\",\"pooler_host\":\"pooler_host\"}}]}"),
         ),
         isNull,
       );
     });
 
-    test("createBranchAnonymized answers 418 with its declared error body", () async {
+    test("createBranchAnonymized answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.createBranchAnonymized(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        body: BranchAnonymizedCreateRequest.fromJson((jsonDecode("{\"annotation_value\":{\"github-commit-ref\":\"github-branch-name\"},\"branch_create\":{\"endpoints\":[{\"type\":\"read_only\",\"settings\":{\"pg_settings\":{\"key\":\"key\"},\"pgbouncer_settings\":{\"key\":\"key\"},\"preload_libraries\":{\"use_defaults\":false,\"enabled_libraries\":[\"enabled_libraries\"]}},\"autoscaling_limit_min_cu\":0.25,\"autoscaling_limit_max_cu\":0.25,\"provisioner\":\"k8s-neonvm\",\"suspend_timeout_seconds\":-1}],\"branch\":{\"parent_id\":\"a\",\"name\":\"Example Name\",\"parent_lsn\":\"parent_lsn\",\"parent_timestamp\":\"2024-02-26T12:00:00Z\",\"protected\":false,\"realtime\":{\"allowed_origins\":[\"*\"]},\"archived\":false,\"init_source\":\"parent-data\",\"expires_at\":\"2025-06-09T18:02:16Z\"}},\"masking_rules\":[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}],\"start_anonymization\":false}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          body: BranchAnonymizedCreateRequest.fromJson((jsonDecode(
+                      "{\"annotation_value\":{\"github-commit-ref\":\"github-branch-name\"},\"branch_create\":{\"endpoints\":[{\"type\":\"read_only\",\"settings\":{\"pg_settings\":{\"key\":\"key\"},\"pgbouncer_settings\":{\"key\":\"key\"},\"preload_libraries\":{\"use_defaults\":false,\"enabled_libraries\":[\"enabled_libraries\"]}},\"autoscaling_limit_min_cu\":0.25,\"autoscaling_limit_max_cu\":0.25,\"provisioner\":\"k8s-neonvm\",\"suspend_timeout_seconds\":-1}],\"branch\":{\"parent_id\":\"a\",\"name\":\"Example Name\",\"parent_lsn\":\"parent_lsn\",\"parent_timestamp\":\"2024-02-26T12:00:00Z\",\"protected\":false,\"realtime\":{\"allowed_origins\":[\"*\"]},\"archived\":false,\"init_source\":\"parent-data\",\"expires_at\":\"2025-06-09T18:02:16Z\"}},\"masking_rules\":[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}],\"start_anonymization\":false}")
+                  as Map)
+              .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createBranchDatabase reaches the mock and decodes its response", () async {
+    test("createBranchDatabase reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.createBranchDatabase(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        database: DatabaseCreateRequestDatabase.fromJson((jsonDecode("{\"name\":\"mydb\",\"owner_name\":\"casey\"}") as Map).cast<String, dynamic>()),
+        database: DatabaseCreateRequestDatabase.fromJson(
+            (jsonDecode("{\"name\":\"mydb\",\"owner_name\":\"casey\"}") as Map)
+                .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"database\":{\"id\":876692,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"mydb\",\"owner_name\":\"casey\",\"created_at\":\"2022-12-04T00:15:04Z\",\"updated_at\":\"2022-12-04T00:15:04Z\"},\"operations\":[{\"id\":\"39426015-db00-40fa-85c5-1c7072df46d0\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"endpoint_id\":\"ep-little-smoke-851426\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-04T00:15:04Z\",\"updated_at\":\"2022-12-04T00:15:04Z\",\"total_duration_ms\":100},{\"id\":\"b7483d4e-33da-4d40-b319-ac858d4d3e69\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"endpoint_id\":\"ep-little-smoke-851426\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-04T00:15:04Z\",\"updated_at\":\"2022-12-04T00:15:04Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"database\":{\"id\":876692,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"mydb\",\"owner_name\":\"casey\",\"created_at\":\"2022-12-04T00:15:04Z\",\"updated_at\":\"2022-12-04T00:15:04Z\"},\"operations\":[{\"id\":\"39426015-db00-40fa-85c5-1c7072df46d0\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"endpoint_id\":\"ep-little-smoke-851426\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-04T00:15:04Z\",\"updated_at\":\"2022-12-04T00:15:04Z\",\"total_duration_ms\":100},{\"id\":\"b7483d4e-33da-4d40-b319-ac858d4d3e69\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"endpoint_id\":\"ep-little-smoke-851426\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-04T00:15:04Z\",\"updated_at\":\"2022-12-04T00:15:04Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
     });
 
-    test("createBranchDatabase answers 418 with its declared error body", () async {
+    test("createBranchDatabase answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.createBranchDatabase(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        database: DatabaseCreateRequestDatabase.fromJson((jsonDecode("{\"name\":\"mydb\",\"owner_name\":\"casey\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          database: DatabaseCreateRequestDatabase.fromJson(
+              (jsonDecode("{\"name\":\"mydb\",\"owner_name\":\"casey\"}")
+                      as Map)
+                  .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createBranchRole reaches the mock and decodes its response", () async {
+    test("createBranchRole reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.createBranchRole(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        role: RoleCreateRequestRole.fromJson((jsonDecode("{\"name\":\"sally\"}") as Map).cast<String, dynamic>()),
+        role: RoleCreateRequestRole.fromJson(
+            (jsonDecode("{\"name\":\"sally\"}") as Map)
+                .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"role\":{\"branch_id\":\"br-noisy-sunset-458773\",\"name\":\"sally\",\"password\":\"Onf1AjayKwe0\",\"protected\":false,\"created_at\":\"2022-12-03T11:58:29Z\",\"updated_at\":\"2022-12-03T11:58:29Z\"},\"operations\":[{\"id\":\"2c2be371-d5ac-4db5-8b68-79f05e8bc287\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-noisy-sunset-458773\",\"endpoint_id\":\"ep-small-pine-767857\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T11:58:29Z\",\"updated_at\":\"2022-12-03T11:58:29Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"role\":{\"branch_id\":\"br-noisy-sunset-458773\",\"name\":\"sally\",\"password\":\"Onf1AjayKwe0\",\"protected\":false,\"created_at\":\"2022-12-03T11:58:29Z\",\"updated_at\":\"2022-12-03T11:58:29Z\"},\"operations\":[{\"id\":\"2c2be371-d5ac-4db5-8b68-79f05e8bc287\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-noisy-sunset-458773\",\"endpoint_id\":\"ep-small-pine-767857\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T11:58:29Z\",\"updated_at\":\"2022-12-03T11:58:29Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -886,18 +1071,23 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.createBranchRole(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        role: RoleCreateRequestRole.fromJson((jsonDecode("{\"name\":\"sally\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          role: RoleCreateRequestRole.fromJson(
+              (jsonDecode("{\"name\":\"sally\"}") as Map)
+                  .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -908,12 +1098,15 @@ void main() {
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         name: (jsonDecode("\"Example Name\"") as String),
-        accessLevel: SdkPresent<BucketCreateRequestAccessLevel>(BucketCreateRequestAccessLevel.fromJson(jsonDecode("\"private\"") as String)),
+        accessLevel: SdkPresent<BucketCreateRequestAccessLevel>(
+            BucketCreateRequestAccessLevel.fromJson(
+                jsonDecode("\"private\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"bucket\":{\"name\":\"Example Name\",\"access_level\":\"private\",\"created_at\":\"2024-01-01T00:00:00Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"bucket\":{\"name\":\"Example Name\",\"access_level\":\"private\",\"created_at\":\"2024-01-01T00:00:00Z\"}}"),
         ),
         isNull,
       );
@@ -925,36 +1118,46 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_6.createBuckets(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        name: (jsonDecode("\"Example Name\"") as String),
-        accessLevel: SdkPresent<BucketCreateRequestAccessLevel>(BucketCreateRequestAccessLevel.fromJson(jsonDecode("\"private\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          name: (jsonDecode("\"Example Name\"") as String),
+          accessLevel: SdkPresent<BucketCreateRequestAccessLevel>(
+              BucketCreateRequestAccessLevel.fromJson(
+                  jsonDecode("\"private\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 410);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createCredential reaches the mock and decodes its response", () async {
+    test("createCredential reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_7.createCredential(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        scopes: (jsonDecode("[\"storage:read\"]") as List).map((element) => CredentialScope.fromJson(element as String)).toList(),
-        principalType: CreateCredentialRequestPrincipalType.fromJson(jsonDecode("\"user\"") as String),
+        scopes: (jsonDecode("[\"storage:read\"]") as List)
+            .map((element) => CredentialScope.fromJson(element as String))
+            .toList(),
+        principalType: CreateCredentialRequestPrincipalType.fromJson(
+            jsonDecode("\"user\"") as String),
         name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"token_id\":\"token-1\",\"token_id_short\":\"token_id_short\",\"name\":\"Example Name\",\"api_token\":\"api_token\",\"s3_secret_access_key\":\"s3_secret_access_key\",\"scopes\":[\"storage:read\"],\"branch_id\":\"a\",\"created_at\":\"2024-01-01T00:00:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"token_id\":\"token-1\",\"token_id_short\":\"token_id_short\",\"name\":\"Example Name\",\"api_token\":\"api_token\",\"s3_secret_access_key\":\"s3_secret_access_key\",\"scopes\":[\"storage:read\"],\"branch_id\":\"a\",\"created_at\":\"2024-01-01T00:00:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
@@ -966,20 +1169,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_7.createCredential(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        scopes: (jsonDecode("[\"storage:read\"]") as List).map((element) => CredentialScope.fromJson(element as String)).toList(),
-        principalType: CreateCredentialRequestPrincipalType.fromJson(jsonDecode("\"user\"") as String),
-        name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          scopes: (jsonDecode("[\"storage:read\"]") as List)
+              .map((element) => CredentialScope.fromJson(element as String))
+              .toList(),
+          principalType: CreateCredentialRequestPrincipalType.fromJson(
+              jsonDecode("\"user\"") as String),
+          name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -990,13 +1199,22 @@ void main() {
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         databaseName: (jsonDecode("\"Example Name\"") as String),
-        authProvider: SdkPresent<DataAPICreateRequestAuthProvider>(DataAPICreateRequestAuthProvider.fromJson(jsonDecode("\"neon_auth\"") as String)),
-        jwksUrl: SdkPresent<String>((jsonDecode("\"https://example.com\"") as String)),
-        providerName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        jwtAudience: SdkPresent<String>((jsonDecode("\"jwt_audience\"") as String)),
+        authProvider: SdkPresent<DataAPICreateRequestAuthProvider>(
+            DataAPICreateRequestAuthProvider.fromJson(
+                jsonDecode("\"neon_auth\"") as String)),
+        jwksUrl: SdkPresent<String>(
+            (jsonDecode("\"https://example.com\"") as String)),
+        providerName:
+            SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        jwtAudience:
+            SdkPresent<String>((jsonDecode("\"jwt_audience\"") as String)),
         addDefaultGrants: SdkPresent<bool>((jsonDecode("false") as bool)),
         skipAuthSchema: SdkPresent<bool>((jsonDecode("false") as bool)),
-        settings: SdkPresent<DataAPISettings>(DataAPISettings.fromJson((jsonDecode("{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false}") as Map).cast<String, dynamic>())),
+        settings: SdkPresent<
+            DataAPISettings>(DataAPISettings.fromJson((jsonDecode(
+                    "{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false}")
+                as Map)
+            .cast<String, dynamic>())),
       );
       expect(
         mismatch(
@@ -1013,25 +1231,37 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_8.createDataApi(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        databaseName: (jsonDecode("\"Example Name\"") as String),
-        authProvider: SdkPresent<DataAPICreateRequestAuthProvider>(DataAPICreateRequestAuthProvider.fromJson(jsonDecode("\"neon_auth\"") as String)),
-        jwksUrl: SdkPresent<String>((jsonDecode("\"https://example.com\"") as String)),
-        providerName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        jwtAudience: SdkPresent<String>((jsonDecode("\"jwt_audience\"") as String)),
-        addDefaultGrants: SdkPresent<bool>((jsonDecode("false") as bool)),
-        skipAuthSchema: SdkPresent<bool>((jsonDecode("false") as bool)),
-        settings: SdkPresent<DataAPISettings>(DataAPISettings.fromJson((jsonDecode("{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false}") as Map).cast<String, dynamic>())),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          databaseName: (jsonDecode("\"Example Name\"") as String),
+          authProvider: SdkPresent<DataAPICreateRequestAuthProvider>(
+              DataAPICreateRequestAuthProvider.fromJson(
+                  jsonDecode("\"neon_auth\"") as String)),
+          jwksUrl: SdkPresent<String>(
+              (jsonDecode("\"https://example.com\"") as String)),
+          providerName:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          jwtAudience:
+              SdkPresent<String>((jsonDecode("\"jwt_audience\"") as String)),
+          addDefaultGrants: SdkPresent<bool>((jsonDecode("false") as bool)),
+          skipAuthSchema: SdkPresent<bool>((jsonDecode("false") as bool)),
+          settings: SdkPresent<
+              DataAPISettings>(DataAPISettings.fromJson((jsonDecode(
+                      "{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false}")
+                  as Map)
+              .cast<String, dynamic>())),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1040,12 +1270,16 @@ void main() {
       final actual = await sdk_methods_9.createEndpoint(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        endpoint: EndpointCreateRequestEndpoint.fromJson((jsonDecode("{\"branch_id\":\"br-floral-mountain-251143\",\"type\":\"read_write\"}") as Map).cast<String, dynamic>()),
+        endpoint: EndpointCreateRequestEndpoint.fromJson((jsonDecode(
+                    "{\"branch_id\":\"br-floral-mountain-251143\",\"type\":\"read_write\"}")
+                as Map)
+            .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoint\":{\"host\":\"ep-shrill-thunder-454069.us-east-2.aws.neon.tech\",\"id\":\"ep-shrill-thunder-454069\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"suspend_timeout_seconds\":10800,\"provisioner\":\"k8s-pod\"},\"operations\":[{\"id\":\"874f8bfe-f51d-4c61-85af-a29bea73e0e2\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"start_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoint\":{\"host\":\"ep-shrill-thunder-454069.us-east-2.aws.neon.tech\",\"id\":\"ep-shrill-thunder-454069\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"suspend_timeout_seconds\":10800,\"provisioner\":\"k8s-pod\"},\"operations\":[{\"id\":\"874f8bfe-f51d-4c61-85af-a29bea73e0e2\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"start_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -1057,171 +1291,233 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_9.createEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        endpoint: EndpointCreateRequestEndpoint.fromJson((jsonDecode("{\"branch_id\":\"br-floral-mountain-251143\",\"type\":\"read_write\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          endpoint: EndpointCreateRequestEndpoint.fromJson((jsonDecode(
+                      "{\"branch_id\":\"br-floral-mountain-251143\",\"type\":\"read_write\"}")
+                  as Map)
+              .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createFunctionsDeployment reaches the mock and decodes its response", () async {
+    test("createFunctionsDeployment reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_10.createFunctionsDeployment(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         slug: (jsonDecode("\"a\"") as String),
-        zip: SdkPresent<SdkUploadFile>(SdkUploadFile(utf8.encode(jsonDecode("\"ZXhhbXBsZQ==\"") as String), filename: 'mock.bin')),
-        runtime: SdkPresent<FunctionDeployRequestRuntime>(FunctionDeployRequestRuntime.fromJson(jsonDecode("\"nodejs24\"") as String)),
-        environment: SdkPresent<String>((jsonDecode("\"environment\"") as String)),
+        zip: SdkPresent<SdkUploadFile>(SdkUploadFile(
+            utf8.encode(jsonDecode("\"ZXhhbXBsZQ==\"") as String),
+            filename: 'mock.bin')),
+        runtime: SdkPresent<FunctionDeployRequestRuntime>(
+            FunctionDeployRequestRuntime.fromJson(
+                jsonDecode("\"nodejs24\"") as String)),
+        environment:
+            SdkPresent<String>((jsonDecode("\"environment\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"}}"),
+          SdkUtils.decodeJson(
+              "{\"deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"}}"),
         ),
         isNull,
       );
     });
 
-    test("createFunctionsDeployment answers 418 with its declared error body", () async {
+    test("createFunctionsDeployment answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.createFunctionsDeployment(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        slug: (jsonDecode("\"a\"") as String),
-        zip: SdkPresent<SdkUploadFile>(SdkUploadFile(utf8.encode(jsonDecode("\"ZXhhbXBsZQ==\"") as String), filename: 'mock.bin')),
-        runtime: SdkPresent<FunctionDeployRequestRuntime>(FunctionDeployRequestRuntime.fromJson(jsonDecode("\"nodejs24\"") as String)),
-        environment: SdkPresent<String>((jsonDecode("\"environment\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          slug: (jsonDecode("\"a\"") as String),
+          zip: SdkPresent<SdkUploadFile>(SdkUploadFile(
+              utf8.encode(jsonDecode("\"ZXhhbXBsZQ==\"") as String),
+              filename: 'mock.bin')),
+          runtime: SdkPresent<FunctionDeployRequestRuntime>(
+              FunctionDeployRequestRuntime.fromJson(
+                  jsonDecode("\"nodejs24\"") as String)),
+          environment:
+              SdkPresent<String>((jsonDecode("\"environment\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createFunctionsTrigger reaches the mock and decodes its response", () async {
+    test("createFunctionsTrigger reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_10.createFunctionsTrigger(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        body: TriggerCreateRequest.fromJson((jsonDecode("{\"type\":\"schedule\",\"function_slug\":\"a\",\"name\":\"Example Name\",\"function_path\":\"/\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":true}") as Map).cast<String, dynamic>()),
+        body: TriggerCreateRequest.fromJson((jsonDecode(
+                    "{\"type\":\"schedule\",\"function_slug\":\"a\",\"name\":\"Example Name\",\"function_path\":\"/\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":true}")
+                as Map)
+            .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"trigger\":{\"type\":\"schedule\",\"trigger_id\":\"a\",\"function_slug\":\"function_slug\",\"name\":\"Example Name\",\"function_path\":\"function_path\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false,\"version\":1,\"next_run_at\":\"2024-01-01T00:00:00Z\",\"inherited\":false}}"),
+          SdkUtils.decodeJson(
+              "{\"trigger\":{\"type\":\"schedule\",\"trigger_id\":\"a\",\"function_slug\":\"function_slug\",\"name\":\"Example Name\",\"function_path\":\"function_path\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false,\"version\":1,\"next_run_at\":\"2024-01-01T00:00:00Z\",\"inherited\":false}}"),
         ),
         isNull,
       );
     });
 
-    test("createFunctionsTrigger answers 418 with its declared error body", () async {
+    test("createFunctionsTrigger answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.createFunctionsTrigger(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        body: TriggerCreateRequest.fromJson((jsonDecode("{\"type\":\"schedule\",\"function_slug\":\"a\",\"name\":\"Example Name\",\"function_path\":\"/\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":true}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          body: TriggerCreateRequest.fromJson((jsonDecode(
+                      "{\"type\":\"schedule\",\"function_slug\":\"a\",\"name\":\"Example Name\",\"function_path\":\"/\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":true}")
+                  as Map)
+              .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createOrganizationInvitations reaches the mock and decodes its response", () async {
+    test(
+        "createOrganizationInvitations reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.createOrganizationInvitations(
         config,
         orgId: (jsonDecode("\"a\"") as String),
-        invitations: (jsonDecode("[{\"email\":\"invited-user@email.com\",\"role\":\"member\"}]") as List).map((element) => OrganizationInviteCreateRequest.fromJson((element as Map).cast<String, dynamic>())).toList(),
+        invitations: (jsonDecode(
+                    "[{\"email\":\"invited-user@email.com\",\"role\":\"member\"}]")
+                as List)
+            .map((element) => OrganizationInviteCreateRequest.fromJson(
+                (element as Map).cast<String, dynamic>()))
+            .toList(),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"invitations\":[{\"id\":\"00000000-0000-4000-8000-000000000000\",\"email\":\"user@example.com\",\"org_id\":\"a\",\"invited_by\":\"00000000-0000-4000-8000-000000000000\",\"invited_at\":\"2024-01-01T00:00:00Z\",\"role\":\"admin\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"invitations\":[{\"id\":\"00000000-0000-4000-8000-000000000000\",\"email\":\"user@example.com\",\"org_id\":\"a\",\"invited_by\":\"00000000-0000-4000-8000-000000000000\",\"invited_at\":\"2024-01-01T00:00:00Z\",\"role\":\"admin\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("createOrganizationInvitations answers 418 with its declared error body", () async {
+    test(
+        "createOrganizationInvitations answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.createOrganizationInvitations(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        invitations: (jsonDecode("[{\"email\":\"invited-user@email.com\",\"role\":\"member\"}]") as List).map((element) => OrganizationInviteCreateRequest.fromJson((element as Map).cast<String, dynamic>())).toList(),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          invitations: (jsonDecode(
+                      "[{\"email\":\"invited-user@email.com\",\"role\":\"member\"}]")
+                  as List)
+              .map((element) => OrganizationInviteCreateRequest.fromJson(
+                  (element as Map).cast<String, dynamic>()))
+              .toList(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createOrganizationsApiKey reaches the mock and decodes its response", () async {
+    test("createOrganizationsApiKey reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.createOrganizationsApiKey(
         config,
         orgId: (jsonDecode("\"a\"") as String),
-        body: OrgApiKeyCreateRequest.fromJson((jsonDecode("{\"key_name\":\"orgkey\"}") as Map).cast<String, dynamic>()),
+        body: OrgApiKeyCreateRequest.fromJson(
+            (jsonDecode("{\"key_name\":\"orgkey\"}") as Map)
+                .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":165434,\"key\":\"9v1faketcjbl4sn1013keyd43n2a8qlfakeog8yvp40hx16keyjo1bpds4y2dfms3\",\"name\":\"orgkey\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":\"629982cc-de05-43db-ae16-28f2399c4910\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":165434,\"key\":\"9v1faketcjbl4sn1013keyd43n2a8qlfakeog8yvp40hx16keyjo1bpds4y2dfms3\",\"name\":\"orgkey\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":\"629982cc-de05-43db-ae16-28f2399c4910\"}"),
         ),
         isNull,
       );
     });
 
-    test("createOrganizationsApiKey answers 418 with its declared error body", () async {
+    test("createOrganizationsApiKey answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.createOrganizationsApiKey(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        body: OrgApiKeyCreateRequest.fromJson((jsonDecode("{\"key_name\":\"orgkey\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          body: OrgApiKeyCreateRequest.fromJson(
+              (jsonDecode("{\"key_name\":\"orgkey\"}") as Map)
+                  .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1229,12 +1525,15 @@ void main() {
     test("createProject reaches the mock and decodes its response", () async {
       final actual = await sdk_methods_0.createProject(
         config,
-        project: ProjectCreateRequestProject.fromJson((jsonDecode("{\"name\":\"myproject\"}") as Map).cast<String, dynamic>()),
+        project: ProjectCreateRequestProject.fromJson(
+            (jsonDecode("{\"name\":\"myproject\"}") as Map)
+                .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"project\":{\"id\":\"spring-example-302709\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"spring-example-302709\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"proxy_host\":\"us-east-2.aws.neon.tech\",\"store_passwords\":true,\"creation_source\":\"console\",\"history_retention_seconds\":604800,\"created_at\":\"2022-12-13T01:30:55Z\",\"updated_at\":\"2022-12-13T01:30:55Z\",\"owner\":{\"name\":\"John Smith\",\"email\":\"some@email.com\",\"branches_limit\":10,\"subscription_type\":\"scale\"},\"org_id\":\"org-morning-bread-81040908\",\"owner_id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"data_storage_bytes_hour\":2831928,\"branch_logical_size_limit\":10,\"branch_logical_size_limit_bytes\":10485760,\"data_transfer_bytes\":1000,\"written_data_bytes\":193990002,\"compute_time_seconds\":2485760,\"active_time_seconds\":621440,\"cpu_used_sec\":155350,\"consumption_period_start\":\"2022-11-01T00:00:00Z\",\"consumption_period_end\":\"2022-12-01T00:00:00Z\"},\"connection_uris\":[{\"connection_uri\":\"https://example.com\",\"connection_parameters\":{\"database\":\"database\",\"password\":\"password\",\"role\":\"role\",\"host\":\"host\",\"pooler_host\":\"pooler_host\"}}],\"roles\":[{\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"}],\"databases\":[{\"id\":834686,\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"neondb\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"}],\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}],\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"endpoints\":[{\"host\":\"ep-silent-smoke-806639.us-east-2.aws.neon.tech\",\"id\":\"ep-silent-smoke-806639\",\"name\":\"My cool compute\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"creation_source\":\"console\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"suspend_timeout_seconds\":0,\"provisioner\":\"k8s-neonvm\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"project\":{\"id\":\"spring-example-302709\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"spring-example-302709\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"proxy_host\":\"us-east-2.aws.neon.tech\",\"store_passwords\":true,\"creation_source\":\"console\",\"history_retention_seconds\":604800,\"created_at\":\"2022-12-13T01:30:55Z\",\"updated_at\":\"2022-12-13T01:30:55Z\",\"owner\":{\"name\":\"John Smith\",\"email\":\"some@email.com\",\"branches_limit\":10,\"subscription_type\":\"scale\"},\"org_id\":\"org-morning-bread-81040908\",\"owner_id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"data_storage_bytes_hour\":2831928,\"branch_logical_size_limit\":10,\"branch_logical_size_limit_bytes\":10485760,\"data_transfer_bytes\":1000,\"written_data_bytes\":193990002,\"compute_time_seconds\":2485760,\"active_time_seconds\":621440,\"cpu_used_sec\":155350,\"consumption_period_start\":\"2022-11-01T00:00:00Z\",\"consumption_period_end\":\"2022-12-01T00:00:00Z\"},\"connection_uris\":[{\"connection_uri\":\"https://example.com\",\"connection_parameters\":{\"database\":\"database\",\"password\":\"password\",\"role\":\"role\",\"host\":\"host\",\"pooler_host\":\"pooler_host\"}}],\"roles\":[{\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"}],\"databases\":[{\"id\":834686,\"branch_id\":\"br-wispy-meadow-118737\",\"name\":\"neondb\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"}],\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}],\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"endpoints\":[{\"host\":\"ep-silent-smoke-806639.us-east-2.aws.neon.tech\",\"id\":\"ep-silent-smoke-806639\",\"name\":\"My cool compute\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"creation_source\":\"console\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"suspend_timeout_seconds\":0,\"provisioner\":\"k8s-neonvm\"}]}"),
         ),
         isNull,
       );
@@ -1246,21 +1545,28 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.createProject(
-        config,
-        project: ProjectCreateRequestProject.fromJson((jsonDecode("{\"name\":\"myproject\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          project: ProjectCreateRequestProject.fromJson(
+              (jsonDecode("{\"name\":\"myproject\"}") as Map)
+                  .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("createProjectTransferRequest reaches the mock and decodes its response", () async {
+    test(
+        "createProjectTransferRequest reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.createProjectTransferRequest(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1269,29 +1575,35 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"00000000-0000-4000-8000-000000000000\",\"project_id\":\"a\",\"created_at\":\"2024-01-01T00:00:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"00000000-0000-4000-8000-000000000000\",\"project_id\":\"a\",\"created_at\":\"2024-01-01T00:00:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
     });
 
-    test("createProjectTransferRequest answers 418 with its declared error body", () async {
+    test(
+        "createProjectTransferRequest answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.createProjectTransferRequest(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        ttlSeconds: SdkPresent<int>((jsonDecode("86400") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          ttlSeconds: SdkPresent<int>((jsonDecode("86400") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1302,14 +1614,17 @@ void main() {
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
-        timestamp: SdkPresent<String>((jsonDecode("\"2025-08-05T22:00:00Z\"") as String)),
+        timestamp: SdkPresent<String>(
+            (jsonDecode("\"2025-08-05T22:00:00Z\"") as String)),
         name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        expiresAt: SdkPresent<String>((jsonDecode("\"2025-08-05T22:00:00Z\"") as String)),
+        expiresAt: SdkPresent<String>(
+            (jsonDecode("\"2025-08-05T22:00:00Z\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"snapshot\":{\"id\":\"a\",\"name\":\"Example Name\",\"lsn\":\"lsn\",\"timestamp\":\"2024-01-01T00:00:00Z\",\"source_branch_id\":\"a\",\"created_at\":\"2025-01-15T10:30:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\",\"manual\":false,\"full_size\":1,\"diff_size\":1},\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
+          SdkUtils.decodeJson(
+              "{\"snapshot\":{\"id\":\"a\",\"name\":\"Example Name\",\"lsn\":\"lsn\",\"timestamp\":\"2024-01-01T00:00:00Z\",\"source_branch_id\":\"a\",\"created_at\":\"2025-01-15T10:30:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\",\"manual\":false,\"full_size\":1,\"diff_size\":1},\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
         ),
         isNull,
       );
@@ -1321,117 +1636,158 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_11.createSnapshot(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
-        timestamp: SdkPresent<String>((jsonDecode("\"2025-08-05T22:00:00Z\"") as String)),
-        name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        expiresAt: SdkPresent<String>((jsonDecode("\"2025-08-05T22:00:00Z\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
+          timestamp: SdkPresent<String>(
+              (jsonDecode("\"2025-08-05T22:00:00Z\"") as String)),
+          name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          expiresAt: SdkPresent<String>(
+              (jsonDecode("\"2025-08-05T22:00:00Z\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteAuthLegacyDomainFromRedirectUriWhitelist reaches the mock and decodes its response", () async {
+    test(
+        "deleteAuthLegacyDomainFromRedirectUriWhitelist reaches the mock and decodes its response",
+        () async {
       await sdk_methods_1.deleteAuthLegacyDomainFromRedirectUriWhitelist(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        domains: (jsonDecode("[{\"domain\":\"https://example.com\"}]") as List).map((element) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson((element as Map).cast<String, dynamic>())).toList(),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
+        domains: (jsonDecode("[{\"domain\":\"https://example.com\"}]") as List)
+            .map((element) =>
+                NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(
+                    (element as Map).cast<String, dynamic>()))
+            .toList(),
       );
     });
 
-    test("deleteAuthLegacyDomainFromRedirectUriWhitelist answers 418 with its declared error body", () async {
+    test(
+        "deleteAuthLegacyDomainFromRedirectUriWhitelist answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.deleteAuthLegacyDomainFromRedirectUriWhitelist(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        domains: (jsonDecode("[{\"domain\":\"https://example.com\"}]") as List).map((element) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson((element as Map).cast<String, dynamic>())).toList(),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+          domains:
+              (jsonDecode("[{\"domain\":\"https://example.com\"}]") as List)
+                  .map((element) =>
+                      NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(
+                          (element as Map).cast<String, dynamic>()))
+                  .toList(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteAuthLegacyIntegration reaches the mock and decodes its response", () async {
+    test(
+        "deleteAuthLegacyIntegration reaches the mock and decodes its response",
+        () async {
       await sdk_methods_1.deleteAuthLegacyIntegration(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
         deleteData: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
     });
 
-    test("deleteAuthLegacyIntegration answers 418 with its declared error body", () async {
+    test("deleteAuthLegacyIntegration answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.deleteAuthLegacyIntegration(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        deleteData: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+          deleteData: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteAuthLegacyOauthProvider reaches the mock and decodes its response", () async {
+    test(
+        "deleteAuthLegacyOauthProvider reaches the mock and decodes its response",
+        () async {
       await sdk_methods_1.deleteAuthLegacyOauthProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        oauthProviderId: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
+        oauthProviderId: NeonAuthOauthProviderId.fromJson(
+            jsonDecode("\"google\"") as String),
       );
     });
 
-    test("deleteAuthLegacyOauthProvider answers 418 with its declared error body", () async {
+    test(
+        "deleteAuthLegacyOauthProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.deleteAuthLegacyOauthProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        oauthProviderId: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          oauthProviderId: NeonAuthOauthProviderId.fromJson(
+              jsonDecode("\"google\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteAuthLegacyUser reaches the mock and decodes its response", () async {
+    test("deleteAuthLegacyUser reaches the mock and decodes its response",
+        () async {
       await sdk_methods_1.deleteAuthLegacyUser(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1439,28 +1795,33 @@ void main() {
       );
     });
 
-    test("deleteAuthLegacyUser answers 418 with its declared error body", () async {
+    test("deleteAuthLegacyUser answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.deleteAuthLegacyUser(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        authUserId: (jsonDecode("\"auth_user-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          authUserId: (jsonDecode("\"auth_user-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteAuthOAuthClient reaches the mock and decodes its response", () async {
+    test("deleteAuthOAuthClient reaches the mock and decodes its response",
+        () async {
       await sdk_methods_2.deleteAuthOAuthClient(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1469,88 +1830,115 @@ void main() {
       );
     });
 
-    test("deleteAuthOAuthClient answers 418 with its declared error body", () async {
+    test("deleteAuthOAuthClient answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.deleteAuthOAuthClient(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        clientId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          clientId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteAuthOauthProvider reaches the mock and decodes its response", () async {
+    test("deleteAuthOauthProvider reaches the mock and decodes its response",
+        () async {
       await sdk_methods_2.deleteAuthOauthProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        oauthProviderId: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
+        oauthProviderId: NeonAuthOauthProviderId.fromJson(
+            jsonDecode("\"google\"") as String),
       );
     });
 
-    test("deleteAuthOauthProvider answers 418 with its declared error body", () async {
+    test("deleteAuthOauthProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.deleteAuthOauthProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        oauthProviderId: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          oauthProviderId: NeonAuthOauthProviderId.fromJson(
+              jsonDecode("\"google\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteAuthTrustedDomain reaches the mock and decodes its response", () async {
+    test("deleteAuthTrustedDomain reaches the mock and decodes its response",
+        () async {
       await sdk_methods_2.deleteAuthTrustedDomain(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        domains: (jsonDecode("[{\"domain\":\"https://example.com\"}]") as List).map((element) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson((element as Map).cast<String, dynamic>())).toList(),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
+        domains: (jsonDecode("[{\"domain\":\"https://example.com\"}]") as List)
+            .map((element) =>
+                NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(
+                    (element as Map).cast<String, dynamic>()))
+            .toList(),
       );
     });
 
-    test("deleteAuthTrustedDomain answers 418 with its declared error body", () async {
+    test("deleteAuthTrustedDomain answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.deleteAuthTrustedDomain(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-        domains: (jsonDecode("[{\"domain\":\"https://example.com\"}]") as List).map((element) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson((element as Map).cast<String, dynamic>())).toList(),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+          domains:
+              (jsonDecode("[{\"domain\":\"https://example.com\"}]") as List)
+                  .map((element) =>
+                      NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(
+                          (element as Map).cast<String, dynamic>()))
+                  .toList(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1570,18 +1958,21 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_2.deleteAuthUser(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        authUserId: (jsonDecode("\"auth_user-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          authUserId: (jsonDecode("\"auth_user-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1595,7 +1986,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch\":{\"id\":\"br-aged-salad-637688\",\"project_id\":\"shiny-wind-028834\",\"name\":\"main\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":28,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},\"operations\":[{\"id\":\"b6afbc21-2990-4a76-980b-b57d8c2948f2\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-sweet-breeze-497520\",\"endpoint_id\":\"ep-soft-violet-752733\",\"action\":\"suspend_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:53:05Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"total_duration_ms\":100},{\"id\":\"b6afbc21-2990-4a76-980b-b57d8c2948f2\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-sweet-breeze-497520\",\"action\":\"delete_timeline\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:53:05Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"branch\":{\"id\":\"br-aged-salad-637688\",\"project_id\":\"shiny-wind-028834\",\"name\":\"main\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":28,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},\"operations\":[{\"id\":\"b6afbc21-2990-4a76-980b-b57d8c2948f2\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-sweet-breeze-497520\",\"endpoint_id\":\"ep-soft-violet-752733\",\"action\":\"suspend_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:53:05Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"total_duration_ms\":100},{\"id\":\"b6afbc21-2990-4a76-980b-b57d8c2948f2\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-sweet-breeze-497520\",\"action\":\"delete_timeline\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:53:05Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -1607,22 +1999,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.deleteBranch(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteBranchDatabase reaches the mock and decodes its response", () async {
+    test("deleteBranchDatabase reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.deleteBranchDatabase(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1632,35 +2028,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"database\":{\"id\":851537,\"branch_id\":\"br-raspy-hill-832856\",\"name\":\"mydb\",\"owner_name\":\"casey\",\"created_at\":\"2022-12-01T19:41:46Z\",\"updated_at\":\"2022-12-01T19:41:46Z\"},\"operations\":[{\"id\":\"9ef1c2ed-dce4-43aa-bae8-78aea636bf8a\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"endpoint_id\":\"ep-steep-bush-777093\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:51:41Z\",\"updated_at\":\"2022-12-01T19:51:41Z\",\"total_duration_ms\":100},{\"id\":\"42dafb46-f861-497b-ae89-f2bec54f4966\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"endpoint_id\":\"ep-steep-bush-777093\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:51:41Z\",\"updated_at\":\"2022-12-01T19:51:41Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"database\":{\"id\":851537,\"branch_id\":\"br-raspy-hill-832856\",\"name\":\"mydb\",\"owner_name\":\"casey\",\"created_at\":\"2022-12-01T19:41:46Z\",\"updated_at\":\"2022-12-01T19:41:46Z\"},\"operations\":[{\"id\":\"9ef1c2ed-dce4-43aa-bae8-78aea636bf8a\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"endpoint_id\":\"ep-steep-bush-777093\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:51:41Z\",\"updated_at\":\"2022-12-01T19:51:41Z\",\"total_duration_ms\":100},{\"id\":\"42dafb46-f861-497b-ae89-f2bec54f4966\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"endpoint_id\":\"ep-steep-bush-777093\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:51:41Z\",\"updated_at\":\"2022-12-01T19:51:41Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
     });
 
-    test("deleteBranchDatabase answers 418 with its declared error body", () async {
+    test("deleteBranchDatabase answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.deleteBranchDatabase(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        databaseName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          databaseName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteBranchRole reaches the mock and decodes its response", () async {
+    test("deleteBranchRole reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.deleteBranchRole(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1670,7 +2072,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"role\":{\"branch_id\":\"br-raspy-hill-832856\",\"name\":\"thomas\",\"protected\":false,\"created_at\":\"2022-12-01T14:36:23Z\",\"updated_at\":\"2022-12-01T14:36:23Z\"},\"operations\":[{\"id\":\"db646be3-eace-4910-9f60-8150823c5cb8\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"endpoint_id\":\"ep-steep-bush-777093\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:48:11Z\",\"updated_at\":\"2022-12-01T19:48:11Z\",\"total_duration_ms\":100},{\"id\":\"ab94cdad-7630-4943-a55e-5a0952d2e598\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"endpoint_id\":\"ep-steep-bush-777093\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:48:11Z\",\"updated_at\":\"2022-12-01T19:48:11Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"role\":{\"branch_id\":\"br-raspy-hill-832856\",\"name\":\"thomas\",\"protected\":false,\"created_at\":\"2022-12-01T14:36:23Z\",\"updated_at\":\"2022-12-01T14:36:23Z\"},\"operations\":[{\"id\":\"db646be3-eace-4910-9f60-8150823c5cb8\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"endpoint_id\":\"ep-steep-bush-777093\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:48:11Z\",\"updated_at\":\"2022-12-01T19:48:11Z\",\"total_duration_ms\":100},{\"id\":\"ab94cdad-7630-4943-a55e-5a0952d2e598\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"endpoint_id\":\"ep-steep-bush-777093\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-01T19:48:11Z\",\"updated_at\":\"2022-12-01T19:48:11Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -1682,18 +2085,21 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.deleteBranchRole(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        roleName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          roleName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1713,23 +2119,27 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_6.deleteBuckets(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        bucketName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          bucketName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteBucketsObject reaches the mock and decodes its response", () async {
+    test("deleteBucketsObject reaches the mock and decodes its response",
+        () async {
       await sdk_methods_6.deleteBucketsObject(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1739,30 +2149,36 @@ void main() {
       );
     });
 
-    test("deleteBucketsObject answers 404 with its declared error body", () async {
+    test("deleteBucketsObject answers 404 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/404';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_6.deleteBucketsObject(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        bucketName: (jsonDecode("\"Example Name\"") as String),
-        objectKey: (jsonDecode("\"x\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          bucketName: (jsonDecode("\"Example Name\"") as String),
+          objectKey: (jsonDecode("\"x\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteBucketsObjectsByPrefix reaches the mock and decodes its response", () async {
+    test(
+        "deleteBucketsObjectsByPrefix reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_6.deleteBucketsObjectsByPrefix(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1779,25 +2195,30 @@ void main() {
       );
     });
 
-    test("deleteBucketsObjectsByPrefix answers 404 with its declared error body", () async {
+    test(
+        "deleteBucketsObjectsByPrefix answers 404 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/404';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_6.deleteBucketsObjectsByPrefix(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        bucketName: (jsonDecode("\"Example Name\"") as String),
-        prefix: (jsonDecode("\"x\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          bucketName: (jsonDecode("\"Example Name\"") as String),
+          prefix: (jsonDecode("\"x\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1824,18 +2245,21 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_8.deleteDataApi(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        databaseName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          databaseName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1849,7 +2273,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"fd11748e-3c68-458f-b9e3-66d409e3eef0\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"suspend_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"fd11748e-3c68-458f-b9e3-66d409e3eef0\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"suspend_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -1861,17 +2286,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_9.deleteEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        endpointId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          endpointId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -1891,23 +2319,28 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_10.deleteFunctions(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        slug: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          slug: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteFunctionsCustomDomain reaches the mock and decodes its response", () async {
+    test(
+        "deleteFunctionsCustomDomain reaches the mock and decodes its response",
+        () async {
       await sdk_methods_10.deleteFunctionsCustomDomain(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1916,29 +2349,34 @@ void main() {
       );
     });
 
-    test("deleteFunctionsCustomDomain answers 418 with its declared error body", () async {
+    test("deleteFunctionsCustomDomain answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.deleteFunctionsCustomDomain(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        domain: (jsonDecode("\"axx\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          domain: (jsonDecode("\"axx\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteFunctionsTrigger reaches the mock and decodes its response", () async {
+    test("deleteFunctionsTrigger reaches the mock and decodes its response",
+        () async {
       await sdk_methods_10.deleteFunctionsTrigger(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -1947,29 +2385,35 @@ void main() {
       );
     });
 
-    test("deleteFunctionsTrigger answers 418 with its declared error body", () async {
+    test("deleteFunctionsTrigger answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.deleteFunctionsTrigger(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        triggerId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          triggerId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteOrganizationSpendingLimit reaches the mock and decodes its response", () async {
+    test(
+        "deleteOrganizationSpendingLimit reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.deleteOrganizationSpendingLimit(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -1983,27 +2427,34 @@ void main() {
       );
     });
 
-    test("deleteOrganizationSpendingLimit answers 418 with its declared error body", () async {
+    test(
+        "deleteOrganizationSpendingLimit answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.deleteOrganizationSpendingLimit(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteOrganizationVpcEndpoint reaches the mock and decodes its response", () async {
+    test(
+        "deleteOrganizationVpcEndpoint reaches the mock and decodes its response",
+        () async {
       await sdk_methods_3.deleteOrganizationVpcEndpoint(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -2012,24 +2463,29 @@ void main() {
       );
     });
 
-    test("deleteOrganizationVpcEndpoint answers 418 with its declared error body", () async {
+    test(
+        "deleteOrganizationVpcEndpoint answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.deleteOrganizationVpcEndpoint(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        regionId: (jsonDecode("\"region-1\"") as String),
-        vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          regionId: (jsonDecode("\"region-1\"") as String),
+          vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2042,7 +2498,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"project\":{\"id\":\"bold-cloud-468218\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"bold-cloud-468218\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-30T18:41:29Z\",\"updated_at\":\"2022-11-30T18:41:29Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":23004200,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10500,\"data_storage_bytes_hour\":1040,\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"history_retention_seconds\":604800,\"consumption_period_start\":\"2023-02-01T00:00:00Z\",\"consumption_period_end\":\"2023-03-01T00:00:00Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"project\":{\"id\":\"bold-cloud-468218\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"bold-cloud-468218\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-30T18:41:29Z\",\"updated_at\":\"2022-11-30T18:41:29Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":23004200,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10500,\"data_storage_bytes_hour\":1040,\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"history_retention_seconds\":604800,\"consumption_period_start\":\"2023-02-01T00:00:00Z\",\"consumption_period_end\":\"2023-03-01T00:00:00Z\"}}"),
         ),
         isNull,
       );
@@ -2054,21 +2511,25 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.deleteProject(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteProjectJwks reaches the mock and decodes its response", () async {
+    test("deleteProjectJwks reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.deleteProjectJwks(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2077,34 +2538,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"id-1\",\"project_id\":\"a\",\"branch_id\":\"a\",\"jwks_url\":\"https://example.com\",\"provider_name\":\"Example Name\",\"created_at\":\"2024-01-01T00:00:00Z\",\"updated_at\":\"2024-01-01T00:00:00Z\",\"jwt_audience\":\"jwt_audience\",\"role_names\":[\"Example Name\"]}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"id-1\",\"project_id\":\"a\",\"branch_id\":\"a\",\"jwks_url\":\"https://example.com\",\"provider_name\":\"Example Name\",\"created_at\":\"2024-01-01T00:00:00Z\",\"updated_at\":\"2024-01-01T00:00:00Z\",\"jwt_audience\":\"jwt_audience\",\"role_names\":[\"Example Name\"]}"),
         ),
         isNull,
       );
     });
 
-    test("deleteProjectJwks answers 418 with its declared error body", () async {
+    test("deleteProjectJwks answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.deleteProjectJwks(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        jwksId: (jsonDecode("\"jwks-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          jwksId: (jsonDecode("\"jwks-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("deleteProjectVpcEndpoint reaches the mock and decodes its response", () async {
+    test("deleteProjectVpcEndpoint reaches the mock and decodes its response",
+        () async {
       await sdk_methods_0.deleteProjectVpcEndpoint(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2112,23 +2579,27 @@ void main() {
       );
     });
 
-    test("deleteProjectVpcEndpoint answers 418 with its declared error body", () async {
+    test("deleteProjectVpcEndpoint answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.deleteProjectVpcEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2142,7 +2613,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
+          SdkUtils.decodeJson(
+              "{\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
         ),
         isNull,
       );
@@ -2154,17 +2626,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_11.deleteSnapshot(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        snapshotId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          snapshotId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2184,18 +2659,21 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_2.disableAuth(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        deleteData: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          deleteData: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2214,17 +2692,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_12.disableRealtime(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2234,7 +2715,9 @@ void main() {
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        allowedOrigins: SdkPresent<List<String>>((jsonDecode("[\"*\"]") as List).map((element) => (element as String)).toList()),
+        allowedOrigins: SdkPresent<List<String>>((jsonDecode("[\"*\"]") as List)
+            .map((element) => (element as String))
+            .toList()),
       );
     });
 
@@ -2244,23 +2727,30 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_12.enableRealtime(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        allowedOrigins: SdkPresent<List<String>>((jsonDecode("[\"*\"]") as List).map((element) => (element as String)).toList()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          allowedOrigins: SdkPresent<List<String>>(
+              (jsonDecode("[\"*\"]") as List)
+                  .map((element) => (element as String))
+                  .toList()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("finalizeRestoreBranch reaches the mock and decodes its response", () async {
+    test("finalizeRestoreBranch reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.finalizeRestoreBranch(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2270,35 +2760,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
+          SdkUtils.decodeJson(
+              "{\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
         ),
         isNull,
       );
     });
 
-    test("finalizeRestoreBranch answers 418 with its declared error body", () async {
+    test("finalizeRestoreBranch answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.finalizeRestoreBranch(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getActiveRegions reaches the mock and decodes its response", () async {
+    test("getActiveRegions reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_13.getActiveRegions(
         config,
         orgId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
@@ -2306,7 +2802,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"regions\":[{\"region_id\":\"aws-us-east-1\",\"name\":\"Example Name\",\"default\":false,\"geo_lat\":\"2024-01-01T00:00:00Z\",\"geo_long\":\"geo_long\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"regions\":[{\"region_id\":\"aws-us-east-1\",\"name\":\"Example Name\",\"default\":false,\"geo_lat\":\"2024-01-01T00:00:00Z\",\"geo_long\":\"geo_long\"}]}"),
         ),
         isNull,
       );
@@ -2318,16 +2815,19 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_13.getActiveRegions(
-        config,
-        orgId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-      );
+          config,
+          orgId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2341,7 +2841,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"base_url\":\"https://br-cool-moon-42-api.ai.c-2.local.neon.build\"}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"base_url\":\"https://br-cool-moon-42-api.ai.c-2.local.neon.build\"}"),
         ),
         isNull,
       );
@@ -2353,22 +2854,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_14.getAiGateway(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"code\":\"AI_GATEWAY_NOT_ENABLED\",\"message\":\"example text\",\"reason\":\"ai_gateway_unavailable\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"code\":\"AI_GATEWAY_NOT_ENABLED\",\"message\":\"example text\",\"reason\":\"ai_gateway_unavailable\"}")),
         isNull,
       );
     });
 
-    test("getAnonymizedBranchStatus reaches the mock and decodes its response", () async {
+    test("getAnonymizedBranchStatus reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.getAnonymizedBranchStatus(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2377,29 +2882,34 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch_id\":\"br-aged-salad-637688\",\"project_id\":\"simple-truth-637688\",\"state\":\"anonymizing\",\"status_message\":\"Anonymizing table mydb.public.users (3/5)\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:30:22Z\",\"last_run\":{\"started_at\":\"2022-11-30T18:25:15Z\",\"completed_at\":\"2022-11-30T18:30:22Z\",\"triggered_by\":\"df6c5f70-6cbf-4c8c-9e7a-74c3ddbd8f9f\",\"masked_columns\":12}}"),
+          SdkUtils.decodeJson(
+              "{\"branch_id\":\"br-aged-salad-637688\",\"project_id\":\"simple-truth-637688\",\"state\":\"anonymizing\",\"status_message\":\"Anonymizing table mydb.public.users (3/5)\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:30:22Z\",\"last_run\":{\"started_at\":\"2022-11-30T18:25:15Z\",\"completed_at\":\"2022-11-30T18:30:22Z\",\"triggered_by\":\"df6c5f70-6cbf-4c8c-9e7a-74c3ddbd8f9f\",\"masked_columns\":12}}"),
         ),
         isNull,
       );
     });
 
-    test("getAnonymizedBranchStatus answers 418 with its declared error body", () async {
+    test("getAnonymizedBranchStatus answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.getAnonymizedBranchStatus(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2413,7 +2923,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"branch_id\":\"a\",\"db_name\":\"Example Name\",\"created_at\":\"2025-01-15T10:30:00Z\",\"owned_by\":\"user\",\"transfer_status\":\"initiated\",\"jwks_url\":\"https://example.com\",\"base_url\":\"https://example.com\",\"name\":\"Example Name\"}"),
+          SdkUtils.decodeJson(
+              "{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"branch_id\":\"a\",\"db_name\":\"Example Name\",\"created_at\":\"2025-01-15T10:30:00Z\",\"owned_by\":\"user\",\"transfer_status\":\"initiated\",\"jwks_url\":\"https://example.com\",\"base_url\":\"https://example.com\",\"name\":\"Example Name\"}"),
         ),
         isNull,
       );
@@ -2425,22 +2936,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuth(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthAllowLocalhost reaches the mock and decodes its response", () async {
+    test("getAuthAllowLocalhost reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.getAuthAllowLocalhost(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2455,23 +2970,27 @@ void main() {
       );
     });
 
-    test("getAuthAllowLocalhost answers 418 with its declared error body", () async {
+    test("getAuthAllowLocalhost answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuthAllowLocalhost(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2483,7 +3002,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"account_id\":\"account-1\",\"auth_method\":\"keycloak\",\"auth_data\":\"auth_data\"}"),
+          SdkUtils.decodeJson(
+              "{\"account_id\":\"account-1\",\"auth_method\":\"keycloak\",\"auth_data\":\"auth_data\"}"),
         ),
         isNull,
       );
@@ -2495,20 +3015,25 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_15.getAuthDetails(
-        config,
-      );
+          config,
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthEmailAndPasswordConfig reaches the mock and decodes its response", () async {
+    test(
+        "getAuthEmailAndPasswordConfig reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.getAuthEmailAndPasswordConfig(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2517,34 +3042,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"email_verification_method\":\"link\",\"require_email_verification\":false,\"auto_sign_in_after_verification\":false,\"send_verification_email_on_sign_up\":false,\"send_verification_email_on_sign_in\":false,\"disable_sign_up\":false}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"email_verification_method\":\"link\",\"require_email_verification\":false,\"auto_sign_in_after_verification\":false,\"send_verification_email_on_sign_up\":false,\"send_verification_email_on_sign_in\":false,\"disable_sign_up\":false}"),
         ),
         isNull,
       );
     });
 
-    test("getAuthEmailAndPasswordConfig answers 418 with its declared error body", () async {
+    test(
+        "getAuthEmailAndPasswordConfig answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuthEmailAndPasswordConfig(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthEmailProvider reaches the mock and decodes its response", () async {
+    test("getAuthEmailProvider reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.getAuthEmailProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2553,34 +3085,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}"),
+          SdkUtils.decodeJson(
+              "{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}"),
         ),
         isNull,
       );
     });
 
-    test("getAuthEmailProvider answers 418 with its declared error body", () async {
+    test("getAuthEmailProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuthEmailProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthLegacyEmailServer reaches the mock and decodes its response", () async {
+    test("getAuthLegacyEmailServer reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.getAuthLegacyEmailServer(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2588,33 +3126,39 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}"),
+          SdkUtils.decodeJson(
+              "{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}"),
         ),
         isNull,
       );
     });
 
-    test("getAuthLegacyEmailServer answers 418 with its declared error body", () async {
+    test("getAuthLegacyEmailServer answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.getAuthLegacyEmailServer(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthOAuthClient reaches the mock and decodes its response", () async {
+    test("getAuthOAuthClient reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.getAuthOAuthClient(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2624,35 +3168,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"client_id\":\"a\",\"name\":\"Example Name\",\"type\":\"confidential\",\"redirect_uris\":[\"https://example.com\"],\"resources\":[\"resources\"],\"skip_consent\":false,\"disabled\":false,\"created_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"client_id\":\"a\",\"name\":\"Example Name\",\"type\":\"confidential\",\"redirect_uris\":[\"https://example.com\"],\"resources\":[\"resources\"],\"skip_consent\":false,\"disabled\":false,\"created_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
     });
 
-    test("getAuthOAuthClient answers 418 with its declared error body", () async {
+    test("getAuthOAuthClient answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuthOAuthClient(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        clientId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          clientId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthOAuthProviderPlugin reaches the mock and decodes its response", () async {
+    test("getAuthOAuthProviderPlugin reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.getAuthOAuthProviderPlugin(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2661,34 +3211,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"login_page\":\"login_page\",\"consent_page\":\"consent_page\",\"mcp\":{\"resource\":\"resource\",\"dynamic_registration\":false},\"resources\":[{\"identifier\":\"identifier\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"login_page\":\"login_page\",\"consent_page\":\"consent_page\",\"mcp\":{\"resource\":\"resource\",\"dynamic_registration\":false},\"resources\":[{\"identifier\":\"identifier\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("getAuthOAuthProviderPlugin answers 418 with its declared error body", () async {
+    test("getAuthOAuthProviderPlugin answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuthOAuthProviderPlugin(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthPhoneNumberPlugin reaches the mock and decodes its response", () async {
+    test("getAuthPhoneNumberPlugin reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.getAuthPhoneNumberPlugin(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2703,28 +3259,33 @@ void main() {
       );
     });
 
-    test("getAuthPhoneNumberPlugin answers 418 with its declared error body", () async {
+    test("getAuthPhoneNumberPlugin answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuthPhoneNumberPlugin(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthPluginConfigs reaches the mock and decodes its response", () async {
+    test("getAuthPluginConfigs reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.getAuthPluginConfigs(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2733,34 +3294,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"organization\":{\"enabled\":true,\"organization_limit\":10,\"membership_limit\":100,\"creator_role\":\"owner\",\"send_invitation_email\":false},\"magic_link\":{\"enabled\":false,\"expires_in\":5,\"disable_sign_up\":false},\"phone_number\":{\"enabled\":false,\"otp_expires_in\":300},\"oauth_provider\":{\"enabled\":false,\"login_page\":\"login_page\",\"consent_page\":\"consent_page\",\"mcp\":{\"resource\":\"resource\",\"dynamic_registration\":false},\"resources\":[{\"identifier\":\"identifier\"}]},\"email_provider\":{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"},\"email_and_password\":{\"enabled\":false,\"email_verification_method\":\"link\",\"require_email_verification\":false,\"auto_sign_in_after_verification\":false,\"send_verification_email_on_sign_up\":false,\"send_verification_email_on_sign_in\":false,\"disable_sign_up\":false},\"oauth_providers\":[{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}],\"allow_localhost\":false}"),
+          SdkUtils.decodeJson(
+              "{\"organization\":{\"enabled\":true,\"organization_limit\":10,\"membership_limit\":100,\"creator_role\":\"owner\",\"send_invitation_email\":false},\"magic_link\":{\"enabled\":false,\"expires_in\":5,\"disable_sign_up\":false},\"phone_number\":{\"enabled\":false,\"otp_expires_in\":300},\"oauth_provider\":{\"enabled\":false,\"login_page\":\"login_page\",\"consent_page\":\"consent_page\",\"mcp\":{\"resource\":\"resource\",\"dynamic_registration\":false},\"resources\":[{\"identifier\":\"identifier\"}]},\"email_provider\":{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"},\"email_and_password\":{\"enabled\":false,\"email_verification_method\":\"link\",\"require_email_verification\":false,\"auto_sign_in_after_verification\":false,\"send_verification_email_on_sign_up\":false,\"send_verification_email_on_sign_in\":false,\"disable_sign_up\":false},\"oauth_providers\":[{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}],\"allow_localhost\":false}"),
         ),
         isNull,
       );
     });
 
-    test("getAuthPluginConfigs answers 418 with its declared error body", () async {
+    test("getAuthPluginConfigs answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuthPluginConfigs(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAuthWebhookConfig reaches the mock and decodes its response", () async {
+    test("getAuthWebhookConfig reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.getAuthWebhookConfig(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2769,34 +3336,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"webhook_url\":\"https://example.com\",\"enabled_events\":[\"user.before_create\"],\"timeout_seconds\":5}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"webhook_url\":\"https://example.com\",\"enabled_events\":[\"user.before_create\"],\"timeout_seconds\":5}"),
         ),
         isNull,
       );
     });
 
-    test("getAuthWebhookConfig answers 418 with its declared error body", () async {
+    test("getAuthWebhookConfig answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.getAuthWebhookConfig(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getAvailablePreloadLibraries reaches the mock and decodes its response", () async {
+    test(
+        "getAvailablePreloadLibraries reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.getAvailablePreloadLibraries(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2804,28 +3378,34 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"libraries\":[{\"library_name\":\"Example Name\",\"description\":\"example text\",\"is_default\":false,\"is_experimental\":false,\"version\":\"version\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"libraries\":[{\"library_name\":\"Example Name\",\"description\":\"example text\",\"is_default\":false,\"is_experimental\":false,\"version\":\"version\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("getAvailablePreloadLibraries answers 418 with its declared error body", () async {
+    test(
+        "getAvailablePreloadLibraries answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.getAvailablePreloadLibraries(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2839,7 +3419,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch\":{\"id\":\"br-aged-salad-637688\",\"project_id\":\"shiny-wind-028834\",\"name\":\"main\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":28,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},\"annotation\":{\"object\":{\"type\":\"console/branch\",\"id\":\"br-aged-salad-637688\"},\"value\":{\"vercel-commit-ref\":\"test\"},\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"branch\":{\"id\":\"br-aged-salad-637688\",\"project_id\":\"shiny-wind-028834\",\"name\":\"main\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":28,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},\"annotation\":{\"object\":{\"type\":\"console/branch\",\"id\":\"br-aged-salad-637688\"},\"value\":{\"vercel-commit-ref\":\"test\"},\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\"}}"),
         ),
         isNull,
       );
@@ -2851,22 +3432,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.getBranch(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getBranchDatabase reaches the mock and decodes its response", () async {
+    test("getBranchDatabase reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.getBranchDatabase(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2876,30 +3461,35 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"database\":{\"id\":834686,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"main\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"database\":{\"id\":834686,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"main\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"}}"),
         ),
         isNull,
       );
     });
 
-    test("getBranchDatabase answers 418 with its declared error body", () async {
+    test("getBranchDatabase answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.getBranchDatabase(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        databaseName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          databaseName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2914,7 +3504,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"role\":{\"branch_id\":\"br-noisy-sunset-458773\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"role\":{\"branch_id\":\"br-noisy-sunset-458773\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"}}"),
         ),
         isNull,
       );
@@ -2926,23 +3517,27 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.getBranchRole(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        roleName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          roleName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getBranchRolePassword reaches the mock and decodes its response", () async {
+    test("getBranchRolePassword reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.getBranchRolePassword(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -2958,24 +3553,28 @@ void main() {
       );
     });
 
-    test("getBranchRolePassword answers 404 with its declared error body", () async {
+    test("getBranchRolePassword answers 404 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/404';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.getBranchRolePassword(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        roleName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          roleName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -2987,13 +3586,16 @@ void main() {
         branchId: (jsonDecode("\"a\"") as String),
         dbName: (jsonDecode("\"Example Name\"") as String),
         lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
-        timestamp: SdkPresent<String>((jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
-        format: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+        timestamp: SdkPresent<String>(
+            (jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
+        format: SdkPresent<String>(
+            (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"sql\":\"sql\",\"json\":{\"tables\":[{\"schema\":\"schema\",\"name\":\"Example Name\",\"columns\":[{\"name\":\"Example Name\",\"type\":\"type\",\"nullable\":false,\"generated\":false}],\"constraints\":[{\"type\":\"type\",\"columns\":[\"columns\"],\"name\":\"Example Name\",\"referenced_table\":{\"schema\":\"schema\",\"table\":\"table\",\"columns\":[\"columns\"]}}]}]}}"),
+          SdkUtils.decodeJson(
+              "{\"sql\":\"sql\",\"json\":{\"tables\":[{\"schema\":\"schema\",\"name\":\"Example Name\",\"columns\":[{\"name\":\"Example Name\",\"type\":\"type\",\"nullable\":false,\"generated\":false}],\"constraints\":[{\"type\":\"type\",\"columns\":[\"columns\"],\"name\":\"Example Name\",\"referenced_table\":{\"schema\":\"schema\",\"table\":\"table\",\"columns\":[\"columns\"]}}]}]}}"),
         ),
         isNull,
       );
@@ -3005,26 +3607,32 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.getBranchSchema(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        dbName: (jsonDecode("\"Example Name\"") as String),
-        lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
-        timestamp: SdkPresent<String>((jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
-        format: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          dbName: (jsonDecode("\"Example Name\"") as String),
+          lsn: SdkPresent<String>((jsonDecode("\"lsn\"") as String)),
+          timestamp: SdkPresent<String>(
+              (jsonDecode("\"2022-11-30T20:09:48Z\"") as String)),
+          format: SdkPresent<String>(
+              (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getBucketsObject reaches the mock and decodes its response", () async {
+    test("getBucketsObject reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_6.getBucketsObject(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -3041,24 +3649,28 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_6.getBucketsObject(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        bucketName: (jsonDecode("\"Example Name\"") as String),
-        objectKey: (jsonDecode("\"x\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          bucketName: (jsonDecode("\"Example Name\"") as String),
+          objectKey: (jsonDecode("\"x\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getConnectionUri reaches the mock and decodes its response", () async {
+    test("getConnectionUri reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.getConnectionUri(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -3083,233 +3695,308 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.getConnectionUri(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        databaseName: (jsonDecode("\"Example Name\"") as String),
-        roleName: (jsonDecode("\"Example Name\"") as String),
-        branchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        endpointId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        pooled: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          databaseName: (jsonDecode("\"Example Name\"") as String),
+          roleName: (jsonDecode("\"Example Name\"") as String),
+          branchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
+          endpointId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
+          pooled: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getConsumptionHistoryPerBranchV2 reaches the mock and decodes its response", () async {
+    test(
+        "getConsumptionHistoryPerBranchV2 reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_16.getConsumptionHistoryPerBranchV2(
         config,
-        projectIds: (jsonDecode("[\"\"]") as List).map((element) => (element as String)).toList(),
+        projectIds: (jsonDecode("[\"\"]") as List)
+            .map((element) => (element as String))
+            .toList(),
         from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
         to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        granularity: ConsumptionHistoryGranularity.fromJson(jsonDecode("\"hourly\"") as String),
+        granularity: ConsumptionHistoryGranularity.fromJson(
+            jsonDecode("\"hourly\"") as String),
         orgId: (jsonDecode("\"a\"") as String),
-        metrics: (jsonDecode("[\"metrics\"]") as List).map((element) => (element as String)).toList(),
+        metrics: (jsonDecode("[\"metrics\"]") as List)
+            .map((element) => (element as String))
+            .toList(),
         cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
         limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
-        branchIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List).map((element) => (element as String)).toList()),
+        branchIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List)
+            .map((element) => (element as String))
+            .toList()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branches\":[{\"project_id\":\"a\",\"branch_id\":\"br-cool-darkness-12345678\",\"periods\":[{\"period_id\":\"79ec829f-1828-4006-ac82-9f1828a0067d\",\"period_plan\":\"scale\",\"period_start\":\"2024-03-01T00:00:00Z\",\"consumption\":[{\"timeframe_start\":\"2024-03-22T00:00:00Z\",\"timeframe_end\":\"2024-03-23T00:00:00Z\",\"metrics\":[{\"metric_name\":\"compute_unit_seconds\",\"value\":100},{\"metric_name\":\"root_branch_bytes_month\",\"value\":1000000},{\"metric_name\":\"child_branch_bytes_month\",\"value\":1000000}]}]}]}],\"pagination\":{\"cursor\":\"2022-12-07T00:45:05.262011Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"branches\":[{\"project_id\":\"a\",\"branch_id\":\"br-cool-darkness-12345678\",\"periods\":[{\"period_id\":\"79ec829f-1828-4006-ac82-9f1828a0067d\",\"period_plan\":\"scale\",\"period_start\":\"2024-03-01T00:00:00Z\",\"consumption\":[{\"timeframe_start\":\"2024-03-22T00:00:00Z\",\"timeframe_end\":\"2024-03-23T00:00:00Z\",\"metrics\":[{\"metric_name\":\"compute_unit_seconds\",\"value\":100},{\"metric_name\":\"root_branch_bytes_month\",\"value\":1000000},{\"metric_name\":\"child_branch_bytes_month\",\"value\":1000000}]}]}]}],\"pagination\":{\"cursor\":\"2022-12-07T00:45:05.262011Z\"}}"),
         ),
         isNull,
       );
     });
 
-    test("getConsumptionHistoryPerBranchV2 answers 403 with its declared error body", () async {
+    test(
+        "getConsumptionHistoryPerBranchV2 answers 403 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/403';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_16.getConsumptionHistoryPerBranchV2(
-        config,
-        projectIds: (jsonDecode("[\"\"]") as List).map((element) => (element as String)).toList(),
-        from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        granularity: ConsumptionHistoryGranularity.fromJson(jsonDecode("\"hourly\"") as String),
-        orgId: (jsonDecode("\"a\"") as String),
-        metrics: (jsonDecode("[\"metrics\"]") as List).map((element) => (element as String)).toList(),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
-        branchIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List).map((element) => (element as String)).toList()),
-      );
+          config,
+          projectIds: (jsonDecode("[\"\"]") as List)
+              .map((element) => (element as String))
+              .toList(),
+          from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
+          to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
+          granularity: ConsumptionHistoryGranularity.fromJson(
+              jsonDecode("\"hourly\"") as String),
+          orgId: (jsonDecode("\"a\"") as String),
+          metrics: (jsonDecode("[\"metrics\"]") as List)
+              .map((element) => (element as String))
+              .toList(),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
+          branchIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List)
+              .map((element) => (element as String))
+              .toList()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 403);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getConsumptionHistoryPerProject reaches the mock and decodes its response", () async {
+    test(
+        "getConsumptionHistoryPerProject reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_16.getConsumptionHistoryPerProject(
         config,
         from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
         to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        granularity: ConsumptionHistoryGranularity.fromJson(jsonDecode("\"hourly\"") as String),
+        granularity: ConsumptionHistoryGranularity.fromJson(
+            jsonDecode("\"hourly\"") as String),
         cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
         limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
-        projectIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List).map((element) => (element as String)).toList()),
+        projectIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List)
+            .map((element) => (element as String))
+            .toList()),
         orgId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
         includeV1Metrics: SdkPresent<bool>((jsonDecode("false") as bool)),
-        metrics: SdkPresent<List<String>>((jsonDecode("[\"metrics\"]") as List).map((element) => (element as String)).toList()),
+        metrics: SdkPresent<List<String>>((jsonDecode("[\"metrics\"]") as List)
+            .map((element) => (element as String))
+            .toList()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"projects\":[{\"project_id\":\"a\",\"periods\":[{\"period_id\":\"79ec829f-1828-4006-ac82-9f1828a0067d\",\"period_plan\":\"scale\",\"period_start\":\"2024-03-01T00:00:00Z\",\"consumption\":[{\"timeframe_start\":\"2024-03-22T00:00:00Z\",\"timeframe_end\":\"2024-03-23T00:00:00Z\",\"active_time_seconds\":27853,\"compute_time_seconds\":18346,\"written_data_bytes\":1073741824,\"synthetic_storage_size_bytes\":0,\"data_storage_bytes_hour\":0},{\"timeframe_start\":\"2024-03-23T00:00:00Z\",\"timeframe_end\":\"2024-03-24T00:00:00Z\",\"active_time_seconds\":17498,\"compute_time_seconds\":3378,\"written_data_bytes\":5741824,\"synthetic_storage_size_bytes\":0,\"data_storage_bytes_hour\":0}]}]}],\"pagination\":{\"cursor\":\"2022-12-07T00:45:05.262011Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"projects\":[{\"project_id\":\"a\",\"periods\":[{\"period_id\":\"79ec829f-1828-4006-ac82-9f1828a0067d\",\"period_plan\":\"scale\",\"period_start\":\"2024-03-01T00:00:00Z\",\"consumption\":[{\"timeframe_start\":\"2024-03-22T00:00:00Z\",\"timeframe_end\":\"2024-03-23T00:00:00Z\",\"active_time_seconds\":27853,\"compute_time_seconds\":18346,\"written_data_bytes\":1073741824,\"synthetic_storage_size_bytes\":0,\"data_storage_bytes_hour\":0},{\"timeframe_start\":\"2024-03-23T00:00:00Z\",\"timeframe_end\":\"2024-03-24T00:00:00Z\",\"active_time_seconds\":17498,\"compute_time_seconds\":3378,\"written_data_bytes\":5741824,\"synthetic_storage_size_bytes\":0,\"data_storage_bytes_hour\":0}]}]}],\"pagination\":{\"cursor\":\"2022-12-07T00:45:05.262011Z\"}}"),
         ),
         isNull,
       );
     });
 
-    test("getConsumptionHistoryPerProject answers 403 with its declared error body", () async {
+    test(
+        "getConsumptionHistoryPerProject answers 403 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/403';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_16.getConsumptionHistoryPerProject(
-        config,
-        from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        granularity: ConsumptionHistoryGranularity.fromJson(jsonDecode("\"hourly\"") as String),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
-        projectIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List).map((element) => (element as String)).toList()),
-        orgId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        includeV1Metrics: SdkPresent<bool>((jsonDecode("false") as bool)),
-        metrics: SdkPresent<List<String>>((jsonDecode("[\"metrics\"]") as List).map((element) => (element as String)).toList()),
-      );
+          config,
+          from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
+          to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
+          granularity: ConsumptionHistoryGranularity.fromJson(
+              jsonDecode("\"hourly\"") as String),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
+          projectIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List)
+              .map((element) => (element as String))
+              .toList()),
+          orgId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
+          includeV1Metrics: SdkPresent<bool>((jsonDecode("false") as bool)),
+          metrics: SdkPresent<List<String>>(
+              (jsonDecode("[\"metrics\"]") as List)
+                  .map((element) => (element as String))
+                  .toList()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 403);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getConsumptionHistoryPerProjectV2 reaches the mock and decodes its response", () async {
+    test(
+        "getConsumptionHistoryPerProjectV2 reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_16.getConsumptionHistoryPerProjectV2(
         config,
         from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
         to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        granularity: ConsumptionHistoryGranularity.fromJson(jsonDecode("\"hourly\"") as String),
+        granularity: ConsumptionHistoryGranularity.fromJson(
+            jsonDecode("\"hourly\"") as String),
         orgId: (jsonDecode("\"a\"") as String),
-        metrics: (jsonDecode("[\"metrics\"]") as List).map((element) => (element as String)).toList(),
+        metrics: (jsonDecode("[\"metrics\"]") as List)
+            .map((element) => (element as String))
+            .toList(),
         cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
         limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
-        projectIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List).map((element) => (element as String)).toList()),
+        projectIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List)
+            .map((element) => (element as String))
+            .toList()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"projects\":[{\"project_id\":\"a\",\"periods\":[{\"period_id\":\"79ec829f-1828-4006-ac82-9f1828a0067d\",\"period_plan\":\"scale\",\"period_start\":\"2024-03-01T00:00:00Z\",\"consumption\":[{\"timeframe_start\":\"2024-03-22T00:00:00Z\",\"timeframe_end\":\"2024-03-23T00:00:00Z\",\"metrics\":[{\"metric_name\":\"compute_unit_seconds\",\"value\":100},{\"metric_name\":\"root_branch_bytes_month\",\"value\":1000000},{\"metric_name\":\"child_branch_bytes_month\",\"value\":1000000}]}]}]}],\"pagination\":{\"cursor\":\"2022-12-07T00:45:05.262011Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"projects\":[{\"project_id\":\"a\",\"periods\":[{\"period_id\":\"79ec829f-1828-4006-ac82-9f1828a0067d\",\"period_plan\":\"scale\",\"period_start\":\"2024-03-01T00:00:00Z\",\"consumption\":[{\"timeframe_start\":\"2024-03-22T00:00:00Z\",\"timeframe_end\":\"2024-03-23T00:00:00Z\",\"metrics\":[{\"metric_name\":\"compute_unit_seconds\",\"value\":100},{\"metric_name\":\"root_branch_bytes_month\",\"value\":1000000},{\"metric_name\":\"child_branch_bytes_month\",\"value\":1000000}]}]}]}],\"pagination\":{\"cursor\":\"2022-12-07T00:45:05.262011Z\"}}"),
         ),
         isNull,
       );
     });
 
-    test("getConsumptionHistoryPerProjectV2 answers 403 with its declared error body", () async {
+    test(
+        "getConsumptionHistoryPerProjectV2 answers 403 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/403';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_16.getConsumptionHistoryPerProjectV2(
-        config,
-        from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
-        granularity: ConsumptionHistoryGranularity.fromJson(jsonDecode("\"hourly\"") as String),
-        orgId: (jsonDecode("\"a\"") as String),
-        metrics: (jsonDecode("[\"metrics\"]") as List).map((element) => (element as String)).toList(),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
-        projectIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List).map((element) => (element as String)).toList()),
-      );
+          config,
+          from: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
+          to: (jsonDecode("\"2024-01-01T00:00:00Z\"") as String),
+          granularity: ConsumptionHistoryGranularity.fromJson(
+              jsonDecode("\"hourly\"") as String),
+          orgId: (jsonDecode("\"a\"") as String),
+          metrics: (jsonDecode("[\"metrics\"]") as List)
+              .map((element) => (element as String))
+              .toList(),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
+          projectIds: SdkPresent<List<String>>((jsonDecode("[\"\"]") as List)
+              .map((element) => (element as String))
+              .toList()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 403);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getCurrentUserInfo reaches the mock and decodes its response", () async {
+    test("getCurrentUserInfo reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_15.getCurrentUserInfo(
         config,
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"active_seconds_limit\":1,\"billing_account\":{\"state\":\"UNKNOWN\",\"payment_source\":{\"type\":\"type\",\"card\":{\"last4\":\"last4\",\"brand\":\"amex\",\"exp_month\":1,\"exp_year\":1}},\"subscription_type\":\"UNKNOWN\",\"payment_method\":\"UNKNOWN\",\"quota_reset_at_last\":\"2024-01-01T00:00:00Z\",\"name\":\"Example Name\",\"email\":\"user@example.com\",\"address_city\":\"address_city\",\"address_country\":\"address_country\",\"address_country_name\":\"Example Name\",\"address_line1\":\"address_line1\",\"address_line2\":\"address_line2\",\"address_postal_code\":\"address_postal_code\",\"address_state\":\"address_state\",\"orb_portal_url\":\"https://example.com\",\"tax_id\":\"tax-1\",\"tax_id_type\":\"tax_id_type\",\"plan_details\":{\"name\":\"Example Name\",\"version\":{\"major\":1,\"minor\":1}},\"spending_limit_cents\":1},\"auth_accounts\":[{\"email\":\"user@example.com\",\"image\":\"image\",\"login\":\"login\",\"name\":\"Example Name\",\"provider\":\"github\"}],\"email\":\"user@example.com\",\"id\":\"id-1\",\"image\":\"image\",\"login\":\"login\",\"name\":\"Example Name\",\"last_name\":\"Example Name\",\"projects_limit\":1,\"branches_limit\":1,\"max_autoscaling_limit\":1,\"compute_seconds_limit\":1,\"plan\":\"plan\"}"),
+          SdkUtils.decodeJson(
+              "{\"active_seconds_limit\":1,\"billing_account\":{\"state\":\"UNKNOWN\",\"payment_source\":{\"type\":\"type\",\"card\":{\"last4\":\"last4\",\"brand\":\"amex\",\"exp_month\":1,\"exp_year\":1}},\"subscription_type\":\"UNKNOWN\",\"payment_method\":\"UNKNOWN\",\"quota_reset_at_last\":\"2024-01-01T00:00:00Z\",\"name\":\"Example Name\",\"email\":\"user@example.com\",\"address_city\":\"address_city\",\"address_country\":\"address_country\",\"address_country_name\":\"Example Name\",\"address_line1\":\"address_line1\",\"address_line2\":\"address_line2\",\"address_postal_code\":\"address_postal_code\",\"address_state\":\"address_state\",\"orb_portal_url\":\"https://example.com\",\"tax_id\":\"tax-1\",\"tax_id_type\":\"tax_id_type\",\"plan_details\":{\"name\":\"Example Name\",\"version\":{\"major\":1,\"minor\":1}},\"spending_limit_cents\":1},\"auth_accounts\":[{\"email\":\"user@example.com\",\"image\":\"image\",\"login\":\"login\",\"name\":\"Example Name\",\"provider\":\"github\"}],\"email\":\"user@example.com\",\"id\":\"id-1\",\"image\":\"image\",\"login\":\"login\",\"name\":\"Example Name\",\"last_name\":\"Example Name\",\"projects_limit\":1,\"branches_limit\":1,\"max_autoscaling_limit\":1,\"compute_seconds_limit\":1,\"plan\":\"plan\"}"),
         ),
         isNull,
       );
     });
 
-    test("getCurrentUserInfo answers 418 with its declared error body", () async {
+    test("getCurrentUserInfo answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_15.getCurrentUserInfo(
-        config,
-      );
+          config,
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getCurrentUserOrganizations reaches the mock and decodes its response", () async {
+    test(
+        "getCurrentUserOrganizations reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_15.getCurrentUserOrganizations(
         config,
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"organizations\":[{\"id\":\"a\",\"name\":\"Example Name\",\"handle\":\"handle\",\"plan\":\"plan\",\"created_at\":\"2024-01-01T00:00:00Z\",\"managed_by\":\"managed_by\",\"updated_at\":\"2024-01-01T00:00:00Z\",\"allow_hipaa_projects\":false,\"require_mfa\":false}]}"),
+          SdkUtils.decodeJson(
+              "{\"organizations\":[{\"id\":\"a\",\"name\":\"Example Name\",\"handle\":\"handle\",\"plan\":\"plan\",\"created_at\":\"2024-01-01T00:00:00Z\",\"managed_by\":\"managed_by\",\"updated_at\":\"2024-01-01T00:00:00Z\",\"allow_hipaa_projects\":false,\"require_mfa\":false}]}"),
         ),
         isNull,
       );
     });
 
-    test("getCurrentUserOrganizations answers 418 with its declared error body", () async {
+    test("getCurrentUserOrganizations answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_15.getCurrentUserOrganizations(
-        config,
-      );
+          config,
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3324,7 +4011,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"url\":\"https://example.com\",\"status\":\"active\",\"settings\":{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false},\"available_schemas\":[\"available_schemas\"],\"observed_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"url\":\"https://example.com\",\"status\":\"active\",\"settings\":{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false},\"available_schemas\":[\"available_schemas\"],\"observed_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
@@ -3336,18 +4024,21 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_8.getDataApi(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        databaseName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          databaseName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3361,7 +4052,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoint\":{\"host\":\"ep-little-smoke-851426.us-east-2.aws.neon.tech\",\"id\":\"ep-little-smoke-851426\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-23T17:00:00Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-30T18:25:21Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800}}"),
+          SdkUtils.decodeJson(
+              "{\"endpoint\":{\"host\":\"ep-little-smoke-851426.us-east-2.aws.neon.tech\",\"id\":\"ep-little-smoke-851426\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-23T17:00:00Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-30T18:25:21Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800}}"),
         ),
         isNull,
       );
@@ -3373,17 +4065,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_9.getEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        endpointId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          endpointId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3398,7 +4093,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"function\":{\"id\":\"id-1\",\"slug\":\"slug\",\"name\":\"Example Name\",\"invocation_url\":\"https://example.com\",\"current_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"active_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"created_at\":\"2024-01-01T00:00:00Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"function\":{\"id\":\"id-1\",\"slug\":\"slug\",\"name\":\"Example Name\",\"invocation_url\":\"https://example.com\",\"current_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"active_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"created_at\":\"2024-01-01T00:00:00Z\"}}"),
         ),
         isNull,
       );
@@ -3410,23 +4106,27 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_10.getFunctions(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        slug: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          slug: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getFunctionsTrigger reaches the mock and decodes its response", () async {
+    test("getFunctionsTrigger reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_10.getFunctionsTrigger(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -3436,30 +4136,35 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"trigger\":{\"type\":\"schedule\",\"trigger_id\":\"a\",\"function_slug\":\"function_slug\",\"name\":\"Example Name\",\"function_path\":\"function_path\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false,\"version\":1,\"next_run_at\":\"2024-01-01T00:00:00Z\",\"inherited\":false}}"),
+          SdkUtils.decodeJson(
+              "{\"trigger\":{\"type\":\"schedule\",\"trigger_id\":\"a\",\"function_slug\":\"function_slug\",\"name\":\"Example Name\",\"function_path\":\"function_path\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false,\"version\":1,\"next_run_at\":\"2024-01-01T00:00:00Z\",\"inherited\":false}}"),
         ),
         isNull,
       );
     });
 
-    test("getFunctionsTrigger answers 418 with its declared error body", () async {
+    test("getFunctionsTrigger answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.getFunctionsTrigger(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        triggerId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          triggerId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3473,7 +4178,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"masking_rules\":[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"masking_rules\":[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}]}"),
         ),
         isNull,
       );
@@ -3485,17 +4191,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.getMaskingRules(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3504,12 +4213,14 @@ void main() {
       final actual = await sdk_methods_17.getOperation(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        operationId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
+        operationId:
+            (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"operation\":{\"id\":\"a07f8772-1877-4da9-a939-3a3ae62d1d8d\",\"project_id\":\"floral-king-961888\",\"branch_id\":\"br-bitter-sound-247814\",\"endpoint_id\":\"ep-dark-snowflake-942567\",\"action\":\"create_timeline\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-10-04T18:20:17Z\",\"updated_at\":\"2022-10-04T18:20:18Z\",\"total_duration_ms\":100}}"),
+          SdkUtils.decodeJson(
+              "{\"operation\":{\"id\":\"a07f8772-1877-4da9-a939-3a3ae62d1d8d\",\"project_id\":\"floral-king-961888\",\"branch_id\":\"br-bitter-sound-247814\",\"endpoint_id\":\"ep-dark-snowflake-942567\",\"action\":\"create_timeline\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-10-04T18:20:17Z\",\"updated_at\":\"2022-10-04T18:20:18Z\",\"total_duration_ms\":100}}"),
         ),
         isNull,
       );
@@ -3521,17 +4232,21 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_17.getOperation(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        operationId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          operationId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"")
+              as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3544,7 +4259,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"my-organization-morning-bread-81040908\",\"name\":\"my-organization\",\"handle\":\"my-organization-my-organization-morning-bread-81040908\",\"plan\":\"scale\",\"managed_by\":\"console\",\"created_at\":\"2024-02-23T17:42:25Z\",\"updated_at\":\"2024-02-26T20:41:25Z\",\"require_mfa\":false}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"my-organization-morning-bread-81040908\",\"name\":\"my-organization\",\"handle\":\"my-organization-my-organization-morning-bread-81040908\",\"plan\":\"scale\",\"managed_by\":\"console\",\"created_at\":\"2024-02-23T17:42:25Z\",\"updated_at\":\"2024-02-26T20:41:25Z\",\"require_mfa\":false}"),
         ),
         isNull,
       );
@@ -3556,57 +4272,70 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_3.getOrganization(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getOrganizationMember reaches the mock and decodes its response", () async {
+    test("getOrganizationMember reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.getOrganizationMember(
         config,
         orgId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
+        memberId:
+            (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"d57833f2-d308-4ede-9d2e-468d9d013d1b\",\"user_id\":\"b107d689-6dd2-4c9a-8b9e-0b25e457cf56\",\"org_id\":\"my-organization-morning-bread-81040908\",\"role\":\"admin\",\"joined_at\":\"2024-02-23T17:42:25Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"d57833f2-d308-4ede-9d2e-468d9d013d1b\",\"user_id\":\"b107d689-6dd2-4c9a-8b9e-0b25e457cf56\",\"org_id\":\"my-organization-morning-bread-81040908\",\"role\":\"admin\",\"joined_at\":\"2024-02-23T17:42:25Z\"}"),
         ),
         isNull,
       );
     });
 
-    test("getOrganizationMember answers 418 with its declared error body", () async {
+    test("getOrganizationMember answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.getOrganizationMember(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"")
+              as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getOrganizationSpendingLimit reaches the mock and decodes its response", () async {
+    test(
+        "getOrganizationSpendingLimit reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.getOrganizationSpendingLimit(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -3620,27 +4349,34 @@ void main() {
       );
     });
 
-    test("getOrganizationSpendingLimit answers 418 with its declared error body", () async {
+    test(
+        "getOrganizationSpendingLimit answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.getOrganizationSpendingLimit(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getOrganizationsVpcEndpoint reaches the mock and decodes its response", () async {
+    test(
+        "getOrganizationsVpcEndpoint reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.getOrganizationsVpcEndpoint(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -3650,30 +4386,35 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"vpc_endpoint_id\":\"vpc_endpoint-1\",\"label\":\"label\",\"state\":\"new\",\"num_restricted_projects\":1,\"example_restricted_projects\":[\"example_restricted_projects\"]}"),
+          SdkUtils.decodeJson(
+              "{\"vpc_endpoint_id\":\"vpc_endpoint-1\",\"label\":\"label\",\"state\":\"new\",\"num_restricted_projects\":1,\"example_restricted_projects\":[\"example_restricted_projects\"]}"),
         ),
         isNull,
       );
     });
 
-    test("getOrganizationsVpcEndpoint answers 418 with its declared error body", () async {
+    test("getOrganizationsVpcEndpoint answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.getOrganizationsVpcEndpoint(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        regionId: (jsonDecode("\"region-1\"") as String),
-        vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          regionId: (jsonDecode("\"region-1\"") as String),
+          vpcEndpointId: (jsonDecode("\"vpc_endpoint-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3686,7 +4427,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"project\":{\"id\":\"shiny-wind-028834\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"shiny-wind-028834\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"history_retention_seconds\":604800,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"branch_logical_size_limit\":0,\"cpu_used_sec\":10,\"owner_id\":\"1232111\",\"owner\":{\"name\":\"John Smith\",\"email\":\"some@email.com\",\"branches_limit\":10,\"subscription_type\":\"scale\"},\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10500,\"data_storage_bytes_hour\":1040,\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"consumption_period_start\":\"2023-02-01T00:00:00Z\",\"consumption_period_end\":\"2023-03-01T00:00:00Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"project\":{\"id\":\"shiny-wind-028834\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"shiny-wind-028834\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"history_retention_seconds\":604800,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"branch_logical_size_limit\":0,\"cpu_used_sec\":10,\"owner_id\":\"1232111\",\"owner\":{\"name\":\"John Smith\",\"email\":\"some@email.com\",\"branches_limit\":10,\"subscription_type\":\"scale\"},\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10500,\"data_storage_bytes_hour\":1040,\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"consumption_period_start\":\"2023-02-01T00:00:00Z\",\"consumption_period_end\":\"2023-03-01T00:00:00Z\"}}"),
         ),
         isNull,
       );
@@ -3698,58 +4440,77 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.getProject(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getProjectAdvisorSecurityIssues reaches the mock and decodes its response", () async {
+    test(
+        "getProjectAdvisorSecurityIssues reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.getProjectAdvisorSecurityIssues(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        databaseName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        category: SdkPresent<AdvisorCategory>(AdvisorCategory.fromJson(jsonDecode("\"SECURITY\"") as String)),
-        minSeverity: SdkPresent<GetProjectAdvisorSecurityIssuesMinSeverity>(GetProjectAdvisorSecurityIssuesMinSeverity.fromJson(jsonDecode("\"INFO\"") as String)),
+        databaseName:
+            SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        category: SdkPresent<AdvisorCategory>(
+            AdvisorCategory.fromJson(jsonDecode("\"SECURITY\"") as String)),
+        minSeverity: SdkPresent<GetProjectAdvisorSecurityIssuesMinSeverity>(
+            GetProjectAdvisorSecurityIssuesMinSeverity.fromJson(
+                jsonDecode("\"INFO\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"issues\":[{\"name\":\"rls_disabled_in_public\",\"title\":\"RLS Disabled in Public\",\"level\":\"ERROR\",\"facing\":\"EXTERNAL\",\"categories\":[\"SECURITY\"],\"description\":\"example text\",\"detail\":\"Table `public.users` is public, but RLS has not been enabled.\",\"remediation\":\"https://neon.com/docs/data-api/database-advisor\",\"metadata\":{},\"cache_key\":\"cache_key\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"issues\":[{\"name\":\"rls_disabled_in_public\",\"title\":\"RLS Disabled in Public\",\"level\":\"ERROR\",\"facing\":\"EXTERNAL\",\"categories\":[\"SECURITY\"],\"description\":\"example text\",\"detail\":\"Table `public.users` is public, but RLS has not been enabled.\",\"remediation\":\"https://neon.com/docs/data-api/database-advisor\",\"metadata\":{},\"cache_key\":\"cache_key\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("getProjectAdvisorSecurityIssues answers 418 with its declared error body", () async {
+    test(
+        "getProjectAdvisorSecurityIssues answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.getProjectAdvisorSecurityIssues(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        databaseName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        category: SdkPresent<AdvisorCategory>(AdvisorCategory.fromJson(jsonDecode("\"SECURITY\"") as String)),
-        minSeverity: SdkPresent<GetProjectAdvisorSecurityIssuesMinSeverity>(GetProjectAdvisorSecurityIssuesMinSeverity.fromJson(jsonDecode("\"INFO\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
+          databaseName:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          category: SdkPresent<AdvisorCategory>(
+              AdvisorCategory.fromJson(jsonDecode("\"SECURITY\"") as String)),
+          minSeverity: SdkPresent<GetProjectAdvisorSecurityIssuesMinSeverity>(
+              GetProjectAdvisorSecurityIssuesMinSeverity.fromJson(
+                  jsonDecode("\"INFO\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3762,7 +4523,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"jwks\":[{\"id\":\"id-1\",\"project_id\":\"a\",\"branch_id\":\"a\",\"jwks_url\":\"https://example.com\",\"provider_name\":\"Example Name\",\"created_at\":\"2024-01-01T00:00:00Z\",\"updated_at\":\"2024-01-01T00:00:00Z\",\"jwt_audience\":\"jwt_audience\",\"role_names\":[\"Example Name\"]}]}"),
+          SdkUtils.decodeJson(
+              "{\"jwks\":[{\"id\":\"id-1\",\"project_id\":\"a\",\"branch_id\":\"a\",\"jwks_url\":\"https://example.com\",\"provider_name\":\"Example Name\",\"created_at\":\"2024-01-01T00:00:00Z\",\"updated_at\":\"2024-01-01T00:00:00Z\",\"jwt_audience\":\"jwt_audience\",\"role_names\":[\"Example Name\"]}]}"),
         ),
         isNull,
       );
@@ -3774,16 +4536,19 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.getProjectJwks(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3797,7 +4562,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"pending\":false,\"invocation_url\":\"https://example.com\",\"revision\":1,\"allowed_origins\":[\"allowed_origins\"]}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"pending\":false,\"invocation_url\":\"https://example.com\",\"revision\":1,\"allowed_origins\":[\"allowed_origins\"]}"),
         ),
         isNull,
       );
@@ -3809,22 +4575,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_12.getRealtime(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getRealtimeSecret reaches the mock and decodes its response", () async {
+    test("getRealtimeSecret reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_12.getRealtimeSecret(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -3839,28 +4609,33 @@ void main() {
       );
     });
 
-    test("getRealtimeSecret answers 418 with its declared error body", () async {
+    test("getRealtimeSecret answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_12.getRealtimeSecret(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("getSnapshotSchedule reaches the mock and decodes its response", () async {
+    test("getSnapshotSchedule reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_11.getSnapshotSchedule(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -3869,29 +4644,34 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"schedule\":[{\"frequency\":\"daily\",\"hour\":0,\"day\":1,\"month\":1,\"retention_seconds\":3024000}]}"),
+          SdkUtils.decodeJson(
+              "{\"schedule\":[{\"frequency\":\"daily\",\"hour\":0,\"day\":1,\"month\":1,\"retention_seconds\":3024000}]}"),
         ),
         isNull,
       );
     });
 
-    test("getSnapshotSchedule answers 418 with its declared error body", () async {
+    test("getSnapshotSchedule answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_11.getSnapshotSchedule(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3905,7 +4685,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"s3_endpoint\":\"https://br-cool-moon-42.storage.c-2.local.neon.build\",\"region\":\"us-east-2\",\"force_path_style\":true}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"s3_endpoint\":\"https://br-cool-moon-42.storage.c-2.local.neon.build\",\"region\":\"us-east-2\",\"force_path_style\":true}"),
         ),
         isNull,
       );
@@ -3917,22 +4698,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_18.getStorage(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"code\":\"STORAGE_NOT_ENABLED\",\"message\":\"example text\",\"reason\":\"org_not_entitled\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"code\":\"STORAGE_NOT_ENABLED\",\"message\":\"example text\",\"reason\":\"org_not_entitled\"}")),
         isNull,
       );
     });
 
-    test("grantProjectPermission reaches the mock and decodes its response", () async {
+    test("grantProjectPermission reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.grantProjectPermission(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -3941,29 +4726,34 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"id-1\",\"granted_to_email\":\"user@example.com\",\"granted_at\":\"2024-01-01T00:00:00Z\",\"revoked_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"id-1\",\"granted_to_email\":\"user@example.com\",\"granted_at\":\"2024-01-01T00:00:00Z\",\"revoked_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
     });
 
-    test("grantProjectPermission answers 418 with its declared error body", () async {
+    test("grantProjectPermission answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.grantProjectPermission(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        email: (jsonDecode("\"user@example.com\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          email: (jsonDecode("\"user@example.com\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -3975,7 +4765,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("[{\"id\":165432,\"name\":\"mykey_1\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":{\"id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"name\":\"John Smith\",\"image\":\"http://link.to.image\"},\"last_used_at\":\"2022-11-15T20:22:51Z\",\"last_used_from_addr\":\"192.0.2.255\"},{\"id\":165433,\"name\":\"mykey_2\",\"created_at\":\"2022-11-15T20:12:36Z\",\"created_by\":{\"id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"name\":\"John Smith\",\"image\":\"http://link.to.image\"},\"last_used_at\":\"2022-11-15T20:15:04Z\",\"last_used_from_addr\":\"192.0.2.255\"}]"),
+          SdkUtils.decodeJson(
+              "[{\"id\":165432,\"name\":\"mykey_1\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":{\"id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"name\":\"John Smith\",\"image\":\"http://link.to.image\"},\"last_used_at\":\"2022-11-15T20:22:51Z\",\"last_used_from_addr\":\"192.0.2.255\"},{\"id\":165433,\"name\":\"mykey_2\",\"created_at\":\"2022-11-15T20:12:36Z\",\"created_by\":{\"id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"name\":\"John Smith\",\"image\":\"http://link.to.image\"},\"last_used_at\":\"2022-11-15T20:15:04Z\",\"last_used_from_addr\":\"192.0.2.255\"}]"),
         ),
         isNull,
       );
@@ -3987,20 +4778,24 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_5.listApiKey(
-        config,
-      );
+          config,
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listAuthLegacyIntegrations reaches the mock and decodes its response", () async {
+    test("listAuthLegacyIntegrations reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.listAuthLegacyIntegrations(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4008,33 +4803,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"data\":[{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"branch_id\":\"br-cool-darkness-12345678\",\"db_name\":\"Example Name\",\"created_at\":\"2025-01-15T10:30:00Z\",\"owned_by\":\"user\",\"transfer_status\":\"initiated\",\"jwks_url\":\"https://example.com\",\"base_url\":\"https://example.com\",\"name\":\"Example Name\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"data\":[{\"auth_provider\":\"mock\",\"auth_provider_project_id\":\"auth_provider_project-1\",\"branch_id\":\"br-cool-darkness-12345678\",\"db_name\":\"Example Name\",\"created_at\":\"2025-01-15T10:30:00Z\",\"owned_by\":\"user\",\"transfer_status\":\"initiated\",\"jwks_url\":\"https://example.com\",\"base_url\":\"https://example.com\",\"name\":\"Example Name\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listAuthLegacyIntegrations answers 418 with its declared error body", () async {
+    test("listAuthLegacyIntegrations answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.listAuthLegacyIntegrations(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listAuthLegacyOauthProviders reaches the mock and decodes its response", () async {
+    test(
+        "listAuthLegacyOauthProviders reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.listAuthLegacyOauthProviders(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4042,67 +4844,83 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"providers\":[{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"providers\":[{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listAuthLegacyOauthProviders answers 418 with its declared error body", () async {
+    test(
+        "listAuthLegacyOauthProviders answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.listAuthLegacyOauthProviders(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listAuthLegacyRedirectUriWhitelistDomains reaches the mock and decodes its response", () async {
-      final actual = await sdk_methods_1.listAuthLegacyRedirectUriWhitelistDomains(
+    test(
+        "listAuthLegacyRedirectUriWhitelistDomains reaches the mock and decodes its response",
+        () async {
+      final actual =
+          await sdk_methods_1.listAuthLegacyRedirectUriWhitelistDomains(
         config,
         projectId: (jsonDecode("\"a\"") as String),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"domains\":[{\"domain\":\"domain\",\"auth_provider\":\"mock\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"domains\":[{\"domain\":\"domain\",\"auth_provider\":\"mock\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listAuthLegacyRedirectUriWhitelistDomains answers 418 with its declared error body", () async {
+    test(
+        "listAuthLegacyRedirectUriWhitelistDomains answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.listAuthLegacyRedirectUriWhitelistDomains(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listAuthOAuthClients reaches the mock and decodes its response", () async {
+    test("listAuthOAuthClients reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.listAuthOAuthClients(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4111,34 +4929,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"clients\":[{\"client_id\":\"client-1\",\"name\":\"Example Name\",\"type\":\"confidential\",\"redirect_uris\":[\"https://example.com\"],\"resources\":[\"resources\"],\"skip_consent\":false,\"disabled\":false,\"created_at\":\"2024-01-01T00:00:00Z\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"clients\":[{\"client_id\":\"client-1\",\"name\":\"Example Name\",\"type\":\"confidential\",\"redirect_uris\":[\"https://example.com\"],\"resources\":[\"resources\"],\"skip_consent\":false,\"disabled\":false,\"created_at\":\"2024-01-01T00:00:00Z\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listAuthOAuthClients answers 418 with its declared error body", () async {
+    test("listAuthOAuthClients answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.listAuthOAuthClients(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listAuthOauthProviders reaches the mock and decodes its response", () async {
+    test("listAuthOauthProviders reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.listAuthOauthProviders(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4147,34 +4971,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"providers\":[{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"providers\":[{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listAuthOauthProviders answers 418 with its declared error body", () async {
+    test("listAuthOauthProviders answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.listAuthOauthProviders(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listAuthTrustedDomains reaches the mock and decodes its response", () async {
+    test("listAuthTrustedDomains reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.listAuthTrustedDomains(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4183,29 +5013,34 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"domains\":[{\"domain\":\"domain\",\"auth_provider\":\"mock\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"domains\":[{\"domain\":\"domain\",\"auth_provider\":\"mock\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listAuthTrustedDomains answers 418 with its declared error body", () async {
+    test("listAuthTrustedDomains answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.listAuthTrustedDomains(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -4215,16 +5050,19 @@ void main() {
         config,
         projectId: (jsonDecode("\"a\"") as String),
         search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
-        sortBy: SdkPresent<ListBranchSortBy>(ListBranchSortBy.fromJson(jsonDecode("\"updated_at\"") as String)),
+        sortBy: SdkPresent<ListBranchSortBy>(
+            ListBranchSortBy.fromJson(jsonDecode("\"updated_at\"") as String)),
         cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        sortOrder: SdkPresent<SchemaSchema>(SchemaSchema.fromJson(jsonDecode("\"desc\"") as String)),
+        sortOrder: SdkPresent<SchemaSchema>(
+            SchemaSchema.fromJson(jsonDecode("\"desc\"") as String)),
         limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
         includeDeleted: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branches\":[{\"id\":\"br-aged-salad-637688\",\"project_id\":\"shiny-wind-028834\",\"name\":\"main\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":28,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},{\"id\":\"br-sweet-breeze-497520\",\"project_id\":\"shiny-wind-028834\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":28,\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-11-30T19:09:49Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},{\"id\":\"br-raspy-hill-832856\",\"project_id\":\"shiny-wind-028834\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/19623D8\",\"name\":\"dev1\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":21,\"created_at\":\"2022-11-30T17:36:57Z\",\"updated_at\":\"2022-11-30T17:36:57Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"}],\"annotations\":{\"br-aged-salad-637688\":{\"object\":{\"type\":\"console/branch\",\"id\":\"br-aged-salad-637688\"},\"value\":{\"vercel-commit-ref\":\"test\"},\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\"}},\"pagination\":{\"next\":\"eyJjcmVhdGV\",\"sort_by\":\"updated_at\",\"sort_order\":\"desc\"}}"),
+          SdkUtils.decodeJson(
+              "{\"branches\":[{\"id\":\"br-aged-salad-637688\",\"project_id\":\"shiny-wind-028834\",\"name\":\"main\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":28,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},{\"id\":\"br-sweet-breeze-497520\",\"project_id\":\"shiny-wind-028834\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":28,\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-11-30T19:09:49Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},{\"id\":\"br-raspy-hill-832856\",\"project_id\":\"shiny-wind-028834\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/19623D8\",\"name\":\"dev1\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"logical_size\":21,\"created_at\":\"2022-11-30T17:36:57Z\",\"updated_at\":\"2022-11-30T17:36:57Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"}],\"annotations\":{\"br-aged-salad-637688\":{\"object\":{\"type\":\"console/branch\",\"id\":\"br-aged-salad-637688\"},\"value\":{\"vercel-commit-ref\":\"test\"},\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\"}},\"pagination\":{\"next\":\"eyJjcmVhdGV\",\"sort_by\":\"updated_at\",\"sort_order\":\"desc\"}}"),
         ),
         isNull,
       );
@@ -4236,27 +5074,33 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.listBranch(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
-        sortBy: SdkPresent<ListBranchSortBy>(ListBranchSortBy.fromJson(jsonDecode("\"updated_at\"") as String)),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        sortOrder: SdkPresent<SchemaSchema>(SchemaSchema.fromJson(jsonDecode("\"desc\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-        includeDeleted: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
+          sortBy: SdkPresent<ListBranchSortBy>(ListBranchSortBy.fromJson(
+              jsonDecode("\"updated_at\"") as String)),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          sortOrder: SdkPresent<SchemaSchema>(
+              SchemaSchema.fromJson(jsonDecode("\"desc\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
+          includeDeleted: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listBranchDatabases reaches the mock and decodes its response", () async {
+    test("listBranchDatabases reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.listBranchDatabases(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4265,34 +5109,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"databases\":[{\"id\":834686,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"main\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"},{\"id\":834686,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"mydb\",\"owner_name\":\"casey\",\"created_at\":\"2022-10-30T17:14:13Z\",\"updated_at\":\"2022-10-30T17:14:13Z\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"databases\":[{\"id\":834686,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"main\",\"owner_name\":\"casey\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:25:15Z\"},{\"id\":834686,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"mydb\",\"owner_name\":\"casey\",\"created_at\":\"2022-10-30T17:14:13Z\",\"updated_at\":\"2022-10-30T17:14:13Z\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listBranchDatabases answers 418 with its declared error body", () async {
+    test("listBranchDatabases answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.listBranchDatabases(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listBranchEndpoints reaches the mock and decodes its response", () async {
+    test("listBranchEndpoints reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.listBranchEndpoints(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4301,29 +5151,34 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoints\":[{\"host\":\"ep-little-smoke-851426.us-east-2.aws.neon.tech\",\"id\":\"ep-little-smoke-851426\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-23T17:00:00Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-30T18:25:21Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoints\":[{\"host\":\"ep-little-smoke-851426.us-east-2.aws.neon.tech\",\"id\":\"ep-little-smoke-851426\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-23T17:00:00Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-30T18:25:21Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800}]}"),
         ),
         isNull,
       );
     });
 
-    test("listBranchEndpoints answers 418 with its declared error body", () async {
+    test("listBranchEndpoints answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.listBranchEndpoints(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -4337,7 +5192,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"roles\":[{\"branch_id\":\"br-aged-salad-637688\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"},{\"branch_id\":\"br-aged-salad-637688\",\"name\":\"thomas\",\"protected\":false,\"created_at\":\"2022-10-22T17:38:21Z\",\"updated_at\":\"2022-10-22T17:38:21Z\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"roles\":[{\"branch_id\":\"br-aged-salad-637688\",\"name\":\"casey\",\"protected\":false,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\"},{\"branch_id\":\"br-aged-salad-637688\",\"name\":\"thomas\",\"protected\":false,\"created_at\":\"2022-10-22T17:38:21Z\",\"updated_at\":\"2022-10-22T17:38:21Z\"}]}"),
         ),
         isNull,
       );
@@ -4349,17 +5205,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.listBranchRoles(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -4373,7 +5232,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"buckets\":[{\"name\":\"Example Name\",\"access_level\":\"private\",\"created_at\":\"2024-01-01T00:00:00Z\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"buckets\":[{\"name\":\"Example Name\",\"access_level\":\"private\",\"created_at\":\"2024-01-01T00:00:00Z\"}]}"),
         ),
         isNull,
       );
@@ -4385,22 +5245,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_6.listBuckets(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listBucketsObjects reaches the mock and decodes its response", () async {
+    test("listBucketsObjects reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_6.listBucketsObjects(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4414,34 +5278,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"folders\":[\"folders\"],\"objects\":[{\"key\":\"key\",\"size\":1,\"last_modified\":\"2024-01-01T00:00:00Z\",\"etag\":\"etag\"}],\"prefix\":\"prefix\",\"next_cursor\":\"next_cursor\",\"is_truncated\":false}"),
+          SdkUtils.decodeJson(
+              "{\"folders\":[\"folders\"],\"objects\":[{\"key\":\"key\",\"size\":1,\"last_modified\":\"2024-01-01T00:00:00Z\",\"etag\":\"etag\"}],\"prefix\":\"prefix\",\"next_cursor\":\"next_cursor\",\"is_truncated\":false}"),
         ),
         isNull,
       );
     });
 
-    test("listBucketsObjects answers 418 with its declared error body", () async {
+    test("listBucketsObjects answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_6.listBucketsObjects(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        bucketName: (jsonDecode("\"Example Name\"") as String),
-        prefix: SdkPresent<String>((jsonDecode("\"prefix\"") as String)),
-        delimiter: SdkPresent<String>((jsonDecode("\"delimiter\"") as String)),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("1000") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          bucketName: (jsonDecode("\"Example Name\"") as String),
+          prefix: SdkPresent<String>((jsonDecode("\"prefix\"") as String)),
+          delimiter:
+              SdkPresent<String>((jsonDecode("\"delimiter\"") as String)),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("1000") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -4455,7 +5325,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"credentials\":[{\"token_id\":\"token-1\",\"token_id_short\":\"token_id_short\",\"name\":\"Example Name\",\"scopes\":[\"storage:read\"],\"branch_id\":\"a\",\"principal_type\":\"principal_type\",\"function_id\":\"function-1\",\"created_at\":\"2024-01-01T00:00:00Z\",\"last_used_at\":\"2024-01-01T00:00:00Z\",\"revoked_at\":\"2024-01-01T00:00:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"credentials\":[{\"token_id\":\"token-1\",\"token_id_short\":\"token_id_short\",\"name\":\"Example Name\",\"scopes\":[\"storage:read\"],\"branch_id\":\"a\",\"principal_type\":\"principal_type\",\"function_id\":\"function-1\",\"created_at\":\"2024-01-01T00:00:00Z\",\"last_used_at\":\"2024-01-01T00:00:00Z\",\"revoked_at\":\"2024-01-01T00:00:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\"}]}"),
         ),
         isNull,
       );
@@ -4467,17 +5338,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_7.listCredentials(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -4490,7 +5364,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoints\":[{\"host\":\"ep-little-smoke-851426.us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"suspend_timeout_seconds\":10800,\"provisioner\":\"k8s-pod\",\"id\":\"ep-little-smoke-851426\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-23T17:00:00Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-30T18:25:21Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\"},{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"suspend_timeout_seconds\":10800,\"provisioner\":\"k8s-pod\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-30T17:00:00Z\",\"created_at\":\"2022-11-30T17:36:57Z\",\"updated_at\":\"2022-11-30T18:42:58Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\"},{\"host\":\"ep-soft-violet-752733.us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"suspend_timeout_seconds\":10800,\"provisioner\":\"k8s-pod\",\"id\":\"ep-soft-violet-752733\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-sweet-breeze-497520\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-30T19:00:00Z\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-11-30T19:14:51Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoints\":[{\"host\":\"ep-little-smoke-851426.us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"suspend_timeout_seconds\":10800,\"provisioner\":\"k8s-pod\",\"id\":\"ep-little-smoke-851426\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-23T17:00:00Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-30T18:25:21Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\"},{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"suspend_timeout_seconds\":10800,\"provisioner\":\"k8s-pod\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-30T17:00:00Z\",\"created_at\":\"2022-11-30T17:36:57Z\",\"updated_at\":\"2022-11-30T18:42:58Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\"},{\"host\":\"ep-soft-violet-752733.us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"suspend_timeout_seconds\":10800,\"provisioner\":\"k8s-pod\",\"id\":\"ep-soft-violet-752733\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-sweet-breeze-497520\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-11-30T19:00:00Z\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-11-30T19:14:51Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\"}]}"),
         ),
         isNull,
       );
@@ -4502,16 +5377,19 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_9.listEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -4527,7 +5405,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"functions\":[{\"id\":\"id-1\",\"slug\":\"slug\",\"name\":\"Example Name\",\"invocation_url\":\"https://example.com\",\"current_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"active_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"created_at\":\"2024-01-01T00:00:00Z\"}],\"pagination\":{\"next\":\"next\",\"sort_by\":\"sort_by\",\"sort_order\":\"sort_order\"}}"),
+          SdkUtils.decodeJson(
+              "{\"functions\":[{\"id\":\"id-1\",\"slug\":\"slug\",\"name\":\"Example Name\",\"invocation_url\":\"https://example.com\",\"current_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"active_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"created_at\":\"2024-01-01T00:00:00Z\"}],\"pagination\":{\"next\":\"next\",\"sort_by\":\"sort_by\",\"sort_order\":\"sort_order\"}}"),
         ),
         isNull,
       );
@@ -4539,24 +5418,28 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_10.listFunctions(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listFunctionsCustomDomains reaches the mock and decodes its response", () async {
+    test("listFunctionsCustomDomains reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_10.listFunctionsCustomDomains(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4567,36 +5450,42 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"custom_domains\":[{\"domain\":\"domain\",\"entity_type\":\"entity_type\",\"entity_id\":\"entity-1\",\"cname_target\":\"Example Name\",\"status\":\"active\",\"dns_status\":\"active\",\"binding_status\":\"active\",\"status_reason\":\"active\"}],\"pagination\":{\"next\":\"next\",\"sort_by\":\"sort_by\",\"sort_order\":\"sort_order\"}}"),
+          SdkUtils.decodeJson(
+              "{\"custom_domains\":[{\"domain\":\"domain\",\"entity_type\":\"entity_type\",\"entity_id\":\"entity-1\",\"cname_target\":\"Example Name\",\"status\":\"active\",\"dns_status\":\"active\",\"binding_status\":\"active\",\"status_reason\":\"active\"}],\"pagination\":{\"next\":\"next\",\"sort_by\":\"sort_by\",\"sort_order\":\"sort_order\"}}"),
         ),
         isNull,
       );
     });
 
-    test("listFunctionsCustomDomains answers 418 with its declared error body", () async {
+    test("listFunctionsCustomDomains answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.listFunctionsCustomDomains(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listFunctionsTriggers reaches the mock and decodes its response", () async {
+    test("listFunctionsTriggers reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_10.listFunctionsTriggers(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4605,29 +5494,34 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"triggers\":[{\"type\":\"schedule\",\"trigger_id\":\"a\",\"function_slug\":\"function_slug\",\"name\":\"Example Name\",\"function_path\":\"function_path\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false,\"version\":1,\"next_run_at\":\"2024-01-01T00:00:00Z\",\"inherited\":false}]}"),
+          SdkUtils.decodeJson(
+              "{\"triggers\":[{\"type\":\"schedule\",\"trigger_id\":\"a\",\"function_slug\":\"function_slug\",\"name\":\"Example Name\",\"function_path\":\"function_path\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false,\"version\":1,\"next_run_at\":\"2024-01-01T00:00:00Z\",\"inherited\":false}]}"),
         ),
         isNull,
       );
     });
 
-    test("listFunctionsTriggers answers 418 with its declared error body", () async {
+    test("listFunctionsTriggers answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.listFunctionsTriggers(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -4653,65 +5547,82 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_19.listLogsFields(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"code\":\"LOGS_NOT_AVAILABLE\",\"message\":\"example text\",\"reason\":\"branch_not_found\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"code\":\"LOGS_NOT_AVAILABLE\",\"message\":\"example text\",\"reason\":\"branch_not_found\"}")),
         isNull,
       );
     });
 
-    test("listLogsFieldValues reaches the mock and decodes its response", () async {
+    test("listLogsFieldValues reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_19.listLogsFieldValues(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         fieldName: (jsonDecode("\"Example Name\"") as String),
         since: SdkPresent<String>((jsonDecode("\"1h\"") as String)),
-        startTime: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
-        endTime: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
-        source: SdkPresent<ProjectBranchLogSource>(ProjectBranchLogSource.fromJson(jsonDecode("\"function\"") as String)),
+        startTime: SdkPresent<String>(
+            (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+        endTime: SdkPresent<String>(
+            (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+        source: SdkPresent<ProjectBranchLogSource>(
+            ProjectBranchLogSource.fromJson(
+                jsonDecode("\"function\"") as String)),
         limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"values\":[\"values\"],\"is_truncated\":false}"),
+          SdkUtils.decodeJson(
+              "{\"values\":[\"values\"],\"is_truncated\":false}"),
         ),
         isNull,
       );
     });
 
-    test("listLogsFieldValues answers 400 with its declared error body", () async {
+    test("listLogsFieldValues answers 400 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/400';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_19.listLogsFieldValues(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        fieldName: (jsonDecode("\"Example Name\"") as String),
-        since: SdkPresent<String>((jsonDecode("\"1h\"") as String)),
-        startTime: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
-        endTime: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
-        source: SdkPresent<ProjectBranchLogSource>(ProjectBranchLogSource.fromJson(jsonDecode("\"function\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          fieldName: (jsonDecode("\"Example Name\"") as String),
+          since: SdkPresent<String>((jsonDecode("\"1h\"") as String)),
+          startTime: SdkPresent<String>(
+              (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+          endTime: SdkPresent<String>(
+              (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+          source: SdkPresent<ProjectBranchLogSource>(
+              ProjectBranchLogSource.fromJson(
+                  jsonDecode("\"function\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 400);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"code\":\"LOGS_INVALID_QUERY\",\"message\":\"example text\",\"reason\":\"time_range_too_large\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"code\":\"LOGS_INVALID_QUERY\",\"message\":\"example text\",\"reason\":\"time_range_too_large\"}")),
         isNull,
       );
     });
@@ -4726,7 +5637,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}],\"pagination\":{\"cursor\":\"2022-12-07T00:45:05.262011Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}],\"pagination\":{\"cursor\":\"2022-12-07T00:45:05.262011Z\"}}"),
         ),
         isNull,
       );
@@ -4738,23 +5650,27 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_17.listOperation(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listOrganizationsApiKeys reaches the mock and decodes its response", () async {
+    test("listOrganizationsApiKeys reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.listOrganizationsApiKeys(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -4762,33 +5678,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("[{\"id\":165432,\"name\":\"orgkey_1\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":{\"id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"name\":\"John Smith\",\"image\":\"http://link.to.image\"},\"last_used_at\":\"2022-11-15T20:22:51Z\",\"last_used_from_addr\":\"192.0.2.255\"},{\"id\":165433,\"name\":\"orgkey_2\",\"created_at\":\"2022-11-15T20:12:36Z\",\"created_by\":{\"id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"name\":\"John Smith\",\"image\":\"http://link.to.image\"},\"last_used_at\":\"2022-11-15T20:15:04Z\",\"last_used_from_addr\":\"192.0.2.255\"}]"),
+          SdkUtils.decodeJson(
+              "[{\"id\":165432,\"name\":\"orgkey_1\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":{\"id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"name\":\"John Smith\",\"image\":\"http://link.to.image\"},\"last_used_at\":\"2022-11-15T20:22:51Z\",\"last_used_from_addr\":\"192.0.2.255\"},{\"id\":165433,\"name\":\"orgkey_2\",\"created_at\":\"2022-11-15T20:12:36Z\",\"created_by\":{\"id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"name\":\"John Smith\",\"image\":\"http://link.to.image\"},\"last_used_at\":\"2022-11-15T20:15:04Z\",\"last_used_from_addr\":\"192.0.2.255\"}]"),
         ),
         isNull,
       );
     });
 
-    test("listOrganizationsApiKeys answers 418 with its declared error body", () async {
+    test("listOrganizationsApiKeys answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.listOrganizationsApiKeys(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listOrganizationsInvitations reaches the mock and decodes its response", () async {
+    test(
+        "listOrganizationsInvitations reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.listOrganizationsInvitations(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -4796,75 +5719,95 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"invitations\":[{\"id\":\"db8faf32-b07f-4b0f-94c8-5c288909f5d3\",\"email\":\"invited1@email.com\",\"org_id\":\"my-organization-morning-bread-81040908\",\"invited_by\":\"a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c5d\",\"role\":\"admin\",\"invited_at\":\"2024-02-23T17:42:25Z\"},{\"id\":\"c52f0d22-ebd9-4708-ae44-2872cae49a83\",\"email\":\"invited2@email.com\",\"org_id\":\"my-organization-morning-bread-81040908\",\"invited_by\":\"a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c5d\",\"role\":\"member\",\"invited_at\":\"2024-02-23T12:42:25Z\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"invitations\":[{\"id\":\"db8faf32-b07f-4b0f-94c8-5c288909f5d3\",\"email\":\"invited1@email.com\",\"org_id\":\"my-organization-morning-bread-81040908\",\"invited_by\":\"a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c5d\",\"role\":\"admin\",\"invited_at\":\"2024-02-23T17:42:25Z\"},{\"id\":\"c52f0d22-ebd9-4708-ae44-2872cae49a83\",\"email\":\"invited2@email.com\",\"org_id\":\"my-organization-morning-bread-81040908\",\"invited_by\":\"a1b2c3d4-5e6f-4a7b-8c9d-0e1f2a3b4c5d\",\"role\":\"member\",\"invited_at\":\"2024-02-23T12:42:25Z\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listOrganizationsInvitations answers 418 with its declared error body", () async {
+    test(
+        "listOrganizationsInvitations answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.listOrganizationsInvitations(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listOrganizationsMembers reaches the mock and decodes its response", () async {
+    test("listOrganizationsMembers reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.listOrganizationsMembers(
         config,
         orgId: (jsonDecode("\"a\"") as String),
-        sortBy: SdkPresent<ListOrganizationsMembersSortBy>(ListOrganizationsMembersSortBy.fromJson(jsonDecode("\"joined_at\"") as String)),
+        sortBy: SdkPresent<ListOrganizationsMembersSortBy>(
+            ListOrganizationsMembersSortBy.fromJson(
+                jsonDecode("\"joined_at\"") as String)),
         cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        sortOrder: SdkPresent<SchemaSchema>(SchemaSchema.fromJson(jsonDecode("\"desc\"") as String)),
+        sortOrder: SdkPresent<SchemaSchema>(
+            SchemaSchema.fromJson(jsonDecode("\"desc\"") as String)),
         limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"members\":[{\"member\":{\"id\":\"d57833f2-d308-4ede-9d2e-468d9d013d1b\",\"user_id\":\"b107d689-6dd2-4c9a-8b9e-0b25e457cf56\",\"org_id\":\"my-organization-morning-bread-81040908\",\"role\":\"admin\",\"joined_at\":\"2024-02-23T17:42:25Z\"},\"user\":{\"email\":\"user1@email.com\"}},{\"member\":{\"id\":\"5fee13ac-957b-40cd-8de0-4d494cc28e28\",\"user_id\":\"6df052ac-ca9a-4321-8963-b6507b2d7dee\",\"org_id\":\"my-organization-morning-bread-81040908\",\"role\":\"member\",\"joined_at\":\"2024-02-21T16:42:25Z\"},\"user\":{\"email\":\"user2@email.com\"}}],\"pagination\":{\"next\":\"eyJtZW1iZXJfaWQiOiI1ZmVlMTNhYy05NTdiLTQwY2QtOGRlMC00ZDQ5NGNjMjhlMjgiLCJzb3J0X2J5Ijoiam9pbmVkX2F0In0=\",\"sort_by\":\"joined_at\",\"sort_order\":\"desc\"}}"),
+          SdkUtils.decodeJson(
+              "{\"members\":[{\"member\":{\"id\":\"d57833f2-d308-4ede-9d2e-468d9d013d1b\",\"user_id\":\"b107d689-6dd2-4c9a-8b9e-0b25e457cf56\",\"org_id\":\"my-organization-morning-bread-81040908\",\"role\":\"admin\",\"joined_at\":\"2024-02-23T17:42:25Z\"},\"user\":{\"email\":\"user1@email.com\"}},{\"member\":{\"id\":\"5fee13ac-957b-40cd-8de0-4d494cc28e28\",\"user_id\":\"6df052ac-ca9a-4321-8963-b6507b2d7dee\",\"org_id\":\"my-organization-morning-bread-81040908\",\"role\":\"member\",\"joined_at\":\"2024-02-21T16:42:25Z\"},\"user\":{\"email\":\"user2@email.com\"}}],\"pagination\":{\"next\":\"eyJtZW1iZXJfaWQiOiI1ZmVlMTNhYy05NTdiLTQwY2QtOGRlMC00ZDQ5NGNjMjhlMjgiLCJzb3J0X2J5Ijoiam9pbmVkX2F0In0=\",\"sort_by\":\"joined_at\",\"sort_order\":\"desc\"}}"),
         ),
         isNull,
       );
     });
 
-    test("listOrganizationsMembers answers 418 with its declared error body", () async {
+    test("listOrganizationsMembers answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.listOrganizationsMembers(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        sortBy: SdkPresent<ListOrganizationsMembersSortBy>(ListOrganizationsMembersSortBy.fromJson(jsonDecode("\"joined_at\"") as String)),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        sortOrder: SdkPresent<SchemaSchema>(SchemaSchema.fromJson(jsonDecode("\"desc\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          sortBy: SdkPresent<ListOrganizationsMembersSortBy>(
+              ListOrganizationsMembersSortBy.fromJson(
+                  jsonDecode("\"joined_at\"") as String)),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          sortOrder: SdkPresent<SchemaSchema>(
+              SchemaSchema.fromJson(jsonDecode("\"desc\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listOrganizationVpcEndpoints reaches the mock and decodes its response", () async {
+    test(
+        "listOrganizationVpcEndpoints reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.listOrganizationVpcEndpoints(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -4873,34 +5816,42 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoints\":[{\"vpc_endpoint_id\":\"vpc_endpoint-1\",\"label\":\"label\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoints\":[{\"vpc_endpoint_id\":\"vpc_endpoint-1\",\"label\":\"label\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listOrganizationVpcEndpoints answers 418 with its declared error body", () async {
+    test(
+        "listOrganizationVpcEndpoints answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.listOrganizationVpcEndpoints(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        regionId: (jsonDecode("\"region-1\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          regionId: (jsonDecode("\"region-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listOrganizationVpcEndpointsAllRegions reaches the mock and decodes its response", () async {
+    test(
+        "listOrganizationVpcEndpointsAllRegions reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.listOrganizationVpcEndpointsAllRegions(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -4908,33 +5859,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoints\":[{\"vpc_endpoint_id\":\"vpc_endpoint-1\",\"label\":\"label\",\"region_id\":\"region-1\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoints\":[{\"vpc_endpoint_id\":\"vpc_endpoint-1\",\"label\":\"label\",\"region_id\":\"region-1\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listOrganizationVpcEndpointsAllRegions answers 418 with its declared error body", () async {
+    test(
+        "listOrganizationVpcEndpointsAllRegions answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.listOrganizationVpcEndpointsAllRegions(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listProjectMembers reaches the mock and decodes its response", () async {
+    test("listProjectMembers reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.listProjectMembers(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4944,35 +5902,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"project_members\":[{\"member_id\":\"00000000-0000-4000-8000-000000000000\",\"user_id\":\"00000000-0000-4000-8000-000000000000\",\"email\":\"user@example.com\",\"name\":\"Example Name\",\"org_role\":\"admin\",\"project_role\":\"viewer\",\"org_default_project_permission\":\"VIEWER\",\"explicit_project_permission\":\"VIEWER\",\"effective_project_permission\":\"VIEWER\",\"grant_source\":\"explicit\"}],\"pagination\":{\"next\":\"next\",\"sort_by\":\"sort_by\",\"sort_order\":\"sort_order\"}}"),
+          SdkUtils.decodeJson(
+              "{\"project_members\":[{\"member_id\":\"00000000-0000-4000-8000-000000000000\",\"user_id\":\"00000000-0000-4000-8000-000000000000\",\"email\":\"user@example.com\",\"name\":\"Example Name\",\"org_role\":\"admin\",\"project_role\":\"viewer\",\"org_default_project_permission\":\"VIEWER\",\"explicit_project_permission\":\"VIEWER\",\"effective_project_permission\":\"VIEWER\",\"grant_source\":\"explicit\"}],\"pagination\":{\"next\":\"next\",\"sort_by\":\"sort_by\",\"sort_order\":\"sort_order\"}}"),
         ),
         isNull,
       );
     });
 
-    test("listProjectMembers answers 418 with its declared error body", () async {
+    test("listProjectMembers answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.listProjectMembers(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listProjectPermissions reaches the mock and decodes its response", () async {
+    test("listProjectPermissions reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.listProjectPermissions(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -4980,28 +5944,33 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"project_permissions\":[{\"id\":\"id-1\",\"granted_to_email\":\"user@example.com\",\"granted_at\":\"2024-01-01T00:00:00Z\",\"revoked_at\":\"2024-01-01T00:00:00Z\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"project_permissions\":[{\"id\":\"id-1\",\"granted_to_email\":\"user@example.com\",\"granted_at\":\"2024-01-01T00:00:00Z\",\"revoked_at\":\"2024-01-01T00:00:00Z\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listProjectPermissions answers 418 with its declared error body", () async {
+    test("listProjectPermissions answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.listProjectPermissions(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -5019,7 +5988,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"projects\":[{\"id\":\"shiny-wind-028834\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"shiny-wind-028834\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":0,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10800,\"active_time\":100},{\"id\":\"winter-boat-259881\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"winter-boat-259881\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:52:25Z\",\"updated_at\":\"2022-11-23T17:52:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":0,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10800,\"active_time\":100,\"org_id\":\"org-morning-bread-81040908\"}],\"applications\":{\"winter-boat-259881\":[\"vercel\",\"github\"]},\"integrations\":{\"winter-boat-259881\":[\"vercel\",\"github\"]}}"),
+          SdkUtils.decodeJson(
+              "{\"projects\":[{\"id\":\"shiny-wind-028834\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"shiny-wind-028834\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":0,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10800,\"active_time\":100},{\"id\":\"winter-boat-259881\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"winter-boat-259881\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:52:25Z\",\"updated_at\":\"2022-11-23T17:52:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":0,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10800,\"active_time\":100,\"org_id\":\"org-morning-bread-81040908\"}],\"applications\":{\"winter-boat-259881\":[\"vercel\",\"github\"]},\"integrations\":{\"winter-boat-259881\":[\"vercel\",\"github\"]}}"),
         ),
         isNull,
       );
@@ -5031,26 +6001,30 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.listProjects(
-        config,
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
-        search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
-        orgId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
-        timeout: SdkPresent<int>((jsonDecode("100") as num).toInt()),
-        recoverable: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
+          search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
+          orgId: SdkPresent<String>((jsonDecode("\"a\"") as String)),
+          timeout: SdkPresent<int>((jsonDecode("100") as num).toInt()),
+          recoverable: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listProjectVpcEndpoints reaches the mock and decodes its response", () async {
+    test("listProjectVpcEndpoints reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.listProjectVpcEndpoints(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5058,33 +6032,39 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoints\":[{\"vpc_endpoint_id\":\"vpc_endpoint-1\",\"label\":\"label\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoints\":[{\"vpc_endpoint_id\":\"vpc_endpoint-1\",\"label\":\"label\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("listProjectVpcEndpoints answers 418 with its declared error body", () async {
+    test("listProjectVpcEndpoints answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.listProjectVpcEndpoints(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("listSharedProjects reaches the mock and decodes its response", () async {
+    test("listSharedProjects reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.listSharedProjects(
         config,
         cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
@@ -5095,31 +6075,36 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"projects\":[{\"id\":\"shiny-wind-028834\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"shiny-wind-028834\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":0,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10800,\"active_time\":100},{\"id\":\"winter-boat-259881\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"winter-boat-259881\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:52:25Z\",\"updated_at\":\"2022-11-23T17:52:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":0,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10800,\"active_time\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"projects\":[{\"id\":\"shiny-wind-028834\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"shiny-wind-028834\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":0,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10800,\"active_time\":100},{\"id\":\"winter-boat-259881\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"winter-boat-259881\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:52:25Z\",\"updated_at\":\"2022-11-23T17:52:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"cpu_used_sec\":0,\"branch_logical_size_limit\":0,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10800,\"active_time\":100}]}"),
         ),
         isNull,
       );
     });
 
-    test("listSharedProjects answers 418 with its declared error body", () async {
+    test("listSharedProjects answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.listSharedProjects(
-        config,
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
-        search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
-        timeout: SdkPresent<int>((jsonDecode("100") as num).toInt()),
-      );
+          config,
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("10") as num).toInt()),
+          search: SdkPresent<String>((jsonDecode("\"search\"") as String)),
+          timeout: SdkPresent<int>((jsonDecode("100") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -5132,7 +6117,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"snapshots\":[{\"id\":\"a\",\"name\":\"Example Name\",\"lsn\":\"lsn\",\"timestamp\":\"2024-01-01T00:00:00Z\",\"source_branch_id\":\"a\",\"created_at\":\"2025-01-15T10:30:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\",\"manual\":false,\"full_size\":1,\"diff_size\":1}]}"),
+          SdkUtils.decodeJson(
+              "{\"snapshots\":[{\"id\":\"a\",\"name\":\"Example Name\",\"lsn\":\"lsn\",\"timestamp\":\"2024-01-01T00:00:00Z\",\"source_branch_id\":\"a\",\"created_at\":\"2025-01-15T10:30:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\",\"manual\":false,\"full_size\":1,\"diff_size\":1}]}"),
         ),
         isNull,
       );
@@ -5144,62 +6130,75 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_11.listSnapshots(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("presignBucketsObject reaches the mock and decodes its response", () async {
+    test("presignBucketsObject reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_6.presignBucketsObject(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         bucketName: (jsonDecode("\"Example Name\"") as String),
         objectKey: (jsonDecode("\"x\"") as String),
-        operation: PresignRequestOperation.fromJson(jsonDecode("\"upload\"") as String),
-        contentType: SdkPresent<String>((jsonDecode("\"content_type\"") as String)),
+        operation: PresignRequestOperation.fromJson(
+            jsonDecode("\"upload\"") as String),
+        contentType:
+            SdkPresent<String>((jsonDecode("\"content_type\"") as String)),
         expiresInSeconds: SdkPresent<int>((jsonDecode("900") as num).toInt()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"url\":\"https://example.com\",\"method\":\"method\",\"headers\":{\"key\":\"key\"},\"expires_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"url\":\"https://example.com\",\"method\":\"method\",\"headers\":{\"key\":\"key\"},\"expires_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
     });
 
-    test("presignBucketsObject answers 404 with its declared error body", () async {
+    test("presignBucketsObject answers 404 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/404';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_6.presignBucketsObject(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        bucketName: (jsonDecode("\"Example Name\"") as String),
-        objectKey: (jsonDecode("\"x\"") as String),
-        operation: PresignRequestOperation.fromJson(jsonDecode("\"upload\"") as String),
-        contentType: SdkPresent<String>((jsonDecode("\"content_type\"") as String)),
-        expiresInSeconds: SdkPresent<int>((jsonDecode("900") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          bucketName: (jsonDecode("\"Example Name\"") as String),
+          objectKey: (jsonDecode("\"x\"") as String),
+          operation: PresignRequestOperation.fromJson(
+              jsonDecode("\"upload\"") as String),
+          contentType:
+              SdkPresent<String>((jsonDecode("\"content_type\"") as String)),
+          expiresInSeconds: SdkPresent<int>((jsonDecode("900") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -5210,24 +6209,38 @@ void main() {
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         since: SdkPresent<String>((jsonDecode("\"1h\"") as String)),
-        startTime: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
-        endTime: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+        startTime: SdkPresent<String>(
+            (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+        endTime: SdkPresent<String>(
+            (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
         limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
         cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        sortOrder: SdkPresent<ProjectBranchLogsQueryRequestSortOrder>(ProjectBranchLogsQueryRequestSortOrder.fromJson(jsonDecode("\"desc\"") as String)),
-        source: SdkPresent<ProjectBranchLogSource>(ProjectBranchLogSource.fromJson(jsonDecode("\"function\"") as String)),
-        serviceName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        scopeName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        minimumSeverity: SdkPresent<ProjectBranchLogSeverity>(ProjectBranchLogSeverity.fromJson(jsonDecode("\"trace\"") as String)),
+        sortOrder: SdkPresent<ProjectBranchLogsQueryRequestSortOrder>(
+            ProjectBranchLogsQueryRequestSortOrder.fromJson(
+                jsonDecode("\"desc\"") as String)),
+        source: SdkPresent<ProjectBranchLogSource>(
+            ProjectBranchLogSource.fromJson(
+                jsonDecode("\"function\"") as String)),
+        serviceName:
+            SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        scopeName:
+            SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        minimumSeverity: SdkPresent<ProjectBranchLogSeverity>(
+            ProjectBranchLogSeverity.fromJson(
+                jsonDecode("\"trace\"") as String)),
         severityText: SdkPresent<String>((jsonDecode("\"x\"") as String)),
         bodyContains: SdkPresent<String>((jsonDecode("\"x\"") as String)),
-        traceId: SdkPresent<String>((jsonDecode("\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"") as String)),
-        logql: SdkPresent<String>((jsonDecode("\"{entity_type=\\\"function\\\"} |~ \\\"(?i)timeout\\\"\"") as String)),
+        traceId: SdkPresent<String>(
+            (jsonDecode("\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"") as String)),
+        logql: SdkPresent<String>((jsonDecode(
+                "\"{entity_type=\\\"function\\\"} |~ \\\"(?i)timeout\\\"\"")
+            as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"logs\":[{\"timestamp\":\"2024-01-01T00:00:00Z\",\"message\":\"example text\",\"source\":\"function\",\"entity_id\":\"entity-1\",\"service_name\":\"Example Name\",\"scope_name\":\"Example Name\",\"severity_number\":0,\"severity_text\":\"severity_text\",\"trace_id\":\"trace-1\",\"span_id\":\"span-1\",\"attributes\":{}}],\"next_cursor\":\"next_cursor\",\"is_truncated\":false}"),
+          SdkUtils.decodeJson(
+              "{\"logs\":[{\"timestamp\":\"2024-01-01T00:00:00Z\",\"message\":\"example text\",\"source\":\"function\",\"entity_id\":\"entity-1\",\"service_name\":\"Example Name\",\"scope_name\":\"Example Name\",\"severity_number\":0,\"severity_text\":\"severity_text\",\"trace_id\":\"trace-1\",\"span_id\":\"span-1\",\"attributes\":{}}],\"next_cursor\":\"next_cursor\",\"is_truncated\":false}"),
         ),
         isNull,
       );
@@ -5239,31 +6252,47 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_19.queryLogs(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        since: SdkPresent<String>((jsonDecode("\"1h\"") as String)),
-        startTime: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
-        endTime: SdkPresent<String>((jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
-        limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
-        cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
-        sortOrder: SdkPresent<ProjectBranchLogsQueryRequestSortOrder>(ProjectBranchLogsQueryRequestSortOrder.fromJson(jsonDecode("\"desc\"") as String)),
-        source: SdkPresent<ProjectBranchLogSource>(ProjectBranchLogSource.fromJson(jsonDecode("\"function\"") as String)),
-        serviceName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        scopeName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        minimumSeverity: SdkPresent<ProjectBranchLogSeverity>(ProjectBranchLogSeverity.fromJson(jsonDecode("\"trace\"") as String)),
-        severityText: SdkPresent<String>((jsonDecode("\"x\"") as String)),
-        bodyContains: SdkPresent<String>((jsonDecode("\"x\"") as String)),
-        traceId: SdkPresent<String>((jsonDecode("\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"") as String)),
-        logql: SdkPresent<String>((jsonDecode("\"{entity_type=\\\"function\\\"} |~ \\\"(?i)timeout\\\"\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          since: SdkPresent<String>((jsonDecode("\"1h\"") as String)),
+          startTime: SdkPresent<String>(
+              (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+          endTime: SdkPresent<String>(
+              (jsonDecode("\"2024-01-01T00:00:00Z\"") as String)),
+          limit: SdkPresent<int>((jsonDecode("100") as num).toInt()),
+          cursor: SdkPresent<String>((jsonDecode("\"cursor\"") as String)),
+          sortOrder: SdkPresent<ProjectBranchLogsQueryRequestSortOrder>(
+              ProjectBranchLogsQueryRequestSortOrder.fromJson(
+                  jsonDecode("\"desc\"") as String)),
+          source: SdkPresent<ProjectBranchLogSource>(
+              ProjectBranchLogSource.fromJson(
+                  jsonDecode("\"function\"") as String)),
+          serviceName:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          scopeName:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          minimumSeverity: SdkPresent<ProjectBranchLogSeverity>(
+              ProjectBranchLogSeverity.fromJson(
+                  jsonDecode("\"trace\"") as String)),
+          severityText: SdkPresent<String>((jsonDecode("\"x\"") as String)),
+          bodyContains: SdkPresent<String>((jsonDecode("\"x\"") as String)),
+          traceId: SdkPresent<String>(
+              (jsonDecode("\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"") as String)),
+          logql: SdkPresent<String>((jsonDecode(
+                  "\"{entity_type=\\\"function\\\"} |~ \\\"(?i)timeout\\\"\"")
+              as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 400);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"code\":\"LOGS_INVALID_QUERY\",\"message\":\"example text\",\"reason\":\"time_range_too_large\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"code\":\"LOGS_INVALID_QUERY\",\"message\":\"example text\",\"reason\":\"time_range_too_large\"}")),
         isNull,
       );
     });
@@ -5276,7 +6305,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"project\":{\"id\":\"spring-example-302709\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"spring-example-302709\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"proxy_host\":\"us-east-2.aws.neon.tech\",\"store_passwords\":true,\"creation_source\":\"console\",\"history_retention_seconds\":604800,\"created_at\":\"2022-12-13T01:30:55Z\",\"updated_at\":\"2022-12-13T01:30:55Z\",\"owner\":{\"name\":\"John Smith\",\"email\":\"some@email.com\",\"branches_limit\":10,\"subscription_type\":\"scale\"},\"org_id\":\"org-morning-bread-81040908\",\"owner_id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"data_storage_bytes_hour\":2831928,\"branch_logical_size_limit\":10,\"branch_logical_size_limit_bytes\":10485760,\"data_transfer_bytes\":1000,\"written_data_bytes\":193990002,\"compute_time_seconds\":2485760,\"active_time_seconds\":621440,\"cpu_used_sec\":155350,\"consumption_period_start\":\"2022-11-01T00:00:00Z\",\"consumption_period_end\":\"2022-12-01T00:00:00Z\"},\"branches\":[{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100}]}"),
+          SdkUtils.decodeJson(
+              "{\"project\":{\"id\":\"spring-example-302709\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"spring-example-302709\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"proxy_host\":\"us-east-2.aws.neon.tech\",\"store_passwords\":true,\"creation_source\":\"console\",\"history_retention_seconds\":604800,\"created_at\":\"2022-12-13T01:30:55Z\",\"updated_at\":\"2022-12-13T01:30:55Z\",\"owner\":{\"name\":\"John Smith\",\"email\":\"some@email.com\",\"branches_limit\":10,\"subscription_type\":\"scale\"},\"org_id\":\"org-morning-bread-81040908\",\"owner_id\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"data_storage_bytes_hour\":2831928,\"branch_logical_size_limit\":10,\"branch_logical_size_limit_bytes\":10485760,\"data_transfer_bytes\":1000,\"written_data_bytes\":193990002,\"compute_time_seconds\":2485760,\"active_time_seconds\":621440,\"cpu_used_sec\":155350,\"consumption_period_start\":\"2022-11-01T00:00:00Z\",\"consumption_period_end\":\"2022-12-01T00:00:00Z\"},\"branches\":[{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100}]}"),
         ),
         isNull,
       );
@@ -5288,21 +6318,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.recoverProject(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("registerFunctionsCustomDomain reaches the mock and decodes its response", () async {
+    test(
+        "registerFunctionsCustomDomain reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_10.registerFunctionsCustomDomain(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5314,41 +6349,49 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"domain\":\"xxx\",\"entity_type\":\"function\",\"entity_id\":\"entity-1\",\"cname_target\":\"Example Name\",\"status\":\"active\",\"dns_status\":\"active\",\"binding_status\":\"active\",\"status_reason\":\"active\"}"),
+          SdkUtils.decodeJson(
+              "{\"domain\":\"xxx\",\"entity_type\":\"function\",\"entity_id\":\"entity-1\",\"cname_target\":\"Example Name\",\"status\":\"active\",\"dns_status\":\"active\",\"binding_status\":\"active\",\"status_reason\":\"active\"}"),
         ),
         isNull,
       );
     });
 
-    test("registerFunctionsCustomDomain answers 418 with its declared error body", () async {
+    test(
+        "registerFunctionsCustomDomain answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.registerFunctionsCustomDomain(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        domain: (jsonDecode("\"xxx\"") as String),
-        entityType: (jsonDecode("\"function\"") as String),
-        entityId: (jsonDecode("\"entity-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          domain: (jsonDecode("\"xxx\"") as String),
+          entityType: (jsonDecode("\"function\"") as String),
+          entityId: (jsonDecode("\"entity-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("removeOrganizationMember reaches the mock and decodes its response", () async {
+    test("removeOrganizationMember reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.removeOrganizationMember(
         config,
         orgId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
+        memberId:
+            (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
       );
       expect(
         mismatch(
@@ -5359,66 +6402,80 @@ void main() {
       );
     });
 
-    test("removeOrganizationMember answers 418 with its declared error body", () async {
+    test("removeOrganizationMember answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.removeOrganizationMember(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"")
+              as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("removeProjectMemberRole reaches the mock and decodes its response", () async {
+    test("removeProjectMemberRole reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.removeProjectMemberRole(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
+        memberId:
+            (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
         confirmSelfLockout: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"project_id\":\"a\",\"member_id\":\"00000000-0000-4000-8000-000000000000\",\"user_id\":\"00000000-0000-4000-8000-000000000000\",\"email\":\"user@example.com\",\"name\":\"Example Name\",\"org_role\":\"admin\",\"project_role\":\"viewer\",\"org_default_project_permission\":\"VIEWER\",\"explicit_project_permission\":\"VIEWER\",\"effective_project_permission\":\"VIEWER\",\"credential_rotation_recommended\":false,\"org_api_key_rotation_recommended\":false}"),
+          SdkUtils.decodeJson(
+              "{\"project_id\":\"a\",\"member_id\":\"00000000-0000-4000-8000-000000000000\",\"user_id\":\"00000000-0000-4000-8000-000000000000\",\"email\":\"user@example.com\",\"name\":\"Example Name\",\"org_role\":\"admin\",\"project_role\":\"viewer\",\"org_default_project_permission\":\"VIEWER\",\"explicit_project_permission\":\"VIEWER\",\"effective_project_permission\":\"VIEWER\",\"credential_rotation_recommended\":false,\"org_api_key_rotation_recommended\":false}"),
         ),
         isNull,
       );
     });
 
-    test("removeProjectMemberRole answers 418 with its declared error body", () async {
+    test("removeProjectMemberRole answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.removeProjectMemberRole(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
-        confirmSelfLockout: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"")
+              as String),
+          confirmSelfLockout: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("resetBranchRolePassword reaches the mock and decodes its response", () async {
+    test("resetBranchRolePassword reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.resetBranchRolePassword(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5428,30 +6485,35 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"role\":{\"branch_id\":\"br-noisy-sunset-458773\",\"name\":\"sally\",\"password\":\"ClfD0aVuK3eK\",\"protected\":false,\"created_at\":\"2022-12-03T12:39:39Z\",\"updated_at\":\"2022-12-03T12:58:18Z\"},\"operations\":[{\"id\":\"6bef07a0-ebca-40cd-9100-7324036cfff2\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-noisy-sunset-458773\",\"endpoint_id\":\"ep-small-pine-767857\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T12:58:18Z\",\"updated_at\":\"2022-12-03T12:58:18Z\",\"total_duration_ms\":100},{\"id\":\"16b5bfca-4697-4194-a338-d2cdc9aca2af\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-noisy-sunset-458773\",\"endpoint_id\":\"ep-small-pine-767857\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-03T12:58:18Z\",\"updated_at\":\"2022-12-03T12:58:18Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"role\":{\"branch_id\":\"br-noisy-sunset-458773\",\"name\":\"sally\",\"password\":\"ClfD0aVuK3eK\",\"protected\":false,\"created_at\":\"2022-12-03T12:39:39Z\",\"updated_at\":\"2022-12-03T12:58:18Z\"},\"operations\":[{\"id\":\"6bef07a0-ebca-40cd-9100-7324036cfff2\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-noisy-sunset-458773\",\"endpoint_id\":\"ep-small-pine-767857\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T12:58:18Z\",\"updated_at\":\"2022-12-03T12:58:18Z\",\"total_duration_ms\":100},{\"id\":\"16b5bfca-4697-4194-a338-d2cdc9aca2af\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-noisy-sunset-458773\",\"endpoint_id\":\"ep-small-pine-767857\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-03T12:58:18Z\",\"updated_at\":\"2022-12-03T12:58:18Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
     });
 
-    test("resetBranchRolePassword answers 418 with its declared error body", () async {
+    test("resetBranchRolePassword answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.resetBranchRolePassword(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        roleName: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          roleName: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -5465,7 +6527,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"e061087e-3c99-4856-b9c8-6b7751a253af\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"suspend_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100},{\"id\":\"e061087e-3c99-4856-b9c8-6b7751a253af\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"start_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"e061087e-3c99-4856-b9c8-6b7751a253af\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"suspend_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100},{\"id\":\"e061087e-3c99-4856-b9c8-6b7751a253af\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"start_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -5477,17 +6540,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_9.restartEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        endpointId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          endpointId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -5499,13 +6565,16 @@ void main() {
         branchId: (jsonDecode("\"a\"") as String),
         sourceBranchId: (jsonDecode("\"a\"") as String),
         sourceLsn: SdkPresent<String>((jsonDecode("\"source_lsn\"") as String)),
-        sourceTimestamp: SdkPresent<String>((jsonDecode("\"2024-02-26T12:00:00Z\"") as String)),
-        preserveUnderName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        sourceTimestamp: SdkPresent<String>(
+            (jsonDecode("\"2024-02-26T12:00:00Z\"") as String)),
+        preserveUnderName:
+            SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
+          SdkUtils.decodeJson(
+              "{\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
         ),
         isNull,
       );
@@ -5517,21 +6586,27 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.restoreBranch(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        sourceBranchId: (jsonDecode("\"a\"") as String),
-        sourceLsn: SdkPresent<String>((jsonDecode("\"source_lsn\"") as String)),
-        sourceTimestamp: SdkPresent<String>((jsonDecode("\"2024-02-26T12:00:00Z\"") as String)),
-        preserveUnderName: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          sourceBranchId: (jsonDecode("\"a\"") as String),
+          sourceLsn:
+              SdkPresent<String>((jsonDecode("\"source_lsn\"") as String)),
+          sourceTimestamp: SdkPresent<String>(
+              (jsonDecode("\"2024-02-26T12:00:00Z\"") as String)),
+          preserveUnderName:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -5543,13 +6618,15 @@ void main() {
         snapshotId: (jsonDecode("\"a\"") as String),
         name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
         name_2: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        targetBranchId: SdkPresent<String>((jsonDecode("\"target_branch-1\"") as String)),
+        targetBranchId:
+            SdkPresent<String>((jsonDecode("\"target_branch-1\"") as String)),
         finalizeRestore: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"endpoints\":[{\"host\":\"ep-silent-smoke-806639.us-east-2.aws.neon.tech\",\"id\":\"ep-silent-smoke-806639\",\"name\":\"My cool compute\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"creation_source\":\"console\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"suspend_timeout_seconds\":0,\"provisioner\":\"k8s-neonvm\"}],\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
+          SdkUtils.decodeJson(
+              "{\"branch\":{\"id\":\"br-wispy-meadow-118737\",\"project_id\":\"spring-example-302709\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1DE2850\",\"name\":\"dev2\",\"protected\":false,\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"creation_source\":\"console\",\"created_at\":\"2022-11-30T19:09:48Z\",\"updated_at\":\"2022-12-01T19:53:05Z\",\"default\":true,\"init_source\":\"parent-data\",\"data_transfer_bytes\":72911987,\"written_data_bytes\":542998300,\"compute_time_seconds\":823880990,\"active_time_seconds\":922200,\"cpu_used_sec\":461100},\"endpoints\":[{\"host\":\"ep-silent-smoke-806639.us-east-2.aws.neon.tech\",\"id\":\"ep-silent-smoke-806639\",\"name\":\"My cool compute\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"init\",\"pending_state\":\"active\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"creation_source\":\"console\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:37:07Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"suspend_timeout_seconds\":0,\"provisioner\":\"k8s-neonvm\"}],\"operations\":[{\"id\":\"d8ac46eb-a757-42b1-9907-f78322ee394e\",\"project_id\":\"spring-example-302709\",\"branch_id\":\"br-wispy-meadow-118737\",\"endpoint_id\":\"ep-silent-smoke-806639\",\"action\":\"start_compute\",\"status\":\"finished\",\"failures_count\":0,\"created_at\":\"2022-11-15T20:02:00Z\",\"updated_at\":\"2022-11-15T20:02:02Z\",\"total_duration_ms\":200}]}"),
         ),
         isNull,
       );
@@ -5561,26 +6638,32 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_11.restoreSnapshot(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        snapshotId: (jsonDecode("\"a\"") as String),
-        name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        name_2: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        targetBranchId: SdkPresent<String>((jsonDecode("\"target_branch-1\"") as String)),
-        finalizeRestore: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          snapshotId: (jsonDecode("\"a\"") as String),
+          name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          name_2:
+              SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          targetBranchId:
+              SdkPresent<String>((jsonDecode("\"target_branch-1\"") as String)),
+          finalizeRestore: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("revealCredential reaches the mock and decodes its response", () async {
+    test("revealCredential reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_7.revealCredential(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5590,7 +6673,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"token_id\":\"token-1\",\"api_token\":\"api_token\",\"s3_secret_access_key\":\"s3_secret_access_key\"}"),
+          SdkUtils.decodeJson(
+              "{\"token_id\":\"token-1\",\"api_token\":\"api_token\",\"s3_secret_access_key\":\"s3_secret_access_key\"}"),
         ),
         isNull,
       );
@@ -5602,18 +6686,21 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_7.revealCredential(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        tokenId: (jsonDecode("\"token-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          tokenId: (jsonDecode("\"token-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -5626,7 +6713,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":165435,\"name\":\"mykey\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"last_used_at\":\"2022-11-15T20:15:04Z\",\"last_used_from_addr\":\"192.0.2.255\",\"revoked\":true}"),
+          SdkUtils.decodeJson(
+              "{\"id\":165435,\"name\":\"mykey\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"last_used_at\":\"2022-11-15T20:15:04Z\",\"last_used_from_addr\":\"192.0.2.255\",\"revoked\":true}"),
         ),
         isNull,
       );
@@ -5638,21 +6726,25 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_5.revokeApiKey(
-        config,
-        keyId: (jsonDecode("1") as num).toInt(),
-      );
+          config,
+          keyId: (jsonDecode("1") as num).toInt(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("revokeCredential reaches the mock and decodes its response", () async {
+    test("revokeCredential reaches the mock and decodes its response",
+        () async {
       await sdk_methods_7.revokeCredential(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5667,23 +6759,27 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_7.revokeCredential(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        tokenId: (jsonDecode("\"token-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          tokenId: (jsonDecode("\"token-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 404);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("revokeOrganizationsApiKey reaches the mock and decodes its response", () async {
+    test("revokeOrganizationsApiKey reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.revokeOrganizationsApiKey(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -5692,34 +6788,40 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":165435,\"name\":\"orgkey\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"last_used_at\":\"2022-11-15T20:15:04Z\",\"last_used_from_addr\":\"192.0.2.255\",\"revoked\":true}"),
+          SdkUtils.decodeJson(
+              "{\"id\":165435,\"name\":\"orgkey\",\"created_at\":\"2022-11-15T20:13:35Z\",\"created_by\":\"629982cc-de05-43db-ae16-28f2399c4910\",\"last_used_at\":\"2022-11-15T20:15:04Z\",\"last_used_from_addr\":\"192.0.2.255\",\"revoked\":true}"),
         ),
         isNull,
       );
     });
 
-    test("revokeOrganizationsApiKey answers 418 with its declared error body", () async {
+    test("revokeOrganizationsApiKey answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.revokeOrganizationsApiKey(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        keyId: (jsonDecode("1") as num).toInt(),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          keyId: (jsonDecode("1") as num).toInt(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("revokeProjectPermission reaches the mock and decodes its response", () async {
+    test("revokeProjectPermission reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.revokeProjectPermission(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5728,34 +6830,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"id-1\",\"granted_to_email\":\"user@example.com\",\"granted_at\":\"2024-01-01T00:00:00Z\",\"revoked_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"id-1\",\"granted_to_email\":\"user@example.com\",\"granted_at\":\"2024-01-01T00:00:00Z\",\"revoked_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
     });
 
-    test("revokeProjectPermission answers 418 with its declared error body", () async {
+    test("revokeProjectPermission answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.revokeProjectPermission(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        permissionId: (jsonDecode("\"permission-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          permissionId: (jsonDecode("\"permission-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("rotateAuthOAuthClientSecret reaches the mock and decodes its response", () async {
+    test(
+        "rotateAuthOAuthClientSecret reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.rotateAuthOAuthClientSecret(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5765,35 +6874,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"client_id\":\"a\",\"client_secret\":\"client_secret\"}"),
+          SdkUtils.decodeJson(
+              "{\"client_id\":\"a\",\"client_secret\":\"client_secret\"}"),
         ),
         isNull,
       );
     });
 
-    test("rotateAuthOAuthClientSecret answers 418 with its declared error body", () async {
+    test("rotateAuthOAuthClientSecret answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.rotateAuthOAuthClientSecret(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        clientId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          clientId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("rotateCredential reaches the mock and decodes its response", () async {
+    test("rotateCredential reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_7.rotateCredential(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5803,7 +6918,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"token_id\":\"token-1\",\"token_id_short\":\"token_id_short\",\"name\":\"Example Name\",\"api_token\":\"api_token\",\"s3_secret_access_key\":\"s3_secret_access_key\",\"scopes\":[\"storage:read\"],\"branch_id\":\"a\",\"principal_type\":\"user\",\"created_at\":\"2024-01-01T00:00:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"token_id\":\"token-1\",\"token_id_short\":\"token_id_short\",\"name\":\"Example Name\",\"api_token\":\"api_token\",\"s3_secret_access_key\":\"s3_secret_access_key\",\"scopes\":[\"storage:read\"],\"branch_id\":\"a\",\"principal_type\":\"user\",\"created_at\":\"2024-01-01T00:00:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
@@ -5815,23 +6931,27 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_7.rotateCredential(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        tokenId: (jsonDecode("\"token-1\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          tokenId: (jsonDecode("\"token-1\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("rotateRealtimeSecret reaches the mock and decodes its response", () async {
+    test("rotateRealtimeSecret reaches the mock and decodes its response",
+        () async {
       await sdk_methods_12.rotateRealtimeSecret(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5839,28 +6959,33 @@ void main() {
       );
     });
 
-    test("rotateRealtimeSecret answers 418 with its declared error body", () async {
+    test("rotateRealtimeSecret answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_12.rotateRealtimeSecret(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("sendAuthEmailProviderTest reaches the mock and decodes its response", () async {
+    test("sendAuthEmailProviderTest reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.sendAuthEmailProviderTest(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5870,35 +6995,41 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"success\":false,\"error_message\":\"example text\"}"),
+          SdkUtils.decodeJson(
+              "{\"success\":false,\"error_message\":\"example text\"}"),
         ),
         isNull,
       );
     });
 
-    test("sendAuthEmailProviderTest answers 418 with its declared error body", () async {
+    test("sendAuthEmailProviderTest answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.sendAuthEmailProviderTest(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        recipientEmail: (jsonDecode("\"user@example.com\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          recipientEmail: (jsonDecode("\"user@example.com\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("sendAuthTestEmail reaches the mock and decodes its response", () async {
+    test("sendAuthTestEmail reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.sendAuthTestEmail(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5914,41 +7045,47 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"success\":false,\"error_message\":\"example text\"}"),
+          SdkUtils.decodeJson(
+              "{\"success\":false,\"error_message\":\"example text\"}"),
         ),
         isNull,
       );
     });
 
-    test("sendAuthTestEmail answers 418 with its declared error body", () async {
+    test("sendAuthTestEmail answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.sendAuthTestEmail(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        host: (jsonDecode("\"host\"") as String),
-        port: (jsonDecode("1") as num).toInt(),
-        username: (jsonDecode("\"Example Name\"") as String),
-        password: (jsonDecode("\"password\"") as String),
-        senderEmail: (jsonDecode("\"user@example.com\"") as String),
-        senderName: (jsonDecode("\"Example Name\"") as String),
-        recipientEmail: (jsonDecode("\"user@example.com\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          host: (jsonDecode("\"host\"") as String),
+          port: (jsonDecode("1") as num).toInt(),
+          username: (jsonDecode("\"Example Name\"") as String),
+          password: (jsonDecode("\"password\"") as String),
+          senderEmail: (jsonDecode("\"user@example.com\"") as String),
+          senderName: (jsonDecode("\"Example Name\"") as String),
+          recipientEmail: (jsonDecode("\"user@example.com\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("setBranchDefault reaches the mock and decodes its response", () async {
+    test("setBranchDefault reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.setBranchDefault(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -5957,7 +7094,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch\":{\"cpu_used_sec\":1,\"active_time_seconds\":1,\"compute_time_seconds\":1,\"written_data_bytes\":100,\"data_transfer_bytes\":100,\"id\":\"br-icy-dream-250089\",\"project_id\":\"shiny-wind-028834\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1E19478\",\"name\":\"mybranch\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},\"operations\":[]}"),
+          SdkUtils.decodeJson(
+              "{\"branch\":{\"cpu_used_sec\":1,\"active_time_seconds\":1,\"compute_time_seconds\":1,\"written_data_bytes\":100,\"data_transfer_bytes\":100,\"id\":\"br-icy-dream-250089\",\"project_id\":\"shiny-wind-028834\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1E19478\",\"name\":\"mybranch\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},\"operations\":[]}"),
         ),
         isNull,
       );
@@ -5969,22 +7107,27 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.setBranchDefault(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("setOrganizationSpendingLimit reaches the mock and decodes its response", () async {
+    test(
+        "setOrganizationSpendingLimit reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.setOrganizationSpendingLimit(
         config,
         orgId: (jsonDecode("\"a\"") as String),
@@ -5999,73 +7142,92 @@ void main() {
       );
     });
 
-    test("setOrganizationSpendingLimit answers 418 with its declared error body", () async {
+    test(
+        "setOrganizationSpendingLimit answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.setOrganizationSpendingLimit(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        spendingLimitCents: (jsonDecode("1") as num).toInt(),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          spendingLimitCents: (jsonDecode("1") as num).toInt(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("setProjectMemberRole reaches the mock and decodes its response", () async {
+    test("setProjectMemberRole reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_0.setProjectMemberRole(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
+        memberId:
+            (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
         role: ProjectRole.fromJson(jsonDecode("\"viewer\"") as String),
         confirmSelfDemotion: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"project_id\":\"a\",\"member_id\":\"00000000-0000-4000-8000-000000000000\",\"user_id\":\"00000000-0000-4000-8000-000000000000\",\"email\":\"user@example.com\",\"name\":\"Example Name\",\"org_role\":\"admin\",\"project_role\":\"viewer\",\"org_default_project_permission\":\"VIEWER\",\"explicit_project_permission\":\"VIEWER\",\"effective_project_permission\":\"VIEWER\",\"credential_rotation_recommended\":false,\"org_api_key_rotation_recommended\":false}"),
+          SdkUtils.decodeJson(
+              "{\"project_id\":\"a\",\"member_id\":\"00000000-0000-4000-8000-000000000000\",\"user_id\":\"00000000-0000-4000-8000-000000000000\",\"email\":\"user@example.com\",\"name\":\"Example Name\",\"org_role\":\"admin\",\"project_role\":\"viewer\",\"org_default_project_permission\":\"VIEWER\",\"explicit_project_permission\":\"VIEWER\",\"effective_project_permission\":\"VIEWER\",\"credential_rotation_recommended\":false,\"org_api_key_rotation_recommended\":false}"),
         ),
         isNull,
       );
     });
 
-    test("setProjectMemberRole answers 418 with its declared error body", () async {
+    test("setProjectMemberRole answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_0.setProjectMemberRole(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
-        role: ProjectRole.fromJson(jsonDecode("\"viewer\"") as String),
-        confirmSelfDemotion: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"")
+              as String),
+          role: ProjectRole.fromJson(jsonDecode("\"viewer\"") as String),
+          confirmSelfDemotion: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("setSnapshotSchedule reaches the mock and decodes its response", () async {
+    test("setSnapshotSchedule reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_11.setSnapshotSchedule(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        schedule: (jsonDecode("[{\"frequency\":\"daily\",\"hour\":0,\"day\":1,\"month\":1,\"retention_seconds\":3024000}]") as List).map((element) => BackupScheduleItem.fromJson((element as Map).cast<String, dynamic>())).toList(),
+        schedule: (jsonDecode(
+                    "[{\"frequency\":\"daily\",\"hour\":0,\"day\":1,\"month\":1,\"retention_seconds\":3024000}]")
+                as List)
+            .map((element) => BackupScheduleItem.fromJson(
+                (element as Map).cast<String, dynamic>()))
+            .toList(),
       );
       expect(
         mismatch(
@@ -6076,29 +7238,39 @@ void main() {
       );
     });
 
-    test("setSnapshotSchedule answers 418 with its declared error body", () async {
+    test("setSnapshotSchedule answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_11.setSnapshotSchedule(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        schedule: (jsonDecode("[{\"frequency\":\"daily\",\"hour\":0,\"day\":1,\"month\":1,\"retention_seconds\":3024000}]") as List).map((element) => BackupScheduleItem.fromJson((element as Map).cast<String, dynamic>())).toList(),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          schedule: (jsonDecode(
+                      "[{\"frequency\":\"daily\",\"hour\":0,\"day\":1,\"month\":1,\"retention_seconds\":3024000}]")
+                  as List)
+              .map((element) => BackupScheduleItem.fromJson(
+                  (element as Map).cast<String, dynamic>()))
+              .toList(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("startAnonymization reaches the mock and decodes its response", () async {
+    test("startAnonymization reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.startAnonymization(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -6107,29 +7279,34 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch_id\":\"br-aged-salad-637688\",\"project_id\":\"simple-truth-637688\",\"state\":\"anonymizing\",\"status_message\":\"Anonymizing table mydb.public.users (3/5)\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:30:22Z\",\"last_run\":{\"started_at\":\"2022-11-30T18:25:15Z\",\"completed_at\":\"2022-11-30T18:30:22Z\",\"triggered_by\":\"df6c5f70-6cbf-4c8c-9e7a-74c3ddbd8f9f\",\"masked_columns\":12}}"),
+          SdkUtils.decodeJson(
+              "{\"branch_id\":\"br-aged-salad-637688\",\"project_id\":\"simple-truth-637688\",\"state\":\"anonymizing\",\"status_message\":\"Anonymizing table mydb.public.users (3/5)\",\"created_at\":\"2022-11-30T18:25:15Z\",\"updated_at\":\"2022-11-30T18:30:22Z\",\"last_run\":{\"started_at\":\"2022-11-30T18:25:15Z\",\"completed_at\":\"2022-11-30T18:30:22Z\",\"triggered_by\":\"df6c5f70-6cbf-4c8c-9e7a-74c3ddbd8f9f\",\"masked_columns\":12}}"),
         ),
         isNull,
       );
     });
 
-    test("startAnonymization answers 418 with its declared error body", () async {
+    test("startAnonymization answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.startAnonymization(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -6143,7 +7320,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"e061087e-3c99-4856-b9c8-6b7751a253af\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"start_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"e061087e-3c99-4856-b9c8-6b7751a253af\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"start_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -6155,17 +7333,20 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_9.startEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        endpointId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          endpointId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -6179,7 +7360,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"e061087e-3c99-4856-b9c8-6b7751a253af\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"suspend_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"e061087e-3c99-4856-b9c8-6b7751a253af\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"suspend_compute\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -6191,26 +7373,31 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_9.suspendEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        endpointId: (jsonDecode("\"a\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          endpointId: (jsonDecode("\"a\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("transferAuthLegacyProvider reaches the mock and decodes its response", () async {
+    test("transferAuthLegacyProvider reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.transferAuthLegacyProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
+        authProvider: NeonAuthSupportedAuthProvider.fromJson(
+            jsonDecode("\"mock\"") as String),
       );
       expect(
         mismatch(
@@ -6221,33 +7408,42 @@ void main() {
       );
     });
 
-    test("transferAuthLegacyProvider answers 418 with its declared error body", () async {
+    test("transferAuthLegacyProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.transferAuthLegacyProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        authProvider: NeonAuthSupportedAuthProvider.fromJson(jsonDecode("\"mock\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          authProvider: NeonAuthSupportedAuthProvider.fromJson(
+              jsonDecode("\"mock\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("transferOrganizationsProjects reaches the mock and decodes its response", () async {
+    test(
+        "transferOrganizationsProjects reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.transferOrganizationsProjects(
         config,
         sourceOrgId: (jsonDecode("\"a\"") as String),
         destinationOrgId: (jsonDecode("\"a\"") as String),
-        projectIds: (jsonDecode("[\"a\"]") as List).map((element) => (element as String)).toList(),
+        projectIds: (jsonDecode("[\"a\"]") as List)
+            .map((element) => (element as String))
+            .toList(),
       );
       expect(
         mismatch(
@@ -6258,33 +7454,43 @@ void main() {
       );
     });
 
-    test("transferOrganizationsProjects answers 406 with its declared error body", () async {
+    test(
+        "transferOrganizationsProjects answers 406 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/406';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.transferOrganizationsProjects(
-        config,
-        sourceOrgId: (jsonDecode("\"a\"") as String),
-        destinationOrgId: (jsonDecode("\"a\"") as String),
-        projectIds: (jsonDecode("[\"a\"]") as List).map((element) => (element as String)).toList(),
-      );
+          config,
+          sourceOrgId: (jsonDecode("\"a\"") as String),
+          destinationOrgId: (jsonDecode("\"a\"") as String),
+          projectIds: (jsonDecode("[\"a\"]") as List)
+              .map((element) => (element as String))
+              .toList(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 406);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"limits\":[{\"name\":\"projects_count\",\"actual\":\"2\",\"expected\":\"1\"},{\"name\":\"subscription_type\",\"actual\":\"launch\",\"expected\":\"scale\"}]}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"limits\":[{\"name\":\"projects_count\",\"actual\":\"2\",\"expected\":\"1\"},{\"name\":\"subscription_type\",\"actual\":\"launch\",\"expected\":\"scale\"}]}")),
         isNull,
       );
     });
 
-    test("transferUsersProjects reaches the mock and decodes its response", () async {
+    test("transferUsersProjects reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_15.transferUsersProjects(
         config,
         destinationOrgId: (jsonDecode("\"a\"") as String),
-        projectIds: (jsonDecode("[\"a\"]") as List).map((element) => (element as String)).toList(),
+        projectIds: (jsonDecode("[\"a\"]") as List)
+            .map((element) => (element as String))
+            .toList(),
       );
       expect(
         mismatch(
@@ -6295,28 +7501,35 @@ void main() {
       );
     });
 
-    test("transferUsersProjects answers 406 with its declared error body", () async {
+    test("transferUsersProjects answers 406 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/406';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_15.transferUsersProjects(
-        config,
-        destinationOrgId: (jsonDecode("\"a\"") as String),
-        projectIds: (jsonDecode("[\"a\"]") as List).map((element) => (element as String)).toList(),
-      );
+          config,
+          destinationOrgId: (jsonDecode("\"a\"") as String),
+          projectIds: (jsonDecode("[\"a\"]") as List)
+              .map((element) => (element as String))
+              .toList(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 406);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"limits\":[{\"name\":\"projects_count\",\"actual\":\"2\",\"expected\":\"1\"},{\"name\":\"subscription_type\",\"actual\":\"launch\",\"expected\":\"scale\"}]}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"limits\":[{\"name\":\"projects_count\",\"actual\":\"2\",\"expected\":\"1\"},{\"name\":\"subscription_type\",\"actual\":\"launch\",\"expected\":\"scale\"}]}")),
         isNull,
       );
     });
 
-    test("updateAuthAllowLocalhost reaches the mock and decodes its response", () async {
+    test("updateAuthAllowLocalhost reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthAllowLocalhost(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -6332,29 +7545,34 @@ void main() {
       );
     });
 
-    test("updateAuthAllowLocalhost answers 418 with its declared error body", () async {
+    test("updateAuthAllowLocalhost answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthAllowLocalhost(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        allowLocalhost: (jsonDecode("false") as bool),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          allowLocalhost: (jsonDecode("false") as bool),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthConfig reaches the mock and decodes its response", () async {
+    test("updateAuthConfig reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthConfig(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -6376,189 +7594,252 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthConfig(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        name: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          name: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthEmailAndPasswordConfig reaches the mock and decodes its response", () async {
+    test(
+        "updateAuthEmailAndPasswordConfig reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthEmailAndPasswordConfig(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
-        emailVerificationMethod: SdkPresent<NeonAuthEmailVerificationMethod>(NeonAuthEmailVerificationMethod.fromJson(jsonDecode("\"link\"") as String)),
-        requireEmailVerification: SdkPresent<bool>((jsonDecode("false") as bool)),
-        autoSignInAfterVerification: SdkPresent<bool>((jsonDecode("false") as bool)),
-        sendVerificationEmailOnSignUp: SdkPresent<bool>((jsonDecode("false") as bool)),
-        sendVerificationEmailOnSignIn: SdkPresent<bool>((jsonDecode("false") as bool)),
+        emailVerificationMethod: SdkPresent<NeonAuthEmailVerificationMethod>(
+            NeonAuthEmailVerificationMethod.fromJson(
+                jsonDecode("\"link\"") as String)),
+        requireEmailVerification:
+            SdkPresent<bool>((jsonDecode("false") as bool)),
+        autoSignInAfterVerification:
+            SdkPresent<bool>((jsonDecode("false") as bool)),
+        sendVerificationEmailOnSignUp:
+            SdkPresent<bool>((jsonDecode("false") as bool)),
+        sendVerificationEmailOnSignIn:
+            SdkPresent<bool>((jsonDecode("false") as bool)),
         disableSignUp: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"email_verification_method\":\"link\",\"require_email_verification\":false,\"auto_sign_in_after_verification\":false,\"send_verification_email_on_sign_up\":false,\"send_verification_email_on_sign_in\":false,\"disable_sign_up\":false}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"email_verification_method\":\"link\",\"require_email_verification\":false,\"auto_sign_in_after_verification\":false,\"send_verification_email_on_sign_up\":false,\"send_verification_email_on_sign_in\":false,\"disable_sign_up\":false}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthEmailAndPasswordConfig answers 418 with its declared error body", () async {
+    test(
+        "updateAuthEmailAndPasswordConfig answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthEmailAndPasswordConfig(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
-        emailVerificationMethod: SdkPresent<NeonAuthEmailVerificationMethod>(NeonAuthEmailVerificationMethod.fromJson(jsonDecode("\"link\"") as String)),
-        requireEmailVerification: SdkPresent<bool>((jsonDecode("false") as bool)),
-        autoSignInAfterVerification: SdkPresent<bool>((jsonDecode("false") as bool)),
-        sendVerificationEmailOnSignUp: SdkPresent<bool>((jsonDecode("false") as bool)),
-        sendVerificationEmailOnSignIn: SdkPresent<bool>((jsonDecode("false") as bool)),
-        disableSignUp: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
+          emailVerificationMethod: SdkPresent<NeonAuthEmailVerificationMethod>(
+              NeonAuthEmailVerificationMethod.fromJson(
+                  jsonDecode("\"link\"") as String)),
+          requireEmailVerification:
+              SdkPresent<bool>((jsonDecode("false") as bool)),
+          autoSignInAfterVerification:
+              SdkPresent<bool>((jsonDecode("false") as bool)),
+          sendVerificationEmailOnSignUp:
+              SdkPresent<bool>((jsonDecode("false") as bool)),
+          sendVerificationEmailOnSignIn:
+              SdkPresent<bool>((jsonDecode("false") as bool)),
+          disableSignUp: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthEmailProvider reaches the mock and decodes its response", () async {
+    test("updateAuthEmailProvider reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthEmailProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        body: NeonAuthEmailServerConfig.fromJson((jsonDecode("{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}") as Map).cast<String, dynamic>()),
+        body: NeonAuthEmailServerConfig.fromJson((jsonDecode(
+                    "{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}")
+                as Map)
+            .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}"),
+          SdkUtils.decodeJson(
+              "{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthEmailProvider answers 418 with its declared error body", () async {
+    test("updateAuthEmailProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthEmailProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        body: NeonAuthEmailServerConfig.fromJson((jsonDecode("{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          body: NeonAuthEmailServerConfig.fromJson((jsonDecode(
+                      "{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}")
+                  as Map)
+              .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthLegacyEmailServer reaches the mock and decodes its response", () async {
+    test(
+        "updateAuthLegacyEmailServer reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.updateAuthLegacyEmailServer(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        body: NeonAuthEmailServerConfig.fromJson((jsonDecode("{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}") as Map).cast<String, dynamic>()),
+        body: NeonAuthEmailServerConfig.fromJson((jsonDecode(
+                    "{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}")
+                as Map)
+            .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}"),
+          SdkUtils.decodeJson(
+              "{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthLegacyEmailServer answers 418 with its declared error body", () async {
+    test("updateAuthLegacyEmailServer answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.updateAuthLegacyEmailServer(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        body: NeonAuthEmailServerConfig.fromJson((jsonDecode("{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          body: NeonAuthEmailServerConfig.fromJson((jsonDecode(
+                      "{\"host\":\"host\",\"port\":1,\"username\":\"Example Name\",\"password\":\"password\",\"sender_email\":\"user@example.com\",\"sender_name\":\"Example Name\",\"type\":\"standard\"}")
+                  as Map)
+              .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthLegacyOauthProvider reaches the mock and decodes its response", () async {
+    test(
+        "updateAuthLegacyOauthProvider reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_1.updateAuthLegacyOauthProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        oauthProviderId: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
+        oauthProviderId: NeonAuthOauthProviderId.fromJson(
+            jsonDecode("\"google\"") as String),
         clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
-        clientSecret: SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
-        microsoftTenantId: SdkPresent<String>((jsonDecode("\"microsoft_tenant-1\"") as String)),
+        clientSecret:
+            SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
+        microsoftTenantId: SdkPresent<String>(
+            (jsonDecode("\"microsoft_tenant-1\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthLegacyOauthProvider answers 418 with its declared error body", () async {
+    test(
+        "updateAuthLegacyOauthProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_1.updateAuthLegacyOauthProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        oauthProviderId: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
-        clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
-        clientSecret: SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
-        microsoftTenantId: SdkPresent<String>((jsonDecode("\"microsoft_tenant-1\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          oauthProviderId: NeonAuthOauthProviderId.fromJson(
+              jsonDecode("\"google\"") as String),
+          clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
+          clientSecret:
+              SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
+          microsoftTenantId: SdkPresent<String>(
+              (jsonDecode("\"microsoft_tenant-1\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthMagicLinkPlugin reaches the mock and decodes its response", () async {
+    test("updateAuthMagicLinkPlugin reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthMagicLinkPlugin(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -6570,175 +7851,239 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"expires_in\":5,\"disable_sign_up\":false}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"expires_in\":5,\"disable_sign_up\":false}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthMagicLinkPlugin answers 418 with its declared error body", () async {
+    test("updateAuthMagicLinkPlugin answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthMagicLinkPlugin(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
-        expiresIn: SdkPresent<int>((jsonDecode("5") as num).toInt()),
-        disableSignUp: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
+          expiresIn: SdkPresent<int>((jsonDecode("5") as num).toInt()),
+          disableSignUp: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthOAuthClient reaches the mock and decodes its response", () async {
+    test("updateAuthOAuthClient reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthOAuthClient(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         clientId: (jsonDecode("\"a\"") as String),
         name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        redirectUris: SdkPresent<List<String>>((jsonDecode("[\"https://example.com\"]") as List).map((element) => (element as String)).toList()),
+        redirectUris: SdkPresent<List<String>>(
+            (jsonDecode("[\"https://example.com\"]") as List)
+                .map((element) => (element as String))
+                .toList()),
         skipConsent: SdkPresent<bool>((jsonDecode("false") as bool)),
         disabled: SdkPresent<bool>((jsonDecode("false") as bool)),
-        resources: SdkPresent<List<String>>((jsonDecode("[\"resources\"]") as List).map((element) => (element as String)).toList()),
+        resources: SdkPresent<List<String>>(
+            (jsonDecode("[\"resources\"]") as List)
+                .map((element) => (element as String))
+                .toList()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"client_id\":\"a\",\"name\":\"Example Name\",\"type\":\"confidential\",\"redirect_uris\":[\"https://example.com\"],\"resources\":[\"resources\"],\"skip_consent\":false,\"disabled\":false,\"created_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"client_id\":\"a\",\"name\":\"Example Name\",\"type\":\"confidential\",\"redirect_uris\":[\"https://example.com\"],\"resources\":[\"resources\"],\"skip_consent\":false,\"disabled\":false,\"created_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthOAuthClient answers 418 with its declared error body", () async {
+    test("updateAuthOAuthClient answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthOAuthClient(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        clientId: (jsonDecode("\"a\"") as String),
-        name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
-        redirectUris: SdkPresent<List<String>>((jsonDecode("[\"https://example.com\"]") as List).map((element) => (element as String)).toList()),
-        skipConsent: SdkPresent<bool>((jsonDecode("false") as bool)),
-        disabled: SdkPresent<bool>((jsonDecode("false") as bool)),
-        resources: SdkPresent<List<String>>((jsonDecode("[\"resources\"]") as List).map((element) => (element as String)).toList()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          clientId: (jsonDecode("\"a\"") as String),
+          name: SdkPresent<String>((jsonDecode("\"Example Name\"") as String)),
+          redirectUris: SdkPresent<List<String>>(
+              (jsonDecode("[\"https://example.com\"]") as List)
+                  .map((element) => (element as String))
+                  .toList()),
+          skipConsent: SdkPresent<bool>((jsonDecode("false") as bool)),
+          disabled: SdkPresent<bool>((jsonDecode("false") as bool)),
+          resources: SdkPresent<List<String>>(
+              (jsonDecode("[\"resources\"]") as List)
+                  .map((element) => (element as String))
+                  .toList()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthOauthProvider reaches the mock and decodes its response", () async {
+    test("updateAuthOauthProvider reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthOauthProvider(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        oauthProviderId: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
+        oauthProviderId: NeonAuthOauthProviderId.fromJson(
+            jsonDecode("\"google\"") as String),
         clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
-        clientSecret: SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
-        microsoftTenantId: SdkPresent<String>((jsonDecode("\"microsoft_tenant-1\"") as String)),
+        clientSecret:
+            SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
+        microsoftTenantId: SdkPresent<String>(
+            (jsonDecode("\"microsoft_tenant-1\"") as String)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"google\",\"type\":\"standard\",\"client_id\":\"client-1\",\"client_secret\":\"client_secret\"}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthOauthProvider answers 418 with its declared error body", () async {
+    test("updateAuthOauthProvider answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthOauthProvider(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        oauthProviderId: NeonAuthOauthProviderId.fromJson(jsonDecode("\"google\"") as String),
-        clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
-        clientSecret: SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
-        microsoftTenantId: SdkPresent<String>((jsonDecode("\"microsoft_tenant-1\"") as String)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          oauthProviderId: NeonAuthOauthProviderId.fromJson(
+              jsonDecode("\"google\"") as String),
+          clientId: SdkPresent<String>((jsonDecode("\"client-1\"") as String)),
+          clientSecret:
+              SdkPresent<String>((jsonDecode("\"client_secret\"") as String)),
+          microsoftTenantId: SdkPresent<String>(
+              (jsonDecode("\"microsoft_tenant-1\"") as String)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthOAuthProviderPlugin reaches the mock and decodes its response", () async {
+    test(
+        "updateAuthOAuthProviderPlugin reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthOAuthProviderPlugin(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
         loginPage: SdkPresent<String>((jsonDecode("\"login_page\"") as String)),
-        consentPage: SdkPresent<String>((jsonDecode("\"consent_page\"") as String)),
-        mcp: SdkPresent<NeonAuthOAuthProviderMcpUpdate>(NeonAuthOAuthProviderMcpUpdate.fromJson((jsonDecode("{\"resource\":\"resource\",\"dynamic_registration\":false}") as Map).cast<String, dynamic>())),
-        resources: SdkPresent<List<NeonAuthOAuthProviderResource>>((jsonDecode("[{\"identifier\":\"identifier\"}]") as List).map((element) => NeonAuthOAuthProviderResource.fromJson((element as Map).cast<String, dynamic>())).toList()),
+        consentPage:
+            SdkPresent<String>((jsonDecode("\"consent_page\"") as String)),
+        mcp: SdkPresent<NeonAuthOAuthProviderMcpUpdate>(
+            NeonAuthOAuthProviderMcpUpdate.fromJson((jsonDecode(
+                        "{\"resource\":\"resource\",\"dynamic_registration\":false}")
+                    as Map)
+                .cast<String, dynamic>())),
+        resources: SdkPresent<List<NeonAuthOAuthProviderResource>>(
+            (jsonDecode("[{\"identifier\":\"identifier\"}]") as List)
+                .map((element) => NeonAuthOAuthProviderResource.fromJson(
+                    (element as Map).cast<String, dynamic>()))
+                .toList()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"login_page\":\"login_page\",\"consent_page\":\"consent_page\",\"mcp\":{\"resource\":\"resource\",\"dynamic_registration\":false},\"resources\":[{\"identifier\":\"identifier\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"login_page\":\"login_page\",\"consent_page\":\"consent_page\",\"mcp\":{\"resource\":\"resource\",\"dynamic_registration\":false},\"resources\":[{\"identifier\":\"identifier\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthOAuthProviderPlugin answers 418 with its declared error body", () async {
+    test(
+        "updateAuthOAuthProviderPlugin answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthOAuthProviderPlugin(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
-        loginPage: SdkPresent<String>((jsonDecode("\"login_page\"") as String)),
-        consentPage: SdkPresent<String>((jsonDecode("\"consent_page\"") as String)),
-        mcp: SdkPresent<NeonAuthOAuthProviderMcpUpdate>(NeonAuthOAuthProviderMcpUpdate.fromJson((jsonDecode("{\"resource\":\"resource\",\"dynamic_registration\":false}") as Map).cast<String, dynamic>())),
-        resources: SdkPresent<List<NeonAuthOAuthProviderResource>>((jsonDecode("[{\"identifier\":\"identifier\"}]") as List).map((element) => NeonAuthOAuthProviderResource.fromJson((element as Map).cast<String, dynamic>())).toList()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
+          loginPage:
+              SdkPresent<String>((jsonDecode("\"login_page\"") as String)),
+          consentPage:
+              SdkPresent<String>((jsonDecode("\"consent_page\"") as String)),
+          mcp: SdkPresent<NeonAuthOAuthProviderMcpUpdate>(
+              NeonAuthOAuthProviderMcpUpdate.fromJson((jsonDecode(
+                          "{\"resource\":\"resource\",\"dynamic_registration\":false}")
+                      as Map)
+                  .cast<String, dynamic>())),
+          resources: SdkPresent<List<NeonAuthOAuthProviderResource>>(
+              (jsonDecode("[{\"identifier\":\"identifier\"}]") as List)
+                  .map((element) => NeonAuthOAuthProviderResource.fromJson(
+                      (element as Map).cast<String, dynamic>()))
+                  .toList()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthOrganizationPlugin reaches the mock and decodes its response", () async {
+    test(
+        "updateAuthOrganizationPlugin reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthOrganizationPlugin(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -6746,45 +8091,57 @@ void main() {
         enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
         organizationLimit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
         membershipLimit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-        creatorRole: SdkPresent<NeonAuthOrganizationConfigUpdateCreatorRole>(NeonAuthOrganizationConfigUpdateCreatorRole.fromJson(jsonDecode("\"admin\"") as String)),
+        creatorRole: SdkPresent<NeonAuthOrganizationConfigUpdateCreatorRole>(
+            NeonAuthOrganizationConfigUpdateCreatorRole.fromJson(
+                jsonDecode("\"admin\"") as String)),
         sendInvitationEmail: SdkPresent<bool>((jsonDecode("false") as bool)),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"organization_limit\":1,\"membership_limit\":1,\"creator_role\":\"admin\",\"send_invitation_email\":false}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"organization_limit\":1,\"membership_limit\":1,\"creator_role\":\"admin\",\"send_invitation_email\":false}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthOrganizationPlugin answers 418 with its declared error body", () async {
+    test(
+        "updateAuthOrganizationPlugin answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthOrganizationPlugin(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
-        organizationLimit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-        membershipLimit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
-        creatorRole: SdkPresent<NeonAuthOrganizationConfigUpdateCreatorRole>(NeonAuthOrganizationConfigUpdateCreatorRole.fromJson(jsonDecode("\"admin\"") as String)),
-        sendInvitationEmail: SdkPresent<bool>((jsonDecode("false") as bool)),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
+          organizationLimit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
+          membershipLimit: SdkPresent<int>((jsonDecode("1") as num).toInt()),
+          creatorRole: SdkPresent<NeonAuthOrganizationConfigUpdateCreatorRole>(
+              NeonAuthOrganizationConfigUpdateCreatorRole.fromJson(
+                  jsonDecode("\"admin\"") as String)),
+          sendInvitationEmail: SdkPresent<bool>((jsonDecode("false") as bool)),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthPhoneNumberPlugin reaches the mock and decodes its response", () async {
+    test(
+        "updateAuthPhoneNumberPlugin reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthPhoneNumberPlugin(
         config,
         projectId: (jsonDecode("\"a\"") as String),
@@ -6801,36 +8158,43 @@ void main() {
       );
     });
 
-    test("updateAuthPhoneNumberPlugin answers 418 with its declared error body", () async {
+    test("updateAuthPhoneNumberPlugin answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthPhoneNumberPlugin(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
-        otpExpiresIn: SdkPresent<int>((jsonDecode("60") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          enabled: SdkPresent<bool>((jsonDecode("false") as bool)),
+          otpExpiresIn: SdkPresent<int>((jsonDecode("60") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthUserRole reaches the mock and decodes its response", () async {
+    test("updateAuthUserRole reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthUserRole(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         authUserId: (jsonDecode("\"auth_user-1\"") as String),
-        roles: (jsonDecode("[\"admin\"]") as List).map((element) => (element as String)).toList(),
+        roles: (jsonDecode("[\"admin\"]") as List)
+            .map((element) => (element as String))
+            .toList(),
       );
       expect(
         mismatch(
@@ -6841,69 +8205,94 @@ void main() {
       );
     });
 
-    test("updateAuthUserRole answers 418 with its declared error body", () async {
+    test("updateAuthUserRole answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthUserRole(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        authUserId: (jsonDecode("\"auth_user-1\"") as String),
-        roles: (jsonDecode("[\"admin\"]") as List).map((element) => (element as String)).toList(),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          authUserId: (jsonDecode("\"auth_user-1\"") as String),
+          roles: (jsonDecode("[\"admin\"]") as List)
+              .map((element) => (element as String))
+              .toList(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateAuthWebhookConfig reaches the mock and decodes its response", () async {
+    test("updateAuthWebhookConfig reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_2.updateAuthWebhookConfig(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         enabled: (jsonDecode("false") as bool),
-        webhookUrl: SdkPresent<String>((jsonDecode("\"https://example.com\"") as String)),
-        enabledEvents: SdkPresent<List<NeonAuthWebhookConfigEnabledEventsItem>>((jsonDecode("[\"user.before_create\"]") as List).map((element) => NeonAuthWebhookConfigEnabledEventsItem.fromJson(element as String)).toList()),
+        webhookUrl: SdkPresent<String>(
+            (jsonDecode("\"https://example.com\"") as String)),
+        enabledEvents: SdkPresent<List<NeonAuthWebhookConfigEnabledEventsItem>>(
+            (jsonDecode("[\"user.before_create\"]") as List)
+                .map((element) =>
+                    NeonAuthWebhookConfigEnabledEventsItem.fromJson(
+                        element as String))
+                .toList()),
         timeoutSeconds: SdkPresent<int>((jsonDecode("5") as num).toInt()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"enabled\":false,\"webhook_url\":\"https://example.com\",\"enabled_events\":[\"user.before_create\"],\"timeout_seconds\":5}"),
+          SdkUtils.decodeJson(
+              "{\"enabled\":false,\"webhook_url\":\"https://example.com\",\"enabled_events\":[\"user.before_create\"],\"timeout_seconds\":5}"),
         ),
         isNull,
       );
     });
 
-    test("updateAuthWebhookConfig answers 418 with its declared error body", () async {
+    test("updateAuthWebhookConfig answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_2.updateAuthWebhookConfig(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        enabled: (jsonDecode("false") as bool),
-        webhookUrl: SdkPresent<String>((jsonDecode("\"https://example.com\"") as String)),
-        enabledEvents: SdkPresent<List<NeonAuthWebhookConfigEnabledEventsItem>>((jsonDecode("[\"user.before_create\"]") as List).map((element) => NeonAuthWebhookConfigEnabledEventsItem.fromJson(element as String)).toList()),
-        timeoutSeconds: SdkPresent<int>((jsonDecode("5") as num).toInt()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          enabled: (jsonDecode("false") as bool),
+          webhookUrl: SdkPresent<String>(
+              (jsonDecode("\"https://example.com\"") as String)),
+          enabledEvents:
+              SdkPresent<List<NeonAuthWebhookConfigEnabledEventsItem>>(
+                  (jsonDecode("[\"user.before_create\"]") as List)
+                      .map((element) =>
+                          NeonAuthWebhookConfigEnabledEventsItem.fromJson(
+                              element as String))
+                      .toList()),
+          timeoutSeconds: SdkPresent<int>((jsonDecode("5") as num).toInt()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -6913,12 +8302,15 @@ void main() {
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        branch: BranchUpdateRequestBranch.fromJson((jsonDecode("{\"name\":\"mybranch\"}") as Map).cast<String, dynamic>()),
+        branch: BranchUpdateRequestBranch.fromJson(
+            (jsonDecode("{\"name\":\"mybranch\"}") as Map)
+                .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"branch\":{\"id\":\"br-icy-dream-250089\",\"project_id\":\"shiny-wind-028834\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1E19478\",\"name\":\"mybranch\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},\"operations\":[]}"),
+          SdkUtils.decodeJson(
+              "{\"branch\":{\"id\":\"br-icy-dream-250089\",\"project_id\":\"shiny-wind-028834\",\"parent_id\":\"br-aged-salad-637688\",\"parent_lsn\":\"0/1E19478\",\"name\":\"mybranch\",\"current_state\":\"ready\",\"state_changed_at\":\"2022-11-30T20:09:48Z\",\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-11-23T17:42:26Z\",\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"cpu_used_sec\":100,\"default\":true,\"protected\":false,\"creation_source\":\"console\",\"init_source\":\"parent-data\"},\"operations\":[]}"),
         ),
         isNull,
       );
@@ -6930,58 +8322,74 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_4.updateBranch(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        branch: BranchUpdateRequestBranch.fromJson((jsonDecode("{\"name\":\"mybranch\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          branch: BranchUpdateRequestBranch.fromJson(
+              (jsonDecode("{\"name\":\"mybranch\"}") as Map)
+                  .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateBranchDatabase reaches the mock and decodes its response", () async {
+    test("updateBranchDatabase reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.updateBranchDatabase(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         databaseName: (jsonDecode("\"Example Name\"") as String),
-        database: DatabaseUpdateRequestDatabase.fromJson((jsonDecode("{\"name\":\"mydb\",\"owner_name\":\"sally\"}") as Map).cast<String, dynamic>()),
+        database: DatabaseUpdateRequestDatabase.fromJson(
+            (jsonDecode("{\"name\":\"mydb\",\"owner_name\":\"sally\"}") as Map)
+                .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"database\":{\"id\":876692,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"mydb\",\"owner_name\":\"sally\",\"created_at\":\"2022-12-04T00:15:04Z\",\"updated_at\":\"2022-12-04T00:15:04Z\"},\"operations\":[{\"id\":\"9ef1c2ed-dce4-43aa-bae8-78aea636bf8a\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"endpoint_id\":\"ep-little-smoke-851426\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-04T00:21:01Z\",\"updated_at\":\"2022-12-04T00:21:01Z\",\"total_duration_ms\":100},{\"id\":\"42dafb46-f861-497b-ae89-f2bec54f4966\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"endpoint_id\":\"ep-little-smoke-851426\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-04T00:21:01Z\",\"updated_at\":\"2022-12-04T00:21:01Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"database\":{\"id\":876692,\"branch_id\":\"br-aged-salad-637688\",\"name\":\"mydb\",\"owner_name\":\"sally\",\"created_at\":\"2022-12-04T00:15:04Z\",\"updated_at\":\"2022-12-04T00:15:04Z\"},\"operations\":[{\"id\":\"9ef1c2ed-dce4-43aa-bae8-78aea636bf8a\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"endpoint_id\":\"ep-little-smoke-851426\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-04T00:21:01Z\",\"updated_at\":\"2022-12-04T00:21:01Z\",\"total_duration_ms\":100},{\"id\":\"42dafb46-f861-497b-ae89-f2bec54f4966\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-aged-salad-637688\",\"endpoint_id\":\"ep-little-smoke-851426\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-04T00:21:01Z\",\"updated_at\":\"2022-12-04T00:21:01Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
     });
 
-    test("updateBranchDatabase answers 418 with its declared error body", () async {
+    test("updateBranchDatabase answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.updateBranchDatabase(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        databaseName: (jsonDecode("\"Example Name\"") as String),
-        database: DatabaseUpdateRequestDatabase.fromJson((jsonDecode("{\"name\":\"mydb\",\"owner_name\":\"sally\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          databaseName: (jsonDecode("\"Example Name\"") as String),
+          database: DatabaseUpdateRequestDatabase.fromJson(
+              (jsonDecode("{\"name\":\"mydb\",\"owner_name\":\"sally\"}")
+                      as Map)
+                  .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -6992,7 +8400,11 @@ void main() {
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         databaseName: (jsonDecode("\"Example Name\"") as String),
-        settings: SdkPresent<DataAPISettings>(DataAPISettings.fromJson((jsonDecode("{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false}") as Map).cast<String, dynamic>())),
+        settings: SdkPresent<
+            DataAPISettings>(DataAPISettings.fromJson((jsonDecode(
+                    "{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false}")
+                as Map)
+            .cast<String, dynamic>())),
       );
       expect(
         mismatch(
@@ -7009,19 +8421,26 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_8.updateDataApi(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        databaseName: (jsonDecode("\"Example Name\"") as String),
-        settings: SdkPresent<DataAPISettings>(DataAPISettings.fromJson((jsonDecode("{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false}") as Map).cast<String, dynamic>())),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          databaseName: (jsonDecode("\"Example Name\"") as String),
+          settings: SdkPresent<
+              DataAPISettings>(DataAPISettings.fromJson((jsonDecode(
+                      "{\"db_aggregates_enabled\":true,\"db_anon_role\":\"anonymous\",\"db_extra_search_path\":\"db_extra_search_path\",\"db_max_rows\":1,\"db_schemas\":[\"db_schemas\"],\"jwt_role_claim_key\":\".role\",\"jwt_cache_max_lifetime\":1,\"openapi_mode\":\"disabled\",\"server_cors_allowed_origins\":\"server_cors_allowed_origins\",\"server_timing_enabled\":false}")
+                  as Map)
+              .cast<String, dynamic>())),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -7031,12 +8450,15 @@ void main() {
         config,
         projectId: (jsonDecode("\"a\"") as String),
         endpointId: (jsonDecode("\"a\"") as String),
-        endpoint: EndpointUpdateRequestEndpoint.fromJson((jsonDecode("{\"suspend_timeout_seconds\":300}") as Map).cast<String, dynamic>()),
+        endpoint: EndpointUpdateRequestEndpoint.fromJson(
+            (jsonDecode("{\"suspend_timeout_seconds\":300}") as Map)
+                .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"3fc98ab8-f191-47b8-a427-5eb668ccc5b9\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100},{\"id\":\"9ffda74b-a582-4cff-b0f0-aaa8d14b8e6a\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
+          SdkUtils.decodeJson(
+              "{\"endpoint\":{\"host\":\"ep-steep-bush-777093.us-east-2.aws.neon.tech\",\"id\":\"ep-steep-bush-777093\",\"project_id\":\"shiny-wind-028834\",\"branch_id\":\"br-raspy-hill-832856\",\"autoscaling_limit_min_cu\":1,\"autoscaling_limit_max_cu\":1,\"region_id\":\"aws-us-east-2\",\"type\":\"read_write\",\"current_state\":\"idle\",\"settings\":{\"pg_settings\":{}},\"pooler_enabled\":false,\"pooler_mode\":\"transaction\",\"disabled\":false,\"passwordless_access\":true,\"last_active\":\"2022-12-03T15:00:00Z\",\"created_at\":\"2022-12-03T15:37:07Z\",\"updated_at\":\"2022-12-03T15:49:10Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"creation_source\":\"console\",\"provisioner\":\"k8s-pod\",\"suspend_timeout_seconds\":10800},\"operations\":[{\"id\":\"3fc98ab8-f191-47b8-a427-5eb668ccc5b9\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"apply_config\",\"status\":\"running\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100},{\"id\":\"9ffda74b-a582-4cff-b0f0-aaa8d14b8e6a\",\"project_id\":\"bitter-meadow-966132\",\"branch_id\":\"br-proud-paper-090813\",\"endpoint_id\":\"ep-shrill-thunder-454069\",\"action\":\"suspend_compute\",\"status\":\"scheduling\",\"failures_count\":0,\"created_at\":\"2022-12-03T15:51:06Z\",\"updated_at\":\"2022-12-03T15:51:06Z\",\"total_duration_ms\":100}]}"),
         ),
         isNull,
       );
@@ -7048,18 +8470,23 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_9.updateEndpoint(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        endpointId: (jsonDecode("\"a\"") as String),
-        endpoint: EndpointUpdateRequestEndpoint.fromJson((jsonDecode("{\"suspend_timeout_seconds\":300}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          endpointId: (jsonDecode("\"a\"") as String),
+          endpoint: EndpointUpdateRequestEndpoint.fromJson(
+              (jsonDecode("{\"suspend_timeout_seconds\":300}") as Map)
+                  .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -7075,7 +8502,8 @@ void main() {
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"function\":{\"id\":\"id-1\",\"slug\":\"slug\",\"name\":\"Example Name\",\"invocation_url\":\"https://example.com\",\"current_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"active_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"created_at\":\"2024-01-01T00:00:00Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"function\":{\"id\":\"id-1\",\"slug\":\"slug\",\"name\":\"Example Name\",\"invocation_url\":\"https://example.com\",\"current_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"active_deployment\":{\"id\":1,\"status\":\"pending\",\"memory_mib\":1,\"runtime\":\"2024-01-01T00:00:00Z\",\"created_at\":\"2024-01-01T00:00:00Z\",\"environment\":[\"environment\"],\"error\":\"error\"},\"created_at\":\"2024-01-01T00:00:00Z\"}}"),
         ),
         isNull,
       );
@@ -7087,135 +8515,174 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_10.updateFunctions(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        slug: (jsonDecode("\"a\"") as String),
-        name: (jsonDecode("\"Example Name\"") as String),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          slug: (jsonDecode("\"a\"") as String),
+          name: (jsonDecode("\"Example Name\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateFunctionsTrigger reaches the mock and decodes its response", () async {
+    test("updateFunctionsTrigger reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_10.updateFunctionsTrigger(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
         triggerId: (jsonDecode("\"a\"") as String),
-        body: TriggerUpdateRequest.fromJson((jsonDecode("{\"type\":\"schedule\",\"function_slug\":\"a\",\"name\":\"Example Name\",\"function_path\":\"x\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false}") as Map).cast<String, dynamic>()),
+        body: TriggerUpdateRequest.fromJson((jsonDecode(
+                    "{\"type\":\"schedule\",\"function_slug\":\"a\",\"name\":\"Example Name\",\"function_path\":\"x\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false}")
+                as Map)
+            .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"trigger\":{\"type\":\"schedule\",\"trigger_id\":\"a\",\"function_slug\":\"function_slug\",\"name\":\"Example Name\",\"function_path\":\"function_path\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false,\"version\":1,\"next_run_at\":\"2024-01-01T00:00:00Z\",\"inherited\":false}}"),
+          SdkUtils.decodeJson(
+              "{\"trigger\":{\"type\":\"schedule\",\"trigger_id\":\"a\",\"function_slug\":\"function_slug\",\"name\":\"Example Name\",\"function_path\":\"function_path\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false,\"version\":1,\"next_run_at\":\"2024-01-01T00:00:00Z\",\"inherited\":false}}"),
         ),
         isNull,
       );
     });
 
-    test("updateFunctionsTrigger answers 418 with its declared error body", () async {
+    test("updateFunctionsTrigger answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_10.updateFunctionsTrigger(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        triggerId: (jsonDecode("\"a\"") as String),
-        body: TriggerUpdateRequest.fromJson((jsonDecode("{\"type\":\"schedule\",\"function_slug\":\"a\",\"name\":\"Example Name\",\"function_path\":\"x\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          triggerId: (jsonDecode("\"a\"") as String),
+          body: TriggerUpdateRequest.fromJson((jsonDecode(
+                      "{\"type\":\"schedule\",\"function_slug\":\"a\",\"name\":\"Example Name\",\"function_path\":\"x\",\"schedule\":{\"cron\":\"0 9 * * 1-5\"},\"enabled\":false}")
+                  as Map)
+              .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateMaskingRules reaches the mock and decodes its response", () async {
+    test("updateMaskingRules reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_4.updateMaskingRules(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
-        maskingRules: (jsonDecode("[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}]") as List).map((element) => MaskingRule.fromJson((element as Map).cast<String, dynamic>())).toList(),
+        maskingRules: (jsonDecode(
+                    "[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}]")
+                as List)
+            .map((element) =>
+                MaskingRule.fromJson((element as Map).cast<String, dynamic>()))
+            .toList(),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"masking_rules\":[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}]}"),
+          SdkUtils.decodeJson(
+              "{\"masking_rules\":[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}]}"),
         ),
         isNull,
       );
     });
 
-    test("updateMaskingRules answers 418 with its declared error body", () async {
+    test("updateMaskingRules answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_4.updateMaskingRules(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        branchId: (jsonDecode("\"a\"") as String),
-        maskingRules: (jsonDecode("[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}]") as List).map((element) => MaskingRule.fromJson((element as Map).cast<String, dynamic>())).toList(),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          branchId: (jsonDecode("\"a\"") as String),
+          maskingRules: (jsonDecode(
+                      "[{\"database_name\":\"neondb\",\"schema_name\":\"public\",\"table_name\":\"users\",\"column_name\":\"email\",\"masking_function\":\"anon.fake_email()\"}]")
+                  as List)
+              .map((element) => MaskingRule.fromJson(
+                  (element as Map).cast<String, dynamic>()))
+              .toList(),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
 
-    test("updateOrganizationMember reaches the mock and decodes its response", () async {
+    test("updateOrganizationMember reaches the mock and decodes its response",
+        () async {
       final actual = await sdk_methods_3.updateOrganizationMember(
         config,
         orgId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
+        memberId:
+            (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
         role: MemberRole.fromJson(jsonDecode("\"member\"") as String),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"id\":\"00000000-0000-4000-8000-000000000000\",\"user_id\":\"00000000-0000-4000-8000-000000000000\",\"org_id\":\"a\",\"role\":\"member\",\"joined_at\":\"2024-01-01T00:00:00Z\"}"),
+          SdkUtils.decodeJson(
+              "{\"id\":\"00000000-0000-4000-8000-000000000000\",\"user_id\":\"00000000-0000-4000-8000-000000000000\",\"org_id\":\"a\",\"role\":\"member\",\"joined_at\":\"2024-01-01T00:00:00Z\"}"),
         ),
         isNull,
       );
     });
 
-    test("updateOrganizationMember answers 418 with its declared error body", () async {
+    test("updateOrganizationMember answers 418 with its declared error body",
+        () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
         await sdk_methods_3.updateOrganizationMember(
-        config,
-        orgId: (jsonDecode("\"a\"") as String),
-        memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"") as String),
-        role: MemberRole.fromJson(jsonDecode("\"member\"") as String),
-      );
+          config,
+          orgId: (jsonDecode("\"a\"") as String),
+          memberId: (jsonDecode("\"00000000-0000-4000-8000-000000000000\"")
+              as String),
+          role: MemberRole.fromJson(jsonDecode("\"member\"") as String),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -7224,12 +8691,15 @@ void main() {
       final actual = await sdk_methods_0.updateProject(
         config,
         projectId: (jsonDecode("\"a\"") as String),
-        project: ProjectUpdateRequestProject.fromJson((jsonDecode("{\"name\":\"myproject\"}") as Map).cast<String, dynamic>()),
+        project: ProjectUpdateRequestProject.fromJson(
+            (jsonDecode("{\"name\":\"myproject\"}") as Map)
+                .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"operations\":[],\"project\":{\"id\":\"shiny-wind-028834\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"myproject\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-12-04T02:39:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"branch_logical_size_limit\":0,\"cpu_used_sec\":213230,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10500,\"data_storage_bytes_hour\":1040,\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"history_retention_seconds\":604800,\"consumption_period_start\":\"2023-02-01T00:00:00Z\",\"consumption_period_end\":\"2023-03-01T00:00:00Z\"}}"),
+          SdkUtils.decodeJson(
+              "{\"operations\":[],\"project\":{\"id\":\"shiny-wind-028834\",\"platform_id\":\"aws\",\"region_id\":\"aws-us-east-2\",\"name\":\"myproject\",\"provisioner\":\"k8s-pod\",\"pg_version\":15,\"created_at\":\"2022-11-23T17:42:25Z\",\"updated_at\":\"2022-12-04T02:39:25Z\",\"proxy_host\":\"us-east-2.aws.neon.tech\",\"branch_logical_size_limit\":0,\"cpu_used_sec\":213230,\"owner_id\":\"1232111\",\"creation_source\":\"console\",\"store_passwords\":true,\"branch_logical_size_limit_bytes\":10500,\"data_storage_bytes_hour\":1040,\"data_transfer_bytes\":1000000,\"written_data_bytes\":100800,\"compute_time_seconds\":100,\"active_time_seconds\":100,\"history_retention_seconds\":604800,\"consumption_period_start\":\"2023-02-01T00:00:00Z\",\"consumption_period_end\":\"2023-03-01T00:00:00Z\"}}"),
         ),
         isNull,
       );
@@ -7241,17 +8711,22 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_0.updateProject(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        project: ProjectUpdateRequestProject.fromJson((jsonDecode("{\"name\":\"myproject\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          project: ProjectUpdateRequestProject.fromJson(
+              (jsonDecode("{\"name\":\"myproject\"}") as Map)
+                  .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });
@@ -7261,12 +8736,16 @@ void main() {
         config,
         projectId: (jsonDecode("\"a\"") as String),
         snapshotId: (jsonDecode("\"a\"") as String),
-        snapshot: SnapshotUpdateRequestSnapshot.fromJson((jsonDecode("{\"name\":\"Example Name\",\"expires_at\":\"2030-06-09T18:02:16Z\"}") as Map).cast<String, dynamic>()),
+        snapshot: SnapshotUpdateRequestSnapshot.fromJson((jsonDecode(
+                    "{\"name\":\"Example Name\",\"expires_at\":\"2030-06-09T18:02:16Z\"}")
+                as Map)
+            .cast<String, dynamic>()),
       );
       expect(
         mismatch(
           normal(actual),
-          SdkUtils.decodeJson("{\"snapshot\":{\"id\":\"a\",\"name\":\"Example Name\",\"lsn\":\"lsn\",\"timestamp\":\"2024-01-01T00:00:00Z\",\"source_branch_id\":\"a\",\"created_at\":\"2025-01-15T10:30:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\",\"manual\":false,\"full_size\":1,\"diff_size\":1}}"),
+          SdkUtils.decodeJson(
+              "{\"snapshot\":{\"id\":\"a\",\"name\":\"Example Name\",\"lsn\":\"lsn\",\"timestamp\":\"2024-01-01T00:00:00Z\",\"source_branch_id\":\"a\",\"created_at\":\"2025-01-15T10:30:00Z\",\"expires_at\":\"2024-01-01T00:00:00Z\",\"manual\":false,\"full_size\":1,\"diff_size\":1}}"),
         ),
         isNull,
       );
@@ -7278,18 +8757,24 @@ void main() {
       final SdkHttpError error;
       try {
         await sdk_methods_11.updateSnapshot(
-        config,
-        projectId: (jsonDecode("\"a\"") as String),
-        snapshotId: (jsonDecode("\"a\"") as String),
-        snapshot: SnapshotUpdateRequestSnapshot.fromJson((jsonDecode("{\"name\":\"Example Name\",\"expires_at\":\"2030-06-09T18:02:16Z\"}") as Map).cast<String, dynamic>()),
-      );
+          config,
+          projectId: (jsonDecode("\"a\"") as String),
+          snapshotId: (jsonDecode("\"a\"") as String),
+          snapshot: SnapshotUpdateRequestSnapshot.fromJson((jsonDecode(
+                      "{\"name\":\"Example Name\",\"expires_at\":\"2030-06-09T18:02:16Z\"}")
+                  as Map)
+              .cast<String, dynamic>()),
+        );
         fail('did not raise its declared error');
       } on SdkHttpError catch (caught) {
         error = caught;
       }
       expect(error.statusCode, 418);
       expect(
-        mismatch(normal(error.data), SdkUtils.decodeJson("{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
+        mismatch(
+            normal(error.data),
+            SdkUtils.decodeJson(
+                "{\"request_id\":\"request-1\",\"code\":\"\",\"message\":\"example text\"}")),
         isNull,
       );
     });

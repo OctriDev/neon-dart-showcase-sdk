@@ -8,113 +8,229 @@ part of 'consumption.dart';
 class ConsumptionHistoryPerTimeframe {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The specified start date-time for the reported consumption.
   final String timeframeStart;
+
   /// The specified end date-time for the reported consumption.
   final String timeframeEnd;
+
   /// Seconds. The amount of time the compute endpoints have been active.
   final BigInt activeTimeSeconds;
+
   /// Seconds. The number of CPU seconds used by compute endpoints, including compute endpoints that have been deleted.
   final BigInt computeTimeSeconds;
+
   /// Bytes. The amount of written data for all branches.
   final BigInt writtenDataBytes;
+
   /// Deprecated: always returns 0. Use the consumption history v2 endpoints (`/consumption_history/v2/projects`, `/consumption_history/v2/branches`) instead. Bytes. The space occupied in Postgres storage. Synthetic Postgres storage size combines the logical data size and Write-Ahead Log (WAL) size for all branches.
   final BigInt syntheticStorageSizeBytes;
+
   /// Deprecated: always returns 0. Use the consumption history v2 endpoints (`/consumption_history/v2/projects`, `/consumption_history/v2/branches`) instead. Bytes-Hour. The amount of Postgres storage consumed hourly.
   final BigInt dataStorageBytesHour;
+
   /// Bytes. The amount of logical size consumed.
   final SdkOptional<BigInt> logicalSizeBytes;
+
   /// Bytes-Hour. The amount of logical size consumed hourly.
   final SdkOptional<BigInt> logicalSizeBytesHour;
 
-  const ConsumptionHistoryPerTimeframe({required this.timeframeStart, required this.timeframeEnd, required this.activeTimeSeconds, required this.computeTimeSeconds, required this.writtenDataBytes, required this.syntheticStorageSizeBytes, required this.dataStorageBytesHour, this.logicalSizeBytes = const SdkOmitted(), this.logicalSizeBytesHour = const SdkOmitted()});
+  const ConsumptionHistoryPerTimeframe(
+      {required this.timeframeStart,
+      required this.timeframeEnd,
+      required this.activeTimeSeconds,
+      required this.computeTimeSeconds,
+      required this.writtenDataBytes,
+      required this.syntheticStorageSizeBytes,
+      required this.dataStorageBytesHour,
+      this.logicalSizeBytes = const SdkOmitted(),
+      this.logicalSizeBytesHour = const SdkOmitted()});
 
-  ConsumptionHistoryPerTimeframe Function({String timeframeStart, String timeframeEnd, BigInt activeTimeSeconds, BigInt computeTimeSeconds, BigInt writtenDataBytes, BigInt syntheticStorageSizeBytes, BigInt dataStorageBytesHour, SdkOptional<BigInt> logicalSizeBytes, SdkOptional<BigInt> logicalSizeBytesHour}) get copyWith => _copyWith;
+  ConsumptionHistoryPerTimeframe Function(
+      {String timeframeStart,
+      String timeframeEnd,
+      BigInt activeTimeSeconds,
+      BigInt computeTimeSeconds,
+      BigInt writtenDataBytes,
+      BigInt syntheticStorageSizeBytes,
+      BigInt dataStorageBytesHour,
+      SdkOptional<BigInt> logicalSizeBytes,
+      SdkOptional<BigInt> logicalSizeBytesHour}) get copyWith => _copyWith;
 
-  ConsumptionHistoryPerTimeframe _copyWith({Object? timeframeStart = sdkOmittedValue, Object? timeframeEnd = sdkOmittedValue, Object? activeTimeSeconds = sdkOmittedValue, Object? computeTimeSeconds = sdkOmittedValue, Object? writtenDataBytes = sdkOmittedValue, Object? syntheticStorageSizeBytes = sdkOmittedValue, Object? dataStorageBytesHour = sdkOmittedValue, Object? logicalSizeBytes = sdkOmittedValue, Object? logicalSizeBytesHour = sdkOmittedValue}) => ConsumptionHistoryPerTimeframe(
-    timeframeStart: identical(timeframeStart, sdkOmittedValue) ? this.timeframeStart : timeframeStart as String,
-    timeframeEnd: identical(timeframeEnd, sdkOmittedValue) ? this.timeframeEnd : timeframeEnd as String,
-    activeTimeSeconds: identical(activeTimeSeconds, sdkOmittedValue) ? this.activeTimeSeconds : activeTimeSeconds as BigInt,
-    computeTimeSeconds: identical(computeTimeSeconds, sdkOmittedValue) ? this.computeTimeSeconds : computeTimeSeconds as BigInt,
-    writtenDataBytes: identical(writtenDataBytes, sdkOmittedValue) ? this.writtenDataBytes : writtenDataBytes as BigInt,
-    syntheticStorageSizeBytes: identical(syntheticStorageSizeBytes, sdkOmittedValue) ? this.syntheticStorageSizeBytes : syntheticStorageSizeBytes as BigInt,
-    dataStorageBytesHour: identical(dataStorageBytesHour, sdkOmittedValue) ? this.dataStorageBytesHour : dataStorageBytesHour as BigInt,
-    logicalSizeBytes: identical(logicalSizeBytes, sdkOmittedValue) ? this.logicalSizeBytes : logicalSizeBytes as SdkOptional<BigInt>,
-    logicalSizeBytesHour: identical(logicalSizeBytesHour, sdkOmittedValue) ? this.logicalSizeBytesHour : logicalSizeBytesHour as SdkOptional<BigInt>,
-  );
+  ConsumptionHistoryPerTimeframe _copyWith(
+          {Object? timeframeStart = sdkOmittedValue,
+          Object? timeframeEnd = sdkOmittedValue,
+          Object? activeTimeSeconds = sdkOmittedValue,
+          Object? computeTimeSeconds = sdkOmittedValue,
+          Object? writtenDataBytes = sdkOmittedValue,
+          Object? syntheticStorageSizeBytes = sdkOmittedValue,
+          Object? dataStorageBytesHour = sdkOmittedValue,
+          Object? logicalSizeBytes = sdkOmittedValue,
+          Object? logicalSizeBytesHour = sdkOmittedValue}) =>
+      ConsumptionHistoryPerTimeframe(
+        timeframeStart: identical(timeframeStart, sdkOmittedValue)
+            ? this.timeframeStart
+            : timeframeStart as String,
+        timeframeEnd: identical(timeframeEnd, sdkOmittedValue)
+            ? this.timeframeEnd
+            : timeframeEnd as String,
+        activeTimeSeconds: identical(activeTimeSeconds, sdkOmittedValue)
+            ? this.activeTimeSeconds
+            : activeTimeSeconds as BigInt,
+        computeTimeSeconds: identical(computeTimeSeconds, sdkOmittedValue)
+            ? this.computeTimeSeconds
+            : computeTimeSeconds as BigInt,
+        writtenDataBytes: identical(writtenDataBytes, sdkOmittedValue)
+            ? this.writtenDataBytes
+            : writtenDataBytes as BigInt,
+        syntheticStorageSizeBytes:
+            identical(syntheticStorageSizeBytes, sdkOmittedValue)
+                ? this.syntheticStorageSizeBytes
+                : syntheticStorageSizeBytes as BigInt,
+        dataStorageBytesHour: identical(dataStorageBytesHour, sdkOmittedValue)
+            ? this.dataStorageBytesHour
+            : dataStorageBytesHour as BigInt,
+        logicalSizeBytes: identical(logicalSizeBytes, sdkOmittedValue)
+            ? this.logicalSizeBytes
+            : logicalSizeBytes as SdkOptional<BigInt>,
+        logicalSizeBytesHour: identical(logicalSizeBytesHour, sdkOmittedValue)
+            ? this.logicalSizeBytesHour
+            : logicalSizeBytesHour as SdkOptional<BigInt>,
+      );
 
-  factory ConsumptionHistoryPerTimeframe.fromJson(Map<String, dynamic> json) => ConsumptionHistoryPerTimeframe(
-    timeframeStart: (json['timeframe_start'] as String?)!,
-    timeframeEnd: (json['timeframe_end'] as String?)!,
-    activeTimeSeconds: (json['active_time_seconds'] == null ? null : BigInt.parse(json['active_time_seconds'].toString()))!,
-    computeTimeSeconds: (json['compute_time_seconds'] == null ? null : BigInt.parse(json['compute_time_seconds'].toString()))!,
-    writtenDataBytes: (json['written_data_bytes'] == null ? null : BigInt.parse(json['written_data_bytes'].toString()))!,
-    syntheticStorageSizeBytes: (json['synthetic_storage_size_bytes'] == null ? null : BigInt.parse(json['synthetic_storage_size_bytes'].toString()))!,
-    dataStorageBytesHour: (json['data_storage_bytes_hour'] == null ? null : BigInt.parse(json['data_storage_bytes_hour'].toString()))!,
-    logicalSizeBytes: json['logical_size_bytes'] != null ? SdkPresent((json['logical_size_bytes'] == null ? null : BigInt.parse(json['logical_size_bytes'].toString()))!) : const SdkOmitted(),
-    logicalSizeBytesHour: json['logical_size_bytes_hour'] != null ? SdkPresent((json['logical_size_bytes_hour'] == null ? null : BigInt.parse(json['logical_size_bytes_hour'].toString()))!) : const SdkOmitted(),
-  );
+  factory ConsumptionHistoryPerTimeframe.fromJson(Map<String, dynamic> json) =>
+      ConsumptionHistoryPerTimeframe(
+        timeframeStart: (json['timeframe_start'] as String?)!,
+        timeframeEnd: (json['timeframe_end'] as String?)!,
+        activeTimeSeconds: (json['active_time_seconds'] == null
+            ? null
+            : BigInt.parse(json['active_time_seconds'].toString()))!,
+        computeTimeSeconds: (json['compute_time_seconds'] == null
+            ? null
+            : BigInt.parse(json['compute_time_seconds'].toString()))!,
+        writtenDataBytes: (json['written_data_bytes'] == null
+            ? null
+            : BigInt.parse(json['written_data_bytes'].toString()))!,
+        syntheticStorageSizeBytes: (json['synthetic_storage_size_bytes'] == null
+            ? null
+            : BigInt.parse(json['synthetic_storage_size_bytes'].toString()))!,
+        dataStorageBytesHour: (json['data_storage_bytes_hour'] == null
+            ? null
+            : BigInt.parse(json['data_storage_bytes_hour'].toString()))!,
+        logicalSizeBytes: json['logical_size_bytes'] != null
+            ? SdkPresent((json['logical_size_bytes'] == null
+                ? null
+                : BigInt.parse(json['logical_size_bytes'].toString()))!)
+            : const SdkOmitted(),
+        logicalSizeBytesHour: json['logical_size_bytes_hour'] != null
+            ? SdkPresent((json['logical_size_bytes_hour'] == null
+                ? null
+                : BigInt.parse(json['logical_size_bytes_hour'].toString()))!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'timeframe_start': timeframeStart,
-    'timeframe_end': timeframeEnd,
-    'active_time_seconds': activeTimeSeconds,
-    'compute_time_seconds': computeTimeSeconds,
-    'written_data_bytes': writtenDataBytes,
-    'synthetic_storage_size_bytes': syntheticStorageSizeBytes,
-    'data_storage_bytes_hour': dataStorageBytesHour,
-    ...switch (logicalSizeBytes) {
-      SdkPresent<BigInt>(value: final value) => {'logical_size_bytes': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (logicalSizeBytesHour) {
-      SdkPresent<BigInt>(value: final value) => {'logical_size_bytes_hour': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'timeframe_start': timeframeStart,
+        'timeframe_end': timeframeEnd,
+        'active_time_seconds': activeTimeSeconds,
+        'compute_time_seconds': computeTimeSeconds,
+        'written_data_bytes': writtenDataBytes,
+        'synthetic_storage_size_bytes': syntheticStorageSizeBytes,
+        'data_storage_bytes_hour': dataStorageBytesHour,
+        ...switch (logicalSizeBytes) {
+          SdkPresent<BigInt>(value: final value) => {
+              'logical_size_bytes': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (logicalSizeBytesHour) {
+          SdkPresent<BigInt>(value: final value) => {
+              'logical_size_bytes_hour': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `ConsumptionHistoryPerTimeframeV2` API schema.
 class ConsumptionHistoryPerTimeframeV2 {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The specified start date-time for the reported consumption.
   final SdkOptional<String> timeframeStart;
+
   /// The specified end date-time for the reported consumption.
   final SdkOptional<String> timeframeEnd;
+
   /// Consumption metric values recorded for the timeframe.
   final SdkOptional<List<ConsumptionMetricValue>> metrics;
 
-  const ConsumptionHistoryPerTimeframeV2({this.timeframeStart = const SdkOmitted(), this.timeframeEnd = const SdkOmitted(), this.metrics = const SdkOmitted()});
+  const ConsumptionHistoryPerTimeframeV2(
+      {this.timeframeStart = const SdkOmitted(),
+      this.timeframeEnd = const SdkOmitted(),
+      this.metrics = const SdkOmitted()});
 
-  ConsumptionHistoryPerTimeframeV2 Function({SdkOptional<String> timeframeStart, SdkOptional<String> timeframeEnd, SdkOptional<List<ConsumptionMetricValue>> metrics}) get copyWith => _copyWith;
+  ConsumptionHistoryPerTimeframeV2 Function(
+          {SdkOptional<String> timeframeStart,
+          SdkOptional<String> timeframeEnd,
+          SdkOptional<List<ConsumptionMetricValue>> metrics})
+      get copyWith => _copyWith;
 
-  ConsumptionHistoryPerTimeframeV2 _copyWith({Object? timeframeStart = sdkOmittedValue, Object? timeframeEnd = sdkOmittedValue, Object? metrics = sdkOmittedValue}) => ConsumptionHistoryPerTimeframeV2(
-    timeframeStart: identical(timeframeStart, sdkOmittedValue) ? this.timeframeStart : timeframeStart as SdkOptional<String>,
-    timeframeEnd: identical(timeframeEnd, sdkOmittedValue) ? this.timeframeEnd : timeframeEnd as SdkOptional<String>,
-    metrics: identical(metrics, sdkOmittedValue) ? this.metrics : metrics as SdkOptional<List<ConsumptionMetricValue>>,
-  );
+  ConsumptionHistoryPerTimeframeV2 _copyWith(
+          {Object? timeframeStart = sdkOmittedValue,
+          Object? timeframeEnd = sdkOmittedValue,
+          Object? metrics = sdkOmittedValue}) =>
+      ConsumptionHistoryPerTimeframeV2(
+        timeframeStart: identical(timeframeStart, sdkOmittedValue)
+            ? this.timeframeStart
+            : timeframeStart as SdkOptional<String>,
+        timeframeEnd: identical(timeframeEnd, sdkOmittedValue)
+            ? this.timeframeEnd
+            : timeframeEnd as SdkOptional<String>,
+        metrics: identical(metrics, sdkOmittedValue)
+            ? this.metrics
+            : metrics as SdkOptional<List<ConsumptionMetricValue>>,
+      );
 
-  factory ConsumptionHistoryPerTimeframeV2.fromJson(Map<String, dynamic> json) => ConsumptionHistoryPerTimeframeV2(
-    timeframeStart: json['timeframe_start'] != null ? SdkPresent((json['timeframe_start'] as String?)!) : const SdkOmitted(),
-    timeframeEnd: json['timeframe_end'] != null ? SdkPresent((json['timeframe_end'] as String?)!) : const SdkOmitted(),
-    metrics: json['metrics'] != null ? SdkPresent(((json['metrics'] as List?)?.map((e) => ConsumptionMetricValue.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
-  );
+  factory ConsumptionHistoryPerTimeframeV2.fromJson(
+          Map<String, dynamic> json) =>
+      ConsumptionHistoryPerTimeframeV2(
+        timeframeStart: json['timeframe_start'] != null
+            ? SdkPresent((json['timeframe_start'] as String?)!)
+            : const SdkOmitted(),
+        timeframeEnd: json['timeframe_end'] != null
+            ? SdkPresent((json['timeframe_end'] as String?)!)
+            : const SdkOmitted(),
+        metrics: json['metrics'] != null
+            ? SdkPresent(((json['metrics'] as List?)
+                ?.map((e) =>
+                    ConsumptionMetricValue.fromJson(e as Map<String, dynamic>))
+                .toList())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (timeframeStart) {
-      SdkPresent<String>(value: final value) => {'timeframe_start': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (timeframeEnd) {
-      SdkPresent<String>(value: final value) => {'timeframe_end': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (metrics) {
-      SdkPresent<List<ConsumptionMetricValue>>(value: final value) => {'metrics': value.map((item) => item.toJson()).toList(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (timeframeStart) {
+          SdkPresent<String>(value: final value) => {
+              'timeframe_start': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (timeframeEnd) {
+          SdkPresent<String>(value: final value) => {
+              'timeframe_end': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (metrics) {
+          SdkPresent<List<ConsumptionMetricValue>>(value: final value) => {
+              'metrics': value.map((item) => item.toJson()).toList(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 // ConsumptionHistoryQueryMetrics = List<String>
@@ -123,27 +239,36 @@ class ConsumptionHistoryPerTimeframeV2 {
 class ConsumptionMetricValue {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Name of the consumption metric, such as compute_time or data_storage_bytes_hour.
   final String metricName;
+
   /// Measured quantity for the metric named by `metric_name`.
   final int value;
 
   const ConsumptionMetricValue({required this.metricName, required this.value});
 
-  ConsumptionMetricValue Function({String metricName, int value}) get copyWith => _copyWith;
+  ConsumptionMetricValue Function({String metricName, int value})
+      get copyWith => _copyWith;
 
-  ConsumptionMetricValue _copyWith({Object? metricName = sdkOmittedValue, Object? value = sdkOmittedValue}) => ConsumptionMetricValue(
-    metricName: identical(metricName, sdkOmittedValue) ? this.metricName : metricName as String,
-    value: identical(value, sdkOmittedValue) ? this.value : value as int,
-  );
+  ConsumptionMetricValue _copyWith(
+          {Object? metricName = sdkOmittedValue,
+          Object? value = sdkOmittedValue}) =>
+      ConsumptionMetricValue(
+        metricName: identical(metricName, sdkOmittedValue)
+            ? this.metricName
+            : metricName as String,
+        value: identical(value, sdkOmittedValue) ? this.value : value as int,
+      );
 
-  factory ConsumptionMetricValue.fromJson(Map<String, dynamic> json) => ConsumptionMetricValue(
-    metricName: (json['metric_name'] as String?)!,
-    value: ((json['value'] as num?)?.toInt())!,
-  );
+  factory ConsumptionMetricValue.fromJson(Map<String, dynamic> json) =>
+      ConsumptionMetricValue(
+        metricName: (json['metric_name'] as String?)!,
+        value: ((json['value'] as num?)?.toInt())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'metric_name': metricName,
-    'value': value,
-  };
+        'metric_name': metricName,
+        'value': value,
+      };
 }
