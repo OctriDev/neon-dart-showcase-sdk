@@ -111,6 +111,43 @@ class EndpointsOptionalResponse {
   };
 }
 
+/// Typed representation of the `RestoreSnapshotResponse` API schema.
+class RestoreSnapshotResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// Branch returned by the request.
+  final Branch branch;
+  /// Compute endpoints associated with the project.
+  final SdkOptional<List<Endpoint>> endpoints;
+  /// Required array value serialized in the `operations` wire field.
+  final List<Operation> operations;
+
+  const RestoreSnapshotResponse({required this.branch, this.endpoints = const SdkOmitted(), required this.operations});
+
+  RestoreSnapshotResponse Function({Branch branch, SdkOptional<List<Endpoint>> endpoints, List<Operation> operations}) get copyWith => _copyWith;
+
+  RestoreSnapshotResponse _copyWith({Object? branch = sdkOmittedValue, Object? endpoints = sdkOmittedValue, Object? operations = sdkOmittedValue}) => RestoreSnapshotResponse(
+    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as SdkOptional<List<Endpoint>>,
+    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
+  );
+
+  factory RestoreSnapshotResponse.fromJson(Map<String, dynamic> json) => RestoreSnapshotResponse(
+    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
+    endpoints: json['endpoints'] != null ? SdkPresent(((json['endpoints'] as List?)?.map((e) => Endpoint.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
+    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
+
+  Map<String, dynamic> toJson() => {
+    'branch': branch.toJson(),
+    ...switch (endpoints) {
+      SdkPresent<List<Endpoint>>(value: final value) => {'endpoints': value.map((item) => item.toJson()).toList(),},
+      _ => const <String, dynamic>{},
+    },
+    'operations': operations.map((item) => item.toJson()).toList(),
+  };
+}
+
 /// Typed representation of the `Snapshot` API schema.
 class Snapshot {
   /// This model is constructed from named fields in one call.

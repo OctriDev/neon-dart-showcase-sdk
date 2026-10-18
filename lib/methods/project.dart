@@ -64,7 +64,7 @@ Future<GetProjectAdvisorSecurityIssuesResponse>
 ///   implicit implementation defined timeout is chosen with the same behaviour as
 ///   above
 /// [recoverable] Show only deleted projects within the recovery window.
-Future<ProjectsResponse> listProjects(ClientConfig config,
+Future<ListProjectsResponse> listProjects(ClientConfig config,
     {SdkOptional<String> cursor = const SdkOmitted(),
     SdkOptional<int> limit = const SdkOmitted(),
     SdkOptional<String> search = const SdkOmitted(),
@@ -82,7 +82,7 @@ Future<ProjectsResponse> listProjects(ClientConfig config,
     validateRange('timeout', timeout.value, min: 100, max: 30000);
   }
 
-  return (await sdkRequest<ProjectsResponse>('GET', '/projects',
+  return (await sdkRequest<ListProjectsResponse>('GET', '/projects',
           config: config,
           query: {
             'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
@@ -94,7 +94,7 @@ Future<ProjectsResponse> listProjects(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listProjects',
-          fromJsonRaw: (value) => ProjectsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListProjectsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
@@ -105,15 +105,15 @@ Future<ProjectsResponse> listProjects(ClientConfig config,
 ///
 /// [project] Configuration for the new project, including name, region, and
 ///   Postgres compute and storage settings.
-Future<ProjectResponse> createProject(ClientConfig config,
+Future<CreateProjectResponse> createProject(ClientConfig config,
     {required ProjectCreateRequestProject project,
     RequestOptions? requestOptions}) async {
-  return (await sdkRequest<ProjectResponse>('POST', '/projects',
+  return (await sdkRequest<CreateProjectResponse>('POST', '/projects',
           config: config,
           body: {'project': project},
           decoder: SdkResponseDecoder.json,
           operationId: 'createProject',
-          fromJsonRaw: (value) => ProjectResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => CreateProjectResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
@@ -133,7 +133,7 @@ Future<ProjectResponse> createProject(ClientConfig config,
 ///   listed in the "unavailable" attribute of the response. If not specified, an
 ///   implicit implementation defined timeout is chosen with the same behaviour as
 ///   above
-Future<ProjectsResponse> listSharedProjects(ClientConfig config,
+Future<ListSharedProjectsResponse> listSharedProjects(ClientConfig config,
     {SdkOptional<String> cursor = const SdkOmitted(),
     SdkOptional<int> limit = const SdkOmitted(),
     SdkOptional<String> search = const SdkOmitted(),
@@ -146,7 +146,8 @@ Future<ProjectsResponse> listSharedProjects(ClientConfig config,
     validateRange('timeout', timeout.value, min: 100, max: 30000);
   }
 
-  return (await sdkRequest<ProjectsResponse>('GET', '/projects/shared',
+  return (await sdkRequest<ListSharedProjectsResponse>(
+          'GET', '/projects/shared',
           config: config,
           query: {
             'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
@@ -156,7 +157,7 @@ Future<ProjectsResponse> listSharedProjects(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listSharedProjects',
-          fromJsonRaw: (value) => ProjectsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListSharedProjectsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
@@ -188,19 +189,19 @@ Future<ProjectResponse> getProject(ClientConfig config,
 ///
 /// [projectId] The Neon project ID
 /// [project] Required object value serialized in the `project` wire field.
-Future<ProjectResponse> updateProject(ClientConfig config,
+Future<UpdateProjectResponse> updateProject(ClientConfig config,
     {required String projectId,
     required ProjectUpdateRequestProject project,
     RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
-  return (await sdkRequest<ProjectResponse>(
+  return (await sdkRequest<UpdateProjectResponse>(
           'PATCH', '/projects/${Uri.encodeComponent(projectId.toString())}',
           config: config,
           body: {'project': project},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateProject',
-          fromJsonRaw: (value) => ProjectResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => UpdateProjectResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;

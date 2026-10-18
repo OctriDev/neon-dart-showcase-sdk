@@ -260,20 +260,20 @@ enum ScheduleTriggerUpdateRequestType {
   String toString() => toJson();
 }
 
-/// Trigger type discriminator.
-enum StorageObjectCreatedTriggerType {
-  storageObjectCreated;
+/// Optional enumerated value serialized in the `type` wire field.
+enum SharedEmailServerType {
+  shared;
 
-  static StorageObjectCreatedTriggerType fromJson(String value) {
+  static SharedEmailServerType fromJson(String value) {
     switch (value) {
-      case 'storage_object_created': return StorageObjectCreatedTriggerType.storageObjectCreated;
-      default: throw ArgumentError('Unknown StorageObjectCreatedTriggerType: $value');
+      case 'shared': return SharedEmailServerType.shared;
+      default: throw ArgumentError('Unknown SharedEmailServerType: $value');
     }
   }
 
   String toJson() {
     switch (this) {
-      case StorageObjectCreatedTriggerType.storageObjectCreated: return 'storage_object_created';
+      case SharedEmailServerType.shared: return 'shared';
     }
   }
 

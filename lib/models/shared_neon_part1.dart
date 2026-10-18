@@ -225,6 +225,10 @@ sealed class NeonAuthEmailServerConfig {
   static const String constructionSurface = 'named';
   const NeonAuthEmailServerConfig();
   factory NeonAuthEmailServerConfig.fromJson(Object? json) {
+    if (json is Map<String, dynamic>) {
+      try { final value = StandardEmailServer.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigStandardEmailServer(value); } } catch (_) {}
+      try { final value = SharedEmailServer.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigSharedEmailServer(value); } } catch (_) {}
+    }
     try { return NeonAuthEmailServerConfigStandardEmailServer(StandardEmailServer.fromJson(json as Map<String, dynamic>)); } catch (_) {}
     try { return NeonAuthEmailServerConfigSharedEmailServer(SharedEmailServer.fromJson(json as Map<String, dynamic>)); } catch (_) {}
     if (json is Map<String, dynamic> && json["type"] is String && !const {"standard", "shared"}.contains(json["type"])) { return UnknownNeonAuthEmailServerConfig(json); }
@@ -257,6 +261,10 @@ sealed class NeonAuthEmailServerConfigResponse {
   static const String constructionSurface = 'named';
   const NeonAuthEmailServerConfigResponse();
   factory NeonAuthEmailServerConfigResponse.fromJson(Object? json) {
+    if (json is Map<String, dynamic>) {
+      try { final value = StandardEmailServerResponse.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(value); } } catch (_) {}
+      try { final value = SharedEmailServer.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigResponseSharedEmailServer(value); } } catch (_) {}
+    }
     try { return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(StandardEmailServerResponse.fromJson(json as Map<String, dynamic>)); } catch (_) {}
     try { return NeonAuthEmailServerConfigResponseSharedEmailServer(SharedEmailServer.fromJson(json as Map<String, dynamic>)); } catch (_) {}
     if (json is Map<String, dynamic> && json["type"] is String && !const {"standard", "shared"}.contains(json["type"])) { return UnknownNeonAuthEmailServerConfigResponse(json); }

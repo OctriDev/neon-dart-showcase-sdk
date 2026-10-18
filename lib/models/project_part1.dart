@@ -118,97 +118,6 @@ class AddProjectJWKSRequest {
   };
 }
 
-/// Category of an advisor issue
-final class AdvisorCategory {
-
-  final String value;
-
-  const AdvisorCategory._(this.value);
-
-  factory AdvisorCategory.fromJson(String value) => AdvisorCategory._(value);
-
-  static const security = AdvisorCategory._('SECURITY');
-  static const performance = AdvisorCategory._('PERFORMANCE');
-
-  String toJson() => value;
-
-  @override String toString() => value.toString();
-
-  @override bool operator ==(Object other) => other is AdvisorCategory && other.value == value;
-
-  @override int get hashCode => value.hashCode;
-
-}
-
-/// Typed representation of the `AdvisorIssue` API schema.
-class AdvisorIssue {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-  /// Unique identifier for the issue type
-  final String name;
-  /// Human-readable title
-  final String title;
-  /// Severity level of the issue
-  final String level;
-  /// Whether this issue affects external API exposure or is internal only
-  final AdvisorIssueFacing facing;
-  /// Categories this issue belongs to
-  final List<AdvisorCategory> categories;
-  /// Detailed description of what this check detects
-  final String description;
-  /// Specific details about this instance of the issue
-  final String detail;
-  /// URL to documentation on how to fix this issue
-  final String remediation;
-  /// Additional context-specific metadata
-  final Map<String, Object?> metadata;
-  /// Unique key for caching this issue result
-  final String cacheKey;
-
-  const AdvisorIssue({required this.name, required this.title, required this.level, required this.facing, required this.categories, required this.description, required this.detail, required this.remediation, required this.metadata, required this.cacheKey});
-
-  AdvisorIssue Function({String name, String title, String level, AdvisorIssueFacing facing, List<AdvisorCategory> categories, String description, String detail, String remediation, Map<String, Object?> metadata, String cacheKey}) get copyWith => _copyWith;
-
-  AdvisorIssue _copyWith({Object? name = sdkOmittedValue, Object? title = sdkOmittedValue, Object? level = sdkOmittedValue, Object? facing = sdkOmittedValue, Object? categories = sdkOmittedValue, Object? description = sdkOmittedValue, Object? detail = sdkOmittedValue, Object? remediation = sdkOmittedValue, Object? metadata = sdkOmittedValue, Object? cacheKey = sdkOmittedValue}) => AdvisorIssue(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    title: identical(title, sdkOmittedValue) ? this.title : title as String,
-    level: identical(level, sdkOmittedValue) ? this.level : level as String,
-    facing: identical(facing, sdkOmittedValue) ? this.facing : facing as AdvisorIssueFacing,
-    categories: identical(categories, sdkOmittedValue) ? this.categories : categories as List<AdvisorCategory>,
-    description: identical(description, sdkOmittedValue) ? this.description : description as String,
-    detail: identical(detail, sdkOmittedValue) ? this.detail : detail as String,
-    remediation: identical(remediation, sdkOmittedValue) ? this.remediation : remediation as String,
-    metadata: identical(metadata, sdkOmittedValue) ? this.metadata : metadata as Map<String, Object?>,
-    cacheKey: identical(cacheKey, sdkOmittedValue) ? this.cacheKey : cacheKey as String,
-  );
-
-  factory AdvisorIssue.fromJson(Map<String, dynamic> json) => AdvisorIssue(
-    name: (json['name'] as String?)!,
-    title: (json['title'] as String?)!,
-    level: (json['level'] as String?)!,
-    facing: (json['facing'] != null ? AdvisorIssueFacing.fromJson(json['facing'] as String) : null)!,
-    categories: ((json['categories'] as List?)?.map((e) => AdvisorCategory.fromJson(e as String)).toList())!,
-    description: (json['description'] as String?)!,
-    detail: (json['detail'] as String?)!,
-    remediation: (json['remediation'] as String?)!,
-    metadata: (json['metadata'] == null ? null : Map<String, dynamic>.from(json['metadata'] as Map).map((key, value) => MapEntry(key, value)))!,
-    cacheKey: (json['cache_key'] as String?)!,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'name': name,
-    'title': title,
-    'level': level,
-    'facing': facing.toJson(),
-    'categories': categories.map((item) => item.toJson()).toList(),
-    'description': description,
-    'detail': detail,
-    'remediation': remediation,
-    'metadata': metadata,
-    'cache_key': cacheKey,
-  };
-}
-
 /// A list of IP addresses that are allowed to connect to the compute endpoint. If the list is empty or not set, all IP addresses are allowed. If protected_branches_only is true, the list will be applied only to protected branches.
 class AllowedIps {
   /// This model is constructed from named fields in one call.
@@ -268,28 +177,114 @@ final class ApplicationType {
 
 }
 
-/// Typed representation of the `AvailablePreloadLibraries` API schema.
-class AvailablePreloadLibraries {
+/// Typed representation of the `CreateProjectResponse` API schema.
+class CreateProjectResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-  /// Preload libraries available for the project's Postgres version. Each entry includes `library_name`, `description`, `is_default`, `is_experimental`, and `version`.
-  final SdkOptional<List<AvailablePreloadLibrary>> libraries;
+  /// Full details of the project, including configuration, consumption metrics, and ownership.
+  final Project project;
+  /// Connection URIs for the project. Each entry contains credentials and should be treated as sensitive.
+  final List<ConnectionDetails> connectionUris;
+  /// Roles belonging to the branch. Each role includes fields such as `branch_id`, `name`, `protected`, `created_at`, and `updated_at`.
+  final List<Role> roles;
+  /// Databases on the branch. Each includes `id`, `name`, `owner_name`, and `created_at`.
+  final List<Database> databases;
+  /// Required array value serialized in the `operations` wire field.
+  final List<Operation> operations;
+  /// Branch returned by the request.
+  final Branch branch;
+  /// Compute endpoints in the project. Each includes `id`, `branch_id`, `host`, and `type`.
+  final List<Endpoint> endpoints;
 
-  const AvailablePreloadLibraries({this.libraries = const SdkOmitted()});
+  const CreateProjectResponse({required this.project, required this.connectionUris, required this.roles, required this.databases, required this.operations, required this.branch, required this.endpoints});
 
-  AvailablePreloadLibraries Function({SdkOptional<List<AvailablePreloadLibrary>> libraries}) get copyWith => _copyWith;
+  CreateProjectResponse Function({Project project, List<ConnectionDetails> connectionUris, List<Role> roles, List<Database> databases, List<Operation> operations, Branch branch, List<Endpoint> endpoints}) get copyWith => _copyWith;
 
-  AvailablePreloadLibraries _copyWith({Object? libraries = sdkOmittedValue}) => AvailablePreloadLibraries(
-    libraries: identical(libraries, sdkOmittedValue) ? this.libraries : libraries as SdkOptional<List<AvailablePreloadLibrary>>,
+  CreateProjectResponse _copyWith({Object? project = sdkOmittedValue, Object? connectionUris = sdkOmittedValue, Object? roles = sdkOmittedValue, Object? databases = sdkOmittedValue, Object? operations = sdkOmittedValue, Object? branch = sdkOmittedValue, Object? endpoints = sdkOmittedValue}) => CreateProjectResponse(
+    project: identical(project, sdkOmittedValue) ? this.project : project as Project,
+    connectionUris: identical(connectionUris, sdkOmittedValue) ? this.connectionUris : connectionUris as List<ConnectionDetails>,
+    roles: identical(roles, sdkOmittedValue) ? this.roles : roles as List<Role>,
+    databases: identical(databases, sdkOmittedValue) ? this.databases : databases as List<Database>,
+    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
+    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as List<Endpoint>,
   );
 
-  factory AvailablePreloadLibraries.fromJson(Map<String, dynamic> json) => AvailablePreloadLibraries(
-    libraries: json['libraries'] != null ? SdkPresent(((json['libraries'] as List?)?.map((e) => AvailablePreloadLibrary.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
+  factory CreateProjectResponse.fromJson(Map<String, dynamic> json) => CreateProjectResponse(
+    project: (json['project'] != null ? Project.fromJson(json['project'] as Map<String, dynamic>) : null)!,
+    connectionUris: ((json['connection_uris'] as List?)?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>)).toList())!,
+    roles: ((json['roles'] as List?)?.map((e) => Role.fromJson(e as Map<String, dynamic>)).toList())!,
+    databases: ((json['databases'] as List?)?.map((e) => Database.fromJson(e as Map<String, dynamic>)).toList())!,
+    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
+    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
+    endpoints: ((json['endpoints'] as List?)?.map((e) => Endpoint.fromJson(e as Map<String, dynamic>)).toList())!,
   );
 
   Map<String, dynamic> toJson() => {
-    ...switch (libraries) {
-      SdkPresent<List<AvailablePreloadLibrary>>(value: final value) => {'libraries': value.map((item) => item.toJson()).toList(),},
+    'project': project.toJson(),
+    'connection_uris': connectionUris.map((item) => item.toJson()).toList(),
+    'roles': roles.map((item) => item.toJson()).toList(),
+    'databases': databases.map((item) => item.toJson()).toList(),
+    'operations': operations.map((item) => item.toJson()).toList(),
+    'branch': branch.toJson(),
+    'endpoints': endpoints.map((item) => item.toJson()).toList(),
+  };
+}
+
+/// A collection of settings for a Neon endpoint
+class DefaultEndpointSettings {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// A raw representation of Postgres settings
+  final SdkOptional<Map<String, dynamic>> pgSettings;
+  /// Deprecated. Use the endpoint-level connection pooler configuration instead. Removal scheduled for June 20, 2026.
+  final SdkOptional<Map<String, dynamic>> pgbouncerSettings;
+  /// Minimum number of Compute Units for this endpoint. At least 0.25 and no greater than `autoscaling_limit_max_cu`.
+  final SdkOptional<double> autoscalingLimitMinCu;
+  /// Default maximum number of Compute Units for endpoints created under this account. At least 0.25.
+  final SdkOptional<double> autoscalingLimitMaxCu;
+  /// Scale-to-zero idle timeout, in seconds, before the compute suspends. `0` uses the plan default; `-1` disables scale-to-zero (never suspends). Minimum is plan-dependent (Scale: 60); maximum 604800 (one week). Free cannot change it; Launch can only enable or disable; Scale can set any value.
+  final SdkOptional<int> suspendTimeoutSeconds;
+
+  const DefaultEndpointSettings({this.pgSettings = const SdkOmitted(), this.pgbouncerSettings = const SdkOmitted(), this.autoscalingLimitMinCu = const SdkOmitted(), this.autoscalingLimitMaxCu = const SdkOmitted(), this.suspendTimeoutSeconds = const SdkOmitted()});
+
+  DefaultEndpointSettings Function({SdkOptional<Map<String, dynamic>> pgSettings, SdkOptional<Map<String, dynamic>> pgbouncerSettings, SdkOptional<double> autoscalingLimitMinCu, SdkOptional<double> autoscalingLimitMaxCu, SdkOptional<int> suspendTimeoutSeconds}) get copyWith => _copyWith;
+
+  DefaultEndpointSettings _copyWith({Object? pgSettings = sdkOmittedValue, Object? pgbouncerSettings = sdkOmittedValue, Object? autoscalingLimitMinCu = sdkOmittedValue, Object? autoscalingLimitMaxCu = sdkOmittedValue, Object? suspendTimeoutSeconds = sdkOmittedValue}) => DefaultEndpointSettings(
+    pgSettings: identical(pgSettings, sdkOmittedValue) ? this.pgSettings : pgSettings as SdkOptional<Map<String, dynamic>>,
+    pgbouncerSettings: identical(pgbouncerSettings, sdkOmittedValue) ? this.pgbouncerSettings : pgbouncerSettings as SdkOptional<Map<String, dynamic>>,
+    autoscalingLimitMinCu: identical(autoscalingLimitMinCu, sdkOmittedValue) ? this.autoscalingLimitMinCu : autoscalingLimitMinCu as SdkOptional<double>,
+    autoscalingLimitMaxCu: identical(autoscalingLimitMaxCu, sdkOmittedValue) ? this.autoscalingLimitMaxCu : autoscalingLimitMaxCu as SdkOptional<double>,
+    suspendTimeoutSeconds: identical(suspendTimeoutSeconds, sdkOmittedValue) ? this.suspendTimeoutSeconds : suspendTimeoutSeconds as SdkOptional<int>,
+  );
+
+  factory DefaultEndpointSettings.fromJson(Map<String, dynamic> json) => DefaultEndpointSettings(
+    pgSettings: json['pg_settings'] != null ? SdkPresent((json['pg_settings'] == null ? null : json['pg_settings'] as Map<String, dynamic>)!) : const SdkOmitted(),
+    pgbouncerSettings: json['pgbouncer_settings'] != null ? SdkPresent((json['pgbouncer_settings'] == null ? null : json['pgbouncer_settings'] as Map<String, dynamic>)!) : const SdkOmitted(),
+    autoscalingLimitMinCu: json['autoscaling_limit_min_cu'] != null ? SdkPresent(((json['autoscaling_limit_min_cu'] as num?)?.toDouble())!) : const SdkOmitted(),
+    autoscalingLimitMaxCu: json['autoscaling_limit_max_cu'] != null ? SdkPresent(((json['autoscaling_limit_max_cu'] as num?)?.toDouble())!) : const SdkOmitted(),
+    suspendTimeoutSeconds: json['suspend_timeout_seconds'] != null ? SdkPresent(((json['suspend_timeout_seconds'] as num?)?.toInt())!) : const SdkOmitted(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    ...switch (pgSettings) {
+      SdkPresent<Map<String, dynamic>>(value: final value) => {'pg_settings': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (pgbouncerSettings) {
+      SdkPresent<Map<String, dynamic>>(value: final value) => {'pgbouncer_settings': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (autoscalingLimitMinCu) {
+      SdkPresent<double>(value: final value) => {'autoscaling_limit_min_cu': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (autoscalingLimitMaxCu) {
+      SdkPresent<double>(value: final value) => {'autoscaling_limit_max_cu': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (suspendTimeoutSeconds) {
+      SdkPresent<int>(value: final value) => {'suspend_timeout_seconds': value,},
       _ => const <String, dynamic>{},
     },
   };

@@ -3,7 +3,7 @@
 
 // Models declared inline by operations.
 import '../sdk_utils.dart';
-import 'project.dart';
+import 'project_advisor.dart';
 import 'shared_operation.dart';
 import 'snapshot.dart';
 

@@ -3,9 +3,11 @@
 
 // branch domain model library.
 import '../sdk_utils.dart';
+import 'branch/models.dart';
 import 'shared.dart';
 import 'shared_branch.dart';
 import 'shared_connection.dart';
+import 'shared_cursor.dart';
 import 'shared_endpoint.dart';
 import 'shared_operation.dart';
 
@@ -14,3 +16,4 @@ part 'branch_part2.dart';
 part 'branch_part3.dart';
 part 'branch_part4.dart';
 part 'branch_part5.dart';
+part 'branch_part6.dart';

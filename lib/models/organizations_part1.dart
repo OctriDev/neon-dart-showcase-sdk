@@ -53,6 +53,38 @@ class Invitation {
   };
 }
 
+/// Typed representation of the `ListOrganizationsMembersResponse` API schema.
+class ListOrganizationsMembersResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// Members of the organization, each combining membership details (role, status) with the associated user's identity.
+  final List<MemberWithUser> members;
+  /// To paginate the response, issue an initial request with `limit` value. Then, add the value returned in the response `.pagination.next` attribute into the request under the `cursor` query parameter to the subsequent request to retrieve next page in pagination. The contents on cursor `next` are opaque, clients are not expected to make any assumptions on the format of the data inside the cursor.
+  final SdkOptional<CursorPagination> pagination;
+
+  const ListOrganizationsMembersResponse({required this.members, this.pagination = const SdkOmitted()});
+
+  ListOrganizationsMembersResponse Function({List<MemberWithUser> members, SdkOptional<CursorPagination> pagination}) get copyWith => _copyWith;
+
+  ListOrganizationsMembersResponse _copyWith({Object? members = sdkOmittedValue, Object? pagination = sdkOmittedValue}) => ListOrganizationsMembersResponse(
+    members: identical(members, sdkOmittedValue) ? this.members : members as List<MemberWithUser>,
+    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<CursorPagination>,
+  );
+
+  factory ListOrganizationsMembersResponse.fromJson(Map<String, dynamic> json) => ListOrganizationsMembersResponse(
+    members: ((json['members'] as List?)?.map((e) => MemberWithUser.fromJson(e as Map<String, dynamic>)).toList())!,
+    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? CursorPagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'members': members.map((item) => item.toJson()).toList(),
+    ...switch (pagination) {
+      SdkPresent<CursorPagination>(value: final value) => {'pagination': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
+}
+
 /// Typed representation of the `Member` API schema.
 class Member {
   /// This model is constructed from named fields in one call.
@@ -244,53 +276,5 @@ class OrganizationInviteCreateRequest {
   Map<String, dynamic> toJson() => {
     'email': email,
     'role': role.toJson(),
-  };
-}
-
-/// Typed representation of the `OrganizationInvitesCreateRequest` API schema.
-class OrganizationInvitesCreateRequest {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-  /// Invitations to create for the organization.
-  final List<OrganizationInviteCreateRequest> invitations;
-
-  const OrganizationInvitesCreateRequest({required this.invitations});
-
-  OrganizationInvitesCreateRequest Function({List<OrganizationInviteCreateRequest> invitations}) get copyWith => _copyWith;
-
-  OrganizationInvitesCreateRequest _copyWith({Object? invitations = sdkOmittedValue}) => OrganizationInvitesCreateRequest(
-    invitations: identical(invitations, sdkOmittedValue) ? this.invitations : invitations as List<OrganizationInviteCreateRequest>,
-  );
-
-  factory OrganizationInvitesCreateRequest.fromJson(Map<String, dynamic> json) => OrganizationInvitesCreateRequest(
-    invitations: ((json['invitations'] as List?)?.map((e) => OrganizationInviteCreateRequest.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'invitations': invitations.map((item) => item.toJson()).toList(),
-  };
-}
-
-/// Typed representation of the `OrganizationMembersResponse` API schema.
-class OrganizationMembersResponse {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-  /// Members of the organization, each combining membership details (role, status) with the associated user's identity.
-  final List<MemberWithUser> members;
-
-  const OrganizationMembersResponse({required this.members});
-
-  OrganizationMembersResponse Function({List<MemberWithUser> members}) get copyWith => _copyWith;
-
-  OrganizationMembersResponse _copyWith({Object? members = sdkOmittedValue}) => OrganizationMembersResponse(
-    members: identical(members, sdkOmittedValue) ? this.members : members as List<MemberWithUser>,
-  );
-
-  factory OrganizationMembersResponse.fromJson(Map<String, dynamic> json) => OrganizationMembersResponse(
-    members: ((json['members'] as List?)?.map((e) => MemberWithUser.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'members': members.map((item) => item.toJson()).toList(),
   };
 }

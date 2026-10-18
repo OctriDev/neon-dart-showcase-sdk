@@ -166,7 +166,7 @@ Future<Map<String, dynamic>> deleteOrganizationSpendingLimit(ClientConfig config
 ///   fetch next page of the list.
 /// [sortOrder] Defines the sorting order of entities.
 /// [limit] The maximum number of members to return in the response
-Future<OrganizationMembersResponse>
+Future<ListOrganizationsMembersResponse>
     listOrganizationsMembers(ClientConfig config,
         {required String orgId,
         SdkOptional<ListOrganizationsMembersSortBy> sortBy = const SdkOmitted(),
@@ -179,7 +179,7 @@ Future<OrganizationMembersResponse>
     validateRange('limit', limit.value, min: 1, max: 500);
   }
 
-  return (await sdkRequest<OrganizationMembersResponse>('GET',
+  return (await sdkRequest<ListOrganizationsMembersResponse>('GET',
           '/organizations/${Uri.encodeComponent(orgId.toString())}/members',
           config: config,
           query: {
@@ -190,7 +190,7 @@ Future<OrganizationMembersResponse>
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listOrganizationsMembers',
-          fromJsonRaw: (value) => OrganizationMembersResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListOrganizationsMembersResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;

@@ -103,8 +103,61 @@ class DataAPICreateResponse {
   };
 }
 
-/// Configuration settings for the Data API (SubZero only)
-class DataAPIReponseSettings {
+/// Neon Data API response
+class DataAPIReponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// The URL of the Neon Data API
+  final String url;
+  /// The status of the Neon Data API deployment
+  final String status;
+  /// Configuration settings for the Data API (SubZero only)
+  final SdkOptional<DataAPISettings?> settings;
+  /// List of available database schemas (SubZero only)
+  final SdkOptional<List<String>?> availableSchemas;
+  /// When `settings` and `available_schemas` were read from the database. While the compute is suspended they are served from that read, so a change made directly in the database since then shows up in the first response served while the compute is active.
+  final SdkOptional<String> observedAt;
+
+  const DataAPIReponse({required this.url, required this.status, this.settings = const SdkOmitted(), this.availableSchemas = const SdkOmitted(), this.observedAt = const SdkOmitted()});
+
+  DataAPIReponse Function({String url, String status, SdkOptional<DataAPISettings?> settings, SdkOptional<List<String>?> availableSchemas, SdkOptional<String> observedAt}) get copyWith => _copyWith;
+
+  DataAPIReponse _copyWith({Object? url = sdkOmittedValue, Object? status = sdkOmittedValue, Object? settings = sdkOmittedValue, Object? availableSchemas = sdkOmittedValue, Object? observedAt = sdkOmittedValue}) => DataAPIReponse(
+    url: identical(url, sdkOmittedValue) ? this.url : url as String,
+    status: identical(status, sdkOmittedValue) ? this.status : status as String,
+    settings: identical(settings, sdkOmittedValue) ? this.settings : settings as SdkOptional<DataAPISettings?>,
+    availableSchemas: identical(availableSchemas, sdkOmittedValue) ? this.availableSchemas : availableSchemas as SdkOptional<List<String>?>,
+    observedAt: identical(observedAt, sdkOmittedValue) ? this.observedAt : observedAt as SdkOptional<String>,
+  );
+
+  factory DataAPIReponse.fromJson(Map<String, dynamic> json) => DataAPIReponse(
+    url: (json['url'] as String?)!,
+    status: (json['status'] as String?)!,
+    settings: json.containsKey('settings') ? SdkPresent(json['settings'] != null ? DataAPISettings.fromJson(json['settings'] as Map<String, dynamic>) : null) : const SdkOmitted(),
+    availableSchemas: json.containsKey('available_schemas') ? SdkPresent((json['available_schemas'] as List?)?.map((e) => e as String).toList()) : const SdkOmitted(),
+    observedAt: json['observed_at'] != null ? SdkPresent((json['observed_at'] as String?)!) : const SdkOmitted(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'url': url,
+    'status': status,
+    ...switch (settings) {
+      SdkPresent<DataAPISettings?>(value: final value) => {'settings': value?.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (availableSchemas) {
+      SdkPresent<List<String>?>(value: final value) => {'available_schemas': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (observedAt) {
+      SdkPresent<String>(value: final value) => {'observed_at': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
+}
+
+/// Configuration settings for the Neon Data API
+class DataAPISettings {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
   /// Enable aggregates feature
@@ -128,11 +181,11 @@ class DataAPIReponseSettings {
   /// When enabled, the Data API adds `Server-Timing` headers to each response showing database execution and internal processing time. Default: disabled.
   final SdkOptional<bool> serverTimingEnabled;
 
-  const DataAPIReponseSettings({this.dbAggregatesEnabled = const SdkOmitted(), this.dbAnonRole = const SdkOmitted(), this.dbExtraSearchPath = const SdkOmitted(), this.dbMaxRows = const SdkOmitted(), this.dbSchemas = const SdkOmitted(), this.jwtRoleClaimKey = const SdkOmitted(), this.jwtCacheMaxLifetime = const SdkOmitted(), this.openapiMode = const SdkOmitted(), this.serverCorsAllowedOrigins = const SdkOmitted(), this.serverTimingEnabled = const SdkOmitted()});
+  const DataAPISettings({this.dbAggregatesEnabled = const SdkOmitted(), this.dbAnonRole = const SdkOmitted(), this.dbExtraSearchPath = const SdkOmitted(), this.dbMaxRows = const SdkOmitted(), this.dbSchemas = const SdkOmitted(), this.jwtRoleClaimKey = const SdkOmitted(), this.jwtCacheMaxLifetime = const SdkOmitted(), this.openapiMode = const SdkOmitted(), this.serverCorsAllowedOrigins = const SdkOmitted(), this.serverTimingEnabled = const SdkOmitted()});
 
-  DataAPIReponseSettings Function({SdkOptional<bool> dbAggregatesEnabled, SdkOptional<String> dbAnonRole, SdkOptional<String> dbExtraSearchPath, SdkOptional<int> dbMaxRows, SdkOptional<List<String>> dbSchemas, SdkOptional<String> jwtRoleClaimKey, SdkOptional<int> jwtCacheMaxLifetime, SdkOptional<String> openapiMode, SdkOptional<String> serverCorsAllowedOrigins, SdkOptional<bool> serverTimingEnabled}) get copyWith => _copyWith;
+  DataAPISettings Function({SdkOptional<bool> dbAggregatesEnabled, SdkOptional<String> dbAnonRole, SdkOptional<String> dbExtraSearchPath, SdkOptional<int> dbMaxRows, SdkOptional<List<String>> dbSchemas, SdkOptional<String> jwtRoleClaimKey, SdkOptional<int> jwtCacheMaxLifetime, SdkOptional<String> openapiMode, SdkOptional<String> serverCorsAllowedOrigins, SdkOptional<bool> serverTimingEnabled}) get copyWith => _copyWith;
 
-  DataAPIReponseSettings _copyWith({Object? dbAggregatesEnabled = sdkOmittedValue, Object? dbAnonRole = sdkOmittedValue, Object? dbExtraSearchPath = sdkOmittedValue, Object? dbMaxRows = sdkOmittedValue, Object? dbSchemas = sdkOmittedValue, Object? jwtRoleClaimKey = sdkOmittedValue, Object? jwtCacheMaxLifetime = sdkOmittedValue, Object? openapiMode = sdkOmittedValue, Object? serverCorsAllowedOrigins = sdkOmittedValue, Object? serverTimingEnabled = sdkOmittedValue}) => DataAPIReponseSettings(
+  DataAPISettings _copyWith({Object? dbAggregatesEnabled = sdkOmittedValue, Object? dbAnonRole = sdkOmittedValue, Object? dbExtraSearchPath = sdkOmittedValue, Object? dbMaxRows = sdkOmittedValue, Object? dbSchemas = sdkOmittedValue, Object? jwtRoleClaimKey = sdkOmittedValue, Object? jwtCacheMaxLifetime = sdkOmittedValue, Object? openapiMode = sdkOmittedValue, Object? serverCorsAllowedOrigins = sdkOmittedValue, Object? serverTimingEnabled = sdkOmittedValue}) => DataAPISettings(
     dbAggregatesEnabled: identical(dbAggregatesEnabled, sdkOmittedValue) ? this.dbAggregatesEnabled : dbAggregatesEnabled as SdkOptional<bool>,
     dbAnonRole: identical(dbAnonRole, sdkOmittedValue) ? this.dbAnonRole : dbAnonRole as SdkOptional<String>,
     dbExtraSearchPath: identical(dbExtraSearchPath, sdkOmittedValue) ? this.dbExtraSearchPath : dbExtraSearchPath as SdkOptional<String>,
@@ -145,7 +198,7 @@ class DataAPIReponseSettings {
     serverTimingEnabled: identical(serverTimingEnabled, sdkOmittedValue) ? this.serverTimingEnabled : serverTimingEnabled as SdkOptional<bool>,
   );
 
-  factory DataAPIReponseSettings.fromJson(Map<String, dynamic> json) => DataAPIReponseSettings(
+  factory DataAPISettings.fromJson(Map<String, dynamic> json) => DataAPISettings(
     dbAggregatesEnabled: json['db_aggregates_enabled'] != null ? SdkPresent((json['db_aggregates_enabled'] as bool?)!) : const SdkOmitted(),
     dbAnonRole: json['db_anon_role'] != null ? SdkPresent((json['db_anon_role'] as String?)!) : const SdkOmitted(),
     dbExtraSearchPath: json['db_extra_search_path'] != null ? SdkPresent((json['db_extra_search_path'] as String?)!) : const SdkOmitted(),
@@ -202,54 +255,28 @@ class DataAPIReponseSettings {
   };
 }
 
-/// Neon Data API response
-class DataAPIReponse {
+/// Update Neon Data API
+class DataAPIUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-  /// The URL of the Neon Data API
-  final String url;
-  /// The status of the Neon Data API deployment
-  final String status;
-  /// Configuration settings for the Data API (SubZero only)
-  final SdkOptional<DataAPISettings?> settings;
-  /// List of available database schemas (SubZero only)
-  final SdkOptional<List<String>?> availableSchemas;
-  /// When `settings` and `available_schemas` were read from the database. While the compute is suspended they are served from that read, so a change made directly in the database since then shows up in the first response served while the compute is active.
-  final SdkOptional<String> observedAt;
+  /// Configuration settings for the Neon Data API.
+  final SdkOptional<DataAPISettings> settings;
 
-  const DataAPIReponse({required this.url, required this.status, this.settings = const SdkOmitted(), this.availableSchemas = const SdkOmitted(), this.observedAt = const SdkOmitted()});
+  const DataAPIUpdateRequest({this.settings = const SdkOmitted()});
 
-  DataAPIReponse Function({String url, String status, SdkOptional<DataAPISettings?> settings, SdkOptional<List<String>?> availableSchemas, SdkOptional<String> observedAt}) get copyWith => _copyWith;
+  DataAPIUpdateRequest Function({SdkOptional<DataAPISettings> settings}) get copyWith => _copyWith;
 
-  DataAPIReponse _copyWith({Object? url = sdkOmittedValue, Object? status = sdkOmittedValue, Object? settings = sdkOmittedValue, Object? availableSchemas = sdkOmittedValue, Object? observedAt = sdkOmittedValue}) => DataAPIReponse(
-    url: identical(url, sdkOmittedValue) ? this.url : url as String,
-    status: identical(status, sdkOmittedValue) ? this.status : status as String,
-    settings: identical(settings, sdkOmittedValue) ? this.settings : settings as SdkOptional<DataAPISettings?>,
-    availableSchemas: identical(availableSchemas, sdkOmittedValue) ? this.availableSchemas : availableSchemas as SdkOptional<List<String>?>,
-    observedAt: identical(observedAt, sdkOmittedValue) ? this.observedAt : observedAt as SdkOptional<String>,
+  DataAPIUpdateRequest _copyWith({Object? settings = sdkOmittedValue}) => DataAPIUpdateRequest(
+    settings: identical(settings, sdkOmittedValue) ? this.settings : settings as SdkOptional<DataAPISettings>,
   );
 
-  factory DataAPIReponse.fromJson(Map<String, dynamic> json) => DataAPIReponse(
-    url: (json['url'] as String?)!,
-    status: (json['status'] as String?)!,
-    settings: json.containsKey('settings') ? SdkPresent(json['settings'] != null ? DataAPISettings.fromJson(json['settings'] as Map<String, dynamic>) : null) : const SdkOmitted(),
-    availableSchemas: json.containsKey('available_schemas') ? SdkPresent((json['available_schemas'] as List?)?.map((e) => e as String).toList()) : const SdkOmitted(),
-    observedAt: json['observed_at'] != null ? SdkPresent((json['observed_at'] as String?)!) : const SdkOmitted(),
+  factory DataAPIUpdateRequest.fromJson(Map<String, dynamic> json) => DataAPIUpdateRequest(
+    settings: json['settings'] != null ? SdkPresent((json['settings'] != null ? DataAPISettings.fromJson(json['settings'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
   );
 
   Map<String, dynamic> toJson() => {
-    'url': url,
-    'status': status,
     ...switch (settings) {
-      SdkPresent<DataAPISettings?>(value: final value) => {'settings': value?.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (availableSchemas) {
-      SdkPresent<List<String>?>(value: final value) => {'available_schemas': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (observedAt) {
-      SdkPresent<String>(value: final value) => {'observed_at': value,},
+      SdkPresent<DataAPISettings>(value: final value) => {'settings': value.toJson(),},
       _ => const <String, dynamic>{},
     },
   };

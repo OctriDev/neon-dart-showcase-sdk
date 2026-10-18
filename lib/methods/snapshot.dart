@@ -136,7 +136,7 @@ Future<UpdateSnapshotResponse> updateSnapshot(ClientConfig config,
 ///   immediately. This will complete the restore and move any associated computes
 ///   to the new branch, similar to the `finalizeRestoreBranch` operation.
 ///   Defaults to `false` to allow previewing the restored snapshot data first.
-Future<BranchResponse> restoreSnapshot(ClientConfig config,
+Future<RestoreSnapshotResponse> restoreSnapshot(ClientConfig config,
     {required String projectId,
     required String snapshotId,
     SdkOptional<String> name = const SdkOmitted(),
@@ -147,7 +147,7 @@ Future<BranchResponse> restoreSnapshot(ClientConfig config,
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('snapshot_id', snapshotId, '^[a-z0-9-]{1,60}\$');
 
-  return (await sdkRequest<BranchResponse>('POST',
+  return (await sdkRequest<RestoreSnapshotResponse>('POST',
           '/projects/${Uri.encodeComponent(projectId.toString())}/snapshots/${Uri.encodeComponent(snapshotId.toString())}/restore',
           config: config,
           query: {
@@ -160,7 +160,7 @@ Future<BranchResponse> restoreSnapshot(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'restoreSnapshot',
-          fromJsonRaw: (value) => BranchResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => RestoreSnapshotResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;

@@ -6,4 +6,3 @@ import '../../sdk_utils.dart';
 import '../inline.dart';
 
 part 'models_part1.dart';
-part 'models_part2.dart';

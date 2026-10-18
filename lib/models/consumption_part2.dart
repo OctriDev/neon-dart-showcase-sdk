@@ -147,3 +147,99 @@ class ConsumptionMetricValue {
     'value': value,
   };
 }
+
+/// Typed representation of the `GetConsumptionHistoryPerBranchV2Response` API schema.
+class GetConsumptionHistoryPerBranchV2Response {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// Per-branch consumption history records returned for the requested time range.
+  final List<ConsumptionHistoryPerBranchV2> branches;
+  /// Cursor-based pagination. The `cursor` value reflects the endpoint's sort field (for example, an ID or timestamp), so pass it back unchanged.
+  final SdkOptional<Pagination> pagination;
+
+  const GetConsumptionHistoryPerBranchV2Response({required this.branches, this.pagination = const SdkOmitted()});
+
+  GetConsumptionHistoryPerBranchV2Response Function({List<ConsumptionHistoryPerBranchV2> branches, SdkOptional<Pagination> pagination}) get copyWith => _copyWith;
+
+  GetConsumptionHistoryPerBranchV2Response _copyWith({Object? branches = sdkOmittedValue, Object? pagination = sdkOmittedValue}) => GetConsumptionHistoryPerBranchV2Response(
+    branches: identical(branches, sdkOmittedValue) ? this.branches : branches as List<ConsumptionHistoryPerBranchV2>,
+    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<Pagination>,
+  );
+
+  factory GetConsumptionHistoryPerBranchV2Response.fromJson(Map<String, dynamic> json) => GetConsumptionHistoryPerBranchV2Response(
+    branches: ((json['branches'] as List?)?.map((e) => ConsumptionHistoryPerBranchV2.fromJson(e as Map<String, dynamic>)).toList())!,
+    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? Pagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'branches': branches.map((item) => item.toJson()).toList(),
+    ...switch (pagination) {
+      SdkPresent<Pagination>(value: final value) => {'pagination': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
+}
+
+/// Typed representation of the `GetConsumptionHistoryPerProjectResponse` API schema.
+class GetConsumptionHistoryPerProjectResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// Per-project consumption history records included in the response.
+  final List<ConsumptionHistoryPerProject> projects;
+  /// Cursor-based pagination. The `cursor` value reflects the endpoint's sort field (for example, an ID or timestamp), so pass it back unchanged.
+  final SdkOptional<Pagination> pagination;
+
+  const GetConsumptionHistoryPerProjectResponse({required this.projects, this.pagination = const SdkOmitted()});
+
+  GetConsumptionHistoryPerProjectResponse Function({List<ConsumptionHistoryPerProject> projects, SdkOptional<Pagination> pagination}) get copyWith => _copyWith;
+
+  GetConsumptionHistoryPerProjectResponse _copyWith({Object? projects = sdkOmittedValue, Object? pagination = sdkOmittedValue}) => GetConsumptionHistoryPerProjectResponse(
+    projects: identical(projects, sdkOmittedValue) ? this.projects : projects as List<ConsumptionHistoryPerProject>,
+    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<Pagination>,
+  );
+
+  factory GetConsumptionHistoryPerProjectResponse.fromJson(Map<String, dynamic> json) => GetConsumptionHistoryPerProjectResponse(
+    projects: ((json['projects'] as List?)?.map((e) => ConsumptionHistoryPerProject.fromJson(e as Map<String, dynamic>)).toList())!,
+    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? Pagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'projects': projects.map((item) => item.toJson()).toList(),
+    ...switch (pagination) {
+      SdkPresent<Pagination>(value: final value) => {'pagination': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
+}
+
+/// Typed representation of the `GetConsumptionHistoryPerProjectV2Response` API schema.
+class GetConsumptionHistoryPerProjectV2Response {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// Per-project consumption history entries for the requested time range.
+  final List<ConsumptionHistoryPerProjectV2> projects;
+  /// Cursor-based pagination. The `cursor` value reflects the endpoint's sort field (for example, an ID or timestamp), so pass it back unchanged.
+  final SdkOptional<Pagination> pagination;
+
+  const GetConsumptionHistoryPerProjectV2Response({required this.projects, this.pagination = const SdkOmitted()});
+
+  GetConsumptionHistoryPerProjectV2Response Function({List<ConsumptionHistoryPerProjectV2> projects, SdkOptional<Pagination> pagination}) get copyWith => _copyWith;
+
+  GetConsumptionHistoryPerProjectV2Response _copyWith({Object? projects = sdkOmittedValue, Object? pagination = sdkOmittedValue}) => GetConsumptionHistoryPerProjectV2Response(
+    projects: identical(projects, sdkOmittedValue) ? this.projects : projects as List<ConsumptionHistoryPerProjectV2>,
+    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<Pagination>,
+  );
+
+  factory GetConsumptionHistoryPerProjectV2Response.fromJson(Map<String, dynamic> json) => GetConsumptionHistoryPerProjectV2Response(
+    projects: ((json['projects'] as List?)?.map((e) => ConsumptionHistoryPerProjectV2.fromJson(e as Map<String, dynamic>)).toList())!,
+    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? Pagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'projects': projects.map((item) => item.toJson()).toList(),
+    ...switch (pagination) {
+      SdkPresent<Pagination>(value: final value) => {'pagination': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
+}

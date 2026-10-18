@@ -4,6 +4,41 @@
 part of 'branch.dart';
 
 // branch domain models (part 5)
+/// Properties to update on the database.
+class DatabaseUpdateRequestDatabase {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// Name of the database to update.
+  final SdkOptional<String> name;
+  /// The name of the role that owns the database
+  final SdkOptional<String> ownerName;
+
+  const DatabaseUpdateRequestDatabase({this.name = const SdkOmitted(), this.ownerName = const SdkOmitted()});
+
+  DatabaseUpdateRequestDatabase Function({SdkOptional<String> name, SdkOptional<String> ownerName}) get copyWith => _copyWith;
+
+  DatabaseUpdateRequestDatabase _copyWith({Object? name = sdkOmittedValue, Object? ownerName = sdkOmittedValue}) => DatabaseUpdateRequestDatabase(
+    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
+    ownerName: identical(ownerName, sdkOmittedValue) ? this.ownerName : ownerName as SdkOptional<String>,
+  );
+
+  factory DatabaseUpdateRequestDatabase.fromJson(Map<String, dynamic> json) => DatabaseUpdateRequestDatabase(
+    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
+    ownerName: json['owner_name'] != null ? SdkPresent((json['owner_name'] as String?)!) : const SdkOmitted(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    ...switch (name) {
+      SdkPresent<String>(value: final value) => {'name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (ownerName) {
+      SdkPresent<String>(value: final value) => {'owner_name': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
+}
+
 /// Typed representation of the `DatabaseUpdateRequest` API schema.
 class DatabaseUpdateRequest {
   /// This model is constructed from named fields in one call.
@@ -25,6 +60,72 @@ class DatabaseUpdateRequest {
 
   Map<String, dynamic> toJson() => {
     'database': database.toJson(),
+  };
+}
+
+/// Typed representation of the `GetBranchResponse` API schema.
+class GetBranchResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// Branch returned by the request.
+  final Branch branch;
+  /// Annotation data associated with the annotated object.
+  final AnnotationData annotation;
+
+  const GetBranchResponse({required this.branch, required this.annotation});
+
+  GetBranchResponse Function({Branch branch, AnnotationData annotation}) get copyWith => _copyWith;
+
+  GetBranchResponse _copyWith({Object? branch = sdkOmittedValue, Object? annotation = sdkOmittedValue}) => GetBranchResponse(
+    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+    annotation: identical(annotation, sdkOmittedValue) ? this.annotation : annotation as AnnotationData,
+  );
+
+  factory GetBranchResponse.fromJson(Map<String, dynamic> json) => GetBranchResponse(
+    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
+    annotation: (json['annotation'] != null ? AnnotationData.fromJson(json['annotation'] as Map<String, dynamic>) : null)!,
+  );
+
+  Map<String, dynamic> toJson() => {
+    'branch': branch.toJson(),
+    'annotation': annotation.toJson(),
+  };
+}
+
+/// Typed representation of the `ListBranchResponse` API schema.
+class ListBranchResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  /// Branches in the project. Each includes `id`, `name`, `current_state`, and `created_at`.
+  final List<Branch> branches;
+  /// Map of annotations keyed by resource identifier, where each value contains the annotation data for that resource.
+  final Map<String, AnnotationData> annotations;
+  /// To paginate the response, issue an initial request with `limit` value. Then, add the value returned in the response `.pagination.next` attribute into the request under the `cursor` query parameter to the subsequent request to retrieve next page in pagination. The contents on cursor `next` are opaque, clients are not expected to make any assumptions on the format of the data inside the cursor.
+  final SdkOptional<CursorPagination> pagination;
+
+  const ListBranchResponse({required this.branches, required this.annotations, this.pagination = const SdkOmitted()});
+
+  ListBranchResponse Function({List<Branch> branches, Map<String, AnnotationData> annotations, SdkOptional<CursorPagination> pagination}) get copyWith => _copyWith;
+
+  ListBranchResponse _copyWith({Object? branches = sdkOmittedValue, Object? annotations = sdkOmittedValue, Object? pagination = sdkOmittedValue}) => ListBranchResponse(
+    branches: identical(branches, sdkOmittedValue) ? this.branches : branches as List<Branch>,
+    annotations: identical(annotations, sdkOmittedValue) ? this.annotations : annotations as Map<String, AnnotationData>,
+    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<CursorPagination>,
+  );
+
+  factory ListBranchResponse.fromJson(Map<String, dynamic> json) => ListBranchResponse(
+    branches: ((json['branches'] as List?)?.map((e) => Branch.fromJson(e as Map<String, dynamic>)).toList())!,
+    annotations: (json['annotations'] == null ? null : Map<String, dynamic>.from(json['annotations'] as Map).map((key, value) => MapEntry(key, AnnotationData.fromJson(value as Map<String, dynamic>))))!,
+    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? CursorPagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
+
+  Map<String, dynamic> toJson() => {
+    'branches': branches.map((item) => item.toJson()).toList(),
+    'annotations': annotations.map((key, value) => MapEntry(key, value.toJson())),
+    ...switch (pagination) {
+      SdkPresent<CursorPagination>(value: final value) => {'pagination': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
   };
 }
 
@@ -180,83 +281,6 @@ class RoleCreateRequest {
 
   factory RoleCreateRequest.fromJson(Map<String, dynamic> json) => RoleCreateRequest(
     role: (json['role'] != null ? RoleCreateRequestRole.fromJson(json['role'] as Map<String, dynamic>) : null)!,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'role': role.toJson(),
-  };
-}
-
-/// Typed representation of the `RoleOperations` API schema.
-class RoleOperations {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-  /// Role details for the requested database role. The `password` field is included in the response when a role is created or its password is reset, and is not returned in subsequent read requests. Store it securely at that time.
-  final Role role;
-  /// Required array value serialized in the `operations` wire field.
-  final List<Operation> operations;
-
-  const RoleOperations({required this.role, required this.operations});
-
-  RoleOperations Function({Role role, List<Operation> operations}) get copyWith => _copyWith;
-
-  RoleOperations _copyWith({Object? role = sdkOmittedValue, Object? operations = sdkOmittedValue}) => RoleOperations(
-    role: identical(role, sdkOmittedValue) ? this.role : role as Role,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
-
-  factory RoleOperations.fromJson(Map<String, dynamic> json) => RoleOperations(
-    role: (json['role'] != null ? Role.fromJson(json['role'] as Map<String, dynamic>) : null)!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'role': role.toJson(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
-}
-
-/// Typed representation of the `RolePasswordResponse` API schema.
-class RolePasswordResponse {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-  /// The role password
-  final String password;
-
-  const RolePasswordResponse({required this.password});
-
-  RolePasswordResponse Function({String password}) get copyWith => _copyWith;
-
-  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) => RolePasswordResponse(
-    password: identical(password, sdkOmittedValue) ? this.password : password as String,
-  );
-
-  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) => RolePasswordResponse(
-    password: (json['password'] as String?)!,
-  );
-
-  Map<String, dynamic> toJson() => {
-    'password': password,
-  };
-}
-
-/// Typed representation of the `RoleResponse` API schema.
-class RoleResponse {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-  /// Role details for the requested database role. The `password` field is included in the response when a role is created or its password is reset, and is not returned in subsequent read requests. Store it securely at that time.
-  final Role role;
-
-  const RoleResponse({required this.role});
-
-  RoleResponse Function({Role role}) get copyWith => _copyWith;
-
-  RoleResponse _copyWith({Object? role = sdkOmittedValue}) => RoleResponse(
-    role: identical(role, sdkOmittedValue) ? this.role : role as Role,
-  );
-
-  factory RoleResponse.fromJson(Map<String, dynamic> json) => RoleResponse(
-    role: (json['role'] != null ? Role.fromJson(json['role'] as Map<String, dynamic>) : null)!,
   );
 
   Map<String, dynamic> toJson() => {

@@ -3,5 +3,6 @@
 
 // shared_standard domain model library.
 import '../sdk_utils.dart';
+import 'inline.dart';
 
 part 'shared_standard_part1.dart';

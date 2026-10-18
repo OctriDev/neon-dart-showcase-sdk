@@ -99,19 +99,23 @@ class SharedEmailServer {
   final SdkOptional<String> senderEmail;
   /// Display name shown as the sender in outgoing emails.
   final SdkOptional<String> senderName;
+  /// Optional enumerated value serialized in the `type` wire field.
+  final SdkOptional<SharedEmailServerType> type_;
 
-  const SharedEmailServer({this.senderEmail = const SdkOmitted(), this.senderName = const SdkOmitted()});
+  const SharedEmailServer({this.senderEmail = const SdkOmitted(), this.senderName = const SdkOmitted(), this.type_ = const SdkOmitted()});
 
-  SharedEmailServer Function({SdkOptional<String> senderEmail, SdkOptional<String> senderName}) get copyWith => _copyWith;
+  SharedEmailServer Function({SdkOptional<String> senderEmail, SdkOptional<String> senderName, SdkOptional<SharedEmailServerType> type_}) get copyWith => _copyWith;
 
-  SharedEmailServer _copyWith({Object? senderEmail = sdkOmittedValue, Object? senderName = sdkOmittedValue}) => SharedEmailServer(
+  SharedEmailServer _copyWith({Object? senderEmail = sdkOmittedValue, Object? senderName = sdkOmittedValue, Object? type_ = sdkOmittedValue}) => SharedEmailServer(
     senderEmail: identical(senderEmail, sdkOmittedValue) ? this.senderEmail : senderEmail as SdkOptional<String>,
     senderName: identical(senderName, sdkOmittedValue) ? this.senderName : senderName as SdkOptional<String>,
+    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as SdkOptional<SharedEmailServerType>,
   );
 
   factory SharedEmailServer.fromJson(Map<String, dynamic> json) => SharedEmailServer(
     senderEmail: json['sender_email'] != null ? SdkPresent((json['sender_email'] as String?)!) : const SdkOmitted(),
     senderName: json['sender_name'] != null ? SdkPresent((json['sender_name'] as String?)!) : const SdkOmitted(),
+    type_: json['type'] != null ? SdkPresent((json['type'] != null ? SharedEmailServerType.fromJson(json['type'] as String) : null)!) : const SdkOmitted(),
   );
 
   Map<String, dynamic> toJson() => {
@@ -121,6 +125,10 @@ class SharedEmailServer {
     },
     ...switch (senderName) {
       SdkPresent<String>(value: final value) => {'sender_name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (type_) {
+      SdkPresent<SharedEmailServerType>(value: final value) => {'type': value.toJson(),},
       _ => const <String, dynamic>{},
     },
   };
