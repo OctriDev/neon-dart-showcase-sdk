@@ -194,6 +194,7 @@ Stream<BucketObject> listBucketsObjectsPaginated(ClientConfig config,
     for (final sdkItem in sdkItems) {
       yield sdkItem;
     }
+    if (sdkPage.isTruncated != true) return;
     final sdkNext = sdkPage.nextCursor.valueOrNull;
     if (sdkNext == null) return;
     sdkCursor = sdkNext;
@@ -230,7 +231,7 @@ Stream<SdkPage<BucketObjectsListResponse, BucketObject>>
     final sdkItems = sdkPage.objects;
     if (sdkItems.isEmpty) return;
     final sdkNext = sdkPage.nextCursor.valueOrNull;
-    final sdkHasMore = sdkNext != null;
+    final sdkHasMore = sdkPage.isTruncated == true && sdkNext != null;
     yield SdkPage(data: sdkPage, items: sdkItems, hasMore: sdkHasMore);
     if (!sdkHasMore) return;
     sdkCursor = sdkNext;

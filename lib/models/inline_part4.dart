@@ -4,6 +4,121 @@
 part of 'inline.dart';
 
 // Inline operation models (part 4)
+class DisableAuthRequestBody {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// If true, deletes the `neon_auth` schema from the database
+  final SdkOptional<bool> deleteData;
+
+  const DisableAuthRequestBody({this.deleteData = const SdkOmitted()});
+
+  DisableAuthRequestBody Function({SdkOptional<bool> deleteData})
+      get copyWith => _copyWith;
+
+  DisableAuthRequestBody _copyWith({Object? deleteData = sdkOmittedValue}) =>
+      DisableAuthRequestBody(
+        deleteData: identical(deleteData, sdkOmittedValue)
+            ? this.deleteData
+            : deleteData as SdkOptional<bool>,
+      );
+
+  factory DisableAuthRequestBody.fromJson(Map<String, dynamic> json) =>
+      DisableAuthRequestBody(
+        deleteData: json['delete_data'] != null
+            ? SdkPresent((json['delete_data'] as bool?)!)
+            : const SdkOmitted(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        ...switch (deleteData) {
+          SdkPresent<bool>(value: final value) => {
+              'delete_data': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
+}
+
+class FinalizeRestoreBranchRequestBody {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// Name for the replaced branch. If omitted, a unique name is generated.
+  final SdkOptional<String> name;
+
+  const FinalizeRestoreBranchRequestBody({this.name = const SdkOmitted()});
+
+  FinalizeRestoreBranchRequestBody Function({SdkOptional<String> name})
+      get copyWith => _copyWith;
+
+  FinalizeRestoreBranchRequestBody _copyWith(
+          {Object? name = sdkOmittedValue}) =>
+      FinalizeRestoreBranchRequestBody(
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+      );
+
+  factory FinalizeRestoreBranchRequestBody.fromJson(
+          Map<String, dynamic> json) =>
+      FinalizeRestoreBranchRequestBody(
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
+}
+
+class CreateSnapshotResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+  final Snapshot snapshot;
+  final List<Operation> operations;
+
+  const CreateSnapshotResponse(
+      {required this.snapshot, required this.operations});
+
+  CreateSnapshotResponse Function(
+      {Snapshot snapshot,
+      List<Operation> operations}) get copyWith => _copyWith;
+
+  CreateSnapshotResponse _copyWith(
+          {Object? snapshot = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      CreateSnapshotResponse(
+        snapshot: identical(snapshot, sdkOmittedValue)
+            ? this.snapshot
+            : snapshot as Snapshot,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
+
+  factory CreateSnapshotResponse.fromJson(Map<String, dynamic> json) =>
+      CreateSnapshotResponse(
+        snapshot: (json['snapshot'] != null
+            ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>)
+            : null)!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'snapshot': snapshot.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
+}
+
 class ListSnapshotsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';

@@ -4,259 +4,6 @@
 part of 'project.dart';
 
 // project domain models (part 2)
-/// Typed representation of the `AvailablePreloadLibrary` API schema.
-class AvailablePreloadLibrary {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-
-  /// Name of the Postgres shared preload library as it appears in the `shared_preload_libraries` parameter (for example, `pg_stat_statements`).
-  final String libraryName;
-
-  /// Human-readable explanation of the library's purpose and behavior.
-  final String description;
-
-  /// Whether this library is loaded by default in the `shared_preload_libraries` configuration for new compute endpoints.
-  final bool isDefault;
-
-  /// Marks the library as experimental. Experimental libraries may be unstable, subject to breaking changes, or not recommended for production use.
-  final bool isExperimental;
-
-  /// Version of the preload library.
-  final String version;
-
-  const AvailablePreloadLibrary(
-      {required this.libraryName,
-      required this.description,
-      required this.isDefault,
-      required this.isExperimental,
-      required this.version});
-
-  AvailablePreloadLibrary Function(
-      {String libraryName,
-      String description,
-      bool isDefault,
-      bool isExperimental,
-      String version}) get copyWith => _copyWith;
-
-  AvailablePreloadLibrary _copyWith(
-          {Object? libraryName = sdkOmittedValue,
-          Object? description = sdkOmittedValue,
-          Object? isDefault = sdkOmittedValue,
-          Object? isExperimental = sdkOmittedValue,
-          Object? version = sdkOmittedValue}) =>
-      AvailablePreloadLibrary(
-        libraryName: identical(libraryName, sdkOmittedValue)
-            ? this.libraryName
-            : libraryName as String,
-        description: identical(description, sdkOmittedValue)
-            ? this.description
-            : description as String,
-        isDefault: identical(isDefault, sdkOmittedValue)
-            ? this.isDefault
-            : isDefault as bool,
-        isExperimental: identical(isExperimental, sdkOmittedValue)
-            ? this.isExperimental
-            : isExperimental as bool,
-        version: identical(version, sdkOmittedValue)
-            ? this.version
-            : version as String,
-      );
-
-  factory AvailablePreloadLibrary.fromJson(Map<String, dynamic> json) =>
-      AvailablePreloadLibrary(
-        libraryName: (json['library_name'] as String?)!,
-        description: (json['description'] as String?)!,
-        isDefault: (json['is_default'] as bool?)!,
-        isExperimental: (json['is_experimental'] as bool?)!,
-        version: (json['version'] as String?)!,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'library_name': libraryName,
-        'description': description,
-        'is_default': isDefault,
-        'is_experimental': isExperimental,
-        'version': version,
-      };
-}
-
-/// Typed representation of the `ConnectionURIResponse` API schema.
-class ConnectionURIResponse {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-
-  /// The connection URI.
-  final String uri;
-
-  const ConnectionURIResponse({required this.uri});
-
-  ConnectionURIResponse Function({String uri}) get copyWith => _copyWith;
-
-  ConnectionURIResponse _copyWith({Object? uri = sdkOmittedValue}) =>
-      ConnectionURIResponse(
-        uri: identical(uri, sdkOmittedValue) ? this.uri : uri as String,
-      );
-
-  factory ConnectionURIResponse.fromJson(Map<String, dynamic> json) =>
-      ConnectionURIResponse(
-        uri: (json['uri'] as String?)!,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'uri': uri,
-      };
-}
-
-/// Typed representation of the `ConnectionURIsResponse` API schema.
-class ConnectionURIsResponse {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-
-  /// Connection URIs for the project. Each entry contains credentials and should be treated as sensitive.
-  final List<ConnectionDetails> connectionUris;
-
-  const ConnectionURIsResponse({required this.connectionUris});
-
-  ConnectionURIsResponse Function({List<ConnectionDetails> connectionUris})
-      get copyWith => _copyWith;
-
-  ConnectionURIsResponse _copyWith(
-          {Object? connectionUris = sdkOmittedValue}) =>
-      ConnectionURIsResponse(
-        connectionUris: identical(connectionUris, sdkOmittedValue)
-            ? this.connectionUris
-            : connectionUris as List<ConnectionDetails>,
-      );
-
-  factory ConnectionURIsResponse.fromJson(Map<String, dynamic> json) =>
-      ConnectionURIsResponse(
-        connectionUris: ((json['connection_uris'] as List?)
-            ?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'connection_uris': connectionUris.map((item) => item.toJson()).toList(),
-      };
-}
-
-/// A collection of settings for a Neon endpoint
-class DefaultEndpointSettings {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-
-  /// A raw representation of Postgres settings
-  final SdkOptional<Map<String, dynamic>> pgSettings;
-
-  /// Deprecated. Use the endpoint-level connection pooler configuration instead. Removal scheduled for June 20, 2026.
-  final SdkOptional<Map<String, dynamic>> pgbouncerSettings;
-
-  /// Minimum number of Compute Units for this endpoint. At least 0.25 and no greater than `autoscaling_limit_max_cu`.
-  final SdkOptional<double> autoscalingLimitMinCu;
-
-  /// Default maximum number of Compute Units for endpoints created under this account. At least 0.25.
-  final SdkOptional<double> autoscalingLimitMaxCu;
-
-  /// Scale-to-zero idle timeout, in seconds, before the compute suspends. `0` uses the plan default; `-1` disables scale-to-zero (never suspends). Minimum is plan-dependent (Scale: 60); maximum 604800 (one week). Free cannot change it; Launch can only enable or disable; Scale can set any value.
-  final SdkOptional<int> suspendTimeoutSeconds;
-
-  const DefaultEndpointSettings(
-      {this.pgSettings = const SdkOmitted(),
-      this.pgbouncerSettings = const SdkOmitted(),
-      this.autoscalingLimitMinCu = const SdkOmitted(),
-      this.autoscalingLimitMaxCu = const SdkOmitted(),
-      this.suspendTimeoutSeconds = const SdkOmitted()});
-
-  DefaultEndpointSettings Function(
-      {SdkOptional<Map<String, dynamic>> pgSettings,
-      SdkOptional<Map<String, dynamic>> pgbouncerSettings,
-      SdkOptional<double> autoscalingLimitMinCu,
-      SdkOptional<double> autoscalingLimitMaxCu,
-      SdkOptional<int> suspendTimeoutSeconds}) get copyWith => _copyWith;
-
-  DefaultEndpointSettings _copyWith(
-          {Object? pgSettings = sdkOmittedValue,
-          Object? pgbouncerSettings = sdkOmittedValue,
-          Object? autoscalingLimitMinCu = sdkOmittedValue,
-          Object? autoscalingLimitMaxCu = sdkOmittedValue,
-          Object? suspendTimeoutSeconds = sdkOmittedValue}) =>
-      DefaultEndpointSettings(
-        pgSettings: identical(pgSettings, sdkOmittedValue)
-            ? this.pgSettings
-            : pgSettings as SdkOptional<Map<String, dynamic>>,
-        pgbouncerSettings: identical(pgbouncerSettings, sdkOmittedValue)
-            ? this.pgbouncerSettings
-            : pgbouncerSettings as SdkOptional<Map<String, dynamic>>,
-        autoscalingLimitMinCu: identical(autoscalingLimitMinCu, sdkOmittedValue)
-            ? this.autoscalingLimitMinCu
-            : autoscalingLimitMinCu as SdkOptional<double>,
-        autoscalingLimitMaxCu: identical(autoscalingLimitMaxCu, sdkOmittedValue)
-            ? this.autoscalingLimitMaxCu
-            : autoscalingLimitMaxCu as SdkOptional<double>,
-        suspendTimeoutSeconds: identical(suspendTimeoutSeconds, sdkOmittedValue)
-            ? this.suspendTimeoutSeconds
-            : suspendTimeoutSeconds as SdkOptional<int>,
-      );
-
-  factory DefaultEndpointSettings.fromJson(Map<String, dynamic> json) =>
-      DefaultEndpointSettings(
-        pgSettings: json['pg_settings'] != null
-            ? SdkPresent((json['pg_settings'] == null
-                ? null
-                : json['pg_settings'] as Map<String, dynamic>)!)
-            : const SdkOmitted(),
-        pgbouncerSettings: json['pgbouncer_settings'] != null
-            ? SdkPresent((json['pgbouncer_settings'] == null
-                ? null
-                : json['pgbouncer_settings'] as Map<String, dynamic>)!)
-            : const SdkOmitted(),
-        autoscalingLimitMinCu: json['autoscaling_limit_min_cu'] != null
-            ? SdkPresent(
-                ((json['autoscaling_limit_min_cu'] as num?)?.toDouble())!)
-            : const SdkOmitted(),
-        autoscalingLimitMaxCu: json['autoscaling_limit_max_cu'] != null
-            ? SdkPresent(
-                ((json['autoscaling_limit_max_cu'] as num?)?.toDouble())!)
-            : const SdkOmitted(),
-        suspendTimeoutSeconds: json['suspend_timeout_seconds'] != null
-            ? SdkPresent(((json['suspend_timeout_seconds'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-      );
-
-  Map<String, dynamic> toJson() => {
-        ...switch (pgSettings) {
-          SdkPresent<Map<String, dynamic>>(value: final value) => {
-              'pg_settings': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (pgbouncerSettings) {
-          SdkPresent<Map<String, dynamic>>(value: final value) => {
-              'pgbouncer_settings': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (autoscalingLimitMinCu) {
-          SdkPresent<double>(value: final value) => {
-              'autoscaling_limit_min_cu': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (autoscalingLimitMaxCu) {
-          SdkPresent<double>(value: final value) => {
-              'autoscaling_limit_max_cu': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (suspendTimeoutSeconds) {
-          SdkPresent<int>(value: final value) => {
-              'suspend_timeout_seconds': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
-}
-
 /// Typed representation of the `GrantPermissionToProjectRequest` API schema.
 class GrantPermissionToProjectRequest {
   /// This model is constructed from named fields in one call.
@@ -464,6 +211,220 @@ class JWKSCreationOperation {
 
   Map<String, dynamic> toJson() => {
         'jwks': jwks.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
+}
+
+/// Typed representation of the `JWKSResponse` API schema.
+class JWKSResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// JWKS configuration associated with the project.
+  final JWKS jwks;
+
+  const JWKSResponse({required this.jwks});
+
+  JWKSResponse Function({JWKS jwks}) get copyWith => _copyWith;
+
+  JWKSResponse _copyWith({Object? jwks = sdkOmittedValue}) => JWKSResponse(
+        jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as JWKS,
+      );
+
+  factory JWKSResponse.fromJson(Map<String, dynamic> json) => JWKSResponse(
+        jwks: (json['jwks'] != null
+            ? JWKS.fromJson(json['jwks'] as Map<String, dynamic>)
+            : null)!,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'jwks': jwks.toJson(),
+      };
+}
+
+/// A maintenance window is a time period during which Neon may perform maintenance on the project's infrastructure. During this time, the project's compute endpoints may be unavailable and existing connections can be interrupted.
+class MaintenanceWindow {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// A list of weekdays when the maintenance window is active. Encoded as ints, where 1 - Monday, and 7 - Sunday.
+  final List<int> weekdays;
+
+  /// Start time of the maintenance window, in the format of "HH:MM". Uses UTC.
+  final String startTime;
+
+  /// End time of the maintenance window, in the format of "HH:MM". Uses UTC.
+  final String endTime;
+
+  const MaintenanceWindow(
+      {required this.weekdays, required this.startTime, required this.endTime});
+
+  MaintenanceWindow Function(
+      {List<int> weekdays,
+      String startTime,
+      String endTime}) get copyWith => _copyWith;
+
+  MaintenanceWindow _copyWith(
+          {Object? weekdays = sdkOmittedValue,
+          Object? startTime = sdkOmittedValue,
+          Object? endTime = sdkOmittedValue}) =>
+      MaintenanceWindow(
+        weekdays: identical(weekdays, sdkOmittedValue)
+            ? this.weekdays
+            : weekdays as List<int>,
+        startTime: identical(startTime, sdkOmittedValue)
+            ? this.startTime
+            : startTime as String,
+        endTime: identical(endTime, sdkOmittedValue)
+            ? this.endTime
+            : endTime as String,
+      );
+
+  factory MaintenanceWindow.fromJson(Map<String, dynamic> json) =>
+      MaintenanceWindow(
+        weekdays: ((json['weekdays'] as List?)
+            ?.map((e) => (e as num).toInt())
+            .toList())!,
+        startTime: (json['start_time'] as String?)!,
+        endTime: (json['end_time'] as String?)!,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'weekdays': weekdays,
+        'start_time': startTime,
+        'end_time': endTime,
+      };
+}
+
+// PgVersion = int
+
+/// Typed representation of the `ProjectsResponse` API schema.
+class ProjectsResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// List of projects accessible to the caller. Projects that exist but could not be retrieved are identified in `unavailable_project_ids`.
+  final List<ProjectListItem> projects;
+
+  /// A list of project IDs indicating which projects are known to exist, but whose details could not be fetched within the requested (or implicit) time limit
+  final SdkOptional<List<String>> unavailableProjectIds;
+
+  const ProjectsResponse(
+      {required this.projects,
+      this.unavailableProjectIds = const SdkOmitted()});
+
+  ProjectsResponse Function(
+          {List<ProjectListItem> projects,
+          SdkOptional<List<String>> unavailableProjectIds})
+      get copyWith => _copyWith;
+
+  ProjectsResponse _copyWith(
+          {Object? projects = sdkOmittedValue,
+          Object? unavailableProjectIds = sdkOmittedValue}) =>
+      ProjectsResponse(
+        projects: identical(projects, sdkOmittedValue)
+            ? this.projects
+            : projects as List<ProjectListItem>,
+        unavailableProjectIds: identical(unavailableProjectIds, sdkOmittedValue)
+            ? this.unavailableProjectIds
+            : unavailableProjectIds as SdkOptional<List<String>>,
+      );
+
+  factory ProjectsResponse.fromJson(Map<String, dynamic> json) =>
+      ProjectsResponse(
+        projects: ((json['projects'] as List?)
+            ?.map((e) => ProjectListItem.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        unavailableProjectIds: json['unavailable_project_ids'] != null
+            ? SdkPresent(((json['unavailable_project_ids'] as List?)
+                ?.map((e) => e as String)
+                .toList())!)
+            : const SdkOmitted(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        'projects': projects.map((item) => item.toJson()).toList(),
+        ...switch (unavailableProjectIds) {
+          SdkPresent<List<String>>(value: final value) => {
+              'unavailable_project_ids': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
+}
+
+/// Typed representation of the `SetProjectMemberRoleRequest` API schema.
+class SetProjectMemberRoleRequest {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// Per-project role. `viewer` maps to `VIEWER`, `editor` maps to `EDITOR`, and `admin` maps to `ADMIN`.
+  final ProjectRole role;
+
+  const SetProjectMemberRoleRequest({required this.role});
+
+  SetProjectMemberRoleRequest Function({ProjectRole role}) get copyWith =>
+      _copyWith;
+
+  SetProjectMemberRoleRequest _copyWith({Object? role = sdkOmittedValue}) =>
+      SetProjectMemberRoleRequest(
+        role:
+            identical(role, sdkOmittedValue) ? this.role : role as ProjectRole,
+      );
+
+  factory SetProjectMemberRoleRequest.fromJson(Map<String, dynamic> json) =>
+      SetProjectMemberRoleRequest(
+        role: (json['role'] != null
+            ? ProjectRole.fromJson(json['role'] as String)
+            : null)!,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'role': role.toJson(),
+      };
+}
+
+/// Typed representation of the `UpdateProjectResponse` API schema.
+class UpdateProjectResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// Full details of the project, including configuration, consumption metrics, and ownership.
+  final Project project;
+
+  /// Required array value serialized in the `operations` wire field.
+  final List<Operation> operations;
+
+  const UpdateProjectResponse(
+      {required this.project, required this.operations});
+
+  UpdateProjectResponse Function({Project project, List<Operation> operations})
+      get copyWith => _copyWith;
+
+  UpdateProjectResponse _copyWith(
+          {Object? project = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      UpdateProjectResponse(
+        project: identical(project, sdkOmittedValue)
+            ? this.project
+            : project as Project,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
+
+  factory UpdateProjectResponse.fromJson(Map<String, dynamic> json) =>
+      UpdateProjectResponse(
+        project: (json['project'] != null
+            ? Project.fromJson(json['project'] as Map<String, dynamic>)
+            : null)!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'project': project.toJson(),
         'operations': operations.map((item) => item.toJson()).toList(),
       };
 }

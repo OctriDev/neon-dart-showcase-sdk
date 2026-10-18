@@ -3,6 +3,8 @@
 
 // snapshot domain model library.
 import '../sdk_utils.dart';
+import 'shared_branch.dart';
 import 'shared_endpoint.dart';
+import 'shared_operation.dart';
 
 part 'snapshot_part1.dart';

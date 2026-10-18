@@ -3,19 +3,12 @@
 
 // project domain model library.
 import '../sdk_utils.dart';
-import 'inline.dart';
+import 'project_project.dart';
 import 'shared.dart';
 import 'shared_branch.dart';
 import 'shared_connection.dart';
-import 'shared_cursor.dart';
+import 'shared_endpoint.dart';
 import 'shared_operation.dart';
 
 part 'project_part1.dart';
 part 'project_part2.dart';
-part 'project_part3.dart';
-part 'project_part4.dart';
-part 'project_part5.dart';
-part 'project_part6.dart';
-part 'project_part7.dart';
-part 'project_part8.dart';
-part 'project_part9.dart';

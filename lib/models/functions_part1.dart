@@ -380,114 +380,109 @@ class FunctionTriggerStorageObjectCreated {
       };
 }
 
-/// The most recent deployment, regardless of build status. It may still be building or it may have failed. Omitted until the first deployment is created.
-class NeonFunctionCurrentDeployment {
+/// Typed representation of the `ListFunctionsCustomDomainsResponse` API schema.
+class ListFunctionsCustomDomainsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
 
-  /// The deployment id, which is the platform version number (monotonic per function).
-  final int id;
+  /// Required array value serialized in the `custom_domains` wire field.
+  final List<CustomDomain> customDomains;
 
-  /// Build lifecycle status of the deployment.
-  final NeonFunctionDeploymentStatus status;
+  /// To paginate the response, issue an initial request with `limit` value. Then, add the value returned in the response `.pagination.next` attribute into the request under the `cursor` query parameter to the subsequent request to retrieve next page in pagination. The contents on cursor `next` are opaque, clients are not expected to make any assumptions on the format of the data inside the cursor.
+  final SdkOptional<CursorPagination> pagination;
 
-  /// Required `int32`-formatted value serialized in the `memory_mib` wire field.
-  final int memoryMib;
+  const ListFunctionsCustomDomainsResponse(
+      {required this.customDomains, this.pagination = const SdkOmitted()});
 
-  /// Required `string` value serialized in the `runtime` wire field.
-  final String runtime;
+  ListFunctionsCustomDomainsResponse Function(
+      {List<CustomDomain> customDomains,
+      SdkOptional<CursorPagination> pagination}) get copyWith => _copyWith;
 
-  /// Required `string` value serialized in the `created_at` wire field.
-  final String createdAt;
-
-  /// The NAMES of the deployment's environment variables, sorted. Values are encrypted at rest and are never returned — they are write-only. To change a value, deploy the variable with the new value; to remove a variable, deploy it with an empty value.
-  final SdkOptional<List<String>> environment;
-
-  /// Human-readable reason the deployment build failed. Present only when `status` is `failed`.
-  final SdkOptional<String> error;
-
-  const NeonFunctionCurrentDeployment(
-      {required this.id,
-      required this.status,
-      required this.memoryMib,
-      required this.runtime,
-      required this.createdAt,
-      this.environment = const SdkOmitted(),
-      this.error = const SdkOmitted()});
-
-  NeonFunctionCurrentDeployment Function(
-      {int id,
-      NeonFunctionDeploymentStatus status,
-      int memoryMib,
-      String runtime,
-      String createdAt,
-      SdkOptional<List<String>> environment,
-      SdkOptional<String> error}) get copyWith => _copyWith;
-
-  NeonFunctionCurrentDeployment _copyWith(
-          {Object? id = sdkOmittedValue,
-          Object? status = sdkOmittedValue,
-          Object? memoryMib = sdkOmittedValue,
-          Object? runtime = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue,
-          Object? environment = sdkOmittedValue,
-          Object? error = sdkOmittedValue}) =>
-      NeonFunctionCurrentDeployment(
-        id: identical(id, sdkOmittedValue) ? this.id : id as int,
-        status: identical(status, sdkOmittedValue)
-            ? this.status
-            : status as NeonFunctionDeploymentStatus,
-        memoryMib: identical(memoryMib, sdkOmittedValue)
-            ? this.memoryMib
-            : memoryMib as int,
-        runtime: identical(runtime, sdkOmittedValue)
-            ? this.runtime
-            : runtime as String,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-        environment: identical(environment, sdkOmittedValue)
-            ? this.environment
-            : environment as SdkOptional<List<String>>,
-        error: identical(error, sdkOmittedValue)
-            ? this.error
-            : error as SdkOptional<String>,
+  ListFunctionsCustomDomainsResponse _copyWith(
+          {Object? customDomains = sdkOmittedValue,
+          Object? pagination = sdkOmittedValue}) =>
+      ListFunctionsCustomDomainsResponse(
+        customDomains: identical(customDomains, sdkOmittedValue)
+            ? this.customDomains
+            : customDomains as List<CustomDomain>,
+        pagination: identical(pagination, sdkOmittedValue)
+            ? this.pagination
+            : pagination as SdkOptional<CursorPagination>,
       );
 
-  factory NeonFunctionCurrentDeployment.fromJson(Map<String, dynamic> json) =>
-      NeonFunctionCurrentDeployment(
-        id: ((json['id'] as num?)?.toInt())!,
-        status: (json['status'] != null
-            ? NeonFunctionDeploymentStatus.fromJson(json['status'] as String)
-            : null)!,
-        memoryMib: ((json['memory_mib'] as num?)?.toInt())!,
-        runtime: (json['runtime'] as String?)!,
-        createdAt: (json['created_at'] as String?)!,
-        environment: json['environment'] != null
-            ? SdkPresent(((json['environment'] as List?)
-                ?.map((e) => e as String)
-                .toList())!)
-            : const SdkOmitted(),
-        error: json['error'] != null
-            ? SdkPresent((json['error'] as String?)!)
+  factory ListFunctionsCustomDomainsResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ListFunctionsCustomDomainsResponse(
+        customDomains: ((json['custom_domains'] as List?)
+            ?.map((e) => CustomDomain.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        pagination: json['pagination'] != null
+            ? SdkPresent((json['pagination'] != null
+                ? CursorPagination.fromJson(
+                    json['pagination'] as Map<String, dynamic>)
+                : null)!)
             : const SdkOmitted(),
       );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'status': status.toJson(),
-        'memory_mib': memoryMib,
-        'runtime': runtime,
-        'created_at': createdAt,
-        ...switch (environment) {
-          SdkPresent<List<String>>(value: final value) => {
-              'environment': value,
+        'custom_domains': customDomains.map((item) => item.toJson()).toList(),
+        ...switch (pagination) {
+          SdkPresent<CursorPagination>(value: final value) => {
+              'pagination': value.toJson(),
             },
           _ => const <String, dynamic>{},
         },
-        ...switch (error) {
-          SdkPresent<String>(value: final value) => {
-              'error': value,
+      };
+}
+
+/// Typed representation of the `ListFunctionsResponse` API schema.
+class ListFunctionsResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// Required array value serialized in the `functions` wire field.
+  final List<NeonFunction> functions;
+
+  /// To paginate the response, issue an initial request with `limit` value. Then, add the value returned in the response `.pagination.next` attribute into the request under the `cursor` query parameter to the subsequent request to retrieve next page in pagination. The contents on cursor `next` are opaque, clients are not expected to make any assumptions on the format of the data inside the cursor.
+  final SdkOptional<CursorPagination> pagination;
+
+  const ListFunctionsResponse(
+      {required this.functions, this.pagination = const SdkOmitted()});
+
+  ListFunctionsResponse Function(
+      {List<NeonFunction> functions,
+      SdkOptional<CursorPagination> pagination}) get copyWith => _copyWith;
+
+  ListFunctionsResponse _copyWith(
+          {Object? functions = sdkOmittedValue,
+          Object? pagination = sdkOmittedValue}) =>
+      ListFunctionsResponse(
+        functions: identical(functions, sdkOmittedValue)
+            ? this.functions
+            : functions as List<NeonFunction>,
+        pagination: identical(pagination, sdkOmittedValue)
+            ? this.pagination
+            : pagination as SdkOptional<CursorPagination>,
+      );
+
+  factory ListFunctionsResponse.fromJson(Map<String, dynamic> json) =>
+      ListFunctionsResponse(
+        functions: ((json['functions'] as List?)
+            ?.map((e) => NeonFunction.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        pagination: json['pagination'] != null
+            ? SdkPresent((json['pagination'] != null
+                ? CursorPagination.fromJson(
+                    json['pagination'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        'functions': functions.map((item) => item.toJson()).toList(),
+        ...switch (pagination) {
+          SdkPresent<CursorPagination>(value: final value) => {
+              'pagination': value.toJson(),
             },
           _ => const <String, dynamic>{},
         },

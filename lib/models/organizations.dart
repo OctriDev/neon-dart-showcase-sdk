@@ -4,7 +4,9 @@
 // organizations domain model library.
 import '../sdk_utils.dart';
 import 'shared_api.dart';
+import 'shared_cursor.dart';
 
 part 'organizations_part1.dart';
 part 'organizations_part2.dart';
 part 'organizations_part3.dart';
+part 'organizations_part4.dart';

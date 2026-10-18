@@ -39,7 +39,7 @@ Future<OperationResponse> getOperation(ClientConfig config,
 ///   batch of operations
 /// [limit] Specify a value from 1 to 1000 to limit number of operations in the
 ///   response
-Future<OperationsResponse> listOperation(ClientConfig config,
+Future<ListOperationResponse> listOperation(ClientConfig config,
     {required String projectId,
     SdkOptional<String> cursor = const SdkOmitted(),
     SdkOptional<int> limit = const SdkOmitted(),
@@ -49,7 +49,7 @@ Future<OperationsResponse> listOperation(ClientConfig config,
     validateRange('limit', limit.value, min: 1, max: 1000);
   }
 
-  return (await sdkRequest<OperationsResponse>('GET',
+  return (await sdkRequest<ListOperationResponse>('GET',
           '/projects/${Uri.encodeComponent(projectId.toString())}/operations',
           config: config,
           query: {
@@ -61,7 +61,7 @@ Future<OperationsResponse> listOperation(ClientConfig config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listOperation',
           fromJsonRaw: (value) =>
-              OperationsResponse.fromJson(value as Map<String, dynamic>),
+              ListOperationResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
             'default': (value) =>

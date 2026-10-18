@@ -58,7 +58,7 @@ import '../types.dart';
 ///   comma-separated list in a single parameter value. - As an array of parameter
 ///   values: `metrics=cpu_seconds&metrics=ram_bytes` - As a comma-separated list
 ///   in a single parameter value: `metrics=cpu_seconds,ram_bytes`
-Future<ConsumptionHistoryPerProjectResponse> getConsumptionHistoryPerProject(
+Future<GetConsumptionHistoryPerProjectResponse> getConsumptionHistoryPerProject(
     ClientConfig config,
     {required String from,
     required String to,
@@ -82,7 +82,7 @@ Future<ConsumptionHistoryPerProjectResponse> getConsumptionHistoryPerProject(
     sdkValidatePattern('org_id', orgId.value, '^[a-z0-9-]{1,60}\$');
   }
 
-  return (await sdkRequest<ConsumptionHistoryPerProjectResponse>(
+  return (await sdkRequest<GetConsumptionHistoryPerProjectResponse>(
           'GET', '/consumption_history/projects',
           config: config,
           query: {
@@ -107,8 +107,9 @@ Future<ConsumptionHistoryPerProjectResponse> getConsumptionHistoryPerProject(
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'getConsumptionHistoryPerProject',
-          fromJsonRaw: (value) => ConsumptionHistoryPerProjectResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              GetConsumptionHistoryPerProjectResponse.fromJson(
+                  value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
             '403': (value) =>
@@ -169,7 +170,7 @@ Future<ConsumptionHistoryPerProjectResponse> getConsumptionHistoryPerProject(
 ///   comma-separated list: -
 ///   `project_ids=cold-poetry-09157238&project_ids=quiet-snow-71788278` -
 ///   `project_ids=cold-poetry-09157238,quiet-snow-71788278`
-Future<ConsumptionHistoryPerProjectV2Response>
+Future<GetConsumptionHistoryPerProjectV2Response>
     getConsumptionHistoryPerProjectV2(ClientConfig config,
         {required String from,
         required String to,
@@ -190,7 +191,7 @@ Future<ConsumptionHistoryPerProjectV2Response>
     validateItems('project_ids', projectIds.value, min: 0, max: 100);
   }
 
-  return (await sdkRequest<ConsumptionHistoryPerProjectV2Response>(
+  return (await sdkRequest<GetConsumptionHistoryPerProjectV2Response>(
           'GET', '/consumption_history/v2/projects',
           config: config,
           query: {
@@ -210,7 +211,7 @@ Future<ConsumptionHistoryPerProjectV2Response>
           decoder: SdkResponseDecoder.json,
           operationId: 'getConsumptionHistoryPerProjectV2',
           fromJsonRaw: (value) =>
-              ConsumptionHistoryPerProjectV2Response.fromJson(
+              GetConsumptionHistoryPerProjectV2Response.fromJson(
                   value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
@@ -278,18 +279,18 @@ Future<ConsumptionHistoryPerProjectV2Response>
 ///   as repeated query parameters or a comma-separated list: -
 ///   `branch_ids=br-aged-salad-637688&branch_ids=br-sweet-breeze-497520` -
 ///   `branch_ids=br-aged-salad-637688,br-sweet-breeze-497520`
-Future<ConsumptionHistoryPerBranchV2Response> getConsumptionHistoryPerBranchV2(
-    ClientConfig config,
-    {required List<String> projectIds,
-    required String from,
-    required String to,
-    required ConsumptionHistoryGranularity granularity,
-    required String orgId,
-    required List<String> metrics,
-    SdkOptional<String> cursor = const SdkOmitted(),
-    SdkOptional<int> limit = const SdkOmitted(),
-    SdkOptional<List<String>> branchIds = const SdkOmitted(),
-    RequestOptions? requestOptions}) async {
+Future<GetConsumptionHistoryPerBranchV2Response>
+    getConsumptionHistoryPerBranchV2(ClientConfig config,
+        {required List<String> projectIds,
+        required String from,
+        required String to,
+        required ConsumptionHistoryGranularity granularity,
+        required String orgId,
+        required List<String> metrics,
+        SdkOptional<String> cursor = const SdkOmitted(),
+        SdkOptional<int> limit = const SdkOmitted(),
+        SdkOptional<List<String>> branchIds = const SdkOmitted(),
+        RequestOptions? requestOptions}) async {
   validateItems('project_ids', projectIds, min: 1, max: 100);
   sdkValidateDateTime('from', from);
   sdkValidateDateTime('to', to);
@@ -301,7 +302,7 @@ Future<ConsumptionHistoryPerBranchV2Response> getConsumptionHistoryPerBranchV2(
     validateItems('branch_ids', branchIds.value, min: 0, max: 100);
   }
 
-  return (await sdkRequest<ConsumptionHistoryPerBranchV2Response>(
+  return (await sdkRequest<GetConsumptionHistoryPerBranchV2Response>(
           'GET', '/consumption_history/v2/branches',
           config: config,
           query: {
@@ -323,7 +324,7 @@ Future<ConsumptionHistoryPerBranchV2Response> getConsumptionHistoryPerBranchV2(
           decoder: SdkResponseDecoder.json,
           operationId: 'getConsumptionHistoryPerBranchV2',
           fromJsonRaw: (value) =>
-              ConsumptionHistoryPerBranchV2Response.fromJson(
+              GetConsumptionHistoryPerBranchV2Response.fromJson(
                   value as Map<String, dynamic>),
           options: requestOptions,
           errors: {

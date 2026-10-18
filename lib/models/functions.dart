@@ -5,6 +5,7 @@
 import 'dart:convert';
 import '../sdk_utils.dart';
 import 'inline.dart';
+import 'shared_cursor.dart';
 
 part 'functions_part1.dart';
 part 'functions_part2.dart';

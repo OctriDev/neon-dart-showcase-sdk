@@ -4,112 +4,6 @@
 part of 'functions.dart';
 
 // functions domain models (part 4)
-/// Typed representation of the `StorageObjectCreatedTriggerCreateRequest` API schema.
-class StorageObjectCreatedTriggerCreateRequest {
-  /// This model is constructed from named fields in one call.
-  static const String constructionSurface = 'named';
-
-  /// Trigger type discriminator.
-  final StorageObjectCreatedTriggerCreateRequestType type_;
-
-  /// The branch-local Function slug to invoke.
-  final String functionSlug;
-
-  /// Human-readable name, unique among triggers visible on the branch.
-  final String name;
-
-  /// Path passed to the target Function. Defaults to `/`.
-  final SdkOptional<String> functionPath;
-
-  /// Matches successful uploads to one exact bucket and, when configured, an object-key prefix. The Function receives a JSON request body with `type` set to `storage_object_created` and a `data` object containing exactly `bucket_name` and `object_key`.
-  final FunctionTriggerStorageObjectCreated storageObjectCreated;
-
-  /// Whether successful matching uploads should invoke the Function.
-  final SdkOptional<bool> enabled;
-
-  const StorageObjectCreatedTriggerCreateRequest(
-      {required this.type_,
-      required this.functionSlug,
-      required this.name,
-      this.functionPath = const SdkOmitted(),
-      required this.storageObjectCreated,
-      this.enabled = const SdkOmitted()});
-
-  StorageObjectCreatedTriggerCreateRequest Function(
-      {StorageObjectCreatedTriggerCreateRequestType type_,
-      String functionSlug,
-      String name,
-      SdkOptional<String> functionPath,
-      FunctionTriggerStorageObjectCreated storageObjectCreated,
-      SdkOptional<bool> enabled}) get copyWith => _copyWith;
-
-  StorageObjectCreatedTriggerCreateRequest _copyWith(
-          {Object? type_ = sdkOmittedValue,
-          Object? functionSlug = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? functionPath = sdkOmittedValue,
-          Object? storageObjectCreated = sdkOmittedValue,
-          Object? enabled = sdkOmittedValue}) =>
-      StorageObjectCreatedTriggerCreateRequest(
-        type_: identical(type_, sdkOmittedValue)
-            ? this.type_
-            : type_ as StorageObjectCreatedTriggerCreateRequestType,
-        functionSlug: identical(functionSlug, sdkOmittedValue)
-            ? this.functionSlug
-            : functionSlug as String,
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        functionPath: identical(functionPath, sdkOmittedValue)
-            ? this.functionPath
-            : functionPath as SdkOptional<String>,
-        storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue)
-            ? this.storageObjectCreated
-            : storageObjectCreated as FunctionTriggerStorageObjectCreated,
-        enabled: identical(enabled, sdkOmittedValue)
-            ? this.enabled
-            : enabled as SdkOptional<bool>,
-      );
-
-  factory StorageObjectCreatedTriggerCreateRequest.fromJson(
-          Map<String, dynamic> json) =>
-      StorageObjectCreatedTriggerCreateRequest(
-        type_: (json['type'] != null
-            ? StorageObjectCreatedTriggerCreateRequestType.fromJson(
-                json['type'] as String)
-            : null)!,
-        functionSlug: (json['function_slug'] as String?)!,
-        name: (json['name'] as String?)!,
-        functionPath: json['function_path'] != null
-            ? SdkPresent((json['function_path'] as String?)!)
-            : const SdkOmitted(),
-        storageObjectCreated: (json['storage_object_created'] != null
-            ? FunctionTriggerStorageObjectCreated.fromJson(
-                json['storage_object_created'] as Map<String, dynamic>)
-            : null)!,
-        enabled: json['enabled'] != null
-            ? SdkPresent((json['enabled'] as bool?)!)
-            : const SdkOmitted(),
-      );
-
-  Map<String, dynamic> toJson() => {
-        'type': type_.toJson(),
-        'function_slug': functionSlug,
-        'name': name,
-        ...switch (functionPath) {
-          SdkPresent<String>(value: final value) => {
-              'function_path': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        'storage_object_created': storageObjectCreated.toJson(),
-        ...switch (enabled) {
-          SdkPresent<bool>(value: final value) => {
-              'enabled': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
-}
-
 /// Typed representation of the `StorageObjectCreatedTriggerUpdateRequest` API schema.
 class StorageObjectCreatedTriggerUpdateRequest {
   /// This model is constructed from named fields in one call.
@@ -246,6 +140,20 @@ sealed class Trigger {
   static const String constructionSurface = 'named';
   const Trigger();
   factory Trigger.fromJson(Object? json) {
+    if (json is Map<String, dynamic>) {
+      try {
+        final value = ScheduleTrigger.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerScheduleTrigger(value);
+        }
+      } catch (_) {}
+      try {
+        final value = StorageObjectCreatedTrigger.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerStorageObjectCreatedTrigger(value);
+        }
+      } catch (_) {}
+    }
     try {
       return TriggerScheduleTrigger(
           ScheduleTrigger.fromJson(json as Map<String, dynamic>));
@@ -291,6 +199,21 @@ sealed class TriggerCreateRequest {
   static const String constructionSurface = 'named';
   const TriggerCreateRequest();
   factory TriggerCreateRequest.fromJson(Object? json) {
+    if (json is Map<String, dynamic>) {
+      try {
+        final value = ScheduleTriggerCreateRequest.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerCreateRequestScheduleTriggerCreateRequest(value);
+        }
+      } catch (_) {}
+      try {
+        final value = StorageObjectCreatedTriggerCreateRequest.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest(
+              value);
+        }
+      } catch (_) {}
+    }
     try {
       return TriggerCreateRequestScheduleTriggerCreateRequest(
           ScheduleTriggerCreateRequest.fromJson(json as Map<String, dynamic>));
@@ -405,6 +328,21 @@ sealed class TriggerUpdateRequest {
   static const String constructionSurface = 'named';
   const TriggerUpdateRequest();
   factory TriggerUpdateRequest.fromJson(Object? json) {
+    if (json is Map<String, dynamic>) {
+      try {
+        final value = ScheduleTriggerUpdateRequest.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerUpdateRequestScheduleTriggerUpdateRequest(value);
+        }
+      } catch (_) {}
+      try {
+        final value = StorageObjectCreatedTriggerUpdateRequest.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest(
+              value);
+        }
+      } catch (_) {}
+    }
     try {
       return TriggerUpdateRequestScheduleTriggerUpdateRequest(
           ScheduleTriggerUpdateRequest.fromJson(json as Map<String, dynamic>));

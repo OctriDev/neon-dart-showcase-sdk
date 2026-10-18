@@ -4,6 +4,60 @@
 part of 'operation.dart';
 
 // operation domain models
+/// Typed representation of the `ListOperationResponse` API schema.
+class ListOperationResponse {
+  /// This model is constructed from named fields in one call.
+  static const String constructionSurface = 'named';
+
+  /// Required array value serialized in the `operations` wire field.
+  final List<Operation> operations;
+
+  /// Cursor-based pagination. The `cursor` value reflects the endpoint's sort field (for example, an ID or timestamp), so pass it back unchanged.
+  final SdkOptional<Pagination> pagination;
+
+  const ListOperationResponse(
+      {required this.operations, this.pagination = const SdkOmitted()});
+
+  ListOperationResponse Function(
+      {List<Operation> operations,
+      SdkOptional<Pagination> pagination}) get copyWith => _copyWith;
+
+  ListOperationResponse _copyWith(
+          {Object? operations = sdkOmittedValue,
+          Object? pagination = sdkOmittedValue}) =>
+      ListOperationResponse(
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+        pagination: identical(pagination, sdkOmittedValue)
+            ? this.pagination
+            : pagination as SdkOptional<Pagination>,
+      );
+
+  factory ListOperationResponse.fromJson(Map<String, dynamic> json) =>
+      ListOperationResponse(
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        pagination: json['pagination'] != null
+            ? SdkPresent((json['pagination'] != null
+                ? Pagination.fromJson(
+                    json['pagination'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+      );
+
+  Map<String, dynamic> toJson() => {
+        'operations': operations.map((item) => item.toJson()).toList(),
+        ...switch (pagination) {
+          SdkPresent<Pagination>(value: final value) => {
+              'pagination': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
+}
+
 /// Typed representation of the `OperationResponse` API schema.
 class OperationResponse {
   /// This model is constructed from named fields in one call.

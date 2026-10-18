@@ -3,6 +3,7 @@
 
 // consumption domain model library.
 import '../sdk_utils.dart';
+import 'shared_pagination.dart';
 
 part 'consumption_part1.dart';
 part 'consumption_part2.dart';

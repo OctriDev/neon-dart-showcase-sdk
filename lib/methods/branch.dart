@@ -10,20 +10,20 @@ import '../types.dart';
 /// Creates a branch in the specified project. No request body is required, but you can specify one to create a compute endpoint or select a non-default parent branch. By default, the branch is created from the project's default branch with no compute endpoint, and the branch name is auto-generated. To access the branch, add a `read_write` endpoint. Each branch supports one read-write endpoint and multiple read-only endpoints. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
 ///
 /// [projectId] The Neon project ID
-Future<BranchResponse> createBranch(ClientConfig config,
+Future<CreateBranchResponse> createBranch(ClientConfig config,
     {required String projectId,
     SdkOptional<BranchCreateRequest> body = const SdkOmitted(),
     RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
-  return (await sdkRequest<BranchResponse>('POST',
+  return (await sdkRequest<CreateBranchResponse>('POST',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches',
           config: config,
           body: SdkUtils.unwrapOptional(body),
           decoder: SdkResponseDecoder.json,
           operationId: 'createBranch',
           fromJsonRaw: (value) =>
-              BranchResponse.fromJson(value as Map<String, dynamic>),
+              CreateBranchResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
         'default': (value) =>
@@ -48,7 +48,7 @@ Future<BranchResponse> createBranch(ClientConfig config,
 ///   (soft-deleted within the recovery window). If false or not provided, return
 ///   only active (non-deleted) branches. This parameter is part of the Branch
 ///   Recovery feature, which is in preview and not available to all users.
-Future<BranchesResponse> listBranch(ClientConfig config,
+Future<ListBranchResponse> listBranch(ClientConfig config,
     {required String projectId,
     SdkOptional<String> search = const SdkOmitted(),
     SdkOptional<ListBranchSortBy> sortBy = const SdkOmitted(),
@@ -62,7 +62,7 @@ Future<BranchesResponse> listBranch(ClientConfig config,
     validateRange('limit', limit.value, min: 1, max: 10000);
   }
 
-  return (await sdkRequest<BranchesResponse>('GET',
+  return (await sdkRequest<ListBranchResponse>('GET',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches',
           config: config,
           query: {
@@ -84,7 +84,7 @@ Future<BranchesResponse> listBranch(ClientConfig config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listBranch',
           fromJsonRaw: (value) =>
-              BranchesResponse.fromJson(value as Map<String, dynamic>),
+              ListBranchResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
             'default': (value) =>
@@ -98,19 +98,19 @@ Future<BranchesResponse> listBranch(ClientConfig config,
 /// Creates a new branch with anonymized data using PostgreSQL Anonymizer for static masking. This allows developers to work with masked production data. Optionally, provide `masking_rules` to set initial masking rules for the branch and `start_anonymization` to automatically start anonymization after creation. This combines functionality of updating masking rules and starting anonymization into the branch creation request. **Note**: This endpoint is currently in Beta.
 ///
 /// [projectId] The Neon project ID
-Future<BranchResponse> createBranchAnonymized(ClientConfig config,
+Future<CreateBranchResponse> createBranchAnonymized(ClientConfig config,
     {required String projectId,
     required BranchAnonymizedCreateRequest body,
     RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
-  return (await sdkRequest<BranchResponse>('POST',
+  return (await sdkRequest<CreateBranchResponse>('POST',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branch_anonymized',
           config: config,
           body: body,
           decoder: SdkResponseDecoder.json,
           operationId: 'createBranchAnonymized',
-          fromJsonRaw: (value) => BranchResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => CreateBranchResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
         'default': (value) =>
@@ -138,7 +138,8 @@ Future<BranchesCountResponse> countBranch(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'countBranch',
-          fromJsonRaw: (value) => value as BranchesCountResponse,
+          fromJsonRaw: (value) =>
+              BranchesCountResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
             'default': (value) =>
@@ -151,19 +152,19 @@ Future<BranchesCountResponse> countBranch(ClientConfig config,
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The branch ID
-Future<BranchResponse> getBranch(ClientConfig config,
+Future<GetBranchResponse> getBranch(ClientConfig config,
     {required String projectId,
     required String branchId,
     RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
-  return (await sdkRequest<BranchResponse>('GET',
+  return (await sdkRequest<GetBranchResponse>('GET',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}',
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getBranch',
-          fromJsonRaw: (value) => BranchResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => GetBranchResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
         'default': (value) =>

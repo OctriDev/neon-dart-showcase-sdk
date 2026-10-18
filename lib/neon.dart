@@ -48,7 +48,7 @@ class ProjectNamespace {
   }
 
   /// Retrieves a list of projects for the specified organization. If using a personal API key, include the `org_id` parameter to specify which organization to work with. If using an org API key, `org_id` is automatically inferred from the key. For more information, see [Manage organizations using the Neon API](https://neon.com/docs/manage/orgs-api) and [Manage projects](https://neon.com/docs/manage/projects/).
-  Future<ProjectsResponse> list(
+  Future<ListProjectsResponse> list(
       {SdkOptional<String> cursor = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       SdkOptional<String> search = const SdkOmitted(),
@@ -67,7 +67,7 @@ class ProjectNamespace {
   }
 
   /// Creates a Neon project within an organization. If using a personal API key, include the `org_id` parameter to specify which organization to create the project in. If using an org API key, `org_id` is automatically inferred from the key. Plan limits define how many projects you can create. For more information, see [Manage projects](https://neon.com/docs/manage/projects/). You can specify a region and Postgres version in the request body. Neon supports Postgres 14 through 18, with 19 rolling out to enabled regions. For supported regions and `region_id` values, see [Regions](https://neon.com/docs/introduction/regions/).
-  Future<ProjectResponse> create(
+  Future<CreateProjectResponse> create(
       {required ProjectCreateRequestProject project,
       RequestOptions? requestOptions}) async {
     return project_methods.createProject(_config,
@@ -75,7 +75,7 @@ class ProjectNamespace {
   }
 
   /// Retrieves a list of projects shared with your Neon account. For more information, see [Manage projects](https://neon.com/docs/manage/projects/).
-  Future<ProjectsResponse> listShared(
+  Future<ListSharedProjectsResponse> listShared(
       {SdkOptional<String> cursor = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
       SdkOptional<String> search = const SdkOmitted(),
@@ -99,7 +99,7 @@ class ProjectNamespace {
   /// Updates configurable properties of a Neon project, including its name, project settings, default endpoint settings, and history retention period. Supply the required `project` object and include only the properties you want to change. The response includes the updated project and any operations associated with the update.
   ///
   /// Updates the specified project. Configurable properties include the project name, default compute settings, history retention period, and IP allowlist.
-  Future<ProjectResponse> update(
+  Future<UpdateProjectResponse> update(
       {required String projectId,
       required ProjectUpdateRequestProject project,
       RequestOptions? requestOptions}) async {
@@ -363,7 +363,7 @@ class OperationNamespace {
   }
 
   /// Retrieves a list of operations for the specified Neon project. The number of operations returned can be large. To paginate the response, issue an initial request with a `limit` value. Then, add the `cursor` value that was returned in the response to the next request. Operations older than 6 months may be deleted from our systems. If you need more history than that, you should store your own history.
-  Future<OperationsResponse> list(
+  Future<ListOperationResponse> list(
       {required String projectId,
       SdkOptional<String> cursor = const SdkOmitted(),
       SdkOptional<int> limit = const SdkOmitted(),
@@ -1244,7 +1244,7 @@ class BranchNamespace {
   BranchNamespace(ClientConfig config) : _config = config;
 
   /// Creates a branch in the specified project. No request body is required, but you can specify one to create a compute endpoint or select a non-default parent branch. By default, the branch is created from the project's default branch with no compute endpoint, and the branch name is auto-generated. To access the branch, add a `read_write` endpoint. Each branch supports one read-write endpoint and multiple read-only endpoints. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
-  Future<BranchResponse> create(
+  Future<CreateBranchResponse> create(
       {required String projectId,
       SdkOptional<BranchCreateRequest> body = const SdkOmitted(),
       RequestOptions? requestOptions}) async {
@@ -1253,7 +1253,7 @@ class BranchNamespace {
   }
 
   /// Retrieves a list of branches for the specified project. Each Neon project has a root branch named `main`. A `branch_id` value has a `br-` prefix. A project may contain child branches that were branched from `main` or from another branch. A parent branch is identified by the `parent_id` value, which is the `id` of the parent branch. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
-  Future<BranchesResponse> list(
+  Future<ListBranchResponse> list(
       {required String projectId,
       SdkOptional<String> search = const SdkOmitted(),
       SdkOptional<ListBranchSortBy> sortBy = const SdkOmitted(),
@@ -1276,7 +1276,7 @@ class BranchNamespace {
   /// Creates a branch with anonymized data using PostgreSQL Anonymizer for static masking. Supply `branch_create` to configure the branch and optionally provide `masking_rules` or set `start_anonymization` to true to apply masking rules and start anonymization during creation. This endpoint is in beta; the response includes the created branch, operations, and any endpoints specified in the request.
   ///
   /// Creates a new branch with anonymized data using PostgreSQL Anonymizer for static masking. This allows developers to work with masked production data. Optionally, provide `masking_rules` to set initial masking rules for the branch and `start_anonymization` to automatically start anonymization after creation. This combines functionality of updating masking rules and starting anonymization into the branch creation request. **Note**: This endpoint is currently in Beta.
-  Future<BranchResponse> createAnonymized(
+  Future<CreateBranchResponse> createAnonymized(
       {required String projectId,
       required BranchAnonymizedCreateRequest body,
       RequestOptions? requestOptions}) async {
@@ -1294,7 +1294,7 @@ class BranchNamespace {
   }
 
   /// Retrieves information about the specified branch. A `branch_id` value has a `br-` prefix. Each Neon project is initially created with a root and default branch named `main`. A project can contain one or more branches. A parent branch is identified by a `parent_id` value, which is the `id` of the parent branch. For related information, see [Manage branches](https://neon.com/docs/manage/branches/).
-  Future<BranchResponse> get_(
+  Future<GetBranchResponse> get_(
       {required String projectId,
       required String branchId,
       RequestOptions? requestOptions}) async {
@@ -1772,7 +1772,7 @@ class ConsumptionNamespace {
   ConsumptionNamespace(ClientConfig config) : _config = config;
 
   /// Retrieves consumption metrics for Scale, Business, and Enterprise plan projects. History begins at the time of upgrade. Results are ordered by time in ascending order (oldest to newest). Issuing a call to this API does not wake a project's compute endpoint.
-  Future<ConsumptionHistoryPerProjectResponse> getHistoryPerProject(
+  Future<GetConsumptionHistoryPerProjectResponse> getHistoryPerProject(
       {required String from,
       required String to,
       required ConsumptionHistoryGranularity granularity,
@@ -1797,7 +1797,7 @@ class ConsumptionNamespace {
   }
 
   /// Returns consumption metrics for up to `limit` projects per page. If `project_ids` is omitted, projects in the organization are included across pages (use `cursor`). If `project_ids` is provided, the response is limited to those projects (up to 100). Available for accounts on Launch, Scale, Agent, Business, and Enterprise plans. History starts when the account upgrades to an eligible plan. The `metrics` query parameter is required. Supported values: `compute_unit_seconds`, `root_branch_bytes_month`, `child_branch_bytes_month`, `instant_restore_bytes_month`, `public_network_transfer_bytes`, `private_network_transfer_bytes`, `extra_branches_month`, `snapshot_storage_bytes_month`. Consumption metrics within each project are returned in ascending time order (oldest first). This request does not wake project computes.
-  Future<ConsumptionHistoryPerProjectV2Response> getHistoryPerProjectV2(
+  Future<GetConsumptionHistoryPerProjectV2Response> getHistoryPerProjectV2(
       {required String from,
       required String to,
       required ConsumptionHistoryGranularity granularity,
@@ -1820,7 +1820,7 @@ class ConsumptionNamespace {
   }
 
   /// Returns consumption metrics for each branch across one or more projects listed in `project_ids` (1 to 100 projects). Available for accounts on paid usage-based Launch, Scale, Agent, and Enterprise plans. History starts when the account first ingests branch-level consumption data. The `metrics` query parameter is required. Only these six values are supported on this endpoint: `compute_unit_seconds`, `root_branch_bytes_month`, `child_branch_bytes_month`, `instant_restore_bytes_month`, `public_network_transfer_bytes`, `private_network_transfer_bytes`. This endpoint does not support `extra_branches_month` or `snapshot_storage_bytes_month`. Use `GET /consumption_history/v2/projects` for those. Consumption metrics within each branch are returned in ascending time order (oldest first). This request does not wake project computes.
-  Future<ConsumptionHistoryPerBranchV2Response> getHistoryPerBranchV2(
+  Future<GetConsumptionHistoryPerBranchV2Response> getHistoryPerBranchV2(
       {required List<String> projectIds,
       required String from,
       required String to,
@@ -1907,7 +1907,7 @@ class OrganizationsNamespace {
   }
 
   /// Retrieves a paginated list of members for the specified organization.
-  Future<OrganizationMembersResponse> listMembers(
+  Future<ListOrganizationsMembersResponse> listMembers(
       {required String orgId,
       SdkOptional<ListOrganizationsMembersSortBy> sortBy = const SdkOmitted(),
       SdkOptional<String> cursor = const SdkOmitted(),
@@ -2152,7 +2152,7 @@ class SnapshotNamespace {
   }
 
   /// Restores the specified snapshot to a new branch, and optionally finalizes the restore operation to replace the original branch.
-  Future<BranchResponse> restore(
+  Future<RestoreSnapshotResponse> restore(
       {required String projectId,
       required String snapshotId,
       SdkOptional<String> name = const SdkOmitted(),
@@ -2539,7 +2539,7 @@ class FunctionsNamespace {
   FunctionsNamespace(ClientConfig config) : _config = config;
 
   /// Lists functions on the specified branch. **Note**: This endpoint is currently in Beta.
-  Future<NeonFunctionsListResponse> list(
+  Future<ListFunctionsResponse> list(
       {required String projectId,
       required String branchId,
       SdkOptional<String> cursor = const SdkOmitted(),
@@ -2702,7 +2702,7 @@ class FunctionsNamespace {
   }
 
   /// Lists all custom domains registered on the branch, across every target entity. **Note**: This endpoint is currently in Beta.
-  Future<CustomDomainsListResponse> listCustomDomains(
+  Future<ListFunctionsCustomDomainsResponse> listCustomDomains(
       {required String projectId,
       required String branchId,
       SdkOptional<String> cursor = const SdkOmitted(),

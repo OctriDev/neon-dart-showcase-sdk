@@ -3,6 +3,7 @@
 
 // shared domain model library.
 import '../sdk_utils.dart';
+import 'inline.dart';
 import 'shared_branch.dart';
 import 'shared_endpoint.dart';
 import 'shared_neon.dart';

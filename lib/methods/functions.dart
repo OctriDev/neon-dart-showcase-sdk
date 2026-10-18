@@ -16,7 +16,7 @@ import '../types.dart';
 ///   fetch next page of the list.
 /// [limit] Specify a value from 1 to 1000 to limit number of functions in the
 ///   response
-Future<NeonFunctionsListResponse> listFunctions(ClientConfig config,
+Future<ListFunctionsResponse> listFunctions(ClientConfig config,
     {required String projectId,
     required String branchId,
     SdkOptional<String> cursor = const SdkOmitted(),
@@ -28,7 +28,7 @@ Future<NeonFunctionsListResponse> listFunctions(ClientConfig config,
     validateRange('limit', limit.value, min: 1, max: 1000);
   }
 
-  return (await sdkRequest<NeonFunctionsListResponse>('GET',
+  return (await sdkRequest<ListFunctionsResponse>('GET',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/functions',
           config: config,
           query: {
@@ -40,7 +40,7 @@ Future<NeonFunctionsListResponse> listFunctions(ClientConfig config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listFunctions',
           fromJsonRaw: (value) =>
-              NeonFunctionsListResponse.fromJson(value as Map<String, dynamic>),
+              ListFunctionsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
             'default': (value) =>
@@ -411,7 +411,7 @@ Future<CustomDomain> registerFunctionsCustomDomain(ClientConfig config,
 ///   fetch next page of the list.
 /// [limit] Specify a value from 1 to 1000 to limit number of domains in the
 ///   response
-Future<CustomDomainsListResponse> listFunctionsCustomDomains(
+Future<ListFunctionsCustomDomainsResponse> listFunctionsCustomDomains(
     ClientConfig config,
     {required String projectId,
     required String branchId,
@@ -424,7 +424,7 @@ Future<CustomDomainsListResponse> listFunctionsCustomDomains(
     validateRange('limit', limit.value, min: 1, max: 1000);
   }
 
-  return (await sdkRequest<CustomDomainsListResponse>('GET',
+  return (await sdkRequest<ListFunctionsCustomDomainsResponse>('GET',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/custom-domains',
           config: config,
           query: {
@@ -435,8 +435,8 @@ Future<CustomDomainsListResponse> listFunctionsCustomDomains(
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listFunctionsCustomDomains',
-          fromJsonRaw: (value) =>
-              CustomDomainsListResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListFunctionsCustomDomainsResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
           errors: {
             'default': (value) =>
