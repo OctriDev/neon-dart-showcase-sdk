@@ -8,71 +8,113 @@ part of 'storage.dart';
 class BranchStorage {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Always `true` in 200 responses. Present for forward compatibility: a future version may add intermediate states; callers should treat `true` as "object storage is usable for this branch right now."
   final bool enabled;
+
   /// The S3-compatible endpoint URL for this branch.
   final String s3Endpoint;
+
   /// The AWS region for this branch's object storage. The platform normalizes the us-east-1 convention server-side: a non-empty region string is always returned in 200 responses (e.g. `"us-east-1"` for the S3 default region).
   final String region;
+
   /// Whether the S3 client must use path-style addressing (bucket-in-path rather than virtual-hosted subdomain). Always true: the wildcard TLS cert covers one level of subdomain (*.storage.&lt;suffix&gt;), so the branch ID occupies that label and the bucket name must travel in the request path, not as a further subdomain. Callers must set the S3 SDK's ForcePathStyle (or equivalent) to true.
   final bool forcePathStyle;
 
-  const BranchStorage({required this.enabled, required this.s3Endpoint, required this.region, required this.forcePathStyle});
+  const BranchStorage(
+      {required this.enabled,
+      required this.s3Endpoint,
+      required this.region,
+      required this.forcePathStyle});
 
-  BranchStorage Function({bool enabled, String s3Endpoint, String region, bool forcePathStyle}) get copyWith => _copyWith;
+  BranchStorage Function(
+      {bool enabled,
+      String s3Endpoint,
+      String region,
+      bool forcePathStyle}) get copyWith => _copyWith;
 
-  BranchStorage _copyWith({Object? enabled = sdkOmittedValue, Object? s3Endpoint = sdkOmittedValue, Object? region = sdkOmittedValue, Object? forcePathStyle = sdkOmittedValue}) => BranchStorage(
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as bool,
-    s3Endpoint: identical(s3Endpoint, sdkOmittedValue) ? this.s3Endpoint : s3Endpoint as String,
-    region: identical(region, sdkOmittedValue) ? this.region : region as String,
-    forcePathStyle: identical(forcePathStyle, sdkOmittedValue) ? this.forcePathStyle : forcePathStyle as bool,
-  );
+  BranchStorage _copyWith(
+          {Object? enabled = sdkOmittedValue,
+          Object? s3Endpoint = sdkOmittedValue,
+          Object? region = sdkOmittedValue,
+          Object? forcePathStyle = sdkOmittedValue}) =>
+      BranchStorage(
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as bool,
+        s3Endpoint: identical(s3Endpoint, sdkOmittedValue)
+            ? this.s3Endpoint
+            : s3Endpoint as String,
+        region:
+            identical(region, sdkOmittedValue) ? this.region : region as String,
+        forcePathStyle: identical(forcePathStyle, sdkOmittedValue)
+            ? this.forcePathStyle
+            : forcePathStyle as bool,
+      );
 
   factory BranchStorage.fromJson(Map<String, dynamic> json) => BranchStorage(
-    enabled: (json['enabled'] as bool?)!,
-    s3Endpoint: (json['s3_endpoint'] as String?)!,
-    region: (json['region'] as String?)!,
-    forcePathStyle: (json['force_path_style'] as bool?)!,
-  );
+        enabled: (json['enabled'] as bool?)!,
+        s3Endpoint: (json['s3_endpoint'] as String?)!,
+        region: (json['region'] as String?)!,
+        forcePathStyle: (json['force_path_style'] as bool?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'enabled': enabled,
-    's3_endpoint': s3Endpoint,
-    'region': region,
-    'force_path_style': forcePathStyle,
-  };
+        'enabled': enabled,
+        's3_endpoint': s3Endpoint,
+        'region': region,
+        'force_path_style': forcePathStyle,
+      };
 }
 
 /// Typed representation of the `BranchStorageNotEnabled` API schema.
 class BranchStorageNotEnabled {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required `string` value serialized in the `code` wire field.
   final String code;
+
   /// Required `string` value serialized in the `message` wire field.
   final String message;
+
   /// Machine-readable reason why object storage is unavailable: - `org_not_entitled`: the org's `PlatformBranchableStorage` feature flag is off. - `region_unavailable`: the project's region has no object storage admin service wired. - `branch_directory_missing`: the branch is not registered in the object storage service. - `branch_not_found`: the project or branch does not exist, or the caller does not have access to it.
   final BranchStorageNotEnabledReason reason;
 
-  const BranchStorageNotEnabled({required this.code, required this.message, required this.reason});
+  const BranchStorageNotEnabled(
+      {required this.code, required this.message, required this.reason});
 
-  BranchStorageNotEnabled Function({String code, String message, BranchStorageNotEnabledReason reason}) get copyWith => _copyWith;
+  BranchStorageNotEnabled Function(
+      {String code,
+      String message,
+      BranchStorageNotEnabledReason reason}) get copyWith => _copyWith;
 
-  BranchStorageNotEnabled _copyWith({Object? code = sdkOmittedValue, Object? message = sdkOmittedValue, Object? reason = sdkOmittedValue}) => BranchStorageNotEnabled(
-    code: identical(code, sdkOmittedValue) ? this.code : code as String,
-    message: identical(message, sdkOmittedValue) ? this.message : message as String,
-    reason: identical(reason, sdkOmittedValue) ? this.reason : reason as BranchStorageNotEnabledReason,
-  );
+  BranchStorageNotEnabled _copyWith(
+          {Object? code = sdkOmittedValue,
+          Object? message = sdkOmittedValue,
+          Object? reason = sdkOmittedValue}) =>
+      BranchStorageNotEnabled(
+        code: identical(code, sdkOmittedValue) ? this.code : code as String,
+        message: identical(message, sdkOmittedValue)
+            ? this.message
+            : message as String,
+        reason: identical(reason, sdkOmittedValue)
+            ? this.reason
+            : reason as BranchStorageNotEnabledReason,
+      );
 
-  factory BranchStorageNotEnabled.fromJson(Map<String, dynamic> json) => BranchStorageNotEnabled(
-    code: (json['code'] as String?)!,
-    message: (json['message'] as String?)!,
-    reason: (json['reason'] != null ? BranchStorageNotEnabledReason.fromJson(json['reason'] as String) : null)!,
-  );
+  factory BranchStorageNotEnabled.fromJson(Map<String, dynamic> json) =>
+      BranchStorageNotEnabled(
+        code: (json['code'] as String?)!,
+        message: (json['message'] as String?)!,
+        reason: (json['reason'] != null
+            ? BranchStorageNotEnabledReason.fromJson(json['reason'] as String)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'code': code,
-    'message': message,
-    'reason': reason.toJson(),
-  };
+        'code': code,
+        'message': message,
+        'reason': reason.toJson(),
+      };
 }

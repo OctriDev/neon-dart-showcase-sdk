@@ -8,6 +8,7 @@ part of 'project.dart';
 class JWKSResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// JWKS configuration associated with the project.
   final JWKS jwks;
 
@@ -16,50 +17,72 @@ class JWKSResponse {
   JWKSResponse Function({JWKS jwks}) get copyWith => _copyWith;
 
   JWKSResponse _copyWith({Object? jwks = sdkOmittedValue}) => JWKSResponse(
-    jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as JWKS,
-  );
+        jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as JWKS,
+      );
 
   factory JWKSResponse.fromJson(Map<String, dynamic> json) => JWKSResponse(
-    jwks: (json['jwks'] != null ? JWKS.fromJson(json['jwks'] as Map<String, dynamic>) : null)!,
-  );
+        jwks: (json['jwks'] != null
+            ? JWKS.fromJson(json['jwks'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'jwks': jwks.toJson(),
-  };
+        'jwks': jwks.toJson(),
+      };
 }
 
 /// A maintenance window is a time period during which Neon may perform maintenance on the project's infrastructure. During this time, the project's compute endpoints may be unavailable and existing connections can be interrupted.
 class MaintenanceWindow {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// A list of weekdays when the maintenance window is active. Encoded as ints, where 1 - Monday, and 7 - Sunday.
   final List<int> weekdays;
+
   /// Start time of the maintenance window, in the format of "HH:MM". Uses UTC.
   final String startTime;
+
   /// End time of the maintenance window, in the format of "HH:MM". Uses UTC.
   final String endTime;
 
-  const MaintenanceWindow({required this.weekdays, required this.startTime, required this.endTime});
+  const MaintenanceWindow(
+      {required this.weekdays, required this.startTime, required this.endTime});
 
-  MaintenanceWindow Function({List<int> weekdays, String startTime, String endTime}) get copyWith => _copyWith;
+  MaintenanceWindow Function(
+      {List<int> weekdays,
+      String startTime,
+      String endTime}) get copyWith => _copyWith;
 
-  MaintenanceWindow _copyWith({Object? weekdays = sdkOmittedValue, Object? startTime = sdkOmittedValue, Object? endTime = sdkOmittedValue}) => MaintenanceWindow(
-    weekdays: identical(weekdays, sdkOmittedValue) ? this.weekdays : weekdays as List<int>,
-    startTime: identical(startTime, sdkOmittedValue) ? this.startTime : startTime as String,
-    endTime: identical(endTime, sdkOmittedValue) ? this.endTime : endTime as String,
-  );
+  MaintenanceWindow _copyWith(
+          {Object? weekdays = sdkOmittedValue,
+          Object? startTime = sdkOmittedValue,
+          Object? endTime = sdkOmittedValue}) =>
+      MaintenanceWindow(
+        weekdays: identical(weekdays, sdkOmittedValue)
+            ? this.weekdays
+            : weekdays as List<int>,
+        startTime: identical(startTime, sdkOmittedValue)
+            ? this.startTime
+            : startTime as String,
+        endTime: identical(endTime, sdkOmittedValue)
+            ? this.endTime
+            : endTime as String,
+      );
 
-  factory MaintenanceWindow.fromJson(Map<String, dynamic> json) => MaintenanceWindow(
-    weekdays: ((json['weekdays'] as List?)?.map((e) => (e as num).toInt()).toList())!,
-    startTime: (json['start_time'] as String?)!,
-    endTime: (json['end_time'] as String?)!,
-  );
+  factory MaintenanceWindow.fromJson(Map<String, dynamic> json) =>
+      MaintenanceWindow(
+        weekdays: ((json['weekdays'] as List?)
+            ?.map((e) => (e as num).toInt())
+            .toList())!,
+        startTime: (json['start_time'] as String?)!,
+        endTime: (json['end_time'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'weekdays': weekdays,
-    'start_time': startTime,
-    'end_time': endTime,
-  };
+        'weekdays': weekdays,
+        'start_time': startTime,
+        'end_time': endTime,
+      };
 }
 
 // PgVersion = int

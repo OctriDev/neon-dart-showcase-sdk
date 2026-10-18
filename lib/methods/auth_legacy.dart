@@ -23,14 +23,14 @@ import '../types.dart';
 ///   field; it is ignored.
 ///
 /// **Deprecated:** this operation is deprecated and may be removed in a future release.
-Future<NeonAuthCreateIntegrationResponse>
-    createAuthLegacyIntegration(ClientConfig config,
-        {required NeonAuthSupportedAuthProvider authProvider,
-        required String projectId,
-        required String branchId,
-        SdkOptional<String> databaseName = const SdkOmitted(),
-        SdkOptional<String> roleName = const SdkOmitted(),
-        RequestOptions? requestOptions}) async {
+Future<NeonAuthCreateIntegrationResponse> createAuthLegacyIntegration(
+    ClientConfig config,
+    {required NeonAuthSupportedAuthProvider authProvider,
+    required String projectId,
+    required String branchId,
+    SdkOptional<String> databaseName = const SdkOmitted(),
+    SdkOptional<String> roleName = const SdkOmitted(),
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -46,20 +46,24 @@ Future<NeonAuthCreateIntegrationResponse>
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'createAuthLegacyIntegration',
-          fromJsonRaw: (value) => NeonAuthCreateIntegrationResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthCreateIntegrationResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/domains` instead. Removal scheduled for March 1, 2026.
 ///
 /// [projectId] The Neon project ID
 ///
 /// **Deprecated:** this operation is deprecated and may be removed in a future release.
-Future<NeonAuthRedirectURIWhitelistResponse> listAuthLegacyRedirectUriWhitelistDomains(ClientConfig config,
-    {required String projectId, RequestOptions? requestOptions}) async {
+Future<NeonAuthRedirectURIWhitelistResponse>
+    listAuthLegacyRedirectUriWhitelistDomains(ClientConfig config,
+        {required String projectId, RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<NeonAuthRedirectURIWhitelistResponse>('GET',
@@ -67,12 +71,15 @@ Future<NeonAuthRedirectURIWhitelistResponse> listAuthLegacyRedirectUriWhitelistD
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listAuthLegacyRedirectUriWhitelistDomains',
-          fromJsonRaw: (value) => NeonAuthRedirectURIWhitelistResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthRedirectURIWhitelistResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/domains` instead. Removal scheduled for March 1, 2026.
 ///
@@ -99,10 +106,12 @@ Future<void> addAuthLegacyDomainToRedirectUriWhitelist(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'addAuthLegacyDomainToRedirectUriWhitelist',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/domains` instead. Removal scheduled for March 1, 2026.
 ///
@@ -129,10 +138,12 @@ Future<void> deleteAuthLegacyDomainFromRedirectUriWhitelist(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteAuthLegacyDomainFromRedirectUriWhitelist',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Generates SDK or API Keys for the auth provider. These might be called different things depending on the auth provider you're using, but are generally used for setting up the frontend and backend SDKs.
 ///
@@ -141,11 +152,11 @@ Future<void> deleteAuthLegacyDomainFromRedirectUriWhitelist(ClientConfig config,
 ///   configuration. `better_auth` integrates with Better Auth (the current,
 ///   recommended provider). `stack` integrates with Stack Auth (deprecated).
 ///   `mock` is a simulated provider for local development and testing only.
-Future<NeonAuthCreateIntegrationResponse>
-    createAuthLegacyProviderSdkKeys(ClientConfig config,
-        {required String projectId,
-        required NeonAuthSupportedAuthProvider authProvider,
-        RequestOptions? requestOptions}) async {
+Future<NeonAuthCreateIntegrationResponse> createAuthLegacyProviderSdkKeys(
+    ClientConfig config,
+    {required String projectId,
+    required NeonAuthSupportedAuthProvider authProvider,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<NeonAuthCreateIntegrationResponse>(
@@ -154,12 +165,15 @@ Future<NeonAuthCreateIntegrationResponse>
           body: {'project_id': projectId, 'auth_provider': authProvider},
           decoder: SdkResponseDecoder.json,
           operationId: 'createAuthLegacyProviderSdkKeys',
-          fromJsonRaw: (value) => NeonAuthCreateIntegrationResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthCreateIntegrationResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/users` instead. Removal scheduled for March 1, 2026. The user will be created in your neon_auth.users_sync table and automatically propagated to your auth project, whether Neon-managed or provider-owned.
 ///
@@ -197,12 +211,15 @@ Future<NeonAuthCreateNewUserResponse> createAuthLegacyUser(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'createAuthLegacyUser',
-          fromJsonRaw: (value) => NeonAuthCreateNewUserResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthCreateNewUserResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/users/{auth_user_id}` instead. Removal scheduled for March 1, 2026.
 ///
@@ -222,10 +239,12 @@ Future<void> deleteAuthLegacyUser(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteAuthLegacyUser',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Transfers ownership of your Neon-managed auth project to your own auth provider account.
 ///
@@ -234,11 +253,11 @@ Future<void> deleteAuthLegacyUser(ClientConfig config,
 ///   configuration. `better_auth` integrates with Better Auth (the current,
 ///   recommended provider). `stack` integrates with Stack Auth (deprecated).
 ///   `mock` is a simulated provider for local development and testing only.
-Future<NeonAuthTransferAuthProviderProjectResponse>
-    transferAuthLegacyProvider(ClientConfig config,
-        {required String projectId,
-        required NeonAuthSupportedAuthProvider authProvider,
-        RequestOptions? requestOptions}) async {
+Future<NeonAuthTransferAuthProviderProjectResponse> transferAuthLegacyProvider(
+    ClientConfig config,
+    {required String projectId,
+    required NeonAuthSupportedAuthProvider authProvider,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<NeonAuthTransferAuthProviderProjectResponse>(
@@ -247,20 +266,26 @@ Future<NeonAuthTransferAuthProviderProjectResponse>
           body: {'project_id': projectId, 'auth_provider': authProvider},
           decoder: SdkResponseDecoder.json,
           operationId: 'transferAuthLegacyProvider',
-          fromJsonRaw: (value) => NeonAuthTransferAuthProviderProjectResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              NeonAuthTransferAuthProviderProjectResponse.fromJson(
+                  value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth` instead. Removal scheduled for March 1, 2026.
 ///
 /// [projectId] The Neon project ID
 ///
 /// **Deprecated:** this operation is deprecated and may be removed in a future release.
-Future<ListNeonAuthIntegrationsResponse> listAuthLegacyIntegrations(ClientConfig config,
-    {required String projectId, RequestOptions? requestOptions}) async {
+Future<ListNeonAuthIntegrationsResponse> listAuthLegacyIntegrations(
+    ClientConfig config,
+    {required String projectId,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<ListNeonAuthIntegrationsResponse>('GET',
@@ -270,18 +295,22 @@ Future<ListNeonAuthIntegrationsResponse> listAuthLegacyIntegrations(ClientConfig
           operationId: 'listAuthLegacyIntegrations',
           fromJsonRaw: (value) => ListNeonAuthIntegrationsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers` instead. Removal scheduled for March 1, 2026.
 ///
 /// [projectId] The Neon project ID
 ///
 /// **Deprecated:** this operation is deprecated and may be removed in a future release.
-Future<ListNeonAuthOauthProvidersResponse> listAuthLegacyOauthProviders(ClientConfig config,
-    {required String projectId, RequestOptions? requestOptions}) async {
+Future<ListNeonAuthOauthProvidersResponse> listAuthLegacyOauthProviders(
+    ClientConfig config,
+    {required String projectId,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<ListNeonAuthOauthProvidersResponse>('GET',
@@ -291,10 +320,12 @@ Future<ListNeonAuthOauthProvidersResponse> listAuthLegacyOauthProviders(ClientCo
           operationId: 'listAuthLegacyOauthProviders',
           fromJsonRaw: (value) => ListNeonAuthOauthProvidersResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers` instead. Removal scheduled for March 1, 2026.
 ///
@@ -329,12 +360,15 @@ Future<NeonAuthOauthProvider> addAuthLegacyOauthProvider(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'addAuthLegacyOauthProvider',
-          fromJsonRaw: (value) => NeonAuthOauthProvider.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              NeonAuthOauthProvider.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers/{oauth_provider_id}` instead. Removal scheduled for March 1, 2026.
 ///
@@ -368,12 +402,15 @@ Future<NeonAuthOauthProvider> updateAuthLegacyOauthProvider(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthLegacyOauthProvider',
-          fromJsonRaw: (value) => NeonAuthOauthProvider.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              NeonAuthOauthProvider.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/oauth_providers/{oauth_provider_id}` instead. Removal scheduled for March 1, 2026.
 ///
@@ -393,18 +430,22 @@ Future<void> deleteAuthLegacyOauthProvider(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteAuthLegacyOauthProvider',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/email_provider` instead. Removal scheduled for March 1, 2026.
 ///
 /// [projectId] The Neon project ID
 ///
 /// **Deprecated:** this operation is deprecated and may be removed in a future release.
-Future<NeonAuthEmailServerConfigResponse> getAuthLegacyEmailServer(ClientConfig config,
-    {required String projectId, RequestOptions? requestOptions}) async {
+Future<NeonAuthEmailServerConfigResponse> getAuthLegacyEmailServer(
+    ClientConfig config,
+    {required String projectId,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<NeonAuthEmailServerConfigResponse>('GET',
@@ -414,10 +455,12 @@ Future<NeonAuthEmailServerConfigResponse> getAuthLegacyEmailServer(ClientConfig 
           operationId: 'getAuthLegacyEmailServer',
           fromJsonRaw: (value) => NeonAuthEmailServerConfigResponse.fromJson(value),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates the email server configuration for a Neon project. This operation is closing down and will be removed on March 1, 2026. Use `PATCH /projects/{project_id}/branches/{branch_id}/auth/email_provider` instead.
 ///
@@ -426,11 +469,11 @@ Future<NeonAuthEmailServerConfigResponse> getAuthLegacyEmailServer(ClientConfig 
 /// [projectId] The Neon project ID
 ///
 /// **Deprecated:** this operation is deprecated and may be removed in a future release.
-Future<NeonAuthEmailServerConfigResponse>
-    updateAuthLegacyEmailServer(ClientConfig config,
-        {required String projectId,
-        required NeonAuthEmailServerConfig body,
-        RequestOptions? requestOptions}) async {
+Future<NeonAuthEmailServerConfigResponse> updateAuthLegacyEmailServer(
+    ClientConfig config,
+    {required String projectId,
+    required NeonAuthEmailServerConfig body,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<NeonAuthEmailServerConfigResponse>('PATCH',
@@ -441,10 +484,12 @@ Future<NeonAuthEmailServerConfigResponse>
           operationId: 'updateAuthLegacyEmailServer',
           fromJsonRaw: (value) => NeonAuthEmailServerConfigResponse.fromJson(value),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth` instead. Removal scheduled for March 1, 2026.
 ///
@@ -467,6 +512,9 @@ Future<void> deleteAuthLegacyIntegration(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteAuthLegacyIntegration',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }

@@ -8,96 +8,186 @@ part of 'shared_operation.dart';
 class Operation {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The operation ID
   final String id;
+
   /// The ID of the project this operation ran on.
   final String projectId;
+
   /// The ID of the branch this operation ran on.
   final SdkOptional<String> branchId;
+
   /// The ID of the compute endpoint this operation ran on.
   final SdkOptional<String> endpointId;
+
   /// The action performed by the operation
   final OperationAction action;
+
   /// Current lifecycle state of the operation. On `failed`, see `failures_count` and `retry_at` for retry detail.
   final OperationStatus status;
+
   /// Human-readable message describing why the operation failed.
   final SdkOptional<String> error;
+
   /// The number of times the operation failed
   final int failuresCount;
+
   /// A timestamp indicating when the operation was last retried
   final SdkOptional<String> retryAt;
+
   /// A timestamp indicating when the operation was created
   final String createdAt;
+
   /// A timestamp indicating when the operation status was last updated
   final String updatedAt;
+
   /// The total duration of the operation in milliseconds
   final int totalDurationMs;
 
-  const Operation({required this.id, required this.projectId, this.branchId = const SdkOmitted(), this.endpointId = const SdkOmitted(), required this.action, required this.status, this.error = const SdkOmitted(), required this.failuresCount, this.retryAt = const SdkOmitted(), required this.createdAt, required this.updatedAt, required this.totalDurationMs});
+  const Operation(
+      {required this.id,
+      required this.projectId,
+      this.branchId = const SdkOmitted(),
+      this.endpointId = const SdkOmitted(),
+      required this.action,
+      required this.status,
+      this.error = const SdkOmitted(),
+      required this.failuresCount,
+      this.retryAt = const SdkOmitted(),
+      required this.createdAt,
+      required this.updatedAt,
+      required this.totalDurationMs});
 
-  Operation Function({String id, String projectId, SdkOptional<String> branchId, SdkOptional<String> endpointId, OperationAction action, OperationStatus status, SdkOptional<String> error, int failuresCount, SdkOptional<String> retryAt, String createdAt, String updatedAt, int totalDurationMs}) get copyWith => _copyWith;
+  Operation Function(
+      {String id,
+      String projectId,
+      SdkOptional<String> branchId,
+      SdkOptional<String> endpointId,
+      OperationAction action,
+      OperationStatus status,
+      SdkOptional<String> error,
+      int failuresCount,
+      SdkOptional<String> retryAt,
+      String createdAt,
+      String updatedAt,
+      int totalDurationMs}) get copyWith => _copyWith;
 
-  Operation _copyWith({Object? id = sdkOmittedValue, Object? projectId = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? endpointId = sdkOmittedValue, Object? action = sdkOmittedValue, Object? status = sdkOmittedValue, Object? error = sdkOmittedValue, Object? failuresCount = sdkOmittedValue, Object? retryAt = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? updatedAt = sdkOmittedValue, Object? totalDurationMs = sdkOmittedValue}) => Operation(
-    id: identical(id, sdkOmittedValue) ? this.id : id as String,
-    projectId: identical(projectId, sdkOmittedValue) ? this.projectId : projectId as String,
-    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as SdkOptional<String>,
-    endpointId: identical(endpointId, sdkOmittedValue) ? this.endpointId : endpointId as SdkOptional<String>,
-    action: identical(action, sdkOmittedValue) ? this.action : action as OperationAction,
-    status: identical(status, sdkOmittedValue) ? this.status : status as OperationStatus,
-    error: identical(error, sdkOmittedValue) ? this.error : error as SdkOptional<String>,
-    failuresCount: identical(failuresCount, sdkOmittedValue) ? this.failuresCount : failuresCount as int,
-    retryAt: identical(retryAt, sdkOmittedValue) ? this.retryAt : retryAt as SdkOptional<String>,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
-    updatedAt: identical(updatedAt, sdkOmittedValue) ? this.updatedAt : updatedAt as String,
-    totalDurationMs: identical(totalDurationMs, sdkOmittedValue) ? this.totalDurationMs : totalDurationMs as int,
-  );
+  Operation _copyWith(
+          {Object? id = sdkOmittedValue,
+          Object? projectId = sdkOmittedValue,
+          Object? branchId = sdkOmittedValue,
+          Object? endpointId = sdkOmittedValue,
+          Object? action = sdkOmittedValue,
+          Object? status = sdkOmittedValue,
+          Object? error = sdkOmittedValue,
+          Object? failuresCount = sdkOmittedValue,
+          Object? retryAt = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue,
+          Object? updatedAt = sdkOmittedValue,
+          Object? totalDurationMs = sdkOmittedValue}) =>
+      Operation(
+        id: identical(id, sdkOmittedValue) ? this.id : id as String,
+        projectId: identical(projectId, sdkOmittedValue)
+            ? this.projectId
+            : projectId as String,
+        branchId: identical(branchId, sdkOmittedValue)
+            ? this.branchId
+            : branchId as SdkOptional<String>,
+        endpointId: identical(endpointId, sdkOmittedValue)
+            ? this.endpointId
+            : endpointId as SdkOptional<String>,
+        action: identical(action, sdkOmittedValue)
+            ? this.action
+            : action as OperationAction,
+        status: identical(status, sdkOmittedValue)
+            ? this.status
+            : status as OperationStatus,
+        error: identical(error, sdkOmittedValue)
+            ? this.error
+            : error as SdkOptional<String>,
+        failuresCount: identical(failuresCount, sdkOmittedValue)
+            ? this.failuresCount
+            : failuresCount as int,
+        retryAt: identical(retryAt, sdkOmittedValue)
+            ? this.retryAt
+            : retryAt as SdkOptional<String>,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as String,
+        updatedAt: identical(updatedAt, sdkOmittedValue)
+            ? this.updatedAt
+            : updatedAt as String,
+        totalDurationMs: identical(totalDurationMs, sdkOmittedValue)
+            ? this.totalDurationMs
+            : totalDurationMs as int,
+      );
 
   factory Operation.fromJson(Map<String, dynamic> json) => Operation(
-    id: (json['id'] as String?)!,
-    projectId: (json['project_id'] as String?)!,
-    branchId: json['branch_id'] != null ? SdkPresent((json['branch_id'] as String?)!) : const SdkOmitted(),
-    endpointId: json['endpoint_id'] != null ? SdkPresent((json['endpoint_id'] as String?)!) : const SdkOmitted(),
-    action: (json['action'] != null ? OperationAction.fromJson(json['action'] as String) : null)!,
-    status: (json['status'] != null ? OperationStatus.fromJson(json['status'] as String) : null)!,
-    error: json['error'] != null ? SdkPresent((json['error'] as String?)!) : const SdkOmitted(),
-    failuresCount: ((json['failures_count'] as num?)?.toInt())!,
-    retryAt: json['retry_at'] != null ? SdkPresent((json['retry_at'] as String?)!) : const SdkOmitted(),
-    createdAt: (json['created_at'] as String?)!,
-    updatedAt: (json['updated_at'] as String?)!,
-    totalDurationMs: ((json['total_duration_ms'] as num?)?.toInt())!,
-  );
+        id: (json['id'] as String?)!,
+        projectId: (json['project_id'] as String?)!,
+        branchId: json['branch_id'] != null
+            ? SdkPresent((json['branch_id'] as String?)!)
+            : const SdkOmitted(),
+        endpointId: json['endpoint_id'] != null
+            ? SdkPresent((json['endpoint_id'] as String?)!)
+            : const SdkOmitted(),
+        action: (json['action'] != null
+            ? OperationAction.fromJson(json['action'] as String)
+            : null)!,
+        status: (json['status'] != null
+            ? OperationStatus.fromJson(json['status'] as String)
+            : null)!,
+        error: json['error'] != null
+            ? SdkPresent((json['error'] as String?)!)
+            : const SdkOmitted(),
+        failuresCount: ((json['failures_count'] as num?)?.toInt())!,
+        retryAt: json['retry_at'] != null
+            ? SdkPresent((json['retry_at'] as String?)!)
+            : const SdkOmitted(),
+        createdAt: (json['created_at'] as String?)!,
+        updatedAt: (json['updated_at'] as String?)!,
+        totalDurationMs: ((json['total_duration_ms'] as num?)?.toInt())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'project_id': projectId,
-    ...switch (branchId) {
-      SdkPresent<String>(value: final value) => {'branch_id': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (endpointId) {
-      SdkPresent<String>(value: final value) => {'endpoint_id': value,},
-      _ => const <String, dynamic>{},
-    },
-    'action': action.toJson(),
-    'status': status.toJson(),
-    ...switch (error) {
-      SdkPresent<String>(value: final value) => {'error': value,},
-      _ => const <String, dynamic>{},
-    },
-    'failures_count': failuresCount,
-    ...switch (retryAt) {
-      SdkPresent<String>(value: final value) => {'retry_at': value,},
-      _ => const <String, dynamic>{},
-    },
-    'created_at': createdAt,
-    'updated_at': updatedAt,
-    'total_duration_ms': totalDurationMs,
-  };
+        'id': id,
+        'project_id': projectId,
+        ...switch (branchId) {
+          SdkPresent<String>(value: final value) => {
+              'branch_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (endpointId) {
+          SdkPresent<String>(value: final value) => {
+              'endpoint_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'action': action.toJson(),
+        'status': status.toJson(),
+        ...switch (error) {
+          SdkPresent<String>(value: final value) => {
+              'error': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'failures_count': failuresCount,
+        ...switch (retryAt) {
+          SdkPresent<String>(value: final value) => {
+              'retry_at': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+        'total_duration_ms': totalDurationMs,
+      };
 }
 
 /// The action performed by the operation
 final class OperationAction {
-
   final String value;
 
   const OperationAction._(this.value);
@@ -116,44 +206,55 @@ final class OperationAction {
   static const tenantIgnore = OperationAction._('tenant_ignore');
   static const tenantAttach = OperationAction._('tenant_attach');
   static const tenantDetach = OperationAction._('tenant_detach');
-  static const tenantDetachSafekeepers = OperationAction._('tenant_detach_safekeepers');
-  static const tenantAttachSafekeepers = OperationAction._('tenant_attach_safekeepers');
+  static const tenantDetachSafekeepers =
+      OperationAction._('tenant_detach_safekeepers');
+  static const tenantAttachSafekeepers =
+      OperationAction._('tenant_attach_safekeepers');
   static const tenantReattach = OperationAction._('tenant_reattach');
   static const replaceSafekeeper = OperationAction._('replace_safekeeper');
   static const disableMaintenance = OperationAction._('disable_maintenance');
   static const applyStorageConfig = OperationAction._('apply_storage_config');
-  static const prepareSecondaryPageserver = OperationAction._('prepare_secondary_pageserver');
+  static const prepareSecondaryPageserver =
+      OperationAction._('prepare_secondary_pageserver');
   static const switchPageserver = OperationAction._('switch_pageserver');
   static const detachParentBranch = OperationAction._('detach_parent_branch');
   static const timelineArchive = OperationAction._('timeline_archive');
   static const timelineUnarchive = OperationAction._('timeline_unarchive');
-  static const startReservedCompute = OperationAction._('start_reserved_compute');
-  static const syncDbsAndRolesFromCompute = OperationAction._('sync_dbs_and_roles_from_compute');
-  static const applySchemaFromBranch = OperationAction._('apply_schema_from_branch');
-  static const timelineMarkInvisible = OperationAction._('timeline_mark_invisible');
-  static const timelineUpdateProtectedConfig = OperationAction._('timeline_update_protected_config');
+  static const startReservedCompute =
+      OperationAction._('start_reserved_compute');
+  static const syncDbsAndRolesFromCompute =
+      OperationAction._('sync_dbs_and_roles_from_compute');
+  static const applySchemaFromBranch =
+      OperationAction._('apply_schema_from_branch');
+  static const timelineMarkInvisible =
+      OperationAction._('timeline_mark_invisible');
+  static const timelineUpdateProtectedConfig =
+      OperationAction._('timeline_update_protected_config');
   static const prewarmReplica = OperationAction._('prewarm_replica');
   static const promoteReplica = OperationAction._('promote_replica');
   static const setStorageNonDirty = OperationAction._('set_storage_non_dirty');
   static const swapBindingId = OperationAction._('swap_binding_id');
   static const finalizeMigration = OperationAction._('finalize_migration');
-  static const markMigrationPrepared = OperationAction._('mark_migration_prepared');
+  static const markMigrationPrepared =
+      OperationAction._('mark_migration_prepared');
   static const updateCatalog = OperationAction._('update_catalog');
   static const epcSync = OperationAction._('epc_sync');
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is OperationAction && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is OperationAction && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// Lifecycle state of the operation. `scheduling`: queued, not yet started. `running`: actively executing. `finished`: completed successfully. `failed`: ended with a failure. `error`: ended with a terminal error. `cancelling`: cancellation requested but not yet complete. `cancelled`: stopped before completion. `skipped`: bypassed without executing.
 final class OperationStatus {
-
   final String value;
 
   const OperationStatus._(this.value);
@@ -171,10 +272,13 @@ final class OperationStatus {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is OperationStatus && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is OperationStatus && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

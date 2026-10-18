@@ -8,154 +8,256 @@ part of 'project.dart';
 class AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Description of why the plan is not satisfied
   final String message;
+
   /// A short code identifying the reason
   final String code;
 
-  const AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem({required this.message, required this.code});
+  const AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
+      {required this.message, required this.code});
 
-  AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem Function({String message, String code}) get copyWith => _copyWith;
+  AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem Function(
+      {String message, String code}) get copyWith => _copyWith;
 
-  AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem _copyWith({Object? message = sdkOmittedValue, Object? code = sdkOmittedValue}) => AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
-    message: identical(message, sdkOmittedValue) ? this.message : message as String,
-    code: identical(code, sdkOmittedValue) ? this.code : code as String,
-  );
+  AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem _copyWith(
+          {Object? message = sdkOmittedValue,
+          Object? code = sdkOmittedValue}) =>
+      AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
+        message: identical(message, sdkOmittedValue)
+            ? this.message
+            : message as String,
+        code: identical(code, sdkOmittedValue) ? this.code : code as String,
+      );
 
-  factory AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem.fromJson(Map<String, dynamic> json) => AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
-    message: (json['message'] as String?)!,
-    code: (json['code'] as String?)!,
-  );
+  factory AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem.fromJson(
+          Map<String, dynamic> json) =>
+      AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
+        message: (json['message'] as String?)!,
+        code: (json['code'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'message': message,
-    'code': code,
-  };
+        'message': message,
+        'code': code,
+      };
 }
 
 /// Typed representation of the `AcceptProjectTransferRequestSatisfiesPlanError` API schema.
 class AcceptProjectTransferRequestSatisfiesPlanError {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// List of reasons why the target account's plan cannot satisfy the transfer requirements. Each item contains a `code` identifying the constraint and a `message` with a human-readable explanation.
   final List<AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem> reasons;
 
   const AcceptProjectTransferRequestSatisfiesPlanError({required this.reasons});
 
-  AcceptProjectTransferRequestSatisfiesPlanError Function({List<AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem> reasons}) get copyWith => _copyWith;
+  AcceptProjectTransferRequestSatisfiesPlanError Function(
+      {List<AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem>
+          reasons}) get copyWith => _copyWith;
 
-  AcceptProjectTransferRequestSatisfiesPlanError _copyWith({Object? reasons = sdkOmittedValue}) => AcceptProjectTransferRequestSatisfiesPlanError(
-    reasons: identical(reasons, sdkOmittedValue) ? this.reasons : reasons as List<AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem>,
-  );
+  AcceptProjectTransferRequestSatisfiesPlanError _copyWith(
+          {Object? reasons = sdkOmittedValue}) =>
+      AcceptProjectTransferRequestSatisfiesPlanError(
+        reasons: identical(reasons, sdkOmittedValue)
+            ? this.reasons
+            : reasons as List<
+                AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem>,
+      );
 
-  factory AcceptProjectTransferRequestSatisfiesPlanError.fromJson(Map<String, dynamic> json) => AcceptProjectTransferRequestSatisfiesPlanError(
-    reasons: ((json['reasons'] as List?)?.map((e) => AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory AcceptProjectTransferRequestSatisfiesPlanError.fromJson(
+          Map<String, dynamic> json) =>
+      AcceptProjectTransferRequestSatisfiesPlanError(
+        reasons: ((json['reasons'] as List?)
+            ?.map((e) =>
+                AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem
+                    .fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'reasons': reasons.map((item) => item.toJson()).toList(),
-  };
+        'reasons': reasons.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Add a new JWKS to a specific endpoint of a project
 class AddProjectJWKSRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// URL of the provider's JWKS endpoint used to verify JWTs.
   final String jwksUrl;
+
   /// The name of the authentication provider (e.g., Clerk, Stytch, Auth0)
   final String providerName;
+
   /// The Neon branch ID. Returned as `id` from `GET /projects/{project_id}/branches`.
   final SdkOptional<String> branchId;
+
   /// Expected `aud` claim in incoming JWTs. When set, tokens with a different audience are rejected; tokens with no audience are still accepted. Omit to skip audience validation.
   final SdkOptional<String> jwtAudience;
+
   /// Deprecated. The roles the JWKS should be mapped to. By default, the JWKS is mapped to the `authenticator`, `authenticated`, and `anonymous` roles.
   final SdkOptional<List<String>> roleNames;
+
   /// Deprecated. Only used with Neon RLS. If true, role creation is skipped.
   final SdkOptional<bool> skipRoleCreation;
 
-  const AddProjectJWKSRequest({required this.jwksUrl, required this.providerName, this.branchId = const SdkOmitted(), this.jwtAudience = const SdkOmitted(), this.roleNames = const SdkOmitted(), this.skipRoleCreation = const SdkOmitted()});
+  const AddProjectJWKSRequest(
+      {required this.jwksUrl,
+      required this.providerName,
+      this.branchId = const SdkOmitted(),
+      this.jwtAudience = const SdkOmitted(),
+      this.roleNames = const SdkOmitted(),
+      this.skipRoleCreation = const SdkOmitted()});
 
-  AddProjectJWKSRequest Function({String jwksUrl, String providerName, SdkOptional<String> branchId, SdkOptional<String> jwtAudience, SdkOptional<List<String>> roleNames, SdkOptional<bool> skipRoleCreation}) get copyWith => _copyWith;
+  AddProjectJWKSRequest Function(
+      {String jwksUrl,
+      String providerName,
+      SdkOptional<String> branchId,
+      SdkOptional<String> jwtAudience,
+      SdkOptional<List<String>> roleNames,
+      SdkOptional<bool> skipRoleCreation}) get copyWith => _copyWith;
 
-  AddProjectJWKSRequest _copyWith({Object? jwksUrl = sdkOmittedValue, Object? providerName = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? jwtAudience = sdkOmittedValue, Object? roleNames = sdkOmittedValue, Object? skipRoleCreation = sdkOmittedValue}) => AddProjectJWKSRequest(
-    jwksUrl: identical(jwksUrl, sdkOmittedValue) ? this.jwksUrl : jwksUrl as String,
-    providerName: identical(providerName, sdkOmittedValue) ? this.providerName : providerName as String,
-    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as SdkOptional<String>,
-    jwtAudience: identical(jwtAudience, sdkOmittedValue) ? this.jwtAudience : jwtAudience as SdkOptional<String>,
-    roleNames: identical(roleNames, sdkOmittedValue) ? this.roleNames : roleNames as SdkOptional<List<String>>,
-    skipRoleCreation: identical(skipRoleCreation, sdkOmittedValue) ? this.skipRoleCreation : skipRoleCreation as SdkOptional<bool>,
-  );
+  AddProjectJWKSRequest _copyWith(
+          {Object? jwksUrl = sdkOmittedValue,
+          Object? providerName = sdkOmittedValue,
+          Object? branchId = sdkOmittedValue,
+          Object? jwtAudience = sdkOmittedValue,
+          Object? roleNames = sdkOmittedValue,
+          Object? skipRoleCreation = sdkOmittedValue}) =>
+      AddProjectJWKSRequest(
+        jwksUrl: identical(jwksUrl, sdkOmittedValue)
+            ? this.jwksUrl
+            : jwksUrl as String,
+        providerName: identical(providerName, sdkOmittedValue)
+            ? this.providerName
+            : providerName as String,
+        branchId: identical(branchId, sdkOmittedValue)
+            ? this.branchId
+            : branchId as SdkOptional<String>,
+        jwtAudience: identical(jwtAudience, sdkOmittedValue)
+            ? this.jwtAudience
+            : jwtAudience as SdkOptional<String>,
+        roleNames: identical(roleNames, sdkOmittedValue)
+            ? this.roleNames
+            : roleNames as SdkOptional<List<String>>,
+        skipRoleCreation: identical(skipRoleCreation, sdkOmittedValue)
+            ? this.skipRoleCreation
+            : skipRoleCreation as SdkOptional<bool>,
+      );
 
-  factory AddProjectJWKSRequest.fromJson(Map<String, dynamic> json) => AddProjectJWKSRequest(
-    jwksUrl: (json['jwks_url'] as String?)!,
-    providerName: (json['provider_name'] as String?)!,
-    branchId: json['branch_id'] != null ? SdkPresent((json['branch_id'] as String?)!) : const SdkOmitted(),
-    jwtAudience: json['jwt_audience'] != null ? SdkPresent((json['jwt_audience'] as String?)!) : const SdkOmitted(),
-    roleNames: json['role_names'] != null ? SdkPresent(((json['role_names'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
-    skipRoleCreation: json['skip_role_creation'] != null ? SdkPresent((json['skip_role_creation'] as bool?)!) : const SdkOmitted(),
-  );
+  factory AddProjectJWKSRequest.fromJson(Map<String, dynamic> json) =>
+      AddProjectJWKSRequest(
+        jwksUrl: (json['jwks_url'] as String?)!,
+        providerName: (json['provider_name'] as String?)!,
+        branchId: json['branch_id'] != null
+            ? SdkPresent((json['branch_id'] as String?)!)
+            : const SdkOmitted(),
+        jwtAudience: json['jwt_audience'] != null
+            ? SdkPresent((json['jwt_audience'] as String?)!)
+            : const SdkOmitted(),
+        roleNames: json['role_names'] != null
+            ? SdkPresent(((json['role_names'] as List?)
+                ?.map((e) => e as String)
+                .toList())!)
+            : const SdkOmitted(),
+        skipRoleCreation: json['skip_role_creation'] != null
+            ? SdkPresent((json['skip_role_creation'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'jwks_url': jwksUrl,
-    'provider_name': providerName,
-    ...switch (branchId) {
-      SdkPresent<String>(value: final value) => {'branch_id': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (jwtAudience) {
-      SdkPresent<String>(value: final value) => {'jwt_audience': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (roleNames) {
-      SdkPresent<List<String>>(value: final value) => {'role_names': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (skipRoleCreation) {
-      SdkPresent<bool>(value: final value) => {'skip_role_creation': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'jwks_url': jwksUrl,
+        'provider_name': providerName,
+        ...switch (branchId) {
+          SdkPresent<String>(value: final value) => {
+              'branch_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (jwtAudience) {
+          SdkPresent<String>(value: final value) => {
+              'jwt_audience': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (roleNames) {
+          SdkPresent<List<String>>(value: final value) => {
+              'role_names': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (skipRoleCreation) {
+          SdkPresent<bool>(value: final value) => {
+              'skip_role_creation': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// A list of IP addresses that are allowed to connect to the compute endpoint. If the list is empty or not set, all IP addresses are allowed. If protected_branches_only is true, the list will be applied only to protected branches.
 class AllowedIps {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// A list of IP addresses that are allowed to connect to the endpoint.
   final SdkOptional<List<String>> ips;
+
   /// If true, the list will be applied only to protected branches.
   final SdkOptional<bool> protectedBranchesOnly;
 
-  const AllowedIps({this.ips = const SdkOmitted(), this.protectedBranchesOnly = const SdkOmitted()});
+  const AllowedIps(
+      {this.ips = const SdkOmitted(),
+      this.protectedBranchesOnly = const SdkOmitted()});
 
-  AllowedIps Function({SdkOptional<List<String>> ips, SdkOptional<bool> protectedBranchesOnly}) get copyWith => _copyWith;
+  AllowedIps Function(
+      {SdkOptional<List<String>> ips,
+      SdkOptional<bool> protectedBranchesOnly}) get copyWith => _copyWith;
 
-  AllowedIps _copyWith({Object? ips = sdkOmittedValue, Object? protectedBranchesOnly = sdkOmittedValue}) => AllowedIps(
-    ips: identical(ips, sdkOmittedValue) ? this.ips : ips as SdkOptional<List<String>>,
-    protectedBranchesOnly: identical(protectedBranchesOnly, sdkOmittedValue) ? this.protectedBranchesOnly : protectedBranchesOnly as SdkOptional<bool>,
-  );
+  AllowedIps _copyWith(
+          {Object? ips = sdkOmittedValue,
+          Object? protectedBranchesOnly = sdkOmittedValue}) =>
+      AllowedIps(
+        ips: identical(ips, sdkOmittedValue)
+            ? this.ips
+            : ips as SdkOptional<List<String>>,
+        protectedBranchesOnly: identical(protectedBranchesOnly, sdkOmittedValue)
+            ? this.protectedBranchesOnly
+            : protectedBranchesOnly as SdkOptional<bool>,
+      );
 
   factory AllowedIps.fromJson(Map<String, dynamic> json) => AllowedIps(
-    ips: json['ips'] != null ? SdkPresent(((json['ips'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
-    protectedBranchesOnly: json['protected_branches_only'] != null ? SdkPresent((json['protected_branches_only'] as bool?)!) : const SdkOmitted(),
-  );
+        ips: json['ips'] != null
+            ? SdkPresent(
+                ((json['ips'] as List?)?.map((e) => e as String).toList())!)
+            : const SdkOmitted(),
+        protectedBranchesOnly: json['protected_branches_only'] != null
+            ? SdkPresent((json['protected_branches_only'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (ips) {
-      SdkPresent<List<String>>(value: final value) => {'ips': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (protectedBranchesOnly) {
-      SdkPresent<bool>(value: final value) => {'protected_branches_only': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (ips) {
+          SdkPresent<List<String>>(value: final value) => {
+              'ips': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (protectedBranchesOnly) {
+          SdkPresent<bool>(value: final value) => {
+              'protected_branches_only': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Type of application integration
 final class ApplicationType {
-
   final String value;
 
   const ApplicationType._(this.value);
@@ -169,123 +271,241 @@ final class ApplicationType {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ApplicationType && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ApplicationType && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// Typed representation of the `CreateProjectResponse` API schema.
 class CreateProjectResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Full details of the project, including configuration, consumption metrics, and ownership.
   final Project project;
+
   /// Connection URIs for the project. Each entry contains credentials and should be treated as sensitive.
   final List<ConnectionDetails> connectionUris;
+
   /// Roles belonging to the branch. Each role includes fields such as `branch_id`, `name`, `protected`, `created_at`, and `updated_at`.
   final List<Role> roles;
+
   /// Databases on the branch. Each includes `id`, `name`, `owner_name`, and `created_at`.
   final List<Database> databases;
+
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
+
   /// Branch returned by the request.
   final Branch branch;
+
   /// Compute endpoints in the project. Each includes `id`, `branch_id`, `host`, and `type`.
   final List<Endpoint> endpoints;
 
-  const CreateProjectResponse({required this.project, required this.connectionUris, required this.roles, required this.databases, required this.operations, required this.branch, required this.endpoints});
+  const CreateProjectResponse(
+      {required this.project,
+      required this.connectionUris,
+      required this.roles,
+      required this.databases,
+      required this.operations,
+      required this.branch,
+      required this.endpoints});
 
-  CreateProjectResponse Function({Project project, List<ConnectionDetails> connectionUris, List<Role> roles, List<Database> databases, List<Operation> operations, Branch branch, List<Endpoint> endpoints}) get copyWith => _copyWith;
+  CreateProjectResponse Function(
+      {Project project,
+      List<ConnectionDetails> connectionUris,
+      List<Role> roles,
+      List<Database> databases,
+      List<Operation> operations,
+      Branch branch,
+      List<Endpoint> endpoints}) get copyWith => _copyWith;
 
-  CreateProjectResponse _copyWith({Object? project = sdkOmittedValue, Object? connectionUris = sdkOmittedValue, Object? roles = sdkOmittedValue, Object? databases = sdkOmittedValue, Object? operations = sdkOmittedValue, Object? branch = sdkOmittedValue, Object? endpoints = sdkOmittedValue}) => CreateProjectResponse(
-    project: identical(project, sdkOmittedValue) ? this.project : project as Project,
-    connectionUris: identical(connectionUris, sdkOmittedValue) ? this.connectionUris : connectionUris as List<ConnectionDetails>,
-    roles: identical(roles, sdkOmittedValue) ? this.roles : roles as List<Role>,
-    databases: identical(databases, sdkOmittedValue) ? this.databases : databases as List<Database>,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
-    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as List<Endpoint>,
-  );
+  CreateProjectResponse _copyWith(
+          {Object? project = sdkOmittedValue,
+          Object? connectionUris = sdkOmittedValue,
+          Object? roles = sdkOmittedValue,
+          Object? databases = sdkOmittedValue,
+          Object? operations = sdkOmittedValue,
+          Object? branch = sdkOmittedValue,
+          Object? endpoints = sdkOmittedValue}) =>
+      CreateProjectResponse(
+        project: identical(project, sdkOmittedValue)
+            ? this.project
+            : project as Project,
+        connectionUris: identical(connectionUris, sdkOmittedValue)
+            ? this.connectionUris
+            : connectionUris as List<ConnectionDetails>,
+        roles: identical(roles, sdkOmittedValue)
+            ? this.roles
+            : roles as List<Role>,
+        databases: identical(databases, sdkOmittedValue)
+            ? this.databases
+            : databases as List<Database>,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+        branch:
+            identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+        endpoints: identical(endpoints, sdkOmittedValue)
+            ? this.endpoints
+            : endpoints as List<Endpoint>,
+      );
 
-  factory CreateProjectResponse.fromJson(Map<String, dynamic> json) => CreateProjectResponse(
-    project: (json['project'] != null ? Project.fromJson(json['project'] as Map<String, dynamic>) : null)!,
-    connectionUris: ((json['connection_uris'] as List?)?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>)).toList())!,
-    roles: ((json['roles'] as List?)?.map((e) => Role.fromJson(e as Map<String, dynamic>)).toList())!,
-    databases: ((json['databases'] as List?)?.map((e) => Database.fromJson(e as Map<String, dynamic>)).toList())!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
-    endpoints: ((json['endpoints'] as List?)?.map((e) => Endpoint.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory CreateProjectResponse.fromJson(Map<String, dynamic> json) =>
+      CreateProjectResponse(
+        project: (json['project'] != null
+            ? Project.fromJson(json['project'] as Map<String, dynamic>)
+            : null)!,
+        connectionUris: ((json['connection_uris'] as List?)
+            ?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        roles: ((json['roles'] as List?)
+            ?.map((e) => Role.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        databases: ((json['databases'] as List?)
+            ?.map((e) => Database.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        branch: (json['branch'] != null
+            ? Branch.fromJson(json['branch'] as Map<String, dynamic>)
+            : null)!,
+        endpoints: ((json['endpoints'] as List?)
+            ?.map((e) => Endpoint.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'project': project.toJson(),
-    'connection_uris': connectionUris.map((item) => item.toJson()).toList(),
-    'roles': roles.map((item) => item.toJson()).toList(),
-    'databases': databases.map((item) => item.toJson()).toList(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-    'branch': branch.toJson(),
-    'endpoints': endpoints.map((item) => item.toJson()).toList(),
-  };
+        'project': project.toJson(),
+        'connection_uris': connectionUris.map((item) => item.toJson()).toList(),
+        'roles': roles.map((item) => item.toJson()).toList(),
+        'databases': databases.map((item) => item.toJson()).toList(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+        'branch': branch.toJson(),
+        'endpoints': endpoints.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// A collection of settings for a Neon endpoint
 class DefaultEndpointSettings {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// A raw representation of Postgres settings
   final SdkOptional<Map<String, dynamic>> pgSettings;
+
   /// Deprecated. Use the endpoint-level connection pooler configuration instead. Removal scheduled for June 20, 2026.
   final SdkOptional<Map<String, dynamic>> pgbouncerSettings;
+
   /// Minimum number of Compute Units for this endpoint. At least 0.25 and no greater than `autoscaling_limit_max_cu`.
   final SdkOptional<double> autoscalingLimitMinCu;
+
   /// Default maximum number of Compute Units for endpoints created under this account. At least 0.25.
   final SdkOptional<double> autoscalingLimitMaxCu;
+
   /// Scale-to-zero idle timeout, in seconds, before the compute suspends. `0` uses the plan default; `-1` disables scale-to-zero (never suspends). Minimum is plan-dependent (Scale: 60); maximum 604800 (one week). Free cannot change it; Launch can only enable or disable; Scale can set any value.
   final SdkOptional<int> suspendTimeoutSeconds;
 
-  const DefaultEndpointSettings({this.pgSettings = const SdkOmitted(), this.pgbouncerSettings = const SdkOmitted(), this.autoscalingLimitMinCu = const SdkOmitted(), this.autoscalingLimitMaxCu = const SdkOmitted(), this.suspendTimeoutSeconds = const SdkOmitted()});
+  const DefaultEndpointSettings(
+      {this.pgSettings = const SdkOmitted(),
+      this.pgbouncerSettings = const SdkOmitted(),
+      this.autoscalingLimitMinCu = const SdkOmitted(),
+      this.autoscalingLimitMaxCu = const SdkOmitted(),
+      this.suspendTimeoutSeconds = const SdkOmitted()});
 
-  DefaultEndpointSettings Function({SdkOptional<Map<String, dynamic>> pgSettings, SdkOptional<Map<String, dynamic>> pgbouncerSettings, SdkOptional<double> autoscalingLimitMinCu, SdkOptional<double> autoscalingLimitMaxCu, SdkOptional<int> suspendTimeoutSeconds}) get copyWith => _copyWith;
+  DefaultEndpointSettings Function(
+      {SdkOptional<Map<String, dynamic>> pgSettings,
+      SdkOptional<Map<String, dynamic>> pgbouncerSettings,
+      SdkOptional<double> autoscalingLimitMinCu,
+      SdkOptional<double> autoscalingLimitMaxCu,
+      SdkOptional<int> suspendTimeoutSeconds}) get copyWith => _copyWith;
 
-  DefaultEndpointSettings _copyWith({Object? pgSettings = sdkOmittedValue, Object? pgbouncerSettings = sdkOmittedValue, Object? autoscalingLimitMinCu = sdkOmittedValue, Object? autoscalingLimitMaxCu = sdkOmittedValue, Object? suspendTimeoutSeconds = sdkOmittedValue}) => DefaultEndpointSettings(
-    pgSettings: identical(pgSettings, sdkOmittedValue) ? this.pgSettings : pgSettings as SdkOptional<Map<String, dynamic>>,
-    pgbouncerSettings: identical(pgbouncerSettings, sdkOmittedValue) ? this.pgbouncerSettings : pgbouncerSettings as SdkOptional<Map<String, dynamic>>,
-    autoscalingLimitMinCu: identical(autoscalingLimitMinCu, sdkOmittedValue) ? this.autoscalingLimitMinCu : autoscalingLimitMinCu as SdkOptional<double>,
-    autoscalingLimitMaxCu: identical(autoscalingLimitMaxCu, sdkOmittedValue) ? this.autoscalingLimitMaxCu : autoscalingLimitMaxCu as SdkOptional<double>,
-    suspendTimeoutSeconds: identical(suspendTimeoutSeconds, sdkOmittedValue) ? this.suspendTimeoutSeconds : suspendTimeoutSeconds as SdkOptional<int>,
-  );
+  DefaultEndpointSettings _copyWith(
+          {Object? pgSettings = sdkOmittedValue,
+          Object? pgbouncerSettings = sdkOmittedValue,
+          Object? autoscalingLimitMinCu = sdkOmittedValue,
+          Object? autoscalingLimitMaxCu = sdkOmittedValue,
+          Object? suspendTimeoutSeconds = sdkOmittedValue}) =>
+      DefaultEndpointSettings(
+        pgSettings: identical(pgSettings, sdkOmittedValue)
+            ? this.pgSettings
+            : pgSettings as SdkOptional<Map<String, dynamic>>,
+        pgbouncerSettings: identical(pgbouncerSettings, sdkOmittedValue)
+            ? this.pgbouncerSettings
+            : pgbouncerSettings as SdkOptional<Map<String, dynamic>>,
+        autoscalingLimitMinCu: identical(autoscalingLimitMinCu, sdkOmittedValue)
+            ? this.autoscalingLimitMinCu
+            : autoscalingLimitMinCu as SdkOptional<double>,
+        autoscalingLimitMaxCu: identical(autoscalingLimitMaxCu, sdkOmittedValue)
+            ? this.autoscalingLimitMaxCu
+            : autoscalingLimitMaxCu as SdkOptional<double>,
+        suspendTimeoutSeconds: identical(suspendTimeoutSeconds, sdkOmittedValue)
+            ? this.suspendTimeoutSeconds
+            : suspendTimeoutSeconds as SdkOptional<int>,
+      );
 
-  factory DefaultEndpointSettings.fromJson(Map<String, dynamic> json) => DefaultEndpointSettings(
-    pgSettings: json['pg_settings'] != null ? SdkPresent((json['pg_settings'] == null ? null : json['pg_settings'] as Map<String, dynamic>)!) : const SdkOmitted(),
-    pgbouncerSettings: json['pgbouncer_settings'] != null ? SdkPresent((json['pgbouncer_settings'] == null ? null : json['pgbouncer_settings'] as Map<String, dynamic>)!) : const SdkOmitted(),
-    autoscalingLimitMinCu: json['autoscaling_limit_min_cu'] != null ? SdkPresent(((json['autoscaling_limit_min_cu'] as num?)?.toDouble())!) : const SdkOmitted(),
-    autoscalingLimitMaxCu: json['autoscaling_limit_max_cu'] != null ? SdkPresent(((json['autoscaling_limit_max_cu'] as num?)?.toDouble())!) : const SdkOmitted(),
-    suspendTimeoutSeconds: json['suspend_timeout_seconds'] != null ? SdkPresent(((json['suspend_timeout_seconds'] as num?)?.toInt())!) : const SdkOmitted(),
-  );
+  factory DefaultEndpointSettings.fromJson(Map<String, dynamic> json) =>
+      DefaultEndpointSettings(
+        pgSettings: json['pg_settings'] != null
+            ? SdkPresent((json['pg_settings'] == null
+                ? null
+                : json['pg_settings'] as Map<String, dynamic>)!)
+            : const SdkOmitted(),
+        pgbouncerSettings: json['pgbouncer_settings'] != null
+            ? SdkPresent((json['pgbouncer_settings'] == null
+                ? null
+                : json['pgbouncer_settings'] as Map<String, dynamic>)!)
+            : const SdkOmitted(),
+        autoscalingLimitMinCu: json['autoscaling_limit_min_cu'] != null
+            ? SdkPresent(
+                ((json['autoscaling_limit_min_cu'] as num?)?.toDouble())!)
+            : const SdkOmitted(),
+        autoscalingLimitMaxCu: json['autoscaling_limit_max_cu'] != null
+            ? SdkPresent(
+                ((json['autoscaling_limit_max_cu'] as num?)?.toDouble())!)
+            : const SdkOmitted(),
+        suspendTimeoutSeconds: json['suspend_timeout_seconds'] != null
+            ? SdkPresent(((json['suspend_timeout_seconds'] as num?)?.toInt())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (pgSettings) {
-      SdkPresent<Map<String, dynamic>>(value: final value) => {'pg_settings': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (pgbouncerSettings) {
-      SdkPresent<Map<String, dynamic>>(value: final value) => {'pgbouncer_settings': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (autoscalingLimitMinCu) {
-      SdkPresent<double>(value: final value) => {'autoscaling_limit_min_cu': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (autoscalingLimitMaxCu) {
-      SdkPresent<double>(value: final value) => {'autoscaling_limit_max_cu': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (suspendTimeoutSeconds) {
-      SdkPresent<int>(value: final value) => {'suspend_timeout_seconds': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (pgSettings) {
+          SdkPresent<Map<String, dynamic>>(value: final value) => {
+              'pg_settings': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (pgbouncerSettings) {
+          SdkPresent<Map<String, dynamic>>(value: final value) => {
+              'pgbouncer_settings': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (autoscalingLimitMinCu) {
+          SdkPresent<double>(value: final value) => {
+              'autoscaling_limit_min_cu': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (autoscalingLimitMaxCu) {
+          SdkPresent<double>(value: final value) => {
+              'autoscaling_limit_max_cu': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (suspendTimeoutSeconds) {
+          SdkPresent<int>(value: final value) => {
+              'suspend_timeout_seconds': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

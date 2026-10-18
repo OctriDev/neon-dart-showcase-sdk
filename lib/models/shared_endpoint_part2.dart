@@ -6,71 +6,113 @@ part of 'shared_endpoint.dart';
 // shared_endpoint domain models (part 2)
 /// Deprecated. The connection pooler mode. Neon supports PgBouncer in `transaction` mode only. Removal scheduled for June 20, 2026.
 final class EndpointPoolerMode {
-
   final String value;
 
   const EndpointPoolerMode._(this.value);
 
-  factory EndpointPoolerMode.fromJson(String value) => EndpointPoolerMode._(value);
+  factory EndpointPoolerMode.fromJson(String value) =>
+      EndpointPoolerMode._(value);
 
   static const transaction = EndpointPoolerMode._('transaction');
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is EndpointPoolerMode && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is EndpointPoolerMode && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// A collection of settings for a compute endpoint
 class EndpointSettingsData {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// A raw representation of Postgres settings
   final SdkOptional<Map<String, dynamic>> pgSettings;
+
   /// Deprecated. PgBouncer settings for the compute endpoint. Removal scheduled for June 20, 2026.
   final SdkOptional<Map<String, dynamic>> pgbouncerSettings;
+
   /// The shared libraries to preload into the project's compute instances.
   final SdkOptional<PreloadLibraries> preloadLibraries;
 
-  const EndpointSettingsData({this.pgSettings = const SdkOmitted(), this.pgbouncerSettings = const SdkOmitted(), this.preloadLibraries = const SdkOmitted()});
+  const EndpointSettingsData(
+      {this.pgSettings = const SdkOmitted(),
+      this.pgbouncerSettings = const SdkOmitted(),
+      this.preloadLibraries = const SdkOmitted()});
 
-  EndpointSettingsData Function({SdkOptional<Map<String, dynamic>> pgSettings, SdkOptional<Map<String, dynamic>> pgbouncerSettings, SdkOptional<PreloadLibraries> preloadLibraries}) get copyWith => _copyWith;
+  EndpointSettingsData Function(
+          {SdkOptional<Map<String, dynamic>> pgSettings,
+          SdkOptional<Map<String, dynamic>> pgbouncerSettings,
+          SdkOptional<PreloadLibraries> preloadLibraries})
+      get copyWith => _copyWith;
 
-  EndpointSettingsData _copyWith({Object? pgSettings = sdkOmittedValue, Object? pgbouncerSettings = sdkOmittedValue, Object? preloadLibraries = sdkOmittedValue}) => EndpointSettingsData(
-    pgSettings: identical(pgSettings, sdkOmittedValue) ? this.pgSettings : pgSettings as SdkOptional<Map<String, dynamic>>,
-    pgbouncerSettings: identical(pgbouncerSettings, sdkOmittedValue) ? this.pgbouncerSettings : pgbouncerSettings as SdkOptional<Map<String, dynamic>>,
-    preloadLibraries: identical(preloadLibraries, sdkOmittedValue) ? this.preloadLibraries : preloadLibraries as SdkOptional<PreloadLibraries>,
-  );
+  EndpointSettingsData _copyWith(
+          {Object? pgSettings = sdkOmittedValue,
+          Object? pgbouncerSettings = sdkOmittedValue,
+          Object? preloadLibraries = sdkOmittedValue}) =>
+      EndpointSettingsData(
+        pgSettings: identical(pgSettings, sdkOmittedValue)
+            ? this.pgSettings
+            : pgSettings as SdkOptional<Map<String, dynamic>>,
+        pgbouncerSettings: identical(pgbouncerSettings, sdkOmittedValue)
+            ? this.pgbouncerSettings
+            : pgbouncerSettings as SdkOptional<Map<String, dynamic>>,
+        preloadLibraries: identical(preloadLibraries, sdkOmittedValue)
+            ? this.preloadLibraries
+            : preloadLibraries as SdkOptional<PreloadLibraries>,
+      );
 
-  factory EndpointSettingsData.fromJson(Map<String, dynamic> json) => EndpointSettingsData(
-    pgSettings: json['pg_settings'] != null ? SdkPresent((json['pg_settings'] == null ? null : json['pg_settings'] as Map<String, dynamic>)!) : const SdkOmitted(),
-    pgbouncerSettings: json['pgbouncer_settings'] != null ? SdkPresent((json['pgbouncer_settings'] == null ? null : json['pgbouncer_settings'] as Map<String, dynamic>)!) : const SdkOmitted(),
-    preloadLibraries: json['preload_libraries'] != null ? SdkPresent((json['preload_libraries'] != null ? PreloadLibraries.fromJson(json['preload_libraries'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-  );
+  factory EndpointSettingsData.fromJson(Map<String, dynamic> json) =>
+      EndpointSettingsData(
+        pgSettings: json['pg_settings'] != null
+            ? SdkPresent((json['pg_settings'] == null
+                ? null
+                : json['pg_settings'] as Map<String, dynamic>)!)
+            : const SdkOmitted(),
+        pgbouncerSettings: json['pgbouncer_settings'] != null
+            ? SdkPresent((json['pgbouncer_settings'] == null
+                ? null
+                : json['pgbouncer_settings'] as Map<String, dynamic>)!)
+            : const SdkOmitted(),
+        preloadLibraries: json['preload_libraries'] != null
+            ? SdkPresent((json['preload_libraries'] != null
+                ? PreloadLibraries.fromJson(
+                    json['preload_libraries'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (pgSettings) {
-      SdkPresent<Map<String, dynamic>>(value: final value) => {'pg_settings': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (pgbouncerSettings) {
-      SdkPresent<Map<String, dynamic>>(value: final value) => {'pgbouncer_settings': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (preloadLibraries) {
-      SdkPresent<PreloadLibraries>(value: final value) => {'preload_libraries': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (pgSettings) {
+          SdkPresent<Map<String, dynamic>>(value: final value) => {
+              'pg_settings': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (pgbouncerSettings) {
+          SdkPresent<Map<String, dynamic>>(value: final value) => {
+              'pgbouncer_settings': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (preloadLibraries) {
+          SdkPresent<PreloadLibraries>(value: final value) => {
+              'preload_libraries': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Lifecycle state of the compute endpoint. `init`: being initialized. `active`: running and accepting connections. `idle`: suspended (scaled to zero).
 final class EndpointState {
-
   final String value;
 
   const EndpointState._(this.value);
@@ -83,17 +125,19 @@ final class EndpointState {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is EndpointState && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is EndpointState && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// Compute endpoint type. `read_write`: the primary read-write endpoint (one per branch). `read_only`: a read replica endpoint (multiple allowed per branch).
 final class EndpointType {
-
   final String value;
 
   const EndpointType._(this.value);
@@ -105,10 +149,13 @@ final class EndpointType {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is EndpointType && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is EndpointType && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
