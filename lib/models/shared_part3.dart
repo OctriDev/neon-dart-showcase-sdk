@@ -8,123 +8,69 @@ part of 'shared.dart';
 class Role {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The ID of the branch this role belongs to.
   final String branchId;
-
   /// Postgres role name within the branch.
   final String name;
-
   /// The role password
   final SdkOptional<String> password;
-
   /// Whether or not the role is system-protected
   final SdkOptional<bool> protected;
-
   /// Authentication method configured for this role: `password`, `oauth`, `oidc`, or `no_login`.
   final SdkOptional<String> authenticationMethod;
-
   /// A timestamp indicating when the role was created
   final String createdAt;
-
   /// A timestamp indicating when the role was last updated
   final String updatedAt;
 
-  const Role(
-      {required this.branchId,
-      required this.name,
-      this.password = const SdkOmitted(),
-      this.protected = const SdkOmitted(),
-      this.authenticationMethod = const SdkOmitted(),
-      required this.createdAt,
-      required this.updatedAt});
+  const Role({required this.branchId, required this.name, this.password = const SdkOmitted(), this.protected = const SdkOmitted(), this.authenticationMethod = const SdkOmitted(), required this.createdAt, required this.updatedAt});
 
-  Role Function(
-      {String branchId,
-      String name,
-      SdkOptional<String> password,
-      SdkOptional<bool> protected,
-      SdkOptional<String> authenticationMethod,
-      String createdAt,
-      String updatedAt}) get copyWith => _copyWith;
+  Role Function({String branchId, String name, SdkOptional<String> password, SdkOptional<bool> protected, SdkOptional<String> authenticationMethod, String createdAt, String updatedAt}) get copyWith => _copyWith;
 
-  Role _copyWith(
-          {Object? branchId = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? password = sdkOmittedValue,
-          Object? protected = sdkOmittedValue,
-          Object? authenticationMethod = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue,
-          Object? updatedAt = sdkOmittedValue}) =>
-      Role(
-        branchId: identical(branchId, sdkOmittedValue)
-            ? this.branchId
-            : branchId as String,
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        password: identical(password, sdkOmittedValue)
-            ? this.password
-            : password as SdkOptional<String>,
-        protected: identical(protected, sdkOmittedValue)
-            ? this.protected
-            : protected as SdkOptional<bool>,
-        authenticationMethod: identical(authenticationMethod, sdkOmittedValue)
-            ? this.authenticationMethod
-            : authenticationMethod as SdkOptional<String>,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-        updatedAt: identical(updatedAt, sdkOmittedValue)
-            ? this.updatedAt
-            : updatedAt as String,
-      );
+  Role _copyWith({Object? branchId = sdkOmittedValue, Object? name = sdkOmittedValue, Object? password = sdkOmittedValue, Object? protected = sdkOmittedValue, Object? authenticationMethod = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? updatedAt = sdkOmittedValue}) => Role(
+    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as String,
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    password: identical(password, sdkOmittedValue) ? this.password : password as SdkOptional<String>,
+    protected: identical(protected, sdkOmittedValue) ? this.protected : protected as SdkOptional<bool>,
+    authenticationMethod: identical(authenticationMethod, sdkOmittedValue) ? this.authenticationMethod : authenticationMethod as SdkOptional<String>,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+    updatedAt: identical(updatedAt, sdkOmittedValue) ? this.updatedAt : updatedAt as String,
+  );
 
   factory Role.fromJson(Map<String, dynamic> json) => Role(
-        branchId: (json['branch_id'] as String?)!,
-        name: (json['name'] as String?)!,
-        password: json['password'] != null
-            ? SdkPresent((json['password'] as String?)!)
-            : const SdkOmitted(),
-        protected: json['protected'] != null
-            ? SdkPresent((json['protected'] as bool?)!)
-            : const SdkOmitted(),
-        authenticationMethod: json['authentication_method'] != null
-            ? SdkPresent((json['authentication_method'] as String?)!)
-            : const SdkOmitted(),
-        createdAt: (json['created_at'] as String?)!,
-        updatedAt: (json['updated_at'] as String?)!,
-      );
+    branchId: (json['branch_id'] as String?)!,
+    name: (json['name'] as String?)!,
+    password: json['password'] != null ? SdkPresent((json['password'] as String?)!) : const SdkOmitted(),
+    protected: json['protected'] != null ? SdkPresent((json['protected'] as bool?)!) : const SdkOmitted(),
+    authenticationMethod: json['authentication_method'] != null ? SdkPresent((json['authentication_method'] as String?)!) : const SdkOmitted(),
+    createdAt: (json['created_at'] as String?)!,
+    updatedAt: (json['updated_at'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'branch_id': branchId,
-        'name': name,
-        ...switch (password) {
-          SdkPresent<String>(value: final value) => {
-              'password': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (protected) {
-          SdkPresent<bool>(value: final value) => {
-              'protected': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (authenticationMethod) {
-          SdkPresent<String>(value: final value) => {
-              'authentication_method': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        'created_at': createdAt,
-        'updated_at': updatedAt,
-      };
+    'branch_id': branchId,
+    'name': name,
+    ...switch (password) {
+      SdkPresent<String>(value: final value) => {'password': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (protected) {
+      SdkPresent<bool>(value: final value) => {'protected': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (authenticationMethod) {
+      SdkPresent<String>(value: final value) => {'authentication_method': value,},
+      _ => const <String, dynamic>{},
+    },
+    'created_at': createdAt,
+    'updated_at': updatedAt,
+  };
 }
 
 /// Typed representation of the `RolesResponse` API schema.
 class RolesResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Roles belonging to the branch. Each role includes fields such as `branch_id`, `name`, `protected`, `created_at`, and `updated_at`.
   final List<Role> roles;
 
@@ -133,97 +79,59 @@ class RolesResponse {
   RolesResponse Function({List<Role> roles}) get copyWith => _copyWith;
 
   RolesResponse _copyWith({Object? roles = sdkOmittedValue}) => RolesResponse(
-        roles: identical(roles, sdkOmittedValue)
-            ? this.roles
-            : roles as List<Role>,
-      );
+    roles: identical(roles, sdkOmittedValue) ? this.roles : roles as List<Role>,
+  );
 
   factory RolesResponse.fromJson(Map<String, dynamic> json) => RolesResponse(
-        roles: ((json['roles'] as List?)
-            ?.map((e) => Role.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+    roles: ((json['roles'] as List?)?.map((e) => Role.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'roles': roles.map((item) => item.toJson()).toList(),
-      };
+    'roles': roles.map((item) => item.toJson()).toList(),
+  };
 }
 
 /// Typed representation of the `SharedEmailServer` API schema.
 class SharedEmailServer {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Email address used as the sender for outgoing messages from this shared email server.
   final SdkOptional<String> senderEmail;
-
   /// Display name shown as the sender in outgoing emails.
   final SdkOptional<String> senderName;
-
   /// Optional enumerated value serialized in the `type` wire field.
   final SdkOptional<SharedEmailServerType> type_;
 
-  const SharedEmailServer(
-      {this.senderEmail = const SdkOmitted(),
-      this.senderName = const SdkOmitted(),
-      this.type_ = const SdkOmitted()});
+  const SharedEmailServer({this.senderEmail = const SdkOmitted(), this.senderName = const SdkOmitted(), this.type_ = const SdkOmitted()});
 
-  SharedEmailServer Function(
-      {SdkOptional<String> senderEmail,
-      SdkOptional<String> senderName,
-      SdkOptional<SharedEmailServerType> type_}) get copyWith => _copyWith;
+  SharedEmailServer Function({SdkOptional<String> senderEmail, SdkOptional<String> senderName, SdkOptional<SharedEmailServerType> type_}) get copyWith => _copyWith;
 
-  SharedEmailServer _copyWith(
-          {Object? senderEmail = sdkOmittedValue,
-          Object? senderName = sdkOmittedValue,
-          Object? type_ = sdkOmittedValue}) =>
-      SharedEmailServer(
-        senderEmail: identical(senderEmail, sdkOmittedValue)
-            ? this.senderEmail
-            : senderEmail as SdkOptional<String>,
-        senderName: identical(senderName, sdkOmittedValue)
-            ? this.senderName
-            : senderName as SdkOptional<String>,
-        type_: identical(type_, sdkOmittedValue)
-            ? this.type_
-            : type_ as SdkOptional<SharedEmailServerType>,
-      );
+  SharedEmailServer _copyWith({Object? senderEmail = sdkOmittedValue, Object? senderName = sdkOmittedValue, Object? type_ = sdkOmittedValue}) => SharedEmailServer(
+    senderEmail: identical(senderEmail, sdkOmittedValue) ? this.senderEmail : senderEmail as SdkOptional<String>,
+    senderName: identical(senderName, sdkOmittedValue) ? this.senderName : senderName as SdkOptional<String>,
+    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as SdkOptional<SharedEmailServerType>,
+  );
 
-  factory SharedEmailServer.fromJson(Map<String, dynamic> json) =>
-      SharedEmailServer(
-        senderEmail: json['sender_email'] != null
-            ? SdkPresent((json['sender_email'] as String?)!)
-            : const SdkOmitted(),
-        senderName: json['sender_name'] != null
-            ? SdkPresent((json['sender_name'] as String?)!)
-            : const SdkOmitted(),
-        type_: json['type'] != null
-            ? SdkPresent((json['type'] != null
-                ? SharedEmailServerType.fromJson(json['type'] as String)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory SharedEmailServer.fromJson(Map<String, dynamic> json) => SharedEmailServer(
+    senderEmail: json['sender_email'] != null ? SdkPresent((json['sender_email'] as String?)!) : const SdkOmitted(),
+    senderName: json['sender_name'] != null ? SdkPresent((json['sender_name'] as String?)!) : const SdkOmitted(),
+    type_: json['type'] != null ? SdkPresent((json['type'] != null ? SharedEmailServerType.fromJson(json['type'] as String) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (senderEmail) {
-          SdkPresent<String>(value: final value) => {
-              'sender_email': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (senderName) {
-          SdkPresent<String>(value: final value) => {
-              'sender_name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (type_) {
-          SdkPresent<SharedEmailServerType>(value: final value) => {
-              'type': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (senderEmail) {
+      SdkPresent<String>(value: final value) => {'sender_email': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (senderName) {
+      SdkPresent<String>(value: final value) => {'sender_name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (type_) {
+      SdkPresent<SharedEmailServerType>(value: final value) => {'type': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 // SuspendTimeoutSeconds = int
@@ -232,74 +140,51 @@ class SharedEmailServer {
 class TransferProjectsToOrganizationRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The destination organization identifier
   final String destinationOrgId;
-
   /// The list of projects ids to transfer. Maximum of 400 project ids
   final List<String> projectIds;
 
-  const TransferProjectsToOrganizationRequest(
-      {required this.destinationOrgId, required this.projectIds});
+  const TransferProjectsToOrganizationRequest({required this.destinationOrgId, required this.projectIds});
 
-  TransferProjectsToOrganizationRequest Function(
-      {String destinationOrgId,
-      List<String> projectIds}) get copyWith => _copyWith;
+  TransferProjectsToOrganizationRequest Function({String destinationOrgId, List<String> projectIds}) get copyWith => _copyWith;
 
-  TransferProjectsToOrganizationRequest _copyWith(
-          {Object? destinationOrgId = sdkOmittedValue,
-          Object? projectIds = sdkOmittedValue}) =>
-      TransferProjectsToOrganizationRequest(
-        destinationOrgId: identical(destinationOrgId, sdkOmittedValue)
-            ? this.destinationOrgId
-            : destinationOrgId as String,
-        projectIds: identical(projectIds, sdkOmittedValue)
-            ? this.projectIds
-            : projectIds as List<String>,
-      );
+  TransferProjectsToOrganizationRequest _copyWith({Object? destinationOrgId = sdkOmittedValue, Object? projectIds = sdkOmittedValue}) => TransferProjectsToOrganizationRequest(
+    destinationOrgId: identical(destinationOrgId, sdkOmittedValue) ? this.destinationOrgId : destinationOrgId as String,
+    projectIds: identical(projectIds, sdkOmittedValue) ? this.projectIds : projectIds as List<String>,
+  );
 
-  factory TransferProjectsToOrganizationRequest.fromJson(
-          Map<String, dynamic> json) =>
-      TransferProjectsToOrganizationRequest(
-        destinationOrgId: (json['destination_org_id'] as String?)!,
-        projectIds:
-            ((json['project_ids'] as List?)?.map((e) => e as String).toList())!,
-      );
+  factory TransferProjectsToOrganizationRequest.fromJson(Map<String, dynamic> json) => TransferProjectsToOrganizationRequest(
+    destinationOrgId: (json['destination_org_id'] as String?)!,
+    projectIds: ((json['project_ids'] as List?)?.map((e) => e as String).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'destination_org_id': destinationOrgId,
-        'project_ids': projectIds,
-      };
+    'destination_org_id': destinationOrgId,
+    'project_ids': projectIds,
+  };
 }
 
 /// Typed representation of the `VPCEndpointsResponse` API schema.
 class VPCEndpointsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// List of VPC endpoints returned by the request.
   final List<VPCEndpoint> endpoints;
 
   const VPCEndpointsResponse({required this.endpoints});
 
-  VPCEndpointsResponse Function({List<VPCEndpoint> endpoints}) get copyWith =>
-      _copyWith;
+  VPCEndpointsResponse Function({List<VPCEndpoint> endpoints}) get copyWith => _copyWith;
 
-  VPCEndpointsResponse _copyWith({Object? endpoints = sdkOmittedValue}) =>
-      VPCEndpointsResponse(
-        endpoints: identical(endpoints, sdkOmittedValue)
-            ? this.endpoints
-            : endpoints as List<VPCEndpoint>,
-      );
+  VPCEndpointsResponse _copyWith({Object? endpoints = sdkOmittedValue}) => VPCEndpointsResponse(
+    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as List<VPCEndpoint>,
+  );
 
-  factory VPCEndpointsResponse.fromJson(Map<String, dynamic> json) =>
-      VPCEndpointsResponse(
-        endpoints: ((json['endpoints'] as List?)
-            ?.map((e) => VPCEndpoint.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory VPCEndpointsResponse.fromJson(Map<String, dynamic> json) => VPCEndpointsResponse(
+    endpoints: ((json['endpoints'] as List?)?.map((e) => VPCEndpoint.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'endpoints': endpoints.map((item) => item.toJson()).toList(),
-      };
+    'endpoints': endpoints.map((item) => item.toJson()).toList(),
+  };
 }

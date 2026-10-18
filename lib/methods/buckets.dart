@@ -19,8 +19,7 @@ Future<BucketResponse> createBuckets(ClientConfig config,
     {required String projectId,
     required String branchId,
     required String name,
-    SdkOptional<BucketCreateRequestAccessLevel> accessLevel =
-        const SdkOmitted(),
+    SdkOptional<BucketCreateRequestAccessLevel> accessLevel = const SdkOmitted(),
     RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
@@ -35,17 +34,12 @@ Future<BucketResponse> createBuckets(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'createBuckets',
-          fromJsonRaw: (value) =>
-              BucketResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => BucketResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            '410': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>),
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'410': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists branchable object storage buckets visible on the specified branch, including those inherited from ancestor branches. **Note**: This endpoint is currently in Beta.
 ///
@@ -65,12 +59,10 @@ Future<BucketsListResponse> listBuckets(ClientConfig config,
           operationId: 'listBuckets',
           fromJsonRaw: (value) => BucketsListResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Deletes the named bucket from the specified branch. **Note**: This endpoint is currently in Beta.
 ///
@@ -92,13 +84,10 @@ Future<void> deleteBuckets(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteBuckets',
           options: requestOptions,
-          errors: {
-        '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>),
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists objects visible in the named bucket on the specified branch, including those inherited from ancestor branches. Listing is served by the user's session (no customer S3 credentials required). When `delimiter` is supplied (typically `/`), keys are collapsed into common prefixes (`folders`) so callers can render a folder-style browser; keys that do not contain the delimiter after `prefix` are returned as `objects`. **Note**: This endpoint is currently in Beta.
 ///
@@ -131,26 +120,20 @@ Future<BucketObjectsListResponse> listBucketsObjects(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/buckets/${Uri.encodeComponent(bucketName.toString())}/objects',
           config: config,
           query: {
-            'prefix': SdkQueryValue(SdkUtils.unwrapOptional(prefix),
-                style: 'form', explode: true),
-            'delimiter': SdkQueryValue(SdkUtils.unwrapOptional(delimiter),
-                style: 'form', explode: true),
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
-                style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
-                style: 'form', explode: true)
+            'prefix': SdkQueryValue(SdkUtils.unwrapOptional(prefix), style: 'form', explode: true),
+            'delimiter': SdkQueryValue(SdkUtils.unwrapOptional(delimiter), style: 'form', explode: true),
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listBucketsObjects',
-          fromJsonRaw: (value) =>
-              BucketObjectsListResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => BucketObjectsListResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
+
 
 /// Lists objects visible in the named bucket on the specified branch, including those inherited from ancestor branches. Listing is served by the user's session (no customer S3 credentials required). When `delimiter` is supplied (typically `/`), keys are collapsed into common prefixes (`folders`) so callers can render a folder-style browser; keys that do not contain the delimiter after `prefix` are returned as `objects`. **Note**: This endpoint is currently in Beta.
 ///
@@ -163,37 +146,13 @@ Future<BucketObjectsListResponse> listBucketsObjects(ClientConfig config,
 /// [cursor] Opaque pagination cursor returned as `next_cursor` by a previous
 ///   call. Resume listing after the last item of the previous page.
 /// [limit] Maximum number of items (objects + folders) to return.
-Stream<BucketObject> listBucketsObjectsPaginated(ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    required String bucketName,
-    String? prefix,
-    String? delimiter,
-    String? cursor,
-    int? limit,
-    RequestOptions? requestOptions}) async* {
+Stream<BucketObject> listBucketsObjectsPaginated(ClientConfig config, {required String projectId, required String branchId, required String bucketName, String? prefix, String? delimiter, String? cursor, int? limit, RequestOptions? requestOptions}) async* {
   var sdkCursor = cursor;
   while (true) {
-    final sdkPage = await listBucketsObjects(config,
-        projectId: projectId,
-        branchId: branchId,
-        bucketName: bucketName,
-        prefix: prefix == null
-            ? const SdkOmitted<String>()
-            : SdkPresent<String>(prefix),
-        delimiter: delimiter == null
-            ? const SdkOmitted<String>()
-            : SdkPresent<String>(delimiter),
-        cursor: sdkCursor == null
-            ? const SdkOmitted<String>()
-            : SdkPresent<String>(sdkCursor),
-        limit: limit == null ? const SdkOmitted<int>() : SdkPresent<int>(limit),
-        requestOptions: requestOptions);
+    final sdkPage = await listBucketsObjects(config, projectId: projectId, branchId: branchId, bucketName: bucketName, prefix: prefix == null ? const SdkOmitted<String>() : SdkPresent<String>(prefix), delimiter: delimiter == null ? const SdkOmitted<String>() : SdkPresent<String>(delimiter), cursor: sdkCursor == null ? const SdkOmitted<String>() : SdkPresent<String>(sdkCursor), limit: limit == null ? const SdkOmitted<int>() : SdkPresent<int>(limit), requestOptions: requestOptions);
     final sdkItems = sdkPage.objects;
     if (sdkItems.isEmpty) return;
-    for (final sdkItem in sdkItems) {
-      yield sdkItem;
-    }
+    for (final sdkItem in sdkItems) { yield sdkItem; }
     if (sdkPage.isTruncated != true) return;
     final sdkNext = sdkPage.nextCursor.valueOrNull;
     if (sdkNext == null) return;
@@ -201,33 +160,10 @@ Stream<BucketObject> listBucketsObjectsPaginated(ClientConfig config,
   }
 }
 
-Stream<SdkPage<BucketObjectsListResponse, BucketObject>>
-    listBucketsObjectsPages(ClientConfig config,
-        {required String projectId,
-        required String branchId,
-        required String bucketName,
-        String? prefix,
-        String? delimiter,
-        String? cursor,
-        int? limit,
-        RequestOptions? requestOptions}) async* {
+Stream<SdkPage<BucketObjectsListResponse, BucketObject>> listBucketsObjectsPages(ClientConfig config, {required String projectId, required String branchId, required String bucketName, String? prefix, String? delimiter, String? cursor, int? limit, RequestOptions? requestOptions}) async* {
   var sdkCursor = cursor;
   while (true) {
-    final sdkPage = await listBucketsObjects(config,
-        projectId: projectId,
-        branchId: branchId,
-        bucketName: bucketName,
-        prefix: prefix == null
-            ? const SdkOmitted<String>()
-            : SdkPresent<String>(prefix),
-        delimiter: delimiter == null
-            ? const SdkOmitted<String>()
-            : SdkPresent<String>(delimiter),
-        cursor: sdkCursor == null
-            ? const SdkOmitted<String>()
-            : SdkPresent<String>(sdkCursor),
-        limit: limit == null ? const SdkOmitted<int>() : SdkPresent<int>(limit),
-        requestOptions: requestOptions);
+    final sdkPage = await listBucketsObjects(config, projectId: projectId, branchId: branchId, bucketName: bucketName, prefix: prefix == null ? const SdkOmitted<String>() : SdkPresent<String>(prefix), delimiter: delimiter == null ? const SdkOmitted<String>() : SdkPresent<String>(delimiter), cursor: sdkCursor == null ? const SdkOmitted<String>() : SdkPresent<String>(sdkCursor), limit: limit == null ? const SdkOmitted<int>() : SdkPresent<int>(limit), requestOptions: requestOptions);
     final sdkItems = sdkPage.objects;
     if (sdkItems.isEmpty) return;
     final sdkNext = sdkPage.nextCursor.valueOrNull;
@@ -237,6 +173,7 @@ Stream<SdkPage<BucketObjectsListResponse, BucketObject>>
     sdkCursor = sdkNext;
   }
 }
+
 
 /// Deletes the named object from the bucket on the specified branch. Served by the user's session (no customer S3 credentials required). **Note**: This endpoint is currently in Beta.
 ///
@@ -262,13 +199,10 @@ Future<void> deleteBucketsObject(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteBucketsObject',
           options: requestOptions,
-          errors: {
-        '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>),
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Streams the raw bytes of the named object from the bucket on the specified branch, including objects inherited from ancestor branches. Served by the user's session (no customer S3 credentials required). The body is returned as `application/octet-stream` so a browser treats it as a download; the `Content-Length` and `ETag` response headers echo the stored object metadata. BINARY-STREAM EXCEPTION TO THE BUILD-GENERATED-TYPES RULE (#7029): the successful 200 body is the raw object stream, proxied verbatim from the platform object storage admin endpoint. It is modeled as an `application/octet-stream` binary body (not a JSON response schema) and is streamed without buffering the whole object in memory. Error responses still use the generated `GeneralError` shape. **Note**: This endpoint is currently in Beta.
 ///
@@ -294,13 +228,10 @@ Future<List<int>> getBucketsObject(ClientConfig config,
           decoder: SdkResponseDecoder.bytes,
           operationId: 'getBucketsObject',
           options: requestOptions,
-          errors: {
-        '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>),
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Soft-deletes every object on the specified branch whose key starts with `prefix`, in a single call. Intended to back a "delete folder" action in an object browser: a `prefix` of `app/avatars/` removes every object beneath that folder. Served by the user's session (no customer S3 credentials required). `prefix` must be non-empty, end with `/`, be at most 1024 bytes, and contain no control characters - a partial-segment prefix cannot accidentally delete sibling keys. Returns the number of objects soft-deleted (`deleted`), which may be 0 when no live object matched the prefix on this branch. Only objects physically present on this branch are tombstoned; objects inherited from an ancestor branch via copy-on-write (not materialized on this branch) are out of scope. **Note**: This endpoint is currently in Beta.
 ///
@@ -310,13 +241,13 @@ Future<List<int>> getBucketsObject(ClientConfig config,
 /// [prefix] The key prefix (folder) to delete. Must be non-empty and end with
 ///   `/`. Every object on this branch whose key starts with this prefix is
 ///   soft-deleted.
-Future<BucketObjectsDeletePrefixResponse> deleteBucketsObjectsByPrefix(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    required String bucketName,
-    required String prefix,
-    RequestOptions? requestOptions}) async {
+Future<BucketObjectsDeletePrefixResponse>
+    deleteBucketsObjectsByPrefix(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        required String bucketName,
+        required String prefix,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   validateLength('bucket_name', bucketName, min: 1, max: 255);
@@ -330,17 +261,12 @@ Future<BucketObjectsDeletePrefixResponse> deleteBucketsObjectsByPrefix(
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'deleteBucketsObjectsByPrefix',
-          fromJsonRaw: (value) => BucketObjectsDeletePrefixResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => BucketObjectsDeletePrefixResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            '404': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>),
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Returns a presigned URL that transfers bytes directly to or from the object's bucket on the specified branch, without the caller ever handling S3 credentials. The `operation` field selects the direction: - `upload` returns a presigned `PUT` URL (the caller `PUT`s the file bytes straight to `url` with the returned `headers`). Authorized with project write access. - `download` returns a presigned `GET` URL (the caller `GET`s the bytes straight from `url`). Authorized with project read access. The platform mints a short-lived credential and builds the SigV4-signed URL against the branch's S3 data-plane host, returning it together with the HTTP method, any headers the caller must echo, and the URL's expiry. Served by the user's session (no customer S3 credentials required). **Note**: This endpoint is currently in Beta.
 ///
@@ -371,8 +297,7 @@ Future<PresignResponse> presignBucketsObject(ClientConfig config,
   validateLength('bucket_name', bucketName, min: 1, max: 255);
   validateLength('object_key', objectKey, min: 1, max: 1024);
   if (expiresInSeconds is SdkPresent<int>) {
-    validateRange('expires_in_seconds', expiresInSeconds.value,
-        min: 1, max: 604800);
+    validateRange('expires_in_seconds', expiresInSeconds.value, min: 1, max: 604800);
   }
 
   return (await sdkRequest<PresignResponse>('POST',
@@ -385,14 +310,8 @@ Future<PresignResponse> presignBucketsObject(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'presignBucketsObject',
-          fromJsonRaw: (value) =>
-              PresignResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => PresignResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            '404': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>),
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

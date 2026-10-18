@@ -21,17 +21,12 @@ Future<ActiveRegionsResponse> getActiveRegions(ClientConfig config,
   return (await sdkRequest<ActiveRegionsResponse>('GET', '/regions',
           config: config,
           query: {
-            'org_id': SdkQueryValue(SdkUtils.unwrapOptional(orgId),
-                style: 'form', explode: true)
+            'org_id': SdkQueryValue(SdkUtils.unwrapOptional(orgId), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'getActiveRegions',
-          fromJsonRaw: (value) =>
-              ActiveRegionsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ActiveRegionsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

@@ -8,346 +8,166 @@ part of 'logs.dart';
 class ProjectBranchLogsQueryRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Length of the query window, ending at `end_time` or at the current time when `end_time` is omitted. Mutually exclusive with `start_time`. Prefer this over computing absolute bounds when the caller only means "the last hour".
   final SdkOptional<String> since;
-
   /// Inclusive beginning of the query window. Mutually exclusive with `since`. Defaults to one hour before `end_time`, or one hour before the current time when both bounds are omitted.
   final SdkOptional<String> startTime;
-
   /// Exclusive end of the query window. Defaults to the current time.
   final SdkOptional<String> endTime;
-
   /// Maximum number of log records to return per page.
   final SdkOptional<int> limit;
-
   /// Opaque pagination cursor returned as `next_cursor` by a previous call. Resume the query after the last record of the previous page, repeating the time range and every filter unchanged.
   final SdkOptional<String> cursor;
-
   /// Order matching records by timestamp. `desc`, the default, returns the newest records first.
   final SdkOptional<ProjectBranchLogsQueryRequestSortOrder> sortOrder;
-
   /// The Neon service that emitted the log record.
   final SdkOptional<ProjectBranchLogSource> source;
-
   /// Match the OpenTelemetry `service.name` resource attribute exactly.
   final SdkOptional<String> serviceName;
-
   /// Match the OpenTelemetry instrumentation scope name exactly.
   final SdkOptional<String> scopeName;
-
   /// An OpenTelemetry severity level. A minimum severity includes every higher level in this order: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.
   final SdkOptional<ProjectBranchLogSeverity> minimumSeverity;
-
   /// Match the OpenTelemetry severity text exactly.
   final SdkOptional<String> severityText;
-
   /// Match records whose rendered `message` contains this case-sensitive substring. Records with a structured body are matched against their JSON rendering, so the substring meets JSON syntax rather than prose: a bare key name such as `operation` matches every record carrying that key, and `http_status: 200` matches none, because the rendering contains `"http_status":200` with no space.
   final SdkOptional<String> bodyContains;
-
   /// Match records associated with this OpenTelemetry trace ID. W3C Trace Context defines a trace ID as 32 lowercase hex digits, and that is what is stored, so an uppercase value is rejected rather than silently matching nothing.
   final SdkOptional<String> traceId;
-
   /// Escape hatch for selections the structured filters cannot express: a raw LogQL expression, evaluated against this branch's log stream. Only stream selectors and line filters are accepted — no aggregations and no parser stages. Supplying this alongside any structured filter is rejected with `conflicting_filters` rather than silently ignoring one of them. `limit`, `sort_order`, and the time window still apply. This field passes the underlying query language through to the caller, so unlike the rest of this contract it may change as that backend changes. Prefer the structured filters where they suffice.
   final SdkOptional<String> logql;
 
-  const ProjectBranchLogsQueryRequest(
-      {this.since = const SdkOmitted(),
-      this.startTime = const SdkOmitted(),
-      this.endTime = const SdkOmitted(),
-      this.limit = const SdkOmitted(),
-      this.cursor = const SdkOmitted(),
-      this.sortOrder = const SdkOmitted(),
-      this.source = const SdkOmitted(),
-      this.serviceName = const SdkOmitted(),
-      this.scopeName = const SdkOmitted(),
-      this.minimumSeverity = const SdkOmitted(),
-      this.severityText = const SdkOmitted(),
-      this.bodyContains = const SdkOmitted(),
-      this.traceId = const SdkOmitted(),
-      this.logql = const SdkOmitted()});
+  const ProjectBranchLogsQueryRequest({this.since = const SdkOmitted(), this.startTime = const SdkOmitted(), this.endTime = const SdkOmitted(), this.limit = const SdkOmitted(), this.cursor = const SdkOmitted(), this.sortOrder = const SdkOmitted(), this.source = const SdkOmitted(), this.serviceName = const SdkOmitted(), this.scopeName = const SdkOmitted(), this.minimumSeverity = const SdkOmitted(), this.severityText = const SdkOmitted(), this.bodyContains = const SdkOmitted(), this.traceId = const SdkOmitted(), this.logql = const SdkOmitted()});
 
-  ProjectBranchLogsQueryRequest Function(
-      {SdkOptional<String> since,
-      SdkOptional<String> startTime,
-      SdkOptional<String> endTime,
-      SdkOptional<int> limit,
-      SdkOptional<String> cursor,
-      SdkOptional<ProjectBranchLogsQueryRequestSortOrder> sortOrder,
-      SdkOptional<ProjectBranchLogSource> source,
-      SdkOptional<String> serviceName,
-      SdkOptional<String> scopeName,
-      SdkOptional<ProjectBranchLogSeverity> minimumSeverity,
-      SdkOptional<String> severityText,
-      SdkOptional<String> bodyContains,
-      SdkOptional<String> traceId,
-      SdkOptional<String> logql}) get copyWith => _copyWith;
+  ProjectBranchLogsQueryRequest Function({SdkOptional<String> since, SdkOptional<String> startTime, SdkOptional<String> endTime, SdkOptional<int> limit, SdkOptional<String> cursor, SdkOptional<ProjectBranchLogsQueryRequestSortOrder> sortOrder, SdkOptional<ProjectBranchLogSource> source, SdkOptional<String> serviceName, SdkOptional<String> scopeName, SdkOptional<ProjectBranchLogSeverity> minimumSeverity, SdkOptional<String> severityText, SdkOptional<String> bodyContains, SdkOptional<String> traceId, SdkOptional<String> logql}) get copyWith => _copyWith;
 
-  ProjectBranchLogsQueryRequest _copyWith(
-          {Object? since = sdkOmittedValue,
-          Object? startTime = sdkOmittedValue,
-          Object? endTime = sdkOmittedValue,
-          Object? limit = sdkOmittedValue,
-          Object? cursor = sdkOmittedValue,
-          Object? sortOrder = sdkOmittedValue,
-          Object? source = sdkOmittedValue,
-          Object? serviceName = sdkOmittedValue,
-          Object? scopeName = sdkOmittedValue,
-          Object? minimumSeverity = sdkOmittedValue,
-          Object? severityText = sdkOmittedValue,
-          Object? bodyContains = sdkOmittedValue,
-          Object? traceId = sdkOmittedValue,
-          Object? logql = sdkOmittedValue}) =>
-      ProjectBranchLogsQueryRequest(
-        since: identical(since, sdkOmittedValue)
-            ? this.since
-            : since as SdkOptional<String>,
-        startTime: identical(startTime, sdkOmittedValue)
-            ? this.startTime
-            : startTime as SdkOptional<String>,
-        endTime: identical(endTime, sdkOmittedValue)
-            ? this.endTime
-            : endTime as SdkOptional<String>,
-        limit: identical(limit, sdkOmittedValue)
-            ? this.limit
-            : limit as SdkOptional<int>,
-        cursor: identical(cursor, sdkOmittedValue)
-            ? this.cursor
-            : cursor as SdkOptional<String>,
-        sortOrder: identical(sortOrder, sdkOmittedValue)
-            ? this.sortOrder
-            : sortOrder as SdkOptional<ProjectBranchLogsQueryRequestSortOrder>,
-        source: identical(source, sdkOmittedValue)
-            ? this.source
-            : source as SdkOptional<ProjectBranchLogSource>,
-        serviceName: identical(serviceName, sdkOmittedValue)
-            ? this.serviceName
-            : serviceName as SdkOptional<String>,
-        scopeName: identical(scopeName, sdkOmittedValue)
-            ? this.scopeName
-            : scopeName as SdkOptional<String>,
-        minimumSeverity: identical(minimumSeverity, sdkOmittedValue)
-            ? this.minimumSeverity
-            : minimumSeverity as SdkOptional<ProjectBranchLogSeverity>,
-        severityText: identical(severityText, sdkOmittedValue)
-            ? this.severityText
-            : severityText as SdkOptional<String>,
-        bodyContains: identical(bodyContains, sdkOmittedValue)
-            ? this.bodyContains
-            : bodyContains as SdkOptional<String>,
-        traceId: identical(traceId, sdkOmittedValue)
-            ? this.traceId
-            : traceId as SdkOptional<String>,
-        logql: identical(logql, sdkOmittedValue)
-            ? this.logql
-            : logql as SdkOptional<String>,
-      );
+  ProjectBranchLogsQueryRequest _copyWith({Object? since = sdkOmittedValue, Object? startTime = sdkOmittedValue, Object? endTime = sdkOmittedValue, Object? limit = sdkOmittedValue, Object? cursor = sdkOmittedValue, Object? sortOrder = sdkOmittedValue, Object? source = sdkOmittedValue, Object? serviceName = sdkOmittedValue, Object? scopeName = sdkOmittedValue, Object? minimumSeverity = sdkOmittedValue, Object? severityText = sdkOmittedValue, Object? bodyContains = sdkOmittedValue, Object? traceId = sdkOmittedValue, Object? logql = sdkOmittedValue}) => ProjectBranchLogsQueryRequest(
+    since: identical(since, sdkOmittedValue) ? this.since : since as SdkOptional<String>,
+    startTime: identical(startTime, sdkOmittedValue) ? this.startTime : startTime as SdkOptional<String>,
+    endTime: identical(endTime, sdkOmittedValue) ? this.endTime : endTime as SdkOptional<String>,
+    limit: identical(limit, sdkOmittedValue) ? this.limit : limit as SdkOptional<int>,
+    cursor: identical(cursor, sdkOmittedValue) ? this.cursor : cursor as SdkOptional<String>,
+    sortOrder: identical(sortOrder, sdkOmittedValue) ? this.sortOrder : sortOrder as SdkOptional<ProjectBranchLogsQueryRequestSortOrder>,
+    source: identical(source, sdkOmittedValue) ? this.source : source as SdkOptional<ProjectBranchLogSource>,
+    serviceName: identical(serviceName, sdkOmittedValue) ? this.serviceName : serviceName as SdkOptional<String>,
+    scopeName: identical(scopeName, sdkOmittedValue) ? this.scopeName : scopeName as SdkOptional<String>,
+    minimumSeverity: identical(minimumSeverity, sdkOmittedValue) ? this.minimumSeverity : minimumSeverity as SdkOptional<ProjectBranchLogSeverity>,
+    severityText: identical(severityText, sdkOmittedValue) ? this.severityText : severityText as SdkOptional<String>,
+    bodyContains: identical(bodyContains, sdkOmittedValue) ? this.bodyContains : bodyContains as SdkOptional<String>,
+    traceId: identical(traceId, sdkOmittedValue) ? this.traceId : traceId as SdkOptional<String>,
+    logql: identical(logql, sdkOmittedValue) ? this.logql : logql as SdkOptional<String>,
+  );
 
-  factory ProjectBranchLogsQueryRequest.fromJson(Map<String, dynamic> json) =>
-      ProjectBranchLogsQueryRequest(
-        since: json['since'] != null
-            ? SdkPresent((json['since'] as String?)!)
-            : const SdkOmitted(),
-        startTime: json['start_time'] != null
-            ? SdkPresent((json['start_time'] as String?)!)
-            : const SdkOmitted(),
-        endTime: json['end_time'] != null
-            ? SdkPresent((json['end_time'] as String?)!)
-            : const SdkOmitted(),
-        limit: json['limit'] != null
-            ? SdkPresent(((json['limit'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-        cursor: json['cursor'] != null
-            ? SdkPresent((json['cursor'] as String?)!)
-            : const SdkOmitted(),
-        sortOrder: json['sort_order'] != null
-            ? SdkPresent((json['sort_order'] != null
-                ? ProjectBranchLogsQueryRequestSortOrder.fromJson(
-                    json['sort_order'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        source: json['source'] != null
-            ? SdkPresent((json['source'] != null
-                ? ProjectBranchLogSource.fromJson(json['source'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        serviceName: json['service_name'] != null
-            ? SdkPresent((json['service_name'] as String?)!)
-            : const SdkOmitted(),
-        scopeName: json['scope_name'] != null
-            ? SdkPresent((json['scope_name'] as String?)!)
-            : const SdkOmitted(),
-        minimumSeverity: json['minimum_severity'] != null
-            ? SdkPresent((json['minimum_severity'] != null
-                ? ProjectBranchLogSeverity.fromJson(
-                    json['minimum_severity'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        severityText: json['severity_text'] != null
-            ? SdkPresent((json['severity_text'] as String?)!)
-            : const SdkOmitted(),
-        bodyContains: json['body_contains'] != null
-            ? SdkPresent((json['body_contains'] as String?)!)
-            : const SdkOmitted(),
-        traceId: json['trace_id'] != null
-            ? SdkPresent((json['trace_id'] as String?)!)
-            : const SdkOmitted(),
-        logql: json['logql'] != null
-            ? SdkPresent((json['logql'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory ProjectBranchLogsQueryRequest.fromJson(Map<String, dynamic> json) => ProjectBranchLogsQueryRequest(
+    since: json['since'] != null ? SdkPresent((json['since'] as String?)!) : const SdkOmitted(),
+    startTime: json['start_time'] != null ? SdkPresent((json['start_time'] as String?)!) : const SdkOmitted(),
+    endTime: json['end_time'] != null ? SdkPresent((json['end_time'] as String?)!) : const SdkOmitted(),
+    limit: json['limit'] != null ? SdkPresent(((json['limit'] as num?)?.toInt())!) : const SdkOmitted(),
+    cursor: json['cursor'] != null ? SdkPresent((json['cursor'] as String?)!) : const SdkOmitted(),
+    sortOrder: json['sort_order'] != null ? SdkPresent((json['sort_order'] != null ? ProjectBranchLogsQueryRequestSortOrder.fromJson(json['sort_order'] as String) : null)!) : const SdkOmitted(),
+    source: json['source'] != null ? SdkPresent((json['source'] != null ? ProjectBranchLogSource.fromJson(json['source'] as String) : null)!) : const SdkOmitted(),
+    serviceName: json['service_name'] != null ? SdkPresent((json['service_name'] as String?)!) : const SdkOmitted(),
+    scopeName: json['scope_name'] != null ? SdkPresent((json['scope_name'] as String?)!) : const SdkOmitted(),
+    minimumSeverity: json['minimum_severity'] != null ? SdkPresent((json['minimum_severity'] != null ? ProjectBranchLogSeverity.fromJson(json['minimum_severity'] as String) : null)!) : const SdkOmitted(),
+    severityText: json['severity_text'] != null ? SdkPresent((json['severity_text'] as String?)!) : const SdkOmitted(),
+    bodyContains: json['body_contains'] != null ? SdkPresent((json['body_contains'] as String?)!) : const SdkOmitted(),
+    traceId: json['trace_id'] != null ? SdkPresent((json['trace_id'] as String?)!) : const SdkOmitted(),
+    logql: json['logql'] != null ? SdkPresent((json['logql'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (since) {
-          SdkPresent<String>(value: final value) => {
-              'since': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (startTime) {
-          SdkPresent<String>(value: final value) => {
-              'start_time': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (endTime) {
-          SdkPresent<String>(value: final value) => {
-              'end_time': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (limit) {
-          SdkPresent<int>(value: final value) => {
-              'limit': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (cursor) {
-          SdkPresent<String>(value: final value) => {
-              'cursor': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (sortOrder) {
-          SdkPresent<ProjectBranchLogsQueryRequestSortOrder>(
-            value: final value
-          ) =>
-            {
-              'sort_order': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (source) {
-          SdkPresent<ProjectBranchLogSource>(value: final value) => {
-              'source': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (serviceName) {
-          SdkPresent<String>(value: final value) => {
-              'service_name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (scopeName) {
-          SdkPresent<String>(value: final value) => {
-              'scope_name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (minimumSeverity) {
-          SdkPresent<ProjectBranchLogSeverity>(value: final value) => {
-              'minimum_severity': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (severityText) {
-          SdkPresent<String>(value: final value) => {
-              'severity_text': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (bodyContains) {
-          SdkPresent<String>(value: final value) => {
-              'body_contains': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (traceId) {
-          SdkPresent<String>(value: final value) => {
-              'trace_id': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (logql) {
-          SdkPresent<String>(value: final value) => {
-              'logql': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (since) {
+      SdkPresent<String>(value: final value) => {'since': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (startTime) {
+      SdkPresent<String>(value: final value) => {'start_time': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (endTime) {
+      SdkPresent<String>(value: final value) => {'end_time': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (limit) {
+      SdkPresent<int>(value: final value) => {'limit': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (cursor) {
+      SdkPresent<String>(value: final value) => {'cursor': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (sortOrder) {
+      SdkPresent<ProjectBranchLogsQueryRequestSortOrder>(value: final value) => {'sort_order': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (source) {
+      SdkPresent<ProjectBranchLogSource>(value: final value) => {'source': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (serviceName) {
+      SdkPresent<String>(value: final value) => {'service_name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (scopeName) {
+      SdkPresent<String>(value: final value) => {'scope_name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (minimumSeverity) {
+      SdkPresent<ProjectBranchLogSeverity>(value: final value) => {'minimum_severity': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (severityText) {
+      SdkPresent<String>(value: final value) => {'severity_text': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (bodyContains) {
+      SdkPresent<String>(value: final value) => {'body_contains': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (traceId) {
+      SdkPresent<String>(value: final value) => {'trace_id': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (logql) {
+      SdkPresent<String>(value: final value) => {'logql': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `ProjectBranchLogsQueryResponse` API schema.
 class ProjectBranchLogsQueryResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required array value serialized in the `logs` wire field.
   final List<ProjectBranchLogRecord> logs;
-
   /// Pagination cursor to pass as `cursor` on the next request. Empty when the response is not truncated.
   final SdkOptional<String> nextCursor;
-
   /// True when more records matched than were returned.
   final bool isTruncated;
 
-  const ProjectBranchLogsQueryResponse(
-      {required this.logs,
-      this.nextCursor = const SdkOmitted(),
-      required this.isTruncated});
+  const ProjectBranchLogsQueryResponse({required this.logs, this.nextCursor = const SdkOmitted(), required this.isTruncated});
 
-  ProjectBranchLogsQueryResponse Function(
-      {List<ProjectBranchLogRecord> logs,
-      SdkOptional<String> nextCursor,
-      bool isTruncated}) get copyWith => _copyWith;
+  ProjectBranchLogsQueryResponse Function({List<ProjectBranchLogRecord> logs, SdkOptional<String> nextCursor, bool isTruncated}) get copyWith => _copyWith;
 
-  ProjectBranchLogsQueryResponse _copyWith(
-          {Object? logs = sdkOmittedValue,
-          Object? nextCursor = sdkOmittedValue,
-          Object? isTruncated = sdkOmittedValue}) =>
-      ProjectBranchLogsQueryResponse(
-        logs: identical(logs, sdkOmittedValue)
-            ? this.logs
-            : logs as List<ProjectBranchLogRecord>,
-        nextCursor: identical(nextCursor, sdkOmittedValue)
-            ? this.nextCursor
-            : nextCursor as SdkOptional<String>,
-        isTruncated: identical(isTruncated, sdkOmittedValue)
-            ? this.isTruncated
-            : isTruncated as bool,
-      );
+  ProjectBranchLogsQueryResponse _copyWith({Object? logs = sdkOmittedValue, Object? nextCursor = sdkOmittedValue, Object? isTruncated = sdkOmittedValue}) => ProjectBranchLogsQueryResponse(
+    logs: identical(logs, sdkOmittedValue) ? this.logs : logs as List<ProjectBranchLogRecord>,
+    nextCursor: identical(nextCursor, sdkOmittedValue) ? this.nextCursor : nextCursor as SdkOptional<String>,
+    isTruncated: identical(isTruncated, sdkOmittedValue) ? this.isTruncated : isTruncated as bool,
+  );
 
-  factory ProjectBranchLogsQueryResponse.fromJson(Map<String, dynamic> json) =>
-      ProjectBranchLogsQueryResponse(
-        logs: ((json['logs'] as List?)
-            ?.map((e) =>
-                ProjectBranchLogRecord.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-        nextCursor: json['next_cursor'] != null
-            ? SdkPresent((json['next_cursor'] as String?)!)
-            : const SdkOmitted(),
-        isTruncated: (json['is_truncated'] as bool?)!,
-      );
+  factory ProjectBranchLogsQueryResponse.fromJson(Map<String, dynamic> json) => ProjectBranchLogsQueryResponse(
+    logs: ((json['logs'] as List?)?.map((e) => ProjectBranchLogRecord.fromJson(e as Map<String, dynamic>)).toList())!,
+    nextCursor: json['next_cursor'] != null ? SdkPresent((json['next_cursor'] as String?)!) : const SdkOmitted(),
+    isTruncated: (json['is_truncated'] as bool?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'logs': logs.map((item) => item.toJson()).toList(),
-        ...switch (nextCursor) {
-          SdkPresent<String>(value: final value) => {
-              'next_cursor': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        'is_truncated': isTruncated,
-      };
+    'logs': logs.map((item) => item.toJson()).toList(),
+    ...switch (nextCursor) {
+      SdkPresent<String>(value: final value) => {'next_cursor': value,},
+      _ => const <String, dynamic>{},
+    },
+    'is_truncated': isTruncated,
+  };
 }

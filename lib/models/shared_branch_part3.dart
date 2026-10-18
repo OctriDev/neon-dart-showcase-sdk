@@ -8,65 +8,40 @@ part of 'shared_branch.dart';
 class BranchRecoveryInfo {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Timestamp when the branch was deleted
   final String deletedAt;
-
   /// Timestamp when the recovery window expires and the branch will be permanently deleted
   final String recoverableUntil;
-
   /// How the branch was deleted: 'user' for manual deletion, 'ttl' for TTL expiration
   final BranchRecoveryInfoDeletionMethod deletionMethod;
 
-  const BranchRecoveryInfo(
-      {required this.deletedAt,
-      required this.recoverableUntil,
-      required this.deletionMethod});
+  const BranchRecoveryInfo({required this.deletedAt, required this.recoverableUntil, required this.deletionMethod});
 
-  BranchRecoveryInfo Function(
-          {String deletedAt,
-          String recoverableUntil,
-          BranchRecoveryInfoDeletionMethod deletionMethod})
-      get copyWith => _copyWith;
+  BranchRecoveryInfo Function({String deletedAt, String recoverableUntil, BranchRecoveryInfoDeletionMethod deletionMethod}) get copyWith => _copyWith;
 
-  BranchRecoveryInfo _copyWith(
-          {Object? deletedAt = sdkOmittedValue,
-          Object? recoverableUntil = sdkOmittedValue,
-          Object? deletionMethod = sdkOmittedValue}) =>
-      BranchRecoveryInfo(
-        deletedAt: identical(deletedAt, sdkOmittedValue)
-            ? this.deletedAt
-            : deletedAt as String,
-        recoverableUntil: identical(recoverableUntil, sdkOmittedValue)
-            ? this.recoverableUntil
-            : recoverableUntil as String,
-        deletionMethod: identical(deletionMethod, sdkOmittedValue)
-            ? this.deletionMethod
-            : deletionMethod as BranchRecoveryInfoDeletionMethod,
-      );
+  BranchRecoveryInfo _copyWith({Object? deletedAt = sdkOmittedValue, Object? recoverableUntil = sdkOmittedValue, Object? deletionMethod = sdkOmittedValue}) => BranchRecoveryInfo(
+    deletedAt: identical(deletedAt, sdkOmittedValue) ? this.deletedAt : deletedAt as String,
+    recoverableUntil: identical(recoverableUntil, sdkOmittedValue) ? this.recoverableUntil : recoverableUntil as String,
+    deletionMethod: identical(deletionMethod, sdkOmittedValue) ? this.deletionMethod : deletionMethod as BranchRecoveryInfoDeletionMethod,
+  );
 
-  factory BranchRecoveryInfo.fromJson(Map<String, dynamic> json) =>
-      BranchRecoveryInfo(
-        deletedAt: (json['deleted_at'] as String?)!,
-        recoverableUntil: (json['recoverable_until'] as String?)!,
-        deletionMethod: (json['deletion_method'] != null
-            ? BranchRecoveryInfoDeletionMethod.fromJson(
-                json['deletion_method'] as String)
-            : null)!,
-      );
+  factory BranchRecoveryInfo.fromJson(Map<String, dynamic> json) => BranchRecoveryInfo(
+    deletedAt: (json['deleted_at'] as String?)!,
+    recoverableUntil: (json['recoverable_until'] as String?)!,
+    deletionMethod: (json['deletion_method'] != null ? BranchRecoveryInfoDeletionMethod.fromJson(json['deletion_method'] as String) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'deleted_at': deletedAt,
-        'recoverable_until': recoverableUntil,
-        'deletion_method': deletionMethod.toJson(),
-      };
+    'deleted_at': deletedAt,
+    'recoverable_until': recoverableUntil,
+    'deletion_method': deletionMethod.toJson(),
+  };
 }
 
 /// Typed representation of the `BranchResponse` API schema.
 class BranchResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Branch returned by the request.
   final Branch branch;
 
@@ -74,21 +49,17 @@ class BranchResponse {
 
   BranchResponse Function({Branch branch}) get copyWith => _copyWith;
 
-  BranchResponse _copyWith({Object? branch = sdkOmittedValue}) =>
-      BranchResponse(
-        branch:
-            identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
-      );
+  BranchResponse _copyWith({Object? branch = sdkOmittedValue}) => BranchResponse(
+    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+  );
 
   factory BranchResponse.fromJson(Map<String, dynamic> json) => BranchResponse(
-        branch: (json['branch'] != null
-            ? Branch.fromJson(json['branch'] as Map<String, dynamic>)
-            : null)!,
-      );
+    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'branch': branch.toJson(),
-      };
+    'branch': branch.toJson(),
+  };
 }
 
 // BranchRestoreStatus = String
@@ -97,36 +68,29 @@ class BranchResponse {
 class BranchRestrictedAction {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The name of a restricted action on a branch. `restore`: the branch cannot be used as a restore target. `delete-rw-endpoint`: the read-write endpoint for the branch cannot be deleted.
   final String name;
-
   /// A human-readable explanation of why the action is restricted.
   final String reason;
 
   const BranchRestrictedAction({required this.name, required this.reason});
 
-  BranchRestrictedAction Function({String name, String reason}) get copyWith =>
-      _copyWith;
+  BranchRestrictedAction Function({String name, String reason}) get copyWith => _copyWith;
 
-  BranchRestrictedAction _copyWith(
-          {Object? name = sdkOmittedValue, Object? reason = sdkOmittedValue}) =>
-      BranchRestrictedAction(
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        reason:
-            identical(reason, sdkOmittedValue) ? this.reason : reason as String,
-      );
+  BranchRestrictedAction _copyWith({Object? name = sdkOmittedValue, Object? reason = sdkOmittedValue}) => BranchRestrictedAction(
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    reason: identical(reason, sdkOmittedValue) ? this.reason : reason as String,
+  );
 
-  factory BranchRestrictedAction.fromJson(Map<String, dynamic> json) =>
-      BranchRestrictedAction(
-        name: (json['name'] as String?)!,
-        reason: (json['reason'] as String?)!,
-      );
+  factory BranchRestrictedAction.fromJson(Map<String, dynamic> json) => BranchRestrictedAction(
+    name: (json['name'] as String?)!,
+    reason: (json['reason'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'reason': reason,
-      };
+    'name': name,
+    'reason': reason,
+  };
 }
 
 // BranchState = String

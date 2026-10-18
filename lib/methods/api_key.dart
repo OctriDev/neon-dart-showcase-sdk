@@ -13,17 +13,12 @@ Future<List<ApiKeysListResponseItem>> listApiKey(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listApiKey',
-          fromJsonRaw: (value) => (value as List)
-              .map((item) => ApiKeysListResponseItem.fromJson(
-                  item as Map<String, dynamic>))
-              .toList(),
+          fromJsonRaw: (value) => (value as List).map((item) => ApiKeysListResponseItem.fromJson(item as Map<String, dynamic>)).toList(),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Creates an API key. The `key_name` is a user-specified name for the key. Returns an `id` and `key`; the `key` is a randomly generated, 64-bit token required to access the Neon API. Store the key securely — it is only returned once. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/).
 ///
@@ -38,15 +33,12 @@ Future<ApiKeyCreateResponse> createApiKey(ClientConfig config,
           body: {'key_name': keyName},
           decoder: SdkResponseDecoder.json,
           operationId: 'createApiKey',
-          fromJsonRaw: (value) =>
-              ApiKeyCreateResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ApiKeyCreateResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Revokes the specified API key. An API key that is no longer needed can be revoked. This action cannot be reversed. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/).
 ///
@@ -58,12 +50,8 @@ Future<ApiKeyRevokeResponse> revokeApiKey(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'revokeApiKey',
-          fromJsonRaw: (value) =>
-              ApiKeyRevokeResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ApiKeyRevokeResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

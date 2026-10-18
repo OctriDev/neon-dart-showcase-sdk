@@ -17,15 +17,14 @@ import '../types.dart';
 /// [category] Filter issues by category
 /// [minSeverity] Minimum severity level to include. For example, WARN returns
 ///   WARN and ERROR issues, excluding INFO.
-Future<GetProjectAdvisorSecurityIssuesResponse> getProjectAdvisorSecurityIssues(
-    ClientConfig config,
-    {required String projectId,
-    SdkOptional<String> branchId = const SdkOmitted(),
-    SdkOptional<String> databaseName = const SdkOmitted(),
-    SdkOptional<AdvisorCategory> category = const SdkOmitted(),
-    SdkOptional<GetProjectAdvisorSecurityIssuesMinSeverity> minSeverity =
-        const SdkOmitted(),
-    RequestOptions? requestOptions}) async {
+Future<GetProjectAdvisorSecurityIssuesResponse>
+    getProjectAdvisorSecurityIssues(ClientConfig config,
+        {required String projectId,
+        SdkOptional<String> branchId = const SdkOmitted(),
+        SdkOptional<String> databaseName = const SdkOmitted(),
+        SdkOptional<AdvisorCategory> category = const SdkOmitted(),
+        SdkOptional<GetProjectAdvisorSecurityIssuesMinSeverity> minSeverity = const SdkOmitted(),
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   if (branchId is SdkPresent<String>) {
     sdkValidatePattern('branch_id', branchId.value, '^[a-z0-9-]{1,60}\$');
@@ -35,29 +34,19 @@ Future<GetProjectAdvisorSecurityIssuesResponse> getProjectAdvisorSecurityIssues(
           '/projects/${Uri.encodeComponent(projectId.toString())}/advisors',
           config: config,
           query: {
-            'branch_id': SdkQueryValue(SdkUtils.unwrapOptional(branchId),
-                style: 'form', explode: true),
-            'database_name': SdkQueryValue(
-                SdkUtils.unwrapOptional(databaseName),
-                style: 'form',
-                explode: true),
-            'category': SdkQueryValue(SdkUtils.unwrapOptional(category),
-                style: 'form', explode: true),
-            'min_severity': SdkQueryValue(SdkUtils.unwrapOptional(minSeverity),
-                style: 'form', explode: true)
+            'branch_id': SdkQueryValue(SdkUtils.unwrapOptional(branchId), style: 'form', explode: true),
+            'database_name': SdkQueryValue(SdkUtils.unwrapOptional(databaseName), style: 'form', explode: true),
+            'category': SdkQueryValue(SdkUtils.unwrapOptional(category), style: 'form', explode: true),
+            'min_severity': SdkQueryValue(SdkUtils.unwrapOptional(minSeverity), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'getProjectAdvisorSecurityIssues',
-          fromJsonRaw: (value) =>
-              GetProjectAdvisorSecurityIssuesResponse.fromJson(
-                  value as Map<String, dynamic>),
+          fromJsonRaw: (value) => GetProjectAdvisorSecurityIssuesResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves a list of projects for the specified organization. If using a personal API key, include the `org_id` parameter to specify which organization to work with. If using an org API key, `org_id` is automatically inferred from the key. For more information, see [Manage organizations using the Neon API](https://neon.com/docs/manage/orgs-api) and [Manage projects](https://neon.com/docs/manage/projects/).
 ///
@@ -96,30 +85,21 @@ Future<ListProjectsResponse> listProjects(ClientConfig config,
   return (await sdkRequest<ListProjectsResponse>('GET', '/projects',
           config: config,
           query: {
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
-                style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
-                style: 'form', explode: true),
-            'search': SdkQueryValue(SdkUtils.unwrapOptional(search),
-                style: 'form', explode: true),
-            'org_id': SdkQueryValue(SdkUtils.unwrapOptional(orgId),
-                style: 'form', explode: true),
-            'timeout': SdkQueryValue(SdkUtils.unwrapOptional(timeout),
-                style: 'form', explode: true),
-            'recoverable': SdkQueryValue(SdkUtils.unwrapOptional(recoverable),
-                style: 'form', explode: true)
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true),
+            'search': SdkQueryValue(SdkUtils.unwrapOptional(search), style: 'form', explode: true),
+            'org_id': SdkQueryValue(SdkUtils.unwrapOptional(orgId), style: 'form', explode: true),
+            'timeout': SdkQueryValue(SdkUtils.unwrapOptional(timeout), style: 'form', explode: true),
+            'recoverable': SdkQueryValue(SdkUtils.unwrapOptional(recoverable), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listProjects',
-          fromJsonRaw: (value) =>
-              ListProjectsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListProjectsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Creates a Neon project within an organization. If using a personal API key, include the `org_id` parameter to specify which organization to create the project in. If using an org API key, `org_id` is automatically inferred from the key. Plan limits define how many projects you can create. For more information, see [Manage projects](https://neon.com/docs/manage/projects/). You can specify a region and Postgres version in the request body. Neon supports Postgres 14 through 18, with 19 rolling out to enabled regions. For supported regions and `region_id` values, see [Regions](https://neon.com/docs/introduction/regions/).
 ///
@@ -133,15 +113,12 @@ Future<CreateProjectResponse> createProject(ClientConfig config,
           body: {'project': project},
           decoder: SdkResponseDecoder.json,
           operationId: 'createProject',
-          fromJsonRaw: (value) =>
-              CreateProjectResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => CreateProjectResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves a list of projects shared with your Neon account. For more information, see [Manage projects](https://neon.com/docs/manage/projects/).
 ///
@@ -173,26 +150,19 @@ Future<ListSharedProjectsResponse> listSharedProjects(ClientConfig config,
           'GET', '/projects/shared',
           config: config,
           query: {
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
-                style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
-                style: 'form', explode: true),
-            'search': SdkQueryValue(SdkUtils.unwrapOptional(search),
-                style: 'form', explode: true),
-            'timeout': SdkQueryValue(SdkUtils.unwrapOptional(timeout),
-                style: 'form', explode: true)
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true),
+            'search': SdkQueryValue(SdkUtils.unwrapOptional(search), style: 'form', explode: true),
+            'timeout': SdkQueryValue(SdkUtils.unwrapOptional(timeout), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listSharedProjects',
-          fromJsonRaw: (value) => ListSharedProjectsResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListSharedProjectsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves information about the specified project. Returned details include the project settings, compute configuration, history retention, owner information, and current usage metrics.
 ///
@@ -206,15 +176,12 @@ Future<ProjectResponse> getProject(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getProject',
-          fromJsonRaw: (value) =>
-              ProjectResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates configurable properties of a Neon project, including its name, project settings, default endpoint settings, and history retention period. Supply the required `project` object and include only the properties you want to change. The response includes the updated project and any operations associated with the update.
 ///
@@ -234,15 +201,12 @@ Future<UpdateProjectResponse> updateProject(ClientConfig config,
           body: {'project': project},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateProject',
-          fromJsonRaw: (value) =>
-              UpdateProjectResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => UpdateProjectResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Deletes the specified project and all its endpoints, branches, databases, and users. Deleted projects can be recovered within 7 days using `POST /projects/{project_id}/recover`. To list recoverable projects, use `GET /projects?recoverable=true`.
 ///
@@ -256,15 +220,12 @@ Future<ProjectResponse> deleteProject(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'deleteProject',
-          fromJsonRaw: (value) =>
-              ProjectResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Recovers a deleted project within the 7-day deletion recovery period. Restores branches, endpoints, settings, and connection strings. Some integrations require manual reconfiguration after recovery. To list recoverable projects, use `GET /projects?recoverable=true`.
 ///
@@ -278,15 +239,12 @@ Future<ProjectRecoverResponse> recoverProject(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'recoverProject',
-          fromJsonRaw: (value) =>
-              ProjectRecoverResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectRecoverResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists users who have access to a project, including each permission ID, the granted-to email address, and the grant date. Use the permission ID to identify a specific project access grant when you need to revoke it.
 ///
@@ -300,15 +258,12 @@ Future<ProjectPermissions> listProjectPermissions(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listProjectPermissions',
-          fromJsonRaw: (value) =>
-              ProjectPermissions.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectPermissions.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Grants project access to the account associated with an email address. Supply the recipient's `email` in the request body to create a project permission. The response includes the new permission's identifier and grant details.
 ///
@@ -329,15 +284,12 @@ Future<ProjectPermission> grantProjectPermission(ClientConfig config,
           body: {'email': email},
           decoder: SdkResponseDecoder.json,
           operationId: 'grantProjectPermission',
-          fromJsonRaw: (value) =>
-              ProjectPermission.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectPermission.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists organization members and their project roles for an organization-owned project. The members shown depend on the authenticated user's access: VIEWER and EDITOR see members with effective project access, while ADMIN also sees unassigned organization members. Use `limit` and the response's `pagination.next` cursor to retrieve subsequent pages.
 ///
@@ -361,22 +313,17 @@ Future<ProjectMembers> listProjectMembers(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/members',
           config: config,
           query: {
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
-                style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
-                style: 'form', explode: true)
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listProjectMembers',
-          fromJsonRaw: (value) =>
-              ProjectMembers.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectMembers.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Sets or updates an organization's member's explicit role on a project. Provide `role` as `viewer`, `editor`, or `admin` to set the corresponding project permission. If the authenticated user is demoting themself, set `confirm_self_demotion` to true.
 ///
@@ -397,23 +344,17 @@ Future<ProjectMemberRoleResponse> setProjectMemberRole(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/members/${Uri.encodeComponent(memberId.toString())}/role',
           config: config,
           query: {
-            'confirm_self_demotion': SdkQueryValue(
-                SdkUtils.unwrapOptional(confirmSelfDemotion),
-                style: 'form',
-                explode: true)
+            'confirm_self_demotion': SdkQueryValue(SdkUtils.unwrapOptional(confirmSelfDemotion), style: 'form', explode: true)
           },
           body: {'role': role},
           decoder: SdkResponseDecoder.json,
           operationId: 'setProjectMemberRole',
-          fromJsonRaw: (value) =>
-              ProjectMemberRoleResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectMemberRoleResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Removes an organization's member's explicit role on a project. The member's organization-role default project permission continues to apply, and the operation is a no-op if no explicit role exists. If removing your own role would remove your effective management access, confirm the change with `confirm_self_lockout`.
 ///
@@ -430,22 +371,16 @@ Future<ProjectMemberRoleResponse> removeProjectMemberRole(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/members/${Uri.encodeComponent(memberId.toString())}/role',
           config: config,
           query: {
-            'confirm_self_lockout': SdkQueryValue(
-                SdkUtils.unwrapOptional(confirmSelfLockout),
-                style: 'form',
-                explode: true)
+            'confirm_self_lockout': SdkQueryValue(SdkUtils.unwrapOptional(confirmSelfLockout), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'removeProjectMemberRole',
-          fromJsonRaw: (value) =>
-              ProjectMemberRoleResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectMemberRoleResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Revokes a user's access to a project using the ID of the access permission. Retrieve the permission ID by listing project access, then provide it with the project identifier. The response includes the permission's grant and revocation details.
 ///
@@ -463,20 +398,16 @@ Future<ProjectPermission> revokeProjectPermission(ClientConfig config,
           operationId: 'revokeProjectPermission',
           fromJsonRaw: (value) => ProjectPermission.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists the shared preload libraries available for the specified project's Postgres version. Use the list to choose libraries for the project's `settings.preload_libraries` configuration; activating these libraries requires a compute restart.
 ///
 /// Returns the shared preload libraries available for the specified project's Postgres version. Shared preload libraries are Postgres extensions that require the `shared_preload_libraries` setting and a compute restart to activate. Use this list to determine which libraries can be enabled in the project's `settings.preload_libraries` configuration.
-Future<AvailablePreloadLibraries> getAvailablePreloadLibraries(
-    ClientConfig config,
-    {required String projectId,
-    RequestOptions? requestOptions}) async {
+Future<AvailablePreloadLibraries> getAvailablePreloadLibraries(ClientConfig config,
+    {required String projectId, RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<AvailablePreloadLibraries>('GET',
@@ -486,23 +417,21 @@ Future<AvailablePreloadLibraries> getAvailablePreloadLibraries(
           operationId: 'getAvailablePreloadLibraries',
           fromJsonRaw: (value) => AvailablePreloadLibraries.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Creates a transfer request for the specified project. The request expires after a set period. To accept the request, the recipient calls `PUT /projects/{project_id}/transfer_requests/{request_id}` or uses the Neon Console claim link. The optional `ru` parameter redirects the recipient after acceptance.
 ///
 /// [projectId] The Neon project ID
 /// [ttlSeconds] Number of seconds the transfer request stays valid before it
 ///   expires. Defaults to 86400 (24 hours).
-Future<ProjectTransferRequestResponse> createProjectTransferRequest(
-    ClientConfig config,
-    {required String projectId,
-    SdkOptional<int> ttlSeconds = const SdkOmitted(),
-    RequestOptions? requestOptions}) async {
+Future<ProjectTransferRequestResponse>
+    createProjectTransferRequest(ClientConfig config,
+        {required String projectId,
+        SdkOptional<int> ttlSeconds = const SdkOmitted(),
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<ProjectTransferRequestResponse>('POST',
@@ -511,15 +440,12 @@ Future<ProjectTransferRequestResponse> createProjectTransferRequest(
           body: {'ttl_seconds': SdkUtils.unwrapOptional(ttlSeconds)},
           decoder: SdkResponseDecoder.json,
           operationId: 'createProjectTransferRequest',
-          fromJsonRaw: (value) => ProjectTransferRequestResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectTransferRequestResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Accepts a transfer request for the specified project, transferring it to the specified organization or user. If org_id is not passed, the project will be transferred to the current user or organization account.
 ///
@@ -546,15 +472,10 @@ Future<void> acceptProjectTransferRequest(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'acceptProjectTransferRequest',
           options: requestOptions,
-          errors: {
-            '406': (value) =>
-                AcceptProjectTransferRequestSatisfiesPlanError.fromJson(
-                    value as Map<String, dynamic>),
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'406': (value) => AcceptProjectTransferRequestSatisfiesPlanError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Returns the JWKS URLs available for verifying JWTs used as the authentication mechanism for the specified project.
 ///
@@ -568,15 +489,12 @@ Future<ProjectJWKSResponse> getProjectJwks(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getProjectJwks',
-          fromJsonRaw: (value) =>
-              ProjectJWKSResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectJWKSResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Adds a JWKS URL to the specified project for verifying JWTs used as the authentication mechanism. The URL must be a valid HTTPS URL that returns a JSON Web Key Set. The `provider_name` field allows you to specify which authentication provider you're using (e.g., Clerk, Auth0, AWS Cognito). The `branch_id` scopes the JWKS URL to specific branches; if not specified, it applies to all branches. The `role_names` scopes the URL to specific roles; if not specified, default roles are used (`authenticator`, `authenticated`, `anonymous`). The `jwt_audience` specifies which `aud` values are accepted in JWTs.
 ///
@@ -624,15 +542,12 @@ Future<JWKSCreationOperation> addProjectJwks(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'addProjectJwks',
-          fromJsonRaw: (value) =>
-              JWKSCreationOperation.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => JWKSCreationOperation.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Removes the specified JWKS URL from the project. JWTs signed by keys from the removed URL can no longer authenticate to the project's endpoints.
 ///
@@ -651,12 +566,10 @@ Future<JWKS> deleteProjectJwks(ClientConfig config,
           operationId: 'deleteProjectJwks',
           fromJsonRaw: (value) => JWKS.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves a connection URI for the specified database. The URI uses the standard PostgreSQL connection string format. Set `pooled=true` to include the `-pooler` suffix for a connection pooler URI.
 ///
@@ -689,27 +602,20 @@ Future<ConnectionURIResponse> getConnectionUri(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/connection_uri',
           config: config,
           query: {
-            'database_name':
-                SdkQueryValue(databaseName, style: 'form', explode: true),
+            'database_name': SdkQueryValue(databaseName, style: 'form', explode: true),
             'role_name': SdkQueryValue(roleName, style: 'form', explode: true),
-            'branch_id': SdkQueryValue(SdkUtils.unwrapOptional(branchId),
-                style: 'form', explode: true),
-            'endpoint_id': SdkQueryValue(SdkUtils.unwrapOptional(endpointId),
-                style: 'form', explode: true),
-            'pooled': SdkQueryValue(SdkUtils.unwrapOptional(pooled),
-                style: 'form', explode: true)
+            'branch_id': SdkQueryValue(SdkUtils.unwrapOptional(branchId), style: 'form', explode: true),
+            'endpoint_id': SdkQueryValue(SdkUtils.unwrapOptional(endpointId), style: 'form', explode: true),
+            'pooled': SdkQueryValue(SdkUtils.unwrapOptional(pooled), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'getConnectionUri',
-          fromJsonRaw: (value) =>
-              ConnectionURIResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ConnectionURIResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists VPC endpoint restrictions for the specified Neon project.
 ///
@@ -725,12 +631,10 @@ Future<VPCEndpointsResponse> listProjectVpcEndpoints(ClientConfig config,
           operationId: 'listProjectVpcEndpoints',
           fromJsonRaw: (value) => VPCEndpointsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Sets or updates a VPC endpoint restriction for a Neon project. When a VPC endpoint restriction is set, the project only accepts connections from the specified VPC. A VPC endpoint can be set as a restriction only after it is assigned to the parent organization of the Neon project.
 ///
@@ -752,12 +656,10 @@ Future<void> assignProjectVpcEndpoint(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'assignProjectVpcEndpoint',
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Removes the specified VPC endpoint restriction from a Neon project.
 ///
@@ -775,9 +677,6 @@ Future<void> deleteProjectVpcEndpoint(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteProjectVpcEndpoint',
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

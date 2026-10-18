@@ -8,7 +8,6 @@ part of 'project_connection.dart';
 class ConnectionURIResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The connection URI.
   final String uri;
 
@@ -16,50 +15,39 @@ class ConnectionURIResponse {
 
   ConnectionURIResponse Function({String uri}) get copyWith => _copyWith;
 
-  ConnectionURIResponse _copyWith({Object? uri = sdkOmittedValue}) =>
-      ConnectionURIResponse(
-        uri: identical(uri, sdkOmittedValue) ? this.uri : uri as String,
-      );
+  ConnectionURIResponse _copyWith({Object? uri = sdkOmittedValue}) => ConnectionURIResponse(
+    uri: identical(uri, sdkOmittedValue) ? this.uri : uri as String,
+  );
 
-  factory ConnectionURIResponse.fromJson(Map<String, dynamic> json) =>
-      ConnectionURIResponse(
-        uri: (json['uri'] as String?)!,
-      );
+  factory ConnectionURIResponse.fromJson(Map<String, dynamic> json) => ConnectionURIResponse(
+    uri: (json['uri'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'uri': uri,
-      };
+    'uri': uri,
+  };
 }
 
 /// Typed representation of the `ConnectionURIsResponse` API schema.
 class ConnectionURIsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Connection URIs for the project. Each entry contains credentials and should be treated as sensitive.
   final List<ConnectionDetails> connectionUris;
 
   const ConnectionURIsResponse({required this.connectionUris});
 
-  ConnectionURIsResponse Function({List<ConnectionDetails> connectionUris})
-      get copyWith => _copyWith;
+  ConnectionURIsResponse Function({List<ConnectionDetails> connectionUris}) get copyWith => _copyWith;
 
-  ConnectionURIsResponse _copyWith(
-          {Object? connectionUris = sdkOmittedValue}) =>
-      ConnectionURIsResponse(
-        connectionUris: identical(connectionUris, sdkOmittedValue)
-            ? this.connectionUris
-            : connectionUris as List<ConnectionDetails>,
-      );
+  ConnectionURIsResponse _copyWith({Object? connectionUris = sdkOmittedValue}) => ConnectionURIsResponse(
+    connectionUris: identical(connectionUris, sdkOmittedValue) ? this.connectionUris : connectionUris as List<ConnectionDetails>,
+  );
 
-  factory ConnectionURIsResponse.fromJson(Map<String, dynamic> json) =>
-      ConnectionURIsResponse(
-        connectionUris: ((json['connection_uris'] as List?)
-            ?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ConnectionURIsResponse.fromJson(Map<String, dynamic> json) => ConnectionURIsResponse(
+    connectionUris: ((json['connection_uris'] as List?)?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'connection_uris': connectionUris.map((item) => item.toJson()).toList(),
-      };
+    'connection_uris': connectionUris.map((item) => item.toJson()).toList(),
+  };
 }
