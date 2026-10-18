@@ -8,270 +8,499 @@ part of 'auth.dart';
 class NeonAuthOAuthClientCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Display name of the client.
   final String name;
+
   /// Redirect URIs the client may use. Must be https, or http on loopback hosts when localhost is allowed.
   final List<String> redirectUris;
+
   /// Confidential clients authenticate with a client secret. Public clients have no secret.
   final NeonAuthOAuthClientType type_;
+
   /// Identifiers of the protected resources to link the client to. Each must be configured on the OAuth provider plugin.
   final List<String> resources;
+
   /// Whether to skip the consent prompt for this client.
   final SdkOptional<bool> skipConsent;
 
-  const NeonAuthOAuthClientCreateRequest({required this.name, required this.redirectUris, required this.type_, required this.resources, this.skipConsent = const SdkOmitted()});
+  const NeonAuthOAuthClientCreateRequest(
+      {required this.name,
+      required this.redirectUris,
+      required this.type_,
+      required this.resources,
+      this.skipConsent = const SdkOmitted()});
 
-  NeonAuthOAuthClientCreateRequest Function({String name, List<String> redirectUris, NeonAuthOAuthClientType type_, List<String> resources, SdkOptional<bool> skipConsent}) get copyWith => _copyWith;
+  NeonAuthOAuthClientCreateRequest Function(
+      {String name,
+      List<String> redirectUris,
+      NeonAuthOAuthClientType type_,
+      List<String> resources,
+      SdkOptional<bool> skipConsent}) get copyWith => _copyWith;
 
-  NeonAuthOAuthClientCreateRequest _copyWith({Object? name = sdkOmittedValue, Object? redirectUris = sdkOmittedValue, Object? type_ = sdkOmittedValue, Object? resources = sdkOmittedValue, Object? skipConsent = sdkOmittedValue}) => NeonAuthOAuthClientCreateRequest(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    redirectUris: identical(redirectUris, sdkOmittedValue) ? this.redirectUris : redirectUris as List<String>,
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as NeonAuthOAuthClientType,
-    resources: identical(resources, sdkOmittedValue) ? this.resources : resources as List<String>,
-    skipConsent: identical(skipConsent, sdkOmittedValue) ? this.skipConsent : skipConsent as SdkOptional<bool>,
-  );
+  NeonAuthOAuthClientCreateRequest _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? redirectUris = sdkOmittedValue,
+          Object? type_ = sdkOmittedValue,
+          Object? resources = sdkOmittedValue,
+          Object? skipConsent = sdkOmittedValue}) =>
+      NeonAuthOAuthClientCreateRequest(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        redirectUris: identical(redirectUris, sdkOmittedValue)
+            ? this.redirectUris
+            : redirectUris as List<String>,
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as NeonAuthOAuthClientType,
+        resources: identical(resources, sdkOmittedValue)
+            ? this.resources
+            : resources as List<String>,
+        skipConsent: identical(skipConsent, sdkOmittedValue)
+            ? this.skipConsent
+            : skipConsent as SdkOptional<bool>,
+      );
 
-  factory NeonAuthOAuthClientCreateRequest.fromJson(Map<String, dynamic> json) => NeonAuthOAuthClientCreateRequest(
-    name: (json['name'] as String?)!,
-    redirectUris: ((json['redirect_uris'] as List?)?.map((e) => e as String).toList())!,
-    type_: (json['type'] != null ? NeonAuthOAuthClientType.fromJson(json['type'] as String) : null)!,
-    resources: ((json['resources'] as List?)?.map((e) => e as String).toList())!,
-    skipConsent: json['skip_consent'] != null ? SdkPresent((json['skip_consent'] as bool?)!) : const SdkOmitted(),
-  );
+  factory NeonAuthOAuthClientCreateRequest.fromJson(
+          Map<String, dynamic> json) =>
+      NeonAuthOAuthClientCreateRequest(
+        name: (json['name'] as String?)!,
+        redirectUris: ((json['redirect_uris'] as List?)
+            ?.map((e) => e as String)
+            .toList())!,
+        type_: (json['type'] != null
+            ? NeonAuthOAuthClientType.fromJson(json['type'] as String)
+            : null)!,
+        resources:
+            ((json['resources'] as List?)?.map((e) => e as String).toList())!,
+        skipConsent: json['skip_consent'] != null
+            ? SdkPresent((json['skip_consent'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'redirect_uris': redirectUris,
-    'type': type_.toJson(),
-    'resources': resources,
-    ...switch (skipConsent) {
-      SdkPresent<bool>(value: final value) => {'skip_consent': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'name': name,
+        'redirect_uris': redirectUris,
+        'type': type_.toJson(),
+        'resources': resources,
+        ...switch (skipConsent) {
+          SdkPresent<bool>(value: final value) => {
+              'skip_consent': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `NeonAuthOAuthClientSecret` API schema.
 class NeonAuthOAuthClientSecret {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The OAuth client ID.
   final String clientId;
+
   /// The new client secret. Shown only once.
   final String clientSecret;
 
-  const NeonAuthOAuthClientSecret({required this.clientId, required this.clientSecret});
+  const NeonAuthOAuthClientSecret(
+      {required this.clientId, required this.clientSecret});
 
-  NeonAuthOAuthClientSecret Function({String clientId, String clientSecret}) get copyWith => _copyWith;
+  NeonAuthOAuthClientSecret Function({String clientId, String clientSecret})
+      get copyWith => _copyWith;
 
-  NeonAuthOAuthClientSecret _copyWith({Object? clientId = sdkOmittedValue, Object? clientSecret = sdkOmittedValue}) => NeonAuthOAuthClientSecret(
-    clientId: identical(clientId, sdkOmittedValue) ? this.clientId : clientId as String,
-    clientSecret: identical(clientSecret, sdkOmittedValue) ? this.clientSecret : clientSecret as String,
-  );
+  NeonAuthOAuthClientSecret _copyWith(
+          {Object? clientId = sdkOmittedValue,
+          Object? clientSecret = sdkOmittedValue}) =>
+      NeonAuthOAuthClientSecret(
+        clientId: identical(clientId, sdkOmittedValue)
+            ? this.clientId
+            : clientId as String,
+        clientSecret: identical(clientSecret, sdkOmittedValue)
+            ? this.clientSecret
+            : clientSecret as String,
+      );
 
-  factory NeonAuthOAuthClientSecret.fromJson(Map<String, dynamic> json) => NeonAuthOAuthClientSecret(
-    clientId: (json['client_id'] as String?)!,
-    clientSecret: (json['client_secret'] as String?)!,
-  );
+  factory NeonAuthOAuthClientSecret.fromJson(Map<String, dynamic> json) =>
+      NeonAuthOAuthClientSecret(
+        clientId: (json['client_id'] as String?)!,
+        clientSecret: (json['client_secret'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'client_id': clientId,
-    'client_secret': clientSecret,
-  };
+        'client_id': clientId,
+        'client_secret': clientSecret,
+      };
 }
 
 /// Confidential clients authenticate with a client secret. Public clients have no secret.
 final class NeonAuthOAuthClientType {
-
   final String value;
 
   const NeonAuthOAuthClientType._(this.value);
 
-  factory NeonAuthOAuthClientType.fromJson(String value) => NeonAuthOAuthClientType._(value);
+  factory NeonAuthOAuthClientType.fromJson(String value) =>
+      NeonAuthOAuthClientType._(value);
 
   static const confidential = NeonAuthOAuthClientType._('confidential');
   static const public = NeonAuthOAuthClientType._('public');
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is NeonAuthOAuthClientType && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is NeonAuthOAuthClientType && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// At least one field must be provided.
 class NeonAuthOAuthClientUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Display name of the client.
   final SdkOptional<String> name;
+
   /// Redirect URIs the client may use. When provided, replaces the stored list.
   final SdkOptional<List<String>> redirectUris;
+
   /// Whether to skip the consent prompt for this client.
   final SdkOptional<bool> skipConsent;
+
   /// Whether the client is disabled.
   final SdkOptional<bool> disabled;
+
   /// Identifiers of the protected resources to link the client to. When provided, replaces the stored list.
   final SdkOptional<List<String>> resources;
 
-  const NeonAuthOAuthClientUpdateRequest({this.name = const SdkOmitted(), this.redirectUris = const SdkOmitted(), this.skipConsent = const SdkOmitted(), this.disabled = const SdkOmitted(), this.resources = const SdkOmitted()});
+  const NeonAuthOAuthClientUpdateRequest(
+      {this.name = const SdkOmitted(),
+      this.redirectUris = const SdkOmitted(),
+      this.skipConsent = const SdkOmitted(),
+      this.disabled = const SdkOmitted(),
+      this.resources = const SdkOmitted()});
 
-  NeonAuthOAuthClientUpdateRequest Function({SdkOptional<String> name, SdkOptional<List<String>> redirectUris, SdkOptional<bool> skipConsent, SdkOptional<bool> disabled, SdkOptional<List<String>> resources}) get copyWith => _copyWith;
+  NeonAuthOAuthClientUpdateRequest Function(
+      {SdkOptional<String> name,
+      SdkOptional<List<String>> redirectUris,
+      SdkOptional<bool> skipConsent,
+      SdkOptional<bool> disabled,
+      SdkOptional<List<String>> resources}) get copyWith => _copyWith;
 
-  NeonAuthOAuthClientUpdateRequest _copyWith({Object? name = sdkOmittedValue, Object? redirectUris = sdkOmittedValue, Object? skipConsent = sdkOmittedValue, Object? disabled = sdkOmittedValue, Object? resources = sdkOmittedValue}) => NeonAuthOAuthClientUpdateRequest(
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-    redirectUris: identical(redirectUris, sdkOmittedValue) ? this.redirectUris : redirectUris as SdkOptional<List<String>>,
-    skipConsent: identical(skipConsent, sdkOmittedValue) ? this.skipConsent : skipConsent as SdkOptional<bool>,
-    disabled: identical(disabled, sdkOmittedValue) ? this.disabled : disabled as SdkOptional<bool>,
-    resources: identical(resources, sdkOmittedValue) ? this.resources : resources as SdkOptional<List<String>>,
-  );
+  NeonAuthOAuthClientUpdateRequest _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? redirectUris = sdkOmittedValue,
+          Object? skipConsent = sdkOmittedValue,
+          Object? disabled = sdkOmittedValue,
+          Object? resources = sdkOmittedValue}) =>
+      NeonAuthOAuthClientUpdateRequest(
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+        redirectUris: identical(redirectUris, sdkOmittedValue)
+            ? this.redirectUris
+            : redirectUris as SdkOptional<List<String>>,
+        skipConsent: identical(skipConsent, sdkOmittedValue)
+            ? this.skipConsent
+            : skipConsent as SdkOptional<bool>,
+        disabled: identical(disabled, sdkOmittedValue)
+            ? this.disabled
+            : disabled as SdkOptional<bool>,
+        resources: identical(resources, sdkOmittedValue)
+            ? this.resources
+            : resources as SdkOptional<List<String>>,
+      );
 
-  factory NeonAuthOAuthClientUpdateRequest.fromJson(Map<String, dynamic> json) => NeonAuthOAuthClientUpdateRequest(
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-    redirectUris: json['redirect_uris'] != null ? SdkPresent(((json['redirect_uris'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
-    skipConsent: json['skip_consent'] != null ? SdkPresent((json['skip_consent'] as bool?)!) : const SdkOmitted(),
-    disabled: json['disabled'] != null ? SdkPresent((json['disabled'] as bool?)!) : const SdkOmitted(),
-    resources: json['resources'] != null ? SdkPresent(((json['resources'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
-  );
+  factory NeonAuthOAuthClientUpdateRequest.fromJson(
+          Map<String, dynamic> json) =>
+      NeonAuthOAuthClientUpdateRequest(
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+        redirectUris: json['redirect_uris'] != null
+            ? SdkPresent(((json['redirect_uris'] as List?)
+                ?.map((e) => e as String)
+                .toList())!)
+            : const SdkOmitted(),
+        skipConsent: json['skip_consent'] != null
+            ? SdkPresent((json['skip_consent'] as bool?)!)
+            : const SdkOmitted(),
+        disabled: json['disabled'] != null
+            ? SdkPresent((json['disabled'] as bool?)!)
+            : const SdkOmitted(),
+        resources: json['resources'] != null
+            ? SdkPresent(((json['resources'] as List?)
+                ?.map((e) => e as String)
+                .toList())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (redirectUris) {
-      SdkPresent<List<String>>(value: final value) => {'redirect_uris': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (skipConsent) {
-      SdkPresent<bool>(value: final value) => {'skip_consent': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (disabled) {
-      SdkPresent<bool>(value: final value) => {'disabled': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (resources) {
-      SdkPresent<List<String>>(value: final value) => {'resources': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (redirectUris) {
+          SdkPresent<List<String>>(value: final value) => {
+              'redirect_uris': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (skipConsent) {
+          SdkPresent<bool>(value: final value) => {
+              'skip_consent': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (disabled) {
+          SdkPresent<bool>(value: final value) => {
+              'disabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (resources) {
+          SdkPresent<List<String>>(value: final value) => {
+              'resources': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `NeonAuthOAuthProviderConfig` API schema.
 class NeonAuthOAuthProviderConfig {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Whether the OAuth provider plugin is enabled.
   final bool enabled;
+
   /// URL of the page that authorization requests redirect to for sign-in.
   final SdkOptional<String> loginPage;
+
   /// URL of the page that authorization requests redirect to for consent.
   final SdkOptional<String> consentPage;
+
   /// MCP resource configuration.
   final SdkOptional<NeonAuthOAuthProviderMcp> mcp;
+
   /// Protected resources that clients can be linked to.
   final SdkOptional<List<NeonAuthOAuthProviderResource>> resources;
 
-  const NeonAuthOAuthProviderConfig({required this.enabled, this.loginPage = const SdkOmitted(), this.consentPage = const SdkOmitted(), this.mcp = const SdkOmitted(), this.resources = const SdkOmitted()});
+  const NeonAuthOAuthProviderConfig(
+      {required this.enabled,
+      this.loginPage = const SdkOmitted(),
+      this.consentPage = const SdkOmitted(),
+      this.mcp = const SdkOmitted(),
+      this.resources = const SdkOmitted()});
 
-  NeonAuthOAuthProviderConfig Function({bool enabled, SdkOptional<String> loginPage, SdkOptional<String> consentPage, SdkOptional<NeonAuthOAuthProviderMcp> mcp, SdkOptional<List<NeonAuthOAuthProviderResource>> resources}) get copyWith => _copyWith;
+  NeonAuthOAuthProviderConfig Function(
+          {bool enabled,
+          SdkOptional<String> loginPage,
+          SdkOptional<String> consentPage,
+          SdkOptional<NeonAuthOAuthProviderMcp> mcp,
+          SdkOptional<List<NeonAuthOAuthProviderResource>> resources})
+      get copyWith => _copyWith;
 
-  NeonAuthOAuthProviderConfig _copyWith({Object? enabled = sdkOmittedValue, Object? loginPage = sdkOmittedValue, Object? consentPage = sdkOmittedValue, Object? mcp = sdkOmittedValue, Object? resources = sdkOmittedValue}) => NeonAuthOAuthProviderConfig(
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as bool,
-    loginPage: identical(loginPage, sdkOmittedValue) ? this.loginPage : loginPage as SdkOptional<String>,
-    consentPage: identical(consentPage, sdkOmittedValue) ? this.consentPage : consentPage as SdkOptional<String>,
-    mcp: identical(mcp, sdkOmittedValue) ? this.mcp : mcp as SdkOptional<NeonAuthOAuthProviderMcp>,
-    resources: identical(resources, sdkOmittedValue) ? this.resources : resources as SdkOptional<List<NeonAuthOAuthProviderResource>>,
-  );
+  NeonAuthOAuthProviderConfig _copyWith(
+          {Object? enabled = sdkOmittedValue,
+          Object? loginPage = sdkOmittedValue,
+          Object? consentPage = sdkOmittedValue,
+          Object? mcp = sdkOmittedValue,
+          Object? resources = sdkOmittedValue}) =>
+      NeonAuthOAuthProviderConfig(
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as bool,
+        loginPage: identical(loginPage, sdkOmittedValue)
+            ? this.loginPage
+            : loginPage as SdkOptional<String>,
+        consentPage: identical(consentPage, sdkOmittedValue)
+            ? this.consentPage
+            : consentPage as SdkOptional<String>,
+        mcp: identical(mcp, sdkOmittedValue)
+            ? this.mcp
+            : mcp as SdkOptional<NeonAuthOAuthProviderMcp>,
+        resources: identical(resources, sdkOmittedValue)
+            ? this.resources
+            : resources as SdkOptional<List<NeonAuthOAuthProviderResource>>,
+      );
 
-  factory NeonAuthOAuthProviderConfig.fromJson(Map<String, dynamic> json) => NeonAuthOAuthProviderConfig(
-    enabled: (json['enabled'] as bool?)!,
-    loginPage: json['login_page'] != null ? SdkPresent((json['login_page'] as String?)!) : const SdkOmitted(),
-    consentPage: json['consent_page'] != null ? SdkPresent((json['consent_page'] as String?)!) : const SdkOmitted(),
-    mcp: json['mcp'] != null ? SdkPresent((json['mcp'] != null ? NeonAuthOAuthProviderMcp.fromJson(json['mcp'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-    resources: json['resources'] != null ? SdkPresent(((json['resources'] as List?)?.map((e) => NeonAuthOAuthProviderResource.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
-  );
+  factory NeonAuthOAuthProviderConfig.fromJson(Map<String, dynamic> json) =>
+      NeonAuthOAuthProviderConfig(
+        enabled: (json['enabled'] as bool?)!,
+        loginPage: json['login_page'] != null
+            ? SdkPresent((json['login_page'] as String?)!)
+            : const SdkOmitted(),
+        consentPage: json['consent_page'] != null
+            ? SdkPresent((json['consent_page'] as String?)!)
+            : const SdkOmitted(),
+        mcp: json['mcp'] != null
+            ? SdkPresent((json['mcp'] != null
+                ? NeonAuthOAuthProviderMcp.fromJson(
+                    json['mcp'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+        resources: json['resources'] != null
+            ? SdkPresent(((json['resources'] as List?)
+                ?.map((e) => NeonAuthOAuthProviderResource.fromJson(
+                    e as Map<String, dynamic>))
+                .toList())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'enabled': enabled,
-    ...switch (loginPage) {
-      SdkPresent<String>(value: final value) => {'login_page': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (consentPage) {
-      SdkPresent<String>(value: final value) => {'consent_page': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (mcp) {
-      SdkPresent<NeonAuthOAuthProviderMcp>(value: final value) => {'mcp': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (resources) {
-      SdkPresent<List<NeonAuthOAuthProviderResource>>(value: final value) => {'resources': value.map((item) => item.toJson()).toList(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'enabled': enabled,
+        ...switch (loginPage) {
+          SdkPresent<String>(value: final value) => {
+              'login_page': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (consentPage) {
+          SdkPresent<String>(value: final value) => {
+              'consent_page': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (mcp) {
+          SdkPresent<NeonAuthOAuthProviderMcp>(value: final value) => {
+              'mcp': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (resources) {
+          SdkPresent<List<NeonAuthOAuthProviderResource>>(value: final value) =>
+            {
+              'resources': value.map((item) => item.toJson()).toList(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `NeonAuthOAuthProviderConfigUpdate` API schema.
 class NeonAuthOAuthProviderConfigUpdate {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Whether the OAuth provider plugin is enabled.
   final SdkOptional<bool> enabled;
+
   /// URL of the page that authorization requests redirect to for sign-in.
   final SdkOptional<String> loginPage;
+
   /// URL of the page that authorization requests redirect to for consent.
   final SdkOptional<String> consentPage;
+
   /// MCP resource configuration. When provided, `resource` is required and the stored MCP configuration is replaced as a whole.
   final SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp;
+
   /// Protected resources that clients can be linked to. When provided, replaces the stored list.
   final SdkOptional<List<NeonAuthOAuthProviderResource>> resources;
 
-  const NeonAuthOAuthProviderConfigUpdate({this.enabled = const SdkOmitted(), this.loginPage = const SdkOmitted(), this.consentPage = const SdkOmitted(), this.mcp = const SdkOmitted(), this.resources = const SdkOmitted()});
+  const NeonAuthOAuthProviderConfigUpdate(
+      {this.enabled = const SdkOmitted(),
+      this.loginPage = const SdkOmitted(),
+      this.consentPage = const SdkOmitted(),
+      this.mcp = const SdkOmitted(),
+      this.resources = const SdkOmitted()});
 
-  NeonAuthOAuthProviderConfigUpdate Function({SdkOptional<bool> enabled, SdkOptional<String> loginPage, SdkOptional<String> consentPage, SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp, SdkOptional<List<NeonAuthOAuthProviderResource>> resources}) get copyWith => _copyWith;
+  NeonAuthOAuthProviderConfigUpdate Function(
+          {SdkOptional<bool> enabled,
+          SdkOptional<String> loginPage,
+          SdkOptional<String> consentPage,
+          SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp,
+          SdkOptional<List<NeonAuthOAuthProviderResource>> resources})
+      get copyWith => _copyWith;
 
-  NeonAuthOAuthProviderConfigUpdate _copyWith({Object? enabled = sdkOmittedValue, Object? loginPage = sdkOmittedValue, Object? consentPage = sdkOmittedValue, Object? mcp = sdkOmittedValue, Object? resources = sdkOmittedValue}) => NeonAuthOAuthProviderConfigUpdate(
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as SdkOptional<bool>,
-    loginPage: identical(loginPage, sdkOmittedValue) ? this.loginPage : loginPage as SdkOptional<String>,
-    consentPage: identical(consentPage, sdkOmittedValue) ? this.consentPage : consentPage as SdkOptional<String>,
-    mcp: identical(mcp, sdkOmittedValue) ? this.mcp : mcp as SdkOptional<NeonAuthOAuthProviderMcpUpdate>,
-    resources: identical(resources, sdkOmittedValue) ? this.resources : resources as SdkOptional<List<NeonAuthOAuthProviderResource>>,
-  );
+  NeonAuthOAuthProviderConfigUpdate _copyWith(
+          {Object? enabled = sdkOmittedValue,
+          Object? loginPage = sdkOmittedValue,
+          Object? consentPage = sdkOmittedValue,
+          Object? mcp = sdkOmittedValue,
+          Object? resources = sdkOmittedValue}) =>
+      NeonAuthOAuthProviderConfigUpdate(
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as SdkOptional<bool>,
+        loginPage: identical(loginPage, sdkOmittedValue)
+            ? this.loginPage
+            : loginPage as SdkOptional<String>,
+        consentPage: identical(consentPage, sdkOmittedValue)
+            ? this.consentPage
+            : consentPage as SdkOptional<String>,
+        mcp: identical(mcp, sdkOmittedValue)
+            ? this.mcp
+            : mcp as SdkOptional<NeonAuthOAuthProviderMcpUpdate>,
+        resources: identical(resources, sdkOmittedValue)
+            ? this.resources
+            : resources as SdkOptional<List<NeonAuthOAuthProviderResource>>,
+      );
 
-  factory NeonAuthOAuthProviderConfigUpdate.fromJson(Map<String, dynamic> json) => NeonAuthOAuthProviderConfigUpdate(
-    enabled: json['enabled'] != null ? SdkPresent((json['enabled'] as bool?)!) : const SdkOmitted(),
-    loginPage: json['login_page'] != null ? SdkPresent((json['login_page'] as String?)!) : const SdkOmitted(),
-    consentPage: json['consent_page'] != null ? SdkPresent((json['consent_page'] as String?)!) : const SdkOmitted(),
-    mcp: json['mcp'] != null ? SdkPresent((json['mcp'] != null ? NeonAuthOAuthProviderMcpUpdate.fromJson(json['mcp'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-    resources: json['resources'] != null ? SdkPresent(((json['resources'] as List?)?.map((e) => NeonAuthOAuthProviderResource.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
-  );
+  factory NeonAuthOAuthProviderConfigUpdate.fromJson(
+          Map<String, dynamic> json) =>
+      NeonAuthOAuthProviderConfigUpdate(
+        enabled: json['enabled'] != null
+            ? SdkPresent((json['enabled'] as bool?)!)
+            : const SdkOmitted(),
+        loginPage: json['login_page'] != null
+            ? SdkPresent((json['login_page'] as String?)!)
+            : const SdkOmitted(),
+        consentPage: json['consent_page'] != null
+            ? SdkPresent((json['consent_page'] as String?)!)
+            : const SdkOmitted(),
+        mcp: json['mcp'] != null
+            ? SdkPresent((json['mcp'] != null
+                ? NeonAuthOAuthProviderMcpUpdate.fromJson(
+                    json['mcp'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+        resources: json['resources'] != null
+            ? SdkPresent(((json['resources'] as List?)
+                ?.map((e) => NeonAuthOAuthProviderResource.fromJson(
+                    e as Map<String, dynamic>))
+                .toList())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (enabled) {
-      SdkPresent<bool>(value: final value) => {'enabled': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (loginPage) {
-      SdkPresent<String>(value: final value) => {'login_page': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (consentPage) {
-      SdkPresent<String>(value: final value) => {'consent_page': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (mcp) {
-      SdkPresent<NeonAuthOAuthProviderMcpUpdate>(value: final value) => {'mcp': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (resources) {
-      SdkPresent<List<NeonAuthOAuthProviderResource>>(value: final value) => {'resources': value.map((item) => item.toJson()).toList(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (enabled) {
+          SdkPresent<bool>(value: final value) => {
+              'enabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (loginPage) {
+          SdkPresent<String>(value: final value) => {
+              'login_page': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (consentPage) {
+          SdkPresent<String>(value: final value) => {
+              'consent_page': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (mcp) {
+          SdkPresent<NeonAuthOAuthProviderMcpUpdate>(value: final value) => {
+              'mcp': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (resources) {
+          SdkPresent<List<NeonAuthOAuthProviderResource>>(value: final value) =>
+            {
+              'resources': value.map((item) => item.toJson()).toList(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

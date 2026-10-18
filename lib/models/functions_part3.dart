@@ -8,236 +8,457 @@ part of 'functions.dart';
 class ScheduleTriggerCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Trigger type discriminator.
   final ScheduleTriggerCreateRequestType type_;
+
   /// The branch-local Function slug to invoke.
   final String functionSlug;
+
   /// Human-readable name, unique among triggers visible on the branch.
   final String name;
+
   /// Path passed to the target Function. Defaults to `/`.
   final SdkOptional<String> functionPath;
+
   /// A numeric five-field cron schedule interpreted in UTC.
   final FunctionTriggerSchedule schedule;
+
   /// Whether future occurrences should be scheduled.
   final SdkOptional<bool> enabled;
 
-  const ScheduleTriggerCreateRequest({required this.type_, required this.functionSlug, required this.name, this.functionPath = const SdkOmitted(), required this.schedule, this.enabled = const SdkOmitted()});
+  const ScheduleTriggerCreateRequest(
+      {required this.type_,
+      required this.functionSlug,
+      required this.name,
+      this.functionPath = const SdkOmitted(),
+      required this.schedule,
+      this.enabled = const SdkOmitted()});
 
-  ScheduleTriggerCreateRequest Function({ScheduleTriggerCreateRequestType type_, String functionSlug, String name, SdkOptional<String> functionPath, FunctionTriggerSchedule schedule, SdkOptional<bool> enabled}) get copyWith => _copyWith;
+  ScheduleTriggerCreateRequest Function(
+      {ScheduleTriggerCreateRequestType type_,
+      String functionSlug,
+      String name,
+      SdkOptional<String> functionPath,
+      FunctionTriggerSchedule schedule,
+      SdkOptional<bool> enabled}) get copyWith => _copyWith;
 
-  ScheduleTriggerCreateRequest _copyWith({Object? type_ = sdkOmittedValue, Object? functionSlug = sdkOmittedValue, Object? name = sdkOmittedValue, Object? functionPath = sdkOmittedValue, Object? schedule = sdkOmittedValue, Object? enabled = sdkOmittedValue}) => ScheduleTriggerCreateRequest(
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as ScheduleTriggerCreateRequestType,
-    functionSlug: identical(functionSlug, sdkOmittedValue) ? this.functionSlug : functionSlug as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    functionPath: identical(functionPath, sdkOmittedValue) ? this.functionPath : functionPath as SdkOptional<String>,
-    schedule: identical(schedule, sdkOmittedValue) ? this.schedule : schedule as FunctionTriggerSchedule,
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as SdkOptional<bool>,
-  );
+  ScheduleTriggerCreateRequest _copyWith(
+          {Object? type_ = sdkOmittedValue,
+          Object? functionSlug = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? functionPath = sdkOmittedValue,
+          Object? schedule = sdkOmittedValue,
+          Object? enabled = sdkOmittedValue}) =>
+      ScheduleTriggerCreateRequest(
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as ScheduleTriggerCreateRequestType,
+        functionSlug: identical(functionSlug, sdkOmittedValue)
+            ? this.functionSlug
+            : functionSlug as String,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        functionPath: identical(functionPath, sdkOmittedValue)
+            ? this.functionPath
+            : functionPath as SdkOptional<String>,
+        schedule: identical(schedule, sdkOmittedValue)
+            ? this.schedule
+            : schedule as FunctionTriggerSchedule,
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as SdkOptional<bool>,
+      );
 
-  factory ScheduleTriggerCreateRequest.fromJson(Map<String, dynamic> json) => ScheduleTriggerCreateRequest(
-    type_: (json['type'] != null ? ScheduleTriggerCreateRequestType.fromJson(json['type'] as String) : null)!,
-    functionSlug: (json['function_slug'] as String?)!,
-    name: (json['name'] as String?)!,
-    functionPath: json['function_path'] != null ? SdkPresent((json['function_path'] as String?)!) : const SdkOmitted(),
-    schedule: (json['schedule'] != null ? FunctionTriggerSchedule.fromJson(json['schedule'] as Map<String, dynamic>) : null)!,
-    enabled: json['enabled'] != null ? SdkPresent((json['enabled'] as bool?)!) : const SdkOmitted(),
-  );
+  factory ScheduleTriggerCreateRequest.fromJson(Map<String, dynamic> json) =>
+      ScheduleTriggerCreateRequest(
+        type_: (json['type'] != null
+            ? ScheduleTriggerCreateRequestType.fromJson(json['type'] as String)
+            : null)!,
+        functionSlug: (json['function_slug'] as String?)!,
+        name: (json['name'] as String?)!,
+        functionPath: json['function_path'] != null
+            ? SdkPresent((json['function_path'] as String?)!)
+            : const SdkOmitted(),
+        schedule: (json['schedule'] != null
+            ? FunctionTriggerSchedule.fromJson(
+                json['schedule'] as Map<String, dynamic>)
+            : null)!,
+        enabled: json['enabled'] != null
+            ? SdkPresent((json['enabled'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'type': type_.toJson(),
-    'function_slug': functionSlug,
-    'name': name,
-    ...switch (functionPath) {
-      SdkPresent<String>(value: final value) => {'function_path': value,},
-      _ => const <String, dynamic>{},
-    },
-    'schedule': schedule.toJson(),
-    ...switch (enabled) {
-      SdkPresent<bool>(value: final value) => {'enabled': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'type': type_.toJson(),
+        'function_slug': functionSlug,
+        'name': name,
+        ...switch (functionPath) {
+          SdkPresent<String>(value: final value) => {
+              'function_path': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'schedule': schedule.toJson(),
+        ...switch (enabled) {
+          SdkPresent<bool>(value: final value) => {
+              'enabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `ScheduleTriggerUpdateRequest` API schema.
 class ScheduleTriggerUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Trigger type discriminator; it does not change the trigger type.
   final ScheduleTriggerUpdateRequestType type_;
+
   /// Replacement branch-local Function slug.
   final SdkOptional<String> functionSlug;
+
   /// Optional `string` value serialized in the `name` wire field.
   final SdkOptional<String> name;
+
   /// Optional `string` value serialized in the `function_path` wire field.
   final SdkOptional<String> functionPath;
+
   /// A numeric five-field cron schedule interpreted in UTC.
   final SdkOptional<FunctionTriggerSchedule> schedule;
+
   /// True enables and false disables future scheduling.
   final SdkOptional<bool> enabled;
 
-  const ScheduleTriggerUpdateRequest({required this.type_, this.functionSlug = const SdkOmitted(), this.name = const SdkOmitted(), this.functionPath = const SdkOmitted(), this.schedule = const SdkOmitted(), this.enabled = const SdkOmitted()});
+  const ScheduleTriggerUpdateRequest(
+      {required this.type_,
+      this.functionSlug = const SdkOmitted(),
+      this.name = const SdkOmitted(),
+      this.functionPath = const SdkOmitted(),
+      this.schedule = const SdkOmitted(),
+      this.enabled = const SdkOmitted()});
 
-  ScheduleTriggerUpdateRequest Function({ScheduleTriggerUpdateRequestType type_, SdkOptional<String> functionSlug, SdkOptional<String> name, SdkOptional<String> functionPath, SdkOptional<FunctionTriggerSchedule> schedule, SdkOptional<bool> enabled}) get copyWith => _copyWith;
+  ScheduleTriggerUpdateRequest Function(
+      {ScheduleTriggerUpdateRequestType type_,
+      SdkOptional<String> functionSlug,
+      SdkOptional<String> name,
+      SdkOptional<String> functionPath,
+      SdkOptional<FunctionTriggerSchedule> schedule,
+      SdkOptional<bool> enabled}) get copyWith => _copyWith;
 
-  ScheduleTriggerUpdateRequest _copyWith({Object? type_ = sdkOmittedValue, Object? functionSlug = sdkOmittedValue, Object? name = sdkOmittedValue, Object? functionPath = sdkOmittedValue, Object? schedule = sdkOmittedValue, Object? enabled = sdkOmittedValue}) => ScheduleTriggerUpdateRequest(
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as ScheduleTriggerUpdateRequestType,
-    functionSlug: identical(functionSlug, sdkOmittedValue) ? this.functionSlug : functionSlug as SdkOptional<String>,
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-    functionPath: identical(functionPath, sdkOmittedValue) ? this.functionPath : functionPath as SdkOptional<String>,
-    schedule: identical(schedule, sdkOmittedValue) ? this.schedule : schedule as SdkOptional<FunctionTriggerSchedule>,
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as SdkOptional<bool>,
-  );
+  ScheduleTriggerUpdateRequest _copyWith(
+          {Object? type_ = sdkOmittedValue,
+          Object? functionSlug = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? functionPath = sdkOmittedValue,
+          Object? schedule = sdkOmittedValue,
+          Object? enabled = sdkOmittedValue}) =>
+      ScheduleTriggerUpdateRequest(
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as ScheduleTriggerUpdateRequestType,
+        functionSlug: identical(functionSlug, sdkOmittedValue)
+            ? this.functionSlug
+            : functionSlug as SdkOptional<String>,
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+        functionPath: identical(functionPath, sdkOmittedValue)
+            ? this.functionPath
+            : functionPath as SdkOptional<String>,
+        schedule: identical(schedule, sdkOmittedValue)
+            ? this.schedule
+            : schedule as SdkOptional<FunctionTriggerSchedule>,
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as SdkOptional<bool>,
+      );
 
-  factory ScheduleTriggerUpdateRequest.fromJson(Map<String, dynamic> json) => ScheduleTriggerUpdateRequest(
-    type_: (json['type'] != null ? ScheduleTriggerUpdateRequestType.fromJson(json['type'] as String) : null)!,
-    functionSlug: json['function_slug'] != null ? SdkPresent((json['function_slug'] as String?)!) : const SdkOmitted(),
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-    functionPath: json['function_path'] != null ? SdkPresent((json['function_path'] as String?)!) : const SdkOmitted(),
-    schedule: json['schedule'] != null ? SdkPresent((json['schedule'] != null ? FunctionTriggerSchedule.fromJson(json['schedule'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-    enabled: json['enabled'] != null ? SdkPresent((json['enabled'] as bool?)!) : const SdkOmitted(),
-  );
+  factory ScheduleTriggerUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      ScheduleTriggerUpdateRequest(
+        type_: (json['type'] != null
+            ? ScheduleTriggerUpdateRequestType.fromJson(json['type'] as String)
+            : null)!,
+        functionSlug: json['function_slug'] != null
+            ? SdkPresent((json['function_slug'] as String?)!)
+            : const SdkOmitted(),
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+        functionPath: json['function_path'] != null
+            ? SdkPresent((json['function_path'] as String?)!)
+            : const SdkOmitted(),
+        schedule: json['schedule'] != null
+            ? SdkPresent((json['schedule'] != null
+                ? FunctionTriggerSchedule.fromJson(
+                    json['schedule'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+        enabled: json['enabled'] != null
+            ? SdkPresent((json['enabled'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'type': type_.toJson(),
-    ...switch (functionSlug) {
-      SdkPresent<String>(value: final value) => {'function_slug': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (functionPath) {
-      SdkPresent<String>(value: final value) => {'function_path': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (schedule) {
-      SdkPresent<FunctionTriggerSchedule>(value: final value) => {'schedule': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (enabled) {
-      SdkPresent<bool>(value: final value) => {'enabled': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'type': type_.toJson(),
+        ...switch (functionSlug) {
+          SdkPresent<String>(value: final value) => {
+              'function_slug': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (functionPath) {
+          SdkPresent<String>(value: final value) => {
+              'function_path': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (schedule) {
+          SdkPresent<FunctionTriggerSchedule>(value: final value) => {
+              'schedule': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (enabled) {
+          SdkPresent<bool>(value: final value) => {
+              'enabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// A branch-effective trigger that invokes a Function after a successful upload matching its exact bucket and optional object-key prefix.
 class StorageObjectCreatedTrigger {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Trigger type discriminator.
   final StorageObjectCreatedTriggerType type_;
+
   /// Opaque, server-minted project-wide trigger identifier.
   final String triggerId;
+
   /// The branch-local Function slug resolved when an invocation is consumed.
   final String functionSlug;
+
   /// Human-readable trigger name.
   final String name;
+
   /// Path passed to the target Function.
   final String functionPath;
+
   /// Matches successful uploads to one exact bucket and, when configured, an object-key prefix. The Function receives a JSON request body with `type` set to `storage_object_created` and a `data` object containing exactly `bucket_name` and `object_key`.
   final FunctionTriggerStorageObjectCreated storageObjectCreated;
+
   /// Required `boolean` value serialized in the `enabled` wire field.
   final bool enabled;
+
   /// Monotonic configuration version.
   final int version;
+
   /// True when the effective configuration was authored on an ancestor branch.
   final bool inherited;
 
-  const StorageObjectCreatedTrigger({required this.type_, required this.triggerId, required this.functionSlug, required this.name, required this.functionPath, required this.storageObjectCreated, required this.enabled, required this.version, required this.inherited});
+  const StorageObjectCreatedTrigger(
+      {required this.type_,
+      required this.triggerId,
+      required this.functionSlug,
+      required this.name,
+      required this.functionPath,
+      required this.storageObjectCreated,
+      required this.enabled,
+      required this.version,
+      required this.inherited});
 
-  StorageObjectCreatedTrigger Function({StorageObjectCreatedTriggerType type_, String triggerId, String functionSlug, String name, String functionPath, FunctionTriggerStorageObjectCreated storageObjectCreated, bool enabled, int version, bool inherited}) get copyWith => _copyWith;
+  StorageObjectCreatedTrigger Function(
+      {StorageObjectCreatedTriggerType type_,
+      String triggerId,
+      String functionSlug,
+      String name,
+      String functionPath,
+      FunctionTriggerStorageObjectCreated storageObjectCreated,
+      bool enabled,
+      int version,
+      bool inherited}) get copyWith => _copyWith;
 
-  StorageObjectCreatedTrigger _copyWith({Object? type_ = sdkOmittedValue, Object? triggerId = sdkOmittedValue, Object? functionSlug = sdkOmittedValue, Object? name = sdkOmittedValue, Object? functionPath = sdkOmittedValue, Object? storageObjectCreated = sdkOmittedValue, Object? enabled = sdkOmittedValue, Object? version = sdkOmittedValue, Object? inherited = sdkOmittedValue}) => StorageObjectCreatedTrigger(
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as StorageObjectCreatedTriggerType,
-    triggerId: identical(triggerId, sdkOmittedValue) ? this.triggerId : triggerId as String,
-    functionSlug: identical(functionSlug, sdkOmittedValue) ? this.functionSlug : functionSlug as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    functionPath: identical(functionPath, sdkOmittedValue) ? this.functionPath : functionPath as String,
-    storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue) ? this.storageObjectCreated : storageObjectCreated as FunctionTriggerStorageObjectCreated,
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as bool,
-    version: identical(version, sdkOmittedValue) ? this.version : version as int,
-    inherited: identical(inherited, sdkOmittedValue) ? this.inherited : inherited as bool,
-  );
+  StorageObjectCreatedTrigger _copyWith(
+          {Object? type_ = sdkOmittedValue,
+          Object? triggerId = sdkOmittedValue,
+          Object? functionSlug = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? functionPath = sdkOmittedValue,
+          Object? storageObjectCreated = sdkOmittedValue,
+          Object? enabled = sdkOmittedValue,
+          Object? version = sdkOmittedValue,
+          Object? inherited = sdkOmittedValue}) =>
+      StorageObjectCreatedTrigger(
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as StorageObjectCreatedTriggerType,
+        triggerId: identical(triggerId, sdkOmittedValue)
+            ? this.triggerId
+            : triggerId as String,
+        functionSlug: identical(functionSlug, sdkOmittedValue)
+            ? this.functionSlug
+            : functionSlug as String,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        functionPath: identical(functionPath, sdkOmittedValue)
+            ? this.functionPath
+            : functionPath as String,
+        storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue)
+            ? this.storageObjectCreated
+            : storageObjectCreated as FunctionTriggerStorageObjectCreated,
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as bool,
+        version:
+            identical(version, sdkOmittedValue) ? this.version : version as int,
+        inherited: identical(inherited, sdkOmittedValue)
+            ? this.inherited
+            : inherited as bool,
+      );
 
-  factory StorageObjectCreatedTrigger.fromJson(Map<String, dynamic> json) => StorageObjectCreatedTrigger(
-    type_: (json['type'] != null ? StorageObjectCreatedTriggerType.fromJson(json['type'] as String) : null)!,
-    triggerId: (json['trigger_id'] as String?)!,
-    functionSlug: (json['function_slug'] as String?)!,
-    name: (json['name'] as String?)!,
-    functionPath: (json['function_path'] as String?)!,
-    storageObjectCreated: (json['storage_object_created'] != null ? FunctionTriggerStorageObjectCreated.fromJson(json['storage_object_created'] as Map<String, dynamic>) : null)!,
-    enabled: (json['enabled'] as bool?)!,
-    version: ((json['version'] as num?)?.toInt())!,
-    inherited: (json['inherited'] as bool?)!,
-  );
+  factory StorageObjectCreatedTrigger.fromJson(Map<String, dynamic> json) =>
+      StorageObjectCreatedTrigger(
+        type_: (json['type'] != null
+            ? StorageObjectCreatedTriggerType.fromJson(json['type'] as String)
+            : null)!,
+        triggerId: (json['trigger_id'] as String?)!,
+        functionSlug: (json['function_slug'] as String?)!,
+        name: (json['name'] as String?)!,
+        functionPath: (json['function_path'] as String?)!,
+        storageObjectCreated: (json['storage_object_created'] != null
+            ? FunctionTriggerStorageObjectCreated.fromJson(
+                json['storage_object_created'] as Map<String, dynamic>)
+            : null)!,
+        enabled: (json['enabled'] as bool?)!,
+        version: ((json['version'] as num?)?.toInt())!,
+        inherited: (json['inherited'] as bool?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'type': type_.toJson(),
-    'trigger_id': triggerId,
-    'function_slug': functionSlug,
-    'name': name,
-    'function_path': functionPath,
-    'storage_object_created': storageObjectCreated.toJson(),
-    'enabled': enabled,
-    'version': version,
-    'inherited': inherited,
-  };
+        'type': type_.toJson(),
+        'trigger_id': triggerId,
+        'function_slug': functionSlug,
+        'name': name,
+        'function_path': functionPath,
+        'storage_object_created': storageObjectCreated.toJson(),
+        'enabled': enabled,
+        'version': version,
+        'inherited': inherited,
+      };
 }
 
 /// Typed representation of the `StorageObjectCreatedTriggerCreateRequest` API schema.
 class StorageObjectCreatedTriggerCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Trigger type discriminator.
   final StorageObjectCreatedTriggerCreateRequestType type_;
+
   /// The branch-local Function slug to invoke.
   final String functionSlug;
+
   /// Human-readable name, unique among triggers visible on the branch.
   final String name;
+
   /// Path passed to the target Function. Defaults to `/`.
   final SdkOptional<String> functionPath;
+
   /// Matches successful uploads to one exact bucket and, when configured, an object-key prefix. The Function receives a JSON request body with `type` set to `storage_object_created` and a `data` object containing exactly `bucket_name` and `object_key`.
   final FunctionTriggerStorageObjectCreated storageObjectCreated;
+
   /// Whether successful matching uploads should invoke the Function.
   final SdkOptional<bool> enabled;
 
-  const StorageObjectCreatedTriggerCreateRequest({required this.type_, required this.functionSlug, required this.name, this.functionPath = const SdkOmitted(), required this.storageObjectCreated, this.enabled = const SdkOmitted()});
+  const StorageObjectCreatedTriggerCreateRequest(
+      {required this.type_,
+      required this.functionSlug,
+      required this.name,
+      this.functionPath = const SdkOmitted(),
+      required this.storageObjectCreated,
+      this.enabled = const SdkOmitted()});
 
-  StorageObjectCreatedTriggerCreateRequest Function({StorageObjectCreatedTriggerCreateRequestType type_, String functionSlug, String name, SdkOptional<String> functionPath, FunctionTriggerStorageObjectCreated storageObjectCreated, SdkOptional<bool> enabled}) get copyWith => _copyWith;
+  StorageObjectCreatedTriggerCreateRequest Function(
+      {StorageObjectCreatedTriggerCreateRequestType type_,
+      String functionSlug,
+      String name,
+      SdkOptional<String> functionPath,
+      FunctionTriggerStorageObjectCreated storageObjectCreated,
+      SdkOptional<bool> enabled}) get copyWith => _copyWith;
 
-  StorageObjectCreatedTriggerCreateRequest _copyWith({Object? type_ = sdkOmittedValue, Object? functionSlug = sdkOmittedValue, Object? name = sdkOmittedValue, Object? functionPath = sdkOmittedValue, Object? storageObjectCreated = sdkOmittedValue, Object? enabled = sdkOmittedValue}) => StorageObjectCreatedTriggerCreateRequest(
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as StorageObjectCreatedTriggerCreateRequestType,
-    functionSlug: identical(functionSlug, sdkOmittedValue) ? this.functionSlug : functionSlug as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    functionPath: identical(functionPath, sdkOmittedValue) ? this.functionPath : functionPath as SdkOptional<String>,
-    storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue) ? this.storageObjectCreated : storageObjectCreated as FunctionTriggerStorageObjectCreated,
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as SdkOptional<bool>,
-  );
+  StorageObjectCreatedTriggerCreateRequest _copyWith(
+          {Object? type_ = sdkOmittedValue,
+          Object? functionSlug = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? functionPath = sdkOmittedValue,
+          Object? storageObjectCreated = sdkOmittedValue,
+          Object? enabled = sdkOmittedValue}) =>
+      StorageObjectCreatedTriggerCreateRequest(
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as StorageObjectCreatedTriggerCreateRequestType,
+        functionSlug: identical(functionSlug, sdkOmittedValue)
+            ? this.functionSlug
+            : functionSlug as String,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        functionPath: identical(functionPath, sdkOmittedValue)
+            ? this.functionPath
+            : functionPath as SdkOptional<String>,
+        storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue)
+            ? this.storageObjectCreated
+            : storageObjectCreated as FunctionTriggerStorageObjectCreated,
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as SdkOptional<bool>,
+      );
 
-  factory StorageObjectCreatedTriggerCreateRequest.fromJson(Map<String, dynamic> json) => StorageObjectCreatedTriggerCreateRequest(
-    type_: (json['type'] != null ? StorageObjectCreatedTriggerCreateRequestType.fromJson(json['type'] as String) : null)!,
-    functionSlug: (json['function_slug'] as String?)!,
-    name: (json['name'] as String?)!,
-    functionPath: json['function_path'] != null ? SdkPresent((json['function_path'] as String?)!) : const SdkOmitted(),
-    storageObjectCreated: (json['storage_object_created'] != null ? FunctionTriggerStorageObjectCreated.fromJson(json['storage_object_created'] as Map<String, dynamic>) : null)!,
-    enabled: json['enabled'] != null ? SdkPresent((json['enabled'] as bool?)!) : const SdkOmitted(),
-  );
+  factory StorageObjectCreatedTriggerCreateRequest.fromJson(
+          Map<String, dynamic> json) =>
+      StorageObjectCreatedTriggerCreateRequest(
+        type_: (json['type'] != null
+            ? StorageObjectCreatedTriggerCreateRequestType.fromJson(
+                json['type'] as String)
+            : null)!,
+        functionSlug: (json['function_slug'] as String?)!,
+        name: (json['name'] as String?)!,
+        functionPath: json['function_path'] != null
+            ? SdkPresent((json['function_path'] as String?)!)
+            : const SdkOmitted(),
+        storageObjectCreated: (json['storage_object_created'] != null
+            ? FunctionTriggerStorageObjectCreated.fromJson(
+                json['storage_object_created'] as Map<String, dynamic>)
+            : null)!,
+        enabled: json['enabled'] != null
+            ? SdkPresent((json['enabled'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'type': type_.toJson(),
-    'function_slug': functionSlug,
-    'name': name,
-    ...switch (functionPath) {
-      SdkPresent<String>(value: final value) => {'function_path': value,},
-      _ => const <String, dynamic>{},
-    },
-    'storage_object_created': storageObjectCreated.toJson(),
-    ...switch (enabled) {
-      SdkPresent<bool>(value: final value) => {'enabled': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'type': type_.toJson(),
+        'function_slug': functionSlug,
+        'name': name,
+        ...switch (functionPath) {
+          SdkPresent<String>(value: final value) => {
+              'function_path': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'storage_object_created': storageObjectCreated.toJson(),
+        ...switch (enabled) {
+          SdkPresent<bool>(value: final value) => {
+              'enabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
