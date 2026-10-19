@@ -8,330 +8,198 @@ part of 'functions.dart';
 class NeonFunction {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Opaque, stable function identifier.
   final String id;
-
   /// Branch-unique, lowercase DNS-label. Forms the invocation URL's host together with the branch id. Immutable.
   final String slug;
-
   /// Free-form display name.
   final String name;
-
   /// URL at which the function is invoked. The host carries `&lt;branch_id&gt;-&lt;slug&gt;` as its first DNS label under a Neon-managed functions domain, and the URL ends with a trailing slash so paths concatenate onto it. Empty string when the function has no servable invoke host (e.g. a deployment without an invocation front-door).
   final String invocationUrl;
-
   /// The most recent deployment, regardless of build status. It may still be building or it may have failed. Omitted until the first deployment is created.
   final SdkOptional<NeonFunctionDeployment> currentDeployment;
-
   /// The most recent deployment whose build completed successfully. This is the deployment that serves invocations. Omitted until a deployment succeeds.
   final SdkOptional<NeonFunctionDeployment> activeDeployment;
-
   /// Required `string` value serialized in the `created_at` wire field.
   final String createdAt;
 
-  const NeonFunction(
-      {required this.id,
-      required this.slug,
-      required this.name,
-      required this.invocationUrl,
-      this.currentDeployment = const SdkOmitted(),
-      this.activeDeployment = const SdkOmitted(),
-      required this.createdAt});
+  const NeonFunction({required this.id, required this.slug, required this.name, required this.invocationUrl, this.currentDeployment = const SdkOmitted(), this.activeDeployment = const SdkOmitted(), required this.createdAt});
 
-  NeonFunction Function(
-      {String id,
-      String slug,
-      String name,
-      String invocationUrl,
-      SdkOptional<NeonFunctionDeployment> currentDeployment,
-      SdkOptional<NeonFunctionDeployment> activeDeployment,
-      String createdAt}) get copyWith => _copyWith;
+  NeonFunction Function({String id, String slug, String name, String invocationUrl, SdkOptional<NeonFunctionDeployment> currentDeployment, SdkOptional<NeonFunctionDeployment> activeDeployment, String createdAt}) get copyWith => _copyWith;
 
-  NeonFunction _copyWith(
-          {Object? id = sdkOmittedValue,
-          Object? slug = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? invocationUrl = sdkOmittedValue,
-          Object? currentDeployment = sdkOmittedValue,
-          Object? activeDeployment = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue}) =>
-      NeonFunction(
-        id: identical(id, sdkOmittedValue) ? this.id : id as String,
-        slug: identical(slug, sdkOmittedValue) ? this.slug : slug as String,
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        invocationUrl: identical(invocationUrl, sdkOmittedValue)
-            ? this.invocationUrl
-            : invocationUrl as String,
-        currentDeployment: identical(currentDeployment, sdkOmittedValue)
-            ? this.currentDeployment
-            : currentDeployment as SdkOptional<NeonFunctionDeployment>,
-        activeDeployment: identical(activeDeployment, sdkOmittedValue)
-            ? this.activeDeployment
-            : activeDeployment as SdkOptional<NeonFunctionDeployment>,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-      );
+  NeonFunction _copyWith({Object? id = sdkOmittedValue, Object? slug = sdkOmittedValue, Object? name = sdkOmittedValue, Object? invocationUrl = sdkOmittedValue, Object? currentDeployment = sdkOmittedValue, Object? activeDeployment = sdkOmittedValue, Object? createdAt = sdkOmittedValue}) => NeonFunction(
+    id: identical(id, sdkOmittedValue) ? this.id : id as String,
+    slug: identical(slug, sdkOmittedValue) ? this.slug : slug as String,
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    invocationUrl: identical(invocationUrl, sdkOmittedValue) ? this.invocationUrl : invocationUrl as String,
+    currentDeployment: identical(currentDeployment, sdkOmittedValue) ? this.currentDeployment : currentDeployment as SdkOptional<NeonFunctionDeployment>,
+    activeDeployment: identical(activeDeployment, sdkOmittedValue) ? this.activeDeployment : activeDeployment as SdkOptional<NeonFunctionDeployment>,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+  );
 
   factory NeonFunction.fromJson(Map<String, dynamic> json) => NeonFunction(
-        id: (json['id'] as String?)!,
-        slug: (json['slug'] as String?)!,
-        name: (json['name'] as String?)!,
-        invocationUrl: (json['invocation_url'] as String?)!,
-        currentDeployment: json['current_deployment'] != null
-            ? SdkPresent((json['current_deployment'] != null
-                ? NeonFunctionDeployment.fromJson(
-                    json['current_deployment'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        activeDeployment: json['active_deployment'] != null
-            ? SdkPresent((json['active_deployment'] != null
-                ? NeonFunctionDeployment.fromJson(
-                    json['active_deployment'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        createdAt: (json['created_at'] as String?)!,
-      );
+    id: (json['id'] as String?)!,
+    slug: (json['slug'] as String?)!,
+    name: (json['name'] as String?)!,
+    invocationUrl: (json['invocation_url'] as String?)!,
+    currentDeployment: json['current_deployment'] != null ? SdkPresent((json['current_deployment'] != null ? NeonFunctionDeployment.fromJson(json['current_deployment'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    activeDeployment: json['active_deployment'] != null ? SdkPresent((json['active_deployment'] != null ? NeonFunctionDeployment.fromJson(json['active_deployment'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    createdAt: (json['created_at'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'slug': slug,
-        'name': name,
-        'invocation_url': invocationUrl,
-        ...switch (currentDeployment) {
-          SdkPresent<NeonFunctionDeployment>(value: final value) => {
-              'current_deployment': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (activeDeployment) {
-          SdkPresent<NeonFunctionDeployment>(value: final value) => {
-              'active_deployment': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        'created_at': createdAt,
-      };
+    'id': id,
+    'slug': slug,
+    'name': name,
+    'invocation_url': invocationUrl,
+    ...switch (currentDeployment) {
+      SdkPresent<NeonFunctionDeployment>(value: final value) => {'current_deployment': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (activeDeployment) {
+      SdkPresent<NeonFunctionDeployment>(value: final value) => {'active_deployment': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    'created_at': createdAt,
+  };
 }
 
 /// Typed representation of the `NeonFunctionDeployment` API schema.
 class NeonFunctionDeployment {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The deployment id, which is the platform version number (monotonic per function).
   final int id;
-
   /// Build lifecycle status of the deployment.
   final NeonFunctionDeploymentStatus status;
-
   /// Required `int32`-formatted value serialized in the `memory_mib` wire field.
   final int memoryMib;
-
   /// Required `string` value serialized in the `runtime` wire field.
   final String runtime;
-
   /// Required `string` value serialized in the `created_at` wire field.
   final String createdAt;
-
   /// The NAMES of the deployment's environment variables, sorted. Values are encrypted at rest and are never returned — they are write-only. To change a value, deploy the variable with the new value; to remove a variable, deploy it with an empty value.
   final SdkOptional<List<String>> environment;
-
   /// Human-readable reason the deployment build failed. Present only when `status` is `failed`.
   final SdkOptional<String> error;
 
-  const NeonFunctionDeployment(
-      {required this.id,
-      required this.status,
-      required this.memoryMib,
-      required this.runtime,
-      required this.createdAt,
-      this.environment = const SdkOmitted(),
-      this.error = const SdkOmitted()});
+  const NeonFunctionDeployment({required this.id, required this.status, required this.memoryMib, required this.runtime, required this.createdAt, this.environment = const SdkOmitted(), this.error = const SdkOmitted()});
 
-  NeonFunctionDeployment Function(
-      {int id,
-      NeonFunctionDeploymentStatus status,
-      int memoryMib,
-      String runtime,
-      String createdAt,
-      SdkOptional<List<String>> environment,
-      SdkOptional<String> error}) get copyWith => _copyWith;
+  NeonFunctionDeployment Function({int id, NeonFunctionDeploymentStatus status, int memoryMib, String runtime, String createdAt, SdkOptional<List<String>> environment, SdkOptional<String> error}) get copyWith => _copyWith;
 
-  NeonFunctionDeployment _copyWith(
-          {Object? id = sdkOmittedValue,
-          Object? status = sdkOmittedValue,
-          Object? memoryMib = sdkOmittedValue,
-          Object? runtime = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue,
-          Object? environment = sdkOmittedValue,
-          Object? error = sdkOmittedValue}) =>
-      NeonFunctionDeployment(
-        id: identical(id, sdkOmittedValue) ? this.id : id as int,
-        status: identical(status, sdkOmittedValue)
-            ? this.status
-            : status as NeonFunctionDeploymentStatus,
-        memoryMib: identical(memoryMib, sdkOmittedValue)
-            ? this.memoryMib
-            : memoryMib as int,
-        runtime: identical(runtime, sdkOmittedValue)
-            ? this.runtime
-            : runtime as String,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-        environment: identical(environment, sdkOmittedValue)
-            ? this.environment
-            : environment as SdkOptional<List<String>>,
-        error: identical(error, sdkOmittedValue)
-            ? this.error
-            : error as SdkOptional<String>,
-      );
+  NeonFunctionDeployment _copyWith({Object? id = sdkOmittedValue, Object? status = sdkOmittedValue, Object? memoryMib = sdkOmittedValue, Object? runtime = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? environment = sdkOmittedValue, Object? error = sdkOmittedValue}) => NeonFunctionDeployment(
+    id: identical(id, sdkOmittedValue) ? this.id : id as int,
+    status: identical(status, sdkOmittedValue) ? this.status : status as NeonFunctionDeploymentStatus,
+    memoryMib: identical(memoryMib, sdkOmittedValue) ? this.memoryMib : memoryMib as int,
+    runtime: identical(runtime, sdkOmittedValue) ? this.runtime : runtime as String,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+    environment: identical(environment, sdkOmittedValue) ? this.environment : environment as SdkOptional<List<String>>,
+    error: identical(error, sdkOmittedValue) ? this.error : error as SdkOptional<String>,
+  );
 
-  factory NeonFunctionDeployment.fromJson(Map<String, dynamic> json) =>
-      NeonFunctionDeployment(
-        id: ((json['id'] as num?)?.toInt())!,
-        status: (json['status'] != null
-            ? NeonFunctionDeploymentStatus.fromJson(json['status'] as String)
-            : null)!,
-        memoryMib: ((json['memory_mib'] as num?)?.toInt())!,
-        runtime: (json['runtime'] as String?)!,
-        createdAt: (json['created_at'] as String?)!,
-        environment: json['environment'] != null
-            ? SdkPresent(((json['environment'] as List?)
-                ?.map((e) => e as String)
-                .toList())!)
-            : const SdkOmitted(),
-        error: json['error'] != null
-            ? SdkPresent((json['error'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonFunctionDeployment.fromJson(Map<String, dynamic> json) => NeonFunctionDeployment(
+    id: ((json['id'] as num?)?.toInt())!,
+    status: (json['status'] != null ? NeonFunctionDeploymentStatus.fromJson(json['status'] as String) : null)!,
+    memoryMib: ((json['memory_mib'] as num?)?.toInt())!,
+    runtime: (json['runtime'] as String?)!,
+    createdAt: (json['created_at'] as String?)!,
+    environment: json['environment'] != null ? SdkPresent(((json['environment'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
+    error: json['error'] != null ? SdkPresent((json['error'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'status': status.toJson(),
-        'memory_mib': memoryMib,
-        'runtime': runtime,
-        'created_at': createdAt,
-        ...switch (environment) {
-          SdkPresent<List<String>>(value: final value) => {
-              'environment': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (error) {
-          SdkPresent<String>(value: final value) => {
-              'error': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'id': id,
+    'status': status.toJson(),
+    'memory_mib': memoryMib,
+    'runtime': runtime,
+    'created_at': createdAt,
+    ...switch (environment) {
+      SdkPresent<List<String>>(value: final value) => {'environment': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (error) {
+      SdkPresent<String>(value: final value) => {'error': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `NeonFunctionDeploymentResponse` API schema.
 class NeonFunctionDeploymentResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required object value serialized in the `deployment` wire field.
   final NeonFunctionDeployment deployment;
 
   const NeonFunctionDeploymentResponse({required this.deployment});
 
-  NeonFunctionDeploymentResponse Function({NeonFunctionDeployment deployment})
-      get copyWith => _copyWith;
+  NeonFunctionDeploymentResponse Function({NeonFunctionDeployment deployment}) get copyWith => _copyWith;
 
-  NeonFunctionDeploymentResponse _copyWith(
-          {Object? deployment = sdkOmittedValue}) =>
-      NeonFunctionDeploymentResponse(
-        deployment: identical(deployment, sdkOmittedValue)
-            ? this.deployment
-            : deployment as NeonFunctionDeployment,
-      );
+  NeonFunctionDeploymentResponse _copyWith({Object? deployment = sdkOmittedValue}) => NeonFunctionDeploymentResponse(
+    deployment: identical(deployment, sdkOmittedValue) ? this.deployment : deployment as NeonFunctionDeployment,
+  );
 
-  factory NeonFunctionDeploymentResponse.fromJson(Map<String, dynamic> json) =>
-      NeonFunctionDeploymentResponse(
-        deployment: (json['deployment'] != null
-            ? NeonFunctionDeployment.fromJson(
-                json['deployment'] as Map<String, dynamic>)
-            : null)!,
-      );
+  factory NeonFunctionDeploymentResponse.fromJson(Map<String, dynamic> json) => NeonFunctionDeploymentResponse(
+    deployment: (json['deployment'] != null ? NeonFunctionDeployment.fromJson(json['deployment'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'deployment': deployment.toJson(),
-      };
+    'deployment': deployment.toJson(),
+  };
 }
 
 /// Typed representation of the `NeonFunctionResponse` API schema.
 class NeonFunctionResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required object value serialized in the `function` wire field.
   final NeonFunction function_;
 
   const NeonFunctionResponse({required this.function_});
 
-  NeonFunctionResponse Function({NeonFunction function_}) get copyWith =>
-      _copyWith;
+  NeonFunctionResponse Function({NeonFunction function_}) get copyWith => _copyWith;
 
-  NeonFunctionResponse _copyWith({Object? function_ = sdkOmittedValue}) =>
-      NeonFunctionResponse(
-        function_: identical(function_, sdkOmittedValue)
-            ? this.function_
-            : function_ as NeonFunction,
-      );
+  NeonFunctionResponse _copyWith({Object? function_ = sdkOmittedValue}) => NeonFunctionResponse(
+    function_: identical(function_, sdkOmittedValue) ? this.function_ : function_ as NeonFunction,
+  );
 
-  factory NeonFunctionResponse.fromJson(Map<String, dynamic> json) =>
-      NeonFunctionResponse(
-        function_: (json['function'] != null
-            ? NeonFunction.fromJson(json['function'] as Map<String, dynamic>)
-            : null)!,
-      );
+  factory NeonFunctionResponse.fromJson(Map<String, dynamic> json) => NeonFunctionResponse(
+    function_: (json['function'] != null ? NeonFunction.fromJson(json['function'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'function': function_.toJson(),
-      };
+    'function': function_.toJson(),
+  };
 }
 
 /// Typed representation of the `NeonFunctionsListResponse` API schema.
 class NeonFunctionsListResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required array value serialized in the `functions` wire field.
   final List<NeonFunction> functions;
 
   const NeonFunctionsListResponse({required this.functions});
 
-  NeonFunctionsListResponse Function({List<NeonFunction> functions})
-      get copyWith => _copyWith;
+  NeonFunctionsListResponse Function({List<NeonFunction> functions}) get copyWith => _copyWith;
 
-  NeonFunctionsListResponse _copyWith({Object? functions = sdkOmittedValue}) =>
-      NeonFunctionsListResponse(
-        functions: identical(functions, sdkOmittedValue)
-            ? this.functions
-            : functions as List<NeonFunction>,
-      );
+  NeonFunctionsListResponse _copyWith({Object? functions = sdkOmittedValue}) => NeonFunctionsListResponse(
+    functions: identical(functions, sdkOmittedValue) ? this.functions : functions as List<NeonFunction>,
+  );
 
-  factory NeonFunctionsListResponse.fromJson(Map<String, dynamic> json) =>
-      NeonFunctionsListResponse(
-        functions: ((json['functions'] as List?)
-            ?.map((e) => NeonFunction.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory NeonFunctionsListResponse.fromJson(Map<String, dynamic> json) => NeonFunctionsListResponse(
+    functions: ((json['functions'] as List?)?.map((e) => NeonFunction.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'functions': functions.map((item) => item.toJson()).toList(),
-      };
+    'functions': functions.map((item) => item.toJson()).toList(),
+  };
 }
 
 /// Typed representation of the `NeonFunctionUpdateRequest` API schema.
 class NeonFunctionUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// New display name for the function. `null` clears the display name; the function's `name` then falls back to its slug. Leading and trailing whitespace is trimmed; a whitespace-only name is rejected.
   final String? name;
 
@@ -339,156 +207,84 @@ class NeonFunctionUpdateRequest {
 
   NeonFunctionUpdateRequest Function({String? name}) get copyWith => _copyWith;
 
-  NeonFunctionUpdateRequest _copyWith({Object? name = sdkOmittedValue}) =>
-      NeonFunctionUpdateRequest(
-        name: identical(name, sdkOmittedValue) ? this.name : name as String?,
-      );
+  NeonFunctionUpdateRequest _copyWith({Object? name = sdkOmittedValue}) => NeonFunctionUpdateRequest(
+    name: identical(name, sdkOmittedValue) ? this.name : name as String?,
+  );
 
-  factory NeonFunctionUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      NeonFunctionUpdateRequest(
-        name: json.containsKey('name')
-            ? json['name'] as String?
-            : throw ArgumentError.value(
-                null, 'name', 'Required property is missing'),
-      );
+  factory NeonFunctionUpdateRequest.fromJson(Map<String, dynamic> json) => NeonFunctionUpdateRequest(
+    name: json.containsKey('name') ? json['name'] as String? : throw ArgumentError.value(null, 'name', 'Required property is missing'),
+  );
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-      };
+    'name': name,
+  };
 }
 
 /// A branch-effective schedule trigger for a Function.
 class ScheduleTrigger {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Trigger type discriminator.
   final ScheduleTriggerType type_;
-
   /// Opaque, server-minted project-wide trigger identifier.
   final String triggerId;
-
   /// The branch-local Function slug resolved when an occurrence is consumed.
   final String functionSlug;
-
   /// Human-readable trigger name.
   final String name;
-
   /// Path passed to the target Function.
   final String functionPath;
-
   /// A numeric five-field cron schedule interpreted in UTC.
   final FunctionTriggerSchedule schedule;
-
   /// Required `boolean` value serialized in the `enabled` wire field.
   final bool enabled;
-
   /// Monotonic configuration version.
   final int version;
-
   /// Next scheduled occurrence as an RFC 3339 UTC timestamp, or null while disabled or inherited and not explicitly enabled on this branch.
   final String? nextRunAt;
-
   /// True when the effective configuration was authored on an ancestor branch.
   final bool inherited;
 
-  const ScheduleTrigger(
-      {required this.type_,
-      required this.triggerId,
-      required this.functionSlug,
-      required this.name,
-      required this.functionPath,
-      required this.schedule,
-      required this.enabled,
-      required this.version,
-      required this.nextRunAt,
-      required this.inherited});
+  const ScheduleTrigger({required this.type_, required this.triggerId, required this.functionSlug, required this.name, required this.functionPath, required this.schedule, required this.enabled, required this.version, required this.nextRunAt, required this.inherited});
 
-  ScheduleTrigger Function(
-      {ScheduleTriggerType type_,
-      String triggerId,
-      String functionSlug,
-      String name,
-      String functionPath,
-      FunctionTriggerSchedule schedule,
-      bool enabled,
-      int version,
-      String? nextRunAt,
-      bool inherited}) get copyWith => _copyWith;
+  ScheduleTrigger Function({ScheduleTriggerType type_, String triggerId, String functionSlug, String name, String functionPath, FunctionTriggerSchedule schedule, bool enabled, int version, String? nextRunAt, bool inherited}) get copyWith => _copyWith;
 
-  ScheduleTrigger _copyWith(
-          {Object? type_ = sdkOmittedValue,
-          Object? triggerId = sdkOmittedValue,
-          Object? functionSlug = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? functionPath = sdkOmittedValue,
-          Object? schedule = sdkOmittedValue,
-          Object? enabled = sdkOmittedValue,
-          Object? version = sdkOmittedValue,
-          Object? nextRunAt = sdkOmittedValue,
-          Object? inherited = sdkOmittedValue}) =>
-      ScheduleTrigger(
-        type_: identical(type_, sdkOmittedValue)
-            ? this.type_
-            : type_ as ScheduleTriggerType,
-        triggerId: identical(triggerId, sdkOmittedValue)
-            ? this.triggerId
-            : triggerId as String,
-        functionSlug: identical(functionSlug, sdkOmittedValue)
-            ? this.functionSlug
-            : functionSlug as String,
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        functionPath: identical(functionPath, sdkOmittedValue)
-            ? this.functionPath
-            : functionPath as String,
-        schedule: identical(schedule, sdkOmittedValue)
-            ? this.schedule
-            : schedule as FunctionTriggerSchedule,
-        enabled: identical(enabled, sdkOmittedValue)
-            ? this.enabled
-            : enabled as bool,
-        version:
-            identical(version, sdkOmittedValue) ? this.version : version as int,
-        nextRunAt: identical(nextRunAt, sdkOmittedValue)
-            ? this.nextRunAt
-            : nextRunAt as String?,
-        inherited: identical(inherited, sdkOmittedValue)
-            ? this.inherited
-            : inherited as bool,
-      );
+  ScheduleTrigger _copyWith({Object? type_ = sdkOmittedValue, Object? triggerId = sdkOmittedValue, Object? functionSlug = sdkOmittedValue, Object? name = sdkOmittedValue, Object? functionPath = sdkOmittedValue, Object? schedule = sdkOmittedValue, Object? enabled = sdkOmittedValue, Object? version = sdkOmittedValue, Object? nextRunAt = sdkOmittedValue, Object? inherited = sdkOmittedValue}) => ScheduleTrigger(
+    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as ScheduleTriggerType,
+    triggerId: identical(triggerId, sdkOmittedValue) ? this.triggerId : triggerId as String,
+    functionSlug: identical(functionSlug, sdkOmittedValue) ? this.functionSlug : functionSlug as String,
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    functionPath: identical(functionPath, sdkOmittedValue) ? this.functionPath : functionPath as String,
+    schedule: identical(schedule, sdkOmittedValue) ? this.schedule : schedule as FunctionTriggerSchedule,
+    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as bool,
+    version: identical(version, sdkOmittedValue) ? this.version : version as int,
+    nextRunAt: identical(nextRunAt, sdkOmittedValue) ? this.nextRunAt : nextRunAt as String?,
+    inherited: identical(inherited, sdkOmittedValue) ? this.inherited : inherited as bool,
+  );
 
-  factory ScheduleTrigger.fromJson(Map<String, dynamic> json) =>
-      ScheduleTrigger(
-        type_: (json['type'] != null
-            ? ScheduleTriggerType.fromJson(json['type'] as String)
-            : null)!,
-        triggerId: (json['trigger_id'] as String?)!,
-        functionSlug: (json['function_slug'] as String?)!,
-        name: (json['name'] as String?)!,
-        functionPath: (json['function_path'] as String?)!,
-        schedule: (json['schedule'] != null
-            ? FunctionTriggerSchedule.fromJson(
-                json['schedule'] as Map<String, dynamic>)
-            : null)!,
-        enabled: (json['enabled'] as bool?)!,
-        version: ((json['version'] as num?)?.toInt())!,
-        nextRunAt: json.containsKey('next_run_at')
-            ? json['next_run_at'] as String?
-            : throw ArgumentError.value(
-                null, 'next_run_at', 'Required property is missing'),
-        inherited: (json['inherited'] as bool?)!,
-      );
+  factory ScheduleTrigger.fromJson(Map<String, dynamic> json) => ScheduleTrigger(
+    type_: (json['type'] != null ? ScheduleTriggerType.fromJson(json['type'] as String) : null)!,
+    triggerId: (json['trigger_id'] as String?)!,
+    functionSlug: (json['function_slug'] as String?)!,
+    name: (json['name'] as String?)!,
+    functionPath: (json['function_path'] as String?)!,
+    schedule: (json['schedule'] != null ? FunctionTriggerSchedule.fromJson(json['schedule'] as Map<String, dynamic>) : null)!,
+    enabled: (json['enabled'] as bool?)!,
+    version: ((json['version'] as num?)?.toInt())!,
+    nextRunAt: json.containsKey('next_run_at') ? json['next_run_at'] as String? : throw ArgumentError.value(null, 'next_run_at', 'Required property is missing'),
+    inherited: (json['inherited'] as bool?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'type': type_.toJson(),
-        'trigger_id': triggerId,
-        'function_slug': functionSlug,
-        'name': name,
-        'function_path': functionPath,
-        'schedule': schedule.toJson(),
-        'enabled': enabled,
-        'version': version,
-        'next_run_at': nextRunAt,
-        'inherited': inherited,
-      };
+    'type': type_.toJson(),
+    'trigger_id': triggerId,
+    'function_slug': functionSlug,
+    'name': name,
+    'function_path': functionPath,
+    'schedule': schedule.toJson(),
+    'enabled': enabled,
+    'version': version,
+    'next_run_at': nextRunAt,
+    'inherited': inherited,
+  };
 }

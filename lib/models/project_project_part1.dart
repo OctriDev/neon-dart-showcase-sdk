@@ -8,491 +8,220 @@ part of 'project_project.dart';
 class Project {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Deprecated: always returns 0. Use the consumption history v2 endpoints (`/consumption_history/v2/projects`, `/consumption_history/v2/branches`) instead. Bytes-Hour. Project consumed that much Postgres storage hourly during the billing period. The value has some lag. The value is reset at the beginning of each billing period.
   final int dataStorageBytesHour;
-
   /// Bytes. Egress traffic from the Neon cloud to the client for given project over the billing period. Includes deleted endpoints. The value has some lag. The value is reset at the beginning of each billing period.
   final int dataTransferBytes;
-
   /// Bytes. Amount of WAL that travelled through Postgres storage for given project across all branches. The value has some lag. The value is reset at the beginning of each billing period.
   final int writtenDataBytes;
-
   /// Seconds. The number of CPU seconds used by the project's compute endpoints, including compute endpoints that have been deleted. The value has some lag. The value is reset at the beginning of each billing period. Examples: 1. An endpoint that uses 1 CPU for 1 second is equal to `compute_time=1`. 2. An endpoint that uses 2 CPUs simultaneously for 1 second is equal to `compute_time=2`.
   final int computeTimeSeconds;
-
   /// Seconds. Control plane observed endpoints of this project being active this amount of wall-clock time. The value has some lag. The value is reset at the beginning of each billing period.
   final int activeTimeSeconds;
-
   /// Deprecated. Use `compute_time_seconds` instead.
   final int cpuUsedSec;
-
   /// The Neon project ID. Use as the `project_id` path parameter in other endpoints.
   final String id;
-
   /// The cloud platform identifier. Currently, only AWS is supported, for which the identifier is `aws`.
   final String platformId;
-
   /// Cloud region where the resource's Postgres compute and storage reside (for example, `aws-us-east-1`). Valid values are returned by `GET /regions`.
   final String regionId;
-
   /// The project name
   final String name;
-
   /// Compute provisioner. `k8s-neonvm` (default) supports Autoscaling; `k8s-pod` is fixed-size compute. Also `docker` and `serverless-platform`.
   final String provisioner;
-
   /// A collection of settings for a Neon endpoint
   final SdkOptional<DefaultEndpointSettings> defaultEndpointSettings;
-
   /// Project-level settings, for example `quota`, `allowed_ips`, `enable_logical_replication`, and `maintenance_window`.
   final SdkOptional<ProjectSettingsData> settings;
-
   /// The major Postgres version number. Supported versions are `14`, `15`, `16`, `17`, and `18`. `19` is rolling out and is accepted only in regions where it is enabled; requesting it elsewhere returns an error.
   final int pgVersion;
-
   /// The proxy host for the project. This value combines the `region_id`, the `platform_id`, and the Neon domain (`neon.tech`).
   final String proxyHost;
-
   /// The logical size limit for a branch. The value is in MiB.
   final int branchLogicalSizeLimit;
-
   /// The logical size limit for a branch. The value is in B.
   final int branchLogicalSizeLimitBytes;
-
   /// Whether or not passwords are stored for roles in the Neon project. Storing passwords facilitates access to Neon features that require authorization.
   final bool storePasswords;
-
   /// A timestamp indicating when project maintenance begins. If set, the project is placed into maintenance mode at this time.
   final SdkOptional<String> maintenanceStartsAt;
-
   /// The project creation source
   final String creationSource;
-
   /// The number of seconds to retain the shared history for all branches in this project.
   final int historyRetentionSeconds;
-
   /// A timestamp indicating when the project was created
   final String createdAt;
-
   /// A timestamp indicating when the project was last updated
   final String updatedAt;
-
   /// Deprecated: always returns 0. Use the consumption history v2 endpoints (`/consumption_history/v2/projects`, `/consumption_history/v2/branches`) instead. The current space occupied by the project in Postgres storage, in bytes. Synthetic Postgres storage size combines the logical data size and Write-Ahead Log (WAL) size for all branches in a project.
   final SdkOptional<int> syntheticStorageSize;
-
   /// A date-time indicating when Neon Cloud started measuring consumption for current consumption period.
   final String consumptionPeriodStart;
-
   /// A date-time indicating when Neon Cloud plans to stop measuring consumption for current consumption period.
   final String consumptionPeriodEnd;
-
   /// Deprecated. Use the `consumption_period_end` field instead. A timestamp indicating when the project quota resets.
   final SdkOptional<String> quotaResetAt;
-
   /// ID of the organization that owns the project.
   final String ownerId;
-
   /// Ownership details for the project, including the owner's name and email.
   final SdkOptional<ProjectOwnerData> owner;
-
   /// The most recent time when any endpoint of this project was active. Omitted when observed no activity for endpoints of this project.
   final SdkOptional<String> computeLastActiveAt;
-
   /// The Neon organization ID. Returned as `id` from `GET /users/me/organizations`.
   final SdkOptional<String> orgId;
-
   /// A timestamp indicating when project update begins. If set, computes might experience a brief restart around this time.
   final SdkOptional<String> maintenanceScheduledFor;
-
   /// A timestamp indicating when HIPAA was enabled for this project
   final SdkOptional<String> hipaaEnabledAt;
-
   /// Optional `string` value serialized in the `effective_project_permission` wire field.
   final SdkOptional<ProjectPermissionLevel?> effectiveProjectPermission;
 
-  const Project(
-      {required this.dataStorageBytesHour,
-      required this.dataTransferBytes,
-      required this.writtenDataBytes,
-      required this.computeTimeSeconds,
-      required this.activeTimeSeconds,
-      required this.cpuUsedSec,
-      required this.id,
-      required this.platformId,
-      required this.regionId,
-      required this.name,
-      required this.provisioner,
-      this.defaultEndpointSettings = const SdkOmitted(),
-      this.settings = const SdkOmitted(),
-      required this.pgVersion,
-      required this.proxyHost,
-      required this.branchLogicalSizeLimit,
-      required this.branchLogicalSizeLimitBytes,
-      required this.storePasswords,
-      this.maintenanceStartsAt = const SdkOmitted(),
-      required this.creationSource,
-      required this.historyRetentionSeconds,
-      required this.createdAt,
-      required this.updatedAt,
-      this.syntheticStorageSize = const SdkOmitted(),
-      required this.consumptionPeriodStart,
-      required this.consumptionPeriodEnd,
-      this.quotaResetAt = const SdkOmitted(),
-      required this.ownerId,
-      this.owner = const SdkOmitted(),
-      this.computeLastActiveAt = const SdkOmitted(),
-      this.orgId = const SdkOmitted(),
-      this.maintenanceScheduledFor = const SdkOmitted(),
-      this.hipaaEnabledAt = const SdkOmitted(),
-      this.effectiveProjectPermission = const SdkOmitted()});
+  const Project({required this.dataStorageBytesHour, required this.dataTransferBytes, required this.writtenDataBytes, required this.computeTimeSeconds, required this.activeTimeSeconds, required this.cpuUsedSec, required this.id, required this.platformId, required this.regionId, required this.name, required this.provisioner, this.defaultEndpointSettings = const SdkOmitted(), this.settings = const SdkOmitted(), required this.pgVersion, required this.proxyHost, required this.branchLogicalSizeLimit, required this.branchLogicalSizeLimitBytes, required this.storePasswords, this.maintenanceStartsAt = const SdkOmitted(), required this.creationSource, required this.historyRetentionSeconds, required this.createdAt, required this.updatedAt, this.syntheticStorageSize = const SdkOmitted(), required this.consumptionPeriodStart, required this.consumptionPeriodEnd, this.quotaResetAt = const SdkOmitted(), required this.ownerId, this.owner = const SdkOmitted(), this.computeLastActiveAt = const SdkOmitted(), this.orgId = const SdkOmitted(), this.maintenanceScheduledFor = const SdkOmitted(), this.hipaaEnabledAt = const SdkOmitted(), this.effectiveProjectPermission = const SdkOmitted()});
 
-  Project Function(
-          {int dataStorageBytesHour,
-          int dataTransferBytes,
-          int writtenDataBytes,
-          int computeTimeSeconds,
-          int activeTimeSeconds,
-          int cpuUsedSec,
-          String id,
-          String platformId,
-          String regionId,
-          String name,
-          String provisioner,
-          SdkOptional<DefaultEndpointSettings> defaultEndpointSettings,
-          SdkOptional<ProjectSettingsData> settings,
-          int pgVersion,
-          String proxyHost,
-          int branchLogicalSizeLimit,
-          int branchLogicalSizeLimitBytes,
-          bool storePasswords,
-          SdkOptional<String> maintenanceStartsAt,
-          String creationSource,
-          int historyRetentionSeconds,
-          String createdAt,
-          String updatedAt,
-          SdkOptional<int> syntheticStorageSize,
-          String consumptionPeriodStart,
-          String consumptionPeriodEnd,
-          SdkOptional<String> quotaResetAt,
-          String ownerId,
-          SdkOptional<ProjectOwnerData> owner,
-          SdkOptional<String> computeLastActiveAt,
-          SdkOptional<String> orgId,
-          SdkOptional<String> maintenanceScheduledFor,
-          SdkOptional<String> hipaaEnabledAt,
-          SdkOptional<ProjectPermissionLevel?> effectiveProjectPermission})
-      get copyWith => _copyWith;
+  Project Function({int dataStorageBytesHour, int dataTransferBytes, int writtenDataBytes, int computeTimeSeconds, int activeTimeSeconds, int cpuUsedSec, String id, String platformId, String regionId, String name, String provisioner, SdkOptional<DefaultEndpointSettings> defaultEndpointSettings, SdkOptional<ProjectSettingsData> settings, int pgVersion, String proxyHost, int branchLogicalSizeLimit, int branchLogicalSizeLimitBytes, bool storePasswords, SdkOptional<String> maintenanceStartsAt, String creationSource, int historyRetentionSeconds, String createdAt, String updatedAt, SdkOptional<int> syntheticStorageSize, String consumptionPeriodStart, String consumptionPeriodEnd, SdkOptional<String> quotaResetAt, String ownerId, SdkOptional<ProjectOwnerData> owner, SdkOptional<String> computeLastActiveAt, SdkOptional<String> orgId, SdkOptional<String> maintenanceScheduledFor, SdkOptional<String> hipaaEnabledAt, SdkOptional<ProjectPermissionLevel?> effectiveProjectPermission}) get copyWith => _copyWith;
 
-  Project _copyWith(
-          {Object? dataStorageBytesHour = sdkOmittedValue,
-          Object? dataTransferBytes = sdkOmittedValue,
-          Object? writtenDataBytes = sdkOmittedValue,
-          Object? computeTimeSeconds = sdkOmittedValue,
-          Object? activeTimeSeconds = sdkOmittedValue,
-          Object? cpuUsedSec = sdkOmittedValue,
-          Object? id = sdkOmittedValue,
-          Object? platformId = sdkOmittedValue,
-          Object? regionId = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? provisioner = sdkOmittedValue,
-          Object? defaultEndpointSettings = sdkOmittedValue,
-          Object? settings = sdkOmittedValue,
-          Object? pgVersion = sdkOmittedValue,
-          Object? proxyHost = sdkOmittedValue,
-          Object? branchLogicalSizeLimit = sdkOmittedValue,
-          Object? branchLogicalSizeLimitBytes = sdkOmittedValue,
-          Object? storePasswords = sdkOmittedValue,
-          Object? maintenanceStartsAt = sdkOmittedValue,
-          Object? creationSource = sdkOmittedValue,
-          Object? historyRetentionSeconds = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue,
-          Object? updatedAt = sdkOmittedValue,
-          Object? syntheticStorageSize = sdkOmittedValue,
-          Object? consumptionPeriodStart = sdkOmittedValue,
-          Object? consumptionPeriodEnd = sdkOmittedValue,
-          Object? quotaResetAt = sdkOmittedValue,
-          Object? ownerId = sdkOmittedValue,
-          Object? owner = sdkOmittedValue,
-          Object? computeLastActiveAt = sdkOmittedValue,
-          Object? orgId = sdkOmittedValue,
-          Object? maintenanceScheduledFor = sdkOmittedValue,
-          Object? hipaaEnabledAt = sdkOmittedValue,
-          Object? effectiveProjectPermission = sdkOmittedValue}) =>
-      Project(
-        dataStorageBytesHour: identical(dataStorageBytesHour, sdkOmittedValue)
-            ? this.dataStorageBytesHour
-            : dataStorageBytesHour as int,
-        dataTransferBytes: identical(dataTransferBytes, sdkOmittedValue)
-            ? this.dataTransferBytes
-            : dataTransferBytes as int,
-        writtenDataBytes: identical(writtenDataBytes, sdkOmittedValue)
-            ? this.writtenDataBytes
-            : writtenDataBytes as int,
-        computeTimeSeconds: identical(computeTimeSeconds, sdkOmittedValue)
-            ? this.computeTimeSeconds
-            : computeTimeSeconds as int,
-        activeTimeSeconds: identical(activeTimeSeconds, sdkOmittedValue)
-            ? this.activeTimeSeconds
-            : activeTimeSeconds as int,
-        cpuUsedSec: identical(cpuUsedSec, sdkOmittedValue)
-            ? this.cpuUsedSec
-            : cpuUsedSec as int,
-        id: identical(id, sdkOmittedValue) ? this.id : id as String,
-        platformId: identical(platformId, sdkOmittedValue)
-            ? this.platformId
-            : platformId as String,
-        regionId: identical(regionId, sdkOmittedValue)
-            ? this.regionId
-            : regionId as String,
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        provisioner: identical(provisioner, sdkOmittedValue)
-            ? this.provisioner
-            : provisioner as String,
-        defaultEndpointSettings: identical(
-                defaultEndpointSettings, sdkOmittedValue)
-            ? this.defaultEndpointSettings
-            : defaultEndpointSettings as SdkOptional<DefaultEndpointSettings>,
-        settings: identical(settings, sdkOmittedValue)
-            ? this.settings
-            : settings as SdkOptional<ProjectSettingsData>,
-        pgVersion: identical(pgVersion, sdkOmittedValue)
-            ? this.pgVersion
-            : pgVersion as int,
-        proxyHost: identical(proxyHost, sdkOmittedValue)
-            ? this.proxyHost
-            : proxyHost as String,
-        branchLogicalSizeLimit:
-            identical(branchLogicalSizeLimit, sdkOmittedValue)
-                ? this.branchLogicalSizeLimit
-                : branchLogicalSizeLimit as int,
-        branchLogicalSizeLimitBytes:
-            identical(branchLogicalSizeLimitBytes, sdkOmittedValue)
-                ? this.branchLogicalSizeLimitBytes
-                : branchLogicalSizeLimitBytes as int,
-        storePasswords: identical(storePasswords, sdkOmittedValue)
-            ? this.storePasswords
-            : storePasswords as bool,
-        maintenanceStartsAt: identical(maintenanceStartsAt, sdkOmittedValue)
-            ? this.maintenanceStartsAt
-            : maintenanceStartsAt as SdkOptional<String>,
-        creationSource: identical(creationSource, sdkOmittedValue)
-            ? this.creationSource
-            : creationSource as String,
-        historyRetentionSeconds:
-            identical(historyRetentionSeconds, sdkOmittedValue)
-                ? this.historyRetentionSeconds
-                : historyRetentionSeconds as int,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-        updatedAt: identical(updatedAt, sdkOmittedValue)
-            ? this.updatedAt
-            : updatedAt as String,
-        syntheticStorageSize: identical(syntheticStorageSize, sdkOmittedValue)
-            ? this.syntheticStorageSize
-            : syntheticStorageSize as SdkOptional<int>,
-        consumptionPeriodStart:
-            identical(consumptionPeriodStart, sdkOmittedValue)
-                ? this.consumptionPeriodStart
-                : consumptionPeriodStart as String,
-        consumptionPeriodEnd: identical(consumptionPeriodEnd, sdkOmittedValue)
-            ? this.consumptionPeriodEnd
-            : consumptionPeriodEnd as String,
-        quotaResetAt: identical(quotaResetAt, sdkOmittedValue)
-            ? this.quotaResetAt
-            : quotaResetAt as SdkOptional<String>,
-        ownerId: identical(ownerId, sdkOmittedValue)
-            ? this.ownerId
-            : ownerId as String,
-        owner: identical(owner, sdkOmittedValue)
-            ? this.owner
-            : owner as SdkOptional<ProjectOwnerData>,
-        computeLastActiveAt: identical(computeLastActiveAt, sdkOmittedValue)
-            ? this.computeLastActiveAt
-            : computeLastActiveAt as SdkOptional<String>,
-        orgId: identical(orgId, sdkOmittedValue)
-            ? this.orgId
-            : orgId as SdkOptional<String>,
-        maintenanceScheduledFor:
-            identical(maintenanceScheduledFor, sdkOmittedValue)
-                ? this.maintenanceScheduledFor
-                : maintenanceScheduledFor as SdkOptional<String>,
-        hipaaEnabledAt: identical(hipaaEnabledAt, sdkOmittedValue)
-            ? this.hipaaEnabledAt
-            : hipaaEnabledAt as SdkOptional<String>,
-        effectiveProjectPermission:
-            identical(effectiveProjectPermission, sdkOmittedValue)
-                ? this.effectiveProjectPermission
-                : effectiveProjectPermission
-                    as SdkOptional<ProjectPermissionLevel?>,
-      );
+  Project _copyWith({Object? dataStorageBytesHour = sdkOmittedValue, Object? dataTransferBytes = sdkOmittedValue, Object? writtenDataBytes = sdkOmittedValue, Object? computeTimeSeconds = sdkOmittedValue, Object? activeTimeSeconds = sdkOmittedValue, Object? cpuUsedSec = sdkOmittedValue, Object? id = sdkOmittedValue, Object? platformId = sdkOmittedValue, Object? regionId = sdkOmittedValue, Object? name = sdkOmittedValue, Object? provisioner = sdkOmittedValue, Object? defaultEndpointSettings = sdkOmittedValue, Object? settings = sdkOmittedValue, Object? pgVersion = sdkOmittedValue, Object? proxyHost = sdkOmittedValue, Object? branchLogicalSizeLimit = sdkOmittedValue, Object? branchLogicalSizeLimitBytes = sdkOmittedValue, Object? storePasswords = sdkOmittedValue, Object? maintenanceStartsAt = sdkOmittedValue, Object? creationSource = sdkOmittedValue, Object? historyRetentionSeconds = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? updatedAt = sdkOmittedValue, Object? syntheticStorageSize = sdkOmittedValue, Object? consumptionPeriodStart = sdkOmittedValue, Object? consumptionPeriodEnd = sdkOmittedValue, Object? quotaResetAt = sdkOmittedValue, Object? ownerId = sdkOmittedValue, Object? owner = sdkOmittedValue, Object? computeLastActiveAt = sdkOmittedValue, Object? orgId = sdkOmittedValue, Object? maintenanceScheduledFor = sdkOmittedValue, Object? hipaaEnabledAt = sdkOmittedValue, Object? effectiveProjectPermission = sdkOmittedValue}) => Project(
+    dataStorageBytesHour: identical(dataStorageBytesHour, sdkOmittedValue) ? this.dataStorageBytesHour : dataStorageBytesHour as int,
+    dataTransferBytes: identical(dataTransferBytes, sdkOmittedValue) ? this.dataTransferBytes : dataTransferBytes as int,
+    writtenDataBytes: identical(writtenDataBytes, sdkOmittedValue) ? this.writtenDataBytes : writtenDataBytes as int,
+    computeTimeSeconds: identical(computeTimeSeconds, sdkOmittedValue) ? this.computeTimeSeconds : computeTimeSeconds as int,
+    activeTimeSeconds: identical(activeTimeSeconds, sdkOmittedValue) ? this.activeTimeSeconds : activeTimeSeconds as int,
+    cpuUsedSec: identical(cpuUsedSec, sdkOmittedValue) ? this.cpuUsedSec : cpuUsedSec as int,
+    id: identical(id, sdkOmittedValue) ? this.id : id as String,
+    platformId: identical(platformId, sdkOmittedValue) ? this.platformId : platformId as String,
+    regionId: identical(regionId, sdkOmittedValue) ? this.regionId : regionId as String,
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    provisioner: identical(provisioner, sdkOmittedValue) ? this.provisioner : provisioner as String,
+    defaultEndpointSettings: identical(defaultEndpointSettings, sdkOmittedValue) ? this.defaultEndpointSettings : defaultEndpointSettings as SdkOptional<DefaultEndpointSettings>,
+    settings: identical(settings, sdkOmittedValue) ? this.settings : settings as SdkOptional<ProjectSettingsData>,
+    pgVersion: identical(pgVersion, sdkOmittedValue) ? this.pgVersion : pgVersion as int,
+    proxyHost: identical(proxyHost, sdkOmittedValue) ? this.proxyHost : proxyHost as String,
+    branchLogicalSizeLimit: identical(branchLogicalSizeLimit, sdkOmittedValue) ? this.branchLogicalSizeLimit : branchLogicalSizeLimit as int,
+    branchLogicalSizeLimitBytes: identical(branchLogicalSizeLimitBytes, sdkOmittedValue) ? this.branchLogicalSizeLimitBytes : branchLogicalSizeLimitBytes as int,
+    storePasswords: identical(storePasswords, sdkOmittedValue) ? this.storePasswords : storePasswords as bool,
+    maintenanceStartsAt: identical(maintenanceStartsAt, sdkOmittedValue) ? this.maintenanceStartsAt : maintenanceStartsAt as SdkOptional<String>,
+    creationSource: identical(creationSource, sdkOmittedValue) ? this.creationSource : creationSource as String,
+    historyRetentionSeconds: identical(historyRetentionSeconds, sdkOmittedValue) ? this.historyRetentionSeconds : historyRetentionSeconds as int,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+    updatedAt: identical(updatedAt, sdkOmittedValue) ? this.updatedAt : updatedAt as String,
+    syntheticStorageSize: identical(syntheticStorageSize, sdkOmittedValue) ? this.syntheticStorageSize : syntheticStorageSize as SdkOptional<int>,
+    consumptionPeriodStart: identical(consumptionPeriodStart, sdkOmittedValue) ? this.consumptionPeriodStart : consumptionPeriodStart as String,
+    consumptionPeriodEnd: identical(consumptionPeriodEnd, sdkOmittedValue) ? this.consumptionPeriodEnd : consumptionPeriodEnd as String,
+    quotaResetAt: identical(quotaResetAt, sdkOmittedValue) ? this.quotaResetAt : quotaResetAt as SdkOptional<String>,
+    ownerId: identical(ownerId, sdkOmittedValue) ? this.ownerId : ownerId as String,
+    owner: identical(owner, sdkOmittedValue) ? this.owner : owner as SdkOptional<ProjectOwnerData>,
+    computeLastActiveAt: identical(computeLastActiveAt, sdkOmittedValue) ? this.computeLastActiveAt : computeLastActiveAt as SdkOptional<String>,
+    orgId: identical(orgId, sdkOmittedValue) ? this.orgId : orgId as SdkOptional<String>,
+    maintenanceScheduledFor: identical(maintenanceScheduledFor, sdkOmittedValue) ? this.maintenanceScheduledFor : maintenanceScheduledFor as SdkOptional<String>,
+    hipaaEnabledAt: identical(hipaaEnabledAt, sdkOmittedValue) ? this.hipaaEnabledAt : hipaaEnabledAt as SdkOptional<String>,
+    effectiveProjectPermission: identical(effectiveProjectPermission, sdkOmittedValue) ? this.effectiveProjectPermission : effectiveProjectPermission as SdkOptional<ProjectPermissionLevel?>,
+  );
 
   factory Project.fromJson(Map<String, dynamic> json) => Project(
-        dataStorageBytesHour:
-            ((json['data_storage_bytes_hour'] as num?)?.toInt())!,
-        dataTransferBytes: ((json['data_transfer_bytes'] as num?)?.toInt())!,
-        writtenDataBytes: ((json['written_data_bytes'] as num?)?.toInt())!,
-        computeTimeSeconds: ((json['compute_time_seconds'] as num?)?.toInt())!,
-        activeTimeSeconds: ((json['active_time_seconds'] as num?)?.toInt())!,
-        cpuUsedSec: ((json['cpu_used_sec'] as num?)?.toInt())!,
-        id: (json['id'] as String?)!,
-        platformId: (json['platform_id'] as String?)!,
-        regionId: (json['region_id'] as String?)!,
-        name: (json['name'] as String?)!,
-        provisioner: (json['provisioner'] as String?)!,
-        defaultEndpointSettings: json['default_endpoint_settings'] != null
-            ? SdkPresent((json['default_endpoint_settings'] != null
-                ? DefaultEndpointSettings.fromJson(
-                    json['default_endpoint_settings'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        settings: json['settings'] != null
-            ? SdkPresent((json['settings'] != null
-                ? ProjectSettingsData.fromJson(
-                    json['settings'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        pgVersion: ((json['pg_version'] as num?)?.toInt())!,
-        proxyHost: (json['proxy_host'] as String?)!,
-        branchLogicalSizeLimit:
-            ((json['branch_logical_size_limit'] as num?)?.toInt())!,
-        branchLogicalSizeLimitBytes:
-            ((json['branch_logical_size_limit_bytes'] as num?)?.toInt())!,
-        storePasswords: (json['store_passwords'] as bool?)!,
-        maintenanceStartsAt: json['maintenance_starts_at'] != null
-            ? SdkPresent((json['maintenance_starts_at'] as String?)!)
-            : const SdkOmitted(),
-        creationSource: (json['creation_source'] as String?)!,
-        historyRetentionSeconds:
-            ((json['history_retention_seconds'] as num?)?.toInt())!,
-        createdAt: (json['created_at'] as String?)!,
-        updatedAt: (json['updated_at'] as String?)!,
-        syntheticStorageSize: json['synthetic_storage_size'] != null
-            ? SdkPresent(((json['synthetic_storage_size'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-        consumptionPeriodStart: (json['consumption_period_start'] as String?)!,
-        consumptionPeriodEnd: (json['consumption_period_end'] as String?)!,
-        quotaResetAt: json['quota_reset_at'] != null
-            ? SdkPresent((json['quota_reset_at'] as String?)!)
-            : const SdkOmitted(),
-        ownerId: (json['owner_id'] as String?)!,
-        owner: json['owner'] != null
-            ? SdkPresent((json['owner'] != null
-                ? ProjectOwnerData.fromJson(
-                    json['owner'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        computeLastActiveAt: json['compute_last_active_at'] != null
-            ? SdkPresent((json['compute_last_active_at'] as String?)!)
-            : const SdkOmitted(),
-        orgId: json['org_id'] != null
-            ? SdkPresent((json['org_id'] as String?)!)
-            : const SdkOmitted(),
-        maintenanceScheduledFor: json['maintenance_scheduled_for'] != null
-            ? SdkPresent((json['maintenance_scheduled_for'] as String?)!)
-            : const SdkOmitted(),
-        hipaaEnabledAt: json['hipaa_enabled_at'] != null
-            ? SdkPresent((json['hipaa_enabled_at'] as String?)!)
-            : const SdkOmitted(),
-        effectiveProjectPermission:
-            json.containsKey('effective_project_permission')
-                ? SdkPresent(json['effective_project_permission'] != null
-                    ? ProjectPermissionLevel.fromJson(
-                        json['effective_project_permission'] as String)
-                    : null)
-                : const SdkOmitted(),
-      );
+    dataStorageBytesHour: ((json['data_storage_bytes_hour'] as num?)?.toInt())!,
+    dataTransferBytes: ((json['data_transfer_bytes'] as num?)?.toInt())!,
+    writtenDataBytes: ((json['written_data_bytes'] as num?)?.toInt())!,
+    computeTimeSeconds: ((json['compute_time_seconds'] as num?)?.toInt())!,
+    activeTimeSeconds: ((json['active_time_seconds'] as num?)?.toInt())!,
+    cpuUsedSec: ((json['cpu_used_sec'] as num?)?.toInt())!,
+    id: (json['id'] as String?)!,
+    platformId: (json['platform_id'] as String?)!,
+    regionId: (json['region_id'] as String?)!,
+    name: (json['name'] as String?)!,
+    provisioner: (json['provisioner'] as String?)!,
+    defaultEndpointSettings: json['default_endpoint_settings'] != null ? SdkPresent((json['default_endpoint_settings'] != null ? DefaultEndpointSettings.fromJson(json['default_endpoint_settings'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    settings: json['settings'] != null ? SdkPresent((json['settings'] != null ? ProjectSettingsData.fromJson(json['settings'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    pgVersion: ((json['pg_version'] as num?)?.toInt())!,
+    proxyHost: (json['proxy_host'] as String?)!,
+    branchLogicalSizeLimit: ((json['branch_logical_size_limit'] as num?)?.toInt())!,
+    branchLogicalSizeLimitBytes: ((json['branch_logical_size_limit_bytes'] as num?)?.toInt())!,
+    storePasswords: (json['store_passwords'] as bool?)!,
+    maintenanceStartsAt: json['maintenance_starts_at'] != null ? SdkPresent((json['maintenance_starts_at'] as String?)!) : const SdkOmitted(),
+    creationSource: (json['creation_source'] as String?)!,
+    historyRetentionSeconds: ((json['history_retention_seconds'] as num?)?.toInt())!,
+    createdAt: (json['created_at'] as String?)!,
+    updatedAt: (json['updated_at'] as String?)!,
+    syntheticStorageSize: json['synthetic_storage_size'] != null ? SdkPresent(((json['synthetic_storage_size'] as num?)?.toInt())!) : const SdkOmitted(),
+    consumptionPeriodStart: (json['consumption_period_start'] as String?)!,
+    consumptionPeriodEnd: (json['consumption_period_end'] as String?)!,
+    quotaResetAt: json['quota_reset_at'] != null ? SdkPresent((json['quota_reset_at'] as String?)!) : const SdkOmitted(),
+    ownerId: (json['owner_id'] as String?)!,
+    owner: json['owner'] != null ? SdkPresent((json['owner'] != null ? ProjectOwnerData.fromJson(json['owner'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    computeLastActiveAt: json['compute_last_active_at'] != null ? SdkPresent((json['compute_last_active_at'] as String?)!) : const SdkOmitted(),
+    orgId: json['org_id'] != null ? SdkPresent((json['org_id'] as String?)!) : const SdkOmitted(),
+    maintenanceScheduledFor: json['maintenance_scheduled_for'] != null ? SdkPresent((json['maintenance_scheduled_for'] as String?)!) : const SdkOmitted(),
+    hipaaEnabledAt: json['hipaa_enabled_at'] != null ? SdkPresent((json['hipaa_enabled_at'] as String?)!) : const SdkOmitted(),
+    effectiveProjectPermission: json.containsKey('effective_project_permission') ? SdkPresent(json['effective_project_permission'] != null ? ProjectPermissionLevel.fromJson(json['effective_project_permission'] as String) : null) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'data_storage_bytes_hour': dataStorageBytesHour,
-        'data_transfer_bytes': dataTransferBytes,
-        'written_data_bytes': writtenDataBytes,
-        'compute_time_seconds': computeTimeSeconds,
-        'active_time_seconds': activeTimeSeconds,
-        'cpu_used_sec': cpuUsedSec,
-        'id': id,
-        'platform_id': platformId,
-        'region_id': regionId,
-        'name': name,
-        'provisioner': provisioner,
-        ...switch (defaultEndpointSettings) {
-          SdkPresent<DefaultEndpointSettings>(value: final value) => {
-              'default_endpoint_settings': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (settings) {
-          SdkPresent<ProjectSettingsData>(value: final value) => {
-              'settings': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        'pg_version': pgVersion,
-        'proxy_host': proxyHost,
-        'branch_logical_size_limit': branchLogicalSizeLimit,
-        'branch_logical_size_limit_bytes': branchLogicalSizeLimitBytes,
-        'store_passwords': storePasswords,
-        ...switch (maintenanceStartsAt) {
-          SdkPresent<String>(value: final value) => {
-              'maintenance_starts_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        'creation_source': creationSource,
-        'history_retention_seconds': historyRetentionSeconds,
-        'created_at': createdAt,
-        'updated_at': updatedAt,
-        ...switch (syntheticStorageSize) {
-          SdkPresent<int>(value: final value) => {
-              'synthetic_storage_size': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        'consumption_period_start': consumptionPeriodStart,
-        'consumption_period_end': consumptionPeriodEnd,
-        ...switch (quotaResetAt) {
-          SdkPresent<String>(value: final value) => {
-              'quota_reset_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        'owner_id': ownerId,
-        ...switch (owner) {
-          SdkPresent<ProjectOwnerData>(value: final value) => {
-              'owner': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (computeLastActiveAt) {
-          SdkPresent<String>(value: final value) => {
-              'compute_last_active_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (orgId) {
-          SdkPresent<String>(value: final value) => {
-              'org_id': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (maintenanceScheduledFor) {
-          SdkPresent<String>(value: final value) => {
-              'maintenance_scheduled_for': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (hipaaEnabledAt) {
-          SdkPresent<String>(value: final value) => {
-              'hipaa_enabled_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (effectiveProjectPermission) {
-          SdkPresent<ProjectPermissionLevel?>(value: final value) => {
-              'effective_project_permission': value?.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'data_storage_bytes_hour': dataStorageBytesHour,
+    'data_transfer_bytes': dataTransferBytes,
+    'written_data_bytes': writtenDataBytes,
+    'compute_time_seconds': computeTimeSeconds,
+    'active_time_seconds': activeTimeSeconds,
+    'cpu_used_sec': cpuUsedSec,
+    'id': id,
+    'platform_id': platformId,
+    'region_id': regionId,
+    'name': name,
+    'provisioner': provisioner,
+    ...switch (defaultEndpointSettings) {
+      SdkPresent<DefaultEndpointSettings>(value: final value) => {'default_endpoint_settings': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (settings) {
+      SdkPresent<ProjectSettingsData>(value: final value) => {'settings': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    'pg_version': pgVersion,
+    'proxy_host': proxyHost,
+    'branch_logical_size_limit': branchLogicalSizeLimit,
+    'branch_logical_size_limit_bytes': branchLogicalSizeLimitBytes,
+    'store_passwords': storePasswords,
+    ...switch (maintenanceStartsAt) {
+      SdkPresent<String>(value: final value) => {'maintenance_starts_at': value,},
+      _ => const <String, dynamic>{},
+    },
+    'creation_source': creationSource,
+    'history_retention_seconds': historyRetentionSeconds,
+    'created_at': createdAt,
+    'updated_at': updatedAt,
+    ...switch (syntheticStorageSize) {
+      SdkPresent<int>(value: final value) => {'synthetic_storage_size': value,},
+      _ => const <String, dynamic>{},
+    },
+    'consumption_period_start': consumptionPeriodStart,
+    'consumption_period_end': consumptionPeriodEnd,
+    ...switch (quotaResetAt) {
+      SdkPresent<String>(value: final value) => {'quota_reset_at': value,},
+      _ => const <String, dynamic>{},
+    },
+    'owner_id': ownerId,
+    ...switch (owner) {
+      SdkPresent<ProjectOwnerData>(value: final value) => {'owner': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (computeLastActiveAt) {
+      SdkPresent<String>(value: final value) => {'compute_last_active_at': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (orgId) {
+      SdkPresent<String>(value: final value) => {'org_id': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (maintenanceScheduledFor) {
+      SdkPresent<String>(value: final value) => {'maintenance_scheduled_for': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (hipaaEnabledAt) {
+      SdkPresent<String>(value: final value) => {'hipaa_enabled_at': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (effectiveProjectPermission) {
+      SdkPresent<ProjectPermissionLevel?>(value: final value) => {'effective_project_permission': value?.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

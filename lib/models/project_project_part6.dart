@@ -8,396 +8,203 @@ part of 'project_project.dart';
 class ProjectSettingsData {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Per-project consumption quotas. If a quota is exceeded, all active computes are automatically suspended and cannot be started via API calls or incoming connections. The exception is `logical_size_bytes`, which is enforced per branch. If a branch exceeds its `logical_size_bytes` quota, computes can still be started, but write operations will fail—allowing data to be deleted to free up space. Computes on other branches are not affected. Setting `logical_size_bytes` overrides any lower value set by the `neon.max_cluster_size` Postgres setting. Quotas are enforced using per-project consumption metrics with the same names. These metrics reset at the start of each billing period. `logical_size_bytes` is also an exception—it reflects the total data stored in a branch and does not reset. A zero or empty quota value means “unlimited.”
   final SdkOptional<ProjectQuota> quota;
-
   /// A list of IP addresses that are allowed to connect to the compute endpoint. If the list is empty or not set, all IP addresses are allowed. If protected_branches_only is true, the list will be applied only to protected branches.
   final SdkOptional<AllowedIps> allowedIps;
-
   /// Sets wal_level=logical for all compute endpoints in this project. All active endpoints will be suspended. Once enabled, logical replication cannot be disabled.
   final SdkOptional<bool> enableLogicalReplication;
-
   /// A maintenance window is a time period during which Neon may perform maintenance on the project's infrastructure. During this time, the project's compute endpoints may be unavailable and existing connections can be interrupted.
   final SdkOptional<MaintenanceWindow> maintenanceWindow;
-
   /// When set, connections from the public internet are disallowed. This supersedes the AllowedIPs list. This parameter is under active development and its semantics may change in the future.
   final SdkOptional<bool> blockPublicConnections;
-
   /// When set, connections using VPC endpoints are disallowed. This parameter is under active development and its semantics may change in the future.
   final SdkOptional<bool> blockVpcConnections;
-
   /// Audit logging level, set only on HIPAA-enabled organizations (absent otherwise). Values: `base`, `extended`, `full`; HIPAA defaults to `extended`. Cannot be lowered back to `base` once `extended` or `full`.
   final SdkOptional<ProjectAuditLogLevel> auditLogLevel;
-
   /// Enables HIPAA compliance mode for the project, including audit logging.
   final SdkOptional<bool> hipaa;
-
   /// The shared libraries to preload into the project's compute instances.
   final SdkOptional<PreloadLibraries> preloadLibraries;
 
-  const ProjectSettingsData(
-      {this.quota = const SdkOmitted(),
-      this.allowedIps = const SdkOmitted(),
-      this.enableLogicalReplication = const SdkOmitted(),
-      this.maintenanceWindow = const SdkOmitted(),
-      this.blockPublicConnections = const SdkOmitted(),
-      this.blockVpcConnections = const SdkOmitted(),
-      this.auditLogLevel = const SdkOmitted(),
-      this.hipaa = const SdkOmitted(),
-      this.preloadLibraries = const SdkOmitted()});
+  const ProjectSettingsData({this.quota = const SdkOmitted(), this.allowedIps = const SdkOmitted(), this.enableLogicalReplication = const SdkOmitted(), this.maintenanceWindow = const SdkOmitted(), this.blockPublicConnections = const SdkOmitted(), this.blockVpcConnections = const SdkOmitted(), this.auditLogLevel = const SdkOmitted(), this.hipaa = const SdkOmitted(), this.preloadLibraries = const SdkOmitted()});
 
-  ProjectSettingsData Function(
-          {SdkOptional<ProjectQuota> quota,
-          SdkOptional<AllowedIps> allowedIps,
-          SdkOptional<bool> enableLogicalReplication,
-          SdkOptional<MaintenanceWindow> maintenanceWindow,
-          SdkOptional<bool> blockPublicConnections,
-          SdkOptional<bool> blockVpcConnections,
-          SdkOptional<ProjectAuditLogLevel> auditLogLevel,
-          SdkOptional<bool> hipaa,
-          SdkOptional<PreloadLibraries> preloadLibraries})
-      get copyWith => _copyWith;
+  ProjectSettingsData Function({SdkOptional<ProjectQuota> quota, SdkOptional<AllowedIps> allowedIps, SdkOptional<bool> enableLogicalReplication, SdkOptional<MaintenanceWindow> maintenanceWindow, SdkOptional<bool> blockPublicConnections, SdkOptional<bool> blockVpcConnections, SdkOptional<ProjectAuditLogLevel> auditLogLevel, SdkOptional<bool> hipaa, SdkOptional<PreloadLibraries> preloadLibraries}) get copyWith => _copyWith;
 
-  ProjectSettingsData _copyWith(
-          {Object? quota = sdkOmittedValue,
-          Object? allowedIps = sdkOmittedValue,
-          Object? enableLogicalReplication = sdkOmittedValue,
-          Object? maintenanceWindow = sdkOmittedValue,
-          Object? blockPublicConnections = sdkOmittedValue,
-          Object? blockVpcConnections = sdkOmittedValue,
-          Object? auditLogLevel = sdkOmittedValue,
-          Object? hipaa = sdkOmittedValue,
-          Object? preloadLibraries = sdkOmittedValue}) =>
-      ProjectSettingsData(
-        quota: identical(quota, sdkOmittedValue)
-            ? this.quota
-            : quota as SdkOptional<ProjectQuota>,
-        allowedIps: identical(allowedIps, sdkOmittedValue)
-            ? this.allowedIps
-            : allowedIps as SdkOptional<AllowedIps>,
-        enableLogicalReplication:
-            identical(enableLogicalReplication, sdkOmittedValue)
-                ? this.enableLogicalReplication
-                : enableLogicalReplication as SdkOptional<bool>,
-        maintenanceWindow: identical(maintenanceWindow, sdkOmittedValue)
-            ? this.maintenanceWindow
-            : maintenanceWindow as SdkOptional<MaintenanceWindow>,
-        blockPublicConnections:
-            identical(blockPublicConnections, sdkOmittedValue)
-                ? this.blockPublicConnections
-                : blockPublicConnections as SdkOptional<bool>,
-        blockVpcConnections: identical(blockVpcConnections, sdkOmittedValue)
-            ? this.blockVpcConnections
-            : blockVpcConnections as SdkOptional<bool>,
-        auditLogLevel: identical(auditLogLevel, sdkOmittedValue)
-            ? this.auditLogLevel
-            : auditLogLevel as SdkOptional<ProjectAuditLogLevel>,
-        hipaa: identical(hipaa, sdkOmittedValue)
-            ? this.hipaa
-            : hipaa as SdkOptional<bool>,
-        preloadLibraries: identical(preloadLibraries, sdkOmittedValue)
-            ? this.preloadLibraries
-            : preloadLibraries as SdkOptional<PreloadLibraries>,
-      );
+  ProjectSettingsData _copyWith({Object? quota = sdkOmittedValue, Object? allowedIps = sdkOmittedValue, Object? enableLogicalReplication = sdkOmittedValue, Object? maintenanceWindow = sdkOmittedValue, Object? blockPublicConnections = sdkOmittedValue, Object? blockVpcConnections = sdkOmittedValue, Object? auditLogLevel = sdkOmittedValue, Object? hipaa = sdkOmittedValue, Object? preloadLibraries = sdkOmittedValue}) => ProjectSettingsData(
+    quota: identical(quota, sdkOmittedValue) ? this.quota : quota as SdkOptional<ProjectQuota>,
+    allowedIps: identical(allowedIps, sdkOmittedValue) ? this.allowedIps : allowedIps as SdkOptional<AllowedIps>,
+    enableLogicalReplication: identical(enableLogicalReplication, sdkOmittedValue) ? this.enableLogicalReplication : enableLogicalReplication as SdkOptional<bool>,
+    maintenanceWindow: identical(maintenanceWindow, sdkOmittedValue) ? this.maintenanceWindow : maintenanceWindow as SdkOptional<MaintenanceWindow>,
+    blockPublicConnections: identical(blockPublicConnections, sdkOmittedValue) ? this.blockPublicConnections : blockPublicConnections as SdkOptional<bool>,
+    blockVpcConnections: identical(blockVpcConnections, sdkOmittedValue) ? this.blockVpcConnections : blockVpcConnections as SdkOptional<bool>,
+    auditLogLevel: identical(auditLogLevel, sdkOmittedValue) ? this.auditLogLevel : auditLogLevel as SdkOptional<ProjectAuditLogLevel>,
+    hipaa: identical(hipaa, sdkOmittedValue) ? this.hipaa : hipaa as SdkOptional<bool>,
+    preloadLibraries: identical(preloadLibraries, sdkOmittedValue) ? this.preloadLibraries : preloadLibraries as SdkOptional<PreloadLibraries>,
+  );
 
-  factory ProjectSettingsData.fromJson(Map<String, dynamic> json) =>
-      ProjectSettingsData(
-        quota: json['quota'] != null
-            ? SdkPresent((json['quota'] != null
-                ? ProjectQuota.fromJson(json['quota'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        allowedIps: json['allowed_ips'] != null
-            ? SdkPresent((json['allowed_ips'] != null
-                ? AllowedIps.fromJson(
-                    json['allowed_ips'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        enableLogicalReplication: json['enable_logical_replication'] != null
-            ? SdkPresent((json['enable_logical_replication'] as bool?)!)
-            : const SdkOmitted(),
-        maintenanceWindow: json['maintenance_window'] != null
-            ? SdkPresent((json['maintenance_window'] != null
-                ? MaintenanceWindow.fromJson(
-                    json['maintenance_window'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        blockPublicConnections: json['block_public_connections'] != null
-            ? SdkPresent((json['block_public_connections'] as bool?)!)
-            : const SdkOmitted(),
-        blockVpcConnections: json['block_vpc_connections'] != null
-            ? SdkPresent((json['block_vpc_connections'] as bool?)!)
-            : const SdkOmitted(),
-        auditLogLevel: json['audit_log_level'] != null
-            ? SdkPresent((json['audit_log_level'] != null
-                ? ProjectAuditLogLevel.fromJson(
-                    json['audit_log_level'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        hipaa: json['hipaa'] != null
-            ? SdkPresent((json['hipaa'] as bool?)!)
-            : const SdkOmitted(),
-        preloadLibraries: json['preload_libraries'] != null
-            ? SdkPresent((json['preload_libraries'] != null
-                ? PreloadLibraries.fromJson(
-                    json['preload_libraries'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory ProjectSettingsData.fromJson(Map<String, dynamic> json) => ProjectSettingsData(
+    quota: json['quota'] != null ? SdkPresent((json['quota'] != null ? ProjectQuota.fromJson(json['quota'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    allowedIps: json['allowed_ips'] != null ? SdkPresent((json['allowed_ips'] != null ? AllowedIps.fromJson(json['allowed_ips'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    enableLogicalReplication: json['enable_logical_replication'] != null ? SdkPresent((json['enable_logical_replication'] as bool?)!) : const SdkOmitted(),
+    maintenanceWindow: json['maintenance_window'] != null ? SdkPresent((json['maintenance_window'] != null ? MaintenanceWindow.fromJson(json['maintenance_window'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    blockPublicConnections: json['block_public_connections'] != null ? SdkPresent((json['block_public_connections'] as bool?)!) : const SdkOmitted(),
+    blockVpcConnections: json['block_vpc_connections'] != null ? SdkPresent((json['block_vpc_connections'] as bool?)!) : const SdkOmitted(),
+    auditLogLevel: json['audit_log_level'] != null ? SdkPresent((json['audit_log_level'] != null ? ProjectAuditLogLevel.fromJson(json['audit_log_level'] as String) : null)!) : const SdkOmitted(),
+    hipaa: json['hipaa'] != null ? SdkPresent((json['hipaa'] as bool?)!) : const SdkOmitted(),
+    preloadLibraries: json['preload_libraries'] != null ? SdkPresent((json['preload_libraries'] != null ? PreloadLibraries.fromJson(json['preload_libraries'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (quota) {
-          SdkPresent<ProjectQuota>(value: final value) => {
-              'quota': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (allowedIps) {
-          SdkPresent<AllowedIps>(value: final value) => {
-              'allowed_ips': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (enableLogicalReplication) {
-          SdkPresent<bool>(value: final value) => {
-              'enable_logical_replication': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (maintenanceWindow) {
-          SdkPresent<MaintenanceWindow>(value: final value) => {
-              'maintenance_window': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (blockPublicConnections) {
-          SdkPresent<bool>(value: final value) => {
-              'block_public_connections': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (blockVpcConnections) {
-          SdkPresent<bool>(value: final value) => {
-              'block_vpc_connections': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (auditLogLevel) {
-          SdkPresent<ProjectAuditLogLevel>(value: final value) => {
-              'audit_log_level': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (hipaa) {
-          SdkPresent<bool>(value: final value) => {
-              'hipaa': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (preloadLibraries) {
-          SdkPresent<PreloadLibraries>(value: final value) => {
-              'preload_libraries': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (quota) {
+      SdkPresent<ProjectQuota>(value: final value) => {'quota': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (allowedIps) {
+      SdkPresent<AllowedIps>(value: final value) => {'allowed_ips': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (enableLogicalReplication) {
+      SdkPresent<bool>(value: final value) => {'enable_logical_replication': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (maintenanceWindow) {
+      SdkPresent<MaintenanceWindow>(value: final value) => {'maintenance_window': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (blockPublicConnections) {
+      SdkPresent<bool>(value: final value) => {'block_public_connections': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (blockVpcConnections) {
+      SdkPresent<bool>(value: final value) => {'block_vpc_connections': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (auditLogLevel) {
+      SdkPresent<ProjectAuditLogLevel>(value: final value) => {'audit_log_level': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (hipaa) {
+      SdkPresent<bool>(value: final value) => {'hipaa': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (preloadLibraries) {
+      SdkPresent<PreloadLibraries>(value: final value) => {'preload_libraries': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `ProjectTransferRequestResponse` API schema.
 class ProjectTransferRequestResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The unique identifier for the transfer request
   final String id;
-
   /// The ID of the project that is being transferred
   final String projectId;
-
   /// The timestamp when the transfer request was created
   final String createdAt;
-
   /// The timestamp when the transfer request will expire
   final String expiresAt;
 
-  const ProjectTransferRequestResponse(
-      {required this.id,
-      required this.projectId,
-      required this.createdAt,
-      required this.expiresAt});
+  const ProjectTransferRequestResponse({required this.id, required this.projectId, required this.createdAt, required this.expiresAt});
 
-  ProjectTransferRequestResponse Function(
-      {String id,
-      String projectId,
-      String createdAt,
-      String expiresAt}) get copyWith => _copyWith;
+  ProjectTransferRequestResponse Function({String id, String projectId, String createdAt, String expiresAt}) get copyWith => _copyWith;
 
-  ProjectTransferRequestResponse _copyWith(
-          {Object? id = sdkOmittedValue,
-          Object? projectId = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue,
-          Object? expiresAt = sdkOmittedValue}) =>
-      ProjectTransferRequestResponse(
-        id: identical(id, sdkOmittedValue) ? this.id : id as String,
-        projectId: identical(projectId, sdkOmittedValue)
-            ? this.projectId
-            : projectId as String,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-        expiresAt: identical(expiresAt, sdkOmittedValue)
-            ? this.expiresAt
-            : expiresAt as String,
-      );
+  ProjectTransferRequestResponse _copyWith({Object? id = sdkOmittedValue, Object? projectId = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? expiresAt = sdkOmittedValue}) => ProjectTransferRequestResponse(
+    id: identical(id, sdkOmittedValue) ? this.id : id as String,
+    projectId: identical(projectId, sdkOmittedValue) ? this.projectId : projectId as String,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+    expiresAt: identical(expiresAt, sdkOmittedValue) ? this.expiresAt : expiresAt as String,
+  );
 
-  factory ProjectTransferRequestResponse.fromJson(Map<String, dynamic> json) =>
-      ProjectTransferRequestResponse(
-        id: (json['id'] as String?)!,
-        projectId: (json['project_id'] as String?)!,
-        createdAt: (json['created_at'] as String?)!,
-        expiresAt: (json['expires_at'] as String?)!,
-      );
+  factory ProjectTransferRequestResponse.fromJson(Map<String, dynamic> json) => ProjectTransferRequestResponse(
+    id: (json['id'] as String?)!,
+    projectId: (json['project_id'] as String?)!,
+    createdAt: (json['created_at'] as String?)!,
+    expiresAt: (json['expires_at'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'project_id': projectId,
-        'created_at': createdAt,
-        'expires_at': expiresAt,
-      };
+    'id': id,
+    'project_id': projectId,
+    'created_at': createdAt,
+    'expires_at': expiresAt,
+  };
 }
 
 /// Required object value serialized in the `project` wire field.
 class ProjectUpdateRequestProject {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Project-level settings, for example `quota`, `allowed_ips`, `enable_logical_replication`, and `maintenance_window`.
   final SdkOptional<ProjectSettingsData> settings;
-
   /// The project name
   final SdkOptional<String> name;
-
   /// A collection of settings for a Neon endpoint
   final SdkOptional<DefaultEndpointSettings> defaultEndpointSettings;
-
   /// History window (point-in-time restore range) for all branches, in seconds. `0` disables it. Default 1 day (Free: 6 hours). Maximum depends on plan: Free 6 hours (21600), Launch 7 days (604800), Scale 30 days (2592000).
   final SdkOptional<int> historyRetentionSeconds;
 
-  const ProjectUpdateRequestProject(
-      {this.settings = const SdkOmitted(),
-      this.name = const SdkOmitted(),
-      this.defaultEndpointSettings = const SdkOmitted(),
-      this.historyRetentionSeconds = const SdkOmitted()});
+  const ProjectUpdateRequestProject({this.settings = const SdkOmitted(), this.name = const SdkOmitted(), this.defaultEndpointSettings = const SdkOmitted(), this.historyRetentionSeconds = const SdkOmitted()});
 
-  ProjectUpdateRequestProject Function(
-      {SdkOptional<ProjectSettingsData> settings,
-      SdkOptional<String> name,
-      SdkOptional<DefaultEndpointSettings> defaultEndpointSettings,
-      SdkOptional<int> historyRetentionSeconds}) get copyWith => _copyWith;
+  ProjectUpdateRequestProject Function({SdkOptional<ProjectSettingsData> settings, SdkOptional<String> name, SdkOptional<DefaultEndpointSettings> defaultEndpointSettings, SdkOptional<int> historyRetentionSeconds}) get copyWith => _copyWith;
 
-  ProjectUpdateRequestProject _copyWith(
-          {Object? settings = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? defaultEndpointSettings = sdkOmittedValue,
-          Object? historyRetentionSeconds = sdkOmittedValue}) =>
-      ProjectUpdateRequestProject(
-        settings: identical(settings, sdkOmittedValue)
-            ? this.settings
-            : settings as SdkOptional<ProjectSettingsData>,
-        name: identical(name, sdkOmittedValue)
-            ? this.name
-            : name as SdkOptional<String>,
-        defaultEndpointSettings: identical(
-                defaultEndpointSettings, sdkOmittedValue)
-            ? this.defaultEndpointSettings
-            : defaultEndpointSettings as SdkOptional<DefaultEndpointSettings>,
-        historyRetentionSeconds:
-            identical(historyRetentionSeconds, sdkOmittedValue)
-                ? this.historyRetentionSeconds
-                : historyRetentionSeconds as SdkOptional<int>,
-      );
+  ProjectUpdateRequestProject _copyWith({Object? settings = sdkOmittedValue, Object? name = sdkOmittedValue, Object? defaultEndpointSettings = sdkOmittedValue, Object? historyRetentionSeconds = sdkOmittedValue}) => ProjectUpdateRequestProject(
+    settings: identical(settings, sdkOmittedValue) ? this.settings : settings as SdkOptional<ProjectSettingsData>,
+    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
+    defaultEndpointSettings: identical(defaultEndpointSettings, sdkOmittedValue) ? this.defaultEndpointSettings : defaultEndpointSettings as SdkOptional<DefaultEndpointSettings>,
+    historyRetentionSeconds: identical(historyRetentionSeconds, sdkOmittedValue) ? this.historyRetentionSeconds : historyRetentionSeconds as SdkOptional<int>,
+  );
 
-  factory ProjectUpdateRequestProject.fromJson(Map<String, dynamic> json) =>
-      ProjectUpdateRequestProject(
-        settings: json['settings'] != null
-            ? SdkPresent((json['settings'] != null
-                ? ProjectSettingsData.fromJson(
-                    json['settings'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        name: json['name'] != null
-            ? SdkPresent((json['name'] as String?)!)
-            : const SdkOmitted(),
-        defaultEndpointSettings: json['default_endpoint_settings'] != null
-            ? SdkPresent((json['default_endpoint_settings'] != null
-                ? DefaultEndpointSettings.fromJson(
-                    json['default_endpoint_settings'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        historyRetentionSeconds: json['history_retention_seconds'] != null
-            ? SdkPresent(
-                ((json['history_retention_seconds'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-      );
+  factory ProjectUpdateRequestProject.fromJson(Map<String, dynamic> json) => ProjectUpdateRequestProject(
+    settings: json['settings'] != null ? SdkPresent((json['settings'] != null ? ProjectSettingsData.fromJson(json['settings'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
+    defaultEndpointSettings: json['default_endpoint_settings'] != null ? SdkPresent((json['default_endpoint_settings'] != null ? DefaultEndpointSettings.fromJson(json['default_endpoint_settings'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    historyRetentionSeconds: json['history_retention_seconds'] != null ? SdkPresent(((json['history_retention_seconds'] as num?)?.toInt())!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (settings) {
-          SdkPresent<ProjectSettingsData>(value: final value) => {
-              'settings': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (name) {
-          SdkPresent<String>(value: final value) => {
-              'name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (defaultEndpointSettings) {
-          SdkPresent<DefaultEndpointSettings>(value: final value) => {
-              'default_endpoint_settings': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (historyRetentionSeconds) {
-          SdkPresent<int>(value: final value) => {
-              'history_retention_seconds': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (settings) {
+      SdkPresent<ProjectSettingsData>(value: final value) => {'settings': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (name) {
+      SdkPresent<String>(value: final value) => {'name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (defaultEndpointSettings) {
+      SdkPresent<DefaultEndpointSettings>(value: final value) => {'default_endpoint_settings': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (historyRetentionSeconds) {
+      SdkPresent<int>(value: final value) => {'history_retention_seconds': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `ProjectUpdateRequest` API schema.
 class ProjectUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required object value serialized in the `project` wire field.
   final ProjectUpdateRequestProject project;
 
   const ProjectUpdateRequest({required this.project});
 
-  ProjectUpdateRequest Function({ProjectUpdateRequestProject project})
-      get copyWith => _copyWith;
+  ProjectUpdateRequest Function({ProjectUpdateRequestProject project}) get copyWith => _copyWith;
 
-  ProjectUpdateRequest _copyWith({Object? project = sdkOmittedValue}) =>
-      ProjectUpdateRequest(
-        project: identical(project, sdkOmittedValue)
-            ? this.project
-            : project as ProjectUpdateRequestProject,
-      );
+  ProjectUpdateRequest _copyWith({Object? project = sdkOmittedValue}) => ProjectUpdateRequest(
+    project: identical(project, sdkOmittedValue) ? this.project : project as ProjectUpdateRequestProject,
+  );
 
-  factory ProjectUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      ProjectUpdateRequest(
-        project: (json['project'] != null
-            ? ProjectUpdateRequestProject.fromJson(
-                json['project'] as Map<String, dynamic>)
-            : null)!,
-      );
+  factory ProjectUpdateRequest.fromJson(Map<String, dynamic> json) => ProjectUpdateRequest(
+    project: (json['project'] != null ? ProjectUpdateRequestProject.fromJson(json['project'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'project': project.toJson(),
-      };
+    'project': project.toJson(),
+  };
 }

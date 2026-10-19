@@ -8,260 +8,145 @@ part of 'shared_neon.dart';
 class NeonAuthAddDomainToRedirectURIWhitelistRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// URI to add to the redirect URI allowlist for the auth provider.
   final String domain;
-
   /// Authentication provider integrated with this Neon Auth configuration. `better_auth` integrates with Better Auth (the current, recommended provider). `stack` integrates with Stack Auth (deprecated). `mock` is a simulated provider for local development and testing only.
   final NeonAuthSupportedAuthProvider authProvider;
 
-  const NeonAuthAddDomainToRedirectURIWhitelistRequest(
-      {required this.domain, required this.authProvider});
+  const NeonAuthAddDomainToRedirectURIWhitelistRequest({required this.domain, required this.authProvider});
 
-  NeonAuthAddDomainToRedirectURIWhitelistRequest Function(
-      {String domain,
-      NeonAuthSupportedAuthProvider authProvider}) get copyWith => _copyWith;
+  NeonAuthAddDomainToRedirectURIWhitelistRequest Function({String domain, NeonAuthSupportedAuthProvider authProvider}) get copyWith => _copyWith;
 
-  NeonAuthAddDomainToRedirectURIWhitelistRequest _copyWith(
-          {Object? domain = sdkOmittedValue,
-          Object? authProvider = sdkOmittedValue}) =>
-      NeonAuthAddDomainToRedirectURIWhitelistRequest(
-        domain:
-            identical(domain, sdkOmittedValue) ? this.domain : domain as String,
-        authProvider: identical(authProvider, sdkOmittedValue)
-            ? this.authProvider
-            : authProvider as NeonAuthSupportedAuthProvider,
-      );
+  NeonAuthAddDomainToRedirectURIWhitelistRequest _copyWith({Object? domain = sdkOmittedValue, Object? authProvider = sdkOmittedValue}) => NeonAuthAddDomainToRedirectURIWhitelistRequest(
+    domain: identical(domain, sdkOmittedValue) ? this.domain : domain as String,
+    authProvider: identical(authProvider, sdkOmittedValue) ? this.authProvider : authProvider as NeonAuthSupportedAuthProvider,
+  );
 
-  factory NeonAuthAddDomainToRedirectURIWhitelistRequest.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthAddDomainToRedirectURIWhitelistRequest(
-        domain: (json['domain'] as String?)!,
-        authProvider: (json['auth_provider'] != null
-            ? NeonAuthSupportedAuthProvider.fromJson(
-                json['auth_provider'] as String)
-            : null)!,
-      );
+  factory NeonAuthAddDomainToRedirectURIWhitelistRequest.fromJson(Map<String, dynamic> json) => NeonAuthAddDomainToRedirectURIWhitelistRequest(
+    domain: (json['domain'] as String?)!,
+    authProvider: (json['auth_provider'] != null ? NeonAuthSupportedAuthProvider.fromJson(json['auth_provider'] as String) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'domain': domain,
-        'auth_provider': authProvider.toJson(),
-      };
+    'domain': domain,
+    'auth_provider': authProvider.toJson(),
+  };
 }
 
 /// Typed representation of the `NeonAuthAddOAuthProviderRequest` API schema.
 class NeonAuthAddOAuthProviderRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// OAuth provider to configure for Neon Auth. Known values: `google`, `github`, `microsoft`, `vercel`.
   final NeonAuthOauthProviderId id;
-
   /// The client ID issued by the OAuth provider for your application. Used to identify the application during the OAuth flow.
   final SdkOptional<String> clientId;
-
   /// OAuth client secret for the provider.
   final SdkOptional<String> clientSecret;
-
   /// Tenant ID for the Microsoft OAuth provider. Only relevant when the OAuth provider is Microsoft; omit or leave blank for other providers.
   final SdkOptional<String> microsoftTenantId;
 
-  const NeonAuthAddOAuthProviderRequest(
-      {required this.id,
-      this.clientId = const SdkOmitted(),
-      this.clientSecret = const SdkOmitted(),
-      this.microsoftTenantId = const SdkOmitted()});
+  const NeonAuthAddOAuthProviderRequest({required this.id, this.clientId = const SdkOmitted(), this.clientSecret = const SdkOmitted(), this.microsoftTenantId = const SdkOmitted()});
 
-  NeonAuthAddOAuthProviderRequest Function(
-      {NeonAuthOauthProviderId id,
-      SdkOptional<String> clientId,
-      SdkOptional<String> clientSecret,
-      SdkOptional<String> microsoftTenantId}) get copyWith => _copyWith;
+  NeonAuthAddOAuthProviderRequest Function({NeonAuthOauthProviderId id, SdkOptional<String> clientId, SdkOptional<String> clientSecret, SdkOptional<String> microsoftTenantId}) get copyWith => _copyWith;
 
-  NeonAuthAddOAuthProviderRequest _copyWith(
-          {Object? id = sdkOmittedValue,
-          Object? clientId = sdkOmittedValue,
-          Object? clientSecret = sdkOmittedValue,
-          Object? microsoftTenantId = sdkOmittedValue}) =>
-      NeonAuthAddOAuthProviderRequest(
-        id: identical(id, sdkOmittedValue)
-            ? this.id
-            : id as NeonAuthOauthProviderId,
-        clientId: identical(clientId, sdkOmittedValue)
-            ? this.clientId
-            : clientId as SdkOptional<String>,
-        clientSecret: identical(clientSecret, sdkOmittedValue)
-            ? this.clientSecret
-            : clientSecret as SdkOptional<String>,
-        microsoftTenantId: identical(microsoftTenantId, sdkOmittedValue)
-            ? this.microsoftTenantId
-            : microsoftTenantId as SdkOptional<String>,
-      );
+  NeonAuthAddOAuthProviderRequest _copyWith({Object? id = sdkOmittedValue, Object? clientId = sdkOmittedValue, Object? clientSecret = sdkOmittedValue, Object? microsoftTenantId = sdkOmittedValue}) => NeonAuthAddOAuthProviderRequest(
+    id: identical(id, sdkOmittedValue) ? this.id : id as NeonAuthOauthProviderId,
+    clientId: identical(clientId, sdkOmittedValue) ? this.clientId : clientId as SdkOptional<String>,
+    clientSecret: identical(clientSecret, sdkOmittedValue) ? this.clientSecret : clientSecret as SdkOptional<String>,
+    microsoftTenantId: identical(microsoftTenantId, sdkOmittedValue) ? this.microsoftTenantId : microsoftTenantId as SdkOptional<String>,
+  );
 
-  factory NeonAuthAddOAuthProviderRequest.fromJson(Map<String, dynamic> json) =>
-      NeonAuthAddOAuthProviderRequest(
-        id: (json['id'] != null
-            ? NeonAuthOauthProviderId.fromJson(json['id'] as String)
-            : null)!,
-        clientId: json['client_id'] != null
-            ? SdkPresent((json['client_id'] as String?)!)
-            : const SdkOmitted(),
-        clientSecret: json['client_secret'] != null
-            ? SdkPresent((json['client_secret'] as String?)!)
-            : const SdkOmitted(),
-        microsoftTenantId: json['microsoft_tenant_id'] != null
-            ? SdkPresent((json['microsoft_tenant_id'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonAuthAddOAuthProviderRequest.fromJson(Map<String, dynamic> json) => NeonAuthAddOAuthProviderRequest(
+    id: (json['id'] != null ? NeonAuthOauthProviderId.fromJson(json['id'] as String) : null)!,
+    clientId: json['client_id'] != null ? SdkPresent((json['client_id'] as String?)!) : const SdkOmitted(),
+    clientSecret: json['client_secret'] != null ? SdkPresent((json['client_secret'] as String?)!) : const SdkOmitted(),
+    microsoftTenantId: json['microsoft_tenant_id'] != null ? SdkPresent((json['microsoft_tenant_id'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id.toJson(),
-        ...switch (clientId) {
-          SdkPresent<String>(value: final value) => {
-              'client_id': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (clientSecret) {
-          SdkPresent<String>(value: final value) => {
-              'client_secret': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (microsoftTenantId) {
-          SdkPresent<String>(value: final value) => {
-              'microsoft_tenant_id': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'id': id.toJson(),
+    ...switch (clientId) {
+      SdkPresent<String>(value: final value) => {'client_id': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (clientSecret) {
+      SdkPresent<String>(value: final value) => {'client_secret': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (microsoftTenantId) {
+      SdkPresent<String>(value: final value) => {'microsoft_tenant_id': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `NeonAuthCreateIntegrationResponse` API schema.
 class NeonAuthCreateIntegrationResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Authentication provider integrated with this Neon Auth configuration. `better_auth` integrates with Better Auth (the current, recommended provider). `stack` integrates with Stack Auth (deprecated). `mock` is a simulated provider for local development and testing only.
   final NeonAuthSupportedAuthProvider authProvider;
-
   /// Project ID assigned by the auth provider for this integration.
   final String authProviderProjectId;
-
   /// Publishable SDK key from the auth provider. Populated only for Stack Auth (deprecated); empty for Better Auth.
   final String pubClientKey;
-
   /// Secret server-side SDK key from the auth provider. Populated only for Stack Auth (deprecated); empty for Better Auth. Treat as a credential.
   final String secretServerKey;
-
   /// URL of the provider's JWKS endpoint used to verify JWTs.
   final String jwksUrl;
-
   /// Postgres schema containing the auth integration tables. Defaults to `neon_auth`.
   final String schemaName;
-
   /// Postgres table in the integration schema where synced user records are stored.
   final String tableName;
-
   /// Base URL of the Neon Auth service for this integration. Set as the NEON_AUTH_BASE_URL environment variable in your application.
   final SdkOptional<String> baseUrl;
 
-  const NeonAuthCreateIntegrationResponse(
-      {required this.authProvider,
-      required this.authProviderProjectId,
-      required this.pubClientKey,
-      required this.secretServerKey,
-      required this.jwksUrl,
-      required this.schemaName,
-      required this.tableName,
-      this.baseUrl = const SdkOmitted()});
+  const NeonAuthCreateIntegrationResponse({required this.authProvider, required this.authProviderProjectId, required this.pubClientKey, required this.secretServerKey, required this.jwksUrl, required this.schemaName, required this.tableName, this.baseUrl = const SdkOmitted()});
 
-  NeonAuthCreateIntegrationResponse Function(
-      {NeonAuthSupportedAuthProvider authProvider,
-      String authProviderProjectId,
-      String pubClientKey,
-      String secretServerKey,
-      String jwksUrl,
-      String schemaName,
-      String tableName,
-      SdkOptional<String> baseUrl}) get copyWith => _copyWith;
+  NeonAuthCreateIntegrationResponse Function({NeonAuthSupportedAuthProvider authProvider, String authProviderProjectId, String pubClientKey, String secretServerKey, String jwksUrl, String schemaName, String tableName, SdkOptional<String> baseUrl}) get copyWith => _copyWith;
 
-  NeonAuthCreateIntegrationResponse _copyWith(
-          {Object? authProvider = sdkOmittedValue,
-          Object? authProviderProjectId = sdkOmittedValue,
-          Object? pubClientKey = sdkOmittedValue,
-          Object? secretServerKey = sdkOmittedValue,
-          Object? jwksUrl = sdkOmittedValue,
-          Object? schemaName = sdkOmittedValue,
-          Object? tableName = sdkOmittedValue,
-          Object? baseUrl = sdkOmittedValue}) =>
-      NeonAuthCreateIntegrationResponse(
-        authProvider: identical(authProvider, sdkOmittedValue)
-            ? this.authProvider
-            : authProvider as NeonAuthSupportedAuthProvider,
-        authProviderProjectId: identical(authProviderProjectId, sdkOmittedValue)
-            ? this.authProviderProjectId
-            : authProviderProjectId as String,
-        pubClientKey: identical(pubClientKey, sdkOmittedValue)
-            ? this.pubClientKey
-            : pubClientKey as String,
-        secretServerKey: identical(secretServerKey, sdkOmittedValue)
-            ? this.secretServerKey
-            : secretServerKey as String,
-        jwksUrl: identical(jwksUrl, sdkOmittedValue)
-            ? this.jwksUrl
-            : jwksUrl as String,
-        schemaName: identical(schemaName, sdkOmittedValue)
-            ? this.schemaName
-            : schemaName as String,
-        tableName: identical(tableName, sdkOmittedValue)
-            ? this.tableName
-            : tableName as String,
-        baseUrl: identical(baseUrl, sdkOmittedValue)
-            ? this.baseUrl
-            : baseUrl as SdkOptional<String>,
-      );
+  NeonAuthCreateIntegrationResponse _copyWith({Object? authProvider = sdkOmittedValue, Object? authProviderProjectId = sdkOmittedValue, Object? pubClientKey = sdkOmittedValue, Object? secretServerKey = sdkOmittedValue, Object? jwksUrl = sdkOmittedValue, Object? schemaName = sdkOmittedValue, Object? tableName = sdkOmittedValue, Object? baseUrl = sdkOmittedValue}) => NeonAuthCreateIntegrationResponse(
+    authProvider: identical(authProvider, sdkOmittedValue) ? this.authProvider : authProvider as NeonAuthSupportedAuthProvider,
+    authProviderProjectId: identical(authProviderProjectId, sdkOmittedValue) ? this.authProviderProjectId : authProviderProjectId as String,
+    pubClientKey: identical(pubClientKey, sdkOmittedValue) ? this.pubClientKey : pubClientKey as String,
+    secretServerKey: identical(secretServerKey, sdkOmittedValue) ? this.secretServerKey : secretServerKey as String,
+    jwksUrl: identical(jwksUrl, sdkOmittedValue) ? this.jwksUrl : jwksUrl as String,
+    schemaName: identical(schemaName, sdkOmittedValue) ? this.schemaName : schemaName as String,
+    tableName: identical(tableName, sdkOmittedValue) ? this.tableName : tableName as String,
+    baseUrl: identical(baseUrl, sdkOmittedValue) ? this.baseUrl : baseUrl as SdkOptional<String>,
+  );
 
-  factory NeonAuthCreateIntegrationResponse.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthCreateIntegrationResponse(
-        authProvider: (json['auth_provider'] != null
-            ? NeonAuthSupportedAuthProvider.fromJson(
-                json['auth_provider'] as String)
-            : null)!,
-        authProviderProjectId: (json['auth_provider_project_id'] as String?)!,
-        pubClientKey: (json['pub_client_key'] as String?)!,
-        secretServerKey: (json['secret_server_key'] as String?)!,
-        jwksUrl: (json['jwks_url'] as String?)!,
-        schemaName: (json['schema_name'] as String?)!,
-        tableName: (json['table_name'] as String?)!,
-        baseUrl: json['base_url'] != null
-            ? SdkPresent((json['base_url'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonAuthCreateIntegrationResponse.fromJson(Map<String, dynamic> json) => NeonAuthCreateIntegrationResponse(
+    authProvider: (json['auth_provider'] != null ? NeonAuthSupportedAuthProvider.fromJson(json['auth_provider'] as String) : null)!,
+    authProviderProjectId: (json['auth_provider_project_id'] as String?)!,
+    pubClientKey: (json['pub_client_key'] as String?)!,
+    secretServerKey: (json['secret_server_key'] as String?)!,
+    jwksUrl: (json['jwks_url'] as String?)!,
+    schemaName: (json['schema_name'] as String?)!,
+    tableName: (json['table_name'] as String?)!,
+    baseUrl: json['base_url'] != null ? SdkPresent((json['base_url'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'auth_provider': authProvider.toJson(),
-        'auth_provider_project_id': authProviderProjectId,
-        'pub_client_key': pubClientKey,
-        'secret_server_key': secretServerKey,
-        'jwks_url': jwksUrl,
-        'schema_name': schemaName,
-        'table_name': tableName,
-        ...switch (baseUrl) {
-          SdkPresent<String>(value: final value) => {
-              'base_url': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'auth_provider': authProvider.toJson(),
+    'auth_provider_project_id': authProviderProjectId,
+    'pub_client_key': pubClientKey,
+    'secret_server_key': secretServerKey,
+    'jwks_url': jwksUrl,
+    'schema_name': schemaName,
+    'table_name': tableName,
+    ...switch (baseUrl) {
+      SdkPresent<String>(value: final value) => {'base_url': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `NeonAuthCreateNewUserResponse` API schema.
 class NeonAuthCreateNewUserResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// ID of newly created user
   final String id;
 
@@ -269,102 +154,70 @@ class NeonAuthCreateNewUserResponse {
 
   NeonAuthCreateNewUserResponse Function({String id}) get copyWith => _copyWith;
 
-  NeonAuthCreateNewUserResponse _copyWith({Object? id = sdkOmittedValue}) =>
-      NeonAuthCreateNewUserResponse(
-        id: identical(id, sdkOmittedValue) ? this.id : id as String,
-      );
+  NeonAuthCreateNewUserResponse _copyWith({Object? id = sdkOmittedValue}) => NeonAuthCreateNewUserResponse(
+    id: identical(id, sdkOmittedValue) ? this.id : id as String,
+  );
 
-  factory NeonAuthCreateNewUserResponse.fromJson(Map<String, dynamic> json) =>
-      NeonAuthCreateNewUserResponse(
-        id: (json['id'] as String?)!,
-      );
+  factory NeonAuthCreateNewUserResponse.fromJson(Map<String, dynamic> json) => NeonAuthCreateNewUserResponse(
+    id: (json['id'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-      };
+    'id': id,
+  };
 }
 
 /// Typed representation of the `NeonAuthDeleteDomainFromRedirectURIWhitelistItem` API schema.
 class NeonAuthDeleteDomainFromRedirectURIWhitelistItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// URI to remove from the redirect URI whitelist.
   final String domain;
 
-  const NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
-      {required this.domain});
+  const NeonAuthDeleteDomainFromRedirectURIWhitelistItem({required this.domain});
 
-  NeonAuthDeleteDomainFromRedirectURIWhitelistItem Function({String domain})
-      get copyWith => _copyWith;
+  NeonAuthDeleteDomainFromRedirectURIWhitelistItem Function({String domain}) get copyWith => _copyWith;
 
-  NeonAuthDeleteDomainFromRedirectURIWhitelistItem _copyWith(
-          {Object? domain = sdkOmittedValue}) =>
-      NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
-        domain:
-            identical(domain, sdkOmittedValue) ? this.domain : domain as String,
-      );
+  NeonAuthDeleteDomainFromRedirectURIWhitelistItem _copyWith({Object? domain = sdkOmittedValue}) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
+    domain: identical(domain, sdkOmittedValue) ? this.domain : domain as String,
+  );
 
-  factory NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
-        domain: (json['domain'] as String?)!,
-      );
+  factory NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(Map<String, dynamic> json) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
+    domain: (json['domain'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'domain': domain,
-      };
+    'domain': domain,
+  };
 }
 
 /// Typed representation of the `NeonAuthDeleteDomainFromRedirectURIWhitelistRequest` API schema.
 class NeonAuthDeleteDomainFromRedirectURIWhitelistRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Authentication provider integrated with this Neon Auth configuration. `better_auth` integrates with Better Auth (the current, recommended provider). `stack` integrates with Stack Auth (deprecated). `mock` is a simulated provider for local development and testing only.
   final NeonAuthSupportedAuthProvider authProvider;
-
   /// Domain names to remove from the redirect URI whitelist for the specified auth provider.
   final List<NeonAuthDeleteDomainFromRedirectURIWhitelistItem> domains;
 
-  const NeonAuthDeleteDomainFromRedirectURIWhitelistRequest(
-      {required this.authProvider, required this.domains});
+  const NeonAuthDeleteDomainFromRedirectURIWhitelistRequest({required this.authProvider, required this.domains});
 
-  NeonAuthDeleteDomainFromRedirectURIWhitelistRequest Function(
-          {NeonAuthSupportedAuthProvider authProvider,
-          List<NeonAuthDeleteDomainFromRedirectURIWhitelistItem> domains})
-      get copyWith => _copyWith;
+  NeonAuthDeleteDomainFromRedirectURIWhitelistRequest Function({NeonAuthSupportedAuthProvider authProvider, List<NeonAuthDeleteDomainFromRedirectURIWhitelistItem> domains}) get copyWith => _copyWith;
 
-  NeonAuthDeleteDomainFromRedirectURIWhitelistRequest _copyWith(
-          {Object? authProvider = sdkOmittedValue,
-          Object? domains = sdkOmittedValue}) =>
-      NeonAuthDeleteDomainFromRedirectURIWhitelistRequest(
-        authProvider: identical(authProvider, sdkOmittedValue)
-            ? this.authProvider
-            : authProvider as NeonAuthSupportedAuthProvider,
-        domains: identical(domains, sdkOmittedValue)
-            ? this.domains
-            : domains as List<NeonAuthDeleteDomainFromRedirectURIWhitelistItem>,
-      );
+  NeonAuthDeleteDomainFromRedirectURIWhitelistRequest _copyWith({Object? authProvider = sdkOmittedValue, Object? domains = sdkOmittedValue}) => NeonAuthDeleteDomainFromRedirectURIWhitelistRequest(
+    authProvider: identical(authProvider, sdkOmittedValue) ? this.authProvider : authProvider as NeonAuthSupportedAuthProvider,
+    domains: identical(domains, sdkOmittedValue) ? this.domains : domains as List<NeonAuthDeleteDomainFromRedirectURIWhitelistItem>,
+  );
 
-  factory NeonAuthDeleteDomainFromRedirectURIWhitelistRequest.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthDeleteDomainFromRedirectURIWhitelistRequest(
-        authProvider: (json['auth_provider'] != null
-            ? NeonAuthSupportedAuthProvider.fromJson(
-                json['auth_provider'] as String)
-            : null)!,
-        domains: ((json['domains'] as List?)
-            ?.map((e) =>
-                NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(
-                    e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory NeonAuthDeleteDomainFromRedirectURIWhitelistRequest.fromJson(Map<String, dynamic> json) => NeonAuthDeleteDomainFromRedirectURIWhitelistRequest(
+    authProvider: (json['auth_provider'] != null ? NeonAuthSupportedAuthProvider.fromJson(json['auth_provider'] as String) : null)!,
+    domains: ((json['domains'] as List?)?.map((e) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'auth_provider': authProvider.toJson(),
-        'domains': domains.map((item) => item.toJson()).toList(),
-      };
+    'auth_provider': authProvider.toJson(),
+    'domains': domains.map((item) => item.toJson()).toList(),
+  };
 }
 
 sealed class NeonAuthEmailServerConfig {
@@ -373,59 +226,34 @@ sealed class NeonAuthEmailServerConfig {
   const NeonAuthEmailServerConfig();
   factory NeonAuthEmailServerConfig.fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      try {
-        final value = StandardEmailServer.fromJson(json);
-        if (sdkKeepsEveryKey(json, value.toJson())) {
-          return NeonAuthEmailServerConfigStandardEmailServer(value);
-        }
-      } catch (_) {}
-      try {
-        final value = SharedEmailServer.fromJson(json);
-        if (sdkKeepsEveryKey(json, value.toJson())) {
-          return NeonAuthEmailServerConfigSharedEmailServer(value);
-        }
-      } catch (_) {}
+      try { final value = StandardEmailServer.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigStandardEmailServer(value); } } catch (_) {}
+      try { final value = SharedEmailServer.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigSharedEmailServer(value); } } catch (_) {}
     }
-    try {
-      return NeonAuthEmailServerConfigStandardEmailServer(
-          StandardEmailServer.fromJson(json as Map<String, dynamic>));
-    } catch (_) {}
-    try {
-      return NeonAuthEmailServerConfigSharedEmailServer(
-          SharedEmailServer.fromJson(json as Map<String, dynamic>));
-    } catch (_) {}
-    if (json is Map<String, dynamic> &&
-        json["type"] is String &&
-        !const {"standard", "shared"}.contains(json["type"])) {
-      return UnknownNeonAuthEmailServerConfig(json);
-    }
+    try { return NeonAuthEmailServerConfigStandardEmailServer(StandardEmailServer.fromJson(json as Map<String, dynamic>)); } catch (_) {}
+    try { return NeonAuthEmailServerConfigSharedEmailServer(SharedEmailServer.fromJson(json as Map<String, dynamic>)); } catch (_) {}
+    if (json is Map<String, dynamic> && json["type"] is String && !const {"standard", "shared"}.contains(json["type"])) { return UnknownNeonAuthEmailServerConfig(json); }
     throw FormatException("No variant matched for NeonAuthEmailServerConfig");
   }
   Object? toJson();
 }
 
-final class NeonAuthEmailServerConfigStandardEmailServer
-    extends NeonAuthEmailServerConfig {
+final class NeonAuthEmailServerConfigStandardEmailServer extends NeonAuthEmailServerConfig {
   final StandardEmailServer value;
   const NeonAuthEmailServerConfigStandardEmailServer(this.value);
-  @override
-  Object? toJson() => value.toJson();
+  @override Object? toJson() => value.toJson();
 }
 
-final class NeonAuthEmailServerConfigSharedEmailServer
-    extends NeonAuthEmailServerConfig {
+final class NeonAuthEmailServerConfigSharedEmailServer extends NeonAuthEmailServerConfig {
   final SharedEmailServer value;
   const NeonAuthEmailServerConfigSharedEmailServer(this.value);
-  @override
-  Object? toJson() => value.toJson();
+  @override Object? toJson() => value.toJson();
 }
 
 /// A [NeonAuthEmailServerConfig] whose `type` names no branch this SDK knows, kept as received.
 final class UnknownNeonAuthEmailServerConfig extends NeonAuthEmailServerConfig {
   final Map<String, dynamic> raw;
   const UnknownNeonAuthEmailServerConfig(this.raw);
-  @override
-  Object? toJson() => raw;
+  @override Object? toJson() => raw;
 }
 
 sealed class NeonAuthEmailServerConfigResponse {
@@ -434,61 +262,32 @@ sealed class NeonAuthEmailServerConfigResponse {
   const NeonAuthEmailServerConfigResponse();
   factory NeonAuthEmailServerConfigResponse.fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      try {
-        final value = StandardEmailServerResponse.fromJson(json);
-        if (sdkKeepsEveryKey(json, value.toJson())) {
-          return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(
-              value);
-        }
-      } catch (_) {}
-      try {
-        final value = SharedEmailServer.fromJson(json);
-        if (sdkKeepsEveryKey(json, value.toJson())) {
-          return NeonAuthEmailServerConfigResponseSharedEmailServer(value);
-        }
-      } catch (_) {}
+      try { final value = StandardEmailServerResponse.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(value); } } catch (_) {}
+      try { final value = SharedEmailServer.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigResponseSharedEmailServer(value); } } catch (_) {}
     }
-    try {
-      return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(
-          StandardEmailServerResponse.fromJson(json as Map<String, dynamic>));
-    } catch (_) {}
-    try {
-      return NeonAuthEmailServerConfigResponseSharedEmailServer(
-          SharedEmailServer.fromJson(json as Map<String, dynamic>));
-    } catch (_) {}
-    if (json is Map<String, dynamic> &&
-        json["type"] is String &&
-        !const {"standard", "shared"}.contains(json["type"])) {
-      return UnknownNeonAuthEmailServerConfigResponse(json);
-    }
-    throw FormatException(
-        "No variant matched for NeonAuthEmailServerConfigResponse");
+    try { return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(StandardEmailServerResponse.fromJson(json as Map<String, dynamic>)); } catch (_) {}
+    try { return NeonAuthEmailServerConfigResponseSharedEmailServer(SharedEmailServer.fromJson(json as Map<String, dynamic>)); } catch (_) {}
+    if (json is Map<String, dynamic> && json["type"] is String && !const {"standard", "shared"}.contains(json["type"])) { return UnknownNeonAuthEmailServerConfigResponse(json); }
+    throw FormatException("No variant matched for NeonAuthEmailServerConfigResponse");
   }
   Object? toJson();
 }
 
-final class NeonAuthEmailServerConfigResponseStandardEmailServerResponse
-    extends NeonAuthEmailServerConfigResponse {
+final class NeonAuthEmailServerConfigResponseStandardEmailServerResponse extends NeonAuthEmailServerConfigResponse {
   final StandardEmailServerResponse value;
-  const NeonAuthEmailServerConfigResponseStandardEmailServerResponse(
-      this.value);
-  @override
-  Object? toJson() => value.toJson();
+  const NeonAuthEmailServerConfigResponseStandardEmailServerResponse(this.value);
+  @override Object? toJson() => value.toJson();
 }
 
-final class NeonAuthEmailServerConfigResponseSharedEmailServer
-    extends NeonAuthEmailServerConfigResponse {
+final class NeonAuthEmailServerConfigResponseSharedEmailServer extends NeonAuthEmailServerConfigResponse {
   final SharedEmailServer value;
   const NeonAuthEmailServerConfigResponseSharedEmailServer(this.value);
-  @override
-  Object? toJson() => value.toJson();
+  @override Object? toJson() => value.toJson();
 }
 
 /// A [NeonAuthEmailServerConfigResponse] whose `type` names no branch this SDK knows, kept as received.
-final class UnknownNeonAuthEmailServerConfigResponse
-    extends NeonAuthEmailServerConfigResponse {
+final class UnknownNeonAuthEmailServerConfigResponse extends NeonAuthEmailServerConfigResponse {
   final Map<String, dynamic> raw;
   const UnknownNeonAuthEmailServerConfigResponse(this.raw);
-  @override
-  Object? toJson() => raw;
+  @override Object? toJson() => raw;
 }

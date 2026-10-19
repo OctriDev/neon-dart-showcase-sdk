@@ -8,44 +8,35 @@ part of 'shared_vpcendpoint.dart';
 class VPCEndpoint {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Cloud provider identifier for the VPC endpoint.
   final String vpcEndpointId;
-
   /// A descriptive label for the VPC endpoint
   final String label;
 
   const VPCEndpoint({required this.vpcEndpointId, required this.label});
 
-  VPCEndpoint Function({String vpcEndpointId, String label}) get copyWith =>
-      _copyWith;
+  VPCEndpoint Function({String vpcEndpointId, String label}) get copyWith => _copyWith;
 
-  VPCEndpoint _copyWith(
-          {Object? vpcEndpointId = sdkOmittedValue,
-          Object? label = sdkOmittedValue}) =>
-      VPCEndpoint(
-        vpcEndpointId: identical(vpcEndpointId, sdkOmittedValue)
-            ? this.vpcEndpointId
-            : vpcEndpointId as String,
-        label: identical(label, sdkOmittedValue) ? this.label : label as String,
-      );
+  VPCEndpoint _copyWith({Object? vpcEndpointId = sdkOmittedValue, Object? label = sdkOmittedValue}) => VPCEndpoint(
+    vpcEndpointId: identical(vpcEndpointId, sdkOmittedValue) ? this.vpcEndpointId : vpcEndpointId as String,
+    label: identical(label, sdkOmittedValue) ? this.label : label as String,
+  );
 
   factory VPCEndpoint.fromJson(Map<String, dynamic> json) => VPCEndpoint(
-        vpcEndpointId: (json['vpc_endpoint_id'] as String?)!,
-        label: (json['label'] as String?)!,
-      );
+    vpcEndpointId: (json['vpc_endpoint_id'] as String?)!,
+    label: (json['label'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'vpc_endpoint_id': vpcEndpointId,
-        'label': label,
-      };
+    'vpc_endpoint_id': vpcEndpointId,
+    'label': label,
+  };
 }
 
 /// Typed representation of the `VPCEndpointAssignment` API schema.
 class VPCEndpointAssignment {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Human-readable name for the VPC endpoint assignment, used to identify it within the organization.
   final String label;
 
@@ -53,17 +44,15 @@ class VPCEndpointAssignment {
 
   VPCEndpointAssignment Function({String label}) get copyWith => _copyWith;
 
-  VPCEndpointAssignment _copyWith({Object? label = sdkOmittedValue}) =>
-      VPCEndpointAssignment(
-        label: identical(label, sdkOmittedValue) ? this.label : label as String,
-      );
+  VPCEndpointAssignment _copyWith({Object? label = sdkOmittedValue}) => VPCEndpointAssignment(
+    label: identical(label, sdkOmittedValue) ? this.label : label as String,
+  );
 
-  factory VPCEndpointAssignment.fromJson(Map<String, dynamic> json) =>
-      VPCEndpointAssignment(
-        label: (json['label'] as String?)!,
-      );
+  factory VPCEndpointAssignment.fromJson(Map<String, dynamic> json) => VPCEndpointAssignment(
+    label: (json['label'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'label': label,
-      };
+    'label': label,
+  };
 }

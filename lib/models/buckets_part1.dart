@@ -8,308 +8,204 @@ part of 'buckets.dart';
 class Bucket {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The bucket name (unique within a branch).
   final String name;
-
   /// Controls anonymous access to objects in the bucket. - `private`: all reads and writes require authenticated requests (default). - `public_read`: anonymous `GetObject`/`HeadObject` requests succeed; listing, writes, and deletes still require authenticated requests.
   final BucketAccessLevel accessLevel;
-
   /// When the bucket was created. For a bucket inherited from an ancestor branch this is the ancestor's creation time (the branch fork never re-creates the bucket).
   final String createdAt;
 
-  const Bucket(
-      {required this.name, required this.accessLevel, required this.createdAt});
+  const Bucket({required this.name, required this.accessLevel, required this.createdAt});
 
-  Bucket Function(
-      {String name,
-      BucketAccessLevel accessLevel,
-      String createdAt}) get copyWith => _copyWith;
+  Bucket Function({String name, BucketAccessLevel accessLevel, String createdAt}) get copyWith => _copyWith;
 
-  Bucket _copyWith(
-          {Object? name = sdkOmittedValue,
-          Object? accessLevel = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue}) =>
-      Bucket(
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        accessLevel: identical(accessLevel, sdkOmittedValue)
-            ? this.accessLevel
-            : accessLevel as BucketAccessLevel,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-      );
+  Bucket _copyWith({Object? name = sdkOmittedValue, Object? accessLevel = sdkOmittedValue, Object? createdAt = sdkOmittedValue}) => Bucket(
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    accessLevel: identical(accessLevel, sdkOmittedValue) ? this.accessLevel : accessLevel as BucketAccessLevel,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+  );
 
   factory Bucket.fromJson(Map<String, dynamic> json) => Bucket(
-        name: (json['name'] as String?)!,
-        accessLevel: (json['access_level'] != null
-            ? BucketAccessLevel.fromJson(json['access_level'] as String)
-            : null)!,
-        createdAt: (json['created_at'] as String?)!,
-      );
+    name: (json['name'] as String?)!,
+    accessLevel: (json['access_level'] != null ? BucketAccessLevel.fromJson(json['access_level'] as String) : null)!,
+    createdAt: (json['created_at'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'access_level': accessLevel.toJson(),
-        'created_at': createdAt,
-      };
+    'name': name,
+    'access_level': accessLevel.toJson(),
+    'created_at': createdAt,
+  };
 }
 
 /// Controls anonymous access to objects in the bucket. - `private`: all reads and writes require authenticated requests (default). - `public_read`: anonymous `GetObject`/`HeadObject` requests succeed; listing, writes, and deletes still require authenticated requests.
 final class BucketAccessLevel {
+
   final String value;
 
   const BucketAccessLevel._(this.value);
 
-  factory BucketAccessLevel.fromJson(String value) =>
-      BucketAccessLevel._(value);
+  factory BucketAccessLevel.fromJson(String value) => BucketAccessLevel._(value);
 
   static const private = BucketAccessLevel._('private');
   static const publicRead = BucketAccessLevel._('public_read');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is BucketAccessLevel && other.value == value;
+  @override bool operator ==(Object other) => other is BucketAccessLevel && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Typed representation of the `BucketCreateRequest` API schema.
 class BucketCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The bucket name.
   final String name;
-
   /// Access level for the bucket. Defaults to `private`. Set to `public_read` to allow anonymous `GetObject`/`HeadObject` on objects in this bucket.
   final SdkOptional<BucketCreateRequestAccessLevel> accessLevel;
 
-  const BucketCreateRequest(
-      {required this.name, this.accessLevel = const SdkOmitted()});
+  const BucketCreateRequest({required this.name, this.accessLevel = const SdkOmitted()});
 
-  BucketCreateRequest Function(
-          {String name,
-          SdkOptional<BucketCreateRequestAccessLevel> accessLevel})
-      get copyWith => _copyWith;
+  BucketCreateRequest Function({String name, SdkOptional<BucketCreateRequestAccessLevel> accessLevel}) get copyWith => _copyWith;
 
-  BucketCreateRequest _copyWith(
-          {Object? name = sdkOmittedValue,
-          Object? accessLevel = sdkOmittedValue}) =>
-      BucketCreateRequest(
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        accessLevel: identical(accessLevel, sdkOmittedValue)
-            ? this.accessLevel
-            : accessLevel as SdkOptional<BucketCreateRequestAccessLevel>,
-      );
+  BucketCreateRequest _copyWith({Object? name = sdkOmittedValue, Object? accessLevel = sdkOmittedValue}) => BucketCreateRequest(
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    accessLevel: identical(accessLevel, sdkOmittedValue) ? this.accessLevel : accessLevel as SdkOptional<BucketCreateRequestAccessLevel>,
+  );
 
-  factory BucketCreateRequest.fromJson(Map<String, dynamic> json) =>
-      BucketCreateRequest(
-        name: (json['name'] as String?)!,
-        accessLevel: json['access_level'] != null
-            ? SdkPresent((json['access_level'] != null
-                ? BucketCreateRequestAccessLevel.fromJson(
-                    json['access_level'] as String)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory BucketCreateRequest.fromJson(Map<String, dynamic> json) => BucketCreateRequest(
+    name: (json['name'] as String?)!,
+    accessLevel: json['access_level'] != null ? SdkPresent((json['access_level'] != null ? BucketCreateRequestAccessLevel.fromJson(json['access_level'] as String) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        ...switch (accessLevel) {
-          SdkPresent<BucketCreateRequestAccessLevel>(value: final value) => {
-              'access_level': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'name': name,
+    ...switch (accessLevel) {
+      SdkPresent<BucketCreateRequestAccessLevel>(value: final value) => {'access_level': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `BucketObject` API schema.
 class BucketObject {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The full object key.
   final String key;
-
   /// The object size in bytes.
   final int size;
-
   /// The time the object was last modified.
   final String lastModified;
-
   /// The object's entity tag (content hash).
   final String etag;
 
-  const BucketObject(
-      {required this.key,
-      required this.size,
-      required this.lastModified,
-      required this.etag});
+  const BucketObject({required this.key, required this.size, required this.lastModified, required this.etag});
 
-  BucketObject Function(
-      {String key,
-      int size,
-      String lastModified,
-      String etag}) get copyWith => _copyWith;
+  BucketObject Function({String key, int size, String lastModified, String etag}) get copyWith => _copyWith;
 
-  BucketObject _copyWith(
-          {Object? key = sdkOmittedValue,
-          Object? size = sdkOmittedValue,
-          Object? lastModified = sdkOmittedValue,
-          Object? etag = sdkOmittedValue}) =>
-      BucketObject(
-        key: identical(key, sdkOmittedValue) ? this.key : key as String,
-        size: identical(size, sdkOmittedValue) ? this.size : size as int,
-        lastModified: identical(lastModified, sdkOmittedValue)
-            ? this.lastModified
-            : lastModified as String,
-        etag: identical(etag, sdkOmittedValue) ? this.etag : etag as String,
-      );
+  BucketObject _copyWith({Object? key = sdkOmittedValue, Object? size = sdkOmittedValue, Object? lastModified = sdkOmittedValue, Object? etag = sdkOmittedValue}) => BucketObject(
+    key: identical(key, sdkOmittedValue) ? this.key : key as String,
+    size: identical(size, sdkOmittedValue) ? this.size : size as int,
+    lastModified: identical(lastModified, sdkOmittedValue) ? this.lastModified : lastModified as String,
+    etag: identical(etag, sdkOmittedValue) ? this.etag : etag as String,
+  );
 
   factory BucketObject.fromJson(Map<String, dynamic> json) => BucketObject(
-        key: (json['key'] as String?)!,
-        size: ((json['size'] as num?)?.toInt())!,
-        lastModified: (json['last_modified'] as String?)!,
-        etag: (json['etag'] as String?)!,
-      );
+    key: (json['key'] as String?)!,
+    size: ((json['size'] as num?)?.toInt())!,
+    lastModified: (json['last_modified'] as String?)!,
+    etag: (json['etag'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'key': key,
-        'size': size,
-        'last_modified': lastModified,
-        'etag': etag,
-      };
+    'key': key,
+    'size': size,
+    'last_modified': lastModified,
+    'etag': etag,
+  };
 }
 
 /// Typed representation of the `BucketObjectsDeletePrefixResponse` API schema.
 class BucketObjectsDeletePrefixResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The number of objects soft-deleted under the prefix. 0 when no live object matched the prefix on this branch.
   final int deleted;
 
   const BucketObjectsDeletePrefixResponse({required this.deleted});
 
-  BucketObjectsDeletePrefixResponse Function({int deleted}) get copyWith =>
-      _copyWith;
+  BucketObjectsDeletePrefixResponse Function({int deleted}) get copyWith => _copyWith;
 
-  BucketObjectsDeletePrefixResponse _copyWith(
-          {Object? deleted = sdkOmittedValue}) =>
-      BucketObjectsDeletePrefixResponse(
-        deleted:
-            identical(deleted, sdkOmittedValue) ? this.deleted : deleted as int,
-      );
+  BucketObjectsDeletePrefixResponse _copyWith({Object? deleted = sdkOmittedValue}) => BucketObjectsDeletePrefixResponse(
+    deleted: identical(deleted, sdkOmittedValue) ? this.deleted : deleted as int,
+  );
 
-  factory BucketObjectsDeletePrefixResponse.fromJson(
-          Map<String, dynamic> json) =>
-      BucketObjectsDeletePrefixResponse(
-        deleted: ((json['deleted'] as num?)?.toInt())!,
-      );
+  factory BucketObjectsDeletePrefixResponse.fromJson(Map<String, dynamic> json) => BucketObjectsDeletePrefixResponse(
+    deleted: ((json['deleted'] as num?)?.toInt())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'deleted': deleted,
-      };
+    'deleted': deleted,
+  };
 }
 
 /// Typed representation of the `BucketObjectsListResponse` API schema.
 class BucketObjectsListResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Common prefixes (folder names) collapsed under the requested `delimiter`. Empty when no `delimiter` was supplied.
   final List<String> folders;
-
   /// Objects whose keys did not collapse into a folder.
   final List<BucketObject> objects;
-
   /// The prefix that was applied to this listing (echoed back).
   final String prefix;
-
   /// Pagination cursor to pass as `cursor` on the next request. Empty when the listing is not truncated.
   final SdkOptional<String> nextCursor;
-
   /// True when more results exist beyond this page.
   final bool isTruncated;
 
-  const BucketObjectsListResponse(
-      {required this.folders,
-      required this.objects,
-      required this.prefix,
-      this.nextCursor = const SdkOmitted(),
-      required this.isTruncated});
+  const BucketObjectsListResponse({required this.folders, required this.objects, required this.prefix, this.nextCursor = const SdkOmitted(), required this.isTruncated});
 
-  BucketObjectsListResponse Function(
-      {List<String> folders,
-      List<BucketObject> objects,
-      String prefix,
-      SdkOptional<String> nextCursor,
-      bool isTruncated}) get copyWith => _copyWith;
+  BucketObjectsListResponse Function({List<String> folders, List<BucketObject> objects, String prefix, SdkOptional<String> nextCursor, bool isTruncated}) get copyWith => _copyWith;
 
-  BucketObjectsListResponse _copyWith(
-          {Object? folders = sdkOmittedValue,
-          Object? objects = sdkOmittedValue,
-          Object? prefix = sdkOmittedValue,
-          Object? nextCursor = sdkOmittedValue,
-          Object? isTruncated = sdkOmittedValue}) =>
-      BucketObjectsListResponse(
-        folders: identical(folders, sdkOmittedValue)
-            ? this.folders
-            : folders as List<String>,
-        objects: identical(objects, sdkOmittedValue)
-            ? this.objects
-            : objects as List<BucketObject>,
-        prefix:
-            identical(prefix, sdkOmittedValue) ? this.prefix : prefix as String,
-        nextCursor: identical(nextCursor, sdkOmittedValue)
-            ? this.nextCursor
-            : nextCursor as SdkOptional<String>,
-        isTruncated: identical(isTruncated, sdkOmittedValue)
-            ? this.isTruncated
-            : isTruncated as bool,
-      );
+  BucketObjectsListResponse _copyWith({Object? folders = sdkOmittedValue, Object? objects = sdkOmittedValue, Object? prefix = sdkOmittedValue, Object? nextCursor = sdkOmittedValue, Object? isTruncated = sdkOmittedValue}) => BucketObjectsListResponse(
+    folders: identical(folders, sdkOmittedValue) ? this.folders : folders as List<String>,
+    objects: identical(objects, sdkOmittedValue) ? this.objects : objects as List<BucketObject>,
+    prefix: identical(prefix, sdkOmittedValue) ? this.prefix : prefix as String,
+    nextCursor: identical(nextCursor, sdkOmittedValue) ? this.nextCursor : nextCursor as SdkOptional<String>,
+    isTruncated: identical(isTruncated, sdkOmittedValue) ? this.isTruncated : isTruncated as bool,
+  );
 
-  factory BucketObjectsListResponse.fromJson(Map<String, dynamic> json) =>
-      BucketObjectsListResponse(
-        folders:
-            ((json['folders'] as List?)?.map((e) => e as String).toList())!,
-        objects: ((json['objects'] as List?)
-            ?.map((e) => BucketObject.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-        prefix: (json['prefix'] as String?)!,
-        nextCursor: json['next_cursor'] != null
-            ? SdkPresent((json['next_cursor'] as String?)!)
-            : const SdkOmitted(),
-        isTruncated: (json['is_truncated'] as bool?)!,
-      );
+  factory BucketObjectsListResponse.fromJson(Map<String, dynamic> json) => BucketObjectsListResponse(
+    folders: ((json['folders'] as List?)?.map((e) => e as String).toList())!,
+    objects: ((json['objects'] as List?)?.map((e) => BucketObject.fromJson(e as Map<String, dynamic>)).toList())!,
+    prefix: (json['prefix'] as String?)!,
+    nextCursor: json['next_cursor'] != null ? SdkPresent((json['next_cursor'] as String?)!) : const SdkOmitted(),
+    isTruncated: (json['is_truncated'] as bool?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'folders': folders,
-        'objects': objects.map((item) => item.toJson()).toList(),
-        'prefix': prefix,
-        ...switch (nextCursor) {
-          SdkPresent<String>(value: final value) => {
-              'next_cursor': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        'is_truncated': isTruncated,
-      };
+    'folders': folders,
+    'objects': objects.map((item) => item.toJson()).toList(),
+    'prefix': prefix,
+    ...switch (nextCursor) {
+      SdkPresent<String>(value: final value) => {'next_cursor': value,},
+      _ => const <String, dynamic>{},
+    },
+    'is_truncated': isTruncated,
+  };
 }
 
 /// Typed representation of the `BucketResponse` API schema.
 class BucketResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required object value serialized in the `bucket` wire field.
   final Bucket bucket;
 
@@ -317,120 +213,79 @@ class BucketResponse {
 
   BucketResponse Function({Bucket bucket}) get copyWith => _copyWith;
 
-  BucketResponse _copyWith({Object? bucket = sdkOmittedValue}) =>
-      BucketResponse(
-        bucket:
-            identical(bucket, sdkOmittedValue) ? this.bucket : bucket as Bucket,
-      );
+  BucketResponse _copyWith({Object? bucket = sdkOmittedValue}) => BucketResponse(
+    bucket: identical(bucket, sdkOmittedValue) ? this.bucket : bucket as Bucket,
+  );
 
   factory BucketResponse.fromJson(Map<String, dynamic> json) => BucketResponse(
-        bucket: (json['bucket'] != null
-            ? Bucket.fromJson(json['bucket'] as Map<String, dynamic>)
-            : null)!,
-      );
+    bucket: (json['bucket'] != null ? Bucket.fromJson(json['bucket'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'bucket': bucket.toJson(),
-      };
+    'bucket': bucket.toJson(),
+  };
 }
 
 /// Typed representation of the `BucketsListResponse` API schema.
 class BucketsListResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required array value serialized in the `buckets` wire field.
   final List<Bucket> buckets;
 
   const BucketsListResponse({required this.buckets});
 
-  BucketsListResponse Function({List<Bucket> buckets}) get copyWith =>
-      _copyWith;
+  BucketsListResponse Function({List<Bucket> buckets}) get copyWith => _copyWith;
 
-  BucketsListResponse _copyWith({Object? buckets = sdkOmittedValue}) =>
-      BucketsListResponse(
-        buckets: identical(buckets, sdkOmittedValue)
-            ? this.buckets
-            : buckets as List<Bucket>,
-      );
+  BucketsListResponse _copyWith({Object? buckets = sdkOmittedValue}) => BucketsListResponse(
+    buckets: identical(buckets, sdkOmittedValue) ? this.buckets : buckets as List<Bucket>,
+  );
 
-  factory BucketsListResponse.fromJson(Map<String, dynamic> json) =>
-      BucketsListResponse(
-        buckets: ((json['buckets'] as List?)
-            ?.map((e) => Bucket.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory BucketsListResponse.fromJson(Map<String, dynamic> json) => BucketsListResponse(
+    buckets: ((json['buckets'] as List?)?.map((e) => Bucket.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'buckets': buckets.map((item) => item.toJson()).toList(),
-      };
+    'buckets': buckets.map((item) => item.toJson()).toList(),
+  };
 }
 
 /// Options for the presigned URL. The `operation` selects upload (`PUT`) or download (`GET`); the remaining fields are optional.
 class PresignRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The transfer direction. `upload` returns a presigned `PUT` URL; `download` returns a presigned `GET` URL.
   final PresignRequestOperation operation;
-
   /// The `Content-Type` to bind into the signed request. Only meaningful for `upload`: when set, the caller MUST send the same `Content-Type` header on the `PUT`, and the value is echoed back in the response `headers`. Ignored for `download`.
   final SdkOptional<String> contentType;
-
   /// How long the presigned URL stays valid, in seconds. Defaults to 900 (15 minutes); capped at 604800 (7 days).
   final SdkOptional<int> expiresInSeconds;
 
-  const PresignRequest(
-      {required this.operation,
-      this.contentType = const SdkOmitted(),
-      this.expiresInSeconds = const SdkOmitted()});
+  const PresignRequest({required this.operation, this.contentType = const SdkOmitted(), this.expiresInSeconds = const SdkOmitted()});
 
-  PresignRequest Function(
-      {PresignRequestOperation operation,
-      SdkOptional<String> contentType,
-      SdkOptional<int> expiresInSeconds}) get copyWith => _copyWith;
+  PresignRequest Function({PresignRequestOperation operation, SdkOptional<String> contentType, SdkOptional<int> expiresInSeconds}) get copyWith => _copyWith;
 
-  PresignRequest _copyWith(
-          {Object? operation = sdkOmittedValue,
-          Object? contentType = sdkOmittedValue,
-          Object? expiresInSeconds = sdkOmittedValue}) =>
-      PresignRequest(
-        operation: identical(operation, sdkOmittedValue)
-            ? this.operation
-            : operation as PresignRequestOperation,
-        contentType: identical(contentType, sdkOmittedValue)
-            ? this.contentType
-            : contentType as SdkOptional<String>,
-        expiresInSeconds: identical(expiresInSeconds, sdkOmittedValue)
-            ? this.expiresInSeconds
-            : expiresInSeconds as SdkOptional<int>,
-      );
+  PresignRequest _copyWith({Object? operation = sdkOmittedValue, Object? contentType = sdkOmittedValue, Object? expiresInSeconds = sdkOmittedValue}) => PresignRequest(
+    operation: identical(operation, sdkOmittedValue) ? this.operation : operation as PresignRequestOperation,
+    contentType: identical(contentType, sdkOmittedValue) ? this.contentType : contentType as SdkOptional<String>,
+    expiresInSeconds: identical(expiresInSeconds, sdkOmittedValue) ? this.expiresInSeconds : expiresInSeconds as SdkOptional<int>,
+  );
 
   factory PresignRequest.fromJson(Map<String, dynamic> json) => PresignRequest(
-        operation: (json['operation'] != null
-            ? PresignRequestOperation.fromJson(json['operation'] as String)
-            : null)!,
-        contentType: json['content_type'] != null
-            ? SdkPresent((json['content_type'] as String?)!)
-            : const SdkOmitted(),
-        expiresInSeconds: json['expires_in_seconds'] != null
-            ? SdkPresent(((json['expires_in_seconds'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-      );
+    operation: (json['operation'] != null ? PresignRequestOperation.fromJson(json['operation'] as String) : null)!,
+    contentType: json['content_type'] != null ? SdkPresent((json['content_type'] as String?)!) : const SdkOmitted(),
+    expiresInSeconds: json['expires_in_seconds'] != null ? SdkPresent(((json['expires_in_seconds'] as num?)?.toInt())!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'operation': operation.toJson(),
-        ...switch (contentType) {
-          SdkPresent<String>(value: final value) => {
-              'content_type': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (expiresInSeconds) {
-          SdkPresent<int>(value: final value) => {
-              'expires_in_seconds': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'operation': operation.toJson(),
+    ...switch (contentType) {
+      SdkPresent<String>(value: final value) => {'content_type': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (expiresInSeconds) {
+      SdkPresent<int>(value: final value) => {'expires_in_seconds': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

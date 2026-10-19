@@ -25,12 +25,10 @@ Future<NeonAuthIntegration> getAuth(ClientConfig config,
           operationId: 'getAuth',
           fromJsonRaw: (value) => NeonAuthIntegration.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Enables Neon Auth for the specified branch by connecting it to an authentication provider. Creating the integration provisions the `neon_auth` schema in the branch database, which stores user identity data synchronized from the provider.
 ///
@@ -60,15 +58,12 @@ Future<NeonAuthCreateIntegrationResponse> createAuth(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'createAuth',
-          fromJsonRaw: (value) => NeonAuthCreateIntegrationResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthCreateIntegrationResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Disables the Neon Auth integration for the specified branch, removing the connection to the authentication provider. If `delete_data` is `true`, also deletes the `neon_auth` schema and all associated tables from the branch database. The integration can be re-enabled by calling `POST /projects/{project_id}/branches/{branch_id}/auth`.
 ///
@@ -90,22 +85,20 @@ Future<void> disableAuth(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'disableAuth',
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists the trusted domains in the redirect URI whitelist for the specified branch. Only domains in this list are permitted as redirect targets after authentication.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
-Future<NeonAuthRedirectURIWhitelistResponse> listAuthTrustedDomains(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthRedirectURIWhitelistResponse>
+    listAuthTrustedDomains(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -116,12 +109,10 @@ Future<NeonAuthRedirectURIWhitelistResponse> listAuthTrustedDomains(
           operationId: 'listAuthTrustedDomains',
           fromJsonRaw: (value) => NeonAuthRedirectURIWhitelistResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Adds a domain to the redirect URI whitelist for the specified branch. Only domains in this list are permitted as redirect targets after authentication.
 ///
@@ -149,12 +140,10 @@ Future<void> addAuthTrustedDomain(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'addAuthTrustedDomain',
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Removes a domain from the redirect URI whitelist for the specified branch. After removal, the domain can no longer be used as a redirect target after authentication.
 ///
@@ -182,12 +171,10 @@ Future<void> deleteAuthTrustedDomain(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteAuthTrustedDomain',
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Creates a new user in the Neon Auth user directory for the specified branch. The user is created in the `neon_auth.users_sync` table and can immediately authenticate using the branch's configured auth providers.
 ///
@@ -216,15 +203,12 @@ Future<NeonAuthCreateNewUserResponse> createAuthUser(ClientConfig config,
           body: {'email': email, 'name': SdkUtils.unwrapOptional(name)},
           decoder: SdkResponseDecoder.json,
           operationId: 'createAuthUser',
-          fromJsonRaw: (value) => NeonAuthCreateNewUserResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthCreateNewUserResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Deletes the specified user from the Neon Auth user directory for the specified branch. Removes the user record from `neon_auth.users_sync`. This action cannot be undone.
 ///
@@ -245,12 +229,10 @@ Future<void> deleteAuthUser(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteAuthUser',
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the role of a user in the Neon Auth user directory for the specified branch. The role controls the user's level of access within the Neon Auth integration.
 ///
@@ -276,25 +258,22 @@ Future<UpdateNeonAuthUserRoleResponse> updateAuthUserRole(ClientConfig config,
           body: {'roles': roles},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthUserRole',
-          fromJsonRaw: (value) => UpdateNeonAuthUserRoleResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => UpdateNeonAuthUserRoleResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists the OAuth providers configured for the specified branch's Neon Auth integration.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
-Future<ListNeonAuthOauthProvidersResponse> listAuthOauthProviders(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    RequestOptions? requestOptions}) async {
+Future<ListNeonAuthOauthProvidersResponse>
+    listAuthOauthProviders(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -305,12 +284,10 @@ Future<ListNeonAuthOauthProvidersResponse> listAuthOauthProviders(
           operationId: 'listAuthOauthProviders',
           fromJsonRaw: (value) => ListNeonAuthOauthProvidersResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Adds an OAuth provider configuration to the specified branch's Neon Auth integration. After adding, users can authenticate using the configured provider.
 ///
@@ -346,15 +323,12 @@ Future<NeonAuthOauthProvider> addAuthOauthProvider(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'addAuthOauthProvider',
-          fromJsonRaw: (value) =>
-              NeonAuthOauthProvider.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthOauthProvider.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates an OAuth provider for the specified project.
 ///
@@ -389,15 +363,12 @@ Future<NeonAuthOauthProvider> updateAuthOauthProvider(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthOauthProvider',
-          fromJsonRaw: (value) =>
-              NeonAuthOauthProvider.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthOauthProvider.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Deletes an OAuth provider from the specified project.
 ///
@@ -418,12 +389,10 @@ Future<void> deleteAuthOauthProvider(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteAuthOauthProvider',
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Sends a test email using the SMTP server settings supplied in the request body to verify connectivity and credentials. The request body must include the full SMTP server settings (`host`, `port`, `username`, `password`, `sender_email`, `sender_name`) and the `recipient_email` address. Deprecated: to test a branch's already-saved configuration, use `sendNeonAuthEmailProviderTest`, which reuses the stored SMTP password server-side so the caller never has to re-supply (or be able to read) it. This endpoint remains available for testing an unsaved full configuration and for non-Better-Auth providers.
 ///
@@ -470,27 +439,24 @@ Future<SendNeonAuthTestEmailResponse> sendAuthTestEmail(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'sendAuthTestEmail',
-          fromJsonRaw: (value) => SendNeonAuthTestEmailResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => SendNeonAuthTestEmailResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Sends a test email using the branch's already-saved custom SMTP configuration. Only the `recipient_email` is provided — the stored SMTP settings and password are used server-side, so the caller does not need to re-supply (or be able to read) the password. This avoids the GET response's masked password being sent back, which would fail SMTP authentication. Requires a configured custom SMTP provider on a Better Auth integration. A shared provider, a missing configuration, or a non-Better-Auth integration is rejected.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
 /// [recipientEmail] The email address to send the test email to.
-Future<SendNeonAuthTestEmailResponse> sendAuthEmailProviderTest(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    required String recipientEmail,
-    RequestOptions? requestOptions}) async {
+Future<SendNeonAuthTestEmailResponse>
+    sendAuthEmailProviderTest(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        required String recipientEmail,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   validateLength('recipient_email', recipientEmail, min: 1, max: 256);
@@ -502,25 +468,22 @@ Future<SendNeonAuthTestEmailResponse> sendAuthEmailProviderTest(
           body: {'recipient_email': recipientEmail},
           decoder: SdkResponseDecoder.json,
           operationId: 'sendAuthEmailProviderTest',
-          fromJsonRaw: (value) => SendNeonAuthTestEmailResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => SendNeonAuthTestEmailResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves the email and password authentication configuration for the specified branch's Neon Auth integration, including whether it is enabled and the email verification method.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
-Future<NeonAuthEmailAndPasswordConfig> getAuthEmailAndPasswordConfig(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthEmailAndPasswordConfig>
+    getAuthEmailAndPasswordConfig(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -531,12 +494,10 @@ Future<NeonAuthEmailAndPasswordConfig> getAuthEmailAndPasswordConfig(
           operationId: 'getAuthEmailAndPasswordConfig',
           fromJsonRaw: (value) => NeonAuthEmailAndPasswordConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the email and password authentication configuration for the specified branch's Neon Auth integration. Only the fields provided in the request body are updated.
 ///
@@ -558,19 +519,18 @@ Future<NeonAuthEmailAndPasswordConfig> getAuthEmailAndPasswordConfig(
 ///   user with an unverified email signs in.
 /// [disableSignUp] Whether to disable new user sign ups. When omitted, the
 ///   current setting is not changed.
-Future<NeonAuthEmailAndPasswordConfig> updateAuthEmailAndPasswordConfig(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    SdkOptional<bool> enabled = const SdkOmitted(),
-    SdkOptional<NeonAuthEmailVerificationMethod> emailVerificationMethod =
-        const SdkOmitted(),
-    SdkOptional<bool> requireEmailVerification = const SdkOmitted(),
-    SdkOptional<bool> autoSignInAfterVerification = const SdkOmitted(),
-    SdkOptional<bool> sendVerificationEmailOnSignUp = const SdkOmitted(),
-    SdkOptional<bool> sendVerificationEmailOnSignIn = const SdkOmitted(),
-    SdkOptional<bool> disableSignUp = const SdkOmitted(),
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthEmailAndPasswordConfig>
+    updateAuthEmailAndPasswordConfig(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        SdkOptional<bool> enabled = const SdkOmitted(),
+        SdkOptional<NeonAuthEmailVerificationMethod> emailVerificationMethod = const SdkOmitted(),
+        SdkOptional<bool> requireEmailVerification = const SdkOmitted(),
+        SdkOptional<bool> autoSignInAfterVerification = const SdkOmitted(),
+        SdkOptional<bool> sendVerificationEmailOnSignUp = const SdkOmitted(),
+        SdkOptional<bool> sendVerificationEmailOnSignIn = const SdkOmitted(),
+        SdkOptional<bool> disableSignUp = const SdkOmitted(),
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -579,39 +539,31 @@ Future<NeonAuthEmailAndPasswordConfig> updateAuthEmailAndPasswordConfig(
           config: config,
           body: {
             'enabled': SdkUtils.unwrapOptional(enabled),
-            'email_verification_method':
-                SdkUtils.unwrapOptional(emailVerificationMethod),
-            'require_email_verification':
-                SdkUtils.unwrapOptional(requireEmailVerification),
-            'auto_sign_in_after_verification':
-                SdkUtils.unwrapOptional(autoSignInAfterVerification),
-            'send_verification_email_on_sign_up':
-                SdkUtils.unwrapOptional(sendVerificationEmailOnSignUp),
-            'send_verification_email_on_sign_in':
-                SdkUtils.unwrapOptional(sendVerificationEmailOnSignIn),
+            'email_verification_method': SdkUtils.unwrapOptional(emailVerificationMethod),
+            'require_email_verification': SdkUtils.unwrapOptional(requireEmailVerification),
+            'auto_sign_in_after_verification': SdkUtils.unwrapOptional(autoSignInAfterVerification),
+            'send_verification_email_on_sign_up': SdkUtils.unwrapOptional(sendVerificationEmailOnSignUp),
+            'send_verification_email_on_sign_in': SdkUtils.unwrapOptional(sendVerificationEmailOnSignIn),
             'disable_sign_up': SdkUtils.unwrapOptional(disableSignUp)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthEmailAndPasswordConfig',
-          fromJsonRaw: (value) => NeonAuthEmailAndPasswordConfig.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthEmailAndPasswordConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves the email provider configuration for the specified branch's Neon Auth integration, including the provider type and server settings.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
-Future<NeonAuthEmailServerConfigResponse> getAuthEmailProvider(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthEmailServerConfigResponse>
+    getAuthEmailProvider(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -622,12 +574,10 @@ Future<NeonAuthEmailServerConfigResponse> getAuthEmailProvider(
           operationId: 'getAuthEmailProvider',
           fromJsonRaw: (value) => NeonAuthEmailServerConfigResponse.fromJson(value),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the email provider configuration for a branch's Neon Auth integration. Use the `standard` fields to configure SMTP settings and the sender identity; Better Auth integrations merge omitted fields, while Legacy Stack Auth integrations require all six standard fields on each update. Returns the updated email provider configuration.
 ///
@@ -635,12 +585,12 @@ Future<NeonAuthEmailServerConfigResponse> getAuthEmailProvider(
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
-Future<NeonAuthEmailServerConfigResponse> updateAuthEmailProvider(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    required NeonAuthEmailServerConfig body,
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthEmailServerConfigResponse>
+    updateAuthEmailProvider(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        required NeonAuthEmailServerConfig body,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -652,22 +602,20 @@ Future<NeonAuthEmailServerConfigResponse> updateAuthEmailProvider(
           operationId: 'updateAuthEmailProvider',
           fromJsonRaw: (value) => NeonAuthEmailServerConfigResponse.fromJson(value),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves the localhost allow setting for the specified branch's Neon Auth integration. When enabled, authentication flows work from `localhost` without adding it to the redirect URI whitelist.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
-Future<NeonAuthAllowLocalhostResponse> getAuthAllowLocalhost(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthAllowLocalhostResponse>
+    getAuthAllowLocalhost(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -678,24 +626,22 @@ Future<NeonAuthAllowLocalhostResponse> getAuthAllowLocalhost(
           operationId: 'getAuthAllowLocalhost',
           fromJsonRaw: (value) => NeonAuthAllowLocalhostResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the localhost allow setting for the specified branch's Neon Auth integration. When enabled, authentication flows work from `localhost` without adding it to the redirect URI whitelist.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
 /// [allowLocalhost] Whether to allow localhost connections
-Future<NeonAuthAllowLocalhostResponse> updateAuthAllowLocalhost(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    required bool allowLocalhost,
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthAllowLocalhostResponse>
+    updateAuthAllowLocalhost(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        required bool allowLocalhost,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -705,15 +651,12 @@ Future<NeonAuthAllowLocalhostResponse> updateAuthAllowLocalhost(
           body: {'allow_localhost': allowLocalhost},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthAllowLocalhost',
-          fromJsonRaw: (value) => NeonAuthAllowLocalhostResponse.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthAllowLocalhostResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Returns all plugin configurations for Neon Auth in a single response. This endpoint aggregates organization, email provider, email and password, OAuth providers, and localhost settings.
 ///
@@ -733,12 +676,10 @@ Future<NeonAuthPluginConfigs> getAuthPluginConfigs(ClientConfig config,
           operationId: 'getAuthPluginConfigs',
           fromJsonRaw: (value) => NeonAuthPluginConfigs.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the organization plugin configuration for Neon Auth. The organization plugin enables multi-tenant organization support.
 ///
@@ -754,17 +695,16 @@ Future<NeonAuthPluginConfigs> getAuthPluginConfigs(ClientConfig config,
 ///   members and settings only.
 /// [sendInvitationEmail] When true, invited users receive an email containing
 ///   an accept link. Requires that the invited user has a verified email address.
-Future<NeonAuthOrganizationConfig> updateAuthOrganizationPlugin(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    SdkOptional<bool> enabled = const SdkOmitted(),
-    SdkOptional<int> organizationLimit = const SdkOmitted(),
-    SdkOptional<int> membershipLimit = const SdkOmitted(),
-    SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole> creatorRole =
-        const SdkOmitted(),
-    SdkOptional<bool> sendInvitationEmail = const SdkOmitted(),
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthOrganizationConfig>
+    updateAuthOrganizationPlugin(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        SdkOptional<bool> enabled = const SdkOmitted(),
+        SdkOptional<int> organizationLimit = const SdkOmitted(),
+        SdkOptional<int> membershipLimit = const SdkOmitted(),
+        SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole> creatorRole = const SdkOmitted(),
+        SdkOptional<bool> sendInvitationEmail = const SdkOmitted(),
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   if (organizationLimit is SdkPresent<int>) {
@@ -782,20 +722,16 @@ Future<NeonAuthOrganizationConfig> updateAuthOrganizationPlugin(
             'organization_limit': SdkUtils.unwrapOptional(organizationLimit),
             'membership_limit': SdkUtils.unwrapOptional(membershipLimit),
             'creator_role': SdkUtils.unwrapOptional(creatorRole),
-            'send_invitation_email':
-                SdkUtils.unwrapOptional(sendInvitationEmail)
+            'send_invitation_email': SdkUtils.unwrapOptional(sendInvitationEmail)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthOrganizationPlugin',
-          fromJsonRaw: (value) => NeonAuthOrganizationConfig.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthOrganizationConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the auth configuration for the branch. Currently supports updating the application name used in auth emails.
 ///
@@ -817,15 +753,12 @@ Future<NeonAuthConfigResponse> updateAuthConfig(ClientConfig config,
           body: {'name': name},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthConfig',
-          fromJsonRaw: (value) =>
-              NeonAuthConfigResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthConfigResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the magic link plugin configuration for Neon Auth. The magic link plugin enables passwordless authentication via email magic links.
 ///
@@ -857,15 +790,12 @@ Future<NeonAuthMagicLinkConfig> updateAuthMagicLinkPlugin(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthMagicLinkPlugin',
-          fromJsonRaw: (value) =>
-              NeonAuthMagicLinkConfig.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthMagicLinkConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Returns the phone number plugin configuration for Neon Auth. The phone number plugin enables phone-based OTP authentication.
 ///
@@ -885,12 +815,10 @@ Future<NeonAuthPhoneNumberConfig> getAuthPhoneNumberPlugin(ClientConfig config,
           operationId: 'getAuthPhoneNumberPlugin',
           fromJsonRaw: (value) => NeonAuthPhoneNumberConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the phone number plugin configuration for Neon Auth. Only the fields provided in the request body are updated; omitted fields retain their current values. The phone number plugin enables phone-based OTP authentication. OTP codes are delivered via the `send.otp` webhook event with `delivery_preference: "sms"`. A webhook must be configured with the `send.otp` event enabled for SMS delivery to work.
 ///
@@ -898,13 +826,13 @@ Future<NeonAuthPhoneNumberConfig> getAuthPhoneNumberPlugin(ClientConfig config,
 /// [branchId] The Neon branch ID
 /// [enabled] Whether the phone number plugin is enabled.
 /// [otpExpiresIn] Time in seconds before the OTP expires
-Future<NeonAuthPhoneNumberConfig> updateAuthPhoneNumberPlugin(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    SdkOptional<bool> enabled = const SdkOmitted(),
-    SdkOptional<int> otpExpiresIn = const SdkOmitted(),
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthPhoneNumberConfig>
+    updateAuthPhoneNumberPlugin(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        SdkOptional<bool> enabled = const SdkOmitted(),
+        SdkOptional<int> otpExpiresIn = const SdkOmitted(),
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   if (otpExpiresIn is SdkPresent<int>) {
@@ -920,25 +848,22 @@ Future<NeonAuthPhoneNumberConfig> updateAuthPhoneNumberPlugin(
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthPhoneNumberPlugin',
-          fromJsonRaw: (value) =>
-              NeonAuthPhoneNumberConfig.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthPhoneNumberConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Returns the OAuth provider plugin configuration for Neon Auth. The OAuth provider plugin lets Neon Auth act as an OAuth 2.1 authorization server for your own clients, such as MCP clients.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
-Future<NeonAuthOAuthProviderConfig> getAuthOAuthProviderPlugin(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthOAuthProviderConfig>
+    getAuthOAuthProviderPlugin(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -949,12 +874,10 @@ Future<NeonAuthOAuthProviderConfig> getAuthOAuthProviderPlugin(
           operationId: 'getAuthOAuthProviderPlugin',
           fromJsonRaw: (value) => NeonAuthOAuthProviderConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the OAuth provider plugin configuration for Neon Auth. Only the fields provided in the request body are updated; omitted fields retain their current values. A provided `resources` list replaces the stored list. A provided `mcp` object replaces the stored MCP configuration and must include `resource`. The plugin can only be enabled on the project's root branch.
 ///
@@ -969,17 +892,16 @@ Future<NeonAuthOAuthProviderConfig> getAuthOAuthProviderPlugin(
 ///   the stored MCP configuration is replaced as a whole.
 /// [resources] Protected resources that clients can be linked to. When
 ///   provided, replaces the stored list.
-Future<NeonAuthOAuthProviderConfig> updateAuthOAuthProviderPlugin(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    SdkOptional<bool> enabled = const SdkOmitted(),
-    SdkOptional<String> loginPage = const SdkOmitted(),
-    SdkOptional<String> consentPage = const SdkOmitted(),
-    SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp = const SdkOmitted(),
-    SdkOptional<List<NeonAuthOAuthProviderResource>> resources =
-        const SdkOmitted(),
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthOAuthProviderConfig>
+    updateAuthOAuthProviderPlugin(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        SdkOptional<bool> enabled = const SdkOmitted(),
+        SdkOptional<String> loginPage = const SdkOmitted(),
+        SdkOptional<String> consentPage = const SdkOmitted(),
+        SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp = const SdkOmitted(),
+        SdkOptional<List<NeonAuthOAuthProviderResource>> resources = const SdkOmitted(),
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -995,25 +917,22 @@ Future<NeonAuthOAuthProviderConfig> updateAuthOAuthProviderPlugin(
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthOAuthProviderPlugin',
-          fromJsonRaw: (value) => NeonAuthOAuthProviderConfig.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthOAuthProviderConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Lists the OAuth clients registered for the branch's Neon Auth OAuth provider. Client secrets are never returned.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
-Future<ListNeonAuthOAuthClientsResponse> listAuthOAuthClients(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    RequestOptions? requestOptions}) async {
+Future<ListNeonAuthOAuthClientsResponse>
+    listAuthOAuthClients(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
 
@@ -1024,12 +943,10 @@ Future<ListNeonAuthOAuthClientsResponse> listAuthOAuthClients(
           operationId: 'listAuthOAuthClients',
           fromJsonRaw: (value) => ListNeonAuthOAuthClientsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Registers an OAuth client with the branch's Neon Auth OAuth provider. For `confidential` clients the response includes the `client_secret`, which is shown only once. Every entry in `resources` must be configured on the OAuth provider plugin.
 ///
@@ -1070,15 +987,12 @@ Future<NeonAuthOAuthClientCreated> createAuthOAuthClient(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'createAuthOAuthClient',
-          fromJsonRaw: (value) => NeonAuthOAuthClientCreated.fromJson(
-              value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthOAuthClientCreated.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Returns an OAuth client registered with the branch's Neon Auth OAuth provider. The client secret is never returned.
 ///
@@ -1102,12 +1016,10 @@ Future<NeonAuthOAuthClient> getAuthOAuthClient(ClientConfig config,
           operationId: 'getAuthOAuthClient',
           fromJsonRaw: (value) => NeonAuthOAuthClient.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates an OAuth client. Only the fields provided in the request body are updated. A provided `resources` list replaces the client's stored list. The client `type` cannot be changed.
 ///
@@ -1157,15 +1069,12 @@ Future<NeonAuthOAuthClient> updateAuthOAuthClient(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthOAuthClient',
-          fromJsonRaw: (value) =>
-              NeonAuthOAuthClient.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthOAuthClient.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Deletes an OAuth client. Tokens already issued to the client are not revoked.
 ///
@@ -1188,24 +1097,22 @@ Future<void> deleteAuthOAuthClient(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteAuthOAuthClient',
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Generates a new secret for a confidential OAuth client and invalidates the previous one. The new secret is shown only once.
 ///
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
 /// [clientId] The OAuth client ID
-Future<NeonAuthOAuthClientSecret> rotateAuthOAuthClientSecret(
-    ClientConfig config,
-    {required String projectId,
-    required String branchId,
-    required String clientId,
-    RequestOptions? requestOptions}) async {
+Future<NeonAuthOAuthClientSecret>
+    rotateAuthOAuthClientSecret(ClientConfig config,
+        {required String projectId,
+        required String branchId,
+        required String clientId,
+        RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   validateLength('client_id', clientId, max: 64);
@@ -1218,12 +1125,10 @@ Future<NeonAuthOAuthClientSecret> rotateAuthOAuthClientSecret(
           operationId: 'rotateAuthOAuthClientSecret',
           fromJsonRaw: (value) => NeonAuthOAuthClientSecret.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Returns the webhook configuration for the specified branch's Neon Auth integration, including the endpoint URL and the events that trigger it.
 ///
@@ -1243,12 +1148,10 @@ Future<NeonAuthWebhookConfig> getAuthWebhookConfig(ClientConfig config,
           operationId: 'getAuthWebhookConfig',
           fromJsonRaw: (value) => NeonAuthWebhookConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the webhook configuration for the specified branch's Neon Auth integration. Webhooks notify an external endpoint when auth events occur, such as user creation or sign-in.
 ///
@@ -1266,8 +1169,7 @@ Future<NeonAuthWebhookConfig> updateAuthWebhookConfig(ClientConfig config,
     required String branchId,
     required bool enabled,
     SdkOptional<String> webhookUrl = const SdkOmitted(),
-    SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>> enabledEvents =
-        const SdkOmitted(),
+    SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>> enabledEvents = const SdkOmitted(),
     SdkOptional<int> timeoutSeconds = const SdkOmitted(),
     RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
@@ -1287,12 +1189,8 @@ Future<NeonAuthWebhookConfig> updateAuthWebhookConfig(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'updateAuthWebhookConfig',
-          fromJsonRaw: (value) =>
-              NeonAuthWebhookConfig.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonAuthWebhookConfig.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

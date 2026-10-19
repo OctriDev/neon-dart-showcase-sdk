@@ -8,78 +8,46 @@ part of 'models.dart';
 class ProjectsApplicationsMapResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Map of project IDs to their installed applications. Each key is a project ID; each value is an array of application types (for example, `vercel`, `github`).
   final Map<String, List<ApplicationType>> applications;
 
   const ProjectsApplicationsMapResponse({required this.applications});
 
-  ProjectsApplicationsMapResponse Function(
-          {Map<String, List<ApplicationType>> applications})
-      get copyWith => _copyWith;
+  ProjectsApplicationsMapResponse Function({Map<String, List<ApplicationType>> applications}) get copyWith => _copyWith;
 
-  ProjectsApplicationsMapResponse _copyWith(
-          {Object? applications = sdkOmittedValue}) =>
-      ProjectsApplicationsMapResponse(
-        applications: identical(applications, sdkOmittedValue)
-            ? this.applications
-            : applications as Map<String, List<ApplicationType>>,
-      );
+  ProjectsApplicationsMapResponse _copyWith({Object? applications = sdkOmittedValue}) => ProjectsApplicationsMapResponse(
+    applications: identical(applications, sdkOmittedValue) ? this.applications : applications as Map<String, List<ApplicationType>>,
+  );
 
-  factory ProjectsApplicationsMapResponse.fromJson(Map<String, dynamic> json) =>
-      ProjectsApplicationsMapResponse(
-        applications: (json['applications'] == null
-            ? null
-            : Map<String, dynamic>.from(json['applications'] as Map).map(
-                (key, value) => MapEntry(
-                    key,
-                    (value as List)
-                        .map((item) => ApplicationType.fromJson(item as String))
-                        .toList())))!,
-      );
+  factory ProjectsApplicationsMapResponse.fromJson(Map<String, dynamic> json) => ProjectsApplicationsMapResponse(
+    applications: (json['applications'] == null ? null : Map<String, dynamic>.from(json['applications'] as Map).map((key, value) => MapEntry(key, (value as List).map((item) => ApplicationType.fromJson(item as String)).toList())))!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'applications': applications.map((key, value) =>
-            MapEntry(key, value.map((item) => item.toJson()).toList())),
-      };
+    'applications': applications.map((key, value) => MapEntry(key, value.map((item) => item.toJson()).toList())),
+  };
 }
 
 /// A map where key is a project ID and a value is a list of installed integrations.
 class ProjectsIntegrationsMapResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Map of project IDs to their associated integration details.
   final Map<String, List<ApplicationType>> integrations;
 
   const ProjectsIntegrationsMapResponse({required this.integrations});
 
-  ProjectsIntegrationsMapResponse Function(
-          {Map<String, List<ApplicationType>> integrations})
-      get copyWith => _copyWith;
+  ProjectsIntegrationsMapResponse Function({Map<String, List<ApplicationType>> integrations}) get copyWith => _copyWith;
 
-  ProjectsIntegrationsMapResponse _copyWith(
-          {Object? integrations = sdkOmittedValue}) =>
-      ProjectsIntegrationsMapResponse(
-        integrations: identical(integrations, sdkOmittedValue)
-            ? this.integrations
-            : integrations as Map<String, List<ApplicationType>>,
-      );
+  ProjectsIntegrationsMapResponse _copyWith({Object? integrations = sdkOmittedValue}) => ProjectsIntegrationsMapResponse(
+    integrations: identical(integrations, sdkOmittedValue) ? this.integrations : integrations as Map<String, List<ApplicationType>>,
+  );
 
-  factory ProjectsIntegrationsMapResponse.fromJson(Map<String, dynamic> json) =>
-      ProjectsIntegrationsMapResponse(
-        integrations: (json['integrations'] == null
-            ? null
-            : Map<String, dynamic>.from(json['integrations'] as Map).map(
-                (key, value) => MapEntry(
-                    key,
-                    (value as List)
-                        .map((item) => ApplicationType.fromJson(item as String))
-                        .toList())))!,
-      );
+  factory ProjectsIntegrationsMapResponse.fromJson(Map<String, dynamic> json) => ProjectsIntegrationsMapResponse(
+    integrations: (json['integrations'] == null ? null : Map<String, dynamic>.from(json['integrations'] as Map).map((key, value) => MapEntry(key, (value as List).map((item) => ApplicationType.fromJson(item as String)).toList())))!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'integrations': integrations.map((key, value) =>
-            MapEntry(key, value.map((item) => item.toJson()).toList())),
-      };
+    'integrations': integrations.map((key, value) => MapEntry(key, value.map((item) => item.toJson()).toList())),
+  };
 }

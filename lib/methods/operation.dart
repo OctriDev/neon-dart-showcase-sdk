@@ -25,12 +25,10 @@ Future<OperationResponse> getOperation(ClientConfig config,
           operationId: 'getOperation',
           fromJsonRaw: (value) => OperationResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves a list of operations for the specified Neon project. The number of operations returned can be large. To paginate the response, issue an initial request with a `limit` value. Then, add the `cursor` value that was returned in the response to the next request. Operations older than 6 months may be deleted from our systems. If you need more history than that, you should store your own history.
 ///
@@ -53,19 +51,13 @@ Future<ListOperationResponse> listOperation(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/operations',
           config: config,
           query: {
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
-                style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
-                style: 'form', explode: true)
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listOperation',
-          fromJsonRaw: (value) =>
-              ListOperationResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListOperationResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

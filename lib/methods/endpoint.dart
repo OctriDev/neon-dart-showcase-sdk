@@ -22,15 +22,12 @@ Future<EndpointOperations> createEndpoint(ClientConfig config,
           body: {'endpoint': endpoint},
           decoder: SdkResponseDecoder.json,
           operationId: 'createEndpoint',
-          fromJsonRaw: (value) =>
-              EndpointOperations.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => EndpointOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves a list of compute endpoints for the specified project. A compute endpoint is a Neon compute instance. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
 ///
@@ -44,15 +41,12 @@ Future<EndpointsResponse> listEndpoint(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listEndpoint',
-          fromJsonRaw: (value) =>
-              EndpointsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => EndpointsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves information about the specified compute endpoint. A compute endpoint is a Neon compute instance. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
 ///
@@ -72,12 +66,10 @@ Future<EndpointResponse> getEndpoint(ClientConfig config,
           operationId: 'getEndpoint',
           fromJsonRaw: (value) => EndpointResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Deletes the specified compute endpoint. A compute endpoint is a Neon compute instance. Deleting a compute endpoint drops existing network connections to the compute endpoint. The deletion is completed when the last operation in the chain finishes successfully. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
 ///
@@ -97,12 +89,10 @@ Future<EndpointOperations> deleteEndpoint(ClientConfig config,
           operationId: 'deleteEndpoint',
           fromJsonRaw: (value) => EndpointOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Updates the specified compute endpoint. An `endpoint_id` has an `ep-` prefix. A `branch_id` has a `br-` prefix. For more information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/). If the returned list of operations is not empty, the compute endpoint is not ready to use. The client must wait for the last operation to finish before using the compute endpoint. If the compute endpoint was idle before the update, it becomes active for a short period of time, and the control plane suspends it again after the update.
 ///
@@ -123,15 +113,12 @@ Future<EndpointOperations> updateEndpoint(ClientConfig config,
           body: {'endpoint': endpoint},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateEndpoint',
-          fromJsonRaw: (value) =>
-              EndpointOperations.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => EndpointOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Starts a compute endpoint. The compute endpoint is ready to use after the last operation in the chain finishes successfully. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
 ///
@@ -151,12 +138,10 @@ Future<EndpointOperations> startEndpoint(ClientConfig config,
           operationId: 'startEndpoint',
           fromJsonRaw: (value) => EndpointOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Suspends the specified compute endpoint. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
 ///
@@ -176,12 +161,10 @@ Future<EndpointOperations> suspendEndpoint(ClientConfig config,
           operationId: 'suspendEndpoint',
           fromJsonRaw: (value) => EndpointOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Restarts the specified compute endpoint by immediately suspending it and then starting it again. An `endpoint_id` has an `ep-` prefix. For information about compute endpoints, see [Manage computes](https://neon.com/docs/manage/endpoints/).
 ///
@@ -201,9 +184,6 @@ Future<EndpointOperations> restartEndpoint(ClientConfig config,
           operationId: 'restartEndpoint',
           fromJsonRaw: (value) => EndpointOperations.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

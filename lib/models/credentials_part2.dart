@@ -8,180 +8,97 @@ part of 'credentials.dart';
 class ListCredentialsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required array value serialized in the `credentials` wire field.
   final List<CredentialMeta> credentials;
 
   const ListCredentialsResponse({required this.credentials});
 
-  ListCredentialsResponse Function({List<CredentialMeta> credentials})
-      get copyWith => _copyWith;
+  ListCredentialsResponse Function({List<CredentialMeta> credentials}) get copyWith => _copyWith;
 
-  ListCredentialsResponse _copyWith({Object? credentials = sdkOmittedValue}) =>
-      ListCredentialsResponse(
-        credentials: identical(credentials, sdkOmittedValue)
-            ? this.credentials
-            : credentials as List<CredentialMeta>,
-      );
+  ListCredentialsResponse _copyWith({Object? credentials = sdkOmittedValue}) => ListCredentialsResponse(
+    credentials: identical(credentials, sdkOmittedValue) ? this.credentials : credentials as List<CredentialMeta>,
+  );
 
-  factory ListCredentialsResponse.fromJson(Map<String, dynamic> json) =>
-      ListCredentialsResponse(
-        credentials: ((json['credentials'] as List?)
-            ?.map((e) => CredentialMeta.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ListCredentialsResponse.fromJson(Map<String, dynamic> json) => ListCredentialsResponse(
+    credentials: ((json['credentials'] as List?)?.map((e) => CredentialMeta.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'credentials': credentials.map((item) => item.toJson()).toList(),
-      };
+    'credentials': credentials.map((item) => item.toJson()).toList(),
+  };
 }
 
 /// The replacement secret material for an existing credential, returned exactly once. `token_id`, `scopes`, `branch_id` and `created_at` are unchanged by the rotation — only `api_token` and `s3_secret_access_key` are new.
 class RotateCredentialResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Opaque credential id (e.g. nak_live_&lt;32hex&gt;), unchanged by the rotation. Doubles as the `AWS_ACCESS_KEY_ID` for SigV4.
   final String tokenId;
-
   /// First 12 hex chars of token_id; safe to log.
   final String tokenIdShort;
-
   /// Customer-supplied label carried on the credential. Absent when none was set at issuance.
   final SdkOptional<String> name;
-
   /// The new Bearer token; returned exactly once.
   final String apiToken;
-
   /// The new nsk_live_&lt;64 hex&gt; AWS_SECRET_ACCESS_KEY; returned exactly once.
   final String s3SecretAccessKey;
-
   /// Required array value serialized in the `scopes` wire field.
   final List<GrantedCredentialScope> scopes;
-
   /// Required `string` value serialized in the `branch_id` wire field.
   final String branchId;
-
   /// Always `user`: only customer-managed credentials are rotatable through this endpoint.
   final RotateCredentialResponsePrincipalType principalType;
-
   /// When the credential was originally issued. Rotation replaces the secrets in place and does not reset this.
   final String createdAt;
-
   /// When the credential expires; absent means never expires. Rotation does not extend it.
   final SdkOptional<String> expiresAt;
 
-  const RotateCredentialResponse(
-      {required this.tokenId,
-      required this.tokenIdShort,
-      this.name = const SdkOmitted(),
-      required this.apiToken,
-      required this.s3SecretAccessKey,
-      required this.scopes,
-      required this.branchId,
-      required this.principalType,
-      required this.createdAt,
-      this.expiresAt = const SdkOmitted()});
+  const RotateCredentialResponse({required this.tokenId, required this.tokenIdShort, this.name = const SdkOmitted(), required this.apiToken, required this.s3SecretAccessKey, required this.scopes, required this.branchId, required this.principalType, required this.createdAt, this.expiresAt = const SdkOmitted()});
 
-  RotateCredentialResponse Function(
-      {String tokenId,
-      String tokenIdShort,
-      SdkOptional<String> name,
-      String apiToken,
-      String s3SecretAccessKey,
-      List<GrantedCredentialScope> scopes,
-      String branchId,
-      RotateCredentialResponsePrincipalType principalType,
-      String createdAt,
-      SdkOptional<String> expiresAt}) get copyWith => _copyWith;
+  RotateCredentialResponse Function({String tokenId, String tokenIdShort, SdkOptional<String> name, String apiToken, String s3SecretAccessKey, List<GrantedCredentialScope> scopes, String branchId, RotateCredentialResponsePrincipalType principalType, String createdAt, SdkOptional<String> expiresAt}) get copyWith => _copyWith;
 
-  RotateCredentialResponse _copyWith(
-          {Object? tokenId = sdkOmittedValue,
-          Object? tokenIdShort = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? apiToken = sdkOmittedValue,
-          Object? s3SecretAccessKey = sdkOmittedValue,
-          Object? scopes = sdkOmittedValue,
-          Object? branchId = sdkOmittedValue,
-          Object? principalType = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue,
-          Object? expiresAt = sdkOmittedValue}) =>
-      RotateCredentialResponse(
-        tokenId: identical(tokenId, sdkOmittedValue)
-            ? this.tokenId
-            : tokenId as String,
-        tokenIdShort: identical(tokenIdShort, sdkOmittedValue)
-            ? this.tokenIdShort
-            : tokenIdShort as String,
-        name: identical(name, sdkOmittedValue)
-            ? this.name
-            : name as SdkOptional<String>,
-        apiToken: identical(apiToken, sdkOmittedValue)
-            ? this.apiToken
-            : apiToken as String,
-        s3SecretAccessKey: identical(s3SecretAccessKey, sdkOmittedValue)
-            ? this.s3SecretAccessKey
-            : s3SecretAccessKey as String,
-        scopes: identical(scopes, sdkOmittedValue)
-            ? this.scopes
-            : scopes as List<GrantedCredentialScope>,
-        branchId: identical(branchId, sdkOmittedValue)
-            ? this.branchId
-            : branchId as String,
-        principalType: identical(principalType, sdkOmittedValue)
-            ? this.principalType
-            : principalType as RotateCredentialResponsePrincipalType,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-        expiresAt: identical(expiresAt, sdkOmittedValue)
-            ? this.expiresAt
-            : expiresAt as SdkOptional<String>,
-      );
+  RotateCredentialResponse _copyWith({Object? tokenId = sdkOmittedValue, Object? tokenIdShort = sdkOmittedValue, Object? name = sdkOmittedValue, Object? apiToken = sdkOmittedValue, Object? s3SecretAccessKey = sdkOmittedValue, Object? scopes = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? principalType = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? expiresAt = sdkOmittedValue}) => RotateCredentialResponse(
+    tokenId: identical(tokenId, sdkOmittedValue) ? this.tokenId : tokenId as String,
+    tokenIdShort: identical(tokenIdShort, sdkOmittedValue) ? this.tokenIdShort : tokenIdShort as String,
+    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
+    apiToken: identical(apiToken, sdkOmittedValue) ? this.apiToken : apiToken as String,
+    s3SecretAccessKey: identical(s3SecretAccessKey, sdkOmittedValue) ? this.s3SecretAccessKey : s3SecretAccessKey as String,
+    scopes: identical(scopes, sdkOmittedValue) ? this.scopes : scopes as List<GrantedCredentialScope>,
+    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as String,
+    principalType: identical(principalType, sdkOmittedValue) ? this.principalType : principalType as RotateCredentialResponsePrincipalType,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+    expiresAt: identical(expiresAt, sdkOmittedValue) ? this.expiresAt : expiresAt as SdkOptional<String>,
+  );
 
-  factory RotateCredentialResponse.fromJson(Map<String, dynamic> json) =>
-      RotateCredentialResponse(
-        tokenId: (json['token_id'] as String?)!,
-        tokenIdShort: (json['token_id_short'] as String?)!,
-        name: json['name'] != null
-            ? SdkPresent((json['name'] as String?)!)
-            : const SdkOmitted(),
-        apiToken: (json['api_token'] as String?)!,
-        s3SecretAccessKey: (json['s3_secret_access_key'] as String?)!,
-        scopes: ((json['scopes'] as List?)
-            ?.map((e) => GrantedCredentialScope.fromJson(e as String))
-            .toList())!,
-        branchId: (json['branch_id'] as String?)!,
-        principalType: (json['principal_type'] != null
-            ? RotateCredentialResponsePrincipalType.fromJson(
-                json['principal_type'] as String)
-            : null)!,
-        createdAt: (json['created_at'] as String?)!,
-        expiresAt: json['expires_at'] != null
-            ? SdkPresent((json['expires_at'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory RotateCredentialResponse.fromJson(Map<String, dynamic> json) => RotateCredentialResponse(
+    tokenId: (json['token_id'] as String?)!,
+    tokenIdShort: (json['token_id_short'] as String?)!,
+    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
+    apiToken: (json['api_token'] as String?)!,
+    s3SecretAccessKey: (json['s3_secret_access_key'] as String?)!,
+    scopes: ((json['scopes'] as List?)?.map((e) => GrantedCredentialScope.fromJson(e as String)).toList())!,
+    branchId: (json['branch_id'] as String?)!,
+    principalType: (json['principal_type'] != null ? RotateCredentialResponsePrincipalType.fromJson(json['principal_type'] as String) : null)!,
+    createdAt: (json['created_at'] as String?)!,
+    expiresAt: json['expires_at'] != null ? SdkPresent((json['expires_at'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'token_id': tokenId,
-        'token_id_short': tokenIdShort,
-        ...switch (name) {
-          SdkPresent<String>(value: final value) => {
-              'name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        'api_token': apiToken,
-        's3_secret_access_key': s3SecretAccessKey,
-        'scopes': scopes.map((item) => item.toJson()).toList(),
-        'branch_id': branchId,
-        'principal_type': principalType.toJson(),
-        'created_at': createdAt,
-        ...switch (expiresAt) {
-          SdkPresent<String>(value: final value) => {
-              'expires_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'token_id': tokenId,
+    'token_id_short': tokenIdShort,
+    ...switch (name) {
+      SdkPresent<String>(value: final value) => {'name': value,},
+      _ => const <String, dynamic>{},
+    },
+    'api_token': apiToken,
+    's3_secret_access_key': s3SecretAccessKey,
+    'scopes': scopes.map((item) => item.toJson()).toList(),
+    'branch_id': branchId,
+    'principal_type': principalType.toJson(),
+    'created_at': createdAt,
+    ...switch (expiresAt) {
+      SdkPresent<String>(value: final value) => {'expires_at': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

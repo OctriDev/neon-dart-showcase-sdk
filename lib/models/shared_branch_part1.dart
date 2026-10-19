@@ -8,53 +8,33 @@ part of 'shared_branch.dart';
 class BranchCreatedBy {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Display name of the user who created the branch.
   final SdkOptional<String> name;
-
   /// The URL to the user's avatar image.
   final SdkOptional<String> image;
 
-  const BranchCreatedBy(
-      {this.name = const SdkOmitted(), this.image = const SdkOmitted()});
+  const BranchCreatedBy({this.name = const SdkOmitted(), this.image = const SdkOmitted()});
 
-  BranchCreatedBy Function(
-      {SdkOptional<String> name,
-      SdkOptional<String> image}) get copyWith => _copyWith;
+  BranchCreatedBy Function({SdkOptional<String> name, SdkOptional<String> image}) get copyWith => _copyWith;
 
-  BranchCreatedBy _copyWith(
-          {Object? name = sdkOmittedValue, Object? image = sdkOmittedValue}) =>
-      BranchCreatedBy(
-        name: identical(name, sdkOmittedValue)
-            ? this.name
-            : name as SdkOptional<String>,
-        image: identical(image, sdkOmittedValue)
-            ? this.image
-            : image as SdkOptional<String>,
-      );
+  BranchCreatedBy _copyWith({Object? name = sdkOmittedValue, Object? image = sdkOmittedValue}) => BranchCreatedBy(
+    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
+    image: identical(image, sdkOmittedValue) ? this.image : image as SdkOptional<String>,
+  );
 
-  factory BranchCreatedBy.fromJson(Map<String, dynamic> json) =>
-      BranchCreatedBy(
-        name: json['name'] != null
-            ? SdkPresent((json['name'] as String?)!)
-            : const SdkOmitted(),
-        image: json['image'] != null
-            ? SdkPresent((json['image'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory BranchCreatedBy.fromJson(Map<String, dynamic> json) => BranchCreatedBy(
+    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
+    image: json['image'] != null ? SdkPresent((json['image'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (name) {
-          SdkPresent<String>(value: final value) => {
-              'name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (image) {
-          SdkPresent<String>(value: final value) => {
-              'image': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (name) {
+      SdkPresent<String>(value: final value) => {'name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (image) {
+      SdkPresent<String>(value: final value) => {'image': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
