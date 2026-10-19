@@ -8,64 +8,131 @@ part of 'functions.dart';
 class StorageObjectCreatedTriggerUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Trigger type discriminator; it does not change the trigger type.
   final StorageObjectCreatedTriggerUpdateRequestType type_;
+
   /// Replacement branch-local Function slug.
   final SdkOptional<String> functionSlug;
+
   /// Optional `string` value serialized in the `name` wire field.
   final SdkOptional<String> name;
+
   /// Optional `string` value serialized in the `function_path` wire field.
   final SdkOptional<String> functionPath;
+
   /// Matches successful uploads to one exact bucket and, when configured, an object-key prefix. The Function receives a JSON request body with `type` set to `storage_object_created` and a `data` object containing exactly `bucket_name` and `object_key`.
   final SdkOptional<FunctionTriggerStorageObjectCreated> storageObjectCreated;
+
   /// True enables and false disables future matching uploads.
   final SdkOptional<bool> enabled;
 
-  const StorageObjectCreatedTriggerUpdateRequest({required this.type_, this.functionSlug = const SdkOmitted(), this.name = const SdkOmitted(), this.functionPath = const SdkOmitted(), this.storageObjectCreated = const SdkOmitted(), this.enabled = const SdkOmitted()});
+  const StorageObjectCreatedTriggerUpdateRequest(
+      {required this.type_,
+      this.functionSlug = const SdkOmitted(),
+      this.name = const SdkOmitted(),
+      this.functionPath = const SdkOmitted(),
+      this.storageObjectCreated = const SdkOmitted(),
+      this.enabled = const SdkOmitted()});
 
-  StorageObjectCreatedTriggerUpdateRequest Function({StorageObjectCreatedTriggerUpdateRequestType type_, SdkOptional<String> functionSlug, SdkOptional<String> name, SdkOptional<String> functionPath, SdkOptional<FunctionTriggerStorageObjectCreated> storageObjectCreated, SdkOptional<bool> enabled}) get copyWith => _copyWith;
+  StorageObjectCreatedTriggerUpdateRequest Function(
+      {StorageObjectCreatedTriggerUpdateRequestType type_,
+      SdkOptional<String> functionSlug,
+      SdkOptional<String> name,
+      SdkOptional<String> functionPath,
+      SdkOptional<FunctionTriggerStorageObjectCreated> storageObjectCreated,
+      SdkOptional<bool> enabled}) get copyWith => _copyWith;
 
-  StorageObjectCreatedTriggerUpdateRequest _copyWith({Object? type_ = sdkOmittedValue, Object? functionSlug = sdkOmittedValue, Object? name = sdkOmittedValue, Object? functionPath = sdkOmittedValue, Object? storageObjectCreated = sdkOmittedValue, Object? enabled = sdkOmittedValue}) => StorageObjectCreatedTriggerUpdateRequest(
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as StorageObjectCreatedTriggerUpdateRequestType,
-    functionSlug: identical(functionSlug, sdkOmittedValue) ? this.functionSlug : functionSlug as SdkOptional<String>,
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-    functionPath: identical(functionPath, sdkOmittedValue) ? this.functionPath : functionPath as SdkOptional<String>,
-    storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue) ? this.storageObjectCreated : storageObjectCreated as SdkOptional<FunctionTriggerStorageObjectCreated>,
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as SdkOptional<bool>,
-  );
+  StorageObjectCreatedTriggerUpdateRequest _copyWith(
+          {Object? type_ = sdkOmittedValue,
+          Object? functionSlug = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? functionPath = sdkOmittedValue,
+          Object? storageObjectCreated = sdkOmittedValue,
+          Object? enabled = sdkOmittedValue}) =>
+      StorageObjectCreatedTriggerUpdateRequest(
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as StorageObjectCreatedTriggerUpdateRequestType,
+        functionSlug: identical(functionSlug, sdkOmittedValue)
+            ? this.functionSlug
+            : functionSlug as SdkOptional<String>,
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+        functionPath: identical(functionPath, sdkOmittedValue)
+            ? this.functionPath
+            : functionPath as SdkOptional<String>,
+        storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue)
+            ? this.storageObjectCreated
+            : storageObjectCreated
+                as SdkOptional<FunctionTriggerStorageObjectCreated>,
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as SdkOptional<bool>,
+      );
 
-  factory StorageObjectCreatedTriggerUpdateRequest.fromJson(Map<String, dynamic> json) => StorageObjectCreatedTriggerUpdateRequest(
-    type_: (json['type'] != null ? StorageObjectCreatedTriggerUpdateRequestType.fromJson(json['type'] as String) : null)!,
-    functionSlug: json['function_slug'] != null ? SdkPresent((json['function_slug'] as String?)!) : const SdkOmitted(),
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-    functionPath: json['function_path'] != null ? SdkPresent((json['function_path'] as String?)!) : const SdkOmitted(),
-    storageObjectCreated: json['storage_object_created'] != null ? SdkPresent((json['storage_object_created'] != null ? FunctionTriggerStorageObjectCreated.fromJson(json['storage_object_created'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-    enabled: json['enabled'] != null ? SdkPresent((json['enabled'] as bool?)!) : const SdkOmitted(),
-  );
+  factory StorageObjectCreatedTriggerUpdateRequest.fromJson(
+          Map<String, dynamic> json) =>
+      StorageObjectCreatedTriggerUpdateRequest(
+        type_: (json['type'] != null
+            ? StorageObjectCreatedTriggerUpdateRequestType.fromJson(
+                json['type'] as String)
+            : null)!,
+        functionSlug: json['function_slug'] != null
+            ? SdkPresent((json['function_slug'] as String?)!)
+            : const SdkOmitted(),
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+        functionPath: json['function_path'] != null
+            ? SdkPresent((json['function_path'] as String?)!)
+            : const SdkOmitted(),
+        storageObjectCreated: json['storage_object_created'] != null
+            ? SdkPresent((json['storage_object_created'] != null
+                ? FunctionTriggerStorageObjectCreated.fromJson(
+                    json['storage_object_created'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+        enabled: json['enabled'] != null
+            ? SdkPresent((json['enabled'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'type': type_.toJson(),
-    ...switch (functionSlug) {
-      SdkPresent<String>(value: final value) => {'function_slug': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (functionPath) {
-      SdkPresent<String>(value: final value) => {'function_path': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (storageObjectCreated) {
-      SdkPresent<FunctionTriggerStorageObjectCreated>(value: final value) => {'storage_object_created': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (enabled) {
-      SdkPresent<bool>(value: final value) => {'enabled': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'type': type_.toJson(),
+        ...switch (functionSlug) {
+          SdkPresent<String>(value: final value) => {
+              'function_slug': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (functionPath) {
+          SdkPresent<String>(value: final value) => {
+              'function_path': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (storageObjectCreated) {
+          SdkPresent<FunctionTriggerStorageObjectCreated>(value: final value) =>
+            {
+              'storage_object_created': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (enabled) {
+          SdkPresent<bool>(value: final value) => {
+              'enabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 sealed class Trigger {
@@ -74,12 +141,32 @@ sealed class Trigger {
   const Trigger();
   factory Trigger.fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      try { final value = ScheduleTrigger.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return TriggerScheduleTrigger(value); } } catch (_) {}
-      try { final value = StorageObjectCreatedTrigger.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return TriggerStorageObjectCreatedTrigger(value); } } catch (_) {}
+      try {
+        final value = ScheduleTrigger.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerScheduleTrigger(value);
+        }
+      } catch (_) {}
+      try {
+        final value = StorageObjectCreatedTrigger.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerStorageObjectCreatedTrigger(value);
+        }
+      } catch (_) {}
     }
-    try { return TriggerScheduleTrigger(ScheduleTrigger.fromJson(json as Map<String, dynamic>)); } catch (_) {}
-    try { return TriggerStorageObjectCreatedTrigger(StorageObjectCreatedTrigger.fromJson(json as Map<String, dynamic>)); } catch (_) {}
-    if (json is Map<String, dynamic> && json["type"] is String && !const {"schedule", "storage_object_created"}.contains(json["type"])) { return UnknownTrigger(json); }
+    try {
+      return TriggerScheduleTrigger(
+          ScheduleTrigger.fromJson(json as Map<String, dynamic>));
+    } catch (_) {}
+    try {
+      return TriggerStorageObjectCreatedTrigger(
+          StorageObjectCreatedTrigger.fromJson(json as Map<String, dynamic>));
+    } catch (_) {}
+    if (json is Map<String, dynamic> &&
+        json["type"] is String &&
+        !const {"schedule", "storage_object_created"}.contains(json["type"])) {
+      return UnknownTrigger(json);
+    }
     throw FormatException("No variant matched for Trigger");
   }
   Object? toJson();
@@ -88,20 +175,23 @@ sealed class Trigger {
 final class TriggerScheduleTrigger extends Trigger {
   final ScheduleTrigger value;
   const TriggerScheduleTrigger(this.value);
-  @override Object? toJson() => value.toJson();
+  @override
+  Object? toJson() => value.toJson();
 }
 
 final class TriggerStorageObjectCreatedTrigger extends Trigger {
   final StorageObjectCreatedTrigger value;
   const TriggerStorageObjectCreatedTrigger(this.value);
-  @override Object? toJson() => value.toJson();
+  @override
+  Object? toJson() => value.toJson();
 }
 
 /// A [Trigger] whose `type` names no branch this SDK knows, kept as received.
 final class UnknownTrigger extends Trigger {
   final Map<String, dynamic> raw;
   const UnknownTrigger(this.raw);
-  @override Object? toJson() => raw;
+  @override
+  Object? toJson() => raw;
 }
 
 sealed class TriggerCreateRequest {
@@ -110,34 +200,62 @@ sealed class TriggerCreateRequest {
   const TriggerCreateRequest();
   factory TriggerCreateRequest.fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      try { final value = ScheduleTriggerCreateRequest.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return TriggerCreateRequestScheduleTriggerCreateRequest(value); } } catch (_) {}
-      try { final value = StorageObjectCreatedTriggerCreateRequest.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest(value); } } catch (_) {}
+      try {
+        final value = ScheduleTriggerCreateRequest.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerCreateRequestScheduleTriggerCreateRequest(value);
+        }
+      } catch (_) {}
+      try {
+        final value = StorageObjectCreatedTriggerCreateRequest.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest(
+              value);
+        }
+      } catch (_) {}
     }
-    try { return TriggerCreateRequestScheduleTriggerCreateRequest(ScheduleTriggerCreateRequest.fromJson(json as Map<String, dynamic>)); } catch (_) {}
-    try { return TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest(StorageObjectCreatedTriggerCreateRequest.fromJson(json as Map<String, dynamic>)); } catch (_) {}
-    if (json is Map<String, dynamic> && json["type"] is String && !const {"schedule", "storage_object_created"}.contains(json["type"])) { return UnknownTriggerCreateRequest(json); }
+    try {
+      return TriggerCreateRequestScheduleTriggerCreateRequest(
+          ScheduleTriggerCreateRequest.fromJson(json as Map<String, dynamic>));
+    } catch (_) {}
+    try {
+      return TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest(
+          StorageObjectCreatedTriggerCreateRequest.fromJson(
+              json as Map<String, dynamic>));
+    } catch (_) {}
+    if (json is Map<String, dynamic> &&
+        json["type"] is String &&
+        !const {"schedule", "storage_object_created"}.contains(json["type"])) {
+      return UnknownTriggerCreateRequest(json);
+    }
     throw FormatException("No variant matched for TriggerCreateRequest");
   }
   Object? toJson();
 }
 
-final class TriggerCreateRequestScheduleTriggerCreateRequest extends TriggerCreateRequest {
+final class TriggerCreateRequestScheduleTriggerCreateRequest
+    extends TriggerCreateRequest {
   final ScheduleTriggerCreateRequest value;
   const TriggerCreateRequestScheduleTriggerCreateRequest(this.value);
-  @override Object? toJson() => value.toJson();
+  @override
+  Object? toJson() => value.toJson();
 }
 
-final class TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest extends TriggerCreateRequest {
+final class TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest
+    extends TriggerCreateRequest {
   final StorageObjectCreatedTriggerCreateRequest value;
-  const TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest(this.value);
-  @override Object? toJson() => value.toJson();
+  const TriggerCreateRequestStorageObjectCreatedTriggerCreateRequest(
+      this.value);
+  @override
+  Object? toJson() => value.toJson();
 }
 
 /// A [TriggerCreateRequest] whose `type` names no branch this SDK knows, kept as received.
 final class UnknownTriggerCreateRequest extends TriggerCreateRequest {
   final Map<String, dynamic> raw;
   const UnknownTriggerCreateRequest(this.raw);
-  @override Object? toJson() => raw;
+  @override
+  Object? toJson() => raw;
 }
 
 // TriggerID = String
@@ -146,6 +264,7 @@ final class UnknownTriggerCreateRequest extends TriggerCreateRequest {
 class TriggerResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// A branch-effective trigger discriminated by `type`. The supported trigger types are `schedule` and `storage_object_created`.
   final Trigger trigger;
 
@@ -153,41 +272,55 @@ class TriggerResponse {
 
   TriggerResponse Function({Trigger trigger}) get copyWith => _copyWith;
 
-  TriggerResponse _copyWith({Object? trigger = sdkOmittedValue}) => TriggerResponse(
-    trigger: identical(trigger, sdkOmittedValue) ? this.trigger : trigger as Trigger,
-  );
+  TriggerResponse _copyWith({Object? trigger = sdkOmittedValue}) =>
+      TriggerResponse(
+        trigger: identical(trigger, sdkOmittedValue)
+            ? this.trigger
+            : trigger as Trigger,
+      );
 
-  factory TriggerResponse.fromJson(Map<String, dynamic> json) => TriggerResponse(
-    trigger: (json['trigger'] != null ? Trigger.fromJson(json['trigger']) : null)!,
-  );
+  factory TriggerResponse.fromJson(Map<String, dynamic> json) =>
+      TriggerResponse(
+        trigger: (json['trigger'] != null
+            ? Trigger.fromJson(json['trigger'])
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'trigger': trigger.toJson(),
-  };
+        'trigger': trigger.toJson(),
+      };
 }
 
 /// Typed representation of the `TriggersListResponse` API schema.
 class TriggersListResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required array value serialized in the `triggers` wire field.
   final List<Trigger> triggers;
 
   const TriggersListResponse({required this.triggers});
 
-  TriggersListResponse Function({List<Trigger> triggers}) get copyWith => _copyWith;
+  TriggersListResponse Function({List<Trigger> triggers}) get copyWith =>
+      _copyWith;
 
-  TriggersListResponse _copyWith({Object? triggers = sdkOmittedValue}) => TriggersListResponse(
-    triggers: identical(triggers, sdkOmittedValue) ? this.triggers : triggers as List<Trigger>,
-  );
+  TriggersListResponse _copyWith({Object? triggers = sdkOmittedValue}) =>
+      TriggersListResponse(
+        triggers: identical(triggers, sdkOmittedValue)
+            ? this.triggers
+            : triggers as List<Trigger>,
+      );
 
-  factory TriggersListResponse.fromJson(Map<String, dynamic> json) => TriggersListResponse(
-    triggers: ((json['triggers'] as List?)?.map((e) => Trigger.fromJson(e)).toList())!,
-  );
+  factory TriggersListResponse.fromJson(Map<String, dynamic> json) =>
+      TriggersListResponse(
+        triggers: ((json['triggers'] as List?)
+            ?.map((e) => Trigger.fromJson(e))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'triggers': triggers.map((item) => item.toJson()).toList(),
-  };
+        'triggers': triggers.map((item) => item.toJson()).toList(),
+      };
 }
 
 sealed class TriggerUpdateRequest {
@@ -196,32 +329,60 @@ sealed class TriggerUpdateRequest {
   const TriggerUpdateRequest();
   factory TriggerUpdateRequest.fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      try { final value = ScheduleTriggerUpdateRequest.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return TriggerUpdateRequestScheduleTriggerUpdateRequest(value); } } catch (_) {}
-      try { final value = StorageObjectCreatedTriggerUpdateRequest.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest(value); } } catch (_) {}
+      try {
+        final value = ScheduleTriggerUpdateRequest.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerUpdateRequestScheduleTriggerUpdateRequest(value);
+        }
+      } catch (_) {}
+      try {
+        final value = StorageObjectCreatedTriggerUpdateRequest.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest(
+              value);
+        }
+      } catch (_) {}
     }
-    try { return TriggerUpdateRequestScheduleTriggerUpdateRequest(ScheduleTriggerUpdateRequest.fromJson(json as Map<String, dynamic>)); } catch (_) {}
-    try { return TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest(StorageObjectCreatedTriggerUpdateRequest.fromJson(json as Map<String, dynamic>)); } catch (_) {}
-    if (json is Map<String, dynamic> && json["type"] is String && !const {"schedule", "storage_object_created"}.contains(json["type"])) { return UnknownTriggerUpdateRequest(json); }
+    try {
+      return TriggerUpdateRequestScheduleTriggerUpdateRequest(
+          ScheduleTriggerUpdateRequest.fromJson(json as Map<String, dynamic>));
+    } catch (_) {}
+    try {
+      return TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest(
+          StorageObjectCreatedTriggerUpdateRequest.fromJson(
+              json as Map<String, dynamic>));
+    } catch (_) {}
+    if (json is Map<String, dynamic> &&
+        json["type"] is String &&
+        !const {"schedule", "storage_object_created"}.contains(json["type"])) {
+      return UnknownTriggerUpdateRequest(json);
+    }
     throw FormatException("No variant matched for TriggerUpdateRequest");
   }
   Object? toJson();
 }
 
-final class TriggerUpdateRequestScheduleTriggerUpdateRequest extends TriggerUpdateRequest {
+final class TriggerUpdateRequestScheduleTriggerUpdateRequest
+    extends TriggerUpdateRequest {
   final ScheduleTriggerUpdateRequest value;
   const TriggerUpdateRequestScheduleTriggerUpdateRequest(this.value);
-  @override Object? toJson() => value.toJson();
+  @override
+  Object? toJson() => value.toJson();
 }
 
-final class TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest extends TriggerUpdateRequest {
+final class TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest
+    extends TriggerUpdateRequest {
   final StorageObjectCreatedTriggerUpdateRequest value;
-  const TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest(this.value);
-  @override Object? toJson() => value.toJson();
+  const TriggerUpdateRequestStorageObjectCreatedTriggerUpdateRequest(
+      this.value);
+  @override
+  Object? toJson() => value.toJson();
 }
 
 /// A [TriggerUpdateRequest] whose `type` names no branch this SDK knows, kept as received.
 final class UnknownTriggerUpdateRequest extends TriggerUpdateRequest {
   final Map<String, dynamic> raw;
   const UnknownTriggerUpdateRequest(this.raw);
-  @override Object? toJson() => raw;
+  @override
+  Object? toJson() => raw;
 }

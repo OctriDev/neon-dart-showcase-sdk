@@ -8,35 +8,48 @@ part of 'branch.dart';
 class RoleOperations {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Role details for the requested database role. The `password` field is included in the response when a role is created or its password is reset, and is not returned in subsequent read requests. Store it securely at that time.
   final Role role;
+
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
 
   const RoleOperations({required this.role, required this.operations});
 
-  RoleOperations Function({Role role, List<Operation> operations}) get copyWith => _copyWith;
+  RoleOperations Function({Role role, List<Operation> operations})
+      get copyWith => _copyWith;
 
-  RoleOperations _copyWith({Object? role = sdkOmittedValue, Object? operations = sdkOmittedValue}) => RoleOperations(
-    role: identical(role, sdkOmittedValue) ? this.role : role as Role,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
+  RoleOperations _copyWith(
+          {Object? role = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      RoleOperations(
+        role: identical(role, sdkOmittedValue) ? this.role : role as Role,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
 
   factory RoleOperations.fromJson(Map<String, dynamic> json) => RoleOperations(
-    role: (json['role'] != null ? Role.fromJson(json['role'] as Map<String, dynamic>) : null)!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+        role: (json['role'] != null
+            ? Role.fromJson(json['role'] as Map<String, dynamic>)
+            : null)!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'role': role.toJson(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
+        'role': role.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Typed representation of the `RolePasswordResponse` API schema.
 class RolePasswordResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The role password
   final String password;
 
@@ -44,23 +57,28 @@ class RolePasswordResponse {
 
   RolePasswordResponse Function({String password}) get copyWith => _copyWith;
 
-  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) => RolePasswordResponse(
-    password: identical(password, sdkOmittedValue) ? this.password : password as String,
-  );
+  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) =>
+      RolePasswordResponse(
+        password: identical(password, sdkOmittedValue)
+            ? this.password
+            : password as String,
+      );
 
-  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) => RolePasswordResponse(
-    password: (json['password'] as String?)!,
-  );
+  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) =>
+      RolePasswordResponse(
+        password: (json['password'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'password': password,
-  };
+        'password': password,
+      };
 }
 
 /// Typed representation of the `RoleResponse` API schema.
 class RoleResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Role details for the requested database role. The `password` field is included in the response when a role is created or its password is reset, and is not returned in subsequent read requests. Store it securely at that time.
   final Role role;
 
@@ -69,14 +87,16 @@ class RoleResponse {
   RoleResponse Function({Role role}) get copyWith => _copyWith;
 
   RoleResponse _copyWith({Object? role = sdkOmittedValue}) => RoleResponse(
-    role: identical(role, sdkOmittedValue) ? this.role : role as Role,
-  );
+        role: identical(role, sdkOmittedValue) ? this.role : role as Role,
+      );
 
   factory RoleResponse.fromJson(Map<String, dynamic> json) => RoleResponse(
-    role: (json['role'] != null ? Role.fromJson(json['role'] as Map<String, dynamic>) : null)!,
-  );
+        role: (json['role'] != null
+            ? Role.fromJson(json['role'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'role': role.toJson(),
-  };
+        'role': role.toJson(),
+      };
 }
