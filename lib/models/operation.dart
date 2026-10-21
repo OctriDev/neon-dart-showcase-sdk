@@ -6,4 +6,4 @@ import '../sdk_utils.dart';
 import 'shared_operation.dart';
 import 'shared_pagination.dart';
 
-part 'operation_part1.dart';
+part 'operation_models.dart';

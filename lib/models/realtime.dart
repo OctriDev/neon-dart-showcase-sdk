@@ -4,4 +4,4 @@
 // realtime domain model library.
 import '../sdk_utils.dart';
 
-part 'realtime_part1.dart';
+part 'realtime_models.dart';

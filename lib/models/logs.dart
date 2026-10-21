@@ -5,5 +5,7 @@
 import '../sdk_utils.dart';
 import 'inline.dart';
 
-part 'logs_part1.dart';
-part 'logs_part2.dart';
+part 'logs_shared.dart';
+part 'logs_list_logs_fields.dart';
+part 'logs_list_logs_field_values.dart';
+part 'logs_query_logs.dart';

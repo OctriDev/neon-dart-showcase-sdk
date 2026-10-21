@@ -4,4 +4,4 @@
 // shared_operation domain model library.
 import '../sdk_utils.dart';
 
-part 'shared_operation_part1.dart';
+part 'shared_operation_models.dart';

@@ -6,5 +6,15 @@ import '../sdk_utils.dart';
 import 'inline.dart';
 import 'shared.dart';
 
-part 'users_part1.dart';
-part 'users_part2.dart';
+part 'users_get_auth_details.dart';
+part 'users_billing_account.dart';
+part 'users_billing_account_state.dart';
+part 'users_billing_payment_method.dart';
+part 'users_current_user_auth_account.dart';
+part 'users_current_user_info_response.dart';
+part 'users_identity_provider_id.dart';
+part 'users_payment_source.dart';
+part 'users_payment_source_bank_card.dart';
+part 'users_plan_details.dart';
+part 'users_plan_version.dart';
+part 'users_get_current_user_organizations.dart';

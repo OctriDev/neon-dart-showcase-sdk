@@ -5,6 +5,9 @@
 import '../sdk_utils.dart';
 import 'inline.dart';
 
-part 'shared_branch_part1.dart';
-part 'shared_branch_part2.dart';
-part 'shared_branch_part3.dart';
+part 'shared_branch2.dart';
+part 'shared_branch_recovery_info.dart';
+part 'shared_branch_response.dart';
+part 'shared_branch_restore_status.dart';
+part 'shared_branch_restricted_action.dart';
+part 'shared_branch_state.dart';

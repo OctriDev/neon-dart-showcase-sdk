@@ -4,4 +4,4 @@
 // shared_vpcendpoint domain model library.
 import '../sdk_utils.dart';
 
-part 'shared_vpcendpoint_part1.dart';
+part 'shared_vpcendpoint_models.dart';

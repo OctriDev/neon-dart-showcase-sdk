@@ -4,4 +4,4 @@
 // shared_cursor domain model library.
 import '../sdk_utils.dart';
 
-part 'shared_cursor_part1.dart';
+part 'shared_cursor_models.dart';

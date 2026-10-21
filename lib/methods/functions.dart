@@ -301,7 +301,7 @@ Future<TriggerResponse> getFunctionsTrigger(ClientConfig config,
 /// [projectId] The Neon project ID
 /// [branchId] The Neon branch ID
 /// [triggerId] The opaque, project-wide trigger ID
-Future<TriggerResponse> updateFunctionsTrigger(ClientConfig config,
+Future<TriggerResponse> updateFunctionTrigger(ClientConfig config,
     {required String projectId,
     required String branchId,
     required String triggerId,
@@ -318,7 +318,7 @@ Future<TriggerResponse> updateFunctionsTrigger(ClientConfig config,
           config: config,
           body: body,
           decoder: SdkResponseDecoder.json,
-          operationId: 'updateFunctionsTrigger',
+          operationId: 'updateFunctionTrigger',
           fromJsonRaw: (value) => TriggerResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
           errors: {

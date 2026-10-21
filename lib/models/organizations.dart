@@ -6,7 +6,13 @@ import '../sdk_utils.dart';
 import 'shared_api.dart';
 import 'shared_cursor.dart';
 
-part 'organizations_part1.dart';
-part 'organizations_part2.dart';
-part 'organizations_part3.dart';
-part 'organizations_part4.dart';
+part 'organizations_shared.dart';
+part 'organizations_list_organizations_members.dart';
+part 'organizations_create_organization_invitations.dart';
+part 'organizations_update_organization_member.dart';
+part 'organizations_create_organizations_api_key.dart';
+part 'organizations_revoke_organizations_api_key.dart';
+part 'organizations_list_organizations_api_keys.dart';
+part 'organizations_set_organization_spending_limit.dart';
+part 'organizations_get_organizations_vpc_endpoint.dart';
+part 'organizations_list_organization_vpc_endpoints_all_regions.dart';

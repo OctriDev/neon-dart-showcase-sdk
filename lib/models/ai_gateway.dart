@@ -5,4 +5,4 @@
 import '../sdk_utils.dart';
 import 'inline.dart';
 
-part 'ai_gateway_part1.dart';
+part 'ai_gateway_models.dart';

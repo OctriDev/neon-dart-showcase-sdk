@@ -5,4 +5,4 @@
 import '../sdk_utils.dart';
 import 'inline.dart';
 
-part 'project_advisor_part1.dart';
+part 'project_advisor_models.dart';

@@ -2663,7 +2663,7 @@ class FunctionsNamespace {
       required String triggerId,
       required TriggerUpdateRequest body,
       RequestOptions? requestOptions}) async {
-    return functions_methods.updateFunctionsTrigger(_config,
+    return functions_methods.updateFunctionTrigger(_config,
         projectId: projectId,
         branchId: branchId,
         triggerId: triggerId,

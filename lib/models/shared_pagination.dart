@@ -4,4 +4,4 @@
 // shared_pagination domain model library.
 import '../sdk_utils.dart';
 
-part 'shared_pagination_part1.dart';
+part 'shared_pagination_models.dart';

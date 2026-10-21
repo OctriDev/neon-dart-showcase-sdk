@@ -6,5 +6,6 @@ import '../sdk_utils.dart';
 import 'shared_endpoint.dart';
 import 'shared_operation.dart';
 
-part 'endpoint_part1.dart';
-part 'endpoint_part2.dart';
+part 'endpoint_create_endpoint.dart';
+part 'endpoint_shared.dart';
+part 'endpoint_update_endpoint.dart';

@@ -4,4 +4,4 @@
 // project_available domain model library.
 import '../sdk_utils.dart';
 
-part 'project_available_part1.dart';
+part 'project_available_models.dart';

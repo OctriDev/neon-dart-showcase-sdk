@@ -5,4 +5,4 @@
 import '../sdk_utils.dart';
 import 'shared_connection.dart';
 
-part 'project_connection_part1.dart';
+part 'project_connection_models.dart';

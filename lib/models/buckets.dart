@@ -5,5 +5,9 @@
 import '../sdk_utils.dart';
 import 'inline.dart';
 
-part 'buckets_part1.dart';
-part 'buckets_part2.dart';
+part 'buckets_shared.dart';
+part 'buckets_create_buckets.dart';
+part 'buckets_list_buckets_objects.dart';
+part 'buckets_delete_buckets_objects_by_prefix.dart';
+part 'buckets_list_buckets.dart';
+part 'buckets_presign_buckets_object.dart';

@@ -4,4 +4,4 @@
 // region domain model library.
 import '../sdk_utils.dart';
 
-part 'region_part1.dart';
+part 'region_models.dart';

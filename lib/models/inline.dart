@@ -7,7 +7,7 @@ import 'project_advisor.dart';
 import 'shared_operation.dart';
 import 'snapshot.dart';
 
-part 'inline_part1.dart';
-part 'inline_part2.dart';
-part 'inline_part3.dart';
-part 'inline_part4.dart';
+part 'inline_schema_schema.dart';
+part 'inline_neon_auth_webhook_config_enabled_events_item.dart';
+part 'inline_standard_email_server_type.dart';
+part 'inline_disable_auth_request_body.dart';
