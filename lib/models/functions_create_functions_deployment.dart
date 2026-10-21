@@ -8,112 +8,65 @@ part of 'functions.dart';
 class FunctionDeployRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Optional ZIP archive of the function source code. Omit to reuse the latest version's bundle (a config-only change). Required for the first deployment of a function. Place `index.mjs` or `index.js` at the archive root, without a containing directory. If both exist, `index.mjs` is loaded. Export a request handler function or an object with a `fetch` method. Use `export default` for ESM or `module.exports` for CommonJS; prefer `index.mjs` for ESM. Upload JavaScript ready to run on Node.js 24. Compile TypeScript before uploading. Bundle dependencies into the entry module, or include the required modules and assets in the archive with their relative paths preserved (including `node_modules` for external packages). Node.js built-in modules do not need to be bundled. The API does not transpile, bundle, or install dependencies. The ZIP is limited to 32 MiB compressed and 128 MiB extracted, with at most 32,768 entries and 64 MiB per file. Bundle large dependency trees to keep the archive small. ZIPs larger than 32 MiB are rejected with HTTP 413 before creating a deployment. The extracted-size, entry-count, and per-file limits are enforced during the asynchronous build; an accepted upload that exceeds them fails the build. For example, a self-contained ESM bundle needs only `index.mjs` at the ZIP root. The Neon CLI bundles source into this layout by default; `neon function deploy --no-bundle` packages a prebuilt directory or an entry file named `index.mjs` or `index.js`.
   final SdkOptional<List<int>> zip;
-
   /// Optional enumerated value serialized in the `runtime` wire field.
   final SdkOptional<FunctionDeployRequestRuntime> runtime;
-
   /// Optional JSON object (a string-to-string map) of environment variables for the deployment, e.g. {"KEY":"VALUE"}. Carried as a JSON-encoded string because multipart form data does not support typed object parts. Values are write-only: they are encrypted at rest, and responses carry only the variable names (the `environment` array), never the values.
   final SdkOptional<String> environment;
 
-  const FunctionDeployRequest(
-      {this.zip = const SdkOmitted(),
-      this.runtime = const SdkOmitted(),
-      this.environment = const SdkOmitted()});
+  const FunctionDeployRequest({this.zip = const SdkOmitted(), this.runtime = const SdkOmitted(), this.environment = const SdkOmitted()});
 
-  FunctionDeployRequest Function(
-      {SdkOptional<List<int>> zip,
-      SdkOptional<FunctionDeployRequestRuntime> runtime,
-      SdkOptional<String> environment}) get copyWith => _copyWith;
+  FunctionDeployRequest Function({SdkOptional<List<int>> zip, SdkOptional<FunctionDeployRequestRuntime> runtime, SdkOptional<String> environment}) get copyWith => _copyWith;
 
-  FunctionDeployRequest _copyWith(
-          {Object? zip = sdkOmittedValue,
-          Object? runtime = sdkOmittedValue,
-          Object? environment = sdkOmittedValue}) =>
-      FunctionDeployRequest(
-        zip: identical(zip, sdkOmittedValue)
-            ? this.zip
-            : zip as SdkOptional<List<int>>,
-        runtime: identical(runtime, sdkOmittedValue)
-            ? this.runtime
-            : runtime as SdkOptional<FunctionDeployRequestRuntime>,
-        environment: identical(environment, sdkOmittedValue)
-            ? this.environment
-            : environment as SdkOptional<String>,
-      );
+  FunctionDeployRequest _copyWith({Object? zip = sdkOmittedValue, Object? runtime = sdkOmittedValue, Object? environment = sdkOmittedValue}) => FunctionDeployRequest(
+    zip: identical(zip, sdkOmittedValue) ? this.zip : zip as SdkOptional<List<int>>,
+    runtime: identical(runtime, sdkOmittedValue) ? this.runtime : runtime as SdkOptional<FunctionDeployRequestRuntime>,
+    environment: identical(environment, sdkOmittedValue) ? this.environment : environment as SdkOptional<String>,
+  );
 
-  factory FunctionDeployRequest.fromJson(Map<String, dynamic> json) =>
-      FunctionDeployRequest(
-        zip: json['zip'] != null
-            ? SdkPresent((json['zip'] != null
-                ? base64Decode(json['zip'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        runtime: json['runtime'] != null
-            ? SdkPresent((json['runtime'] != null
-                ? FunctionDeployRequestRuntime.fromJson(
-                    json['runtime'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        environment: json['environment'] != null
-            ? SdkPresent((json['environment'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory FunctionDeployRequest.fromJson(Map<String, dynamic> json) => FunctionDeployRequest(
+    zip: json['zip'] != null ? SdkPresent((json['zip'] != null ? base64Decode(json['zip'] as String) : null)!) : const SdkOmitted(),
+    runtime: json['runtime'] != null ? SdkPresent((json['runtime'] != null ? FunctionDeployRequestRuntime.fromJson(json['runtime'] as String) : null)!) : const SdkOmitted(),
+    environment: json['environment'] != null ? SdkPresent((json['environment'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (zip) {
-          SdkPresent<List<int>>(value: final value) => {
-              'zip': base64Encode(value),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (runtime) {
-          SdkPresent<FunctionDeployRequestRuntime>(value: final value) => {
-              'runtime': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (environment) {
-          SdkPresent<String>(value: final value) => {
-              'environment': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (zip) {
+      SdkPresent<List<int>>(value: final value) => {'zip': base64Encode(value),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (runtime) {
+      SdkPresent<FunctionDeployRequestRuntime>(value: final value) => {'runtime': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (environment) {
+      SdkPresent<String>(value: final value) => {'environment': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `NeonFunctionDeploymentResponse` API schema.
 class NeonFunctionDeploymentResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required object value serialized in the `deployment` wire field.
   final NeonFunctionDeployment deployment;
 
   const NeonFunctionDeploymentResponse({required this.deployment});
 
-  NeonFunctionDeploymentResponse Function({NeonFunctionDeployment deployment})
-      get copyWith => _copyWith;
+  NeonFunctionDeploymentResponse Function({NeonFunctionDeployment deployment}) get copyWith => _copyWith;
 
-  NeonFunctionDeploymentResponse _copyWith(
-          {Object? deployment = sdkOmittedValue}) =>
-      NeonFunctionDeploymentResponse(
-        deployment: identical(deployment, sdkOmittedValue)
-            ? this.deployment
-            : deployment as NeonFunctionDeployment,
-      );
+  NeonFunctionDeploymentResponse _copyWith({Object? deployment = sdkOmittedValue}) => NeonFunctionDeploymentResponse(
+    deployment: identical(deployment, sdkOmittedValue) ? this.deployment : deployment as NeonFunctionDeployment,
+  );
 
-  factory NeonFunctionDeploymentResponse.fromJson(Map<String, dynamic> json) =>
-      NeonFunctionDeploymentResponse(
-        deployment: (json['deployment'] != null
-            ? NeonFunctionDeployment.fromJson(
-                json['deployment'] as Map<String, dynamic>)
-            : null)!,
-      );
+  factory NeonFunctionDeploymentResponse.fromJson(Map<String, dynamic> json) => NeonFunctionDeploymentResponse(
+    deployment: (json['deployment'] != null ? NeonFunctionDeployment.fromJson(json['deployment'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'deployment': deployment.toJson(),
-      };
+    'deployment': deployment.toJson(),
+  };
 }

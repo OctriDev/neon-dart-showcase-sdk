@@ -8,32 +8,22 @@ part of 'project_project.dart';
 class ProjectPermissions {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required array value serialized in the `project_permissions` wire field.
   final List<ProjectPermission> projectPermissions;
 
   const ProjectPermissions({required this.projectPermissions});
 
-  ProjectPermissions Function({List<ProjectPermission> projectPermissions})
-      get copyWith => _copyWith;
+  ProjectPermissions Function({List<ProjectPermission> projectPermissions}) get copyWith => _copyWith;
 
-  ProjectPermissions _copyWith(
-          {Object? projectPermissions = sdkOmittedValue}) =>
-      ProjectPermissions(
-        projectPermissions: identical(projectPermissions, sdkOmittedValue)
-            ? this.projectPermissions
-            : projectPermissions as List<ProjectPermission>,
-      );
+  ProjectPermissions _copyWith({Object? projectPermissions = sdkOmittedValue}) => ProjectPermissions(
+    projectPermissions: identical(projectPermissions, sdkOmittedValue) ? this.projectPermissions : projectPermissions as List<ProjectPermission>,
+  );
 
-  factory ProjectPermissions.fromJson(Map<String, dynamic> json) =>
-      ProjectPermissions(
-        projectPermissions: ((json['project_permissions'] as List?)
-            ?.map((e) => ProjectPermission.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ProjectPermissions.fromJson(Map<String, dynamic> json) => ProjectPermissions(
+    projectPermissions: ((json['project_permissions'] as List?)?.map((e) => ProjectPermission.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'project_permissions':
-            projectPermissions.map((item) => item.toJson()).toList(),
-      };
+    'project_permissions': projectPermissions.map((item) => item.toJson()).toList(),
+  };
 }

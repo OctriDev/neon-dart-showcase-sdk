@@ -6,6 +6,7 @@ part of 'project_project.dart';
 // project_project domain models
 /// Per-project role. `viewer` maps to `VIEWER`, `editor` maps to `EDITOR`, and `admin` maps to `ADMIN`.
 final class ProjectRole {
+
   final String value;
 
   const ProjectRole._(this.value);
@@ -18,13 +19,10 @@ final class ProjectRole {
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is ProjectRole && other.value == value;
+  @override bool operator ==(Object other) => other is ProjectRole && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }

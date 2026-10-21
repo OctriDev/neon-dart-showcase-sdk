@@ -22,14 +22,8 @@ Future<BranchAiGateway> getAiGateway(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getAiGateway',
-          fromJsonRaw: (value) =>
-              BranchAiGateway.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => BranchAiGateway.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        '404': (value) =>
-            BranchAiGatewayNotEnabled.fromJson(value as Map<String, dynamic>),
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'404': (value) => BranchAiGatewayNotEnabled.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

@@ -8,41 +8,27 @@ part of 'branch.dart';
 class BranchOperations {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Branch returned by the request.
   final Branch branch;
-
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
 
   const BranchOperations({required this.branch, required this.operations});
 
-  BranchOperations Function({Branch branch, List<Operation> operations})
-      get copyWith => _copyWith;
+  BranchOperations Function({Branch branch, List<Operation> operations}) get copyWith => _copyWith;
 
-  BranchOperations _copyWith(
-          {Object? branch = sdkOmittedValue,
-          Object? operations = sdkOmittedValue}) =>
-      BranchOperations(
-        branch:
-            identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
-        operations: identical(operations, sdkOmittedValue)
-            ? this.operations
-            : operations as List<Operation>,
-      );
+  BranchOperations _copyWith({Object? branch = sdkOmittedValue, Object? operations = sdkOmittedValue}) => BranchOperations(
+    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
+  );
 
-  factory BranchOperations.fromJson(Map<String, dynamic> json) =>
-      BranchOperations(
-        branch: (json['branch'] != null
-            ? Branch.fromJson(json['branch'] as Map<String, dynamic>)
-            : null)!,
-        operations: ((json['operations'] as List?)
-            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory BranchOperations.fromJson(Map<String, dynamic> json) => BranchOperations(
+    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
+    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'branch': branch.toJson(),
-        'operations': operations.map((item) => item.toJson()).toList(),
-      };
+    'branch': branch.toJson(),
+    'operations': operations.map((item) => item.toJson()).toList(),
+  };
 }

@@ -8,120 +8,62 @@ part of 'functions.dart';
 class StorageObjectCreatedTrigger {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Trigger type discriminator.
   final StorageObjectCreatedTriggerType type_;
-
   /// Opaque, server-minted project-wide trigger identifier.
   final String triggerId;
-
   /// The branch-local Function slug resolved when an invocation is consumed.
   final String functionSlug;
-
   /// Human-readable trigger name.
   final String name;
-
   /// Path passed to the target Function.
   final String functionPath;
-
   /// Matches successful uploads to one exact bucket and, when configured, an object-key prefix. The Function receives a JSON request body with `type` set to `storage_object_created` and a `data` object containing exactly `bucket_name` and `object_key`.
   final FunctionTriggerStorageObjectCreated storageObjectCreated;
-
   /// Required `boolean` value serialized in the `enabled` wire field.
   final bool enabled;
-
   /// Monotonic configuration version.
   final int version;
-
   /// True when the effective configuration was authored on an ancestor branch.
   final bool inherited;
 
-  const StorageObjectCreatedTrigger(
-      {required this.type_,
-      required this.triggerId,
-      required this.functionSlug,
-      required this.name,
-      required this.functionPath,
-      required this.storageObjectCreated,
-      required this.enabled,
-      required this.version,
-      required this.inherited});
+  const StorageObjectCreatedTrigger({required this.type_, required this.triggerId, required this.functionSlug, required this.name, required this.functionPath, required this.storageObjectCreated, required this.enabled, required this.version, required this.inherited});
 
-  StorageObjectCreatedTrigger Function(
-      {StorageObjectCreatedTriggerType type_,
-      String triggerId,
-      String functionSlug,
-      String name,
-      String functionPath,
-      FunctionTriggerStorageObjectCreated storageObjectCreated,
-      bool enabled,
-      int version,
-      bool inherited}) get copyWith => _copyWith;
+  StorageObjectCreatedTrigger Function({StorageObjectCreatedTriggerType type_, String triggerId, String functionSlug, String name, String functionPath, FunctionTriggerStorageObjectCreated storageObjectCreated, bool enabled, int version, bool inherited}) get copyWith => _copyWith;
 
-  StorageObjectCreatedTrigger _copyWith(
-          {Object? type_ = sdkOmittedValue,
-          Object? triggerId = sdkOmittedValue,
-          Object? functionSlug = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? functionPath = sdkOmittedValue,
-          Object? storageObjectCreated = sdkOmittedValue,
-          Object? enabled = sdkOmittedValue,
-          Object? version = sdkOmittedValue,
-          Object? inherited = sdkOmittedValue}) =>
-      StorageObjectCreatedTrigger(
-        type_: identical(type_, sdkOmittedValue)
-            ? this.type_
-            : type_ as StorageObjectCreatedTriggerType,
-        triggerId: identical(triggerId, sdkOmittedValue)
-            ? this.triggerId
-            : triggerId as String,
-        functionSlug: identical(functionSlug, sdkOmittedValue)
-            ? this.functionSlug
-            : functionSlug as String,
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        functionPath: identical(functionPath, sdkOmittedValue)
-            ? this.functionPath
-            : functionPath as String,
-        storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue)
-            ? this.storageObjectCreated
-            : storageObjectCreated as FunctionTriggerStorageObjectCreated,
-        enabled: identical(enabled, sdkOmittedValue)
-            ? this.enabled
-            : enabled as bool,
-        version:
-            identical(version, sdkOmittedValue) ? this.version : version as int,
-        inherited: identical(inherited, sdkOmittedValue)
-            ? this.inherited
-            : inherited as bool,
-      );
+  StorageObjectCreatedTrigger _copyWith({Object? type_ = sdkOmittedValue, Object? triggerId = sdkOmittedValue, Object? functionSlug = sdkOmittedValue, Object? name = sdkOmittedValue, Object? functionPath = sdkOmittedValue, Object? storageObjectCreated = sdkOmittedValue, Object? enabled = sdkOmittedValue, Object? version = sdkOmittedValue, Object? inherited = sdkOmittedValue}) => StorageObjectCreatedTrigger(
+    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as StorageObjectCreatedTriggerType,
+    triggerId: identical(triggerId, sdkOmittedValue) ? this.triggerId : triggerId as String,
+    functionSlug: identical(functionSlug, sdkOmittedValue) ? this.functionSlug : functionSlug as String,
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    functionPath: identical(functionPath, sdkOmittedValue) ? this.functionPath : functionPath as String,
+    storageObjectCreated: identical(storageObjectCreated, sdkOmittedValue) ? this.storageObjectCreated : storageObjectCreated as FunctionTriggerStorageObjectCreated,
+    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as bool,
+    version: identical(version, sdkOmittedValue) ? this.version : version as int,
+    inherited: identical(inherited, sdkOmittedValue) ? this.inherited : inherited as bool,
+  );
 
-  factory StorageObjectCreatedTrigger.fromJson(Map<String, dynamic> json) =>
-      StorageObjectCreatedTrigger(
-        type_: (json['type'] != null
-            ? StorageObjectCreatedTriggerType.fromJson(json['type'] as String)
-            : null)!,
-        triggerId: (json['trigger_id'] as String?)!,
-        functionSlug: (json['function_slug'] as String?)!,
-        name: (json['name'] as String?)!,
-        functionPath: (json['function_path'] as String?)!,
-        storageObjectCreated: (json['storage_object_created'] != null
-            ? FunctionTriggerStorageObjectCreated.fromJson(
-                json['storage_object_created'] as Map<String, dynamic>)
-            : null)!,
-        enabled: (json['enabled'] as bool?)!,
-        version: ((json['version'] as num?)?.toInt())!,
-        inherited: (json['inherited'] as bool?)!,
-      );
+  factory StorageObjectCreatedTrigger.fromJson(Map<String, dynamic> json) => StorageObjectCreatedTrigger(
+    type_: (json['type'] != null ? StorageObjectCreatedTriggerType.fromJson(json['type'] as String) : null)!,
+    triggerId: (json['trigger_id'] as String?)!,
+    functionSlug: (json['function_slug'] as String?)!,
+    name: (json['name'] as String?)!,
+    functionPath: (json['function_path'] as String?)!,
+    storageObjectCreated: (json['storage_object_created'] != null ? FunctionTriggerStorageObjectCreated.fromJson(json['storage_object_created'] as Map<String, dynamic>) : null)!,
+    enabled: (json['enabled'] as bool?)!,
+    version: ((json['version'] as num?)?.toInt())!,
+    inherited: (json['inherited'] as bool?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'type': type_.toJson(),
-        'trigger_id': triggerId,
-        'function_slug': functionSlug,
-        'name': name,
-        'function_path': functionPath,
-        'storage_object_created': storageObjectCreated.toJson(),
-        'enabled': enabled,
-        'version': version,
-        'inherited': inherited,
-      };
+    'type': type_.toJson(),
+    'trigger_id': triggerId,
+    'function_slug': functionSlug,
+    'name': name,
+    'function_path': functionPath,
+    'storage_object_created': storageObjectCreated.toJson(),
+    'enabled': enabled,
+    'version': version,
+    'inherited': inherited,
+  };
 }

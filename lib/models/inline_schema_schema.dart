@@ -5,6 +5,7 @@ part of 'inline.dart';
 
 // Inline operation models
 final class SchemaSchema {
+
   final String value;
 
   const SchemaSchema._(this.value);
@@ -16,299 +17,255 @@ final class SchemaSchema {
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is SchemaSchema && other.value == value;
+  @override bool operator ==(Object other) => other is SchemaSchema && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Whether this issue affects external API exposure or is internal only
 final class AdvisorIssueFacing {
+
   final String value;
 
   const AdvisorIssueFacing._(this.value);
 
-  factory AdvisorIssueFacing.fromJson(String value) =>
-      AdvisorIssueFacing._(value);
+  factory AdvisorIssueFacing.fromJson(String value) => AdvisorIssueFacing._(value);
 
   static const external_ = AdvisorIssueFacing._('EXTERNAL');
   static const internal = AdvisorIssueFacing._('INTERNAL');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is AdvisorIssueFacing && other.value == value;
+  @override bool operator ==(Object other) => other is AdvisorIssueFacing && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Authentication method used for the request: - `keycloak`: Keycloak identity provider authentication. - `session_cookie`: Browser session cookie authentication. - `api_key_user`: API key scoped to a user account. - `api_key_org`: API key scoped to an organization. - `oauth`: OAuth-based authentication.
 final class AuthDetailsResponseAuthMethod {
+
   final String value;
 
   const AuthDetailsResponseAuthMethod._(this.value);
 
-  factory AuthDetailsResponseAuthMethod.fromJson(String value) =>
-      AuthDetailsResponseAuthMethod._(value);
+  factory AuthDetailsResponseAuthMethod.fromJson(String value) => AuthDetailsResponseAuthMethod._(value);
 
   static const keycloak = AuthDetailsResponseAuthMethod._('keycloak');
-  static const sessionCookie =
-      AuthDetailsResponseAuthMethod._('session_cookie');
+  static const sessionCookie = AuthDetailsResponseAuthMethod._('session_cookie');
   static const apiKeyUser = AuthDetailsResponseAuthMethod._('api_key_user');
   static const apiKeyOrg = AuthDetailsResponseAuthMethod._('api_key_org');
   static const oauth = AuthDetailsResponseAuthMethod._('oauth');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is AuthDetailsResponseAuthMethod && other.value == value;
+  @override bool operator ==(Object other) => other is AuthDetailsResponseAuthMethod && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Machine-readable reason why the AI gateway is unavailable: - `ai_gateway_unavailable`: the project's region/cell has no AI gateway configured. - `branch_not_found`: the project or branch does not exist, or the caller does not have access to it.
 final class BranchAiGatewayNotEnabledReason {
+
   final String value;
 
   const BranchAiGatewayNotEnabledReason._(this.value);
 
-  factory BranchAiGatewayNotEnabledReason.fromJson(String value) =>
-      BranchAiGatewayNotEnabledReason._(value);
+  factory BranchAiGatewayNotEnabledReason.fromJson(String value) => BranchAiGatewayNotEnabledReason._(value);
 
-  static const aiGatewayUnavailable =
-      BranchAiGatewayNotEnabledReason._('ai_gateway_unavailable');
-  static const branchNotFound =
-      BranchAiGatewayNotEnabledReason._('branch_not_found');
+  static const aiGatewayUnavailable = BranchAiGatewayNotEnabledReason._('ai_gateway_unavailable');
+  static const branchNotFound = BranchAiGatewayNotEnabledReason._('branch_not_found');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is BranchAiGatewayNotEnabledReason && other.value == value;
+  @override bool operator ==(Object other) => other is BranchAiGatewayNotEnabledReason && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// How the branch was deleted: 'user' for manual deletion, 'ttl' for TTL expiration
 final class BranchRecoveryInfoDeletionMethod {
+
   final String value;
 
   const BranchRecoveryInfoDeletionMethod._(this.value);
 
-  factory BranchRecoveryInfoDeletionMethod.fromJson(String value) =>
-      BranchRecoveryInfoDeletionMethod._(value);
+  factory BranchRecoveryInfoDeletionMethod.fromJson(String value) => BranchRecoveryInfoDeletionMethod._(value);
 
   static const user = BranchRecoveryInfoDeletionMethod._('user');
   static const ttl = BranchRecoveryInfoDeletionMethod._('ttl');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is BranchRecoveryInfoDeletionMethod && other.value == value;
+  @override bool operator ==(Object other) => other is BranchRecoveryInfoDeletionMethod && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Machine-readable reason why object storage is unavailable: - `org_not_entitled`: the org's `PlatformBranchableStorage` feature flag is off. - `region_unavailable`: the project's region has no object storage admin service wired. - `branch_directory_missing`: the branch is not registered in the object storage service. - `branch_not_found`: the project or branch does not exist, or the caller does not have access to it.
 final class BranchStorageNotEnabledReason {
+
   final String value;
 
   const BranchStorageNotEnabledReason._(this.value);
 
-  factory BranchStorageNotEnabledReason.fromJson(String value) =>
-      BranchStorageNotEnabledReason._(value);
+  factory BranchStorageNotEnabledReason.fromJson(String value) => BranchStorageNotEnabledReason._(value);
 
-  static const orgNotEntitled =
-      BranchStorageNotEnabledReason._('org_not_entitled');
-  static const regionUnavailable =
-      BranchStorageNotEnabledReason._('region_unavailable');
-  static const branchDirectoryMissing =
-      BranchStorageNotEnabledReason._('branch_directory_missing');
-  static const branchNotFound =
-      BranchStorageNotEnabledReason._('branch_not_found');
+  static const orgNotEntitled = BranchStorageNotEnabledReason._('org_not_entitled');
+  static const regionUnavailable = BranchStorageNotEnabledReason._('region_unavailable');
+  static const branchDirectoryMissing = BranchStorageNotEnabledReason._('branch_directory_missing');
+  static const branchNotFound = BranchStorageNotEnabledReason._('branch_not_found');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is BranchStorageNotEnabledReason && other.value == value;
+  @override bool operator ==(Object other) => other is BranchStorageNotEnabledReason && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Access level for the bucket. Defaults to `private`. Set to `public_read` to allow anonymous `GetObject`/`HeadObject` on objects in this bucket.
 final class BucketCreateRequestAccessLevel {
+
   final String value;
 
   const BucketCreateRequestAccessLevel._(this.value);
 
-  factory BucketCreateRequestAccessLevel.fromJson(String value) =>
-      BucketCreateRequestAccessLevel._(value);
+  factory BucketCreateRequestAccessLevel.fromJson(String value) => BucketCreateRequestAccessLevel._(value);
 
   static const private = BucketCreateRequestAccessLevel._('private');
   static const publicRead = BucketCreateRequestAccessLevel._('public_read');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is BucketCreateRequestAccessLevel && other.value == value;
+  @override bool operator ==(Object other) => other is BucketCreateRequestAccessLevel && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Principal type for the credential. Only `user` is customer-managed and accepted here. `function` and `system` credentials are platform-internal (e.g. function-serve auto-mint, presign signer) and are never issued through the customer-facing API.
 final class CreateCredentialRequestPrincipalType {
+
   final String value;
 
   const CreateCredentialRequestPrincipalType._(this.value);
 
-  factory CreateCredentialRequestPrincipalType.fromJson(String value) =>
-      CreateCredentialRequestPrincipalType._(value);
+  factory CreateCredentialRequestPrincipalType.fromJson(String value) => CreateCredentialRequestPrincipalType._(value);
 
   static const user = CreateCredentialRequestPrincipalType._('user');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is CreateCredentialRequestPrincipalType && other.value == value;
+  @override bool operator ==(Object other) => other is CreateCredentialRequestPrincipalType && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Authentication provider for the Neon Data API. `neon_auth`: use Neon's built-in managed authentication (no JWKS configuration required). `external`: use an external JWT provider, which requires `jwks_url`. When omitted, no auth provider is configured (existing setup is kept).
 final class DataAPICreateRequestAuthProvider {
+
   final String value;
 
   const DataAPICreateRequestAuthProvider._(this.value);
 
-  factory DataAPICreateRequestAuthProvider.fromJson(String value) =>
-      DataAPICreateRequestAuthProvider._(value);
+  factory DataAPICreateRequestAuthProvider.fromJson(String value) => DataAPICreateRequestAuthProvider._(value);
 
   static const neonAuth = DataAPICreateRequestAuthProvider._('neon_auth');
   static const external_ = DataAPICreateRequestAuthProvider._('external');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is DataAPICreateRequestAuthProvider && other.value == value;
+  @override bool operator ==(Object other) => other is DataAPICreateRequestAuthProvider && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Optional enumerated value serialized in the `runtime` wire field.
 final class FunctionDeployRequestRuntime {
+
   final String value;
 
   const FunctionDeployRequestRuntime._(this.value);
 
-  factory FunctionDeployRequestRuntime.fromJson(String value) =>
-      FunctionDeployRequestRuntime._(value);
+  factory FunctionDeployRequestRuntime.fromJson(String value) => FunctionDeployRequestRuntime._(value);
 
   static const nodejs24 = FunctionDeployRequestRuntime._('nodejs24');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is FunctionDeployRequestRuntime && other.value == value;
+  @override bool operator ==(Object other) => other is FunctionDeployRequestRuntime && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Role of the organization's creator. `owner`: full control, including deleting the org and transferring ownership. `admin`: manage members and settings only.
 final class NeonAuthOrganizationConfigCreatorRole {
+
   final String value;
 
   const NeonAuthOrganizationConfigCreatorRole._(this.value);
 
-  factory NeonAuthOrganizationConfigCreatorRole.fromJson(String value) =>
-      NeonAuthOrganizationConfigCreatorRole._(value);
+  factory NeonAuthOrganizationConfigCreatorRole.fromJson(String value) => NeonAuthOrganizationConfigCreatorRole._(value);
 
   static const admin = NeonAuthOrganizationConfigCreatorRole._('admin');
   static const owner = NeonAuthOrganizationConfigCreatorRole._('owner');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is NeonAuthOrganizationConfigCreatorRole && other.value == value;
+  @override bool operator ==(Object other) => other is NeonAuthOrganizationConfigCreatorRole && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }
 
 /// Role of the organization's creator. `owner`: full control, including deleting the org and transferring ownership. `admin`: manage members and settings only.
 final class NeonAuthOrganizationConfigUpdateCreatorRole {
+
   final String value;
 
   const NeonAuthOrganizationConfigUpdateCreatorRole._(this.value);
 
-  factory NeonAuthOrganizationConfigUpdateCreatorRole.fromJson(String value) =>
-      NeonAuthOrganizationConfigUpdateCreatorRole._(value);
+  factory NeonAuthOrganizationConfigUpdateCreatorRole.fromJson(String value) => NeonAuthOrganizationConfigUpdateCreatorRole._(value);
 
   static const admin = NeonAuthOrganizationConfigUpdateCreatorRole._('admin');
   static const owner = NeonAuthOrganizationConfigUpdateCreatorRole._('owner');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is NeonAuthOrganizationConfigUpdateCreatorRole &&
-      other.value == value;
+  @override bool operator ==(Object other) => other is NeonAuthOrganizationConfigUpdateCreatorRole && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }

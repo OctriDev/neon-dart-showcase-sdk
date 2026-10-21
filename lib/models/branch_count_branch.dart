@@ -8,7 +8,6 @@ part of 'branch.dart';
 class BranchesCountResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Total number of branches in the project.
   final int count;
 
@@ -16,17 +15,15 @@ class BranchesCountResponse {
 
   BranchesCountResponse Function({int count}) get copyWith => _copyWith;
 
-  BranchesCountResponse _copyWith({Object? count = sdkOmittedValue}) =>
-      BranchesCountResponse(
-        count: identical(count, sdkOmittedValue) ? this.count : count as int,
-      );
+  BranchesCountResponse _copyWith({Object? count = sdkOmittedValue}) => BranchesCountResponse(
+    count: identical(count, sdkOmittedValue) ? this.count : count as int,
+  );
 
-  factory BranchesCountResponse.fromJson(Map<String, dynamic> json) =>
-      BranchesCountResponse(
-        count: ((json['count'] as num?)?.toInt())!,
-      );
+  factory BranchesCountResponse.fromJson(Map<String, dynamic> json) => BranchesCountResponse(
+    count: ((json['count'] as num?)?.toInt())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'count': count,
-      };
+    'count': count,
+  };
 }

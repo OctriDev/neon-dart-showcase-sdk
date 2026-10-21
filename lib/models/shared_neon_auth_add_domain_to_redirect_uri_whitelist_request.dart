@@ -8,43 +8,27 @@ part of 'shared_neon.dart';
 class NeonAuthAddDomainToRedirectURIWhitelistRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// URI to add to the redirect URI allowlist for the auth provider.
   final String domain;
-
   /// Authentication provider integrated with this Neon Auth configuration. `better_auth` integrates with Better Auth (the current, recommended provider). `stack` integrates with Stack Auth (deprecated). `mock` is a simulated provider for local development and testing only.
   final NeonAuthSupportedAuthProvider authProvider;
 
-  const NeonAuthAddDomainToRedirectURIWhitelistRequest(
-      {required this.domain, required this.authProvider});
+  const NeonAuthAddDomainToRedirectURIWhitelistRequest({required this.domain, required this.authProvider});
 
-  NeonAuthAddDomainToRedirectURIWhitelistRequest Function(
-      {String domain,
-      NeonAuthSupportedAuthProvider authProvider}) get copyWith => _copyWith;
+  NeonAuthAddDomainToRedirectURIWhitelistRequest Function({String domain, NeonAuthSupportedAuthProvider authProvider}) get copyWith => _copyWith;
 
-  NeonAuthAddDomainToRedirectURIWhitelistRequest _copyWith(
-          {Object? domain = sdkOmittedValue,
-          Object? authProvider = sdkOmittedValue}) =>
-      NeonAuthAddDomainToRedirectURIWhitelistRequest(
-        domain:
-            identical(domain, sdkOmittedValue) ? this.domain : domain as String,
-        authProvider: identical(authProvider, sdkOmittedValue)
-            ? this.authProvider
-            : authProvider as NeonAuthSupportedAuthProvider,
-      );
+  NeonAuthAddDomainToRedirectURIWhitelistRequest _copyWith({Object? domain = sdkOmittedValue, Object? authProvider = sdkOmittedValue}) => NeonAuthAddDomainToRedirectURIWhitelistRequest(
+    domain: identical(domain, sdkOmittedValue) ? this.domain : domain as String,
+    authProvider: identical(authProvider, sdkOmittedValue) ? this.authProvider : authProvider as NeonAuthSupportedAuthProvider,
+  );
 
-  factory NeonAuthAddDomainToRedirectURIWhitelistRequest.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthAddDomainToRedirectURIWhitelistRequest(
-        domain: (json['domain'] as String?)!,
-        authProvider: (json['auth_provider'] != null
-            ? NeonAuthSupportedAuthProvider.fromJson(
-                json['auth_provider'] as String)
-            : null)!,
-      );
+  factory NeonAuthAddDomainToRedirectURIWhitelistRequest.fromJson(Map<String, dynamic> json) => NeonAuthAddDomainToRedirectURIWhitelistRequest(
+    domain: (json['domain'] as String?)!,
+    authProvider: (json['auth_provider'] != null ? NeonAuthSupportedAuthProvider.fromJson(json['auth_provider'] as String) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'domain': domain,
-        'auth_provider': authProvider.toJson(),
-      };
+    'domain': domain,
+    'auth_provider': authProvider.toJson(),
+  };
 }

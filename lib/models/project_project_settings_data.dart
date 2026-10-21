@@ -8,198 +8,89 @@ part of 'project_project.dart';
 class ProjectSettingsData {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Per-project consumption quotas. If a quota is exceeded, all active computes are automatically suspended and cannot be started via API calls or incoming connections. The exception is `logical_size_bytes`, which is enforced per branch. If a branch exceeds its `logical_size_bytes` quota, computes can still be started, but write operations will fail—allowing data to be deleted to free up space. Computes on other branches are not affected. Setting `logical_size_bytes` overrides any lower value set by the `neon.max_cluster_size` Postgres setting. Quotas are enforced using per-project consumption metrics with the same names. These metrics reset at the start of each billing period. `logical_size_bytes` is also an exception—it reflects the total data stored in a branch and does not reset. A zero or empty quota value means “unlimited.”
   final SdkOptional<ProjectQuota> quota;
-
   /// A list of IP addresses that are allowed to connect to the compute endpoint. If the list is empty or not set, all IP addresses are allowed. If protected_branches_only is true, the list will be applied only to protected branches.
   final SdkOptional<AllowedIps> allowedIps;
-
   /// Sets wal_level=logical for all compute endpoints in this project. All active endpoints will be suspended. Once enabled, logical replication cannot be disabled.
   final SdkOptional<bool> enableLogicalReplication;
-
   /// A maintenance window is a time period during which Neon may perform maintenance on the project's infrastructure. During this time, the project's compute endpoints may be unavailable and existing connections can be interrupted.
   final SdkOptional<MaintenanceWindow> maintenanceWindow;
-
   /// When set, connections from the public internet are disallowed. This supersedes the AllowedIPs list. This parameter is under active development and its semantics may change in the future.
   final SdkOptional<bool> blockPublicConnections;
-
   /// When set, connections using VPC endpoints are disallowed. This parameter is under active development and its semantics may change in the future.
   final SdkOptional<bool> blockVpcConnections;
-
   /// Audit logging level, set only on HIPAA-enabled organizations (absent otherwise). Values: `base`, `extended`, `full`; HIPAA defaults to `extended`. Cannot be lowered back to `base` once `extended` or `full`.
   final SdkOptional<ProjectAuditLogLevel> auditLogLevel;
-
   /// Enables HIPAA compliance mode for the project, including audit logging.
   final SdkOptional<bool> hipaa;
-
   /// The shared libraries to preload into the project's compute instances.
   final SdkOptional<PreloadLibraries> preloadLibraries;
 
-  const ProjectSettingsData(
-      {this.quota = const SdkOmitted(),
-      this.allowedIps = const SdkOmitted(),
-      this.enableLogicalReplication = const SdkOmitted(),
-      this.maintenanceWindow = const SdkOmitted(),
-      this.blockPublicConnections = const SdkOmitted(),
-      this.blockVpcConnections = const SdkOmitted(),
-      this.auditLogLevel = const SdkOmitted(),
-      this.hipaa = const SdkOmitted(),
-      this.preloadLibraries = const SdkOmitted()});
+  const ProjectSettingsData({this.quota = const SdkOmitted(), this.allowedIps = const SdkOmitted(), this.enableLogicalReplication = const SdkOmitted(), this.maintenanceWindow = const SdkOmitted(), this.blockPublicConnections = const SdkOmitted(), this.blockVpcConnections = const SdkOmitted(), this.auditLogLevel = const SdkOmitted(), this.hipaa = const SdkOmitted(), this.preloadLibraries = const SdkOmitted()});
 
-  ProjectSettingsData Function(
-          {SdkOptional<ProjectQuota> quota,
-          SdkOptional<AllowedIps> allowedIps,
-          SdkOptional<bool> enableLogicalReplication,
-          SdkOptional<MaintenanceWindow> maintenanceWindow,
-          SdkOptional<bool> blockPublicConnections,
-          SdkOptional<bool> blockVpcConnections,
-          SdkOptional<ProjectAuditLogLevel> auditLogLevel,
-          SdkOptional<bool> hipaa,
-          SdkOptional<PreloadLibraries> preloadLibraries})
-      get copyWith => _copyWith;
+  ProjectSettingsData Function({SdkOptional<ProjectQuota> quota, SdkOptional<AllowedIps> allowedIps, SdkOptional<bool> enableLogicalReplication, SdkOptional<MaintenanceWindow> maintenanceWindow, SdkOptional<bool> blockPublicConnections, SdkOptional<bool> blockVpcConnections, SdkOptional<ProjectAuditLogLevel> auditLogLevel, SdkOptional<bool> hipaa, SdkOptional<PreloadLibraries> preloadLibraries}) get copyWith => _copyWith;
 
-  ProjectSettingsData _copyWith(
-          {Object? quota = sdkOmittedValue,
-          Object? allowedIps = sdkOmittedValue,
-          Object? enableLogicalReplication = sdkOmittedValue,
-          Object? maintenanceWindow = sdkOmittedValue,
-          Object? blockPublicConnections = sdkOmittedValue,
-          Object? blockVpcConnections = sdkOmittedValue,
-          Object? auditLogLevel = sdkOmittedValue,
-          Object? hipaa = sdkOmittedValue,
-          Object? preloadLibraries = sdkOmittedValue}) =>
-      ProjectSettingsData(
-        quota: identical(quota, sdkOmittedValue)
-            ? this.quota
-            : quota as SdkOptional<ProjectQuota>,
-        allowedIps: identical(allowedIps, sdkOmittedValue)
-            ? this.allowedIps
-            : allowedIps as SdkOptional<AllowedIps>,
-        enableLogicalReplication:
-            identical(enableLogicalReplication, sdkOmittedValue)
-                ? this.enableLogicalReplication
-                : enableLogicalReplication as SdkOptional<bool>,
-        maintenanceWindow: identical(maintenanceWindow, sdkOmittedValue)
-            ? this.maintenanceWindow
-            : maintenanceWindow as SdkOptional<MaintenanceWindow>,
-        blockPublicConnections:
-            identical(blockPublicConnections, sdkOmittedValue)
-                ? this.blockPublicConnections
-                : blockPublicConnections as SdkOptional<bool>,
-        blockVpcConnections: identical(blockVpcConnections, sdkOmittedValue)
-            ? this.blockVpcConnections
-            : blockVpcConnections as SdkOptional<bool>,
-        auditLogLevel: identical(auditLogLevel, sdkOmittedValue)
-            ? this.auditLogLevel
-            : auditLogLevel as SdkOptional<ProjectAuditLogLevel>,
-        hipaa: identical(hipaa, sdkOmittedValue)
-            ? this.hipaa
-            : hipaa as SdkOptional<bool>,
-        preloadLibraries: identical(preloadLibraries, sdkOmittedValue)
-            ? this.preloadLibraries
-            : preloadLibraries as SdkOptional<PreloadLibraries>,
-      );
+  ProjectSettingsData _copyWith({Object? quota = sdkOmittedValue, Object? allowedIps = sdkOmittedValue, Object? enableLogicalReplication = sdkOmittedValue, Object? maintenanceWindow = sdkOmittedValue, Object? blockPublicConnections = sdkOmittedValue, Object? blockVpcConnections = sdkOmittedValue, Object? auditLogLevel = sdkOmittedValue, Object? hipaa = sdkOmittedValue, Object? preloadLibraries = sdkOmittedValue}) => ProjectSettingsData(
+    quota: identical(quota, sdkOmittedValue) ? this.quota : quota as SdkOptional<ProjectQuota>,
+    allowedIps: identical(allowedIps, sdkOmittedValue) ? this.allowedIps : allowedIps as SdkOptional<AllowedIps>,
+    enableLogicalReplication: identical(enableLogicalReplication, sdkOmittedValue) ? this.enableLogicalReplication : enableLogicalReplication as SdkOptional<bool>,
+    maintenanceWindow: identical(maintenanceWindow, sdkOmittedValue) ? this.maintenanceWindow : maintenanceWindow as SdkOptional<MaintenanceWindow>,
+    blockPublicConnections: identical(blockPublicConnections, sdkOmittedValue) ? this.blockPublicConnections : blockPublicConnections as SdkOptional<bool>,
+    blockVpcConnections: identical(blockVpcConnections, sdkOmittedValue) ? this.blockVpcConnections : blockVpcConnections as SdkOptional<bool>,
+    auditLogLevel: identical(auditLogLevel, sdkOmittedValue) ? this.auditLogLevel : auditLogLevel as SdkOptional<ProjectAuditLogLevel>,
+    hipaa: identical(hipaa, sdkOmittedValue) ? this.hipaa : hipaa as SdkOptional<bool>,
+    preloadLibraries: identical(preloadLibraries, sdkOmittedValue) ? this.preloadLibraries : preloadLibraries as SdkOptional<PreloadLibraries>,
+  );
 
-  factory ProjectSettingsData.fromJson(Map<String, dynamic> json) =>
-      ProjectSettingsData(
-        quota: json['quota'] != null
-            ? SdkPresent((json['quota'] != null
-                ? ProjectQuota.fromJson(json['quota'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        allowedIps: json['allowed_ips'] != null
-            ? SdkPresent((json['allowed_ips'] != null
-                ? AllowedIps.fromJson(
-                    json['allowed_ips'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        enableLogicalReplication: json['enable_logical_replication'] != null
-            ? SdkPresent((json['enable_logical_replication'] as bool?)!)
-            : const SdkOmitted(),
-        maintenanceWindow: json['maintenance_window'] != null
-            ? SdkPresent((json['maintenance_window'] != null
-                ? MaintenanceWindow.fromJson(
-                    json['maintenance_window'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        blockPublicConnections: json['block_public_connections'] != null
-            ? SdkPresent((json['block_public_connections'] as bool?)!)
-            : const SdkOmitted(),
-        blockVpcConnections: json['block_vpc_connections'] != null
-            ? SdkPresent((json['block_vpc_connections'] as bool?)!)
-            : const SdkOmitted(),
-        auditLogLevel: json['audit_log_level'] != null
-            ? SdkPresent((json['audit_log_level'] != null
-                ? ProjectAuditLogLevel.fromJson(
-                    json['audit_log_level'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        hipaa: json['hipaa'] != null
-            ? SdkPresent((json['hipaa'] as bool?)!)
-            : const SdkOmitted(),
-        preloadLibraries: json['preload_libraries'] != null
-            ? SdkPresent((json['preload_libraries'] != null
-                ? PreloadLibraries.fromJson(
-                    json['preload_libraries'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory ProjectSettingsData.fromJson(Map<String, dynamic> json) => ProjectSettingsData(
+    quota: json['quota'] != null ? SdkPresent((json['quota'] != null ? ProjectQuota.fromJson(json['quota'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    allowedIps: json['allowed_ips'] != null ? SdkPresent((json['allowed_ips'] != null ? AllowedIps.fromJson(json['allowed_ips'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    enableLogicalReplication: json['enable_logical_replication'] != null ? SdkPresent((json['enable_logical_replication'] as bool?)!) : const SdkOmitted(),
+    maintenanceWindow: json['maintenance_window'] != null ? SdkPresent((json['maintenance_window'] != null ? MaintenanceWindow.fromJson(json['maintenance_window'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    blockPublicConnections: json['block_public_connections'] != null ? SdkPresent((json['block_public_connections'] as bool?)!) : const SdkOmitted(),
+    blockVpcConnections: json['block_vpc_connections'] != null ? SdkPresent((json['block_vpc_connections'] as bool?)!) : const SdkOmitted(),
+    auditLogLevel: json['audit_log_level'] != null ? SdkPresent((json['audit_log_level'] != null ? ProjectAuditLogLevel.fromJson(json['audit_log_level'] as String) : null)!) : const SdkOmitted(),
+    hipaa: json['hipaa'] != null ? SdkPresent((json['hipaa'] as bool?)!) : const SdkOmitted(),
+    preloadLibraries: json['preload_libraries'] != null ? SdkPresent((json['preload_libraries'] != null ? PreloadLibraries.fromJson(json['preload_libraries'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (quota) {
-          SdkPresent<ProjectQuota>(value: final value) => {
-              'quota': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (allowedIps) {
-          SdkPresent<AllowedIps>(value: final value) => {
-              'allowed_ips': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (enableLogicalReplication) {
-          SdkPresent<bool>(value: final value) => {
-              'enable_logical_replication': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (maintenanceWindow) {
-          SdkPresent<MaintenanceWindow>(value: final value) => {
-              'maintenance_window': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (blockPublicConnections) {
-          SdkPresent<bool>(value: final value) => {
-              'block_public_connections': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (blockVpcConnections) {
-          SdkPresent<bool>(value: final value) => {
-              'block_vpc_connections': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (auditLogLevel) {
-          SdkPresent<ProjectAuditLogLevel>(value: final value) => {
-              'audit_log_level': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (hipaa) {
-          SdkPresent<bool>(value: final value) => {
-              'hipaa': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (preloadLibraries) {
-          SdkPresent<PreloadLibraries>(value: final value) => {
-              'preload_libraries': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (quota) {
+      SdkPresent<ProjectQuota>(value: final value) => {'quota': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (allowedIps) {
+      SdkPresent<AllowedIps>(value: final value) => {'allowed_ips': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (enableLogicalReplication) {
+      SdkPresent<bool>(value: final value) => {'enable_logical_replication': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (maintenanceWindow) {
+      SdkPresent<MaintenanceWindow>(value: final value) => {'maintenance_window': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (blockPublicConnections) {
+      SdkPresent<bool>(value: final value) => {'block_public_connections': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (blockVpcConnections) {
+      SdkPresent<bool>(value: final value) => {'block_vpc_connections': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (auditLogLevel) {
+      SdkPresent<ProjectAuditLogLevel>(value: final value) => {'audit_log_level': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (hipaa) {
+      SdkPresent<bool>(value: final value) => {'hipaa': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (preloadLibraries) {
+      SdkPresent<PreloadLibraries>(value: final value) => {'preload_libraries': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

@@ -6,25 +6,22 @@ part of 'shared_neon.dart';
 // shared_neon domain models
 /// Typed representation of the `NeonAuthProviderProjectOwnedBy` API schema.
 final class NeonAuthProviderProjectOwnedBy {
+
   final String value;
 
   const NeonAuthProviderProjectOwnedBy._(this.value);
 
-  factory NeonAuthProviderProjectOwnedBy.fromJson(String value) =>
-      NeonAuthProviderProjectOwnedBy._(value);
+  factory NeonAuthProviderProjectOwnedBy.fromJson(String value) => NeonAuthProviderProjectOwnedBy._(value);
 
   static const user = NeonAuthProviderProjectOwnedBy._('user');
   static const neon = NeonAuthProviderProjectOwnedBy._('neon');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is NeonAuthProviderProjectOwnedBy && other.value == value;
+  @override bool operator ==(Object other) => other is NeonAuthProviderProjectOwnedBy && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }

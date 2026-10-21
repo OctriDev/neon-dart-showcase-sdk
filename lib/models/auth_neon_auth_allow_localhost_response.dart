@@ -8,29 +8,22 @@ part of 'auth.dart';
 class NeonAuthAllowLocalhostResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Whether to allow localhost connections
   final bool allowLocalhost;
 
   const NeonAuthAllowLocalhostResponse({required this.allowLocalhost});
 
-  NeonAuthAllowLocalhostResponse Function({bool allowLocalhost}) get copyWith =>
-      _copyWith;
+  NeonAuthAllowLocalhostResponse Function({bool allowLocalhost}) get copyWith => _copyWith;
 
-  NeonAuthAllowLocalhostResponse _copyWith(
-          {Object? allowLocalhost = sdkOmittedValue}) =>
-      NeonAuthAllowLocalhostResponse(
-        allowLocalhost: identical(allowLocalhost, sdkOmittedValue)
-            ? this.allowLocalhost
-            : allowLocalhost as bool,
-      );
+  NeonAuthAllowLocalhostResponse _copyWith({Object? allowLocalhost = sdkOmittedValue}) => NeonAuthAllowLocalhostResponse(
+    allowLocalhost: identical(allowLocalhost, sdkOmittedValue) ? this.allowLocalhost : allowLocalhost as bool,
+  );
 
-  factory NeonAuthAllowLocalhostResponse.fromJson(Map<String, dynamic> json) =>
-      NeonAuthAllowLocalhostResponse(
-        allowLocalhost: (json['allow_localhost'] as bool?)!,
-      );
+  factory NeonAuthAllowLocalhostResponse.fromJson(Map<String, dynamic> json) => NeonAuthAllowLocalhostResponse(
+    allowLocalhost: (json['allow_localhost'] as bool?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'allow_localhost': allowLocalhost,
-      };
+    'allow_localhost': allowLocalhost,
+  };
 }

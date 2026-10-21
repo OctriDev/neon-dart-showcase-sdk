@@ -8,7 +8,6 @@ part of 'branch.dart';
 class RoleResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Role details for the requested database role. The `password` field is included in the response when a role is created or its password is reset, and is not returned in subsequent read requests. Store it securely at that time.
   final Role role;
 
@@ -17,16 +16,14 @@ class RoleResponse {
   RoleResponse Function({Role role}) get copyWith => _copyWith;
 
   RoleResponse _copyWith({Object? role = sdkOmittedValue}) => RoleResponse(
-        role: identical(role, sdkOmittedValue) ? this.role : role as Role,
-      );
+    role: identical(role, sdkOmittedValue) ? this.role : role as Role,
+  );
 
   factory RoleResponse.fromJson(Map<String, dynamic> json) => RoleResponse(
-        role: (json['role'] != null
-            ? Role.fromJson(json['role'] as Map<String, dynamic>)
-            : null)!,
-      );
+    role: (json['role'] != null ? Role.fromJson(json['role'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'role': role.toJson(),
-      };
+    'role': role.toJson(),
+  };
 }

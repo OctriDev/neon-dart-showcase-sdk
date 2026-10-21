@@ -8,62 +8,37 @@ part of 'project_project.dart';
 class ProjectOwnerData {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Email address of the project owner.
   final String email;
-
   /// Display name of the project owner.
   final String name;
-
   /// Maximum number of branches the owner is allowed to create across their projects.
   final int branchesLimit;
-
   /// Type of subscription to Neon Cloud. Notice that for users without billing account this will be "UNKNOWN"
   final BillingSubscriptionType subscriptionType;
 
-  const ProjectOwnerData(
-      {required this.email,
-      required this.name,
-      required this.branchesLimit,
-      required this.subscriptionType});
+  const ProjectOwnerData({required this.email, required this.name, required this.branchesLimit, required this.subscriptionType});
 
-  ProjectOwnerData Function(
-      {String email,
-      String name,
-      int branchesLimit,
-      BillingSubscriptionType subscriptionType}) get copyWith => _copyWith;
+  ProjectOwnerData Function({String email, String name, int branchesLimit, BillingSubscriptionType subscriptionType}) get copyWith => _copyWith;
 
-  ProjectOwnerData _copyWith(
-          {Object? email = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? branchesLimit = sdkOmittedValue,
-          Object? subscriptionType = sdkOmittedValue}) =>
-      ProjectOwnerData(
-        email: identical(email, sdkOmittedValue) ? this.email : email as String,
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        branchesLimit: identical(branchesLimit, sdkOmittedValue)
-            ? this.branchesLimit
-            : branchesLimit as int,
-        subscriptionType: identical(subscriptionType, sdkOmittedValue)
-            ? this.subscriptionType
-            : subscriptionType as BillingSubscriptionType,
-      );
+  ProjectOwnerData _copyWith({Object? email = sdkOmittedValue, Object? name = sdkOmittedValue, Object? branchesLimit = sdkOmittedValue, Object? subscriptionType = sdkOmittedValue}) => ProjectOwnerData(
+    email: identical(email, sdkOmittedValue) ? this.email : email as String,
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    branchesLimit: identical(branchesLimit, sdkOmittedValue) ? this.branchesLimit : branchesLimit as int,
+    subscriptionType: identical(subscriptionType, sdkOmittedValue) ? this.subscriptionType : subscriptionType as BillingSubscriptionType,
+  );
 
-  factory ProjectOwnerData.fromJson(Map<String, dynamic> json) =>
-      ProjectOwnerData(
-        email: (json['email'] as String?)!,
-        name: (json['name'] as String?)!,
-        branchesLimit: ((json['branches_limit'] as num?)?.toInt())!,
-        subscriptionType: (json['subscription_type'] != null
-            ? BillingSubscriptionType.fromJson(
-                json['subscription_type'] as String)
-            : null)!,
-      );
+  factory ProjectOwnerData.fromJson(Map<String, dynamic> json) => ProjectOwnerData(
+    email: (json['email'] as String?)!,
+    name: (json['name'] as String?)!,
+    branchesLimit: ((json['branches_limit'] as num?)?.toInt())!,
+    subscriptionType: (json['subscription_type'] != null ? BillingSubscriptionType.fromJson(json['subscription_type'] as String) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'email': email,
-        'name': name,
-        'branches_limit': branchesLimit,
-        'subscription_type': subscriptionType.toJson(),
-      };
+    'email': email,
+    'name': name,
+    'branches_limit': branchesLimit,
+    'subscription_type': subscriptionType.toJson(),
+  };
 }

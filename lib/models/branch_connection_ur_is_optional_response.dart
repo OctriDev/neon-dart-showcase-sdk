@@ -8,41 +8,25 @@ part of 'branch.dart';
 class ConnectionURIsOptionalResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Connection URIs for the compute endpoint, including credentials.
   final SdkOptional<List<ConnectionDetails>> connectionUris;
 
-  const ConnectionURIsOptionalResponse(
-      {this.connectionUris = const SdkOmitted()});
+  const ConnectionURIsOptionalResponse({this.connectionUris = const SdkOmitted()});
 
-  ConnectionURIsOptionalResponse Function(
-          {SdkOptional<List<ConnectionDetails>> connectionUris})
-      get copyWith => _copyWith;
+  ConnectionURIsOptionalResponse Function({SdkOptional<List<ConnectionDetails>> connectionUris}) get copyWith => _copyWith;
 
-  ConnectionURIsOptionalResponse _copyWith(
-          {Object? connectionUris = sdkOmittedValue}) =>
-      ConnectionURIsOptionalResponse(
-        connectionUris: identical(connectionUris, sdkOmittedValue)
-            ? this.connectionUris
-            : connectionUris as SdkOptional<List<ConnectionDetails>>,
-      );
+  ConnectionURIsOptionalResponse _copyWith({Object? connectionUris = sdkOmittedValue}) => ConnectionURIsOptionalResponse(
+    connectionUris: identical(connectionUris, sdkOmittedValue) ? this.connectionUris : connectionUris as SdkOptional<List<ConnectionDetails>>,
+  );
 
-  factory ConnectionURIsOptionalResponse.fromJson(Map<String, dynamic> json) =>
-      ConnectionURIsOptionalResponse(
-        connectionUris: json['connection_uris'] != null
-            ? SdkPresent(((json['connection_uris'] as List?)
-                ?.map((e) =>
-                    ConnectionDetails.fromJson(e as Map<String, dynamic>))
-                .toList())!)
-            : const SdkOmitted(),
-      );
+  factory ConnectionURIsOptionalResponse.fromJson(Map<String, dynamic> json) => ConnectionURIsOptionalResponse(
+    connectionUris: json['connection_uris'] != null ? SdkPresent(((json['connection_uris'] as List?)?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (connectionUris) {
-          SdkPresent<List<ConnectionDetails>>(value: final value) => {
-              'connection_uris': value.map((item) => item.toJson()).toList(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (connectionUris) {
+      SdkPresent<List<ConnectionDetails>>(value: final value) => {'connection_uris': value.map((item) => item.toJson()).toList(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

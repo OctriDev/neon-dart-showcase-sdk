@@ -8,160 +8,73 @@ part of 'auth.dart';
 class NeonAuthEmailAndPasswordConfigUpdate {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Controls whether email and password authentication is enabled for this project. When omitted from an update request, the current value is unchanged.
   final SdkOptional<bool> enabled;
-
   /// Email verification method. `link`: sends a verification link. `otp`: sends a one-time password.
   final SdkOptional<NeonAuthEmailVerificationMethod> emailVerificationMethod;
-
   /// When true, users must verify their email address before they can sign in. Omitting this field from an update request leaves the current value unchanged.
   final SdkOptional<bool> requireEmailVerification;
-
   /// Whether users are automatically signed in after verifying their email
   final SdkOptional<bool> autoSignInAfterVerification;
-
   /// Whether to send a verification email when users sign up.
   final SdkOptional<bool> sendVerificationEmailOnSignUp;
-
   /// Whether to send a verification email when a user with an unverified email signs in.
   final SdkOptional<bool> sendVerificationEmailOnSignIn;
-
   /// Whether to disable new user sign ups. When omitted, the current setting is not changed.
   final SdkOptional<bool> disableSignUp;
 
-  const NeonAuthEmailAndPasswordConfigUpdate(
-      {this.enabled = const SdkOmitted(),
-      this.emailVerificationMethod = const SdkOmitted(),
-      this.requireEmailVerification = const SdkOmitted(),
-      this.autoSignInAfterVerification = const SdkOmitted(),
-      this.sendVerificationEmailOnSignUp = const SdkOmitted(),
-      this.sendVerificationEmailOnSignIn = const SdkOmitted(),
-      this.disableSignUp = const SdkOmitted()});
+  const NeonAuthEmailAndPasswordConfigUpdate({this.enabled = const SdkOmitted(), this.emailVerificationMethod = const SdkOmitted(), this.requireEmailVerification = const SdkOmitted(), this.autoSignInAfterVerification = const SdkOmitted(), this.sendVerificationEmailOnSignUp = const SdkOmitted(), this.sendVerificationEmailOnSignIn = const SdkOmitted(), this.disableSignUp = const SdkOmitted()});
 
-  NeonAuthEmailAndPasswordConfigUpdate Function(
-      {SdkOptional<bool> enabled,
-      SdkOptional<NeonAuthEmailVerificationMethod> emailVerificationMethod,
-      SdkOptional<bool> requireEmailVerification,
-      SdkOptional<bool> autoSignInAfterVerification,
-      SdkOptional<bool> sendVerificationEmailOnSignUp,
-      SdkOptional<bool> sendVerificationEmailOnSignIn,
-      SdkOptional<bool> disableSignUp}) get copyWith => _copyWith;
+  NeonAuthEmailAndPasswordConfigUpdate Function({SdkOptional<bool> enabled, SdkOptional<NeonAuthEmailVerificationMethod> emailVerificationMethod, SdkOptional<bool> requireEmailVerification, SdkOptional<bool> autoSignInAfterVerification, SdkOptional<bool> sendVerificationEmailOnSignUp, SdkOptional<bool> sendVerificationEmailOnSignIn, SdkOptional<bool> disableSignUp}) get copyWith => _copyWith;
 
-  NeonAuthEmailAndPasswordConfigUpdate _copyWith(
-          {Object? enabled = sdkOmittedValue,
-          Object? emailVerificationMethod = sdkOmittedValue,
-          Object? requireEmailVerification = sdkOmittedValue,
-          Object? autoSignInAfterVerification = sdkOmittedValue,
-          Object? sendVerificationEmailOnSignUp = sdkOmittedValue,
-          Object? sendVerificationEmailOnSignIn = sdkOmittedValue,
-          Object? disableSignUp = sdkOmittedValue}) =>
-      NeonAuthEmailAndPasswordConfigUpdate(
-        enabled: identical(enabled, sdkOmittedValue)
-            ? this.enabled
-            : enabled as SdkOptional<bool>,
-        emailVerificationMethod:
-            identical(emailVerificationMethod, sdkOmittedValue)
-                ? this.emailVerificationMethod
-                : emailVerificationMethod
-                    as SdkOptional<NeonAuthEmailVerificationMethod>,
-        requireEmailVerification:
-            identical(requireEmailVerification, sdkOmittedValue)
-                ? this.requireEmailVerification
-                : requireEmailVerification as SdkOptional<bool>,
-        autoSignInAfterVerification:
-            identical(autoSignInAfterVerification, sdkOmittedValue)
-                ? this.autoSignInAfterVerification
-                : autoSignInAfterVerification as SdkOptional<bool>,
-        sendVerificationEmailOnSignUp:
-            identical(sendVerificationEmailOnSignUp, sdkOmittedValue)
-                ? this.sendVerificationEmailOnSignUp
-                : sendVerificationEmailOnSignUp as SdkOptional<bool>,
-        sendVerificationEmailOnSignIn:
-            identical(sendVerificationEmailOnSignIn, sdkOmittedValue)
-                ? this.sendVerificationEmailOnSignIn
-                : sendVerificationEmailOnSignIn as SdkOptional<bool>,
-        disableSignUp: identical(disableSignUp, sdkOmittedValue)
-            ? this.disableSignUp
-            : disableSignUp as SdkOptional<bool>,
-      );
+  NeonAuthEmailAndPasswordConfigUpdate _copyWith({Object? enabled = sdkOmittedValue, Object? emailVerificationMethod = sdkOmittedValue, Object? requireEmailVerification = sdkOmittedValue, Object? autoSignInAfterVerification = sdkOmittedValue, Object? sendVerificationEmailOnSignUp = sdkOmittedValue, Object? sendVerificationEmailOnSignIn = sdkOmittedValue, Object? disableSignUp = sdkOmittedValue}) => NeonAuthEmailAndPasswordConfigUpdate(
+    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as SdkOptional<bool>,
+    emailVerificationMethod: identical(emailVerificationMethod, sdkOmittedValue) ? this.emailVerificationMethod : emailVerificationMethod as SdkOptional<NeonAuthEmailVerificationMethod>,
+    requireEmailVerification: identical(requireEmailVerification, sdkOmittedValue) ? this.requireEmailVerification : requireEmailVerification as SdkOptional<bool>,
+    autoSignInAfterVerification: identical(autoSignInAfterVerification, sdkOmittedValue) ? this.autoSignInAfterVerification : autoSignInAfterVerification as SdkOptional<bool>,
+    sendVerificationEmailOnSignUp: identical(sendVerificationEmailOnSignUp, sdkOmittedValue) ? this.sendVerificationEmailOnSignUp : sendVerificationEmailOnSignUp as SdkOptional<bool>,
+    sendVerificationEmailOnSignIn: identical(sendVerificationEmailOnSignIn, sdkOmittedValue) ? this.sendVerificationEmailOnSignIn : sendVerificationEmailOnSignIn as SdkOptional<bool>,
+    disableSignUp: identical(disableSignUp, sdkOmittedValue) ? this.disableSignUp : disableSignUp as SdkOptional<bool>,
+  );
 
-  factory NeonAuthEmailAndPasswordConfigUpdate.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthEmailAndPasswordConfigUpdate(
-        enabled: json['enabled'] != null
-            ? SdkPresent((json['enabled'] as bool?)!)
-            : const SdkOmitted(),
-        emailVerificationMethod: json['email_verification_method'] != null
-            ? SdkPresent((json['email_verification_method'] != null
-                ? NeonAuthEmailVerificationMethod.fromJson(
-                    json['email_verification_method'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        requireEmailVerification: json['require_email_verification'] != null
-            ? SdkPresent((json['require_email_verification'] as bool?)!)
-            : const SdkOmitted(),
-        autoSignInAfterVerification: json['auto_sign_in_after_verification'] !=
-                null
-            ? SdkPresent((json['auto_sign_in_after_verification'] as bool?)!)
-            : const SdkOmitted(),
-        sendVerificationEmailOnSignUp:
-            json['send_verification_email_on_sign_up'] != null
-                ? SdkPresent(
-                    (json['send_verification_email_on_sign_up'] as bool?)!)
-                : const SdkOmitted(),
-        sendVerificationEmailOnSignIn:
-            json['send_verification_email_on_sign_in'] != null
-                ? SdkPresent(
-                    (json['send_verification_email_on_sign_in'] as bool?)!)
-                : const SdkOmitted(),
-        disableSignUp: json['disable_sign_up'] != null
-            ? SdkPresent((json['disable_sign_up'] as bool?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonAuthEmailAndPasswordConfigUpdate.fromJson(Map<String, dynamic> json) => NeonAuthEmailAndPasswordConfigUpdate(
+    enabled: json['enabled'] != null ? SdkPresent((json['enabled'] as bool?)!) : const SdkOmitted(),
+    emailVerificationMethod: json['email_verification_method'] != null ? SdkPresent((json['email_verification_method'] != null ? NeonAuthEmailVerificationMethod.fromJson(json['email_verification_method'] as String) : null)!) : const SdkOmitted(),
+    requireEmailVerification: json['require_email_verification'] != null ? SdkPresent((json['require_email_verification'] as bool?)!) : const SdkOmitted(),
+    autoSignInAfterVerification: json['auto_sign_in_after_verification'] != null ? SdkPresent((json['auto_sign_in_after_verification'] as bool?)!) : const SdkOmitted(),
+    sendVerificationEmailOnSignUp: json['send_verification_email_on_sign_up'] != null ? SdkPresent((json['send_verification_email_on_sign_up'] as bool?)!) : const SdkOmitted(),
+    sendVerificationEmailOnSignIn: json['send_verification_email_on_sign_in'] != null ? SdkPresent((json['send_verification_email_on_sign_in'] as bool?)!) : const SdkOmitted(),
+    disableSignUp: json['disable_sign_up'] != null ? SdkPresent((json['disable_sign_up'] as bool?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (enabled) {
-          SdkPresent<bool>(value: final value) => {
-              'enabled': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (emailVerificationMethod) {
-          SdkPresent<NeonAuthEmailVerificationMethod>(value: final value) => {
-              'email_verification_method': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (requireEmailVerification) {
-          SdkPresent<bool>(value: final value) => {
-              'require_email_verification': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (autoSignInAfterVerification) {
-          SdkPresent<bool>(value: final value) => {
-              'auto_sign_in_after_verification': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (sendVerificationEmailOnSignUp) {
-          SdkPresent<bool>(value: final value) => {
-              'send_verification_email_on_sign_up': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (sendVerificationEmailOnSignIn) {
-          SdkPresent<bool>(value: final value) => {
-              'send_verification_email_on_sign_in': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (disableSignUp) {
-          SdkPresent<bool>(value: final value) => {
-              'disable_sign_up': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (enabled) {
+      SdkPresent<bool>(value: final value) => {'enabled': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (emailVerificationMethod) {
+      SdkPresent<NeonAuthEmailVerificationMethod>(value: final value) => {'email_verification_method': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (requireEmailVerification) {
+      SdkPresent<bool>(value: final value) => {'require_email_verification': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (autoSignInAfterVerification) {
+      SdkPresent<bool>(value: final value) => {'auto_sign_in_after_verification': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (sendVerificationEmailOnSignUp) {
+      SdkPresent<bool>(value: final value) => {'send_verification_email_on_sign_up': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (sendVerificationEmailOnSignIn) {
+      SdkPresent<bool>(value: final value) => {'send_verification_email_on_sign_in': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (disableSignUp) {
+      SdkPresent<bool>(value: final value) => {'disable_sign_up': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

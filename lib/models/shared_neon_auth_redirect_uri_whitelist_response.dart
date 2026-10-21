@@ -8,34 +8,22 @@ part of 'shared_neon.dart';
 class NeonAuthRedirectURIWhitelistResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Domains permitted as redirect URI targets in the whitelist.
   final List<NeonAuthRedirectURIWhitelistDomain> domains;
 
   const NeonAuthRedirectURIWhitelistResponse({required this.domains});
 
-  NeonAuthRedirectURIWhitelistResponse Function(
-          {List<NeonAuthRedirectURIWhitelistDomain> domains})
-      get copyWith => _copyWith;
+  NeonAuthRedirectURIWhitelistResponse Function({List<NeonAuthRedirectURIWhitelistDomain> domains}) get copyWith => _copyWith;
 
-  NeonAuthRedirectURIWhitelistResponse _copyWith(
-          {Object? domains = sdkOmittedValue}) =>
-      NeonAuthRedirectURIWhitelistResponse(
-        domains: identical(domains, sdkOmittedValue)
-            ? this.domains
-            : domains as List<NeonAuthRedirectURIWhitelistDomain>,
-      );
+  NeonAuthRedirectURIWhitelistResponse _copyWith({Object? domains = sdkOmittedValue}) => NeonAuthRedirectURIWhitelistResponse(
+    domains: identical(domains, sdkOmittedValue) ? this.domains : domains as List<NeonAuthRedirectURIWhitelistDomain>,
+  );
 
-  factory NeonAuthRedirectURIWhitelistResponse.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthRedirectURIWhitelistResponse(
-        domains: ((json['domains'] as List?)
-            ?.map((e) => NeonAuthRedirectURIWhitelistDomain.fromJson(
-                e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory NeonAuthRedirectURIWhitelistResponse.fromJson(Map<String, dynamic> json) => NeonAuthRedirectURIWhitelistResponse(
+    domains: ((json['domains'] as List?)?.map((e) => NeonAuthRedirectURIWhitelistDomain.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'domains': domains.map((item) => item.toJson()).toList(),
-      };
+    'domains': domains.map((item) => item.toJson()).toList(),
+  };
 }

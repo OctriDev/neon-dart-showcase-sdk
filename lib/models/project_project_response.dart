@@ -8,7 +8,6 @@ part of 'project_project.dart';
 class ProjectResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Full details of the project, including configuration, consumption metrics, and ownership.
   final Project project;
 
@@ -16,21 +15,15 @@ class ProjectResponse {
 
   ProjectResponse Function({Project project}) get copyWith => _copyWith;
 
-  ProjectResponse _copyWith({Object? project = sdkOmittedValue}) =>
-      ProjectResponse(
-        project: identical(project, sdkOmittedValue)
-            ? this.project
-            : project as Project,
-      );
+  ProjectResponse _copyWith({Object? project = sdkOmittedValue}) => ProjectResponse(
+    project: identical(project, sdkOmittedValue) ? this.project : project as Project,
+  );
 
-  factory ProjectResponse.fromJson(Map<String, dynamic> json) =>
-      ProjectResponse(
-        project: (json['project'] != null
-            ? Project.fromJson(json['project'] as Map<String, dynamic>)
-            : null)!,
-      );
+  factory ProjectResponse.fromJson(Map<String, dynamic> json) => ProjectResponse(
+    project: (json['project'] != null ? Project.fromJson(json['project'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'project': project.toJson(),
-      };
+    'project': project.toJson(),
+  };
 }

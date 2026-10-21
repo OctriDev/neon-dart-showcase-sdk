@@ -8,162 +8,76 @@ part of 'shared_neon.dart';
 class NeonAuthIntegration {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Authentication provider integrated with this Neon Auth configuration. `better_auth` integrates with Better Auth (the current, recommended provider). `stack` integrates with Stack Auth (deprecated). `mock` is a simulated provider for local development and testing only.
   final NeonAuthSupportedAuthProvider authProvider;
-
   /// Project identifier assigned by the auth provider for this integration.
   final String authProviderProjectId;
-
   /// The Neon branch ID. Returned as `id` from `GET /projects/{project_id}/branches`.
   final String branchId;
-
   /// Name of the database used by the Neon Auth integration.
   final String dbName;
-
   /// Timestamp when the Neon Auth integration was created, in RFC 3339 format (UTC).
   final String createdAt;
-
   /// Owner of the auth provider project. `neon` means the project is created and managed by Neon on your behalf. `user` means the project was created in your own auth provider account and is self-managed.
   final NeonAuthProviderProjectOwnedBy ownedBy;
-
   /// Ownership transfer state for the auth provider project. `initiated` means a transfer was requested but not completed. `finished` means it completed successfully.
   final SdkOptional<NeonAuthProviderProjectTransferStatus> transferStatus;
-
   /// URL of the provider's JWKS endpoint used to verify JWTs.
   final String jwksUrl;
-
   /// Base URL of the Neon Auth service endpoint for this integration. Injected into the project environment as `NEON_AUTH_BASE_URL`.
   final SdkOptional<String> baseUrl;
-
   /// Application name shown in auth emails and communications. Defaults to the project name.
   final SdkOptional<String> name;
 
-  const NeonAuthIntegration(
-      {required this.authProvider,
-      required this.authProviderProjectId,
-      required this.branchId,
-      required this.dbName,
-      required this.createdAt,
-      required this.ownedBy,
-      this.transferStatus = const SdkOmitted(),
-      required this.jwksUrl,
-      this.baseUrl = const SdkOmitted(),
-      this.name = const SdkOmitted()});
+  const NeonAuthIntegration({required this.authProvider, required this.authProviderProjectId, required this.branchId, required this.dbName, required this.createdAt, required this.ownedBy, this.transferStatus = const SdkOmitted(), required this.jwksUrl, this.baseUrl = const SdkOmitted(), this.name = const SdkOmitted()});
 
-  NeonAuthIntegration Function(
-      {NeonAuthSupportedAuthProvider authProvider,
-      String authProviderProjectId,
-      String branchId,
-      String dbName,
-      String createdAt,
-      NeonAuthProviderProjectOwnedBy ownedBy,
-      SdkOptional<NeonAuthProviderProjectTransferStatus> transferStatus,
-      String jwksUrl,
-      SdkOptional<String> baseUrl,
-      SdkOptional<String> name}) get copyWith => _copyWith;
+  NeonAuthIntegration Function({NeonAuthSupportedAuthProvider authProvider, String authProviderProjectId, String branchId, String dbName, String createdAt, NeonAuthProviderProjectOwnedBy ownedBy, SdkOptional<NeonAuthProviderProjectTransferStatus> transferStatus, String jwksUrl, SdkOptional<String> baseUrl, SdkOptional<String> name}) get copyWith => _copyWith;
 
-  NeonAuthIntegration _copyWith(
-          {Object? authProvider = sdkOmittedValue,
-          Object? authProviderProjectId = sdkOmittedValue,
-          Object? branchId = sdkOmittedValue,
-          Object? dbName = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue,
-          Object? ownedBy = sdkOmittedValue,
-          Object? transferStatus = sdkOmittedValue,
-          Object? jwksUrl = sdkOmittedValue,
-          Object? baseUrl = sdkOmittedValue,
-          Object? name = sdkOmittedValue}) =>
-      NeonAuthIntegration(
-        authProvider: identical(authProvider, sdkOmittedValue)
-            ? this.authProvider
-            : authProvider as NeonAuthSupportedAuthProvider,
-        authProviderProjectId: identical(authProviderProjectId, sdkOmittedValue)
-            ? this.authProviderProjectId
-            : authProviderProjectId as String,
-        branchId: identical(branchId, sdkOmittedValue)
-            ? this.branchId
-            : branchId as String,
-        dbName:
-            identical(dbName, sdkOmittedValue) ? this.dbName : dbName as String,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-        ownedBy: identical(ownedBy, sdkOmittedValue)
-            ? this.ownedBy
-            : ownedBy as NeonAuthProviderProjectOwnedBy,
-        transferStatus: identical(transferStatus, sdkOmittedValue)
-            ? this.transferStatus
-            : transferStatus
-                as SdkOptional<NeonAuthProviderProjectTransferStatus>,
-        jwksUrl: identical(jwksUrl, sdkOmittedValue)
-            ? this.jwksUrl
-            : jwksUrl as String,
-        baseUrl: identical(baseUrl, sdkOmittedValue)
-            ? this.baseUrl
-            : baseUrl as SdkOptional<String>,
-        name: identical(name, sdkOmittedValue)
-            ? this.name
-            : name as SdkOptional<String>,
-      );
+  NeonAuthIntegration _copyWith({Object? authProvider = sdkOmittedValue, Object? authProviderProjectId = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? dbName = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? ownedBy = sdkOmittedValue, Object? transferStatus = sdkOmittedValue, Object? jwksUrl = sdkOmittedValue, Object? baseUrl = sdkOmittedValue, Object? name = sdkOmittedValue}) => NeonAuthIntegration(
+    authProvider: identical(authProvider, sdkOmittedValue) ? this.authProvider : authProvider as NeonAuthSupportedAuthProvider,
+    authProviderProjectId: identical(authProviderProjectId, sdkOmittedValue) ? this.authProviderProjectId : authProviderProjectId as String,
+    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as String,
+    dbName: identical(dbName, sdkOmittedValue) ? this.dbName : dbName as String,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+    ownedBy: identical(ownedBy, sdkOmittedValue) ? this.ownedBy : ownedBy as NeonAuthProviderProjectOwnedBy,
+    transferStatus: identical(transferStatus, sdkOmittedValue) ? this.transferStatus : transferStatus as SdkOptional<NeonAuthProviderProjectTransferStatus>,
+    jwksUrl: identical(jwksUrl, sdkOmittedValue) ? this.jwksUrl : jwksUrl as String,
+    baseUrl: identical(baseUrl, sdkOmittedValue) ? this.baseUrl : baseUrl as SdkOptional<String>,
+    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
+  );
 
-  factory NeonAuthIntegration.fromJson(Map<String, dynamic> json) =>
-      NeonAuthIntegration(
-        authProvider: (json['auth_provider'] != null
-            ? NeonAuthSupportedAuthProvider.fromJson(
-                json['auth_provider'] as String)
-            : null)!,
-        authProviderProjectId: (json['auth_provider_project_id'] as String?)!,
-        branchId: (json['branch_id'] as String?)!,
-        dbName: (json['db_name'] as String?)!,
-        createdAt: (json['created_at'] as String?)!,
-        ownedBy: (json['owned_by'] != null
-            ? NeonAuthProviderProjectOwnedBy.fromJson(
-                json['owned_by'] as String)
-            : null)!,
-        transferStatus: json['transfer_status'] != null
-            ? SdkPresent((json['transfer_status'] != null
-                ? NeonAuthProviderProjectTransferStatus.fromJson(
-                    json['transfer_status'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        jwksUrl: (json['jwks_url'] as String?)!,
-        baseUrl: json['base_url'] != null
-            ? SdkPresent((json['base_url'] as String?)!)
-            : const SdkOmitted(),
-        name: json['name'] != null
-            ? SdkPresent((json['name'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonAuthIntegration.fromJson(Map<String, dynamic> json) => NeonAuthIntegration(
+    authProvider: (json['auth_provider'] != null ? NeonAuthSupportedAuthProvider.fromJson(json['auth_provider'] as String) : null)!,
+    authProviderProjectId: (json['auth_provider_project_id'] as String?)!,
+    branchId: (json['branch_id'] as String?)!,
+    dbName: (json['db_name'] as String?)!,
+    createdAt: (json['created_at'] as String?)!,
+    ownedBy: (json['owned_by'] != null ? NeonAuthProviderProjectOwnedBy.fromJson(json['owned_by'] as String) : null)!,
+    transferStatus: json['transfer_status'] != null ? SdkPresent((json['transfer_status'] != null ? NeonAuthProviderProjectTransferStatus.fromJson(json['transfer_status'] as String) : null)!) : const SdkOmitted(),
+    jwksUrl: (json['jwks_url'] as String?)!,
+    baseUrl: json['base_url'] != null ? SdkPresent((json['base_url'] as String?)!) : const SdkOmitted(),
+    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'auth_provider': authProvider.toJson(),
-        'auth_provider_project_id': authProviderProjectId,
-        'branch_id': branchId,
-        'db_name': dbName,
-        'created_at': createdAt,
-        'owned_by': ownedBy.toJson(),
-        ...switch (transferStatus) {
-          SdkPresent<NeonAuthProviderProjectTransferStatus>(
-            value: final value
-          ) =>
-            {
-              'transfer_status': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        'jwks_url': jwksUrl,
-        ...switch (baseUrl) {
-          SdkPresent<String>(value: final value) => {
-              'base_url': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (name) {
-          SdkPresent<String>(value: final value) => {
-              'name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'auth_provider': authProvider.toJson(),
+    'auth_provider_project_id': authProviderProjectId,
+    'branch_id': branchId,
+    'db_name': dbName,
+    'created_at': createdAt,
+    'owned_by': ownedBy.toJson(),
+    ...switch (transferStatus) {
+      SdkPresent<NeonAuthProviderProjectTransferStatus>(value: final value) => {'transfer_status': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    'jwks_url': jwksUrl,
+    ...switch (baseUrl) {
+      SdkPresent<String>(value: final value) => {'base_url': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (name) {
+      SdkPresent<String>(value: final value) => {'name': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

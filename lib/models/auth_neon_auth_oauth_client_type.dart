@@ -6,25 +6,22 @@ part of 'auth.dart';
 // auth domain models
 /// Confidential clients authenticate with a client secret. Public clients have no secret.
 final class NeonAuthOAuthClientType {
+
   final String value;
 
   const NeonAuthOAuthClientType._(this.value);
 
-  factory NeonAuthOAuthClientType.fromJson(String value) =>
-      NeonAuthOAuthClientType._(value);
+  factory NeonAuthOAuthClientType.fromJson(String value) => NeonAuthOAuthClientType._(value);
 
   static const confidential = NeonAuthOAuthClientType._('confidential');
   static const public = NeonAuthOAuthClientType._('public');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is NeonAuthOAuthClientType && other.value == value;
+  @override bool operator ==(Object other) => other is NeonAuthOAuthClientType && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }

@@ -8,42 +8,27 @@ part of 'branch.dart';
 class DatabaseOperations {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Database object returned by the operation.
   final Database database;
-
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
 
   const DatabaseOperations({required this.database, required this.operations});
 
-  DatabaseOperations Function({Database database, List<Operation> operations})
-      get copyWith => _copyWith;
+  DatabaseOperations Function({Database database, List<Operation> operations}) get copyWith => _copyWith;
 
-  DatabaseOperations _copyWith(
-          {Object? database = sdkOmittedValue,
-          Object? operations = sdkOmittedValue}) =>
-      DatabaseOperations(
-        database: identical(database, sdkOmittedValue)
-            ? this.database
-            : database as Database,
-        operations: identical(operations, sdkOmittedValue)
-            ? this.operations
-            : operations as List<Operation>,
-      );
+  DatabaseOperations _copyWith({Object? database = sdkOmittedValue, Object? operations = sdkOmittedValue}) => DatabaseOperations(
+    database: identical(database, sdkOmittedValue) ? this.database : database as Database,
+    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
+  );
 
-  factory DatabaseOperations.fromJson(Map<String, dynamic> json) =>
-      DatabaseOperations(
-        database: (json['database'] != null
-            ? Database.fromJson(json['database'] as Map<String, dynamic>)
-            : null)!,
-        operations: ((json['operations'] as List?)
-            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory DatabaseOperations.fromJson(Map<String, dynamic> json) => DatabaseOperations(
+    database: (json['database'] != null ? Database.fromJson(json['database'] as Map<String, dynamic>) : null)!,
+    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'database': database.toJson(),
-        'operations': operations.map((item) => item.toJson()).toList(),
-      };
+    'database': database.toJson(),
+    'operations': operations.map((item) => item.toJson()).toList(),
+  };
 }

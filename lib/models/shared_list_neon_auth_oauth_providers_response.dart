@@ -8,33 +8,22 @@ part of 'shared.dart';
 class ListNeonAuthOauthProvidersResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// OAuth providers configured for Neon Auth on the project.
   final List<NeonAuthOauthProvider> providers;
 
   const ListNeonAuthOauthProvidersResponse({required this.providers});
 
-  ListNeonAuthOauthProvidersResponse Function(
-      {List<NeonAuthOauthProvider> providers}) get copyWith => _copyWith;
+  ListNeonAuthOauthProvidersResponse Function({List<NeonAuthOauthProvider> providers}) get copyWith => _copyWith;
 
-  ListNeonAuthOauthProvidersResponse _copyWith(
-          {Object? providers = sdkOmittedValue}) =>
-      ListNeonAuthOauthProvidersResponse(
-        providers: identical(providers, sdkOmittedValue)
-            ? this.providers
-            : providers as List<NeonAuthOauthProvider>,
-      );
+  ListNeonAuthOauthProvidersResponse _copyWith({Object? providers = sdkOmittedValue}) => ListNeonAuthOauthProvidersResponse(
+    providers: identical(providers, sdkOmittedValue) ? this.providers : providers as List<NeonAuthOauthProvider>,
+  );
 
-  factory ListNeonAuthOauthProvidersResponse.fromJson(
-          Map<String, dynamic> json) =>
-      ListNeonAuthOauthProvidersResponse(
-        providers: ((json['providers'] as List?)
-            ?.map((e) =>
-                NeonAuthOauthProvider.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ListNeonAuthOauthProvidersResponse.fromJson(Map<String, dynamic> json) => ListNeonAuthOauthProvidersResponse(
+    providers: ((json['providers'] as List?)?.map((e) => NeonAuthOauthProvider.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'providers': providers.map((item) => item.toJson()).toList(),
-      };
+    'providers': providers.map((item) => item.toJson()).toList(),
+  };
 }

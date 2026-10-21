@@ -8,74 +8,41 @@ part of 'shared_neon.dart';
 class NeonAuthUpdateOAuthProviderRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The OAuth client ID registered with the provider. Omit to keep the currently configured value.
   final SdkOptional<String> clientId;
-
   /// OAuth client secret for the provider. Omit to leave the existing secret unchanged.
   final SdkOptional<String> clientSecret;
-
   /// The tenant ID scoping the Microsoft OAuth provider. Supply this field when the provider type is microsoft; it has no effect for other provider types.
   final SdkOptional<String> microsoftTenantId;
 
-  const NeonAuthUpdateOAuthProviderRequest(
-      {this.clientId = const SdkOmitted(),
-      this.clientSecret = const SdkOmitted(),
-      this.microsoftTenantId = const SdkOmitted()});
+  const NeonAuthUpdateOAuthProviderRequest({this.clientId = const SdkOmitted(), this.clientSecret = const SdkOmitted(), this.microsoftTenantId = const SdkOmitted()});
 
-  NeonAuthUpdateOAuthProviderRequest Function(
-      {SdkOptional<String> clientId,
-      SdkOptional<String> clientSecret,
-      SdkOptional<String> microsoftTenantId}) get copyWith => _copyWith;
+  NeonAuthUpdateOAuthProviderRequest Function({SdkOptional<String> clientId, SdkOptional<String> clientSecret, SdkOptional<String> microsoftTenantId}) get copyWith => _copyWith;
 
-  NeonAuthUpdateOAuthProviderRequest _copyWith(
-          {Object? clientId = sdkOmittedValue,
-          Object? clientSecret = sdkOmittedValue,
-          Object? microsoftTenantId = sdkOmittedValue}) =>
-      NeonAuthUpdateOAuthProviderRequest(
-        clientId: identical(clientId, sdkOmittedValue)
-            ? this.clientId
-            : clientId as SdkOptional<String>,
-        clientSecret: identical(clientSecret, sdkOmittedValue)
-            ? this.clientSecret
-            : clientSecret as SdkOptional<String>,
-        microsoftTenantId: identical(microsoftTenantId, sdkOmittedValue)
-            ? this.microsoftTenantId
-            : microsoftTenantId as SdkOptional<String>,
-      );
+  NeonAuthUpdateOAuthProviderRequest _copyWith({Object? clientId = sdkOmittedValue, Object? clientSecret = sdkOmittedValue, Object? microsoftTenantId = sdkOmittedValue}) => NeonAuthUpdateOAuthProviderRequest(
+    clientId: identical(clientId, sdkOmittedValue) ? this.clientId : clientId as SdkOptional<String>,
+    clientSecret: identical(clientSecret, sdkOmittedValue) ? this.clientSecret : clientSecret as SdkOptional<String>,
+    microsoftTenantId: identical(microsoftTenantId, sdkOmittedValue) ? this.microsoftTenantId : microsoftTenantId as SdkOptional<String>,
+  );
 
-  factory NeonAuthUpdateOAuthProviderRequest.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthUpdateOAuthProviderRequest(
-        clientId: json['client_id'] != null
-            ? SdkPresent((json['client_id'] as String?)!)
-            : const SdkOmitted(),
-        clientSecret: json['client_secret'] != null
-            ? SdkPresent((json['client_secret'] as String?)!)
-            : const SdkOmitted(),
-        microsoftTenantId: json['microsoft_tenant_id'] != null
-            ? SdkPresent((json['microsoft_tenant_id'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonAuthUpdateOAuthProviderRequest.fromJson(Map<String, dynamic> json) => NeonAuthUpdateOAuthProviderRequest(
+    clientId: json['client_id'] != null ? SdkPresent((json['client_id'] as String?)!) : const SdkOmitted(),
+    clientSecret: json['client_secret'] != null ? SdkPresent((json['client_secret'] as String?)!) : const SdkOmitted(),
+    microsoftTenantId: json['microsoft_tenant_id'] != null ? SdkPresent((json['microsoft_tenant_id'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (clientId) {
-          SdkPresent<String>(value: final value) => {
-              'client_id': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (clientSecret) {
-          SdkPresent<String>(value: final value) => {
-              'client_secret': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (microsoftTenantId) {
-          SdkPresent<String>(value: final value) => {
-              'microsoft_tenant_id': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (clientId) {
+      SdkPresent<String>(value: final value) => {'client_id': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (clientSecret) {
+      SdkPresent<String>(value: final value) => {'client_secret': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (microsoftTenantId) {
+      SdkPresent<String>(value: final value) => {'microsoft_tenant_id': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

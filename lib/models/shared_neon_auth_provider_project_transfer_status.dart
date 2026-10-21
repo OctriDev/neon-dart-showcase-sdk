@@ -6,25 +6,22 @@ part of 'shared_neon.dart';
 // shared_neon domain models
 /// Typed representation of the `NeonAuthProviderProjectTransferStatus` API schema.
 final class NeonAuthProviderProjectTransferStatus {
+
   final String value;
 
   const NeonAuthProviderProjectTransferStatus._(this.value);
 
-  factory NeonAuthProviderProjectTransferStatus.fromJson(String value) =>
-      NeonAuthProviderProjectTransferStatus._(value);
+  factory NeonAuthProviderProjectTransferStatus.fromJson(String value) => NeonAuthProviderProjectTransferStatus._(value);
 
   static const initiated = NeonAuthProviderProjectTransferStatus._('initiated');
   static const finished = NeonAuthProviderProjectTransferStatus._('finished');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is NeonAuthProviderProjectTransferStatus && other.value == value;
+  @override bool operator ==(Object other) => other is NeonAuthProviderProjectTransferStatus && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }

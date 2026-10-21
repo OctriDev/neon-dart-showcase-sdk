@@ -22,14 +22,8 @@ Future<BranchStorage> getStorage(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getStorage',
-          fromJsonRaw: (value) =>
-              BranchStorage.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => BranchStorage.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        '404': (value) =>
-            BranchStorageNotEnabled.fromJson(value as Map<String, dynamic>),
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'404': (value) => BranchStorageNotEnabled.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

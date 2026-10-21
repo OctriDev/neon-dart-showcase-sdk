@@ -13,11 +13,10 @@ class EmptyResponse {
   const EmptyResponse({this.additionalProperties = const <String, dynamic>{}});
 
   factory EmptyResponse.fromJson(Map<String, dynamic> json) => EmptyResponse(
-        additionalProperties: Map.of(json)
-          ..removeWhere((key, _) => const <String>{}.contains(key)),
-      );
+    additionalProperties: Map.of(json)..removeWhere((key, _) => const <String>{}.contains(key)),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...additionalProperties,
-      };
+    ...additionalProperties,
+  };
 }

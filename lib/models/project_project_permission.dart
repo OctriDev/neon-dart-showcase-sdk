@@ -8,68 +8,40 @@ part of 'project_project.dart';
 class ProjectPermission {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The project permission's ID.
   final String id;
-
   /// Email address of the user who has been granted access to the project.
   final String grantedToEmail;
-
   /// Timestamp when the permission was granted.
   final String grantedAt;
-
   /// Timestamp when the permission was revoked. Null if the permission is still active.
   final SdkOptional<String> revokedAt;
 
-  const ProjectPermission(
-      {required this.id,
-      required this.grantedToEmail,
-      required this.grantedAt,
-      this.revokedAt = const SdkOmitted()});
+  const ProjectPermission({required this.id, required this.grantedToEmail, required this.grantedAt, this.revokedAt = const SdkOmitted()});
 
-  ProjectPermission Function(
-      {String id,
-      String grantedToEmail,
-      String grantedAt,
-      SdkOptional<String> revokedAt}) get copyWith => _copyWith;
+  ProjectPermission Function({String id, String grantedToEmail, String grantedAt, SdkOptional<String> revokedAt}) get copyWith => _copyWith;
 
-  ProjectPermission _copyWith(
-          {Object? id = sdkOmittedValue,
-          Object? grantedToEmail = sdkOmittedValue,
-          Object? grantedAt = sdkOmittedValue,
-          Object? revokedAt = sdkOmittedValue}) =>
-      ProjectPermission(
-        id: identical(id, sdkOmittedValue) ? this.id : id as String,
-        grantedToEmail: identical(grantedToEmail, sdkOmittedValue)
-            ? this.grantedToEmail
-            : grantedToEmail as String,
-        grantedAt: identical(grantedAt, sdkOmittedValue)
-            ? this.grantedAt
-            : grantedAt as String,
-        revokedAt: identical(revokedAt, sdkOmittedValue)
-            ? this.revokedAt
-            : revokedAt as SdkOptional<String>,
-      );
+  ProjectPermission _copyWith({Object? id = sdkOmittedValue, Object? grantedToEmail = sdkOmittedValue, Object? grantedAt = sdkOmittedValue, Object? revokedAt = sdkOmittedValue}) => ProjectPermission(
+    id: identical(id, sdkOmittedValue) ? this.id : id as String,
+    grantedToEmail: identical(grantedToEmail, sdkOmittedValue) ? this.grantedToEmail : grantedToEmail as String,
+    grantedAt: identical(grantedAt, sdkOmittedValue) ? this.grantedAt : grantedAt as String,
+    revokedAt: identical(revokedAt, sdkOmittedValue) ? this.revokedAt : revokedAt as SdkOptional<String>,
+  );
 
-  factory ProjectPermission.fromJson(Map<String, dynamic> json) =>
-      ProjectPermission(
-        id: (json['id'] as String?)!,
-        grantedToEmail: (json['granted_to_email'] as String?)!,
-        grantedAt: (json['granted_at'] as String?)!,
-        revokedAt: json['revoked_at'] != null
-            ? SdkPresent((json['revoked_at'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory ProjectPermission.fromJson(Map<String, dynamic> json) => ProjectPermission(
+    id: (json['id'] as String?)!,
+    grantedToEmail: (json['granted_to_email'] as String?)!,
+    grantedAt: (json['granted_at'] as String?)!,
+    revokedAt: json['revoked_at'] != null ? SdkPresent((json['revoked_at'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'granted_to_email': grantedToEmail,
-        'granted_at': grantedAt,
-        ...switch (revokedAt) {
-          SdkPresent<String>(value: final value) => {
-              'revoked_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'id': id,
+    'granted_to_email': grantedToEmail,
+    'granted_at': grantedAt,
+    ...switch (revokedAt) {
+      SdkPresent<String>(value: final value) => {'revoked_at': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

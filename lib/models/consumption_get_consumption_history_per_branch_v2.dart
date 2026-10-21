@@ -8,144 +8,88 @@ part of 'consumption.dart';
 class ConsumptionHistoryPerBranchV2 {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The ID of the project that owns this branch.
   final String projectId;
-
   /// The Neon branch ID. Returned as `id` from `GET /projects/{project_id}/branches`.
   final String branchId;
-
   /// Consumption history records for the branch, grouped by billing period.
   final List<ConsumptionHistoryPerPeriodV2> periods;
 
-  const ConsumptionHistoryPerBranchV2(
-      {required this.projectId, required this.branchId, required this.periods});
+  const ConsumptionHistoryPerBranchV2({required this.projectId, required this.branchId, required this.periods});
 
-  ConsumptionHistoryPerBranchV2 Function(
-      {String projectId,
-      String branchId,
-      List<ConsumptionHistoryPerPeriodV2> periods}) get copyWith => _copyWith;
+  ConsumptionHistoryPerBranchV2 Function({String projectId, String branchId, List<ConsumptionHistoryPerPeriodV2> periods}) get copyWith => _copyWith;
 
-  ConsumptionHistoryPerBranchV2 _copyWith(
-          {Object? projectId = sdkOmittedValue,
-          Object? branchId = sdkOmittedValue,
-          Object? periods = sdkOmittedValue}) =>
-      ConsumptionHistoryPerBranchV2(
-        projectId: identical(projectId, sdkOmittedValue)
-            ? this.projectId
-            : projectId as String,
-        branchId: identical(branchId, sdkOmittedValue)
-            ? this.branchId
-            : branchId as String,
-        periods: identical(periods, sdkOmittedValue)
-            ? this.periods
-            : periods as List<ConsumptionHistoryPerPeriodV2>,
-      );
+  ConsumptionHistoryPerBranchV2 _copyWith({Object? projectId = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? periods = sdkOmittedValue}) => ConsumptionHistoryPerBranchV2(
+    projectId: identical(projectId, sdkOmittedValue) ? this.projectId : projectId as String,
+    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as String,
+    periods: identical(periods, sdkOmittedValue) ? this.periods : periods as List<ConsumptionHistoryPerPeriodV2>,
+  );
 
-  factory ConsumptionHistoryPerBranchV2.fromJson(Map<String, dynamic> json) =>
-      ConsumptionHistoryPerBranchV2(
-        projectId: (json['project_id'] as String?)!,
-        branchId: (json['branch_id'] as String?)!,
-        periods: ((json['periods'] as List?)
-            ?.map((e) => ConsumptionHistoryPerPeriodV2.fromJson(
-                e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ConsumptionHistoryPerBranchV2.fromJson(Map<String, dynamic> json) => ConsumptionHistoryPerBranchV2(
+    projectId: (json['project_id'] as String?)!,
+    branchId: (json['branch_id'] as String?)!,
+    periods: ((json['periods'] as List?)?.map((e) => ConsumptionHistoryPerPeriodV2.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'project_id': projectId,
-        'branch_id': branchId,
-        'periods': periods.map((item) => item.toJson()).toList(),
-      };
+    'project_id': projectId,
+    'branch_id': branchId,
+    'periods': periods.map((item) => item.toJson()).toList(),
+  };
 }
 
 /// Typed representation of the `ConsumptionHistoryPerBranchV2Response` API schema.
 class ConsumptionHistoryPerBranchV2Response {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Per-branch consumption history records returned for the requested time range.
   final List<ConsumptionHistoryPerBranchV2> branches;
 
   const ConsumptionHistoryPerBranchV2Response({required this.branches});
 
-  ConsumptionHistoryPerBranchV2Response Function(
-      {List<ConsumptionHistoryPerBranchV2> branches}) get copyWith => _copyWith;
+  ConsumptionHistoryPerBranchV2Response Function({List<ConsumptionHistoryPerBranchV2> branches}) get copyWith => _copyWith;
 
-  ConsumptionHistoryPerBranchV2Response _copyWith(
-          {Object? branches = sdkOmittedValue}) =>
-      ConsumptionHistoryPerBranchV2Response(
-        branches: identical(branches, sdkOmittedValue)
-            ? this.branches
-            : branches as List<ConsumptionHistoryPerBranchV2>,
-      );
+  ConsumptionHistoryPerBranchV2Response _copyWith({Object? branches = sdkOmittedValue}) => ConsumptionHistoryPerBranchV2Response(
+    branches: identical(branches, sdkOmittedValue) ? this.branches : branches as List<ConsumptionHistoryPerBranchV2>,
+  );
 
-  factory ConsumptionHistoryPerBranchV2Response.fromJson(
-          Map<String, dynamic> json) =>
-      ConsumptionHistoryPerBranchV2Response(
-        branches: ((json['branches'] as List?)
-            ?.map((e) => ConsumptionHistoryPerBranchV2.fromJson(
-                e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ConsumptionHistoryPerBranchV2Response.fromJson(Map<String, dynamic> json) => ConsumptionHistoryPerBranchV2Response(
+    branches: ((json['branches'] as List?)?.map((e) => ConsumptionHistoryPerBranchV2.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'branches': branches.map((item) => item.toJson()).toList(),
-      };
+    'branches': branches.map((item) => item.toJson()).toList(),
+  };
 }
 
 /// Typed representation of the `GetConsumptionHistoryPerBranchV2Response` API schema.
 class GetConsumptionHistoryPerBranchV2Response {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Per-branch consumption history records returned for the requested time range.
   final List<ConsumptionHistoryPerBranchV2> branches;
-
   /// Cursor-based pagination. The `cursor` value reflects the endpoint's sort field (for example, an ID or timestamp), so pass it back unchanged.
   final SdkOptional<Pagination> pagination;
 
-  const GetConsumptionHistoryPerBranchV2Response(
-      {required this.branches, this.pagination = const SdkOmitted()});
+  const GetConsumptionHistoryPerBranchV2Response({required this.branches, this.pagination = const SdkOmitted()});
 
-  GetConsumptionHistoryPerBranchV2Response Function(
-      {List<ConsumptionHistoryPerBranchV2> branches,
-      SdkOptional<Pagination> pagination}) get copyWith => _copyWith;
+  GetConsumptionHistoryPerBranchV2Response Function({List<ConsumptionHistoryPerBranchV2> branches, SdkOptional<Pagination> pagination}) get copyWith => _copyWith;
 
-  GetConsumptionHistoryPerBranchV2Response _copyWith(
-          {Object? branches = sdkOmittedValue,
-          Object? pagination = sdkOmittedValue}) =>
-      GetConsumptionHistoryPerBranchV2Response(
-        branches: identical(branches, sdkOmittedValue)
-            ? this.branches
-            : branches as List<ConsumptionHistoryPerBranchV2>,
-        pagination: identical(pagination, sdkOmittedValue)
-            ? this.pagination
-            : pagination as SdkOptional<Pagination>,
-      );
+  GetConsumptionHistoryPerBranchV2Response _copyWith({Object? branches = sdkOmittedValue, Object? pagination = sdkOmittedValue}) => GetConsumptionHistoryPerBranchV2Response(
+    branches: identical(branches, sdkOmittedValue) ? this.branches : branches as List<ConsumptionHistoryPerBranchV2>,
+    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<Pagination>,
+  );
 
-  factory GetConsumptionHistoryPerBranchV2Response.fromJson(
-          Map<String, dynamic> json) =>
-      GetConsumptionHistoryPerBranchV2Response(
-        branches: ((json['branches'] as List?)
-            ?.map((e) => ConsumptionHistoryPerBranchV2.fromJson(
-                e as Map<String, dynamic>))
-            .toList())!,
-        pagination: json['pagination'] != null
-            ? SdkPresent((json['pagination'] != null
-                ? Pagination.fromJson(
-                    json['pagination'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory GetConsumptionHistoryPerBranchV2Response.fromJson(Map<String, dynamic> json) => GetConsumptionHistoryPerBranchV2Response(
+    branches: ((json['branches'] as List?)?.map((e) => ConsumptionHistoryPerBranchV2.fromJson(e as Map<String, dynamic>)).toList())!,
+    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? Pagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'branches': branches.map((item) => item.toJson()).toList(),
-        ...switch (pagination) {
-          SdkPresent<Pagination>(value: final value) => {
-              'pagination': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'branches': branches.map((item) => item.toJson()).toList(),
+    ...switch (pagination) {
+      SdkPresent<Pagination>(value: final value) => {'pagination': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

@@ -6,12 +6,12 @@ part of 'users.dart';
 // users domain models
 /// Indicates whether and how an account makes payments.
 final class BillingPaymentMethod {
+
   final String value;
 
   const BillingPaymentMethod._(this.value);
 
-  factory BillingPaymentMethod.fromJson(String value) =>
-      BillingPaymentMethod._(value);
+  factory BillingPaymentMethod.fromJson(String value) => BillingPaymentMethod._(value);
 
   static const unknown = BillingPaymentMethod._('UNKNOWN');
   static const none = BillingPaymentMethod._('none');
@@ -23,18 +23,14 @@ final class BillingPaymentMethod {
   static const staff = BillingPaymentMethod._('staff');
   static const trial = BillingPaymentMethod._('trial');
   static const sponsorship = BillingPaymentMethod._('sponsorship');
-  static const sharedPaymentToken =
-      BillingPaymentMethod._('shared_payment_token');
+  static const sharedPaymentToken = BillingPaymentMethod._('shared_payment_token');
 
   String toJson() => value;
 
-  @override
-  String toString() => value.toString();
+  @override String toString() => value.toString();
 
-  @override
-  bool operator ==(Object other) =>
-      other is BillingPaymentMethod && other.value == value;
+  @override bool operator ==(Object other) => other is BillingPaymentMethod && other.value == value;
 
-  @override
-  int get hashCode => value.hashCode;
+  @override int get hashCode => value.hashCode;
+
 }

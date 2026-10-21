@@ -8,86 +8,54 @@ part of 'functions.dart';
 class CustomDomainsListResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required array value serialized in the `custom_domains` wire field.
   final List<CustomDomain> customDomains;
 
   const CustomDomainsListResponse({required this.customDomains});
 
-  CustomDomainsListResponse Function({List<CustomDomain> customDomains})
-      get copyWith => _copyWith;
+  CustomDomainsListResponse Function({List<CustomDomain> customDomains}) get copyWith => _copyWith;
 
-  CustomDomainsListResponse _copyWith(
-          {Object? customDomains = sdkOmittedValue}) =>
-      CustomDomainsListResponse(
-        customDomains: identical(customDomains, sdkOmittedValue)
-            ? this.customDomains
-            : customDomains as List<CustomDomain>,
-      );
+  CustomDomainsListResponse _copyWith({Object? customDomains = sdkOmittedValue}) => CustomDomainsListResponse(
+    customDomains: identical(customDomains, sdkOmittedValue) ? this.customDomains : customDomains as List<CustomDomain>,
+  );
 
-  factory CustomDomainsListResponse.fromJson(Map<String, dynamic> json) =>
-      CustomDomainsListResponse(
-        customDomains: ((json['custom_domains'] as List?)
-            ?.map((e) => CustomDomain.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory CustomDomainsListResponse.fromJson(Map<String, dynamic> json) => CustomDomainsListResponse(
+    customDomains: ((json['custom_domains'] as List?)?.map((e) => CustomDomain.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'custom_domains': customDomains.map((item) => item.toJson()).toList(),
-      };
+    'custom_domains': customDomains.map((item) => item.toJson()).toList(),
+  };
 }
 
 /// Typed representation of the `ListFunctionsCustomDomainsResponse` API schema.
 class ListFunctionsCustomDomainsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Required array value serialized in the `custom_domains` wire field.
   final List<CustomDomain> customDomains;
-
   /// To paginate the response, issue an initial request with `limit` value. Then, add the value returned in the response `.pagination.next` attribute into the request under the `cursor` query parameter to the subsequent request to retrieve next page in pagination. The contents on cursor `next` are opaque, clients are not expected to make any assumptions on the format of the data inside the cursor.
   final SdkOptional<CursorPagination> pagination;
 
-  const ListFunctionsCustomDomainsResponse(
-      {required this.customDomains, this.pagination = const SdkOmitted()});
+  const ListFunctionsCustomDomainsResponse({required this.customDomains, this.pagination = const SdkOmitted()});
 
-  ListFunctionsCustomDomainsResponse Function(
-      {List<CustomDomain> customDomains,
-      SdkOptional<CursorPagination> pagination}) get copyWith => _copyWith;
+  ListFunctionsCustomDomainsResponse Function({List<CustomDomain> customDomains, SdkOptional<CursorPagination> pagination}) get copyWith => _copyWith;
 
-  ListFunctionsCustomDomainsResponse _copyWith(
-          {Object? customDomains = sdkOmittedValue,
-          Object? pagination = sdkOmittedValue}) =>
-      ListFunctionsCustomDomainsResponse(
-        customDomains: identical(customDomains, sdkOmittedValue)
-            ? this.customDomains
-            : customDomains as List<CustomDomain>,
-        pagination: identical(pagination, sdkOmittedValue)
-            ? this.pagination
-            : pagination as SdkOptional<CursorPagination>,
-      );
+  ListFunctionsCustomDomainsResponse _copyWith({Object? customDomains = sdkOmittedValue, Object? pagination = sdkOmittedValue}) => ListFunctionsCustomDomainsResponse(
+    customDomains: identical(customDomains, sdkOmittedValue) ? this.customDomains : customDomains as List<CustomDomain>,
+    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<CursorPagination>,
+  );
 
-  factory ListFunctionsCustomDomainsResponse.fromJson(
-          Map<String, dynamic> json) =>
-      ListFunctionsCustomDomainsResponse(
-        customDomains: ((json['custom_domains'] as List?)
-            ?.map((e) => CustomDomain.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-        pagination: json['pagination'] != null
-            ? SdkPresent((json['pagination'] != null
-                ? CursorPagination.fromJson(
-                    json['pagination'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory ListFunctionsCustomDomainsResponse.fromJson(Map<String, dynamic> json) => ListFunctionsCustomDomainsResponse(
+    customDomains: ((json['custom_domains'] as List?)?.map((e) => CustomDomain.fromJson(e as Map<String, dynamic>)).toList())!,
+    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? CursorPagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'custom_domains': customDomains.map((item) => item.toJson()).toList(),
-        ...switch (pagination) {
-          SdkPresent<CursorPagination>(value: final value) => {
-              'pagination': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'custom_domains': customDomains.map((item) => item.toJson()).toList(),
+    ...switch (pagination) {
+      SdkPresent<CursorPagination>(value: final value) => {'pagination': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

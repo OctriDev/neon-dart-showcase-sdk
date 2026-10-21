@@ -8,385 +8,223 @@ part of 'branch.dart';
 class BranchSchemaJSONTablesItemColumnsItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Name of the column.
   final String name;
-
   /// Postgres data type of the column, for example "integer" or "text".
   final String type_;
-
   /// Whether the column allows NULL values
   final SdkOptional<bool> nullable;
-
   /// Whether the column is a generated (computed) column
   final SdkOptional<bool> generated;
 
-  const BranchSchemaJSONTablesItemColumnsItem(
-      {required this.name,
-      required this.type_,
-      this.nullable = const SdkOmitted(),
-      this.generated = const SdkOmitted()});
+  const BranchSchemaJSONTablesItemColumnsItem({required this.name, required this.type_, this.nullable = const SdkOmitted(), this.generated = const SdkOmitted()});
 
-  BranchSchemaJSONTablesItemColumnsItem Function(
-      {String name,
-      String type_,
-      SdkOptional<bool> nullable,
-      SdkOptional<bool> generated}) get copyWith => _copyWith;
+  BranchSchemaJSONTablesItemColumnsItem Function({String name, String type_, SdkOptional<bool> nullable, SdkOptional<bool> generated}) get copyWith => _copyWith;
 
-  BranchSchemaJSONTablesItemColumnsItem _copyWith(
-          {Object? name = sdkOmittedValue,
-          Object? type_ = sdkOmittedValue,
-          Object? nullable = sdkOmittedValue,
-          Object? generated = sdkOmittedValue}) =>
-      BranchSchemaJSONTablesItemColumnsItem(
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as String,
-        nullable: identical(nullable, sdkOmittedValue)
-            ? this.nullable
-            : nullable as SdkOptional<bool>,
-        generated: identical(generated, sdkOmittedValue)
-            ? this.generated
-            : generated as SdkOptional<bool>,
-      );
+  BranchSchemaJSONTablesItemColumnsItem _copyWith({Object? name = sdkOmittedValue, Object? type_ = sdkOmittedValue, Object? nullable = sdkOmittedValue, Object? generated = sdkOmittedValue}) => BranchSchemaJSONTablesItemColumnsItem(
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as String,
+    nullable: identical(nullable, sdkOmittedValue) ? this.nullable : nullable as SdkOptional<bool>,
+    generated: identical(generated, sdkOmittedValue) ? this.generated : generated as SdkOptional<bool>,
+  );
 
-  factory BranchSchemaJSONTablesItemColumnsItem.fromJson(
-          Map<String, dynamic> json) =>
-      BranchSchemaJSONTablesItemColumnsItem(
-        name: (json['name'] as String?)!,
-        type_: (json['type'] as String?)!,
-        nullable: json['nullable'] != null
-            ? SdkPresent((json['nullable'] as bool?)!)
-            : const SdkOmitted(),
-        generated: json['generated'] != null
-            ? SdkPresent((json['generated'] as bool?)!)
-            : const SdkOmitted(),
-      );
+  factory BranchSchemaJSONTablesItemColumnsItem.fromJson(Map<String, dynamic> json) => BranchSchemaJSONTablesItemColumnsItem(
+    name: (json['name'] as String?)!,
+    type_: (json['type'] as String?)!,
+    nullable: json['nullable'] != null ? SdkPresent((json['nullable'] as bool?)!) : const SdkOmitted(),
+    generated: json['generated'] != null ? SdkPresent((json['generated'] as bool?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'type': type_,
-        ...switch (nullable) {
-          SdkPresent<bool>(value: final value) => {
-              'nullable': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (generated) {
-          SdkPresent<bool>(value: final value) => {
-              'generated': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'name': name,
+    'type': type_,
+    ...switch (nullable) {
+      SdkPresent<bool>(value: final value) => {'nullable': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (generated) {
+      SdkPresent<bool>(value: final value) => {'generated': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// For foreign keys - the referenced table information
 class BranchSchemaJSONTablesItemConstraintsItemReferencedTable {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Schema of the referenced table
   final String schema;
-
   /// Name of the referenced table
   final String table;
-
   /// Names of the referenced columns
   final List<String> columns;
 
-  const BranchSchemaJSONTablesItemConstraintsItemReferencedTable(
-      {required this.schema, required this.table, required this.columns});
+  const BranchSchemaJSONTablesItemConstraintsItemReferencedTable({required this.schema, required this.table, required this.columns});
 
-  BranchSchemaJSONTablesItemConstraintsItemReferencedTable Function(
-      {String schema,
-      String table,
-      List<String> columns}) get copyWith => _copyWith;
+  BranchSchemaJSONTablesItemConstraintsItemReferencedTable Function({String schema, String table, List<String> columns}) get copyWith => _copyWith;
 
-  BranchSchemaJSONTablesItemConstraintsItemReferencedTable _copyWith(
-          {Object? schema = sdkOmittedValue,
-          Object? table = sdkOmittedValue,
-          Object? columns = sdkOmittedValue}) =>
-      BranchSchemaJSONTablesItemConstraintsItemReferencedTable(
-        schema:
-            identical(schema, sdkOmittedValue) ? this.schema : schema as String,
-        table: identical(table, sdkOmittedValue) ? this.table : table as String,
-        columns: identical(columns, sdkOmittedValue)
-            ? this.columns
-            : columns as List<String>,
-      );
+  BranchSchemaJSONTablesItemConstraintsItemReferencedTable _copyWith({Object? schema = sdkOmittedValue, Object? table = sdkOmittedValue, Object? columns = sdkOmittedValue}) => BranchSchemaJSONTablesItemConstraintsItemReferencedTable(
+    schema: identical(schema, sdkOmittedValue) ? this.schema : schema as String,
+    table: identical(table, sdkOmittedValue) ? this.table : table as String,
+    columns: identical(columns, sdkOmittedValue) ? this.columns : columns as List<String>,
+  );
 
-  factory BranchSchemaJSONTablesItemConstraintsItemReferencedTable.fromJson(
-          Map<String, dynamic> json) =>
-      BranchSchemaJSONTablesItemConstraintsItemReferencedTable(
-        schema: (json['schema'] as String?)!,
-        table: (json['table'] as String?)!,
-        columns:
-            ((json['columns'] as List?)?.map((e) => e as String).toList())!,
-      );
+  factory BranchSchemaJSONTablesItemConstraintsItemReferencedTable.fromJson(Map<String, dynamic> json) => BranchSchemaJSONTablesItemConstraintsItemReferencedTable(
+    schema: (json['schema'] as String?)!,
+    table: (json['table'] as String?)!,
+    columns: ((json['columns'] as List?)?.map((e) => e as String).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'schema': schema,
-        'table': table,
-        'columns': columns,
-      };
+    'schema': schema,
+    'table': table,
+    'columns': columns,
+  };
 }
 
 /// Required object value serialized in the `constraints[]` wire field.
 class BranchSchemaJSONTablesItemConstraintsItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Type of constraint. Possible values: `primary_key`, `unique`, `foreign_key`
   final String type_;
-
   /// Column names participating in this constraint
   final List<String> columns;
-
   /// Optional name of the constraint
   final SdkOptional<String> name;
-
   /// For foreign keys - the referenced table information
-  final SdkOptional<BranchSchemaJSONTablesItemConstraintsItemReferencedTable>
-      referencedTable;
+  final SdkOptional<BranchSchemaJSONTablesItemConstraintsItemReferencedTable> referencedTable;
 
-  const BranchSchemaJSONTablesItemConstraintsItem(
-      {required this.type_,
-      required this.columns,
-      this.name = const SdkOmitted(),
-      this.referencedTable = const SdkOmitted()});
+  const BranchSchemaJSONTablesItemConstraintsItem({required this.type_, required this.columns, this.name = const SdkOmitted(), this.referencedTable = const SdkOmitted()});
 
-  BranchSchemaJSONTablesItemConstraintsItem Function(
-      {String type_,
-      List<String> columns,
-      SdkOptional<String> name,
-      SdkOptional<BranchSchemaJSONTablesItemConstraintsItemReferencedTable>
-          referencedTable}) get copyWith => _copyWith;
+  BranchSchemaJSONTablesItemConstraintsItem Function({String type_, List<String> columns, SdkOptional<String> name, SdkOptional<BranchSchemaJSONTablesItemConstraintsItemReferencedTable> referencedTable}) get copyWith => _copyWith;
 
-  BranchSchemaJSONTablesItemConstraintsItem _copyWith(
-          {Object? type_ = sdkOmittedValue,
-          Object? columns = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? referencedTable = sdkOmittedValue}) =>
-      BranchSchemaJSONTablesItemConstraintsItem(
-        type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as String,
-        columns: identical(columns, sdkOmittedValue)
-            ? this.columns
-            : columns as List<String>,
-        name: identical(name, sdkOmittedValue)
-            ? this.name
-            : name as SdkOptional<String>,
-        referencedTable: identical(referencedTable, sdkOmittedValue)
-            ? this.referencedTable
-            : referencedTable as SdkOptional<
-                BranchSchemaJSONTablesItemConstraintsItemReferencedTable>,
-      );
+  BranchSchemaJSONTablesItemConstraintsItem _copyWith({Object? type_ = sdkOmittedValue, Object? columns = sdkOmittedValue, Object? name = sdkOmittedValue, Object? referencedTable = sdkOmittedValue}) => BranchSchemaJSONTablesItemConstraintsItem(
+    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as String,
+    columns: identical(columns, sdkOmittedValue) ? this.columns : columns as List<String>,
+    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
+    referencedTable: identical(referencedTable, sdkOmittedValue) ? this.referencedTable : referencedTable as SdkOptional<BranchSchemaJSONTablesItemConstraintsItemReferencedTable>,
+  );
 
-  factory BranchSchemaJSONTablesItemConstraintsItem.fromJson(
-          Map<String, dynamic> json) =>
-      BranchSchemaJSONTablesItemConstraintsItem(
-        type_: (json['type'] as String?)!,
-        columns:
-            ((json['columns'] as List?)?.map((e) => e as String).toList())!,
-        name: json['name'] != null
-            ? SdkPresent((json['name'] as String?)!)
-            : const SdkOmitted(),
-        referencedTable: json['referenced_table'] != null
-            ? SdkPresent((json['referenced_table'] != null
-                ? BranchSchemaJSONTablesItemConstraintsItemReferencedTable
-                    .fromJson(json['referenced_table'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory BranchSchemaJSONTablesItemConstraintsItem.fromJson(Map<String, dynamic> json) => BranchSchemaJSONTablesItemConstraintsItem(
+    type_: (json['type'] as String?)!,
+    columns: ((json['columns'] as List?)?.map((e) => e as String).toList())!,
+    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
+    referencedTable: json['referenced_table'] != null ? SdkPresent((json['referenced_table'] != null ? BranchSchemaJSONTablesItemConstraintsItemReferencedTable.fromJson(json['referenced_table'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'type': type_,
-        'columns': columns,
-        ...switch (name) {
-          SdkPresent<String>(value: final value) => {
-              'name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (referencedTable) {
-          SdkPresent<BranchSchemaJSONTablesItemConstraintsItemReferencedTable>(
-            value: final value
-          ) =>
-            {
-              'referenced_table': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'type': type_,
+    'columns': columns,
+    ...switch (name) {
+      SdkPresent<String>(value: final value) => {'name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (referencedTable) {
+      SdkPresent<BranchSchemaJSONTablesItemConstraintsItemReferencedTable>(value: final value) => {'referenced_table': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Required object value serialized in the `tables[]` wire field.
 class BranchSchemaJSONTablesItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Postgres schema (namespace) that contains the table, for example `public`.
   final String schema;
-
   /// Name of the table within the schema.
   final String name;
-
   /// Columns belonging to this table, each describing a column's name and attributes.
   final List<BranchSchemaJSONTablesItemColumnsItem> columns;
-
   /// Table constraints defined in the branch schema, such as primary key, foreign key, unique, and check constraints.
-  final SdkOptional<List<BranchSchemaJSONTablesItemConstraintsItem>>
-      constraints;
+  final SdkOptional<List<BranchSchemaJSONTablesItemConstraintsItem>> constraints;
 
-  const BranchSchemaJSONTablesItem(
-      {required this.schema,
-      required this.name,
-      required this.columns,
-      this.constraints = const SdkOmitted()});
+  const BranchSchemaJSONTablesItem({required this.schema, required this.name, required this.columns, this.constraints = const SdkOmitted()});
 
-  BranchSchemaJSONTablesItem Function(
-      {String schema,
-      String name,
-      List<BranchSchemaJSONTablesItemColumnsItem> columns,
-      SdkOptional<List<BranchSchemaJSONTablesItemConstraintsItem>>
-          constraints}) get copyWith => _copyWith;
+  BranchSchemaJSONTablesItem Function({String schema, String name, List<BranchSchemaJSONTablesItemColumnsItem> columns, SdkOptional<List<BranchSchemaJSONTablesItemConstraintsItem>> constraints}) get copyWith => _copyWith;
 
-  BranchSchemaJSONTablesItem _copyWith(
-          {Object? schema = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? columns = sdkOmittedValue,
-          Object? constraints = sdkOmittedValue}) =>
-      BranchSchemaJSONTablesItem(
-        schema:
-            identical(schema, sdkOmittedValue) ? this.schema : schema as String,
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        columns: identical(columns, sdkOmittedValue)
-            ? this.columns
-            : columns as List<BranchSchemaJSONTablesItemColumnsItem>,
-        constraints: identical(constraints, sdkOmittedValue)
-            ? this.constraints
-            : constraints
-                as SdkOptional<List<BranchSchemaJSONTablesItemConstraintsItem>>,
-      );
+  BranchSchemaJSONTablesItem _copyWith({Object? schema = sdkOmittedValue, Object? name = sdkOmittedValue, Object? columns = sdkOmittedValue, Object? constraints = sdkOmittedValue}) => BranchSchemaJSONTablesItem(
+    schema: identical(schema, sdkOmittedValue) ? this.schema : schema as String,
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    columns: identical(columns, sdkOmittedValue) ? this.columns : columns as List<BranchSchemaJSONTablesItemColumnsItem>,
+    constraints: identical(constraints, sdkOmittedValue) ? this.constraints : constraints as SdkOptional<List<BranchSchemaJSONTablesItemConstraintsItem>>,
+  );
 
-  factory BranchSchemaJSONTablesItem.fromJson(Map<String, dynamic> json) =>
-      BranchSchemaJSONTablesItem(
-        schema: (json['schema'] as String?)!,
-        name: (json['name'] as String?)!,
-        columns: ((json['columns'] as List?)
-            ?.map((e) => BranchSchemaJSONTablesItemColumnsItem.fromJson(
-                e as Map<String, dynamic>))
-            .toList())!,
-        constraints: json['constraints'] != null
-            ? SdkPresent(((json['constraints'] as List?)
-                ?.map((e) => BranchSchemaJSONTablesItemConstraintsItem.fromJson(
-                    e as Map<String, dynamic>))
-                .toList())!)
-            : const SdkOmitted(),
-      );
+  factory BranchSchemaJSONTablesItem.fromJson(Map<String, dynamic> json) => BranchSchemaJSONTablesItem(
+    schema: (json['schema'] as String?)!,
+    name: (json['name'] as String?)!,
+    columns: ((json['columns'] as List?)?.map((e) => BranchSchemaJSONTablesItemColumnsItem.fromJson(e as Map<String, dynamic>)).toList())!,
+    constraints: json['constraints'] != null ? SdkPresent(((json['constraints'] as List?)?.map((e) => BranchSchemaJSONTablesItemConstraintsItem.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'schema': schema,
-        'name': name,
-        'columns': columns.map((item) => item.toJson()).toList(),
-        ...switch (constraints) {
-          SdkPresent<List<BranchSchemaJSONTablesItemConstraintsItem>>(
-            value: final value
-          ) =>
-            {
-              'constraints': value.map((item) => item.toJson()).toList(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'schema': schema,
+    'name': name,
+    'columns': columns.map((item) => item.toJson()).toList(),
+    ...switch (constraints) {
+      SdkPresent<List<BranchSchemaJSONTablesItemConstraintsItem>>(value: final value) => {'constraints': value.map((item) => item.toJson()).toList(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `BranchSchemaJSON` API schema.
 class BranchSchemaJSON {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Tables present in the branch schema.
   final List<BranchSchemaJSONTablesItem> tables;
 
   const BranchSchemaJSON({required this.tables});
 
-  BranchSchemaJSON Function({List<BranchSchemaJSONTablesItem> tables})
-      get copyWith => _copyWith;
+  BranchSchemaJSON Function({List<BranchSchemaJSONTablesItem> tables}) get copyWith => _copyWith;
 
-  BranchSchemaJSON _copyWith({Object? tables = sdkOmittedValue}) =>
-      BranchSchemaJSON(
-        tables: identical(tables, sdkOmittedValue)
-            ? this.tables
-            : tables as List<BranchSchemaJSONTablesItem>,
-      );
+  BranchSchemaJSON _copyWith({Object? tables = sdkOmittedValue}) => BranchSchemaJSON(
+    tables: identical(tables, sdkOmittedValue) ? this.tables : tables as List<BranchSchemaJSONTablesItem>,
+  );
 
-  factory BranchSchemaJSON.fromJson(Map<String, dynamic> json) =>
-      BranchSchemaJSON(
-        tables: ((json['tables'] as List?)
-            ?.map((e) =>
-                BranchSchemaJSONTablesItem.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory BranchSchemaJSON.fromJson(Map<String, dynamic> json) => BranchSchemaJSON(
+    tables: ((json['tables'] as List?)?.map((e) => BranchSchemaJSONTablesItem.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'tables': tables.map((item) => item.toJson()).toList(),
-      };
+    'tables': tables.map((item) => item.toJson()).toList(),
+  };
 }
 
 /// Typed representation of the `BranchSchemaResponse` API schema.
 class BranchSchemaResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Branch schema expressed as SQL DDL statements.
   final SdkOptional<String> sql;
-
   /// Branch schema represented as a structured JSON object, parallel to the SQL DDL in `sql`.
   final SdkOptional<BranchSchemaJSON> json;
 
-  const BranchSchemaResponse(
-      {this.sql = const SdkOmitted(), this.json = const SdkOmitted()});
+  const BranchSchemaResponse({this.sql = const SdkOmitted(), this.json = const SdkOmitted()});
 
-  BranchSchemaResponse Function(
-      {SdkOptional<String> sql,
-      SdkOptional<BranchSchemaJSON> json}) get copyWith => _copyWith;
+  BranchSchemaResponse Function({SdkOptional<String> sql, SdkOptional<BranchSchemaJSON> json}) get copyWith => _copyWith;
 
-  BranchSchemaResponse _copyWith(
-          {Object? sql = sdkOmittedValue, Object? json = sdkOmittedValue}) =>
-      BranchSchemaResponse(
-        sql: identical(sql, sdkOmittedValue)
-            ? this.sql
-            : sql as SdkOptional<String>,
-        json: identical(json, sdkOmittedValue)
-            ? this.json
-            : json as SdkOptional<BranchSchemaJSON>,
-      );
+  BranchSchemaResponse _copyWith({Object? sql = sdkOmittedValue, Object? json = sdkOmittedValue}) => BranchSchemaResponse(
+    sql: identical(sql, sdkOmittedValue) ? this.sql : sql as SdkOptional<String>,
+    json: identical(json, sdkOmittedValue) ? this.json : json as SdkOptional<BranchSchemaJSON>,
+  );
 
-  factory BranchSchemaResponse.fromJson(Map<String, dynamic> json) =>
-      BranchSchemaResponse(
-        sql: json['sql'] != null
-            ? SdkPresent((json['sql'] as String?)!)
-            : const SdkOmitted(),
-        json: json['json'] != null
-            ? SdkPresent((json['json'] != null
-                ? BranchSchemaJSON.fromJson(
-                    json['json'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory BranchSchemaResponse.fromJson(Map<String, dynamic> json) => BranchSchemaResponse(
+    sql: json['sql'] != null ? SdkPresent((json['sql'] as String?)!) : const SdkOmitted(),
+    json: json['json'] != null ? SdkPresent((json['json'] != null ? BranchSchemaJSON.fromJson(json['json'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (sql) {
-          SdkPresent<String>(value: final value) => {
-              'sql': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (json) {
-          SdkPresent<BranchSchemaJSON>(value: final value) => {
-              'json': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (sql) {
+      SdkPresent<String>(value: final value) => {'sql': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (json) {
+      SdkPresent<BranchSchemaJSON>(value: final value) => {'json': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

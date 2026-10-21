@@ -8,55 +8,33 @@ part of 'auth.dart';
 class NeonAuthOAuthProviderMcp {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The MCP server URL that dynamically registered clients are linked to.
   final SdkOptional<String> resource;
-
   /// Whether MCP clients may register themselves via dynamic client registration (RFC 7591). Defaults to true, but takes effect only when an MCP resource is configured; reads report false otherwise. When false, only clients created through the OAuth clients API can be used, and they can still be linked to the MCP resource.
   final SdkOptional<bool> dynamicRegistration;
 
-  const NeonAuthOAuthProviderMcp(
-      {this.resource = const SdkOmitted(),
-      this.dynamicRegistration = const SdkOmitted()});
+  const NeonAuthOAuthProviderMcp({this.resource = const SdkOmitted(), this.dynamicRegistration = const SdkOmitted()});
 
-  NeonAuthOAuthProviderMcp Function(
-      {SdkOptional<String> resource,
-      SdkOptional<bool> dynamicRegistration}) get copyWith => _copyWith;
+  NeonAuthOAuthProviderMcp Function({SdkOptional<String> resource, SdkOptional<bool> dynamicRegistration}) get copyWith => _copyWith;
 
-  NeonAuthOAuthProviderMcp _copyWith(
-          {Object? resource = sdkOmittedValue,
-          Object? dynamicRegistration = sdkOmittedValue}) =>
-      NeonAuthOAuthProviderMcp(
-        resource: identical(resource, sdkOmittedValue)
-            ? this.resource
-            : resource as SdkOptional<String>,
-        dynamicRegistration: identical(dynamicRegistration, sdkOmittedValue)
-            ? this.dynamicRegistration
-            : dynamicRegistration as SdkOptional<bool>,
-      );
+  NeonAuthOAuthProviderMcp _copyWith({Object? resource = sdkOmittedValue, Object? dynamicRegistration = sdkOmittedValue}) => NeonAuthOAuthProviderMcp(
+    resource: identical(resource, sdkOmittedValue) ? this.resource : resource as SdkOptional<String>,
+    dynamicRegistration: identical(dynamicRegistration, sdkOmittedValue) ? this.dynamicRegistration : dynamicRegistration as SdkOptional<bool>,
+  );
 
-  factory NeonAuthOAuthProviderMcp.fromJson(Map<String, dynamic> json) =>
-      NeonAuthOAuthProviderMcp(
-        resource: json['resource'] != null
-            ? SdkPresent((json['resource'] as String?)!)
-            : const SdkOmitted(),
-        dynamicRegistration: json['dynamic_registration'] != null
-            ? SdkPresent((json['dynamic_registration'] as bool?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonAuthOAuthProviderMcp.fromJson(Map<String, dynamic> json) => NeonAuthOAuthProviderMcp(
+    resource: json['resource'] != null ? SdkPresent((json['resource'] as String?)!) : const SdkOmitted(),
+    dynamicRegistration: json['dynamic_registration'] != null ? SdkPresent((json['dynamic_registration'] as bool?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (resource) {
-          SdkPresent<String>(value: final value) => {
-              'resource': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (dynamicRegistration) {
-          SdkPresent<bool>(value: final value) => {
-              'dynamic_registration': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (resource) {
+      SdkPresent<String>(value: final value) => {'resource': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (dynamicRegistration) {
+      SdkPresent<bool>(value: final value) => {'dynamic_registration': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

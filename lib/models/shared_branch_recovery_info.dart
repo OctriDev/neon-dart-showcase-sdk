@@ -8,56 +8,32 @@ part of 'shared_branch.dart';
 class BranchRecoveryInfo {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Timestamp when the branch was deleted
   final String deletedAt;
-
   /// Timestamp when the recovery window expires and the branch will be permanently deleted
   final String recoverableUntil;
-
   /// How the branch was deleted: 'user' for manual deletion, 'ttl' for TTL expiration
   final BranchRecoveryInfoDeletionMethod deletionMethod;
 
-  const BranchRecoveryInfo(
-      {required this.deletedAt,
-      required this.recoverableUntil,
-      required this.deletionMethod});
+  const BranchRecoveryInfo({required this.deletedAt, required this.recoverableUntil, required this.deletionMethod});
 
-  BranchRecoveryInfo Function(
-          {String deletedAt,
-          String recoverableUntil,
-          BranchRecoveryInfoDeletionMethod deletionMethod})
-      get copyWith => _copyWith;
+  BranchRecoveryInfo Function({String deletedAt, String recoverableUntil, BranchRecoveryInfoDeletionMethod deletionMethod}) get copyWith => _copyWith;
 
-  BranchRecoveryInfo _copyWith(
-          {Object? deletedAt = sdkOmittedValue,
-          Object? recoverableUntil = sdkOmittedValue,
-          Object? deletionMethod = sdkOmittedValue}) =>
-      BranchRecoveryInfo(
-        deletedAt: identical(deletedAt, sdkOmittedValue)
-            ? this.deletedAt
-            : deletedAt as String,
-        recoverableUntil: identical(recoverableUntil, sdkOmittedValue)
-            ? this.recoverableUntil
-            : recoverableUntil as String,
-        deletionMethod: identical(deletionMethod, sdkOmittedValue)
-            ? this.deletionMethod
-            : deletionMethod as BranchRecoveryInfoDeletionMethod,
-      );
+  BranchRecoveryInfo _copyWith({Object? deletedAt = sdkOmittedValue, Object? recoverableUntil = sdkOmittedValue, Object? deletionMethod = sdkOmittedValue}) => BranchRecoveryInfo(
+    deletedAt: identical(deletedAt, sdkOmittedValue) ? this.deletedAt : deletedAt as String,
+    recoverableUntil: identical(recoverableUntil, sdkOmittedValue) ? this.recoverableUntil : recoverableUntil as String,
+    deletionMethod: identical(deletionMethod, sdkOmittedValue) ? this.deletionMethod : deletionMethod as BranchRecoveryInfoDeletionMethod,
+  );
 
-  factory BranchRecoveryInfo.fromJson(Map<String, dynamic> json) =>
-      BranchRecoveryInfo(
-        deletedAt: (json['deleted_at'] as String?)!,
-        recoverableUntil: (json['recoverable_until'] as String?)!,
-        deletionMethod: (json['deletion_method'] != null
-            ? BranchRecoveryInfoDeletionMethod.fromJson(
-                json['deletion_method'] as String)
-            : null)!,
-      );
+  factory BranchRecoveryInfo.fromJson(Map<String, dynamic> json) => BranchRecoveryInfo(
+    deletedAt: (json['deleted_at'] as String?)!,
+    recoverableUntil: (json['recoverable_until'] as String?)!,
+    deletionMethod: (json['deletion_method'] != null ? BranchRecoveryInfoDeletionMethod.fromJson(json['deletion_method'] as String) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'deleted_at': deletedAt,
-        'recoverable_until': recoverableUntil,
-        'deletion_method': deletionMethod.toJson(),
-      };
+    'deleted_at': deletedAt,
+    'recoverable_until': recoverableUntil,
+    'deletion_method': deletionMethod.toJson(),
+  };
 }

@@ -8,250 +8,124 @@ part of 'branch.dart';
 class BranchCreateRequestBranch {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The `branch_id` of the parent branch. If omitted or empty, the branch will be created from the project's default branch.
   final SdkOptional<String> parentId;
-
   /// The branch name
   final SdkOptional<String> name;
-
   /// A Log Sequence Number (LSN) on the parent branch. The branch will be created with data from this LSN.
   final SdkOptional<String> parentLsn;
-
   /// A timestamp identifying a point in time on the parent branch. The branch will be created with data starting from this point in time. RFC 3339 format.
   final SdkOptional<String> parentTimestamp;
-
   /// Whether the branch is protected. Protected branches (and their computes) cannot be deleted, archived, or reset, and block deletion of the project. Can be gated by `protected_branches_only` in the IP allowlist. Paid plans only.
   final SdkOptional<bool> protected;
-
   /// Enable Realtime for the branch with these options. A child of a Realtime branch is enabled even when this is omitted.
   final SdkOptional<RealtimeOptions> realtime;
-
   /// Whether to create the branch in the archived state. When omitted, the branch is created as a normal (non-archived) branch.
   final SdkOptional<bool> archived;
-
   /// Source of initialization for the branch. `parent-data` copies schema and data from the parent branch. `parent-schema` copies schema only from the parent branch. `schema-only` creates a new root branch containing schema only, using `parent_id` as the source; optionally, `parent_lsn` or `parent_timestamp` can narrow the source point. `import` initializes the branch from an external import.
   final SdkOptional<String> initSource;
-
   /// The timestamp when the branch is scheduled to expire and be automatically deleted. Must be set by the client following the [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) format with precision up to seconds (such as 2025-06-09T18:02:16Z). Deletion is performed by a background job and may not occur exactly at the specified time. Access to this feature is currently limited to participants in the Early Access Program.
   final SdkOptional<String> expiresAt;
 
-  const BranchCreateRequestBranch(
-      {this.parentId = const SdkOmitted(),
-      this.name = const SdkOmitted(),
-      this.parentLsn = const SdkOmitted(),
-      this.parentTimestamp = const SdkOmitted(),
-      this.protected = const SdkOmitted(),
-      this.realtime = const SdkOmitted(),
-      this.archived = const SdkOmitted(),
-      this.initSource = const SdkOmitted(),
-      this.expiresAt = const SdkOmitted()});
+  const BranchCreateRequestBranch({this.parentId = const SdkOmitted(), this.name = const SdkOmitted(), this.parentLsn = const SdkOmitted(), this.parentTimestamp = const SdkOmitted(), this.protected = const SdkOmitted(), this.realtime = const SdkOmitted(), this.archived = const SdkOmitted(), this.initSource = const SdkOmitted(), this.expiresAt = const SdkOmitted()});
 
-  BranchCreateRequestBranch Function(
-      {SdkOptional<String> parentId,
-      SdkOptional<String> name,
-      SdkOptional<String> parentLsn,
-      SdkOptional<String> parentTimestamp,
-      SdkOptional<bool> protected,
-      SdkOptional<RealtimeOptions> realtime,
-      SdkOptional<bool> archived,
-      SdkOptional<String> initSource,
-      SdkOptional<String> expiresAt}) get copyWith => _copyWith;
+  BranchCreateRequestBranch Function({SdkOptional<String> parentId, SdkOptional<String> name, SdkOptional<String> parentLsn, SdkOptional<String> parentTimestamp, SdkOptional<bool> protected, SdkOptional<RealtimeOptions> realtime, SdkOptional<bool> archived, SdkOptional<String> initSource, SdkOptional<String> expiresAt}) get copyWith => _copyWith;
 
-  BranchCreateRequestBranch _copyWith(
-          {Object? parentId = sdkOmittedValue,
-          Object? name = sdkOmittedValue,
-          Object? parentLsn = sdkOmittedValue,
-          Object? parentTimestamp = sdkOmittedValue,
-          Object? protected = sdkOmittedValue,
-          Object? realtime = sdkOmittedValue,
-          Object? archived = sdkOmittedValue,
-          Object? initSource = sdkOmittedValue,
-          Object? expiresAt = sdkOmittedValue}) =>
-      BranchCreateRequestBranch(
-        parentId: identical(parentId, sdkOmittedValue)
-            ? this.parentId
-            : parentId as SdkOptional<String>,
-        name: identical(name, sdkOmittedValue)
-            ? this.name
-            : name as SdkOptional<String>,
-        parentLsn: identical(parentLsn, sdkOmittedValue)
-            ? this.parentLsn
-            : parentLsn as SdkOptional<String>,
-        parentTimestamp: identical(parentTimestamp, sdkOmittedValue)
-            ? this.parentTimestamp
-            : parentTimestamp as SdkOptional<String>,
-        protected: identical(protected, sdkOmittedValue)
-            ? this.protected
-            : protected as SdkOptional<bool>,
-        realtime: identical(realtime, sdkOmittedValue)
-            ? this.realtime
-            : realtime as SdkOptional<RealtimeOptions>,
-        archived: identical(archived, sdkOmittedValue)
-            ? this.archived
-            : archived as SdkOptional<bool>,
-        initSource: identical(initSource, sdkOmittedValue)
-            ? this.initSource
-            : initSource as SdkOptional<String>,
-        expiresAt: identical(expiresAt, sdkOmittedValue)
-            ? this.expiresAt
-            : expiresAt as SdkOptional<String>,
-      );
+  BranchCreateRequestBranch _copyWith({Object? parentId = sdkOmittedValue, Object? name = sdkOmittedValue, Object? parentLsn = sdkOmittedValue, Object? parentTimestamp = sdkOmittedValue, Object? protected = sdkOmittedValue, Object? realtime = sdkOmittedValue, Object? archived = sdkOmittedValue, Object? initSource = sdkOmittedValue, Object? expiresAt = sdkOmittedValue}) => BranchCreateRequestBranch(
+    parentId: identical(parentId, sdkOmittedValue) ? this.parentId : parentId as SdkOptional<String>,
+    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
+    parentLsn: identical(parentLsn, sdkOmittedValue) ? this.parentLsn : parentLsn as SdkOptional<String>,
+    parentTimestamp: identical(parentTimestamp, sdkOmittedValue) ? this.parentTimestamp : parentTimestamp as SdkOptional<String>,
+    protected: identical(protected, sdkOmittedValue) ? this.protected : protected as SdkOptional<bool>,
+    realtime: identical(realtime, sdkOmittedValue) ? this.realtime : realtime as SdkOptional<RealtimeOptions>,
+    archived: identical(archived, sdkOmittedValue) ? this.archived : archived as SdkOptional<bool>,
+    initSource: identical(initSource, sdkOmittedValue) ? this.initSource : initSource as SdkOptional<String>,
+    expiresAt: identical(expiresAt, sdkOmittedValue) ? this.expiresAt : expiresAt as SdkOptional<String>,
+  );
 
-  factory BranchCreateRequestBranch.fromJson(Map<String, dynamic> json) =>
-      BranchCreateRequestBranch(
-        parentId: json['parent_id'] != null
-            ? SdkPresent((json['parent_id'] as String?)!)
-            : const SdkOmitted(),
-        name: json['name'] != null
-            ? SdkPresent((json['name'] as String?)!)
-            : const SdkOmitted(),
-        parentLsn: json['parent_lsn'] != null
-            ? SdkPresent((json['parent_lsn'] as String?)!)
-            : const SdkOmitted(),
-        parentTimestamp: json['parent_timestamp'] != null
-            ? SdkPresent((json['parent_timestamp'] as String?)!)
-            : const SdkOmitted(),
-        protected: json['protected'] != null
-            ? SdkPresent((json['protected'] as bool?)!)
-            : const SdkOmitted(),
-        realtime: json['realtime'] != null
-            ? SdkPresent((json['realtime'] != null
-                ? RealtimeOptions.fromJson(
-                    json['realtime'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        archived: json['archived'] != null
-            ? SdkPresent((json['archived'] as bool?)!)
-            : const SdkOmitted(),
-        initSource: json['init_source'] != null
-            ? SdkPresent((json['init_source'] as String?)!)
-            : const SdkOmitted(),
-        expiresAt: json['expires_at'] != null
-            ? SdkPresent((json['expires_at'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory BranchCreateRequestBranch.fromJson(Map<String, dynamic> json) => BranchCreateRequestBranch(
+    parentId: json['parent_id'] != null ? SdkPresent((json['parent_id'] as String?)!) : const SdkOmitted(),
+    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
+    parentLsn: json['parent_lsn'] != null ? SdkPresent((json['parent_lsn'] as String?)!) : const SdkOmitted(),
+    parentTimestamp: json['parent_timestamp'] != null ? SdkPresent((json['parent_timestamp'] as String?)!) : const SdkOmitted(),
+    protected: json['protected'] != null ? SdkPresent((json['protected'] as bool?)!) : const SdkOmitted(),
+    realtime: json['realtime'] != null ? SdkPresent((json['realtime'] != null ? RealtimeOptions.fromJson(json['realtime'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    archived: json['archived'] != null ? SdkPresent((json['archived'] as bool?)!) : const SdkOmitted(),
+    initSource: json['init_source'] != null ? SdkPresent((json['init_source'] as String?)!) : const SdkOmitted(),
+    expiresAt: json['expires_at'] != null ? SdkPresent((json['expires_at'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (parentId) {
-          SdkPresent<String>(value: final value) => {
-              'parent_id': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (name) {
-          SdkPresent<String>(value: final value) => {
-              'name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (parentLsn) {
-          SdkPresent<String>(value: final value) => {
-              'parent_lsn': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (parentTimestamp) {
-          SdkPresent<String>(value: final value) => {
-              'parent_timestamp': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (protected) {
-          SdkPresent<bool>(value: final value) => {
-              'protected': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (realtime) {
-          SdkPresent<RealtimeOptions>(value: final value) => {
-              'realtime': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (archived) {
-          SdkPresent<bool>(value: final value) => {
-              'archived': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (initSource) {
-          SdkPresent<String>(value: final value) => {
-              'init_source': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (expiresAt) {
-          SdkPresent<String>(value: final value) => {
-              'expires_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (parentId) {
+      SdkPresent<String>(value: final value) => {'parent_id': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (name) {
+      SdkPresent<String>(value: final value) => {'name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (parentLsn) {
+      SdkPresent<String>(value: final value) => {'parent_lsn': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (parentTimestamp) {
+      SdkPresent<String>(value: final value) => {'parent_timestamp': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (protected) {
+      SdkPresent<bool>(value: final value) => {'protected': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (realtime) {
+      SdkPresent<RealtimeOptions>(value: final value) => {'realtime': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (archived) {
+      SdkPresent<bool>(value: final value) => {'archived': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (initSource) {
+      SdkPresent<String>(value: final value) => {'init_source': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (expiresAt) {
+      SdkPresent<String>(value: final value) => {'expires_at': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `BranchCreateRequest` API schema.
 class BranchCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Compute endpoints to create together with the branch. If omitted, the branch is created without any compute endpoint. Endpoints can be added to the branch separately after creation.
   final SdkOptional<List<BranchCreateRequestEndpointOptions>> endpoints;
-
   /// Optional configuration for the new branch, for example `name`, `parent_id` (fork from a branch), `parent_lsn` or `parent_timestamp` (point-in-time branching), and `protected`.
   final SdkOptional<BranchCreateRequestBranch> branch;
 
-  const BranchCreateRequest(
-      {this.endpoints = const SdkOmitted(), this.branch = const SdkOmitted()});
+  const BranchCreateRequest({this.endpoints = const SdkOmitted(), this.branch = const SdkOmitted()});
 
-  BranchCreateRequest Function(
-      {SdkOptional<List<BranchCreateRequestEndpointOptions>> endpoints,
-      SdkOptional<BranchCreateRequestBranch> branch}) get copyWith => _copyWith;
+  BranchCreateRequest Function({SdkOptional<List<BranchCreateRequestEndpointOptions>> endpoints, SdkOptional<BranchCreateRequestBranch> branch}) get copyWith => _copyWith;
 
-  BranchCreateRequest _copyWith(
-          {Object? endpoints = sdkOmittedValue,
-          Object? branch = sdkOmittedValue}) =>
-      BranchCreateRequest(
-        endpoints: identical(endpoints, sdkOmittedValue)
-            ? this.endpoints
-            : endpoints
-                as SdkOptional<List<BranchCreateRequestEndpointOptions>>,
-        branch: identical(branch, sdkOmittedValue)
-            ? this.branch
-            : branch as SdkOptional<BranchCreateRequestBranch>,
-      );
+  BranchCreateRequest _copyWith({Object? endpoints = sdkOmittedValue, Object? branch = sdkOmittedValue}) => BranchCreateRequest(
+    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as SdkOptional<List<BranchCreateRequestEndpointOptions>>,
+    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as SdkOptional<BranchCreateRequestBranch>,
+  );
 
-  factory BranchCreateRequest.fromJson(Map<String, dynamic> json) =>
-      BranchCreateRequest(
-        endpoints: json['endpoints'] != null
-            ? SdkPresent(((json['endpoints'] as List?)
-                ?.map((e) => BranchCreateRequestEndpointOptions.fromJson(
-                    e as Map<String, dynamic>))
-                .toList())!)
-            : const SdkOmitted(),
-        branch: json['branch'] != null
-            ? SdkPresent((json['branch'] != null
-                ? BranchCreateRequestBranch.fromJson(
-                    json['branch'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-      );
+  factory BranchCreateRequest.fromJson(Map<String, dynamic> json) => BranchCreateRequest(
+    endpoints: json['endpoints'] != null ? SdkPresent(((json['endpoints'] as List?)?.map((e) => BranchCreateRequestEndpointOptions.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
+    branch: json['branch'] != null ? SdkPresent((json['branch'] != null ? BranchCreateRequestBranch.fromJson(json['branch'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (endpoints) {
-          SdkPresent<List<BranchCreateRequestEndpointOptions>>(
-            value: final value
-          ) =>
-            {
-              'endpoints': value.map((item) => item.toJson()).toList(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (branch) {
-          SdkPresent<BranchCreateRequestBranch>(value: final value) => {
-              'branch': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (endpoints) {
+      SdkPresent<List<BranchCreateRequestEndpointOptions>>(value: final value) => {'endpoints': value.map((item) => item.toJson()).toList(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (branch) {
+      SdkPresent<BranchCreateRequestBranch>(value: final value) => {'branch': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

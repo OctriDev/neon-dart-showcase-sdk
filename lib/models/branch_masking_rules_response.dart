@@ -8,30 +8,22 @@ part of 'branch.dart';
 class MaskingRulesResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// List of masking rules for the branch
   final List<MaskingRule> maskingRules;
 
   const MaskingRulesResponse({required this.maskingRules});
 
-  MaskingRulesResponse Function({List<MaskingRule> maskingRules})
-      get copyWith => _copyWith;
+  MaskingRulesResponse Function({List<MaskingRule> maskingRules}) get copyWith => _copyWith;
 
-  MaskingRulesResponse _copyWith({Object? maskingRules = sdkOmittedValue}) =>
-      MaskingRulesResponse(
-        maskingRules: identical(maskingRules, sdkOmittedValue)
-            ? this.maskingRules
-            : maskingRules as List<MaskingRule>,
-      );
+  MaskingRulesResponse _copyWith({Object? maskingRules = sdkOmittedValue}) => MaskingRulesResponse(
+    maskingRules: identical(maskingRules, sdkOmittedValue) ? this.maskingRules : maskingRules as List<MaskingRule>,
+  );
 
-  factory MaskingRulesResponse.fromJson(Map<String, dynamic> json) =>
-      MaskingRulesResponse(
-        maskingRules: ((json['masking_rules'] as List?)
-            ?.map((e) => MaskingRule.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory MaskingRulesResponse.fromJson(Map<String, dynamic> json) => MaskingRulesResponse(
+    maskingRules: ((json['masking_rules'] as List?)?.map((e) => MaskingRule.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'masking_rules': maskingRules.map((item) => item.toJson()).toList(),
-      };
+    'masking_rules': maskingRules.map((item) => item.toJson()).toList(),
+  };
 }

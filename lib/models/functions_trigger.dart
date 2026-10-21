@@ -10,32 +10,12 @@ sealed class Trigger {
   const Trigger();
   factory Trigger.fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      try {
-        final value = ScheduleTrigger.fromJson(json);
-        if (sdkKeepsEveryKey(json, value.toJson())) {
-          return TriggerScheduleTrigger(value);
-        }
-      } catch (_) {}
-      try {
-        final value = StorageObjectCreatedTrigger.fromJson(json);
-        if (sdkKeepsEveryKey(json, value.toJson())) {
-          return TriggerStorageObjectCreatedTrigger(value);
-        }
-      } catch (_) {}
+      try { final value = ScheduleTrigger.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return TriggerScheduleTrigger(value); } } catch (_) {}
+      try { final value = StorageObjectCreatedTrigger.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return TriggerStorageObjectCreatedTrigger(value); } } catch (_) {}
     }
-    try {
-      return TriggerScheduleTrigger(
-          ScheduleTrigger.fromJson(json as Map<String, dynamic>));
-    } catch (_) {}
-    try {
-      return TriggerStorageObjectCreatedTrigger(
-          StorageObjectCreatedTrigger.fromJson(json as Map<String, dynamic>));
-    } catch (_) {}
-    if (json is Map<String, dynamic> &&
-        json["type"] is String &&
-        !const {"schedule", "storage_object_created"}.contains(json["type"])) {
-      return UnknownTrigger(json);
-    }
+    try { return TriggerScheduleTrigger(ScheduleTrigger.fromJson(json as Map<String, dynamic>)); } catch (_) {}
+    try { return TriggerStorageObjectCreatedTrigger(StorageObjectCreatedTrigger.fromJson(json as Map<String, dynamic>)); } catch (_) {}
+    if (json is Map<String, dynamic> && json["type"] is String && !const {"schedule", "storage_object_created"}.contains(json["type"])) { return UnknownTrigger(json); }
     throw FormatException("No variant matched for Trigger");
   }
   Object? toJson();
@@ -44,21 +24,18 @@ sealed class Trigger {
 final class TriggerScheduleTrigger extends Trigger {
   final ScheduleTrigger value;
   const TriggerScheduleTrigger(this.value);
-  @override
-  Object? toJson() => value.toJson();
+  @override Object? toJson() => value.toJson();
 }
 
 final class TriggerStorageObjectCreatedTrigger extends Trigger {
   final StorageObjectCreatedTrigger value;
   const TriggerStorageObjectCreatedTrigger(this.value);
-  @override
-  Object? toJson() => value.toJson();
+  @override Object? toJson() => value.toJson();
 }
 
 /// A [Trigger] whose `type` names no branch this SDK knows, kept as received.
 final class UnknownTrigger extends Trigger {
   final Map<String, dynamic> raw;
   const UnknownTrigger(this.raw);
-  @override
-  Object? toJson() => raw;
+  @override Object? toJson() => raw;
 }

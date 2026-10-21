@@ -8,117 +8,57 @@ part of 'auth.dart';
 class NeonAuthOrganizationConfigUpdate {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Controls whether the organization plugin is active for the organization.
   final SdkOptional<bool> enabled;
-
   /// Maximum organizations a user can belong to (created or joined). At the limit, the user cannot create or join more.
   final SdkOptional<int> organizationLimit;
-
   /// Maximum members per organization.
   final SdkOptional<int> membershipLimit;
-
   /// Role of the organization's creator. `owner`: full control, including deleting the org and transferring ownership. `admin`: manage members and settings only.
   final SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole> creatorRole;
-
   /// When true, invited users receive an email containing an accept link. Requires that the invited user has a verified email address.
   final SdkOptional<bool> sendInvitationEmail;
 
-  const NeonAuthOrganizationConfigUpdate(
-      {this.enabled = const SdkOmitted(),
-      this.organizationLimit = const SdkOmitted(),
-      this.membershipLimit = const SdkOmitted(),
-      this.creatorRole = const SdkOmitted(),
-      this.sendInvitationEmail = const SdkOmitted()});
+  const NeonAuthOrganizationConfigUpdate({this.enabled = const SdkOmitted(), this.organizationLimit = const SdkOmitted(), this.membershipLimit = const SdkOmitted(), this.creatorRole = const SdkOmitted(), this.sendInvitationEmail = const SdkOmitted()});
 
-  NeonAuthOrganizationConfigUpdate Function(
-      {SdkOptional<bool> enabled,
-      SdkOptional<int> organizationLimit,
-      SdkOptional<int> membershipLimit,
-      SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole> creatorRole,
-      SdkOptional<bool> sendInvitationEmail}) get copyWith => _copyWith;
+  NeonAuthOrganizationConfigUpdate Function({SdkOptional<bool> enabled, SdkOptional<int> organizationLimit, SdkOptional<int> membershipLimit, SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole> creatorRole, SdkOptional<bool> sendInvitationEmail}) get copyWith => _copyWith;
 
-  NeonAuthOrganizationConfigUpdate _copyWith(
-          {Object? enabled = sdkOmittedValue,
-          Object? organizationLimit = sdkOmittedValue,
-          Object? membershipLimit = sdkOmittedValue,
-          Object? creatorRole = sdkOmittedValue,
-          Object? sendInvitationEmail = sdkOmittedValue}) =>
-      NeonAuthOrganizationConfigUpdate(
-        enabled: identical(enabled, sdkOmittedValue)
-            ? this.enabled
-            : enabled as SdkOptional<bool>,
-        organizationLimit: identical(organizationLimit, sdkOmittedValue)
-            ? this.organizationLimit
-            : organizationLimit as SdkOptional<int>,
-        membershipLimit: identical(membershipLimit, sdkOmittedValue)
-            ? this.membershipLimit
-            : membershipLimit as SdkOptional<int>,
-        creatorRole: identical(creatorRole, sdkOmittedValue)
-            ? this.creatorRole
-            : creatorRole
-                as SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole>,
-        sendInvitationEmail: identical(sendInvitationEmail, sdkOmittedValue)
-            ? this.sendInvitationEmail
-            : sendInvitationEmail as SdkOptional<bool>,
-      );
+  NeonAuthOrganizationConfigUpdate _copyWith({Object? enabled = sdkOmittedValue, Object? organizationLimit = sdkOmittedValue, Object? membershipLimit = sdkOmittedValue, Object? creatorRole = sdkOmittedValue, Object? sendInvitationEmail = sdkOmittedValue}) => NeonAuthOrganizationConfigUpdate(
+    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as SdkOptional<bool>,
+    organizationLimit: identical(organizationLimit, sdkOmittedValue) ? this.organizationLimit : organizationLimit as SdkOptional<int>,
+    membershipLimit: identical(membershipLimit, sdkOmittedValue) ? this.membershipLimit : membershipLimit as SdkOptional<int>,
+    creatorRole: identical(creatorRole, sdkOmittedValue) ? this.creatorRole : creatorRole as SdkOptional<NeonAuthOrganizationConfigUpdateCreatorRole>,
+    sendInvitationEmail: identical(sendInvitationEmail, sdkOmittedValue) ? this.sendInvitationEmail : sendInvitationEmail as SdkOptional<bool>,
+  );
 
-  factory NeonAuthOrganizationConfigUpdate.fromJson(
-          Map<String, dynamic> json) =>
-      NeonAuthOrganizationConfigUpdate(
-        enabled: json['enabled'] != null
-            ? SdkPresent((json['enabled'] as bool?)!)
-            : const SdkOmitted(),
-        organizationLimit: json['organization_limit'] != null
-            ? SdkPresent(((json['organization_limit'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-        membershipLimit: json['membership_limit'] != null
-            ? SdkPresent(((json['membership_limit'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-        creatorRole: json['creator_role'] != null
-            ? SdkPresent((json['creator_role'] != null
-                ? NeonAuthOrganizationConfigUpdateCreatorRole.fromJson(
-                    json['creator_role'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        sendInvitationEmail: json['send_invitation_email'] != null
-            ? SdkPresent((json['send_invitation_email'] as bool?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonAuthOrganizationConfigUpdate.fromJson(Map<String, dynamic> json) => NeonAuthOrganizationConfigUpdate(
+    enabled: json['enabled'] != null ? SdkPresent((json['enabled'] as bool?)!) : const SdkOmitted(),
+    organizationLimit: json['organization_limit'] != null ? SdkPresent(((json['organization_limit'] as num?)?.toInt())!) : const SdkOmitted(),
+    membershipLimit: json['membership_limit'] != null ? SdkPresent(((json['membership_limit'] as num?)?.toInt())!) : const SdkOmitted(),
+    creatorRole: json['creator_role'] != null ? SdkPresent((json['creator_role'] != null ? NeonAuthOrganizationConfigUpdateCreatorRole.fromJson(json['creator_role'] as String) : null)!) : const SdkOmitted(),
+    sendInvitationEmail: json['send_invitation_email'] != null ? SdkPresent((json['send_invitation_email'] as bool?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (enabled) {
-          SdkPresent<bool>(value: final value) => {
-              'enabled': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (organizationLimit) {
-          SdkPresent<int>(value: final value) => {
-              'organization_limit': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (membershipLimit) {
-          SdkPresent<int>(value: final value) => {
-              'membership_limit': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (creatorRole) {
-          SdkPresent<NeonAuthOrganizationConfigUpdateCreatorRole>(
-            value: final value
-          ) =>
-            {
-              'creator_role': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (sendInvitationEmail) {
-          SdkPresent<bool>(value: final value) => {
-              'send_invitation_email': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (enabled) {
+      SdkPresent<bool>(value: final value) => {'enabled': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (organizationLimit) {
+      SdkPresent<int>(value: final value) => {'organization_limit': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (membershipLimit) {
+      SdkPresent<int>(value: final value) => {'membership_limit': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (creatorRole) {
+      SdkPresent<NeonAuthOrganizationConfigUpdateCreatorRole>(value: final value) => {'creator_role': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (sendInvitationEmail) {
+      SdkPresent<bool>(value: final value) => {'send_invitation_email': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

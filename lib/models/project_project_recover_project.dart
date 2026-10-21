@@ -8,42 +8,27 @@ part of 'project_project.dart';
 class ProjectRecoverResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Full details of the project, including configuration, consumption metrics, and ownership.
   final Project project;
-
   /// Branches in the project. Each includes `id`, `name`, `current_state`, and `created_at`.
   final List<Branch> branches;
 
   const ProjectRecoverResponse({required this.project, required this.branches});
 
-  ProjectRecoverResponse Function({Project project, List<Branch> branches})
-      get copyWith => _copyWith;
+  ProjectRecoverResponse Function({Project project, List<Branch> branches}) get copyWith => _copyWith;
 
-  ProjectRecoverResponse _copyWith(
-          {Object? project = sdkOmittedValue,
-          Object? branches = sdkOmittedValue}) =>
-      ProjectRecoverResponse(
-        project: identical(project, sdkOmittedValue)
-            ? this.project
-            : project as Project,
-        branches: identical(branches, sdkOmittedValue)
-            ? this.branches
-            : branches as List<Branch>,
-      );
+  ProjectRecoverResponse _copyWith({Object? project = sdkOmittedValue, Object? branches = sdkOmittedValue}) => ProjectRecoverResponse(
+    project: identical(project, sdkOmittedValue) ? this.project : project as Project,
+    branches: identical(branches, sdkOmittedValue) ? this.branches : branches as List<Branch>,
+  );
 
-  factory ProjectRecoverResponse.fromJson(Map<String, dynamic> json) =>
-      ProjectRecoverResponse(
-        project: (json['project'] != null
-            ? Project.fromJson(json['project'] as Map<String, dynamic>)
-            : null)!,
-        branches: ((json['branches'] as List?)
-            ?.map((e) => Branch.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ProjectRecoverResponse.fromJson(Map<String, dynamic> json) => ProjectRecoverResponse(
+    project: (json['project'] != null ? Project.fromJson(json['project'] as Map<String, dynamic>) : null)!,
+    branches: ((json['branches'] as List?)?.map((e) => Branch.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'project': project.toJson(),
-        'branches': branches.map((item) => item.toJson()).toList(),
-      };
+    'project': project.toJson(),
+    'branches': branches.map((item) => item.toJson()).toList(),
+  };
 }

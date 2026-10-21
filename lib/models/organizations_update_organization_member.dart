@@ -8,28 +8,22 @@ part of 'organizations.dart';
 class OrganizationMemberUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Organization member's role. `admin`: full administrative access. `editor` (and its legacy alias `member`): standard access governed by project permissions. `viewer` and `collaborator`: additional scoped project roles. Some values may not be available for all organizations.
   final MemberRole role;
 
   const OrganizationMemberUpdateRequest({required this.role});
 
-  OrganizationMemberUpdateRequest Function({MemberRole role}) get copyWith =>
-      _copyWith;
+  OrganizationMemberUpdateRequest Function({MemberRole role}) get copyWith => _copyWith;
 
-  OrganizationMemberUpdateRequest _copyWith({Object? role = sdkOmittedValue}) =>
-      OrganizationMemberUpdateRequest(
-        role: identical(role, sdkOmittedValue) ? this.role : role as MemberRole,
-      );
+  OrganizationMemberUpdateRequest _copyWith({Object? role = sdkOmittedValue}) => OrganizationMemberUpdateRequest(
+    role: identical(role, sdkOmittedValue) ? this.role : role as MemberRole,
+  );
 
-  factory OrganizationMemberUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      OrganizationMemberUpdateRequest(
-        role: (json['role'] != null
-            ? MemberRole.fromJson(json['role'] as String)
-            : null)!,
-      );
+  factory OrganizationMemberUpdateRequest.fromJson(Map<String, dynamic> json) => OrganizationMemberUpdateRequest(
+    role: (json['role'] != null ? MemberRole.fromJson(json['role'] as String) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'role': role.toJson(),
-      };
+    'role': role.toJson(),
+  };
 }

@@ -8,109 +8,57 @@ part of 'branch.dart';
 class AnonymizationRunMetadata {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Timestamp indicating when the latest anonymization attempt started.
   final SdkOptional<String> startedAt;
-
   /// Timestamp indicating when the latest anonymization attempt completed. Populated even if the attempt failed.
   final SdkOptional<String> completedAt;
-
   /// UUID of the user who triggered the latest anonymization attempt.
   final SdkOptional<String> triggeredBy;
-
   /// Username of the user who triggered the latest anonymization attempt.
   final SdkOptional<String> triggeredByUsername;
-
   /// Number of columns that had masking rules applied during the attempt.
   final SdkOptional<int> maskedColumns;
 
-  const AnonymizationRunMetadata(
-      {this.startedAt = const SdkOmitted(),
-      this.completedAt = const SdkOmitted(),
-      this.triggeredBy = const SdkOmitted(),
-      this.triggeredByUsername = const SdkOmitted(),
-      this.maskedColumns = const SdkOmitted()});
+  const AnonymizationRunMetadata({this.startedAt = const SdkOmitted(), this.completedAt = const SdkOmitted(), this.triggeredBy = const SdkOmitted(), this.triggeredByUsername = const SdkOmitted(), this.maskedColumns = const SdkOmitted()});
 
-  AnonymizationRunMetadata Function(
-      {SdkOptional<String> startedAt,
-      SdkOptional<String> completedAt,
-      SdkOptional<String> triggeredBy,
-      SdkOptional<String> triggeredByUsername,
-      SdkOptional<int> maskedColumns}) get copyWith => _copyWith;
+  AnonymizationRunMetadata Function({SdkOptional<String> startedAt, SdkOptional<String> completedAt, SdkOptional<String> triggeredBy, SdkOptional<String> triggeredByUsername, SdkOptional<int> maskedColumns}) get copyWith => _copyWith;
 
-  AnonymizationRunMetadata _copyWith(
-          {Object? startedAt = sdkOmittedValue,
-          Object? completedAt = sdkOmittedValue,
-          Object? triggeredBy = sdkOmittedValue,
-          Object? triggeredByUsername = sdkOmittedValue,
-          Object? maskedColumns = sdkOmittedValue}) =>
-      AnonymizationRunMetadata(
-        startedAt: identical(startedAt, sdkOmittedValue)
-            ? this.startedAt
-            : startedAt as SdkOptional<String>,
-        completedAt: identical(completedAt, sdkOmittedValue)
-            ? this.completedAt
-            : completedAt as SdkOptional<String>,
-        triggeredBy: identical(triggeredBy, sdkOmittedValue)
-            ? this.triggeredBy
-            : triggeredBy as SdkOptional<String>,
-        triggeredByUsername: identical(triggeredByUsername, sdkOmittedValue)
-            ? this.triggeredByUsername
-            : triggeredByUsername as SdkOptional<String>,
-        maskedColumns: identical(maskedColumns, sdkOmittedValue)
-            ? this.maskedColumns
-            : maskedColumns as SdkOptional<int>,
-      );
+  AnonymizationRunMetadata _copyWith({Object? startedAt = sdkOmittedValue, Object? completedAt = sdkOmittedValue, Object? triggeredBy = sdkOmittedValue, Object? triggeredByUsername = sdkOmittedValue, Object? maskedColumns = sdkOmittedValue}) => AnonymizationRunMetadata(
+    startedAt: identical(startedAt, sdkOmittedValue) ? this.startedAt : startedAt as SdkOptional<String>,
+    completedAt: identical(completedAt, sdkOmittedValue) ? this.completedAt : completedAt as SdkOptional<String>,
+    triggeredBy: identical(triggeredBy, sdkOmittedValue) ? this.triggeredBy : triggeredBy as SdkOptional<String>,
+    triggeredByUsername: identical(triggeredByUsername, sdkOmittedValue) ? this.triggeredByUsername : triggeredByUsername as SdkOptional<String>,
+    maskedColumns: identical(maskedColumns, sdkOmittedValue) ? this.maskedColumns : maskedColumns as SdkOptional<int>,
+  );
 
-  factory AnonymizationRunMetadata.fromJson(Map<String, dynamic> json) =>
-      AnonymizationRunMetadata(
-        startedAt: json['started_at'] != null
-            ? SdkPresent((json['started_at'] as String?)!)
-            : const SdkOmitted(),
-        completedAt: json['completed_at'] != null
-            ? SdkPresent((json['completed_at'] as String?)!)
-            : const SdkOmitted(),
-        triggeredBy: json['triggered_by'] != null
-            ? SdkPresent((json['triggered_by'] as String?)!)
-            : const SdkOmitted(),
-        triggeredByUsername: json['triggered_by_username'] != null
-            ? SdkPresent((json['triggered_by_username'] as String?)!)
-            : const SdkOmitted(),
-        maskedColumns: json['masked_columns'] != null
-            ? SdkPresent(((json['masked_columns'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-      );
+  factory AnonymizationRunMetadata.fromJson(Map<String, dynamic> json) => AnonymizationRunMetadata(
+    startedAt: json['started_at'] != null ? SdkPresent((json['started_at'] as String?)!) : const SdkOmitted(),
+    completedAt: json['completed_at'] != null ? SdkPresent((json['completed_at'] as String?)!) : const SdkOmitted(),
+    triggeredBy: json['triggered_by'] != null ? SdkPresent((json['triggered_by'] as String?)!) : const SdkOmitted(),
+    triggeredByUsername: json['triggered_by_username'] != null ? SdkPresent((json['triggered_by_username'] as String?)!) : const SdkOmitted(),
+    maskedColumns: json['masked_columns'] != null ? SdkPresent(((json['masked_columns'] as num?)?.toInt())!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (startedAt) {
-          SdkPresent<String>(value: final value) => {
-              'started_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (completedAt) {
-          SdkPresent<String>(value: final value) => {
-              'completed_at': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (triggeredBy) {
-          SdkPresent<String>(value: final value) => {
-              'triggered_by': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (triggeredByUsername) {
-          SdkPresent<String>(value: final value) => {
-              'triggered_by_username': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (maskedColumns) {
-          SdkPresent<int>(value: final value) => {
-              'masked_columns': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (startedAt) {
+      SdkPresent<String>(value: final value) => {'started_at': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (completedAt) {
+      SdkPresent<String>(value: final value) => {'completed_at': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (triggeredBy) {
+      SdkPresent<String>(value: final value) => {'triggered_by': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (triggeredByUsername) {
+      SdkPresent<String>(value: final value) => {'triggered_by_username': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (maskedColumns) {
+      SdkPresent<int>(value: final value) => {'masked_columns': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

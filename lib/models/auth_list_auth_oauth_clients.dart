@@ -8,33 +8,22 @@ part of 'auth.dart';
 class ListNeonAuthOAuthClientsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// OAuth clients registered for the branch.
   final List<NeonAuthOAuthClient> clients;
 
   const ListNeonAuthOAuthClientsResponse({required this.clients});
 
-  ListNeonAuthOAuthClientsResponse Function({List<NeonAuthOAuthClient> clients})
-      get copyWith => _copyWith;
+  ListNeonAuthOAuthClientsResponse Function({List<NeonAuthOAuthClient> clients}) get copyWith => _copyWith;
 
-  ListNeonAuthOAuthClientsResponse _copyWith(
-          {Object? clients = sdkOmittedValue}) =>
-      ListNeonAuthOAuthClientsResponse(
-        clients: identical(clients, sdkOmittedValue)
-            ? this.clients
-            : clients as List<NeonAuthOAuthClient>,
-      );
+  ListNeonAuthOAuthClientsResponse _copyWith({Object? clients = sdkOmittedValue}) => ListNeonAuthOAuthClientsResponse(
+    clients: identical(clients, sdkOmittedValue) ? this.clients : clients as List<NeonAuthOAuthClient>,
+  );
 
-  factory ListNeonAuthOAuthClientsResponse.fromJson(
-          Map<String, dynamic> json) =>
-      ListNeonAuthOAuthClientsResponse(
-        clients: ((json['clients'] as List?)
-            ?.map(
-                (e) => NeonAuthOAuthClient.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ListNeonAuthOAuthClientsResponse.fromJson(Map<String, dynamic> json) => ListNeonAuthOAuthClientsResponse(
+    clients: ((json['clients'] as List?)?.map((e) => NeonAuthOAuthClient.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'clients': clients.map((item) => item.toJson()).toList(),
-      };
+    'clients': clients.map((item) => item.toJson()).toList(),
+  };
 }

@@ -8,87 +8,57 @@ part of 'branch.dart';
 class DatabaseUpdateRequestDatabase {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Name of the database to update.
   final SdkOptional<String> name;
-
   /// The name of the role that owns the database
   final SdkOptional<String> ownerName;
 
-  const DatabaseUpdateRequestDatabase(
-      {this.name = const SdkOmitted(), this.ownerName = const SdkOmitted()});
+  const DatabaseUpdateRequestDatabase({this.name = const SdkOmitted(), this.ownerName = const SdkOmitted()});
 
-  DatabaseUpdateRequestDatabase Function(
-      {SdkOptional<String> name,
-      SdkOptional<String> ownerName}) get copyWith => _copyWith;
+  DatabaseUpdateRequestDatabase Function({SdkOptional<String> name, SdkOptional<String> ownerName}) get copyWith => _copyWith;
 
-  DatabaseUpdateRequestDatabase _copyWith(
-          {Object? name = sdkOmittedValue,
-          Object? ownerName = sdkOmittedValue}) =>
-      DatabaseUpdateRequestDatabase(
-        name: identical(name, sdkOmittedValue)
-            ? this.name
-            : name as SdkOptional<String>,
-        ownerName: identical(ownerName, sdkOmittedValue)
-            ? this.ownerName
-            : ownerName as SdkOptional<String>,
-      );
+  DatabaseUpdateRequestDatabase _copyWith({Object? name = sdkOmittedValue, Object? ownerName = sdkOmittedValue}) => DatabaseUpdateRequestDatabase(
+    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
+    ownerName: identical(ownerName, sdkOmittedValue) ? this.ownerName : ownerName as SdkOptional<String>,
+  );
 
-  factory DatabaseUpdateRequestDatabase.fromJson(Map<String, dynamic> json) =>
-      DatabaseUpdateRequestDatabase(
-        name: json['name'] != null
-            ? SdkPresent((json['name'] as String?)!)
-            : const SdkOmitted(),
-        ownerName: json['owner_name'] != null
-            ? SdkPresent((json['owner_name'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory DatabaseUpdateRequestDatabase.fromJson(Map<String, dynamic> json) => DatabaseUpdateRequestDatabase(
+    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
+    ownerName: json['owner_name'] != null ? SdkPresent((json['owner_name'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (name) {
-          SdkPresent<String>(value: final value) => {
-              'name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (ownerName) {
-          SdkPresent<String>(value: final value) => {
-              'owner_name': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (name) {
+      SdkPresent<String>(value: final value) => {'name': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (ownerName) {
+      SdkPresent<String>(value: final value) => {'owner_name': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
 
 /// Typed representation of the `DatabaseUpdateRequest` API schema.
 class DatabaseUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Properties to update on the database.
   final DatabaseUpdateRequestDatabase database;
 
   const DatabaseUpdateRequest({required this.database});
 
-  DatabaseUpdateRequest Function({DatabaseUpdateRequestDatabase database})
-      get copyWith => _copyWith;
+  DatabaseUpdateRequest Function({DatabaseUpdateRequestDatabase database}) get copyWith => _copyWith;
 
-  DatabaseUpdateRequest _copyWith({Object? database = sdkOmittedValue}) =>
-      DatabaseUpdateRequest(
-        database: identical(database, sdkOmittedValue)
-            ? this.database
-            : database as DatabaseUpdateRequestDatabase,
-      );
+  DatabaseUpdateRequest _copyWith({Object? database = sdkOmittedValue}) => DatabaseUpdateRequest(
+    database: identical(database, sdkOmittedValue) ? this.database : database as DatabaseUpdateRequestDatabase,
+  );
 
-  factory DatabaseUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      DatabaseUpdateRequest(
-        database: (json['database'] != null
-            ? DatabaseUpdateRequestDatabase.fromJson(
-                json['database'] as Map<String, dynamic>)
-            : null)!,
-      );
+  factory DatabaseUpdateRequest.fromJson(Map<String, dynamic> json) => DatabaseUpdateRequest(
+    database: (json['database'] != null ? DatabaseUpdateRequestDatabase.fromJson(json['database'] as Map<String, dynamic>) : null)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'database': database.toJson(),
-      };
+    'database': database.toJson(),
+  };
 }

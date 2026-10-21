@@ -8,184 +8,81 @@ part of 'auth.dart';
 class NeonAuthPluginConfigs {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Configuration for the Neon Auth organization plugin, which enables user organizations within the authentication system. This is distinct from a Neon platform organization.
   final SdkOptional<NeonAuthOrganizationConfig> organization;
-
   /// Configuration for passwordless magic-link email authentication.
   final SdkOptional<NeonAuthMagicLinkConfig> magicLink;
-
   /// Configuration for the phone number authentication plugin.
   final SdkOptional<NeonAuthPhoneNumberConfig> phoneNumber;
-
   /// Configuration for the OAuth provider plugin, which lets Neon Auth act as an OAuth authorization server for your own clients.
   final SdkOptional<NeonAuthOAuthProviderConfig> oauthProvider;
-
   /// Email server configuration used to send authentication emails.
   final SdkOptional<NeonAuthEmailServerConfigResponse> emailProvider;
-
   /// Configuration for email and password authentication.
   final SdkOptional<NeonAuthEmailAndPasswordConfig> emailAndPassword;
-
   /// OAuth provider configurations enabled for this auth setup.
   final SdkOptional<List<NeonAuthOauthProvider>> oauthProviders;
-
   /// Permits authentication requests from localhost origins when true. Intended for local development; disable in production environments.
   final SdkOptional<bool> allowLocalhost;
 
-  const NeonAuthPluginConfigs(
-      {this.organization = const SdkOmitted(),
-      this.magicLink = const SdkOmitted(),
-      this.phoneNumber = const SdkOmitted(),
-      this.oauthProvider = const SdkOmitted(),
-      this.emailProvider = const SdkOmitted(),
-      this.emailAndPassword = const SdkOmitted(),
-      this.oauthProviders = const SdkOmitted(),
-      this.allowLocalhost = const SdkOmitted()});
+  const NeonAuthPluginConfigs({this.organization = const SdkOmitted(), this.magicLink = const SdkOmitted(), this.phoneNumber = const SdkOmitted(), this.oauthProvider = const SdkOmitted(), this.emailProvider = const SdkOmitted(), this.emailAndPassword = const SdkOmitted(), this.oauthProviders = const SdkOmitted(), this.allowLocalhost = const SdkOmitted()});
 
-  NeonAuthPluginConfigs Function(
-      {SdkOptional<NeonAuthOrganizationConfig> organization,
-      SdkOptional<NeonAuthMagicLinkConfig> magicLink,
-      SdkOptional<NeonAuthPhoneNumberConfig> phoneNumber,
-      SdkOptional<NeonAuthOAuthProviderConfig> oauthProvider,
-      SdkOptional<NeonAuthEmailServerConfigResponse> emailProvider,
-      SdkOptional<NeonAuthEmailAndPasswordConfig> emailAndPassword,
-      SdkOptional<List<NeonAuthOauthProvider>> oauthProviders,
-      SdkOptional<bool> allowLocalhost}) get copyWith => _copyWith;
+  NeonAuthPluginConfigs Function({SdkOptional<NeonAuthOrganizationConfig> organization, SdkOptional<NeonAuthMagicLinkConfig> magicLink, SdkOptional<NeonAuthPhoneNumberConfig> phoneNumber, SdkOptional<NeonAuthOAuthProviderConfig> oauthProvider, SdkOptional<NeonAuthEmailServerConfigResponse> emailProvider, SdkOptional<NeonAuthEmailAndPasswordConfig> emailAndPassword, SdkOptional<List<NeonAuthOauthProvider>> oauthProviders, SdkOptional<bool> allowLocalhost}) get copyWith => _copyWith;
 
-  NeonAuthPluginConfigs _copyWith(
-          {Object? organization = sdkOmittedValue,
-          Object? magicLink = sdkOmittedValue,
-          Object? phoneNumber = sdkOmittedValue,
-          Object? oauthProvider = sdkOmittedValue,
-          Object? emailProvider = sdkOmittedValue,
-          Object? emailAndPassword = sdkOmittedValue,
-          Object? oauthProviders = sdkOmittedValue,
-          Object? allowLocalhost = sdkOmittedValue}) =>
-      NeonAuthPluginConfigs(
-        organization: identical(organization, sdkOmittedValue)
-            ? this.organization
-            : organization as SdkOptional<NeonAuthOrganizationConfig>,
-        magicLink: identical(magicLink, sdkOmittedValue)
-            ? this.magicLink
-            : magicLink as SdkOptional<NeonAuthMagicLinkConfig>,
-        phoneNumber: identical(phoneNumber, sdkOmittedValue)
-            ? this.phoneNumber
-            : phoneNumber as SdkOptional<NeonAuthPhoneNumberConfig>,
-        oauthProvider: identical(oauthProvider, sdkOmittedValue)
-            ? this.oauthProvider
-            : oauthProvider as SdkOptional<NeonAuthOAuthProviderConfig>,
-        emailProvider: identical(emailProvider, sdkOmittedValue)
-            ? this.emailProvider
-            : emailProvider as SdkOptional<NeonAuthEmailServerConfigResponse>,
-        emailAndPassword: identical(emailAndPassword, sdkOmittedValue)
-            ? this.emailAndPassword
-            : emailAndPassword as SdkOptional<NeonAuthEmailAndPasswordConfig>,
-        oauthProviders: identical(oauthProviders, sdkOmittedValue)
-            ? this.oauthProviders
-            : oauthProviders as SdkOptional<List<NeonAuthOauthProvider>>,
-        allowLocalhost: identical(allowLocalhost, sdkOmittedValue)
-            ? this.allowLocalhost
-            : allowLocalhost as SdkOptional<bool>,
-      );
+  NeonAuthPluginConfigs _copyWith({Object? organization = sdkOmittedValue, Object? magicLink = sdkOmittedValue, Object? phoneNumber = sdkOmittedValue, Object? oauthProvider = sdkOmittedValue, Object? emailProvider = sdkOmittedValue, Object? emailAndPassword = sdkOmittedValue, Object? oauthProviders = sdkOmittedValue, Object? allowLocalhost = sdkOmittedValue}) => NeonAuthPluginConfigs(
+    organization: identical(organization, sdkOmittedValue) ? this.organization : organization as SdkOptional<NeonAuthOrganizationConfig>,
+    magicLink: identical(magicLink, sdkOmittedValue) ? this.magicLink : magicLink as SdkOptional<NeonAuthMagicLinkConfig>,
+    phoneNumber: identical(phoneNumber, sdkOmittedValue) ? this.phoneNumber : phoneNumber as SdkOptional<NeonAuthPhoneNumberConfig>,
+    oauthProvider: identical(oauthProvider, sdkOmittedValue) ? this.oauthProvider : oauthProvider as SdkOptional<NeonAuthOAuthProviderConfig>,
+    emailProvider: identical(emailProvider, sdkOmittedValue) ? this.emailProvider : emailProvider as SdkOptional<NeonAuthEmailServerConfigResponse>,
+    emailAndPassword: identical(emailAndPassword, sdkOmittedValue) ? this.emailAndPassword : emailAndPassword as SdkOptional<NeonAuthEmailAndPasswordConfig>,
+    oauthProviders: identical(oauthProviders, sdkOmittedValue) ? this.oauthProviders : oauthProviders as SdkOptional<List<NeonAuthOauthProvider>>,
+    allowLocalhost: identical(allowLocalhost, sdkOmittedValue) ? this.allowLocalhost : allowLocalhost as SdkOptional<bool>,
+  );
 
-  factory NeonAuthPluginConfigs.fromJson(Map<String, dynamic> json) =>
-      NeonAuthPluginConfigs(
-        organization: json['organization'] != null
-            ? SdkPresent((json['organization'] != null
-                ? NeonAuthOrganizationConfig.fromJson(
-                    json['organization'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        magicLink: json['magic_link'] != null
-            ? SdkPresent((json['magic_link'] != null
-                ? NeonAuthMagicLinkConfig.fromJson(
-                    json['magic_link'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        phoneNumber: json['phone_number'] != null
-            ? SdkPresent((json['phone_number'] != null
-                ? NeonAuthPhoneNumberConfig.fromJson(
-                    json['phone_number'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        oauthProvider: json['oauth_provider'] != null
-            ? SdkPresent((json['oauth_provider'] != null
-                ? NeonAuthOAuthProviderConfig.fromJson(
-                    json['oauth_provider'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        emailProvider: json['email_provider'] != null
-            ? SdkPresent((json['email_provider'] != null
-                ? NeonAuthEmailServerConfigResponse.fromJson(
-                    json['email_provider'])
-                : null)!)
-            : const SdkOmitted(),
-        emailAndPassword: json['email_and_password'] != null
-            ? SdkPresent((json['email_and_password'] != null
-                ? NeonAuthEmailAndPasswordConfig.fromJson(
-                    json['email_and_password'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-        oauthProviders: json['oauth_providers'] != null
-            ? SdkPresent(((json['oauth_providers'] as List?)
-                ?.map((e) =>
-                    NeonAuthOauthProvider.fromJson(e as Map<String, dynamic>))
-                .toList())!)
-            : const SdkOmitted(),
-        allowLocalhost: json['allow_localhost'] != null
-            ? SdkPresent((json['allow_localhost'] as bool?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonAuthPluginConfigs.fromJson(Map<String, dynamic> json) => NeonAuthPluginConfigs(
+    organization: json['organization'] != null ? SdkPresent((json['organization'] != null ? NeonAuthOrganizationConfig.fromJson(json['organization'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    magicLink: json['magic_link'] != null ? SdkPresent((json['magic_link'] != null ? NeonAuthMagicLinkConfig.fromJson(json['magic_link'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    phoneNumber: json['phone_number'] != null ? SdkPresent((json['phone_number'] != null ? NeonAuthPhoneNumberConfig.fromJson(json['phone_number'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    oauthProvider: json['oauth_provider'] != null ? SdkPresent((json['oauth_provider'] != null ? NeonAuthOAuthProviderConfig.fromJson(json['oauth_provider'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    emailProvider: json['email_provider'] != null ? SdkPresent((json['email_provider'] != null ? NeonAuthEmailServerConfigResponse.fromJson(json['email_provider']) : null)!) : const SdkOmitted(),
+    emailAndPassword: json['email_and_password'] != null ? SdkPresent((json['email_and_password'] != null ? NeonAuthEmailAndPasswordConfig.fromJson(json['email_and_password'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+    oauthProviders: json['oauth_providers'] != null ? SdkPresent(((json['oauth_providers'] as List?)?.map((e) => NeonAuthOauthProvider.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
+    allowLocalhost: json['allow_localhost'] != null ? SdkPresent((json['allow_localhost'] as bool?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (organization) {
-          SdkPresent<NeonAuthOrganizationConfig>(value: final value) => {
-              'organization': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (magicLink) {
-          SdkPresent<NeonAuthMagicLinkConfig>(value: final value) => {
-              'magic_link': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (phoneNumber) {
-          SdkPresent<NeonAuthPhoneNumberConfig>(value: final value) => {
-              'phone_number': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (oauthProvider) {
-          SdkPresent<NeonAuthOAuthProviderConfig>(value: final value) => {
-              'oauth_provider': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (emailProvider) {
-          SdkPresent<NeonAuthEmailServerConfigResponse>(value: final value) => {
-              'email_provider': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (emailAndPassword) {
-          SdkPresent<NeonAuthEmailAndPasswordConfig>(value: final value) => {
-              'email_and_password': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (oauthProviders) {
-          SdkPresent<List<NeonAuthOauthProvider>>(value: final value) => {
-              'oauth_providers': value.map((item) => item.toJson()).toList(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (allowLocalhost) {
-          SdkPresent<bool>(value: final value) => {
-              'allow_localhost': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (organization) {
+      SdkPresent<NeonAuthOrganizationConfig>(value: final value) => {'organization': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (magicLink) {
+      SdkPresent<NeonAuthMagicLinkConfig>(value: final value) => {'magic_link': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (phoneNumber) {
+      SdkPresent<NeonAuthPhoneNumberConfig>(value: final value) => {'phone_number': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (oauthProvider) {
+      SdkPresent<NeonAuthOAuthProviderConfig>(value: final value) => {'oauth_provider': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (emailProvider) {
+      SdkPresent<NeonAuthEmailServerConfigResponse>(value: final value) => {'email_provider': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (emailAndPassword) {
+      SdkPresent<NeonAuthEmailAndPasswordConfig>(value: final value) => {'email_and_password': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (oauthProviders) {
+      SdkPresent<List<NeonAuthOauthProvider>>(value: final value) => {'oauth_providers': value.map((item) => item.toJson()).toList(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (allowLocalhost) {
+      SdkPresent<bool>(value: final value) => {'allow_localhost': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

@@ -25,12 +25,10 @@ Future<Realtime> getRealtime(ClientConfig config,
           operationId: 'getRealtime',
           fromJsonRaw: (value) => Realtime.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Enables Realtime for the branch, or applies new options to an enabled branch. Provisioning is asynchronous; poll the Realtime state until it is no longer pending.
 ///
@@ -57,12 +55,10 @@ Future<void> enableRealtime(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'enableRealtime',
           options: requestOptions,
-          errors: {
-            'default': (value) =>
-                GeneralError.fromJson(value as Map<String, dynamic>)
-          }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Disables Realtime for the branch and discards its shared secret. Deprovisioning is asynchronous.
 ///
@@ -81,12 +77,10 @@ Future<void> disableRealtime(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'disableRealtime',
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Retrieves the secret the application backend issues Realtime tokens with. Requires permission to read the project's credentials. Returns 404 while Realtime is disabled or before the secret is provisioned. After a rotation, this returns the previous secret until `pending` is false.
 ///
@@ -106,12 +100,10 @@ Future<RealtimeSecret> getRealtimeSecret(ClientConfig config,
           operationId: 'getRealtimeSecret',
           fromJsonRaw: (value) => RealtimeSecret.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }
+
 
 /// Replaces the branch's Realtime shared secret. Rotation is asynchronous: once the Realtime state is no longer pending, the previous secret stops working and `GET /projects/{project_id}/branches/{branch_id}/realtime/secret` returns the new one.
 ///
@@ -130,9 +122,6 @@ Future<void> rotateRealtimeSecret(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'rotateRealtimeSecret',
           options: requestOptions,
-          errors: {
-        'default': (value) =>
-            GeneralError.fromJson(value as Map<String, dynamic>)
-      }))
+          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
       .data;
 }

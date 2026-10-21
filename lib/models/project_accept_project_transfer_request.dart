@@ -8,76 +8,51 @@ part of 'project.dart';
 class AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Description of why the plan is not satisfied
   final String message;
-
   /// A short code identifying the reason
   final String code;
 
-  const AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
-      {required this.message, required this.code});
+  const AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem({required this.message, required this.code});
 
-  AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem Function(
-      {String message, String code}) get copyWith => _copyWith;
+  AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem Function({String message, String code}) get copyWith => _copyWith;
 
-  AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem _copyWith(
-          {Object? message = sdkOmittedValue,
-          Object? code = sdkOmittedValue}) =>
-      AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
-        message: identical(message, sdkOmittedValue)
-            ? this.message
-            : message as String,
-        code: identical(code, sdkOmittedValue) ? this.code : code as String,
-      );
+  AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem _copyWith({Object? message = sdkOmittedValue, Object? code = sdkOmittedValue}) => AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
+    message: identical(message, sdkOmittedValue) ? this.message : message as String,
+    code: identical(code, sdkOmittedValue) ? this.code : code as String,
+  );
 
-  factory AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem.fromJson(
-          Map<String, dynamic> json) =>
-      AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
-        message: (json['message'] as String?)!,
-        code: (json['code'] as String?)!,
-      );
+  factory AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem.fromJson(Map<String, dynamic> json) => AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem(
+    message: (json['message'] as String?)!,
+    code: (json['code'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'message': message,
-        'code': code,
-      };
+    'message': message,
+    'code': code,
+  };
 }
 
 /// Typed representation of the `AcceptProjectTransferRequestSatisfiesPlanError` API schema.
 class AcceptProjectTransferRequestSatisfiesPlanError {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// List of reasons why the target account's plan cannot satisfy the transfer requirements. Each item contains a `code` identifying the constraint and a `message` with a human-readable explanation.
   final List<AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem> reasons;
 
   const AcceptProjectTransferRequestSatisfiesPlanError({required this.reasons});
 
-  AcceptProjectTransferRequestSatisfiesPlanError Function(
-      {List<AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem>
-          reasons}) get copyWith => _copyWith;
+  AcceptProjectTransferRequestSatisfiesPlanError Function({List<AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem> reasons}) get copyWith => _copyWith;
 
-  AcceptProjectTransferRequestSatisfiesPlanError _copyWith(
-          {Object? reasons = sdkOmittedValue}) =>
-      AcceptProjectTransferRequestSatisfiesPlanError(
-        reasons: identical(reasons, sdkOmittedValue)
-            ? this.reasons
-            : reasons as List<
-                AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem>,
-      );
+  AcceptProjectTransferRequestSatisfiesPlanError _copyWith({Object? reasons = sdkOmittedValue}) => AcceptProjectTransferRequestSatisfiesPlanError(
+    reasons: identical(reasons, sdkOmittedValue) ? this.reasons : reasons as List<AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem>,
+  );
 
-  factory AcceptProjectTransferRequestSatisfiesPlanError.fromJson(
-          Map<String, dynamic> json) =>
-      AcceptProjectTransferRequestSatisfiesPlanError(
-        reasons: ((json['reasons'] as List?)
-            ?.map((e) =>
-                AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem
-                    .fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory AcceptProjectTransferRequestSatisfiesPlanError.fromJson(Map<String, dynamic> json) => AcceptProjectTransferRequestSatisfiesPlanError(
+    reasons: ((json['reasons'] as List?)?.map((e) => AcceptProjectTransferRequestSatisfiesPlanErrorReasonsItem.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'reasons': reasons.map((item) => item.toJson()).toList(),
-      };
+    'reasons': reasons.map((item) => item.toJson()).toList(),
+  };
 }

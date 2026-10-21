@@ -8,112 +8,58 @@ part of 'functions.dart';
 class NeonFunctionDeployment {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The deployment id, which is the platform version number (monotonic per function).
   final int id;
-
   /// Build lifecycle status of the deployment.
   final NeonFunctionDeploymentStatus status;
-
   /// Required `int32`-formatted value serialized in the `memory_mib` wire field.
   final int memoryMib;
-
   /// Required `string` value serialized in the `runtime` wire field.
   final String runtime;
-
   /// Required `string` value serialized in the `created_at` wire field.
   final String createdAt;
-
   /// The NAMES of the deployment's environment variables, sorted. Values are encrypted at rest and are never returned — they are write-only. To change a value, deploy the variable with the new value; to remove a variable, deploy it with an empty value.
   final SdkOptional<List<String>> environment;
-
   /// Human-readable reason the deployment build failed. Present only when `status` is `failed`.
   final SdkOptional<String> error;
 
-  const NeonFunctionDeployment(
-      {required this.id,
-      required this.status,
-      required this.memoryMib,
-      required this.runtime,
-      required this.createdAt,
-      this.environment = const SdkOmitted(),
-      this.error = const SdkOmitted()});
+  const NeonFunctionDeployment({required this.id, required this.status, required this.memoryMib, required this.runtime, required this.createdAt, this.environment = const SdkOmitted(), this.error = const SdkOmitted()});
 
-  NeonFunctionDeployment Function(
-      {int id,
-      NeonFunctionDeploymentStatus status,
-      int memoryMib,
-      String runtime,
-      String createdAt,
-      SdkOptional<List<String>> environment,
-      SdkOptional<String> error}) get copyWith => _copyWith;
+  NeonFunctionDeployment Function({int id, NeonFunctionDeploymentStatus status, int memoryMib, String runtime, String createdAt, SdkOptional<List<String>> environment, SdkOptional<String> error}) get copyWith => _copyWith;
 
-  NeonFunctionDeployment _copyWith(
-          {Object? id = sdkOmittedValue,
-          Object? status = sdkOmittedValue,
-          Object? memoryMib = sdkOmittedValue,
-          Object? runtime = sdkOmittedValue,
-          Object? createdAt = sdkOmittedValue,
-          Object? environment = sdkOmittedValue,
-          Object? error = sdkOmittedValue}) =>
-      NeonFunctionDeployment(
-        id: identical(id, sdkOmittedValue) ? this.id : id as int,
-        status: identical(status, sdkOmittedValue)
-            ? this.status
-            : status as NeonFunctionDeploymentStatus,
-        memoryMib: identical(memoryMib, sdkOmittedValue)
-            ? this.memoryMib
-            : memoryMib as int,
-        runtime: identical(runtime, sdkOmittedValue)
-            ? this.runtime
-            : runtime as String,
-        createdAt: identical(createdAt, sdkOmittedValue)
-            ? this.createdAt
-            : createdAt as String,
-        environment: identical(environment, sdkOmittedValue)
-            ? this.environment
-            : environment as SdkOptional<List<String>>,
-        error: identical(error, sdkOmittedValue)
-            ? this.error
-            : error as SdkOptional<String>,
-      );
+  NeonFunctionDeployment _copyWith({Object? id = sdkOmittedValue, Object? status = sdkOmittedValue, Object? memoryMib = sdkOmittedValue, Object? runtime = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? environment = sdkOmittedValue, Object? error = sdkOmittedValue}) => NeonFunctionDeployment(
+    id: identical(id, sdkOmittedValue) ? this.id : id as int,
+    status: identical(status, sdkOmittedValue) ? this.status : status as NeonFunctionDeploymentStatus,
+    memoryMib: identical(memoryMib, sdkOmittedValue) ? this.memoryMib : memoryMib as int,
+    runtime: identical(runtime, sdkOmittedValue) ? this.runtime : runtime as String,
+    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
+    environment: identical(environment, sdkOmittedValue) ? this.environment : environment as SdkOptional<List<String>>,
+    error: identical(error, sdkOmittedValue) ? this.error : error as SdkOptional<String>,
+  );
 
-  factory NeonFunctionDeployment.fromJson(Map<String, dynamic> json) =>
-      NeonFunctionDeployment(
-        id: ((json['id'] as num?)?.toInt())!,
-        status: (json['status'] != null
-            ? NeonFunctionDeploymentStatus.fromJson(json['status'] as String)
-            : null)!,
-        memoryMib: ((json['memory_mib'] as num?)?.toInt())!,
-        runtime: (json['runtime'] as String?)!,
-        createdAt: (json['created_at'] as String?)!,
-        environment: json['environment'] != null
-            ? SdkPresent(((json['environment'] as List?)
-                ?.map((e) => e as String)
-                .toList())!)
-            : const SdkOmitted(),
-        error: json['error'] != null
-            ? SdkPresent((json['error'] as String?)!)
-            : const SdkOmitted(),
-      );
+  factory NeonFunctionDeployment.fromJson(Map<String, dynamic> json) => NeonFunctionDeployment(
+    id: ((json['id'] as num?)?.toInt())!,
+    status: (json['status'] != null ? NeonFunctionDeploymentStatus.fromJson(json['status'] as String) : null)!,
+    memoryMib: ((json['memory_mib'] as num?)?.toInt())!,
+    runtime: (json['runtime'] as String?)!,
+    createdAt: (json['created_at'] as String?)!,
+    environment: json['environment'] != null ? SdkPresent(((json['environment'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
+    error: json['error'] != null ? SdkPresent((json['error'] as String?)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'status': status.toJson(),
-        'memory_mib': memoryMib,
-        'runtime': runtime,
-        'created_at': createdAt,
-        ...switch (environment) {
-          SdkPresent<List<String>>(value: final value) => {
-              'environment': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (error) {
-          SdkPresent<String>(value: final value) => {
-              'error': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'id': id,
+    'status': status.toJson(),
+    'memory_mib': memoryMib,
+    'runtime': runtime,
+    'created_at': createdAt,
+    ...switch (environment) {
+      SdkPresent<List<String>>(value: final value) => {'environment': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (error) {
+      SdkPresent<String>(value: final value) => {'error': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

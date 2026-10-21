@@ -8,73 +8,51 @@ part of 'shared.dart';
 class ProjectsWithIntegrationResponseProjectsItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// The Neon project ID. Use as the `project_id` path parameter in other endpoints.
   final String id;
-
   /// Name of the external integration associated with the project.
   final String integration;
 
-  const ProjectsWithIntegrationResponseProjectsItem(
-      {required this.id, required this.integration});
+  const ProjectsWithIntegrationResponseProjectsItem({required this.id, required this.integration});
 
-  ProjectsWithIntegrationResponseProjectsItem Function(
-      {String id, String integration}) get copyWith => _copyWith;
+  ProjectsWithIntegrationResponseProjectsItem Function({String id, String integration}) get copyWith => _copyWith;
 
-  ProjectsWithIntegrationResponseProjectsItem _copyWith(
-          {Object? id = sdkOmittedValue,
-          Object? integration = sdkOmittedValue}) =>
-      ProjectsWithIntegrationResponseProjectsItem(
-        id: identical(id, sdkOmittedValue) ? this.id : id as String,
-        integration: identical(integration, sdkOmittedValue)
-            ? this.integration
-            : integration as String,
-      );
+  ProjectsWithIntegrationResponseProjectsItem _copyWith({Object? id = sdkOmittedValue, Object? integration = sdkOmittedValue}) => ProjectsWithIntegrationResponseProjectsItem(
+    id: identical(id, sdkOmittedValue) ? this.id : id as String,
+    integration: identical(integration, sdkOmittedValue) ? this.integration : integration as String,
+  );
 
-  factory ProjectsWithIntegrationResponseProjectsItem.fromJson(
-          Map<String, dynamic> json) =>
-      ProjectsWithIntegrationResponseProjectsItem(
-        id: (json['id'] as String?)!,
-        integration: (json['integration'] as String?)!,
-      );
+  factory ProjectsWithIntegrationResponseProjectsItem.fromJson(Map<String, dynamic> json) => ProjectsWithIntegrationResponseProjectsItem(
+    id: (json['id'] as String?)!,
+    integration: (json['integration'] as String?)!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'integration': integration,
-      };
+    'id': id,
+    'integration': integration,
+  };
 }
 
 /// Typed representation of the `ProjectsWithIntegrationResponse` API schema.
 class ProjectsWithIntegrationResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Projects that have the requested integration, each including the project details and associated integration metadata.
   final List<ProjectsWithIntegrationResponseProjectsItem> projects;
 
   const ProjectsWithIntegrationResponse({required this.projects});
 
-  ProjectsWithIntegrationResponse Function(
-          {List<ProjectsWithIntegrationResponseProjectsItem> projects})
-      get copyWith => _copyWith;
+  ProjectsWithIntegrationResponse Function({List<ProjectsWithIntegrationResponseProjectsItem> projects}) get copyWith => _copyWith;
 
-  ProjectsWithIntegrationResponse _copyWith(
-          {Object? projects = sdkOmittedValue}) =>
-      ProjectsWithIntegrationResponse(
-        projects: identical(projects, sdkOmittedValue)
-            ? this.projects
-            : projects as List<ProjectsWithIntegrationResponseProjectsItem>,
-      );
+  ProjectsWithIntegrationResponse _copyWith({Object? projects = sdkOmittedValue}) => ProjectsWithIntegrationResponse(
+    projects: identical(projects, sdkOmittedValue) ? this.projects : projects as List<ProjectsWithIntegrationResponseProjectsItem>,
+  );
 
-  factory ProjectsWithIntegrationResponse.fromJson(Map<String, dynamic> json) =>
-      ProjectsWithIntegrationResponse(
-        projects: ((json['projects'] as List?)
-            ?.map((e) => ProjectsWithIntegrationResponseProjectsItem.fromJson(
-                e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory ProjectsWithIntegrationResponse.fromJson(Map<String, dynamic> json) => ProjectsWithIntegrationResponse(
+    projects: ((json['projects'] as List?)?.map((e) => ProjectsWithIntegrationResponseProjectsItem.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'projects': projects.map((item) => item.toJson()).toList(),
-      };
+    'projects': projects.map((item) => item.toJson()).toList(),
+  };
 }

@@ -8,57 +8,33 @@ part of 'shared.dart';
 class PreloadLibraries {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// When true, the project's preload libraries include the platform default set in addition to any libraries listed in `enabled_libraries`.
   final SdkOptional<bool> useDefaults;
-
   /// Names of shared preload libraries to enable for the project.
   final SdkOptional<List<String>> enabledLibraries;
 
-  const PreloadLibraries(
-      {this.useDefaults = const SdkOmitted(),
-      this.enabledLibraries = const SdkOmitted()});
+  const PreloadLibraries({this.useDefaults = const SdkOmitted(), this.enabledLibraries = const SdkOmitted()});
 
-  PreloadLibraries Function(
-      {SdkOptional<bool> useDefaults,
-      SdkOptional<List<String>> enabledLibraries}) get copyWith => _copyWith;
+  PreloadLibraries Function({SdkOptional<bool> useDefaults, SdkOptional<List<String>> enabledLibraries}) get copyWith => _copyWith;
 
-  PreloadLibraries _copyWith(
-          {Object? useDefaults = sdkOmittedValue,
-          Object? enabledLibraries = sdkOmittedValue}) =>
-      PreloadLibraries(
-        useDefaults: identical(useDefaults, sdkOmittedValue)
-            ? this.useDefaults
-            : useDefaults as SdkOptional<bool>,
-        enabledLibraries: identical(enabledLibraries, sdkOmittedValue)
-            ? this.enabledLibraries
-            : enabledLibraries as SdkOptional<List<String>>,
-      );
+  PreloadLibraries _copyWith({Object? useDefaults = sdkOmittedValue, Object? enabledLibraries = sdkOmittedValue}) => PreloadLibraries(
+    useDefaults: identical(useDefaults, sdkOmittedValue) ? this.useDefaults : useDefaults as SdkOptional<bool>,
+    enabledLibraries: identical(enabledLibraries, sdkOmittedValue) ? this.enabledLibraries : enabledLibraries as SdkOptional<List<String>>,
+  );
 
-  factory PreloadLibraries.fromJson(Map<String, dynamic> json) =>
-      PreloadLibraries(
-        useDefaults: json['use_defaults'] != null
-            ? SdkPresent((json['use_defaults'] as bool?)!)
-            : const SdkOmitted(),
-        enabledLibraries: json['enabled_libraries'] != null
-            ? SdkPresent(((json['enabled_libraries'] as List?)
-                ?.map((e) => e as String)
-                .toList())!)
-            : const SdkOmitted(),
-      );
+  factory PreloadLibraries.fromJson(Map<String, dynamic> json) => PreloadLibraries(
+    useDefaults: json['use_defaults'] != null ? SdkPresent((json['use_defaults'] as bool?)!) : const SdkOmitted(),
+    enabledLibraries: json['enabled_libraries'] != null ? SdkPresent(((json['enabled_libraries'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        ...switch (useDefaults) {
-          SdkPresent<bool>(value: final value) => {
-              'use_defaults': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (enabledLibraries) {
-          SdkPresent<List<String>>(value: final value) => {
-              'enabled_libraries': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    ...switch (useDefaults) {
+      SdkPresent<bool>(value: final value) => {'use_defaults': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (enabledLibraries) {
+      SdkPresent<List<String>>(value: final value) => {'enabled_libraries': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

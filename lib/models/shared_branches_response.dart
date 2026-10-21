@@ -8,7 +8,6 @@ part of 'shared.dart';
 class BranchesResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Branches in the project. Each includes `id`, `name`, `current_state`, and `created_at`.
   final List<Branch> branches;
 
@@ -16,21 +15,15 @@ class BranchesResponse {
 
   BranchesResponse Function({List<Branch> branches}) get copyWith => _copyWith;
 
-  BranchesResponse _copyWith({Object? branches = sdkOmittedValue}) =>
-      BranchesResponse(
-        branches: identical(branches, sdkOmittedValue)
-            ? this.branches
-            : branches as List<Branch>,
-      );
+  BranchesResponse _copyWith({Object? branches = sdkOmittedValue}) => BranchesResponse(
+    branches: identical(branches, sdkOmittedValue) ? this.branches : branches as List<Branch>,
+  );
 
-  factory BranchesResponse.fromJson(Map<String, dynamic> json) =>
-      BranchesResponse(
-        branches: ((json['branches'] as List?)
-            ?.map((e) => Branch.fromJson(e as Map<String, dynamic>))
-            .toList())!,
-      );
+  factory BranchesResponse.fromJson(Map<String, dynamic> json) => BranchesResponse(
+    branches: ((json['branches'] as List?)?.map((e) => Branch.fromJson(e as Map<String, dynamic>)).toList())!,
+  );
 
   Map<String, dynamic> toJson() => {
-        'branches': branches.map((item) => item.toJson()).toList(),
-      };
+    'branches': branches.map((item) => item.toJson()).toList(),
+  };
 }

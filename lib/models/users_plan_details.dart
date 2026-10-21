@@ -8,44 +8,30 @@ part of 'users.dart';
 class PlanDetails {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Plan name, for example `free`, `launch`, or `scale`.
   final String name;
-
   /// Version of the plan, expressed as `major` and `minor` components.
   final SdkOptional<PlanVersion> version;
 
   const PlanDetails({required this.name, this.version = const SdkOmitted()});
 
-  PlanDetails Function({String name, SdkOptional<PlanVersion> version})
-      get copyWith => _copyWith;
+  PlanDetails Function({String name, SdkOptional<PlanVersion> version}) get copyWith => _copyWith;
 
-  PlanDetails _copyWith(
-          {Object? name = sdkOmittedValue,
-          Object? version = sdkOmittedValue}) =>
-      PlanDetails(
-        name: identical(name, sdkOmittedValue) ? this.name : name as String,
-        version: identical(version, sdkOmittedValue)
-            ? this.version
-            : version as SdkOptional<PlanVersion>,
-      );
+  PlanDetails _copyWith({Object? name = sdkOmittedValue, Object? version = sdkOmittedValue}) => PlanDetails(
+    name: identical(name, sdkOmittedValue) ? this.name : name as String,
+    version: identical(version, sdkOmittedValue) ? this.version : version as SdkOptional<PlanVersion>,
+  );
 
   factory PlanDetails.fromJson(Map<String, dynamic> json) => PlanDetails(
-        name: (json['name'] as String?)!,
-        version: json['version'] != null
-            ? SdkPresent((json['version'] != null
-                ? PlanVersion.fromJson(json['version'] as Map<String, dynamic>)
-                : null)!)
-            : const SdkOmitted(),
-      );
+    name: (json['name'] as String?)!,
+    version: json['version'] != null ? SdkPresent((json['version'] != null ? PlanVersion.fromJson(json['version'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        ...switch (version) {
-          SdkPresent<PlanVersion>(value: final value) => {
-              'version': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'name': name,
+    ...switch (version) {
+      SdkPresent<PlanVersion>(value: final value) => {'version': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+  };
 }

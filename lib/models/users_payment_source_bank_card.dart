@@ -8,84 +8,46 @@ part of 'users.dart';
 class PaymentSourceBankCard {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
-
   /// Last 4 digits of the card.
   final String last4;
-
   /// Card network reported by the payment processor. Set to `unknown` when the network cannot be determined.
   final SdkOptional<PaymentSourceBankCardBrand> brand;
-
   /// Credit card expiration month
   final SdkOptional<int> expMonth;
-
   /// Credit card expiration year
   final SdkOptional<int> expYear;
 
-  const PaymentSourceBankCard(
-      {required this.last4,
-      this.brand = const SdkOmitted(),
-      this.expMonth = const SdkOmitted(),
-      this.expYear = const SdkOmitted()});
+  const PaymentSourceBankCard({required this.last4, this.brand = const SdkOmitted(), this.expMonth = const SdkOmitted(), this.expYear = const SdkOmitted()});
 
-  PaymentSourceBankCard Function(
-      {String last4,
-      SdkOptional<PaymentSourceBankCardBrand> brand,
-      SdkOptional<int> expMonth,
-      SdkOptional<int> expYear}) get copyWith => _copyWith;
+  PaymentSourceBankCard Function({String last4, SdkOptional<PaymentSourceBankCardBrand> brand, SdkOptional<int> expMonth, SdkOptional<int> expYear}) get copyWith => _copyWith;
 
-  PaymentSourceBankCard _copyWith(
-          {Object? last4 = sdkOmittedValue,
-          Object? brand = sdkOmittedValue,
-          Object? expMonth = sdkOmittedValue,
-          Object? expYear = sdkOmittedValue}) =>
-      PaymentSourceBankCard(
-        last4: identical(last4, sdkOmittedValue) ? this.last4 : last4 as String,
-        brand: identical(brand, sdkOmittedValue)
-            ? this.brand
-            : brand as SdkOptional<PaymentSourceBankCardBrand>,
-        expMonth: identical(expMonth, sdkOmittedValue)
-            ? this.expMonth
-            : expMonth as SdkOptional<int>,
-        expYear: identical(expYear, sdkOmittedValue)
-            ? this.expYear
-            : expYear as SdkOptional<int>,
-      );
+  PaymentSourceBankCard _copyWith({Object? last4 = sdkOmittedValue, Object? brand = sdkOmittedValue, Object? expMonth = sdkOmittedValue, Object? expYear = sdkOmittedValue}) => PaymentSourceBankCard(
+    last4: identical(last4, sdkOmittedValue) ? this.last4 : last4 as String,
+    brand: identical(brand, sdkOmittedValue) ? this.brand : brand as SdkOptional<PaymentSourceBankCardBrand>,
+    expMonth: identical(expMonth, sdkOmittedValue) ? this.expMonth : expMonth as SdkOptional<int>,
+    expYear: identical(expYear, sdkOmittedValue) ? this.expYear : expYear as SdkOptional<int>,
+  );
 
-  factory PaymentSourceBankCard.fromJson(Map<String, dynamic> json) =>
-      PaymentSourceBankCard(
-        last4: (json['last4'] as String?)!,
-        brand: json['brand'] != null
-            ? SdkPresent((json['brand'] != null
-                ? PaymentSourceBankCardBrand.fromJson(json['brand'] as String)
-                : null)!)
-            : const SdkOmitted(),
-        expMonth: json['exp_month'] != null
-            ? SdkPresent(((json['exp_month'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-        expYear: json['exp_year'] != null
-            ? SdkPresent(((json['exp_year'] as num?)?.toInt())!)
-            : const SdkOmitted(),
-      );
+  factory PaymentSourceBankCard.fromJson(Map<String, dynamic> json) => PaymentSourceBankCard(
+    last4: (json['last4'] as String?)!,
+    brand: json['brand'] != null ? SdkPresent((json['brand'] != null ? PaymentSourceBankCardBrand.fromJson(json['brand'] as String) : null)!) : const SdkOmitted(),
+    expMonth: json['exp_month'] != null ? SdkPresent(((json['exp_month'] as num?)?.toInt())!) : const SdkOmitted(),
+    expYear: json['exp_year'] != null ? SdkPresent(((json['exp_year'] as num?)?.toInt())!) : const SdkOmitted(),
+  );
 
   Map<String, dynamic> toJson() => {
-        'last4': last4,
-        ...switch (brand) {
-          SdkPresent<PaymentSourceBankCardBrand>(value: final value) => {
-              'brand': value.toJson(),
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (expMonth) {
-          SdkPresent<int>(value: final value) => {
-              'exp_month': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-        ...switch (expYear) {
-          SdkPresent<int>(value: final value) => {
-              'exp_year': value,
-            },
-          _ => const <String, dynamic>{},
-        },
-      };
+    'last4': last4,
+    ...switch (brand) {
+      SdkPresent<PaymentSourceBankCardBrand>(value: final value) => {'brand': value.toJson(),},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (expMonth) {
+      SdkPresent<int>(value: final value) => {'exp_month': value,},
+      _ => const <String, dynamic>{},
+    },
+    ...switch (expYear) {
+      SdkPresent<int>(value: final value) => {'exp_year': value,},
+      _ => const <String, dynamic>{},
+    },
+  };
 }
