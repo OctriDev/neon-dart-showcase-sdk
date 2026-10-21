@@ -8,42 +8,77 @@ part of 'auth.dart';
 class NeonAuthOrganizationConfig {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Whether the organization plugin is enabled.
   final bool enabled;
+
   /// Maximum organizations a user can belong to (created or joined). At the limit, the user cannot create or join more.
   final int organizationLimit;
+
   /// Maximum number of members per organization.
   final int membershipLimit;
+
   /// Role of the organization's creator. `owner`: full control, including deleting the org and transferring ownership. `admin`: manage members and settings only.
   final NeonAuthOrganizationConfigCreatorRole creatorRole;
+
   /// Whether to send invitation emails when inviting members to an organization.
   final bool sendInvitationEmail;
 
-  const NeonAuthOrganizationConfig({required this.enabled, required this.organizationLimit, required this.membershipLimit, required this.creatorRole, required this.sendInvitationEmail});
+  const NeonAuthOrganizationConfig(
+      {required this.enabled,
+      required this.organizationLimit,
+      required this.membershipLimit,
+      required this.creatorRole,
+      required this.sendInvitationEmail});
 
-  NeonAuthOrganizationConfig Function({bool enabled, int organizationLimit, int membershipLimit, NeonAuthOrganizationConfigCreatorRole creatorRole, bool sendInvitationEmail}) get copyWith => _copyWith;
+  NeonAuthOrganizationConfig Function(
+      {bool enabled,
+      int organizationLimit,
+      int membershipLimit,
+      NeonAuthOrganizationConfigCreatorRole creatorRole,
+      bool sendInvitationEmail}) get copyWith => _copyWith;
 
-  NeonAuthOrganizationConfig _copyWith({Object? enabled = sdkOmittedValue, Object? organizationLimit = sdkOmittedValue, Object? membershipLimit = sdkOmittedValue, Object? creatorRole = sdkOmittedValue, Object? sendInvitationEmail = sdkOmittedValue}) => NeonAuthOrganizationConfig(
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as bool,
-    organizationLimit: identical(organizationLimit, sdkOmittedValue) ? this.organizationLimit : organizationLimit as int,
-    membershipLimit: identical(membershipLimit, sdkOmittedValue) ? this.membershipLimit : membershipLimit as int,
-    creatorRole: identical(creatorRole, sdkOmittedValue) ? this.creatorRole : creatorRole as NeonAuthOrganizationConfigCreatorRole,
-    sendInvitationEmail: identical(sendInvitationEmail, sdkOmittedValue) ? this.sendInvitationEmail : sendInvitationEmail as bool,
-  );
+  NeonAuthOrganizationConfig _copyWith(
+          {Object? enabled = sdkOmittedValue,
+          Object? organizationLimit = sdkOmittedValue,
+          Object? membershipLimit = sdkOmittedValue,
+          Object? creatorRole = sdkOmittedValue,
+          Object? sendInvitationEmail = sdkOmittedValue}) =>
+      NeonAuthOrganizationConfig(
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as bool,
+        organizationLimit: identical(organizationLimit, sdkOmittedValue)
+            ? this.organizationLimit
+            : organizationLimit as int,
+        membershipLimit: identical(membershipLimit, sdkOmittedValue)
+            ? this.membershipLimit
+            : membershipLimit as int,
+        creatorRole: identical(creatorRole, sdkOmittedValue)
+            ? this.creatorRole
+            : creatorRole as NeonAuthOrganizationConfigCreatorRole,
+        sendInvitationEmail: identical(sendInvitationEmail, sdkOmittedValue)
+            ? this.sendInvitationEmail
+            : sendInvitationEmail as bool,
+      );
 
-  factory NeonAuthOrganizationConfig.fromJson(Map<String, dynamic> json) => NeonAuthOrganizationConfig(
-    enabled: (json['enabled'] as bool?)!,
-    organizationLimit: ((json['organization_limit'] as num?)?.toInt())!,
-    membershipLimit: ((json['membership_limit'] as num?)?.toInt())!,
-    creatorRole: (json['creator_role'] != null ? NeonAuthOrganizationConfigCreatorRole.fromJson(json['creator_role'] as String) : null)!,
-    sendInvitationEmail: (json['send_invitation_email'] as bool?)!,
-  );
+  factory NeonAuthOrganizationConfig.fromJson(Map<String, dynamic> json) =>
+      NeonAuthOrganizationConfig(
+        enabled: (json['enabled'] as bool?)!,
+        organizationLimit: ((json['organization_limit'] as num?)?.toInt())!,
+        membershipLimit: ((json['membership_limit'] as num?)?.toInt())!,
+        creatorRole: (json['creator_role'] != null
+            ? NeonAuthOrganizationConfigCreatorRole.fromJson(
+                json['creator_role'] as String)
+            : null)!,
+        sendInvitationEmail: (json['send_invitation_email'] as bool?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'enabled': enabled,
-    'organization_limit': organizationLimit,
-    'membership_limit': membershipLimit,
-    'creator_role': creatorRole.toJson(),
-    'send_invitation_email': sendInvitationEmail,
-  };
+        'enabled': enabled,
+        'organization_limit': organizationLimit,
+        'membership_limit': membershipLimit,
+        'creator_role': creatorRole.toJson(),
+        'send_invitation_email': sendInvitationEmail,
+      };
 }

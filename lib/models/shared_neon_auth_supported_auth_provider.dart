@@ -6,12 +6,12 @@ part of 'shared_neon.dart';
 // shared_neon domain models
 /// Authentication provider integrated with this Neon Auth configuration. `better_auth` integrates with Better Auth (the current, recommended provider). `stack` integrates with Stack Auth (deprecated). `mock` is a simulated provider for local development and testing only.
 final class NeonAuthSupportedAuthProvider {
-
   final String value;
 
   const NeonAuthSupportedAuthProvider._(this.value);
 
-  factory NeonAuthSupportedAuthProvider.fromJson(String value) => NeonAuthSupportedAuthProvider._(value);
+  factory NeonAuthSupportedAuthProvider.fromJson(String value) =>
+      NeonAuthSupportedAuthProvider._(value);
 
   static const mock = NeonAuthSupportedAuthProvider._('mock');
   static const stack = NeonAuthSupportedAuthProvider._('stack');
@@ -19,10 +19,13 @@ final class NeonAuthSupportedAuthProvider {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is NeonAuthSupportedAuthProvider && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is NeonAuthSupportedAuthProvider && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

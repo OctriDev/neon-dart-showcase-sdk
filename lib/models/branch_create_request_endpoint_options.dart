@@ -8,62 +8,128 @@ part of 'branch.dart';
 class BranchCreateRequestEndpointOptions {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Compute endpoint type. `read_write`: the primary read-write endpoint (one per branch). `read_only`: a read replica endpoint (multiple allowed per branch).
   final EndpointType type_;
+
   /// Compute endpoint settings: `pg_settings` (Postgres parameter overrides such as `work_mem`, `max_connections`) and `preload_libraries`.
   final SdkOptional<EndpointSettingsData> settings;
+
   /// Minimum number of Compute Units the endpoint can scale down to. Minimum 0.25.
   final SdkOptional<double> autoscalingLimitMinCu;
+
   /// Maximum number of Compute Units the endpoint can scale up to. Minimum 0.25.
   final SdkOptional<double> autoscalingLimitMaxCu;
+
   /// Compute provisioner. `k8s-neonvm` (default) supports Autoscaling; `k8s-pod` is fixed-size compute. Also `docker` and `serverless-platform`.
   final SdkOptional<String> provisioner;
+
   /// Scale-to-zero idle timeout, in seconds, before the compute suspends. `0` uses the plan default; `-1` disables scale-to-zero (never suspends). Minimum is plan-dependent (Scale: 60); maximum 604800 (one week). Free cannot change it; Launch can only enable or disable; Scale can set any value.
   final SdkOptional<int> suspendTimeoutSeconds;
 
-  const BranchCreateRequestEndpointOptions({required this.type_, this.settings = const SdkOmitted(), this.autoscalingLimitMinCu = const SdkOmitted(), this.autoscalingLimitMaxCu = const SdkOmitted(), this.provisioner = const SdkOmitted(), this.suspendTimeoutSeconds = const SdkOmitted()});
+  const BranchCreateRequestEndpointOptions(
+      {required this.type_,
+      this.settings = const SdkOmitted(),
+      this.autoscalingLimitMinCu = const SdkOmitted(),
+      this.autoscalingLimitMaxCu = const SdkOmitted(),
+      this.provisioner = const SdkOmitted(),
+      this.suspendTimeoutSeconds = const SdkOmitted()});
 
-  BranchCreateRequestEndpointOptions Function({EndpointType type_, SdkOptional<EndpointSettingsData> settings, SdkOptional<double> autoscalingLimitMinCu, SdkOptional<double> autoscalingLimitMaxCu, SdkOptional<String> provisioner, SdkOptional<int> suspendTimeoutSeconds}) get copyWith => _copyWith;
+  BranchCreateRequestEndpointOptions Function(
+      {EndpointType type_,
+      SdkOptional<EndpointSettingsData> settings,
+      SdkOptional<double> autoscalingLimitMinCu,
+      SdkOptional<double> autoscalingLimitMaxCu,
+      SdkOptional<String> provisioner,
+      SdkOptional<int> suspendTimeoutSeconds}) get copyWith => _copyWith;
 
-  BranchCreateRequestEndpointOptions _copyWith({Object? type_ = sdkOmittedValue, Object? settings = sdkOmittedValue, Object? autoscalingLimitMinCu = sdkOmittedValue, Object? autoscalingLimitMaxCu = sdkOmittedValue, Object? provisioner = sdkOmittedValue, Object? suspendTimeoutSeconds = sdkOmittedValue}) => BranchCreateRequestEndpointOptions(
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as EndpointType,
-    settings: identical(settings, sdkOmittedValue) ? this.settings : settings as SdkOptional<EndpointSettingsData>,
-    autoscalingLimitMinCu: identical(autoscalingLimitMinCu, sdkOmittedValue) ? this.autoscalingLimitMinCu : autoscalingLimitMinCu as SdkOptional<double>,
-    autoscalingLimitMaxCu: identical(autoscalingLimitMaxCu, sdkOmittedValue) ? this.autoscalingLimitMaxCu : autoscalingLimitMaxCu as SdkOptional<double>,
-    provisioner: identical(provisioner, sdkOmittedValue) ? this.provisioner : provisioner as SdkOptional<String>,
-    suspendTimeoutSeconds: identical(suspendTimeoutSeconds, sdkOmittedValue) ? this.suspendTimeoutSeconds : suspendTimeoutSeconds as SdkOptional<int>,
-  );
+  BranchCreateRequestEndpointOptions _copyWith(
+          {Object? type_ = sdkOmittedValue,
+          Object? settings = sdkOmittedValue,
+          Object? autoscalingLimitMinCu = sdkOmittedValue,
+          Object? autoscalingLimitMaxCu = sdkOmittedValue,
+          Object? provisioner = sdkOmittedValue,
+          Object? suspendTimeoutSeconds = sdkOmittedValue}) =>
+      BranchCreateRequestEndpointOptions(
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as EndpointType,
+        settings: identical(settings, sdkOmittedValue)
+            ? this.settings
+            : settings as SdkOptional<EndpointSettingsData>,
+        autoscalingLimitMinCu: identical(autoscalingLimitMinCu, sdkOmittedValue)
+            ? this.autoscalingLimitMinCu
+            : autoscalingLimitMinCu as SdkOptional<double>,
+        autoscalingLimitMaxCu: identical(autoscalingLimitMaxCu, sdkOmittedValue)
+            ? this.autoscalingLimitMaxCu
+            : autoscalingLimitMaxCu as SdkOptional<double>,
+        provisioner: identical(provisioner, sdkOmittedValue)
+            ? this.provisioner
+            : provisioner as SdkOptional<String>,
+        suspendTimeoutSeconds: identical(suspendTimeoutSeconds, sdkOmittedValue)
+            ? this.suspendTimeoutSeconds
+            : suspendTimeoutSeconds as SdkOptional<int>,
+      );
 
-  factory BranchCreateRequestEndpointOptions.fromJson(Map<String, dynamic> json) => BranchCreateRequestEndpointOptions(
-    type_: (json['type'] != null ? EndpointType.fromJson(json['type'] as String) : null)!,
-    settings: json['settings'] != null ? SdkPresent((json['settings'] != null ? EndpointSettingsData.fromJson(json['settings'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-    autoscalingLimitMinCu: json['autoscaling_limit_min_cu'] != null ? SdkPresent(((json['autoscaling_limit_min_cu'] as num?)?.toDouble())!) : const SdkOmitted(),
-    autoscalingLimitMaxCu: json['autoscaling_limit_max_cu'] != null ? SdkPresent(((json['autoscaling_limit_max_cu'] as num?)?.toDouble())!) : const SdkOmitted(),
-    provisioner: json['provisioner'] != null ? SdkPresent((json['provisioner'] as String?)!) : const SdkOmitted(),
-    suspendTimeoutSeconds: json['suspend_timeout_seconds'] != null ? SdkPresent(((json['suspend_timeout_seconds'] as num?)?.toInt())!) : const SdkOmitted(),
-  );
+  factory BranchCreateRequestEndpointOptions.fromJson(
+          Map<String, dynamic> json) =>
+      BranchCreateRequestEndpointOptions(
+        type_: (json['type'] != null
+            ? EndpointType.fromJson(json['type'] as String)
+            : null)!,
+        settings: json['settings'] != null
+            ? SdkPresent((json['settings'] != null
+                ? EndpointSettingsData.fromJson(
+                    json['settings'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+        autoscalingLimitMinCu: json['autoscaling_limit_min_cu'] != null
+            ? SdkPresent(
+                ((json['autoscaling_limit_min_cu'] as num?)?.toDouble())!)
+            : const SdkOmitted(),
+        autoscalingLimitMaxCu: json['autoscaling_limit_max_cu'] != null
+            ? SdkPresent(
+                ((json['autoscaling_limit_max_cu'] as num?)?.toDouble())!)
+            : const SdkOmitted(),
+        provisioner: json['provisioner'] != null
+            ? SdkPresent((json['provisioner'] as String?)!)
+            : const SdkOmitted(),
+        suspendTimeoutSeconds: json['suspend_timeout_seconds'] != null
+            ? SdkPresent(((json['suspend_timeout_seconds'] as num?)?.toInt())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'type': type_.toJson(),
-    ...switch (settings) {
-      SdkPresent<EndpointSettingsData>(value: final value) => {'settings': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (autoscalingLimitMinCu) {
-      SdkPresent<double>(value: final value) => {'autoscaling_limit_min_cu': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (autoscalingLimitMaxCu) {
-      SdkPresent<double>(value: final value) => {'autoscaling_limit_max_cu': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (provisioner) {
-      SdkPresent<String>(value: final value) => {'provisioner': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (suspendTimeoutSeconds) {
-      SdkPresent<int>(value: final value) => {'suspend_timeout_seconds': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'type': type_.toJson(),
+        ...switch (settings) {
+          SdkPresent<EndpointSettingsData>(value: final value) => {
+              'settings': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (autoscalingLimitMinCu) {
+          SdkPresent<double>(value: final value) => {
+              'autoscaling_limit_min_cu': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (autoscalingLimitMaxCu) {
+          SdkPresent<double>(value: final value) => {
+              'autoscaling_limit_max_cu': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (provisioner) {
+          SdkPresent<String>(value: final value) => {
+              'provisioner': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (suspendTimeoutSeconds) {
+          SdkPresent<int>(value: final value) => {
+              'suspend_timeout_seconds': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

@@ -8,37 +8,61 @@ part of 'project_project.dart';
 class ProjectTransferRequestResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The unique identifier for the transfer request
   final String id;
+
   /// The ID of the project that is being transferred
   final String projectId;
+
   /// The timestamp when the transfer request was created
   final String createdAt;
+
   /// The timestamp when the transfer request will expire
   final String expiresAt;
 
-  const ProjectTransferRequestResponse({required this.id, required this.projectId, required this.createdAt, required this.expiresAt});
+  const ProjectTransferRequestResponse(
+      {required this.id,
+      required this.projectId,
+      required this.createdAt,
+      required this.expiresAt});
 
-  ProjectTransferRequestResponse Function({String id, String projectId, String createdAt, String expiresAt}) get copyWith => _copyWith;
+  ProjectTransferRequestResponse Function(
+      {String id,
+      String projectId,
+      String createdAt,
+      String expiresAt}) get copyWith => _copyWith;
 
-  ProjectTransferRequestResponse _copyWith({Object? id = sdkOmittedValue, Object? projectId = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? expiresAt = sdkOmittedValue}) => ProjectTransferRequestResponse(
-    id: identical(id, sdkOmittedValue) ? this.id : id as String,
-    projectId: identical(projectId, sdkOmittedValue) ? this.projectId : projectId as String,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
-    expiresAt: identical(expiresAt, sdkOmittedValue) ? this.expiresAt : expiresAt as String,
-  );
+  ProjectTransferRequestResponse _copyWith(
+          {Object? id = sdkOmittedValue,
+          Object? projectId = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue,
+          Object? expiresAt = sdkOmittedValue}) =>
+      ProjectTransferRequestResponse(
+        id: identical(id, sdkOmittedValue) ? this.id : id as String,
+        projectId: identical(projectId, sdkOmittedValue)
+            ? this.projectId
+            : projectId as String,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as String,
+        expiresAt: identical(expiresAt, sdkOmittedValue)
+            ? this.expiresAt
+            : expiresAt as String,
+      );
 
-  factory ProjectTransferRequestResponse.fromJson(Map<String, dynamic> json) => ProjectTransferRequestResponse(
-    id: (json['id'] as String?)!,
-    projectId: (json['project_id'] as String?)!,
-    createdAt: (json['created_at'] as String?)!,
-    expiresAt: (json['expires_at'] as String?)!,
-  );
+  factory ProjectTransferRequestResponse.fromJson(Map<String, dynamic> json) =>
+      ProjectTransferRequestResponse(
+        id: (json['id'] as String?)!,
+        projectId: (json['project_id'] as String?)!,
+        createdAt: (json['created_at'] as String?)!,
+        expiresAt: (json['expires_at'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'project_id': projectId,
-    'created_at': createdAt,
-    'expires_at': expiresAt,
-  };
+        'id': id,
+        'project_id': projectId,
+        'created_at': createdAt,
+        'expires_at': expiresAt,
+      };
 }

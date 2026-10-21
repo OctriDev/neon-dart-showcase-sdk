@@ -8,47 +8,80 @@ part of 'shared.dart';
 class Database {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The database ID
   final int id;
+
   /// The ID of the branch this database belongs to.
   final String branchId;
+
   /// The database name
   final String name;
+
   /// The name of role that owns the database
   final String ownerName;
+
   /// A timestamp indicating when the database was created
   final String createdAt;
+
   /// A timestamp indicating when the database was last updated
   final String updatedAt;
 
-  const Database({required this.id, required this.branchId, required this.name, required this.ownerName, required this.createdAt, required this.updatedAt});
+  const Database(
+      {required this.id,
+      required this.branchId,
+      required this.name,
+      required this.ownerName,
+      required this.createdAt,
+      required this.updatedAt});
 
-  Database Function({int id, String branchId, String name, String ownerName, String createdAt, String updatedAt}) get copyWith => _copyWith;
+  Database Function(
+      {int id,
+      String branchId,
+      String name,
+      String ownerName,
+      String createdAt,
+      String updatedAt}) get copyWith => _copyWith;
 
-  Database _copyWith({Object? id = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? name = sdkOmittedValue, Object? ownerName = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? updatedAt = sdkOmittedValue}) => Database(
-    id: identical(id, sdkOmittedValue) ? this.id : id as int,
-    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    ownerName: identical(ownerName, sdkOmittedValue) ? this.ownerName : ownerName as String,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
-    updatedAt: identical(updatedAt, sdkOmittedValue) ? this.updatedAt : updatedAt as String,
-  );
+  Database _copyWith(
+          {Object? id = sdkOmittedValue,
+          Object? branchId = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? ownerName = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue,
+          Object? updatedAt = sdkOmittedValue}) =>
+      Database(
+        id: identical(id, sdkOmittedValue) ? this.id : id as int,
+        branchId: identical(branchId, sdkOmittedValue)
+            ? this.branchId
+            : branchId as String,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        ownerName: identical(ownerName, sdkOmittedValue)
+            ? this.ownerName
+            : ownerName as String,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as String,
+        updatedAt: identical(updatedAt, sdkOmittedValue)
+            ? this.updatedAt
+            : updatedAt as String,
+      );
 
   factory Database.fromJson(Map<String, dynamic> json) => Database(
-    id: ((json['id'] as num?)?.toInt())!,
-    branchId: (json['branch_id'] as String?)!,
-    name: (json['name'] as String?)!,
-    ownerName: (json['owner_name'] as String?)!,
-    createdAt: (json['created_at'] as String?)!,
-    updatedAt: (json['updated_at'] as String?)!,
-  );
+        id: ((json['id'] as num?)?.toInt())!,
+        branchId: (json['branch_id'] as String?)!,
+        name: (json['name'] as String?)!,
+        ownerName: (json['owner_name'] as String?)!,
+        createdAt: (json['created_at'] as String?)!,
+        updatedAt: (json['updated_at'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'branch_id': branchId,
-    'name': name,
-    'owner_name': ownerName,
-    'created_at': createdAt,
-    'updated_at': updatedAt,
-  };
+        'id': id,
+        'branch_id': branchId,
+        'name': name,
+        'owner_name': ownerName,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+      };
 }

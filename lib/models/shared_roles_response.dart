@@ -8,6 +8,7 @@ part of 'shared.dart';
 class RolesResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Roles belonging to the branch. Each role includes fields such as `branch_id`, `name`, `protected`, `created_at`, and `updated_at`.
   final List<Role> roles;
 
@@ -16,14 +17,18 @@ class RolesResponse {
   RolesResponse Function({List<Role> roles}) get copyWith => _copyWith;
 
   RolesResponse _copyWith({Object? roles = sdkOmittedValue}) => RolesResponse(
-    roles: identical(roles, sdkOmittedValue) ? this.roles : roles as List<Role>,
-  );
+        roles: identical(roles, sdkOmittedValue)
+            ? this.roles
+            : roles as List<Role>,
+      );
 
   factory RolesResponse.fromJson(Map<String, dynamic> json) => RolesResponse(
-    roles: ((json['roles'] as List?)?.map((e) => Role.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+        roles: ((json['roles'] as List?)
+            ?.map((e) => Role.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'roles': roles.map((item) => item.toJson()).toList(),
-  };
+        'roles': roles.map((item) => item.toJson()).toList(),
+      };
 }

@@ -6,12 +6,12 @@ part of 'project_project.dart';
 // project_project domain models
 /// Organization-level role used by project member role management.
 final class ProjectMemberOrgRole {
-
   final String value;
 
   const ProjectMemberOrgRole._(this.value);
 
-  factory ProjectMemberOrgRole.fromJson(String value) => ProjectMemberOrgRole._(value);
+  factory ProjectMemberOrgRole.fromJson(String value) =>
+      ProjectMemberOrgRole._(value);
 
   static const admin = ProjectMemberOrgRole._('admin');
   static const member = ProjectMemberOrgRole._('member');
@@ -21,10 +21,13 @@ final class ProjectMemberOrgRole {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ProjectMemberOrgRole && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ProjectMemberOrgRole && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

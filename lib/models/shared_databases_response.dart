@@ -8,22 +8,30 @@ part of 'shared.dart';
 class DatabasesResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Databases on the branch. Each includes `id`, `name`, `owner_name`, and `created_at`.
   final List<Database> databases;
 
   const DatabasesResponse({required this.databases});
 
-  DatabasesResponse Function({List<Database> databases}) get copyWith => _copyWith;
+  DatabasesResponse Function({List<Database> databases}) get copyWith =>
+      _copyWith;
 
-  DatabasesResponse _copyWith({Object? databases = sdkOmittedValue}) => DatabasesResponse(
-    databases: identical(databases, sdkOmittedValue) ? this.databases : databases as List<Database>,
-  );
+  DatabasesResponse _copyWith({Object? databases = sdkOmittedValue}) =>
+      DatabasesResponse(
+        databases: identical(databases, sdkOmittedValue)
+            ? this.databases
+            : databases as List<Database>,
+      );
 
-  factory DatabasesResponse.fromJson(Map<String, dynamic> json) => DatabasesResponse(
-    databases: ((json['databases'] as List?)?.map((e) => Database.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory DatabasesResponse.fromJson(Map<String, dynamic> json) =>
+      DatabasesResponse(
+        databases: ((json['databases'] as List?)
+            ?.map((e) => Database.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'databases': databases.map((item) => item.toJson()).toList(),
-  };
+        'databases': databases.map((item) => item.toJson()).toList(),
+      };
 }

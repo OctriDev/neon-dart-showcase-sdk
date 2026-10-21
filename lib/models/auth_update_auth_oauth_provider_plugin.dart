@@ -8,89 +8,167 @@ part of 'auth.dart';
 class NeonAuthOAuthProviderConfigUpdate {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Whether the OAuth provider plugin is enabled.
   final SdkOptional<bool> enabled;
+
   /// URL of the page that authorization requests redirect to for sign-in.
   final SdkOptional<String> loginPage;
+
   /// URL of the page that authorization requests redirect to for consent.
   final SdkOptional<String> consentPage;
+
   /// MCP resource configuration. When provided, `resource` is required and the stored MCP configuration is replaced as a whole.
   final SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp;
+
   /// Protected resources that clients can be linked to. When provided, replaces the stored list.
   final SdkOptional<List<NeonAuthOAuthProviderResource>> resources;
 
-  const NeonAuthOAuthProviderConfigUpdate({this.enabled = const SdkOmitted(), this.loginPage = const SdkOmitted(), this.consentPage = const SdkOmitted(), this.mcp = const SdkOmitted(), this.resources = const SdkOmitted()});
+  const NeonAuthOAuthProviderConfigUpdate(
+      {this.enabled = const SdkOmitted(),
+      this.loginPage = const SdkOmitted(),
+      this.consentPage = const SdkOmitted(),
+      this.mcp = const SdkOmitted(),
+      this.resources = const SdkOmitted()});
 
-  NeonAuthOAuthProviderConfigUpdate Function({SdkOptional<bool> enabled, SdkOptional<String> loginPage, SdkOptional<String> consentPage, SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp, SdkOptional<List<NeonAuthOAuthProviderResource>> resources}) get copyWith => _copyWith;
+  NeonAuthOAuthProviderConfigUpdate Function(
+          {SdkOptional<bool> enabled,
+          SdkOptional<String> loginPage,
+          SdkOptional<String> consentPage,
+          SdkOptional<NeonAuthOAuthProviderMcpUpdate> mcp,
+          SdkOptional<List<NeonAuthOAuthProviderResource>> resources})
+      get copyWith => _copyWith;
 
-  NeonAuthOAuthProviderConfigUpdate _copyWith({Object? enabled = sdkOmittedValue, Object? loginPage = sdkOmittedValue, Object? consentPage = sdkOmittedValue, Object? mcp = sdkOmittedValue, Object? resources = sdkOmittedValue}) => NeonAuthOAuthProviderConfigUpdate(
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as SdkOptional<bool>,
-    loginPage: identical(loginPage, sdkOmittedValue) ? this.loginPage : loginPage as SdkOptional<String>,
-    consentPage: identical(consentPage, sdkOmittedValue) ? this.consentPage : consentPage as SdkOptional<String>,
-    mcp: identical(mcp, sdkOmittedValue) ? this.mcp : mcp as SdkOptional<NeonAuthOAuthProviderMcpUpdate>,
-    resources: identical(resources, sdkOmittedValue) ? this.resources : resources as SdkOptional<List<NeonAuthOAuthProviderResource>>,
-  );
+  NeonAuthOAuthProviderConfigUpdate _copyWith(
+          {Object? enabled = sdkOmittedValue,
+          Object? loginPage = sdkOmittedValue,
+          Object? consentPage = sdkOmittedValue,
+          Object? mcp = sdkOmittedValue,
+          Object? resources = sdkOmittedValue}) =>
+      NeonAuthOAuthProviderConfigUpdate(
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as SdkOptional<bool>,
+        loginPage: identical(loginPage, sdkOmittedValue)
+            ? this.loginPage
+            : loginPage as SdkOptional<String>,
+        consentPage: identical(consentPage, sdkOmittedValue)
+            ? this.consentPage
+            : consentPage as SdkOptional<String>,
+        mcp: identical(mcp, sdkOmittedValue)
+            ? this.mcp
+            : mcp as SdkOptional<NeonAuthOAuthProviderMcpUpdate>,
+        resources: identical(resources, sdkOmittedValue)
+            ? this.resources
+            : resources as SdkOptional<List<NeonAuthOAuthProviderResource>>,
+      );
 
-  factory NeonAuthOAuthProviderConfigUpdate.fromJson(Map<String, dynamic> json) => NeonAuthOAuthProviderConfigUpdate(
-    enabled: json['enabled'] != null ? SdkPresent((json['enabled'] as bool?)!) : const SdkOmitted(),
-    loginPage: json['login_page'] != null ? SdkPresent((json['login_page'] as String?)!) : const SdkOmitted(),
-    consentPage: json['consent_page'] != null ? SdkPresent((json['consent_page'] as String?)!) : const SdkOmitted(),
-    mcp: json['mcp'] != null ? SdkPresent((json['mcp'] != null ? NeonAuthOAuthProviderMcpUpdate.fromJson(json['mcp'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-    resources: json['resources'] != null ? SdkPresent(((json['resources'] as List?)?.map((e) => NeonAuthOAuthProviderResource.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
-  );
+  factory NeonAuthOAuthProviderConfigUpdate.fromJson(
+          Map<String, dynamic> json) =>
+      NeonAuthOAuthProviderConfigUpdate(
+        enabled: json['enabled'] != null
+            ? SdkPresent((json['enabled'] as bool?)!)
+            : const SdkOmitted(),
+        loginPage: json['login_page'] != null
+            ? SdkPresent((json['login_page'] as String?)!)
+            : const SdkOmitted(),
+        consentPage: json['consent_page'] != null
+            ? SdkPresent((json['consent_page'] as String?)!)
+            : const SdkOmitted(),
+        mcp: json['mcp'] != null
+            ? SdkPresent((json['mcp'] != null
+                ? NeonAuthOAuthProviderMcpUpdate.fromJson(
+                    json['mcp'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+        resources: json['resources'] != null
+            ? SdkPresent(((json['resources'] as List?)
+                ?.map((e) => NeonAuthOAuthProviderResource.fromJson(
+                    e as Map<String, dynamic>))
+                .toList())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (enabled) {
-      SdkPresent<bool>(value: final value) => {'enabled': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (loginPage) {
-      SdkPresent<String>(value: final value) => {'login_page': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (consentPage) {
-      SdkPresent<String>(value: final value) => {'consent_page': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (mcp) {
-      SdkPresent<NeonAuthOAuthProviderMcpUpdate>(value: final value) => {'mcp': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (resources) {
-      SdkPresent<List<NeonAuthOAuthProviderResource>>(value: final value) => {'resources': value.map((item) => item.toJson()).toList(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (enabled) {
+          SdkPresent<bool>(value: final value) => {
+              'enabled': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (loginPage) {
+          SdkPresent<String>(value: final value) => {
+              'login_page': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (consentPage) {
+          SdkPresent<String>(value: final value) => {
+              'consent_page': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (mcp) {
+          SdkPresent<NeonAuthOAuthProviderMcpUpdate>(value: final value) => {
+              'mcp': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (resources) {
+          SdkPresent<List<NeonAuthOAuthProviderResource>>(value: final value) =>
+            {
+              'resources': value.map((item) => item.toJson()).toList(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `NeonAuthOAuthProviderMcpUpdate` API schema.
 class NeonAuthOAuthProviderMcpUpdate {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The MCP server URL that dynamically registered clients are linked to.
   final String resource;
+
   /// Whether MCP clients may register themselves via dynamic client registration (RFC 7591). When omitted, the stored value is kept.
   final SdkOptional<bool> dynamicRegistration;
 
-  const NeonAuthOAuthProviderMcpUpdate({required this.resource, this.dynamicRegistration = const SdkOmitted()});
+  const NeonAuthOAuthProviderMcpUpdate(
+      {required this.resource, this.dynamicRegistration = const SdkOmitted()});
 
-  NeonAuthOAuthProviderMcpUpdate Function({String resource, SdkOptional<bool> dynamicRegistration}) get copyWith => _copyWith;
+  NeonAuthOAuthProviderMcpUpdate Function(
+      {String resource,
+      SdkOptional<bool> dynamicRegistration}) get copyWith => _copyWith;
 
-  NeonAuthOAuthProviderMcpUpdate _copyWith({Object? resource = sdkOmittedValue, Object? dynamicRegistration = sdkOmittedValue}) => NeonAuthOAuthProviderMcpUpdate(
-    resource: identical(resource, sdkOmittedValue) ? this.resource : resource as String,
-    dynamicRegistration: identical(dynamicRegistration, sdkOmittedValue) ? this.dynamicRegistration : dynamicRegistration as SdkOptional<bool>,
-  );
+  NeonAuthOAuthProviderMcpUpdate _copyWith(
+          {Object? resource = sdkOmittedValue,
+          Object? dynamicRegistration = sdkOmittedValue}) =>
+      NeonAuthOAuthProviderMcpUpdate(
+        resource: identical(resource, sdkOmittedValue)
+            ? this.resource
+            : resource as String,
+        dynamicRegistration: identical(dynamicRegistration, sdkOmittedValue)
+            ? this.dynamicRegistration
+            : dynamicRegistration as SdkOptional<bool>,
+      );
 
-  factory NeonAuthOAuthProviderMcpUpdate.fromJson(Map<String, dynamic> json) => NeonAuthOAuthProviderMcpUpdate(
-    resource: (json['resource'] as String?)!,
-    dynamicRegistration: json['dynamic_registration'] != null ? SdkPresent((json['dynamic_registration'] as bool?)!) : const SdkOmitted(),
-  );
+  factory NeonAuthOAuthProviderMcpUpdate.fromJson(Map<String, dynamic> json) =>
+      NeonAuthOAuthProviderMcpUpdate(
+        resource: (json['resource'] as String?)!,
+        dynamicRegistration: json['dynamic_registration'] != null
+            ? SdkPresent((json['dynamic_registration'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'resource': resource,
-    ...switch (dynamicRegistration) {
-      SdkPresent<bool>(value: final value) => {'dynamic_registration': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'resource': resource,
+        ...switch (dynamicRegistration) {
+          SdkPresent<bool>(value: final value) => {
+              'dynamic_registration': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

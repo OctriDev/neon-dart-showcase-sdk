@@ -7,90 +7,155 @@ part of 'organizations.dart';
 class OrgApiKeyRevokeResponseVariant1 {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// If set, the API key can access only this project
   final SdkOptional<String> projectId;
 
   const OrgApiKeyRevokeResponseVariant1({this.projectId = const SdkOmitted()});
 
-  OrgApiKeyRevokeResponseVariant1 Function({SdkOptional<String> projectId}) get copyWith => _copyWith;
+  OrgApiKeyRevokeResponseVariant1 Function({SdkOptional<String> projectId})
+      get copyWith => _copyWith;
 
-  OrgApiKeyRevokeResponseVariant1 _copyWith({Object? projectId = sdkOmittedValue}) => OrgApiKeyRevokeResponseVariant1(
-    projectId: identical(projectId, sdkOmittedValue) ? this.projectId : projectId as SdkOptional<String>,
-  );
+  OrgApiKeyRevokeResponseVariant1 _copyWith(
+          {Object? projectId = sdkOmittedValue}) =>
+      OrgApiKeyRevokeResponseVariant1(
+        projectId: identical(projectId, sdkOmittedValue)
+            ? this.projectId
+            : projectId as SdkOptional<String>,
+      );
 
-  factory OrgApiKeyRevokeResponseVariant1.fromJson(Map<String, dynamic> json) => OrgApiKeyRevokeResponseVariant1(
-    projectId: json['project_id'] != null ? SdkPresent((json['project_id'] as String?)!) : const SdkOmitted(),
-  );
+  factory OrgApiKeyRevokeResponseVariant1.fromJson(Map<String, dynamic> json) =>
+      OrgApiKeyRevokeResponseVariant1(
+        projectId: json['project_id'] != null
+            ? SdkPresent((json['project_id'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (projectId) {
-      SdkPresent<String>(value: final value) => {'project_id': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (projectId) {
+          SdkPresent<String>(value: final value) => {
+              'project_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `OrgApiKeyRevokeResponse` API schema.
 class OrgApiKeyRevokeResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The API key's unique numeric ID. Distinct from the API key token (`key`).
   final int id;
+
   /// The user-specified API key name
   final String name;
+
   /// A timestamp indicating when the API key was created
   final String createdAt;
+
   /// ID of the user who created this API key
   final String createdBy;
+
   /// A timestamp indicating when the API was last used
   final SdkOptional<String?> lastUsedAt;
+
   /// The IP address from which the API key was last used
   final String lastUsedFromAddr;
+
   /// A `true` or `false` value indicating whether the API key is revoked
   final bool revoked;
+
   /// If set, the API key can access only this project
   final SdkOptional<String> projectId;
 
-  const OrgApiKeyRevokeResponse({required this.id, required this.name, required this.createdAt, required this.createdBy, this.lastUsedAt = const SdkOmitted(), required this.lastUsedFromAddr, required this.revoked, this.projectId = const SdkOmitted()});
+  const OrgApiKeyRevokeResponse(
+      {required this.id,
+      required this.name,
+      required this.createdAt,
+      required this.createdBy,
+      this.lastUsedAt = const SdkOmitted(),
+      required this.lastUsedFromAddr,
+      required this.revoked,
+      this.projectId = const SdkOmitted()});
 
-  OrgApiKeyRevokeResponse Function({int id, String name, String createdAt, String createdBy, SdkOptional<String?> lastUsedAt, String lastUsedFromAddr, bool revoked, SdkOptional<String> projectId}) get copyWith => _copyWith;
+  OrgApiKeyRevokeResponse Function(
+      {int id,
+      String name,
+      String createdAt,
+      String createdBy,
+      SdkOptional<String?> lastUsedAt,
+      String lastUsedFromAddr,
+      bool revoked,
+      SdkOptional<String> projectId}) get copyWith => _copyWith;
 
-  OrgApiKeyRevokeResponse _copyWith({Object? id = sdkOmittedValue, Object? name = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? createdBy = sdkOmittedValue, Object? lastUsedAt = sdkOmittedValue, Object? lastUsedFromAddr = sdkOmittedValue, Object? revoked = sdkOmittedValue, Object? projectId = sdkOmittedValue}) => OrgApiKeyRevokeResponse(
-    id: identical(id, sdkOmittedValue) ? this.id : id as int,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
-    createdBy: identical(createdBy, sdkOmittedValue) ? this.createdBy : createdBy as String,
-    lastUsedAt: identical(lastUsedAt, sdkOmittedValue) ? this.lastUsedAt : lastUsedAt as SdkOptional<String?>,
-    lastUsedFromAddr: identical(lastUsedFromAddr, sdkOmittedValue) ? this.lastUsedFromAddr : lastUsedFromAddr as String,
-    revoked: identical(revoked, sdkOmittedValue) ? this.revoked : revoked as bool,
-    projectId: identical(projectId, sdkOmittedValue) ? this.projectId : projectId as SdkOptional<String>,
-  );
+  OrgApiKeyRevokeResponse _copyWith(
+          {Object? id = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue,
+          Object? createdBy = sdkOmittedValue,
+          Object? lastUsedAt = sdkOmittedValue,
+          Object? lastUsedFromAddr = sdkOmittedValue,
+          Object? revoked = sdkOmittedValue,
+          Object? projectId = sdkOmittedValue}) =>
+      OrgApiKeyRevokeResponse(
+        id: identical(id, sdkOmittedValue) ? this.id : id as int,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as String,
+        createdBy: identical(createdBy, sdkOmittedValue)
+            ? this.createdBy
+            : createdBy as String,
+        lastUsedAt: identical(lastUsedAt, sdkOmittedValue)
+            ? this.lastUsedAt
+            : lastUsedAt as SdkOptional<String?>,
+        lastUsedFromAddr: identical(lastUsedFromAddr, sdkOmittedValue)
+            ? this.lastUsedFromAddr
+            : lastUsedFromAddr as String,
+        revoked: identical(revoked, sdkOmittedValue)
+            ? this.revoked
+            : revoked as bool,
+        projectId: identical(projectId, sdkOmittedValue)
+            ? this.projectId
+            : projectId as SdkOptional<String>,
+      );
 
-  factory OrgApiKeyRevokeResponse.fromJson(Map<String, dynamic> json) => OrgApiKeyRevokeResponse(
-    id: ((json['id'] as num?)?.toInt())!,
-    name: (json['name'] as String?)!,
-    createdAt: (json['created_at'] as String?)!,
-    createdBy: (json['created_by'] as String?)!,
-    lastUsedAt: json.containsKey('last_used_at') ? SdkPresent(json['last_used_at'] as String?) : const SdkOmitted(),
-    lastUsedFromAddr: (json['last_used_from_addr'] as String?)!,
-    revoked: (json['revoked'] as bool?)!,
-    projectId: json['project_id'] != null ? SdkPresent((json['project_id'] as String?)!) : const SdkOmitted(),
-  );
+  factory OrgApiKeyRevokeResponse.fromJson(Map<String, dynamic> json) =>
+      OrgApiKeyRevokeResponse(
+        id: ((json['id'] as num?)?.toInt())!,
+        name: (json['name'] as String?)!,
+        createdAt: (json['created_at'] as String?)!,
+        createdBy: (json['created_by'] as String?)!,
+        lastUsedAt: json.containsKey('last_used_at')
+            ? SdkPresent(json['last_used_at'] as String?)
+            : const SdkOmitted(),
+        lastUsedFromAddr: (json['last_used_from_addr'] as String?)!,
+        revoked: (json['revoked'] as bool?)!,
+        projectId: json['project_id'] != null
+            ? SdkPresent((json['project_id'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'created_at': createdAt,
-    'created_by': createdBy,
-    ...switch (lastUsedAt) {
-      SdkPresent<String?>(value: final value) => {'last_used_at': value,},
-      _ => const <String, dynamic>{},
-    },
-    'last_used_from_addr': lastUsedFromAddr,
-    'revoked': revoked,
-    ...switch (projectId) {
-      SdkPresent<String>(value: final value) => {'project_id': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'id': id,
+        'name': name,
+        'created_at': createdAt,
+        'created_by': createdBy,
+        ...switch (lastUsedAt) {
+          SdkPresent<String?>(value: final value) => {
+              'last_used_at': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'last_used_from_addr': lastUsedFromAddr,
+        'revoked': revoked,
+        ...switch (projectId) {
+          SdkPresent<String>(value: final value) => {
+              'project_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

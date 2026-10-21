@@ -8,22 +8,27 @@ part of 'project.dart';
 class GrantPermissionToProjectRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Email address of the user to grant project access to.
   final String email;
 
   const GrantPermissionToProjectRequest({required this.email});
 
-  GrantPermissionToProjectRequest Function({String email}) get copyWith => _copyWith;
+  GrantPermissionToProjectRequest Function({String email}) get copyWith =>
+      _copyWith;
 
-  GrantPermissionToProjectRequest _copyWith({Object? email = sdkOmittedValue}) => GrantPermissionToProjectRequest(
-    email: identical(email, sdkOmittedValue) ? this.email : email as String,
-  );
+  GrantPermissionToProjectRequest _copyWith(
+          {Object? email = sdkOmittedValue}) =>
+      GrantPermissionToProjectRequest(
+        email: identical(email, sdkOmittedValue) ? this.email : email as String,
+      );
 
-  factory GrantPermissionToProjectRequest.fromJson(Map<String, dynamic> json) => GrantPermissionToProjectRequest(
-    email: (json['email'] as String?)!,
-  );
+  factory GrantPermissionToProjectRequest.fromJson(Map<String, dynamic> json) =>
+      GrantPermissionToProjectRequest(
+        email: (json['email'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'email': email,
-  };
+        'email': email,
+      };
 }

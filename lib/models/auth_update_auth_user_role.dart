@@ -8,46 +8,56 @@ part of 'auth.dart';
 class UpdateNeonAuthUserRoleRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Roles to assign to the user in the Neon Auth (Better Auth) directory. `user` and `admin` are the built-in roles; custom role strings are also supported.
   final List<String> roles;
 
   const UpdateNeonAuthUserRoleRequest({required this.roles});
 
-  UpdateNeonAuthUserRoleRequest Function({List<String> roles}) get copyWith => _copyWith;
+  UpdateNeonAuthUserRoleRequest Function({List<String> roles}) get copyWith =>
+      _copyWith;
 
-  UpdateNeonAuthUserRoleRequest _copyWith({Object? roles = sdkOmittedValue}) => UpdateNeonAuthUserRoleRequest(
-    roles: identical(roles, sdkOmittedValue) ? this.roles : roles as List<String>,
-  );
+  UpdateNeonAuthUserRoleRequest _copyWith({Object? roles = sdkOmittedValue}) =>
+      UpdateNeonAuthUserRoleRequest(
+        roles: identical(roles, sdkOmittedValue)
+            ? this.roles
+            : roles as List<String>,
+      );
 
-  factory UpdateNeonAuthUserRoleRequest.fromJson(Map<String, dynamic> json) => UpdateNeonAuthUserRoleRequest(
-    roles: ((json['roles'] as List?)?.map((e) => e as String).toList())!,
-  );
+  factory UpdateNeonAuthUserRoleRequest.fromJson(Map<String, dynamic> json) =>
+      UpdateNeonAuthUserRoleRequest(
+        roles: ((json['roles'] as List?)?.map((e) => e as String).toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'roles': roles,
-  };
+        'roles': roles,
+      };
 }
 
 /// Typed representation of the `UpdateNeonAuthUserRoleResponse` API schema.
 class UpdateNeonAuthUserRoleResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// ID of the updated user
   final String id;
 
   const UpdateNeonAuthUserRoleResponse({required this.id});
 
-  UpdateNeonAuthUserRoleResponse Function({String id}) get copyWith => _copyWith;
+  UpdateNeonAuthUserRoleResponse Function({String id}) get copyWith =>
+      _copyWith;
 
-  UpdateNeonAuthUserRoleResponse _copyWith({Object? id = sdkOmittedValue}) => UpdateNeonAuthUserRoleResponse(
-    id: identical(id, sdkOmittedValue) ? this.id : id as String,
-  );
+  UpdateNeonAuthUserRoleResponse _copyWith({Object? id = sdkOmittedValue}) =>
+      UpdateNeonAuthUserRoleResponse(
+        id: identical(id, sdkOmittedValue) ? this.id : id as String,
+      );
 
-  factory UpdateNeonAuthUserRoleResponse.fromJson(Map<String, dynamic> json) => UpdateNeonAuthUserRoleResponse(
-    id: (json['id'] as String?)!,
-  );
+  factory UpdateNeonAuthUserRoleResponse.fromJson(Map<String, dynamic> json) =>
+      UpdateNeonAuthUserRoleResponse(
+        id: (json['id'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-  };
+        'id': id,
+      };
 }

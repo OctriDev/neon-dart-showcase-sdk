@@ -8,50 +8,105 @@ part of 'branch.dart';
 class CreateBranchResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Branch returned by the request.
   final Branch branch;
+
   /// Compute endpoints in the project. Each includes `id`, `branch_id`, `host`, and `type`.
   final List<Endpoint> endpoints;
+
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
+
   /// Roles belonging to the branch. Each role includes fields such as `branch_id`, `name`, `protected`, `created_at`, and `updated_at`.
   final List<Role> roles;
+
   /// Databases on the branch. Each includes `id`, `name`, `owner_name`, and `created_at`.
   final List<Database> databases;
+
   /// Connection URIs for the compute endpoint, including credentials.
   final SdkOptional<List<ConnectionDetails>> connectionUris;
 
-  const CreateBranchResponse({required this.branch, required this.endpoints, required this.operations, required this.roles, required this.databases, this.connectionUris = const SdkOmitted()});
+  const CreateBranchResponse(
+      {required this.branch,
+      required this.endpoints,
+      required this.operations,
+      required this.roles,
+      required this.databases,
+      this.connectionUris = const SdkOmitted()});
 
-  CreateBranchResponse Function({Branch branch, List<Endpoint> endpoints, List<Operation> operations, List<Role> roles, List<Database> databases, SdkOptional<List<ConnectionDetails>> connectionUris}) get copyWith => _copyWith;
+  CreateBranchResponse Function(
+          {Branch branch,
+          List<Endpoint> endpoints,
+          List<Operation> operations,
+          List<Role> roles,
+          List<Database> databases,
+          SdkOptional<List<ConnectionDetails>> connectionUris})
+      get copyWith => _copyWith;
 
-  CreateBranchResponse _copyWith({Object? branch = sdkOmittedValue, Object? endpoints = sdkOmittedValue, Object? operations = sdkOmittedValue, Object? roles = sdkOmittedValue, Object? databases = sdkOmittedValue, Object? connectionUris = sdkOmittedValue}) => CreateBranchResponse(
-    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
-    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as List<Endpoint>,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-    roles: identical(roles, sdkOmittedValue) ? this.roles : roles as List<Role>,
-    databases: identical(databases, sdkOmittedValue) ? this.databases : databases as List<Database>,
-    connectionUris: identical(connectionUris, sdkOmittedValue) ? this.connectionUris : connectionUris as SdkOptional<List<ConnectionDetails>>,
-  );
+  CreateBranchResponse _copyWith(
+          {Object? branch = sdkOmittedValue,
+          Object? endpoints = sdkOmittedValue,
+          Object? operations = sdkOmittedValue,
+          Object? roles = sdkOmittedValue,
+          Object? databases = sdkOmittedValue,
+          Object? connectionUris = sdkOmittedValue}) =>
+      CreateBranchResponse(
+        branch:
+            identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+        endpoints: identical(endpoints, sdkOmittedValue)
+            ? this.endpoints
+            : endpoints as List<Endpoint>,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+        roles: identical(roles, sdkOmittedValue)
+            ? this.roles
+            : roles as List<Role>,
+        databases: identical(databases, sdkOmittedValue)
+            ? this.databases
+            : databases as List<Database>,
+        connectionUris: identical(connectionUris, sdkOmittedValue)
+            ? this.connectionUris
+            : connectionUris as SdkOptional<List<ConnectionDetails>>,
+      );
 
-  factory CreateBranchResponse.fromJson(Map<String, dynamic> json) => CreateBranchResponse(
-    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
-    endpoints: ((json['endpoints'] as List?)?.map((e) => Endpoint.fromJson(e as Map<String, dynamic>)).toList())!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-    roles: ((json['roles'] as List?)?.map((e) => Role.fromJson(e as Map<String, dynamic>)).toList())!,
-    databases: ((json['databases'] as List?)?.map((e) => Database.fromJson(e as Map<String, dynamic>)).toList())!,
-    connectionUris: json['connection_uris'] != null ? SdkPresent(((json['connection_uris'] as List?)?.map((e) => ConnectionDetails.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
-  );
+  factory CreateBranchResponse.fromJson(Map<String, dynamic> json) =>
+      CreateBranchResponse(
+        branch: (json['branch'] != null
+            ? Branch.fromJson(json['branch'] as Map<String, dynamic>)
+            : null)!,
+        endpoints: ((json['endpoints'] as List?)
+            ?.map((e) => Endpoint.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        roles: ((json['roles'] as List?)
+            ?.map((e) => Role.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        databases: ((json['databases'] as List?)
+            ?.map((e) => Database.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        connectionUris: json['connection_uris'] != null
+            ? SdkPresent(((json['connection_uris'] as List?)
+                ?.map((e) =>
+                    ConnectionDetails.fromJson(e as Map<String, dynamic>))
+                .toList())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'branch': branch.toJson(),
-    'endpoints': endpoints.map((item) => item.toJson()).toList(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-    'roles': roles.map((item) => item.toJson()).toList(),
-    'databases': databases.map((item) => item.toJson()).toList(),
-    ...switch (connectionUris) {
-      SdkPresent<List<ConnectionDetails>>(value: final value) => {'connection_uris': value.map((item) => item.toJson()).toList(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'branch': branch.toJson(),
+        'endpoints': endpoints.map((item) => item.toJson()).toList(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+        'roles': roles.map((item) => item.toJson()).toList(),
+        'databases': databases.map((item) => item.toJson()).toList(),
+        ...switch (connectionUris) {
+          SdkPresent<List<ConnectionDetails>>(value: final value) => {
+              'connection_uris': value.map((item) => item.toJson()).toList(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

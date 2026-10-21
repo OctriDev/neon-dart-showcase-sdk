@@ -6,12 +6,12 @@ part of 'consumption.dart';
 // consumption domain models
 /// Typed representation of the `ConsumptionHistoryGranularity` API schema.
 final class ConsumptionHistoryGranularity {
-
   final String value;
 
   const ConsumptionHistoryGranularity._(this.value);
 
-  factory ConsumptionHistoryGranularity.fromJson(String value) => ConsumptionHistoryGranularity._(value);
+  factory ConsumptionHistoryGranularity.fromJson(String value) =>
+      ConsumptionHistoryGranularity._(value);
 
   static const hourly = ConsumptionHistoryGranularity._('hourly');
   static const daily = ConsumptionHistoryGranularity._('daily');
@@ -19,102 +19,182 @@ final class ConsumptionHistoryGranularity {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ConsumptionHistoryGranularity && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ConsumptionHistoryGranularity && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// Typed representation of the `ConsumptionHistoryPerPeriodV2` API schema.
 class ConsumptionHistoryPerPeriodV2 {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The ID assigned to the specified billing period.
   final String periodId;
+
   /// The billing plan applicable during the billing period.
   final String periodPlan;
+
   /// The start date-time of the billing period.
   final String periodStart;
+
   /// The end date-time of the billing period, available for the past periods only.
   final SdkOptional<String> periodEnd;
+
   /// Consumption metric records for the billing period.
   final List<ConsumptionHistoryPerTimeframeV2> consumption;
 
-  const ConsumptionHistoryPerPeriodV2({required this.periodId, required this.periodPlan, required this.periodStart, this.periodEnd = const SdkOmitted(), required this.consumption});
+  const ConsumptionHistoryPerPeriodV2(
+      {required this.periodId,
+      required this.periodPlan,
+      required this.periodStart,
+      this.periodEnd = const SdkOmitted(),
+      required this.consumption});
 
-  ConsumptionHistoryPerPeriodV2 Function({String periodId, String periodPlan, String periodStart, SdkOptional<String> periodEnd, List<ConsumptionHistoryPerTimeframeV2> consumption}) get copyWith => _copyWith;
+  ConsumptionHistoryPerPeriodV2 Function(
+          {String periodId,
+          String periodPlan,
+          String periodStart,
+          SdkOptional<String> periodEnd,
+          List<ConsumptionHistoryPerTimeframeV2> consumption})
+      get copyWith => _copyWith;
 
-  ConsumptionHistoryPerPeriodV2 _copyWith({Object? periodId = sdkOmittedValue, Object? periodPlan = sdkOmittedValue, Object? periodStart = sdkOmittedValue, Object? periodEnd = sdkOmittedValue, Object? consumption = sdkOmittedValue}) => ConsumptionHistoryPerPeriodV2(
-    periodId: identical(periodId, sdkOmittedValue) ? this.periodId : periodId as String,
-    periodPlan: identical(periodPlan, sdkOmittedValue) ? this.periodPlan : periodPlan as String,
-    periodStart: identical(periodStart, sdkOmittedValue) ? this.periodStart : periodStart as String,
-    periodEnd: identical(periodEnd, sdkOmittedValue) ? this.periodEnd : periodEnd as SdkOptional<String>,
-    consumption: identical(consumption, sdkOmittedValue) ? this.consumption : consumption as List<ConsumptionHistoryPerTimeframeV2>,
-  );
+  ConsumptionHistoryPerPeriodV2 _copyWith(
+          {Object? periodId = sdkOmittedValue,
+          Object? periodPlan = sdkOmittedValue,
+          Object? periodStart = sdkOmittedValue,
+          Object? periodEnd = sdkOmittedValue,
+          Object? consumption = sdkOmittedValue}) =>
+      ConsumptionHistoryPerPeriodV2(
+        periodId: identical(periodId, sdkOmittedValue)
+            ? this.periodId
+            : periodId as String,
+        periodPlan: identical(periodPlan, sdkOmittedValue)
+            ? this.periodPlan
+            : periodPlan as String,
+        periodStart: identical(periodStart, sdkOmittedValue)
+            ? this.periodStart
+            : periodStart as String,
+        periodEnd: identical(periodEnd, sdkOmittedValue)
+            ? this.periodEnd
+            : periodEnd as SdkOptional<String>,
+        consumption: identical(consumption, sdkOmittedValue)
+            ? this.consumption
+            : consumption as List<ConsumptionHistoryPerTimeframeV2>,
+      );
 
-  factory ConsumptionHistoryPerPeriodV2.fromJson(Map<String, dynamic> json) => ConsumptionHistoryPerPeriodV2(
-    periodId: (json['period_id'] as String?)!,
-    periodPlan: (json['period_plan'] as String?)!,
-    periodStart: (json['period_start'] as String?)!,
-    periodEnd: json['period_end'] != null ? SdkPresent((json['period_end'] as String?)!) : const SdkOmitted(),
-    consumption: ((json['consumption'] as List?)?.map((e) => ConsumptionHistoryPerTimeframeV2.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory ConsumptionHistoryPerPeriodV2.fromJson(Map<String, dynamic> json) =>
+      ConsumptionHistoryPerPeriodV2(
+        periodId: (json['period_id'] as String?)!,
+        periodPlan: (json['period_plan'] as String?)!,
+        periodStart: (json['period_start'] as String?)!,
+        periodEnd: json['period_end'] != null
+            ? SdkPresent((json['period_end'] as String?)!)
+            : const SdkOmitted(),
+        consumption: ((json['consumption'] as List?)
+            ?.map((e) => ConsumptionHistoryPerTimeframeV2.fromJson(
+                e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'period_id': periodId,
-    'period_plan': periodPlan,
-    'period_start': periodStart,
-    ...switch (periodEnd) {
-      SdkPresent<String>(value: final value) => {'period_end': value,},
-      _ => const <String, dynamic>{},
-    },
-    'consumption': consumption.map((item) => item.toJson()).toList(),
-  };
+        'period_id': periodId,
+        'period_plan': periodPlan,
+        'period_start': periodStart,
+        ...switch (periodEnd) {
+          SdkPresent<String>(value: final value) => {
+              'period_end': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'consumption': consumption.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Typed representation of the `ConsumptionHistoryPerTimeframeV2` API schema.
 class ConsumptionHistoryPerTimeframeV2 {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The specified start date-time for the reported consumption.
   final SdkOptional<String> timeframeStart;
+
   /// The specified end date-time for the reported consumption.
   final SdkOptional<String> timeframeEnd;
+
   /// Consumption metric values recorded for the timeframe.
   final SdkOptional<List<ConsumptionMetricValue>> metrics;
 
-  const ConsumptionHistoryPerTimeframeV2({this.timeframeStart = const SdkOmitted(), this.timeframeEnd = const SdkOmitted(), this.metrics = const SdkOmitted()});
+  const ConsumptionHistoryPerTimeframeV2(
+      {this.timeframeStart = const SdkOmitted(),
+      this.timeframeEnd = const SdkOmitted(),
+      this.metrics = const SdkOmitted()});
 
-  ConsumptionHistoryPerTimeframeV2 Function({SdkOptional<String> timeframeStart, SdkOptional<String> timeframeEnd, SdkOptional<List<ConsumptionMetricValue>> metrics}) get copyWith => _copyWith;
+  ConsumptionHistoryPerTimeframeV2 Function(
+          {SdkOptional<String> timeframeStart,
+          SdkOptional<String> timeframeEnd,
+          SdkOptional<List<ConsumptionMetricValue>> metrics})
+      get copyWith => _copyWith;
 
-  ConsumptionHistoryPerTimeframeV2 _copyWith({Object? timeframeStart = sdkOmittedValue, Object? timeframeEnd = sdkOmittedValue, Object? metrics = sdkOmittedValue}) => ConsumptionHistoryPerTimeframeV2(
-    timeframeStart: identical(timeframeStart, sdkOmittedValue) ? this.timeframeStart : timeframeStart as SdkOptional<String>,
-    timeframeEnd: identical(timeframeEnd, sdkOmittedValue) ? this.timeframeEnd : timeframeEnd as SdkOptional<String>,
-    metrics: identical(metrics, sdkOmittedValue) ? this.metrics : metrics as SdkOptional<List<ConsumptionMetricValue>>,
-  );
+  ConsumptionHistoryPerTimeframeV2 _copyWith(
+          {Object? timeframeStart = sdkOmittedValue,
+          Object? timeframeEnd = sdkOmittedValue,
+          Object? metrics = sdkOmittedValue}) =>
+      ConsumptionHistoryPerTimeframeV2(
+        timeframeStart: identical(timeframeStart, sdkOmittedValue)
+            ? this.timeframeStart
+            : timeframeStart as SdkOptional<String>,
+        timeframeEnd: identical(timeframeEnd, sdkOmittedValue)
+            ? this.timeframeEnd
+            : timeframeEnd as SdkOptional<String>,
+        metrics: identical(metrics, sdkOmittedValue)
+            ? this.metrics
+            : metrics as SdkOptional<List<ConsumptionMetricValue>>,
+      );
 
-  factory ConsumptionHistoryPerTimeframeV2.fromJson(Map<String, dynamic> json) => ConsumptionHistoryPerTimeframeV2(
-    timeframeStart: json['timeframe_start'] != null ? SdkPresent((json['timeframe_start'] as String?)!) : const SdkOmitted(),
-    timeframeEnd: json['timeframe_end'] != null ? SdkPresent((json['timeframe_end'] as String?)!) : const SdkOmitted(),
-    metrics: json['metrics'] != null ? SdkPresent(((json['metrics'] as List?)?.map((e) => ConsumptionMetricValue.fromJson(e as Map<String, dynamic>)).toList())!) : const SdkOmitted(),
-  );
+  factory ConsumptionHistoryPerTimeframeV2.fromJson(
+          Map<String, dynamic> json) =>
+      ConsumptionHistoryPerTimeframeV2(
+        timeframeStart: json['timeframe_start'] != null
+            ? SdkPresent((json['timeframe_start'] as String?)!)
+            : const SdkOmitted(),
+        timeframeEnd: json['timeframe_end'] != null
+            ? SdkPresent((json['timeframe_end'] as String?)!)
+            : const SdkOmitted(),
+        metrics: json['metrics'] != null
+            ? SdkPresent(((json['metrics'] as List?)
+                ?.map((e) =>
+                    ConsumptionMetricValue.fromJson(e as Map<String, dynamic>))
+                .toList())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (timeframeStart) {
-      SdkPresent<String>(value: final value) => {'timeframe_start': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (timeframeEnd) {
-      SdkPresent<String>(value: final value) => {'timeframe_end': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (metrics) {
-      SdkPresent<List<ConsumptionMetricValue>>(value: final value) => {'metrics': value.map((item) => item.toJson()).toList(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (timeframeStart) {
+          SdkPresent<String>(value: final value) => {
+              'timeframe_start': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (timeframeEnd) {
+          SdkPresent<String>(value: final value) => {
+              'timeframe_end': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (metrics) {
+          SdkPresent<List<ConsumptionMetricValue>>(value: final value) => {
+              'metrics': value.map((item) => item.toJson()).toList(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 // ConsumptionHistoryQueryMetrics = List<String>
@@ -123,27 +203,36 @@ class ConsumptionHistoryPerTimeframeV2 {
 class ConsumptionMetricValue {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Name of the consumption metric, such as compute_time or data_storage_bytes_hour.
   final String metricName;
+
   /// Measured quantity for the metric named by `metric_name`.
   final int value;
 
   const ConsumptionMetricValue({required this.metricName, required this.value});
 
-  ConsumptionMetricValue Function({String metricName, int value}) get copyWith => _copyWith;
+  ConsumptionMetricValue Function({String metricName, int value})
+      get copyWith => _copyWith;
 
-  ConsumptionMetricValue _copyWith({Object? metricName = sdkOmittedValue, Object? value = sdkOmittedValue}) => ConsumptionMetricValue(
-    metricName: identical(metricName, sdkOmittedValue) ? this.metricName : metricName as String,
-    value: identical(value, sdkOmittedValue) ? this.value : value as int,
-  );
+  ConsumptionMetricValue _copyWith(
+          {Object? metricName = sdkOmittedValue,
+          Object? value = sdkOmittedValue}) =>
+      ConsumptionMetricValue(
+        metricName: identical(metricName, sdkOmittedValue)
+            ? this.metricName
+            : metricName as String,
+        value: identical(value, sdkOmittedValue) ? this.value : value as int,
+      );
 
-  factory ConsumptionMetricValue.fromJson(Map<String, dynamic> json) => ConsumptionMetricValue(
-    metricName: (json['metric_name'] as String?)!,
-    value: ((json['value'] as num?)?.toInt())!,
-  );
+  factory ConsumptionMetricValue.fromJson(Map<String, dynamic> json) =>
+      ConsumptionMetricValue(
+        metricName: (json['metric_name'] as String?)!,
+        value: ((json['value'] as num?)?.toInt())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'metric_name': metricName,
-    'value': value,
-  };
+        'metric_name': metricName,
+        'value': value,
+      };
 }

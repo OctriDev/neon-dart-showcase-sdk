@@ -8,35 +8,56 @@ part of 'shared.dart';
 class GeneralError {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Unique identifier for the request, useful for debugging. You can set this value manually by including an `X-Request-ID` header in the request. If not provided, the value will be generated automatically.
   final SdkOptional<String> requestId;
+
   /// Machine-readable code classifying the error type. See `message` for a human-readable explanation.
   final String code;
+
   /// Error message
   final String message;
 
-  const GeneralError({this.requestId = const SdkOmitted(), required this.code, required this.message});
+  const GeneralError(
+      {this.requestId = const SdkOmitted(),
+      required this.code,
+      required this.message});
 
-  GeneralError Function({SdkOptional<String> requestId, String code, String message}) get copyWith => _copyWith;
+  GeneralError Function(
+      {SdkOptional<String> requestId,
+      String code,
+      String message}) get copyWith => _copyWith;
 
-  GeneralError _copyWith({Object? requestId = sdkOmittedValue, Object? code = sdkOmittedValue, Object? message = sdkOmittedValue}) => GeneralError(
-    requestId: identical(requestId, sdkOmittedValue) ? this.requestId : requestId as SdkOptional<String>,
-    code: identical(code, sdkOmittedValue) ? this.code : code as String,
-    message: identical(message, sdkOmittedValue) ? this.message : message as String,
-  );
+  GeneralError _copyWith(
+          {Object? requestId = sdkOmittedValue,
+          Object? code = sdkOmittedValue,
+          Object? message = sdkOmittedValue}) =>
+      GeneralError(
+        requestId: identical(requestId, sdkOmittedValue)
+            ? this.requestId
+            : requestId as SdkOptional<String>,
+        code: identical(code, sdkOmittedValue) ? this.code : code as String,
+        message: identical(message, sdkOmittedValue)
+            ? this.message
+            : message as String,
+      );
 
   factory GeneralError.fromJson(Map<String, dynamic> json) => GeneralError(
-    requestId: json['request_id'] != null ? SdkPresent((json['request_id'] as String?)!) : const SdkOmitted(),
-    code: (json['code'] as String?)!,
-    message: (json['message'] as String?)!,
-  );
+        requestId: json['request_id'] != null
+            ? SdkPresent((json['request_id'] as String?)!)
+            : const SdkOmitted(),
+        code: (json['code'] as String?)!,
+        message: (json['message'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (requestId) {
-      SdkPresent<String>(value: final value) => {'request_id': value,},
-      _ => const <String, dynamic>{},
-    },
-    'code': code,
-    'message': message,
-  };
+        ...switch (requestId) {
+          SdkPresent<String>(value: final value) => {
+              'request_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'code': code,
+        'message': message,
+      };
 }

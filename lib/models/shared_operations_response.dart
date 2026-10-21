@@ -8,22 +8,30 @@ part of 'shared.dart';
 class OperationsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
 
   const OperationsResponse({required this.operations});
 
-  OperationsResponse Function({List<Operation> operations}) get copyWith => _copyWith;
+  OperationsResponse Function({List<Operation> operations}) get copyWith =>
+      _copyWith;
 
-  OperationsResponse _copyWith({Object? operations = sdkOmittedValue}) => OperationsResponse(
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
+  OperationsResponse _copyWith({Object? operations = sdkOmittedValue}) =>
+      OperationsResponse(
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
 
-  factory OperationsResponse.fromJson(Map<String, dynamic> json) => OperationsResponse(
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory OperationsResponse.fromJson(Map<String, dynamic> json) =>
+      OperationsResponse(
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
 }

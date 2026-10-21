@@ -8,179 +8,354 @@ part of 'users.dart';
 class AuthDetailsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The ID of the account associated with this authentication record.
   final String accountId;
+
   /// Authentication method used for the request: - `keycloak`: Keycloak identity provider authentication. - `session_cookie`: Browser session cookie authentication. - `api_key_user`: API key scoped to a user account. - `api_key_org`: API key scoped to an organization. - `oauth`: OAuth-based authentication.
   final AuthDetailsResponseAuthMethod authMethod;
+
   /// Optional `string` value serialized in the `auth_data` wire field.
   final SdkOptional<String> authData;
 
-  const AuthDetailsResponse({required this.accountId, required this.authMethod, this.authData = const SdkOmitted()});
+  const AuthDetailsResponse(
+      {required this.accountId,
+      required this.authMethod,
+      this.authData = const SdkOmitted()});
 
-  AuthDetailsResponse Function({String accountId, AuthDetailsResponseAuthMethod authMethod, SdkOptional<String> authData}) get copyWith => _copyWith;
+  AuthDetailsResponse Function(
+      {String accountId,
+      AuthDetailsResponseAuthMethod authMethod,
+      SdkOptional<String> authData}) get copyWith => _copyWith;
 
-  AuthDetailsResponse _copyWith({Object? accountId = sdkOmittedValue, Object? authMethod = sdkOmittedValue, Object? authData = sdkOmittedValue}) => AuthDetailsResponse(
-    accountId: identical(accountId, sdkOmittedValue) ? this.accountId : accountId as String,
-    authMethod: identical(authMethod, sdkOmittedValue) ? this.authMethod : authMethod as AuthDetailsResponseAuthMethod,
-    authData: identical(authData, sdkOmittedValue) ? this.authData : authData as SdkOptional<String>,
-  );
+  AuthDetailsResponse _copyWith(
+          {Object? accountId = sdkOmittedValue,
+          Object? authMethod = sdkOmittedValue,
+          Object? authData = sdkOmittedValue}) =>
+      AuthDetailsResponse(
+        accountId: identical(accountId, sdkOmittedValue)
+            ? this.accountId
+            : accountId as String,
+        authMethod: identical(authMethod, sdkOmittedValue)
+            ? this.authMethod
+            : authMethod as AuthDetailsResponseAuthMethod,
+        authData: identical(authData, sdkOmittedValue)
+            ? this.authData
+            : authData as SdkOptional<String>,
+      );
 
-  factory AuthDetailsResponse.fromJson(Map<String, dynamic> json) => AuthDetailsResponse(
-    accountId: (json['account_id'] as String?)!,
-    authMethod: (json['auth_method'] != null ? AuthDetailsResponseAuthMethod.fromJson(json['auth_method'] as String) : null)!,
-    authData: json['auth_data'] != null ? SdkPresent((json['auth_data'] as String?)!) : const SdkOmitted(),
-  );
+  factory AuthDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      AuthDetailsResponse(
+        accountId: (json['account_id'] as String?)!,
+        authMethod: (json['auth_method'] != null
+            ? AuthDetailsResponseAuthMethod.fromJson(
+                json['auth_method'] as String)
+            : null)!,
+        authData: json['auth_data'] != null
+            ? SdkPresent((json['auth_data'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'account_id': accountId,
-    'auth_method': authMethod.toJson(),
-    ...switch (authData) {
-      SdkPresent<String>(value: final value) => {'auth_data': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'account_id': accountId,
+        'auth_method': authMethod.toJson(),
+        ...switch (authData) {
+          SdkPresent<String>(value: final value) => {
+              'auth_data': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `BillingAccount` API schema.
 class BillingAccount {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// State of the billing account. `UNKNOWN`: state is not determined. `active`: the account is active and in normal operation. `suspended`: the account has been suspended. `deactivated`: the account has been deactivated. `deleted`: the account has been deleted.
   final BillingAccountState state;
+
   /// Payment source attached to the billing account, such as a credit card on file.
   final PaymentSource paymentSource;
+
   /// Type of subscription to Neon Cloud. Notice that for users without billing account this will be "UNKNOWN"
   final BillingSubscriptionType subscriptionType;
+
   /// Indicates whether and how an account makes payments.
   final BillingPaymentMethod paymentMethod;
+
   /// Timestamp of the last quota reset. Set to the account creation time when the account is first created.
   final String quotaResetAtLast;
+
   /// The full name of the individual or entity that owns the billing account. This name appears on invoices.
   final String name;
+
   /// Billing email, to receive emails related to invoices and subscriptions.
   final String email;
+
   /// Billing address city.
   final String addressCity;
+
   /// Billing address country code defined by ISO 3166-1 alpha-2.
   final String addressCountry;
+
   /// Billing address country name.
   final SdkOptional<String> addressCountryName;
+
   /// Billing address line 1.
   final String addressLine1;
+
   /// Billing address line 2.
   final String addressLine2;
+
   /// Billing address postal code.
   final String addressPostalCode;
+
   /// Billing address state or region.
   final String addressState;
+
   /// Orb user portal url
   final SdkOptional<String> orbPortalUrl;
+
   /// The tax identification number for the billing account, displayed on invoices.
   final SdkOptional<String> taxId;
+
   /// The type of the tax identification number based on the country.
   final SdkOptional<String> taxIdType;
+
   /// Details of the subscription plan associated with the billing account.
   final SdkOptional<PlanDetails> planDetails;
+
   /// Monthly spending cap in cents for V3 paid plans. When set, notifications are sent at 80% and 100% of this limit. `null` means no limit is configured.
   final SdkOptional<int?> spendingLimitCents;
 
-  const BillingAccount({required this.state, required this.paymentSource, required this.subscriptionType, required this.paymentMethod, required this.quotaResetAtLast, required this.name, required this.email, required this.addressCity, required this.addressCountry, this.addressCountryName = const SdkOmitted(), required this.addressLine1, required this.addressLine2, required this.addressPostalCode, required this.addressState, this.orbPortalUrl = const SdkOmitted(), this.taxId = const SdkOmitted(), this.taxIdType = const SdkOmitted(), this.planDetails = const SdkOmitted(), this.spendingLimitCents = const SdkOmitted()});
+  const BillingAccount(
+      {required this.state,
+      required this.paymentSource,
+      required this.subscriptionType,
+      required this.paymentMethod,
+      required this.quotaResetAtLast,
+      required this.name,
+      required this.email,
+      required this.addressCity,
+      required this.addressCountry,
+      this.addressCountryName = const SdkOmitted(),
+      required this.addressLine1,
+      required this.addressLine2,
+      required this.addressPostalCode,
+      required this.addressState,
+      this.orbPortalUrl = const SdkOmitted(),
+      this.taxId = const SdkOmitted(),
+      this.taxIdType = const SdkOmitted(),
+      this.planDetails = const SdkOmitted(),
+      this.spendingLimitCents = const SdkOmitted()});
 
-  BillingAccount Function({BillingAccountState state, PaymentSource paymentSource, BillingSubscriptionType subscriptionType, BillingPaymentMethod paymentMethod, String quotaResetAtLast, String name, String email, String addressCity, String addressCountry, SdkOptional<String> addressCountryName, String addressLine1, String addressLine2, String addressPostalCode, String addressState, SdkOptional<String> orbPortalUrl, SdkOptional<String> taxId, SdkOptional<String> taxIdType, SdkOptional<PlanDetails> planDetails, SdkOptional<int?> spendingLimitCents}) get copyWith => _copyWith;
+  BillingAccount Function(
+      {BillingAccountState state,
+      PaymentSource paymentSource,
+      BillingSubscriptionType subscriptionType,
+      BillingPaymentMethod paymentMethod,
+      String quotaResetAtLast,
+      String name,
+      String email,
+      String addressCity,
+      String addressCountry,
+      SdkOptional<String> addressCountryName,
+      String addressLine1,
+      String addressLine2,
+      String addressPostalCode,
+      String addressState,
+      SdkOptional<String> orbPortalUrl,
+      SdkOptional<String> taxId,
+      SdkOptional<String> taxIdType,
+      SdkOptional<PlanDetails> planDetails,
+      SdkOptional<int?> spendingLimitCents}) get copyWith => _copyWith;
 
-  BillingAccount _copyWith({Object? state = sdkOmittedValue, Object? paymentSource = sdkOmittedValue, Object? subscriptionType = sdkOmittedValue, Object? paymentMethod = sdkOmittedValue, Object? quotaResetAtLast = sdkOmittedValue, Object? name = sdkOmittedValue, Object? email = sdkOmittedValue, Object? addressCity = sdkOmittedValue, Object? addressCountry = sdkOmittedValue, Object? addressCountryName = sdkOmittedValue, Object? addressLine1 = sdkOmittedValue, Object? addressLine2 = sdkOmittedValue, Object? addressPostalCode = sdkOmittedValue, Object? addressState = sdkOmittedValue, Object? orbPortalUrl = sdkOmittedValue, Object? taxId = sdkOmittedValue, Object? taxIdType = sdkOmittedValue, Object? planDetails = sdkOmittedValue, Object? spendingLimitCents = sdkOmittedValue}) => BillingAccount(
-    state: identical(state, sdkOmittedValue) ? this.state : state as BillingAccountState,
-    paymentSource: identical(paymentSource, sdkOmittedValue) ? this.paymentSource : paymentSource as PaymentSource,
-    subscriptionType: identical(subscriptionType, sdkOmittedValue) ? this.subscriptionType : subscriptionType as BillingSubscriptionType,
-    paymentMethod: identical(paymentMethod, sdkOmittedValue) ? this.paymentMethod : paymentMethod as BillingPaymentMethod,
-    quotaResetAtLast: identical(quotaResetAtLast, sdkOmittedValue) ? this.quotaResetAtLast : quotaResetAtLast as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    email: identical(email, sdkOmittedValue) ? this.email : email as String,
-    addressCity: identical(addressCity, sdkOmittedValue) ? this.addressCity : addressCity as String,
-    addressCountry: identical(addressCountry, sdkOmittedValue) ? this.addressCountry : addressCountry as String,
-    addressCountryName: identical(addressCountryName, sdkOmittedValue) ? this.addressCountryName : addressCountryName as SdkOptional<String>,
-    addressLine1: identical(addressLine1, sdkOmittedValue) ? this.addressLine1 : addressLine1 as String,
-    addressLine2: identical(addressLine2, sdkOmittedValue) ? this.addressLine2 : addressLine2 as String,
-    addressPostalCode: identical(addressPostalCode, sdkOmittedValue) ? this.addressPostalCode : addressPostalCode as String,
-    addressState: identical(addressState, sdkOmittedValue) ? this.addressState : addressState as String,
-    orbPortalUrl: identical(orbPortalUrl, sdkOmittedValue) ? this.orbPortalUrl : orbPortalUrl as SdkOptional<String>,
-    taxId: identical(taxId, sdkOmittedValue) ? this.taxId : taxId as SdkOptional<String>,
-    taxIdType: identical(taxIdType, sdkOmittedValue) ? this.taxIdType : taxIdType as SdkOptional<String>,
-    planDetails: identical(planDetails, sdkOmittedValue) ? this.planDetails : planDetails as SdkOptional<PlanDetails>,
-    spendingLimitCents: identical(spendingLimitCents, sdkOmittedValue) ? this.spendingLimitCents : spendingLimitCents as SdkOptional<int?>,
-  );
+  BillingAccount _copyWith(
+          {Object? state = sdkOmittedValue,
+          Object? paymentSource = sdkOmittedValue,
+          Object? subscriptionType = sdkOmittedValue,
+          Object? paymentMethod = sdkOmittedValue,
+          Object? quotaResetAtLast = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? email = sdkOmittedValue,
+          Object? addressCity = sdkOmittedValue,
+          Object? addressCountry = sdkOmittedValue,
+          Object? addressCountryName = sdkOmittedValue,
+          Object? addressLine1 = sdkOmittedValue,
+          Object? addressLine2 = sdkOmittedValue,
+          Object? addressPostalCode = sdkOmittedValue,
+          Object? addressState = sdkOmittedValue,
+          Object? orbPortalUrl = sdkOmittedValue,
+          Object? taxId = sdkOmittedValue,
+          Object? taxIdType = sdkOmittedValue,
+          Object? planDetails = sdkOmittedValue,
+          Object? spendingLimitCents = sdkOmittedValue}) =>
+      BillingAccount(
+        state: identical(state, sdkOmittedValue)
+            ? this.state
+            : state as BillingAccountState,
+        paymentSource: identical(paymentSource, sdkOmittedValue)
+            ? this.paymentSource
+            : paymentSource as PaymentSource,
+        subscriptionType: identical(subscriptionType, sdkOmittedValue)
+            ? this.subscriptionType
+            : subscriptionType as BillingSubscriptionType,
+        paymentMethod: identical(paymentMethod, sdkOmittedValue)
+            ? this.paymentMethod
+            : paymentMethod as BillingPaymentMethod,
+        quotaResetAtLast: identical(quotaResetAtLast, sdkOmittedValue)
+            ? this.quotaResetAtLast
+            : quotaResetAtLast as String,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        email: identical(email, sdkOmittedValue) ? this.email : email as String,
+        addressCity: identical(addressCity, sdkOmittedValue)
+            ? this.addressCity
+            : addressCity as String,
+        addressCountry: identical(addressCountry, sdkOmittedValue)
+            ? this.addressCountry
+            : addressCountry as String,
+        addressCountryName: identical(addressCountryName, sdkOmittedValue)
+            ? this.addressCountryName
+            : addressCountryName as SdkOptional<String>,
+        addressLine1: identical(addressLine1, sdkOmittedValue)
+            ? this.addressLine1
+            : addressLine1 as String,
+        addressLine2: identical(addressLine2, sdkOmittedValue)
+            ? this.addressLine2
+            : addressLine2 as String,
+        addressPostalCode: identical(addressPostalCode, sdkOmittedValue)
+            ? this.addressPostalCode
+            : addressPostalCode as String,
+        addressState: identical(addressState, sdkOmittedValue)
+            ? this.addressState
+            : addressState as String,
+        orbPortalUrl: identical(orbPortalUrl, sdkOmittedValue)
+            ? this.orbPortalUrl
+            : orbPortalUrl as SdkOptional<String>,
+        taxId: identical(taxId, sdkOmittedValue)
+            ? this.taxId
+            : taxId as SdkOptional<String>,
+        taxIdType: identical(taxIdType, sdkOmittedValue)
+            ? this.taxIdType
+            : taxIdType as SdkOptional<String>,
+        planDetails: identical(planDetails, sdkOmittedValue)
+            ? this.planDetails
+            : planDetails as SdkOptional<PlanDetails>,
+        spendingLimitCents: identical(spendingLimitCents, sdkOmittedValue)
+            ? this.spendingLimitCents
+            : spendingLimitCents as SdkOptional<int?>,
+      );
 
   factory BillingAccount.fromJson(Map<String, dynamic> json) => BillingAccount(
-    state: (json['state'] != null ? BillingAccountState.fromJson(json['state'] as String) : null)!,
-    paymentSource: (json['payment_source'] != null ? PaymentSource.fromJson(json['payment_source'] as Map<String, dynamic>) : null)!,
-    subscriptionType: (json['subscription_type'] != null ? BillingSubscriptionType.fromJson(json['subscription_type'] as String) : null)!,
-    paymentMethod: (json['payment_method'] != null ? BillingPaymentMethod.fromJson(json['payment_method'] as String) : null)!,
-    quotaResetAtLast: (json['quota_reset_at_last'] as String?)!,
-    name: (json['name'] as String?)!,
-    email: (json['email'] as String?)!,
-    addressCity: (json['address_city'] as String?)!,
-    addressCountry: (json['address_country'] as String?)!,
-    addressCountryName: json['address_country_name'] != null ? SdkPresent((json['address_country_name'] as String?)!) : const SdkOmitted(),
-    addressLine1: (json['address_line1'] as String?)!,
-    addressLine2: (json['address_line2'] as String?)!,
-    addressPostalCode: (json['address_postal_code'] as String?)!,
-    addressState: (json['address_state'] as String?)!,
-    orbPortalUrl: json['orb_portal_url'] != null ? SdkPresent((json['orb_portal_url'] as String?)!) : const SdkOmitted(),
-    taxId: json['tax_id'] != null ? SdkPresent((json['tax_id'] as String?)!) : const SdkOmitted(),
-    taxIdType: json['tax_id_type'] != null ? SdkPresent((json['tax_id_type'] as String?)!) : const SdkOmitted(),
-    planDetails: json['plan_details'] != null ? SdkPresent((json['plan_details'] != null ? PlanDetails.fromJson(json['plan_details'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-    spendingLimitCents: json.containsKey('spending_limit_cents') ? SdkPresent((json['spending_limit_cents'] as num?)?.toInt()) : const SdkOmitted(),
-  );
+        state: (json['state'] != null
+            ? BillingAccountState.fromJson(json['state'] as String)
+            : null)!,
+        paymentSource: (json['payment_source'] != null
+            ? PaymentSource.fromJson(
+                json['payment_source'] as Map<String, dynamic>)
+            : null)!,
+        subscriptionType: (json['subscription_type'] != null
+            ? BillingSubscriptionType.fromJson(
+                json['subscription_type'] as String)
+            : null)!,
+        paymentMethod: (json['payment_method'] != null
+            ? BillingPaymentMethod.fromJson(json['payment_method'] as String)
+            : null)!,
+        quotaResetAtLast: (json['quota_reset_at_last'] as String?)!,
+        name: (json['name'] as String?)!,
+        email: (json['email'] as String?)!,
+        addressCity: (json['address_city'] as String?)!,
+        addressCountry: (json['address_country'] as String?)!,
+        addressCountryName: json['address_country_name'] != null
+            ? SdkPresent((json['address_country_name'] as String?)!)
+            : const SdkOmitted(),
+        addressLine1: (json['address_line1'] as String?)!,
+        addressLine2: (json['address_line2'] as String?)!,
+        addressPostalCode: (json['address_postal_code'] as String?)!,
+        addressState: (json['address_state'] as String?)!,
+        orbPortalUrl: json['orb_portal_url'] != null
+            ? SdkPresent((json['orb_portal_url'] as String?)!)
+            : const SdkOmitted(),
+        taxId: json['tax_id'] != null
+            ? SdkPresent((json['tax_id'] as String?)!)
+            : const SdkOmitted(),
+        taxIdType: json['tax_id_type'] != null
+            ? SdkPresent((json['tax_id_type'] as String?)!)
+            : const SdkOmitted(),
+        planDetails: json['plan_details'] != null
+            ? SdkPresent((json['plan_details'] != null
+                ? PlanDetails.fromJson(
+                    json['plan_details'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+        spendingLimitCents: json.containsKey('spending_limit_cents')
+            ? SdkPresent((json['spending_limit_cents'] as num?)?.toInt())
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'state': state.toJson(),
-    'payment_source': paymentSource.toJson(),
-    'subscription_type': subscriptionType.toJson(),
-    'payment_method': paymentMethod.toJson(),
-    'quota_reset_at_last': quotaResetAtLast,
-    'name': name,
-    'email': email,
-    'address_city': addressCity,
-    'address_country': addressCountry,
-    ...switch (addressCountryName) {
-      SdkPresent<String>(value: final value) => {'address_country_name': value,},
-      _ => const <String, dynamic>{},
-    },
-    'address_line1': addressLine1,
-    'address_line2': addressLine2,
-    'address_postal_code': addressPostalCode,
-    'address_state': addressState,
-    ...switch (orbPortalUrl) {
-      SdkPresent<String>(value: final value) => {'orb_portal_url': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (taxId) {
-      SdkPresent<String>(value: final value) => {'tax_id': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (taxIdType) {
-      SdkPresent<String>(value: final value) => {'tax_id_type': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (planDetails) {
-      SdkPresent<PlanDetails>(value: final value) => {'plan_details': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (spendingLimitCents) {
-      SdkPresent<int?>(value: final value) => {'spending_limit_cents': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'state': state.toJson(),
+        'payment_source': paymentSource.toJson(),
+        'subscription_type': subscriptionType.toJson(),
+        'payment_method': paymentMethod.toJson(),
+        'quota_reset_at_last': quotaResetAtLast,
+        'name': name,
+        'email': email,
+        'address_city': addressCity,
+        'address_country': addressCountry,
+        ...switch (addressCountryName) {
+          SdkPresent<String>(value: final value) => {
+              'address_country_name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'address_line1': addressLine1,
+        'address_line2': addressLine2,
+        'address_postal_code': addressPostalCode,
+        'address_state': addressState,
+        ...switch (orbPortalUrl) {
+          SdkPresent<String>(value: final value) => {
+              'orb_portal_url': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (taxId) {
+          SdkPresent<String>(value: final value) => {
+              'tax_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (taxIdType) {
+          SdkPresent<String>(value: final value) => {
+              'tax_id_type': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (planDetails) {
+          SdkPresent<PlanDetails>(value: final value) => {
+              'plan_details': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (spendingLimitCents) {
+          SdkPresent<int?>(value: final value) => {
+              'spending_limit_cents': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// State of the billing account.
 final class BillingAccountState {
-
   final String value;
 
   const BillingAccountState._(this.value);
 
-  factory BillingAccountState.fromJson(String value) => BillingAccountState._(value);
+  factory BillingAccountState.fromJson(String value) =>
+      BillingAccountState._(value);
 
   static const unknown = BillingAccountState._('UNKNOWN');
   static const active = BillingAccountState._('active');
@@ -190,22 +365,25 @@ final class BillingAccountState {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is BillingAccountState && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is BillingAccountState && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// Indicates whether and how an account makes payments.
 final class BillingPaymentMethod {
-
   final String value;
 
   const BillingPaymentMethod._(this.value);
 
-  factory BillingPaymentMethod.fromJson(String value) => BillingPaymentMethod._(value);
+  factory BillingPaymentMethod.fromJson(String value) =>
+      BillingPaymentMethod._(value);
 
   static const unknown = BillingPaymentMethod._('UNKNOWN');
   static const none = BillingPaymentMethod._('none');
@@ -217,58 +395,88 @@ final class BillingPaymentMethod {
   static const staff = BillingPaymentMethod._('staff');
   static const trial = BillingPaymentMethod._('trial');
   static const sponsorship = BillingPaymentMethod._('sponsorship');
-  static const sharedPaymentToken = BillingPaymentMethod._('shared_payment_token');
+  static const sharedPaymentToken =
+      BillingPaymentMethod._('shared_payment_token');
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is BillingPaymentMethod && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is BillingPaymentMethod && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }
 
 /// Typed representation of the `CurrentUserAuthAccount` API schema.
 class CurrentUserAuthAccount {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Email address associated with this auth account.
   final String email;
+
   /// URL of the user's profile picture as provided by the identity provider.
   final String image;
+
   /// Deprecated. Use the `email` field.
   final String login;
+
   /// Display name of the account as provided by the identity provider.
   final String name;
+
   /// Identity provider id from keycloak
   final IdentityProviderId provider;
 
-  const CurrentUserAuthAccount({required this.email, required this.image, required this.login, required this.name, required this.provider});
+  const CurrentUserAuthAccount(
+      {required this.email,
+      required this.image,
+      required this.login,
+      required this.name,
+      required this.provider});
 
-  CurrentUserAuthAccount Function({String email, String image, String login, String name, IdentityProviderId provider}) get copyWith => _copyWith;
+  CurrentUserAuthAccount Function(
+      {String email,
+      String image,
+      String login,
+      String name,
+      IdentityProviderId provider}) get copyWith => _copyWith;
 
-  CurrentUserAuthAccount _copyWith({Object? email = sdkOmittedValue, Object? image = sdkOmittedValue, Object? login = sdkOmittedValue, Object? name = sdkOmittedValue, Object? provider = sdkOmittedValue}) => CurrentUserAuthAccount(
-    email: identical(email, sdkOmittedValue) ? this.email : email as String,
-    image: identical(image, sdkOmittedValue) ? this.image : image as String,
-    login: identical(login, sdkOmittedValue) ? this.login : login as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    provider: identical(provider, sdkOmittedValue) ? this.provider : provider as IdentityProviderId,
-  );
+  CurrentUserAuthAccount _copyWith(
+          {Object? email = sdkOmittedValue,
+          Object? image = sdkOmittedValue,
+          Object? login = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? provider = sdkOmittedValue}) =>
+      CurrentUserAuthAccount(
+        email: identical(email, sdkOmittedValue) ? this.email : email as String,
+        image: identical(image, sdkOmittedValue) ? this.image : image as String,
+        login: identical(login, sdkOmittedValue) ? this.login : login as String,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        provider: identical(provider, sdkOmittedValue)
+            ? this.provider
+            : provider as IdentityProviderId,
+      );
 
-  factory CurrentUserAuthAccount.fromJson(Map<String, dynamic> json) => CurrentUserAuthAccount(
-    email: (json['email'] as String?)!,
-    image: (json['image'] as String?)!,
-    login: (json['login'] as String?)!,
-    name: (json['name'] as String?)!,
-    provider: (json['provider'] != null ? IdentityProviderId.fromJson(json['provider'] as String) : null)!,
-  );
+  factory CurrentUserAuthAccount.fromJson(Map<String, dynamic> json) =>
+      CurrentUserAuthAccount(
+        email: (json['email'] as String?)!,
+        image: (json['image'] as String?)!,
+        login: (json['login'] as String?)!,
+        name: (json['name'] as String?)!,
+        provider: (json['provider'] != null
+            ? IdentityProviderId.fromJson(json['provider'] as String)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'email': email,
-    'image': image,
-    'login': login,
-    'name': name,
-    'provider': provider.toJson(),
-  };
+        'email': email,
+        'image': image,
+        'login': login,
+        'name': name,
+        'provider': provider.toJson(),
+      };
 }

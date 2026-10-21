@@ -8,6 +8,7 @@ part of 'project_project.dart';
 class ProjectJWKSResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// JWKS configurations associated with the project.
   final List<JWKS> jwks;
 
@@ -15,15 +16,19 @@ class ProjectJWKSResponse {
 
   ProjectJWKSResponse Function({List<JWKS> jwks}) get copyWith => _copyWith;
 
-  ProjectJWKSResponse _copyWith({Object? jwks = sdkOmittedValue}) => ProjectJWKSResponse(
-    jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as List<JWKS>,
-  );
+  ProjectJWKSResponse _copyWith({Object? jwks = sdkOmittedValue}) =>
+      ProjectJWKSResponse(
+        jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as List<JWKS>,
+      );
 
-  factory ProjectJWKSResponse.fromJson(Map<String, dynamic> json) => ProjectJWKSResponse(
-    jwks: ((json['jwks'] as List?)?.map((e) => JWKS.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory ProjectJWKSResponse.fromJson(Map<String, dynamic> json) =>
+      ProjectJWKSResponse(
+        jwks: ((json['jwks'] as List?)
+            ?.map((e) => JWKS.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'jwks': jwks.map((item) => item.toJson()).toList(),
-  };
+        'jwks': jwks.map((item) => item.toJson()).toList(),
+      };
 }

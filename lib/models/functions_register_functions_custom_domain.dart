@@ -8,32 +8,49 @@ part of 'functions.dart';
 class CustomDomainRegisterRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The custom domain to register (for example `dashboard.acme.com`). Case-insensitive; normalized to lowercase (a trailing root dot is stripped, so the 254-char bound admits a fully-qualified name whose normalized form is 253 chars). Neon-managed and internal hostnames are rejected.
   final String domain;
+
   /// The kind of branch entity to point the domain at. v1 supports only `function`; any other value is rejected with `invalid_entity_type`.
   final String entityType;
+
   /// The target entity's identifier within the branch. For `function` this is the function slug (which must already exist on the branch).
   final String entityId;
 
-  const CustomDomainRegisterRequest({required this.domain, required this.entityType, required this.entityId});
+  const CustomDomainRegisterRequest(
+      {required this.domain, required this.entityType, required this.entityId});
 
-  CustomDomainRegisterRequest Function({String domain, String entityType, String entityId}) get copyWith => _copyWith;
+  CustomDomainRegisterRequest Function(
+      {String domain,
+      String entityType,
+      String entityId}) get copyWith => _copyWith;
 
-  CustomDomainRegisterRequest _copyWith({Object? domain = sdkOmittedValue, Object? entityType = sdkOmittedValue, Object? entityId = sdkOmittedValue}) => CustomDomainRegisterRequest(
-    domain: identical(domain, sdkOmittedValue) ? this.domain : domain as String,
-    entityType: identical(entityType, sdkOmittedValue) ? this.entityType : entityType as String,
-    entityId: identical(entityId, sdkOmittedValue) ? this.entityId : entityId as String,
-  );
+  CustomDomainRegisterRequest _copyWith(
+          {Object? domain = sdkOmittedValue,
+          Object? entityType = sdkOmittedValue,
+          Object? entityId = sdkOmittedValue}) =>
+      CustomDomainRegisterRequest(
+        domain:
+            identical(domain, sdkOmittedValue) ? this.domain : domain as String,
+        entityType: identical(entityType, sdkOmittedValue)
+            ? this.entityType
+            : entityType as String,
+        entityId: identical(entityId, sdkOmittedValue)
+            ? this.entityId
+            : entityId as String,
+      );
 
-  factory CustomDomainRegisterRequest.fromJson(Map<String, dynamic> json) => CustomDomainRegisterRequest(
-    domain: (json['domain'] as String?)!,
-    entityType: (json['entity_type'] as String?)!,
-    entityId: (json['entity_id'] as String?)!,
-  );
+  factory CustomDomainRegisterRequest.fromJson(Map<String, dynamic> json) =>
+      CustomDomainRegisterRequest(
+        domain: (json['domain'] as String?)!,
+        entityType: (json['entity_type'] as String?)!,
+        entityId: (json['entity_id'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'domain': domain,
-    'entity_type': entityType,
-    'entity_id': entityId,
-  };
+        'domain': domain,
+        'entity_type': entityType,
+        'entity_id': entityId,
+      };
 }

@@ -8,27 +8,42 @@ part of 'shared.dart';
 class TransferProjectsToOrganizationRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The destination organization identifier
   final String destinationOrgId;
+
   /// The list of projects ids to transfer. Maximum of 400 project ids
   final List<String> projectIds;
 
-  const TransferProjectsToOrganizationRequest({required this.destinationOrgId, required this.projectIds});
+  const TransferProjectsToOrganizationRequest(
+      {required this.destinationOrgId, required this.projectIds});
 
-  TransferProjectsToOrganizationRequest Function({String destinationOrgId, List<String> projectIds}) get copyWith => _copyWith;
+  TransferProjectsToOrganizationRequest Function(
+      {String destinationOrgId,
+      List<String> projectIds}) get copyWith => _copyWith;
 
-  TransferProjectsToOrganizationRequest _copyWith({Object? destinationOrgId = sdkOmittedValue, Object? projectIds = sdkOmittedValue}) => TransferProjectsToOrganizationRequest(
-    destinationOrgId: identical(destinationOrgId, sdkOmittedValue) ? this.destinationOrgId : destinationOrgId as String,
-    projectIds: identical(projectIds, sdkOmittedValue) ? this.projectIds : projectIds as List<String>,
-  );
+  TransferProjectsToOrganizationRequest _copyWith(
+          {Object? destinationOrgId = sdkOmittedValue,
+          Object? projectIds = sdkOmittedValue}) =>
+      TransferProjectsToOrganizationRequest(
+        destinationOrgId: identical(destinationOrgId, sdkOmittedValue)
+            ? this.destinationOrgId
+            : destinationOrgId as String,
+        projectIds: identical(projectIds, sdkOmittedValue)
+            ? this.projectIds
+            : projectIds as List<String>,
+      );
 
-  factory TransferProjectsToOrganizationRequest.fromJson(Map<String, dynamic> json) => TransferProjectsToOrganizationRequest(
-    destinationOrgId: (json['destination_org_id'] as String?)!,
-    projectIds: ((json['project_ids'] as List?)?.map((e) => e as String).toList())!,
-  );
+  factory TransferProjectsToOrganizationRequest.fromJson(
+          Map<String, dynamic> json) =>
+      TransferProjectsToOrganizationRequest(
+        destinationOrgId: (json['destination_org_id'] as String?)!,
+        projectIds:
+            ((json['project_ids'] as List?)?.map((e) => e as String).toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'destination_org_id': destinationOrgId,
-    'project_ids': projectIds,
-  };
+        'destination_org_id': destinationOrgId,
+        'project_ids': projectIds,
+      };
 }

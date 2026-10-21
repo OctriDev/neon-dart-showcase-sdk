@@ -32,17 +32,22 @@ Future<ListFunctionsResponse> listFunctions(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/functions',
           config: config,
           query: {
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true)
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
+                style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listFunctions',
-          fromJsonRaw: (value) => ListFunctionsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              ListFunctionsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Returns the function identified by its slug. **Note**: This endpoint is currently in Beta.
 ///
@@ -65,10 +70,12 @@ Future<NeonFunctionResponse> getFunctions(ClientConfig config,
           operationId: 'getFunctions',
           fromJsonRaw: (value) => NeonFunctionResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates the function's mutable metadata — currently only the display `name`. A string sets the display name; `null` clears it, after which the function's `name` falls back to its slug. Leading and trailing whitespace is trimmed; a whitespace-only name is rejected. Acts only on a function owned by the branch: a slug that is only inherited from an ancestor branch returns 404 — rename it on the branch that owns it. Like every other change on a branch, a rename is isolated per branch: a branch forked before the rename keeps the name it had at fork time. **Note**: This endpoint is currently in Beta.
 ///
@@ -97,12 +104,15 @@ Future<NeonFunctionResponse> updateFunctions(ClientConfig config,
           body: {'name': name},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateFunctions',
-          fromJsonRaw: (value) => NeonFunctionResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              NeonFunctionResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deletes the function identified by its slug. **Note**: This endpoint is currently in Beta.
 ///
@@ -124,10 +134,12 @@ Future<void> deleteFunctions(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteFunctions',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Creates a deployment for a function on a branch. Supply at least one of `zip`, `environment`, or `runtime`; omitted fields inherit the function's latest version. The first deployment must include `zip`, and the newest deployment becomes active.
 ///
@@ -164,15 +176,15 @@ Future<void> deleteFunctions(ClientConfig config,
 ///   object parts. Values are write-only: they are encrypted at rest, and
 ///   responses carry only the variable names (the `environment` array), never the
 ///   values.
-Future<NeonFunctionDeploymentResponse>
-    createFunctionsDeployment(ClientConfig config,
-        {required String projectId,
-        required String branchId,
-        required String slug,
-        SdkOptional<SdkUploadFile> zip = const SdkOmitted(),
-        SdkOptional<FunctionDeployRequestRuntime> runtime = const SdkOmitted(),
-        SdkOptional<String> environment = const SdkOmitted(),
-        RequestOptions? requestOptions}) async {
+Future<NeonFunctionDeploymentResponse> createFunctionsDeployment(
+    ClientConfig config,
+    {required String projectId,
+    required String branchId,
+    required String slug,
+    SdkOptional<SdkUploadFile> zip = const SdkOmitted(),
+    SdkOptional<FunctionDeployRequestRuntime> runtime = const SdkOmitted(),
+    SdkOptional<String> environment = const SdkOmitted(),
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('slug', slug, '^[a-z0-9]{1,20}\$');
@@ -188,12 +200,15 @@ Future<NeonFunctionDeploymentResponse>
           contentType: 'multipart/form-data',
           decoder: SdkResponseDecoder.json,
           operationId: 'createFunctionsDeployment',
-          fromJsonRaw: (value) => NeonFunctionDeploymentResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => NeonFunctionDeploymentResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Lists the complete project-bounded set of triggers visible on the branch, ordered by `trigger_id`. An inherited trigger keeps its project-wide ID and configuration, and is disabled on the child until explicitly enabled there. The supported trigger types are `schedule` and `storage_object_created`. A storage-object-created trigger watches one exact bucket and fires only after an object upload succeeds. **Note**: This endpoint is currently in Beta.
 ///
@@ -213,10 +228,12 @@ Future<TriggersListResponse> listFunctionsTriggers(ClientConfig config,
           operationId: 'listFunctionsTriggers',
           fromJsonRaw: (value) => TriggersListResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Creates a trigger for a function visible on a branch. Set `type` to `schedule` or `storage_object_created` and provide the matching configuration; schedule expressions use five numeric cron fields interpreted in UTC. The trigger name must be unique among triggers visible on the branch, including inherited triggers.
 ///
@@ -240,10 +257,12 @@ Future<TriggerResponse> createFunctionsTrigger(ClientConfig config,
           operationId: 'createFunctionsTrigger',
           fromJsonRaw: (value) => TriggerResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Returns the trigger visible on the branch. The supported trigger types are `schedule` and `storage_object_created`. **Note**: This endpoint is currently in Beta.
 ///
@@ -258,7 +277,8 @@ Future<TriggerResponse> getFunctionsTrigger(ClientConfig config,
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   validateLength('trigger_id', triggerId, min: 1, max: 128);
-  sdkValidatePattern('trigger_id', triggerId, '^[A-Za-z0-9][A-Za-z0-9_.\\-]{0,127}\$');
+  sdkValidatePattern(
+      'trigger_id', triggerId, '^[A-Za-z0-9][A-Za-z0-9_.\\-]{0,127}\$');
 
   return (await sdkRequest<TriggerResponse>('GET',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/triggers/${Uri.encodeComponent(triggerId.toString())}',
@@ -267,10 +287,12 @@ Future<TriggerResponse> getFunctionsTrigger(ClientConfig config,
           operationId: 'getFunctionsTrigger',
           fromJsonRaw: (value) => TriggerResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates a branch trigger using a partial configuration. Set `type` to the existing trigger kind and provide at least one other field to change; supported kinds are `schedule` and `storage_object_created`. Editing an inherited trigger creates a child-local shadow that remains disabled unless you explicitly enable it; disabling a trigger does not cancel occurrences already committed for delivery.
 ///
@@ -288,7 +310,8 @@ Future<TriggerResponse> updateFunctionTrigger(ClientConfig config,
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   validateLength('trigger_id', triggerId, min: 1, max: 128);
-  sdkValidatePattern('trigger_id', triggerId, '^[A-Za-z0-9][A-Za-z0-9_.\\-]{0,127}\$');
+  sdkValidatePattern(
+      'trigger_id', triggerId, '^[A-Za-z0-9][A-Za-z0-9_.\\-]{0,127}\$');
 
   return (await sdkRequest<TriggerResponse>('PATCH',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/triggers/${Uri.encodeComponent(triggerId.toString())}',
@@ -298,10 +321,12 @@ Future<TriggerResponse> updateFunctionTrigger(ClientConfig config,
           operationId: 'updateFunctionTrigger',
           fromJsonRaw: (value) => TriggerResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deletes a branch-local trigger or writes a branch-local tombstone for an inherited trigger so it does not reappear. Deletion stops future scheduling or storage-event matching but does not cancel invocations already committed for delivery. The supported trigger types are `schedule` and `storage_object_created`. **Note**: This endpoint is currently in Beta.
 ///
@@ -316,7 +341,8 @@ Future<void> deleteFunctionsTrigger(ClientConfig config,
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   validateLength('trigger_id', triggerId, min: 1, max: 128);
-  sdkValidatePattern('trigger_id', triggerId, '^[A-Za-z0-9][A-Za-z0-9_.\\-]{0,127}\$');
+  sdkValidatePattern(
+      'trigger_id', triggerId, '^[A-Za-z0-9][A-Za-z0-9_.\\-]{0,127}\$');
 
   return (await sdkRequest<void>('DELETE',
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/triggers/${Uri.encodeComponent(triggerId.toString())}',
@@ -324,10 +350,12 @@ Future<void> deleteFunctionsTrigger(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteFunctionsTrigger',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Registers a customer-owned domain (for example `dashboard.acme.com`) on the branch and points it at a target entity, chosen by `entity_type` + `entity_id`. In v1 only `entity_type: function` is supported (an unsupported type is rejected with `400`), where `entity_id` is the function slug and the function must already exist on the branch (else `404`). The response includes the `cname_target` the customer must point their domain at with a CNAME record; the domain goes live only once that DNS resolves and a certificate is issued on the first request. A domain already registered to another resource is rejected with `409` and no detail about the owner. Re-registering the same domain for the same entity is idempotent. **Note**: This endpoint is currently in Beta.
 ///
@@ -364,12 +392,15 @@ Future<CustomDomain> registerFunctionsCustomDomain(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'registerFunctionsCustomDomain',
-          fromJsonRaw: (value) => CustomDomain.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              CustomDomain.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Lists all custom domains registered on the branch, across every target entity. **Note**: This endpoint is currently in Beta.
 ///
@@ -380,13 +411,13 @@ Future<CustomDomain> registerFunctionsCustomDomain(ClientConfig config,
 ///   fetch next page of the list.
 /// [limit] Specify a value from 1 to 1000 to limit number of domains in the
 ///   response
-Future<ListFunctionsCustomDomainsResponse>
-    listFunctionsCustomDomains(ClientConfig config,
-        {required String projectId,
-        required String branchId,
-        SdkOptional<String> cursor = const SdkOmitted(),
-        SdkOptional<int> limit = const SdkOmitted(),
-        RequestOptions? requestOptions}) async {
+Future<ListFunctionsCustomDomainsResponse> listFunctionsCustomDomains(
+    ClientConfig config,
+    {required String projectId,
+    required String branchId,
+    SdkOptional<String> cursor = const SdkOmitted(),
+    SdkOptional<int> limit = const SdkOmitted(),
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   if (limit is SdkPresent<int>) {
@@ -397,17 +428,22 @@ Future<ListFunctionsCustomDomainsResponse>
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/custom-domains',
           config: config,
           query: {
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true)
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
+                style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listFunctionsCustomDomains',
-          fromJsonRaw: (value) => ListFunctionsCustomDomainsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListFunctionsCustomDomainsResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Removes a custom domain registered on the branch and stops routing it. **Note**: This endpoint is currently in Beta.
 ///
@@ -430,6 +466,9 @@ Future<void> deleteFunctionsCustomDomain(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteFunctionsCustomDomain',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }

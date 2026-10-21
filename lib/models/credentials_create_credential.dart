@@ -8,112 +8,207 @@ part of 'credentials.dart';
 class CreateCredentialRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Free-form customer label for the credential.
   final SdkOptional<String> name;
+
   /// Required array value serialized in the `scopes` wire field.
   final List<CredentialScope> scopes;
+
   /// Principal type for the credential. Only `user` is customer-managed and accepted here. `function` and `system` credentials are platform-internal (e.g. function-serve auto-mint, presign signer) and are never issued through the customer-facing API.
   final CreateCredentialRequestPrincipalType principalType;
 
-  const CreateCredentialRequest({this.name = const SdkOmitted(), required this.scopes, required this.principalType});
+  const CreateCredentialRequest(
+      {this.name = const SdkOmitted(),
+      required this.scopes,
+      required this.principalType});
 
-  CreateCredentialRequest Function({SdkOptional<String> name, List<CredentialScope> scopes, CreateCredentialRequestPrincipalType principalType}) get copyWith => _copyWith;
+  CreateCredentialRequest Function(
+          {SdkOptional<String> name,
+          List<CredentialScope> scopes,
+          CreateCredentialRequestPrincipalType principalType})
+      get copyWith => _copyWith;
 
-  CreateCredentialRequest _copyWith({Object? name = sdkOmittedValue, Object? scopes = sdkOmittedValue, Object? principalType = sdkOmittedValue}) => CreateCredentialRequest(
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-    scopes: identical(scopes, sdkOmittedValue) ? this.scopes : scopes as List<CredentialScope>,
-    principalType: identical(principalType, sdkOmittedValue) ? this.principalType : principalType as CreateCredentialRequestPrincipalType,
-  );
+  CreateCredentialRequest _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? scopes = sdkOmittedValue,
+          Object? principalType = sdkOmittedValue}) =>
+      CreateCredentialRequest(
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+        scopes: identical(scopes, sdkOmittedValue)
+            ? this.scopes
+            : scopes as List<CredentialScope>,
+        principalType: identical(principalType, sdkOmittedValue)
+            ? this.principalType
+            : principalType as CreateCredentialRequestPrincipalType,
+      );
 
-  factory CreateCredentialRequest.fromJson(Map<String, dynamic> json) => CreateCredentialRequest(
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-    scopes: ((json['scopes'] as List?)?.map((e) => CredentialScope.fromJson(e as String)).toList())!,
-    principalType: (json['principal_type'] != null ? CreateCredentialRequestPrincipalType.fromJson(json['principal_type'] as String) : null)!,
-  );
+  factory CreateCredentialRequest.fromJson(Map<String, dynamic> json) =>
+      CreateCredentialRequest(
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+        scopes: ((json['scopes'] as List?)
+            ?.map((e) => CredentialScope.fromJson(e as String))
+            .toList())!,
+        principalType: (json['principal_type'] != null
+            ? CreateCredentialRequestPrincipalType.fromJson(
+                json['principal_type'] as String)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-    'scopes': scopes.map((item) => item.toJson()).toList(),
-    'principal_type': principalType.toJson(),
-  };
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'scopes': scopes.map((item) => item.toJson()).toList(),
+        'principal_type': principalType.toJson(),
+      };
 }
 
 /// Typed representation of the `CreateCredentialResponse` API schema.
 class CreateCredentialResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Opaque credential id (e.g. nak_live_&lt;32hex&gt;).
   final String tokenId;
+
   /// First 12 hex chars of token_id; safe to log.
   final String tokenIdShort;
+
   /// Customer-supplied label, echoed back from the request. Absent when not provided.
   final SdkOptional<String> name;
+
   /// Bearer token; returned exactly once.
   final String apiToken;
+
   /// nsk_live_&lt;64 hex&gt;; the AWS_SECRET_ACCESS_KEY, returned exactly once.
   final String s3SecretAccessKey;
+
   /// Required array value serialized in the `scopes` wire field.
   final List<GrantedCredentialScope> scopes;
+
   /// Required `string` value serialized in the `branch_id` wire field.
   final String branchId;
+
   /// Required `date-time`-formatted value serialized in the `created_at` wire field.
   final String createdAt;
+
   /// When the credential expires; absent means never expires.
   final SdkOptional<String> expiresAt;
 
-  const CreateCredentialResponse({required this.tokenId, required this.tokenIdShort, this.name = const SdkOmitted(), required this.apiToken, required this.s3SecretAccessKey, required this.scopes, required this.branchId, required this.createdAt, this.expiresAt = const SdkOmitted()});
+  const CreateCredentialResponse(
+      {required this.tokenId,
+      required this.tokenIdShort,
+      this.name = const SdkOmitted(),
+      required this.apiToken,
+      required this.s3SecretAccessKey,
+      required this.scopes,
+      required this.branchId,
+      required this.createdAt,
+      this.expiresAt = const SdkOmitted()});
 
-  CreateCredentialResponse Function({String tokenId, String tokenIdShort, SdkOptional<String> name, String apiToken, String s3SecretAccessKey, List<GrantedCredentialScope> scopes, String branchId, String createdAt, SdkOptional<String> expiresAt}) get copyWith => _copyWith;
+  CreateCredentialResponse Function(
+      {String tokenId,
+      String tokenIdShort,
+      SdkOptional<String> name,
+      String apiToken,
+      String s3SecretAccessKey,
+      List<GrantedCredentialScope> scopes,
+      String branchId,
+      String createdAt,
+      SdkOptional<String> expiresAt}) get copyWith => _copyWith;
 
-  CreateCredentialResponse _copyWith({Object? tokenId = sdkOmittedValue, Object? tokenIdShort = sdkOmittedValue, Object? name = sdkOmittedValue, Object? apiToken = sdkOmittedValue, Object? s3SecretAccessKey = sdkOmittedValue, Object? scopes = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? expiresAt = sdkOmittedValue}) => CreateCredentialResponse(
-    tokenId: identical(tokenId, sdkOmittedValue) ? this.tokenId : tokenId as String,
-    tokenIdShort: identical(tokenIdShort, sdkOmittedValue) ? this.tokenIdShort : tokenIdShort as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-    apiToken: identical(apiToken, sdkOmittedValue) ? this.apiToken : apiToken as String,
-    s3SecretAccessKey: identical(s3SecretAccessKey, sdkOmittedValue) ? this.s3SecretAccessKey : s3SecretAccessKey as String,
-    scopes: identical(scopes, sdkOmittedValue) ? this.scopes : scopes as List<GrantedCredentialScope>,
-    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as String,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
-    expiresAt: identical(expiresAt, sdkOmittedValue) ? this.expiresAt : expiresAt as SdkOptional<String>,
-  );
+  CreateCredentialResponse _copyWith(
+          {Object? tokenId = sdkOmittedValue,
+          Object? tokenIdShort = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? apiToken = sdkOmittedValue,
+          Object? s3SecretAccessKey = sdkOmittedValue,
+          Object? scopes = sdkOmittedValue,
+          Object? branchId = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue,
+          Object? expiresAt = sdkOmittedValue}) =>
+      CreateCredentialResponse(
+        tokenId: identical(tokenId, sdkOmittedValue)
+            ? this.tokenId
+            : tokenId as String,
+        tokenIdShort: identical(tokenIdShort, sdkOmittedValue)
+            ? this.tokenIdShort
+            : tokenIdShort as String,
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+        apiToken: identical(apiToken, sdkOmittedValue)
+            ? this.apiToken
+            : apiToken as String,
+        s3SecretAccessKey: identical(s3SecretAccessKey, sdkOmittedValue)
+            ? this.s3SecretAccessKey
+            : s3SecretAccessKey as String,
+        scopes: identical(scopes, sdkOmittedValue)
+            ? this.scopes
+            : scopes as List<GrantedCredentialScope>,
+        branchId: identical(branchId, sdkOmittedValue)
+            ? this.branchId
+            : branchId as String,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as String,
+        expiresAt: identical(expiresAt, sdkOmittedValue)
+            ? this.expiresAt
+            : expiresAt as SdkOptional<String>,
+      );
 
-  factory CreateCredentialResponse.fromJson(Map<String, dynamic> json) => CreateCredentialResponse(
-    tokenId: (json['token_id'] as String?)!,
-    tokenIdShort: (json['token_id_short'] as String?)!,
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-    apiToken: (json['api_token'] as String?)!,
-    s3SecretAccessKey: (json['s3_secret_access_key'] as String?)!,
-    scopes: ((json['scopes'] as List?)?.map((e) => GrantedCredentialScope.fromJson(e as String)).toList())!,
-    branchId: (json['branch_id'] as String?)!,
-    createdAt: (json['created_at'] as String?)!,
-    expiresAt: json['expires_at'] != null ? SdkPresent((json['expires_at'] as String?)!) : const SdkOmitted(),
-  );
+  factory CreateCredentialResponse.fromJson(Map<String, dynamic> json) =>
+      CreateCredentialResponse(
+        tokenId: (json['token_id'] as String?)!,
+        tokenIdShort: (json['token_id_short'] as String?)!,
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+        apiToken: (json['api_token'] as String?)!,
+        s3SecretAccessKey: (json['s3_secret_access_key'] as String?)!,
+        scopes: ((json['scopes'] as List?)
+            ?.map((e) => GrantedCredentialScope.fromJson(e as String))
+            .toList())!,
+        branchId: (json['branch_id'] as String?)!,
+        createdAt: (json['created_at'] as String?)!,
+        expiresAt: json['expires_at'] != null
+            ? SdkPresent((json['expires_at'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'token_id': tokenId,
-    'token_id_short': tokenIdShort,
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-    'api_token': apiToken,
-    's3_secret_access_key': s3SecretAccessKey,
-    'scopes': scopes.map((item) => item.toJson()).toList(),
-    'branch_id': branchId,
-    'created_at': createdAt,
-    ...switch (expiresAt) {
-      SdkPresent<String>(value: final value) => {'expires_at': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'token_id': tokenId,
+        'token_id_short': tokenIdShort,
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'api_token': apiToken,
+        's3_secret_access_key': s3SecretAccessKey,
+        'scopes': scopes.map((item) => item.toJson()).toList(),
+        'branch_id': branchId,
+        'created_at': createdAt,
+        ...switch (expiresAt) {
+          SdkPresent<String>(value: final value) => {
+              'expires_at': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// A single capability you may request when issuing a credential. A credential is granted a set of these; it may only perform actions explicitly listed in its scopes. This is the *requestable* set. Responses describing an existing credential use `GrantedCredentialScope`, which is deliberately wider: a credential may have been granted a scope that this endpoint does not offer, and a response must be able to report it.
 final class CredentialScope {
-
   final String value;
 
   const CredentialScope._(this.value);
@@ -127,10 +222,13 @@ final class CredentialScope {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is CredentialScope && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is CredentialScope && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

@@ -8,42 +8,68 @@ part of 'users.dart';
 class CurrentUserAuthAccount {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Email address associated with this auth account.
   final String email;
+
   /// URL of the user's profile picture as provided by the identity provider.
   final String image;
+
   /// Deprecated. Use the `email` field.
   final String login;
+
   /// Display name of the account as provided by the identity provider.
   final String name;
+
   /// Identity provider id from keycloak
   final IdentityProviderId provider;
 
-  const CurrentUserAuthAccount({required this.email, required this.image, required this.login, required this.name, required this.provider});
+  const CurrentUserAuthAccount(
+      {required this.email,
+      required this.image,
+      required this.login,
+      required this.name,
+      required this.provider});
 
-  CurrentUserAuthAccount Function({String email, String image, String login, String name, IdentityProviderId provider}) get copyWith => _copyWith;
+  CurrentUserAuthAccount Function(
+      {String email,
+      String image,
+      String login,
+      String name,
+      IdentityProviderId provider}) get copyWith => _copyWith;
 
-  CurrentUserAuthAccount _copyWith({Object? email = sdkOmittedValue, Object? image = sdkOmittedValue, Object? login = sdkOmittedValue, Object? name = sdkOmittedValue, Object? provider = sdkOmittedValue}) => CurrentUserAuthAccount(
-    email: identical(email, sdkOmittedValue) ? this.email : email as String,
-    image: identical(image, sdkOmittedValue) ? this.image : image as String,
-    login: identical(login, sdkOmittedValue) ? this.login : login as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    provider: identical(provider, sdkOmittedValue) ? this.provider : provider as IdentityProviderId,
-  );
+  CurrentUserAuthAccount _copyWith(
+          {Object? email = sdkOmittedValue,
+          Object? image = sdkOmittedValue,
+          Object? login = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? provider = sdkOmittedValue}) =>
+      CurrentUserAuthAccount(
+        email: identical(email, sdkOmittedValue) ? this.email : email as String,
+        image: identical(image, sdkOmittedValue) ? this.image : image as String,
+        login: identical(login, sdkOmittedValue) ? this.login : login as String,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        provider: identical(provider, sdkOmittedValue)
+            ? this.provider
+            : provider as IdentityProviderId,
+      );
 
-  factory CurrentUserAuthAccount.fromJson(Map<String, dynamic> json) => CurrentUserAuthAccount(
-    email: (json['email'] as String?)!,
-    image: (json['image'] as String?)!,
-    login: (json['login'] as String?)!,
-    name: (json['name'] as String?)!,
-    provider: (json['provider'] != null ? IdentityProviderId.fromJson(json['provider'] as String) : null)!,
-  );
+  factory CurrentUserAuthAccount.fromJson(Map<String, dynamic> json) =>
+      CurrentUserAuthAccount(
+        email: (json['email'] as String?)!,
+        image: (json['image'] as String?)!,
+        login: (json['login'] as String?)!,
+        name: (json['name'] as String?)!,
+        provider: (json['provider'] != null
+            ? IdentityProviderId.fromJson(json['provider'] as String)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'email': email,
-    'image': image,
-    'login': login,
-    'name': name,
-    'provider': provider.toJson(),
-  };
+        'email': email,
+        'image': image,
+        'login': login,
+        'name': name,
+        'provider': provider.toJson(),
+      };
 }

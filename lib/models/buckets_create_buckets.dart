@@ -8,38 +8,58 @@ part of 'buckets.dart';
 class BucketCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The bucket name.
   final String name;
+
   /// Access level for the bucket. Defaults to `private`. Set to `public_read` to allow anonymous `GetObject`/`HeadObject` on objects in this bucket.
   final SdkOptional<BucketCreateRequestAccessLevel> accessLevel;
 
-  const BucketCreateRequest({required this.name, this.accessLevel = const SdkOmitted()});
+  const BucketCreateRequest(
+      {required this.name, this.accessLevel = const SdkOmitted()});
 
-  BucketCreateRequest Function({String name, SdkOptional<BucketCreateRequestAccessLevel> accessLevel}) get copyWith => _copyWith;
+  BucketCreateRequest Function(
+          {String name,
+          SdkOptional<BucketCreateRequestAccessLevel> accessLevel})
+      get copyWith => _copyWith;
 
-  BucketCreateRequest _copyWith({Object? name = sdkOmittedValue, Object? accessLevel = sdkOmittedValue}) => BucketCreateRequest(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    accessLevel: identical(accessLevel, sdkOmittedValue) ? this.accessLevel : accessLevel as SdkOptional<BucketCreateRequestAccessLevel>,
-  );
+  BucketCreateRequest _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? accessLevel = sdkOmittedValue}) =>
+      BucketCreateRequest(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        accessLevel: identical(accessLevel, sdkOmittedValue)
+            ? this.accessLevel
+            : accessLevel as SdkOptional<BucketCreateRequestAccessLevel>,
+      );
 
-  factory BucketCreateRequest.fromJson(Map<String, dynamic> json) => BucketCreateRequest(
-    name: (json['name'] as String?)!,
-    accessLevel: json['access_level'] != null ? SdkPresent((json['access_level'] != null ? BucketCreateRequestAccessLevel.fromJson(json['access_level'] as String) : null)!) : const SdkOmitted(),
-  );
+  factory BucketCreateRequest.fromJson(Map<String, dynamic> json) =>
+      BucketCreateRequest(
+        name: (json['name'] as String?)!,
+        accessLevel: json['access_level'] != null
+            ? SdkPresent((json['access_level'] != null
+                ? BucketCreateRequestAccessLevel.fromJson(
+                    json['access_level'] as String)
+                : null)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    ...switch (accessLevel) {
-      SdkPresent<BucketCreateRequestAccessLevel>(value: final value) => {'access_level': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'name': name,
+        ...switch (accessLevel) {
+          SdkPresent<BucketCreateRequestAccessLevel>(value: final value) => {
+              'access_level': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `BucketResponse` API schema.
 class BucketResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required object value serialized in the `bucket` wire field.
   final Bucket bucket;
 
@@ -47,15 +67,19 @@ class BucketResponse {
 
   BucketResponse Function({Bucket bucket}) get copyWith => _copyWith;
 
-  BucketResponse _copyWith({Object? bucket = sdkOmittedValue}) => BucketResponse(
-    bucket: identical(bucket, sdkOmittedValue) ? this.bucket : bucket as Bucket,
-  );
+  BucketResponse _copyWith({Object? bucket = sdkOmittedValue}) =>
+      BucketResponse(
+        bucket:
+            identical(bucket, sdkOmittedValue) ? this.bucket : bucket as Bucket,
+      );
 
   factory BucketResponse.fromJson(Map<String, dynamic> json) => BucketResponse(
-    bucket: (json['bucket'] != null ? Bucket.fromJson(json['bucket'] as Map<String, dynamic>) : null)!,
-  );
+        bucket: (json['bucket'] != null
+            ? Bucket.fromJson(json['bucket'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'bucket': bucket.toJson(),
-  };
+        'bucket': bucket.toJson(),
+      };
 }

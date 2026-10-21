@@ -7,53 +7,75 @@ part of 'inline.dart';
 class DisableAuthRequestBody {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// If true, deletes the `neon_auth` schema from the database
   final SdkOptional<bool> deleteData;
 
   const DisableAuthRequestBody({this.deleteData = const SdkOmitted()});
 
-  DisableAuthRequestBody Function({SdkOptional<bool> deleteData}) get copyWith => _copyWith;
+  DisableAuthRequestBody Function({SdkOptional<bool> deleteData})
+      get copyWith => _copyWith;
 
-  DisableAuthRequestBody _copyWith({Object? deleteData = sdkOmittedValue}) => DisableAuthRequestBody(
-    deleteData: identical(deleteData, sdkOmittedValue) ? this.deleteData : deleteData as SdkOptional<bool>,
-  );
+  DisableAuthRequestBody _copyWith({Object? deleteData = sdkOmittedValue}) =>
+      DisableAuthRequestBody(
+        deleteData: identical(deleteData, sdkOmittedValue)
+            ? this.deleteData
+            : deleteData as SdkOptional<bool>,
+      );
 
-  factory DisableAuthRequestBody.fromJson(Map<String, dynamic> json) => DisableAuthRequestBody(
-    deleteData: json['delete_data'] != null ? SdkPresent((json['delete_data'] as bool?)!) : const SdkOmitted(),
-  );
+  factory DisableAuthRequestBody.fromJson(Map<String, dynamic> json) =>
+      DisableAuthRequestBody(
+        deleteData: json['delete_data'] != null
+            ? SdkPresent((json['delete_data'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (deleteData) {
-      SdkPresent<bool>(value: final value) => {'delete_data': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (deleteData) {
+          SdkPresent<bool>(value: final value) => {
+              'delete_data': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 class FinalizeRestoreBranchRequestBody {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Name for the replaced branch. If omitted, a unique name is generated.
   final SdkOptional<String> name;
 
   const FinalizeRestoreBranchRequestBody({this.name = const SdkOmitted()});
 
-  FinalizeRestoreBranchRequestBody Function({SdkOptional<String> name}) get copyWith => _copyWith;
+  FinalizeRestoreBranchRequestBody Function({SdkOptional<String> name})
+      get copyWith => _copyWith;
 
-  FinalizeRestoreBranchRequestBody _copyWith({Object? name = sdkOmittedValue}) => FinalizeRestoreBranchRequestBody(
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-  );
+  FinalizeRestoreBranchRequestBody _copyWith(
+          {Object? name = sdkOmittedValue}) =>
+      FinalizeRestoreBranchRequestBody(
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+      );
 
-  factory FinalizeRestoreBranchRequestBody.fromJson(Map<String, dynamic> json) => FinalizeRestoreBranchRequestBody(
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-  );
+  factory FinalizeRestoreBranchRequestBody.fromJson(
+          Map<String, dynamic> json) =>
+      FinalizeRestoreBranchRequestBody(
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 class CreateSnapshotResponse {
@@ -62,24 +84,39 @@ class CreateSnapshotResponse {
   final Snapshot snapshot;
   final List<Operation> operations;
 
-  const CreateSnapshotResponse({required this.snapshot, required this.operations});
+  const CreateSnapshotResponse(
+      {required this.snapshot, required this.operations});
 
-  CreateSnapshotResponse Function({Snapshot snapshot, List<Operation> operations}) get copyWith => _copyWith;
+  CreateSnapshotResponse Function(
+      {Snapshot snapshot,
+      List<Operation> operations}) get copyWith => _copyWith;
 
-  CreateSnapshotResponse _copyWith({Object? snapshot = sdkOmittedValue, Object? operations = sdkOmittedValue}) => CreateSnapshotResponse(
-    snapshot: identical(snapshot, sdkOmittedValue) ? this.snapshot : snapshot as Snapshot,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
+  CreateSnapshotResponse _copyWith(
+          {Object? snapshot = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      CreateSnapshotResponse(
+        snapshot: identical(snapshot, sdkOmittedValue)
+            ? this.snapshot
+            : snapshot as Snapshot,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
 
-  factory CreateSnapshotResponse.fromJson(Map<String, dynamic> json) => CreateSnapshotResponse(
-    snapshot: (json['snapshot'] != null ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>) : null)!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory CreateSnapshotResponse.fromJson(Map<String, dynamic> json) =>
+      CreateSnapshotResponse(
+        snapshot: (json['snapshot'] != null
+            ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>)
+            : null)!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'snapshot': snapshot.toJson(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
+        'snapshot': snapshot.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
 }
 
 class ListSnapshotsResponse {
@@ -89,19 +126,26 @@ class ListSnapshotsResponse {
 
   const ListSnapshotsResponse({required this.snapshots});
 
-  ListSnapshotsResponse Function({List<Snapshot> snapshots}) get copyWith => _copyWith;
+  ListSnapshotsResponse Function({List<Snapshot> snapshots}) get copyWith =>
+      _copyWith;
 
-  ListSnapshotsResponse _copyWith({Object? snapshots = sdkOmittedValue}) => ListSnapshotsResponse(
-    snapshots: identical(snapshots, sdkOmittedValue) ? this.snapshots : snapshots as List<Snapshot>,
-  );
+  ListSnapshotsResponse _copyWith({Object? snapshots = sdkOmittedValue}) =>
+      ListSnapshotsResponse(
+        snapshots: identical(snapshots, sdkOmittedValue)
+            ? this.snapshots
+            : snapshots as List<Snapshot>,
+      );
 
-  factory ListSnapshotsResponse.fromJson(Map<String, dynamic> json) => ListSnapshotsResponse(
-    snapshots: ((json['snapshots'] as List?)?.map((e) => Snapshot.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory ListSnapshotsResponse.fromJson(Map<String, dynamic> json) =>
+      ListSnapshotsResponse(
+        snapshots: ((json['snapshots'] as List?)
+            ?.map((e) => Snapshot.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'snapshots': snapshots.map((item) => item.toJson()).toList(),
-  };
+        'snapshots': snapshots.map((item) => item.toJson()).toList(),
+      };
 }
 
 class UpdateSnapshotResponse {
@@ -111,59 +155,98 @@ class UpdateSnapshotResponse {
 
   const UpdateSnapshotResponse({required this.snapshot});
 
-  UpdateSnapshotResponse Function({Snapshot snapshot}) get copyWith => _copyWith;
+  UpdateSnapshotResponse Function({Snapshot snapshot}) get copyWith =>
+      _copyWith;
 
-  UpdateSnapshotResponse _copyWith({Object? snapshot = sdkOmittedValue}) => UpdateSnapshotResponse(
-    snapshot: identical(snapshot, sdkOmittedValue) ? this.snapshot : snapshot as Snapshot,
-  );
+  UpdateSnapshotResponse _copyWith({Object? snapshot = sdkOmittedValue}) =>
+      UpdateSnapshotResponse(
+        snapshot: identical(snapshot, sdkOmittedValue)
+            ? this.snapshot
+            : snapshot as Snapshot,
+      );
 
-  factory UpdateSnapshotResponse.fromJson(Map<String, dynamic> json) => UpdateSnapshotResponse(
-    snapshot: (json['snapshot'] != null ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>) : null)!,
-  );
+  factory UpdateSnapshotResponse.fromJson(Map<String, dynamic> json) =>
+      UpdateSnapshotResponse(
+        snapshot: (json['snapshot'] != null
+            ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'snapshot': snapshot.toJson(),
-  };
+        'snapshot': snapshot.toJson(),
+      };
 }
 
 class RestoreSnapshotRequestBody {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// A name for the newly restored branch. If not provided, the server generates a unique name for the branch automatically.
   final SdkOptional<String> name;
+
   /// ID of the branch to restore the snapshot into. Defaults to the snapshot's source branch (`snapshot.source_branch_id`); fails if that cannot be determined.
   final SdkOptional<String> targetBranchId;
+
   /// Set to `true` to finalize the restore operation immediately. This will complete the restore and move any associated computes to the new branch, similar to the `finalizeRestoreBranch` operation. Defaults to `false` to allow previewing the restored snapshot data first.
   final SdkOptional<bool> finalizeRestore;
 
-  const RestoreSnapshotRequestBody({this.name = const SdkOmitted(), this.targetBranchId = const SdkOmitted(), this.finalizeRestore = const SdkOmitted()});
+  const RestoreSnapshotRequestBody(
+      {this.name = const SdkOmitted(),
+      this.targetBranchId = const SdkOmitted(),
+      this.finalizeRestore = const SdkOmitted()});
 
-  RestoreSnapshotRequestBody Function({SdkOptional<String> name, SdkOptional<String> targetBranchId, SdkOptional<bool> finalizeRestore}) get copyWith => _copyWith;
+  RestoreSnapshotRequestBody Function(
+      {SdkOptional<String> name,
+      SdkOptional<String> targetBranchId,
+      SdkOptional<bool> finalizeRestore}) get copyWith => _copyWith;
 
-  RestoreSnapshotRequestBody _copyWith({Object? name = sdkOmittedValue, Object? targetBranchId = sdkOmittedValue, Object? finalizeRestore = sdkOmittedValue}) => RestoreSnapshotRequestBody(
-    name: identical(name, sdkOmittedValue) ? this.name : name as SdkOptional<String>,
-    targetBranchId: identical(targetBranchId, sdkOmittedValue) ? this.targetBranchId : targetBranchId as SdkOptional<String>,
-    finalizeRestore: identical(finalizeRestore, sdkOmittedValue) ? this.finalizeRestore : finalizeRestore as SdkOptional<bool>,
-  );
+  RestoreSnapshotRequestBody _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? targetBranchId = sdkOmittedValue,
+          Object? finalizeRestore = sdkOmittedValue}) =>
+      RestoreSnapshotRequestBody(
+        name: identical(name, sdkOmittedValue)
+            ? this.name
+            : name as SdkOptional<String>,
+        targetBranchId: identical(targetBranchId, sdkOmittedValue)
+            ? this.targetBranchId
+            : targetBranchId as SdkOptional<String>,
+        finalizeRestore: identical(finalizeRestore, sdkOmittedValue)
+            ? this.finalizeRestore
+            : finalizeRestore as SdkOptional<bool>,
+      );
 
-  factory RestoreSnapshotRequestBody.fromJson(Map<String, dynamic> json) => RestoreSnapshotRequestBody(
-    name: json['name'] != null ? SdkPresent((json['name'] as String?)!) : const SdkOmitted(),
-    targetBranchId: json['target_branch_id'] != null ? SdkPresent((json['target_branch_id'] as String?)!) : const SdkOmitted(),
-    finalizeRestore: json['finalize_restore'] != null ? SdkPresent((json['finalize_restore'] as bool?)!) : const SdkOmitted(),
-  );
+  factory RestoreSnapshotRequestBody.fromJson(Map<String, dynamic> json) =>
+      RestoreSnapshotRequestBody(
+        name: json['name'] != null
+            ? SdkPresent((json['name'] as String?)!)
+            : const SdkOmitted(),
+        targetBranchId: json['target_branch_id'] != null
+            ? SdkPresent((json['target_branch_id'] as String?)!)
+            : const SdkOmitted(),
+        finalizeRestore: json['finalize_restore'] != null
+            ? SdkPresent((json['finalize_restore'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (name) {
-      SdkPresent<String>(value: final value) => {'name': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (targetBranchId) {
-      SdkPresent<String>(value: final value) => {'target_branch_id': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (finalizeRestore) {
-      SdkPresent<bool>(value: final value) => {'finalize_restore': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (name) {
+          SdkPresent<String>(value: final value) => {
+              'name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (targetBranchId) {
+          SdkPresent<String>(value: final value) => {
+              'target_branch_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (finalizeRestore) {
+          SdkPresent<bool>(value: final value) => {
+              'finalize_restore': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

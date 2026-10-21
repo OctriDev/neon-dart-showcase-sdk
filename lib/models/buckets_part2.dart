@@ -8,37 +8,63 @@ part of 'buckets.dart';
 class PresignResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The presigned URL. Transfer the object bytes by issuing `method url` with the returned `headers`.
   final String url;
+
   /// The HTTP method to use against `url`: `PUT` for an upload, `GET` for a download.
   final String method;
+
   /// Headers the caller MUST send verbatim on the request (e.g. `Content-Type` when it was signed on an upload). May be empty.
   final Map<String, String> headers;
+
   /// When the presigned URL stops being valid.
   final String expiresAt;
 
-  const PresignResponse({required this.url, required this.method, required this.headers, required this.expiresAt});
+  const PresignResponse(
+      {required this.url,
+      required this.method,
+      required this.headers,
+      required this.expiresAt});
 
-  PresignResponse Function({String url, String method, Map<String, String> headers, String expiresAt}) get copyWith => _copyWith;
+  PresignResponse Function(
+      {String url,
+      String method,
+      Map<String, String> headers,
+      String expiresAt}) get copyWith => _copyWith;
 
-  PresignResponse _copyWith({Object? url = sdkOmittedValue, Object? method = sdkOmittedValue, Object? headers = sdkOmittedValue, Object? expiresAt = sdkOmittedValue}) => PresignResponse(
-    url: identical(url, sdkOmittedValue) ? this.url : url as String,
-    method: identical(method, sdkOmittedValue) ? this.method : method as String,
-    headers: identical(headers, sdkOmittedValue) ? this.headers : headers as Map<String, String>,
-    expiresAt: identical(expiresAt, sdkOmittedValue) ? this.expiresAt : expiresAt as String,
-  );
+  PresignResponse _copyWith(
+          {Object? url = sdkOmittedValue,
+          Object? method = sdkOmittedValue,
+          Object? headers = sdkOmittedValue,
+          Object? expiresAt = sdkOmittedValue}) =>
+      PresignResponse(
+        url: identical(url, sdkOmittedValue) ? this.url : url as String,
+        method:
+            identical(method, sdkOmittedValue) ? this.method : method as String,
+        headers: identical(headers, sdkOmittedValue)
+            ? this.headers
+            : headers as Map<String, String>,
+        expiresAt: identical(expiresAt, sdkOmittedValue)
+            ? this.expiresAt
+            : expiresAt as String,
+      );
 
-  factory PresignResponse.fromJson(Map<String, dynamic> json) => PresignResponse(
-    url: (json['url'] as String?)!,
-    method: (json['method'] as String?)!,
-    headers: (json['headers'] == null ? null : Map<String, dynamic>.from(json['headers'] as Map).map((key, value) => MapEntry(key, value as String)))!,
-    expiresAt: (json['expires_at'] as String?)!,
-  );
+  factory PresignResponse.fromJson(Map<String, dynamic> json) =>
+      PresignResponse(
+        url: (json['url'] as String?)!,
+        method: (json['method'] as String?)!,
+        headers: (json['headers'] == null
+            ? null
+            : Map<String, dynamic>.from(json['headers'] as Map)
+                .map((key, value) => MapEntry(key, value as String)))!,
+        expiresAt: (json['expires_at'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'url': url,
-    'method': method,
-    'headers': headers,
-    'expires_at': expiresAt,
-  };
+        'url': url,
+        'method': method,
+        'headers': headers,
+        'expires_at': expiresAt,
+      };
 }

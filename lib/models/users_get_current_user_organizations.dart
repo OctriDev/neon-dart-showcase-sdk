@@ -8,22 +8,30 @@ part of 'users.dart';
 class OrganizationsResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Organizations returned by the request. Each includes `id`, `name`, `handle`, and `plan`.
   final List<Organization> organizations;
 
   const OrganizationsResponse({required this.organizations});
 
-  OrganizationsResponse Function({List<Organization> organizations}) get copyWith => _copyWith;
+  OrganizationsResponse Function({List<Organization> organizations})
+      get copyWith => _copyWith;
 
-  OrganizationsResponse _copyWith({Object? organizations = sdkOmittedValue}) => OrganizationsResponse(
-    organizations: identical(organizations, sdkOmittedValue) ? this.organizations : organizations as List<Organization>,
-  );
+  OrganizationsResponse _copyWith({Object? organizations = sdkOmittedValue}) =>
+      OrganizationsResponse(
+        organizations: identical(organizations, sdkOmittedValue)
+            ? this.organizations
+            : organizations as List<Organization>,
+      );
 
-  factory OrganizationsResponse.fromJson(Map<String, dynamic> json) => OrganizationsResponse(
-    organizations: ((json['organizations'] as List?)?.map((e) => Organization.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory OrganizationsResponse.fromJson(Map<String, dynamic> json) =>
+      OrganizationsResponse(
+        organizations: ((json['organizations'] as List?)
+            ?.map((e) => Organization.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'organizations': organizations.map((item) => item.toJson()).toList(),
-  };
+        'organizations': organizations.map((item) => item.toJson()).toList(),
+      };
 }

@@ -8,60 +8,117 @@ part of 'auth.dart';
 class NeonAuthOAuthClient {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The OAuth client ID.
   final String clientId;
+
   /// Display name of the client.
   final String name;
+
   /// Confidential clients authenticate with a client secret. Public clients have no secret.
   final NeonAuthOAuthClientType type_;
+
   /// Redirect URIs the client may use.
   final List<String> redirectUris;
+
   /// Identifiers of the protected resources the client is linked to.
   final List<String> resources;
+
   /// Whether users are not asked for consent when authorizing this client.
   final bool skipConsent;
+
   /// Whether the client is disabled.
   final bool disabled;
+
   /// When the client was created.
   final SdkOptional<String> createdAt;
 
-  const NeonAuthOAuthClient({required this.clientId, required this.name, required this.type_, required this.redirectUris, required this.resources, required this.skipConsent, required this.disabled, this.createdAt = const SdkOmitted()});
+  const NeonAuthOAuthClient(
+      {required this.clientId,
+      required this.name,
+      required this.type_,
+      required this.redirectUris,
+      required this.resources,
+      required this.skipConsent,
+      required this.disabled,
+      this.createdAt = const SdkOmitted()});
 
-  NeonAuthOAuthClient Function({String clientId, String name, NeonAuthOAuthClientType type_, List<String> redirectUris, List<String> resources, bool skipConsent, bool disabled, SdkOptional<String> createdAt}) get copyWith => _copyWith;
+  NeonAuthOAuthClient Function(
+      {String clientId,
+      String name,
+      NeonAuthOAuthClientType type_,
+      List<String> redirectUris,
+      List<String> resources,
+      bool skipConsent,
+      bool disabled,
+      SdkOptional<String> createdAt}) get copyWith => _copyWith;
 
-  NeonAuthOAuthClient _copyWith({Object? clientId = sdkOmittedValue, Object? name = sdkOmittedValue, Object? type_ = sdkOmittedValue, Object? redirectUris = sdkOmittedValue, Object? resources = sdkOmittedValue, Object? skipConsent = sdkOmittedValue, Object? disabled = sdkOmittedValue, Object? createdAt = sdkOmittedValue}) => NeonAuthOAuthClient(
-    clientId: identical(clientId, sdkOmittedValue) ? this.clientId : clientId as String,
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as NeonAuthOAuthClientType,
-    redirectUris: identical(redirectUris, sdkOmittedValue) ? this.redirectUris : redirectUris as List<String>,
-    resources: identical(resources, sdkOmittedValue) ? this.resources : resources as List<String>,
-    skipConsent: identical(skipConsent, sdkOmittedValue) ? this.skipConsent : skipConsent as bool,
-    disabled: identical(disabled, sdkOmittedValue) ? this.disabled : disabled as bool,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as SdkOptional<String>,
-  );
+  NeonAuthOAuthClient _copyWith(
+          {Object? clientId = sdkOmittedValue,
+          Object? name = sdkOmittedValue,
+          Object? type_ = sdkOmittedValue,
+          Object? redirectUris = sdkOmittedValue,
+          Object? resources = sdkOmittedValue,
+          Object? skipConsent = sdkOmittedValue,
+          Object? disabled = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue}) =>
+      NeonAuthOAuthClient(
+        clientId: identical(clientId, sdkOmittedValue)
+            ? this.clientId
+            : clientId as String,
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as NeonAuthOAuthClientType,
+        redirectUris: identical(redirectUris, sdkOmittedValue)
+            ? this.redirectUris
+            : redirectUris as List<String>,
+        resources: identical(resources, sdkOmittedValue)
+            ? this.resources
+            : resources as List<String>,
+        skipConsent: identical(skipConsent, sdkOmittedValue)
+            ? this.skipConsent
+            : skipConsent as bool,
+        disabled: identical(disabled, sdkOmittedValue)
+            ? this.disabled
+            : disabled as bool,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as SdkOptional<String>,
+      );
 
-  factory NeonAuthOAuthClient.fromJson(Map<String, dynamic> json) => NeonAuthOAuthClient(
-    clientId: (json['client_id'] as String?)!,
-    name: (json['name'] as String?)!,
-    type_: (json['type'] != null ? NeonAuthOAuthClientType.fromJson(json['type'] as String) : null)!,
-    redirectUris: ((json['redirect_uris'] as List?)?.map((e) => e as String).toList())!,
-    resources: ((json['resources'] as List?)?.map((e) => e as String).toList())!,
-    skipConsent: (json['skip_consent'] as bool?)!,
-    disabled: (json['disabled'] as bool?)!,
-    createdAt: json['created_at'] != null ? SdkPresent((json['created_at'] as String?)!) : const SdkOmitted(),
-  );
+  factory NeonAuthOAuthClient.fromJson(Map<String, dynamic> json) =>
+      NeonAuthOAuthClient(
+        clientId: (json['client_id'] as String?)!,
+        name: (json['name'] as String?)!,
+        type_: (json['type'] != null
+            ? NeonAuthOAuthClientType.fromJson(json['type'] as String)
+            : null)!,
+        redirectUris: ((json['redirect_uris'] as List?)
+            ?.map((e) => e as String)
+            .toList())!,
+        resources:
+            ((json['resources'] as List?)?.map((e) => e as String).toList())!,
+        skipConsent: (json['skip_consent'] as bool?)!,
+        disabled: (json['disabled'] as bool?)!,
+        createdAt: json['created_at'] != null
+            ? SdkPresent((json['created_at'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'client_id': clientId,
-    'name': name,
-    'type': type_.toJson(),
-    'redirect_uris': redirectUris,
-    'resources': resources,
-    'skip_consent': skipConsent,
-    'disabled': disabled,
-    ...switch (createdAt) {
-      SdkPresent<String>(value: final value) => {'created_at': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'client_id': clientId,
+        'name': name,
+        'type': type_.toJson(),
+        'redirect_uris': redirectUris,
+        'resources': resources,
+        'skip_consent': skipConsent,
+        'disabled': disabled,
+        ...switch (createdAt) {
+          SdkPresent<String>(value: final value) => {
+              'created_at': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

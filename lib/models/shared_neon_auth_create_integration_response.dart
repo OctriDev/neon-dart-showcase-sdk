@@ -8,60 +8,118 @@ part of 'shared_neon.dart';
 class NeonAuthCreateIntegrationResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Authentication provider integrated with this Neon Auth configuration. `better_auth` integrates with Better Auth (the current, recommended provider). `stack` integrates with Stack Auth (deprecated). `mock` is a simulated provider for local development and testing only.
   final NeonAuthSupportedAuthProvider authProvider;
+
   /// Project ID assigned by the auth provider for this integration.
   final String authProviderProjectId;
+
   /// Publishable SDK key from the auth provider. Populated only for Stack Auth (deprecated); empty for Better Auth.
   final String pubClientKey;
+
   /// Secret server-side SDK key from the auth provider. Populated only for Stack Auth (deprecated); empty for Better Auth. Treat as a credential.
   final String secretServerKey;
+
   /// URL of the provider's JWKS endpoint used to verify JWTs.
   final String jwksUrl;
+
   /// Postgres schema containing the auth integration tables. Defaults to `neon_auth`.
   final String schemaName;
+
   /// Postgres table in the integration schema where synced user records are stored.
   final String tableName;
+
   /// Base URL of the Neon Auth service for this integration. Set as the NEON_AUTH_BASE_URL environment variable in your application.
   final SdkOptional<String> baseUrl;
 
-  const NeonAuthCreateIntegrationResponse({required this.authProvider, required this.authProviderProjectId, required this.pubClientKey, required this.secretServerKey, required this.jwksUrl, required this.schemaName, required this.tableName, this.baseUrl = const SdkOmitted()});
+  const NeonAuthCreateIntegrationResponse(
+      {required this.authProvider,
+      required this.authProviderProjectId,
+      required this.pubClientKey,
+      required this.secretServerKey,
+      required this.jwksUrl,
+      required this.schemaName,
+      required this.tableName,
+      this.baseUrl = const SdkOmitted()});
 
-  NeonAuthCreateIntegrationResponse Function({NeonAuthSupportedAuthProvider authProvider, String authProviderProjectId, String pubClientKey, String secretServerKey, String jwksUrl, String schemaName, String tableName, SdkOptional<String> baseUrl}) get copyWith => _copyWith;
+  NeonAuthCreateIntegrationResponse Function(
+      {NeonAuthSupportedAuthProvider authProvider,
+      String authProviderProjectId,
+      String pubClientKey,
+      String secretServerKey,
+      String jwksUrl,
+      String schemaName,
+      String tableName,
+      SdkOptional<String> baseUrl}) get copyWith => _copyWith;
 
-  NeonAuthCreateIntegrationResponse _copyWith({Object? authProvider = sdkOmittedValue, Object? authProviderProjectId = sdkOmittedValue, Object? pubClientKey = sdkOmittedValue, Object? secretServerKey = sdkOmittedValue, Object? jwksUrl = sdkOmittedValue, Object? schemaName = sdkOmittedValue, Object? tableName = sdkOmittedValue, Object? baseUrl = sdkOmittedValue}) => NeonAuthCreateIntegrationResponse(
-    authProvider: identical(authProvider, sdkOmittedValue) ? this.authProvider : authProvider as NeonAuthSupportedAuthProvider,
-    authProviderProjectId: identical(authProviderProjectId, sdkOmittedValue) ? this.authProviderProjectId : authProviderProjectId as String,
-    pubClientKey: identical(pubClientKey, sdkOmittedValue) ? this.pubClientKey : pubClientKey as String,
-    secretServerKey: identical(secretServerKey, sdkOmittedValue) ? this.secretServerKey : secretServerKey as String,
-    jwksUrl: identical(jwksUrl, sdkOmittedValue) ? this.jwksUrl : jwksUrl as String,
-    schemaName: identical(schemaName, sdkOmittedValue) ? this.schemaName : schemaName as String,
-    tableName: identical(tableName, sdkOmittedValue) ? this.tableName : tableName as String,
-    baseUrl: identical(baseUrl, sdkOmittedValue) ? this.baseUrl : baseUrl as SdkOptional<String>,
-  );
+  NeonAuthCreateIntegrationResponse _copyWith(
+          {Object? authProvider = sdkOmittedValue,
+          Object? authProviderProjectId = sdkOmittedValue,
+          Object? pubClientKey = sdkOmittedValue,
+          Object? secretServerKey = sdkOmittedValue,
+          Object? jwksUrl = sdkOmittedValue,
+          Object? schemaName = sdkOmittedValue,
+          Object? tableName = sdkOmittedValue,
+          Object? baseUrl = sdkOmittedValue}) =>
+      NeonAuthCreateIntegrationResponse(
+        authProvider: identical(authProvider, sdkOmittedValue)
+            ? this.authProvider
+            : authProvider as NeonAuthSupportedAuthProvider,
+        authProviderProjectId: identical(authProviderProjectId, sdkOmittedValue)
+            ? this.authProviderProjectId
+            : authProviderProjectId as String,
+        pubClientKey: identical(pubClientKey, sdkOmittedValue)
+            ? this.pubClientKey
+            : pubClientKey as String,
+        secretServerKey: identical(secretServerKey, sdkOmittedValue)
+            ? this.secretServerKey
+            : secretServerKey as String,
+        jwksUrl: identical(jwksUrl, sdkOmittedValue)
+            ? this.jwksUrl
+            : jwksUrl as String,
+        schemaName: identical(schemaName, sdkOmittedValue)
+            ? this.schemaName
+            : schemaName as String,
+        tableName: identical(tableName, sdkOmittedValue)
+            ? this.tableName
+            : tableName as String,
+        baseUrl: identical(baseUrl, sdkOmittedValue)
+            ? this.baseUrl
+            : baseUrl as SdkOptional<String>,
+      );
 
-  factory NeonAuthCreateIntegrationResponse.fromJson(Map<String, dynamic> json) => NeonAuthCreateIntegrationResponse(
-    authProvider: (json['auth_provider'] != null ? NeonAuthSupportedAuthProvider.fromJson(json['auth_provider'] as String) : null)!,
-    authProviderProjectId: (json['auth_provider_project_id'] as String?)!,
-    pubClientKey: (json['pub_client_key'] as String?)!,
-    secretServerKey: (json['secret_server_key'] as String?)!,
-    jwksUrl: (json['jwks_url'] as String?)!,
-    schemaName: (json['schema_name'] as String?)!,
-    tableName: (json['table_name'] as String?)!,
-    baseUrl: json['base_url'] != null ? SdkPresent((json['base_url'] as String?)!) : const SdkOmitted(),
-  );
+  factory NeonAuthCreateIntegrationResponse.fromJson(
+          Map<String, dynamic> json) =>
+      NeonAuthCreateIntegrationResponse(
+        authProvider: (json['auth_provider'] != null
+            ? NeonAuthSupportedAuthProvider.fromJson(
+                json['auth_provider'] as String)
+            : null)!,
+        authProviderProjectId: (json['auth_provider_project_id'] as String?)!,
+        pubClientKey: (json['pub_client_key'] as String?)!,
+        secretServerKey: (json['secret_server_key'] as String?)!,
+        jwksUrl: (json['jwks_url'] as String?)!,
+        schemaName: (json['schema_name'] as String?)!,
+        tableName: (json['table_name'] as String?)!,
+        baseUrl: json['base_url'] != null
+            ? SdkPresent((json['base_url'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'auth_provider': authProvider.toJson(),
-    'auth_provider_project_id': authProviderProjectId,
-    'pub_client_key': pubClientKey,
-    'secret_server_key': secretServerKey,
-    'jwks_url': jwksUrl,
-    'schema_name': schemaName,
-    'table_name': tableName,
-    ...switch (baseUrl) {
-      SdkPresent<String>(value: final value) => {'base_url': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'auth_provider': authProvider.toJson(),
+        'auth_provider_project_id': authProviderProjectId,
+        'pub_client_key': pubClientKey,
+        'secret_server_key': secretServerKey,
+        'jwks_url': jwksUrl,
+        'schema_name': schemaName,
+        'table_name': tableName,
+        ...switch (baseUrl) {
+          SdkPresent<String>(value: final value) => {
+              'base_url': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

@@ -6,22 +6,25 @@ part of 'auth.dart';
 // auth domain models
 /// The email verification method to use. - `link`: Sends a verification link via email - `otp`: Sends a one-time password (OTP) via email
 final class NeonAuthEmailVerificationMethod {
-
   final String value;
 
   const NeonAuthEmailVerificationMethod._(this.value);
 
-  factory NeonAuthEmailVerificationMethod.fromJson(String value) => NeonAuthEmailVerificationMethod._(value);
+  factory NeonAuthEmailVerificationMethod.fromJson(String value) =>
+      NeonAuthEmailVerificationMethod._(value);
 
   static const link = NeonAuthEmailVerificationMethod._('link');
   static const otp = NeonAuthEmailVerificationMethod._('otp');
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is NeonAuthEmailVerificationMethod && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is NeonAuthEmailVerificationMethod && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

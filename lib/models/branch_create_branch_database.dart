@@ -8,51 +8,70 @@ part of 'branch.dart';
 class DatabaseCreateRequestDatabase {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Name of the database to create.
   final String name;
+
   /// The name of the role that owns the database
   final String ownerName;
 
-  const DatabaseCreateRequestDatabase({required this.name, required this.ownerName});
+  const DatabaseCreateRequestDatabase(
+      {required this.name, required this.ownerName});
 
-  DatabaseCreateRequestDatabase Function({String name, String ownerName}) get copyWith => _copyWith;
+  DatabaseCreateRequestDatabase Function({String name, String ownerName})
+      get copyWith => _copyWith;
 
-  DatabaseCreateRequestDatabase _copyWith({Object? name = sdkOmittedValue, Object? ownerName = sdkOmittedValue}) => DatabaseCreateRequestDatabase(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    ownerName: identical(ownerName, sdkOmittedValue) ? this.ownerName : ownerName as String,
-  );
+  DatabaseCreateRequestDatabase _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? ownerName = sdkOmittedValue}) =>
+      DatabaseCreateRequestDatabase(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        ownerName: identical(ownerName, sdkOmittedValue)
+            ? this.ownerName
+            : ownerName as String,
+      );
 
-  factory DatabaseCreateRequestDatabase.fromJson(Map<String, dynamic> json) => DatabaseCreateRequestDatabase(
-    name: (json['name'] as String?)!,
-    ownerName: (json['owner_name'] as String?)!,
-  );
+  factory DatabaseCreateRequestDatabase.fromJson(Map<String, dynamic> json) =>
+      DatabaseCreateRequestDatabase(
+        name: (json['name'] as String?)!,
+        ownerName: (json['owner_name'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'owner_name': ownerName,
-  };
+        'name': name,
+        'owner_name': ownerName,
+      };
 }
 
 /// Typed representation of the `DatabaseCreateRequest` API schema.
 class DatabaseCreateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Configuration for the new Postgres database.
   final DatabaseCreateRequestDatabase database;
 
   const DatabaseCreateRequest({required this.database});
 
-  DatabaseCreateRequest Function({DatabaseCreateRequestDatabase database}) get copyWith => _copyWith;
+  DatabaseCreateRequest Function({DatabaseCreateRequestDatabase database})
+      get copyWith => _copyWith;
 
-  DatabaseCreateRequest _copyWith({Object? database = sdkOmittedValue}) => DatabaseCreateRequest(
-    database: identical(database, sdkOmittedValue) ? this.database : database as DatabaseCreateRequestDatabase,
-  );
+  DatabaseCreateRequest _copyWith({Object? database = sdkOmittedValue}) =>
+      DatabaseCreateRequest(
+        database: identical(database, sdkOmittedValue)
+            ? this.database
+            : database as DatabaseCreateRequestDatabase,
+      );
 
-  factory DatabaseCreateRequest.fromJson(Map<String, dynamic> json) => DatabaseCreateRequest(
-    database: (json['database'] != null ? DatabaseCreateRequestDatabase.fromJson(json['database'] as Map<String, dynamic>) : null)!,
-  );
+  factory DatabaseCreateRequest.fromJson(Map<String, dynamic> json) =>
+      DatabaseCreateRequest(
+        database: (json['database'] != null
+            ? DatabaseCreateRequestDatabase.fromJson(
+                json['database'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'database': database.toJson(),
-  };
+        'database': database.toJson(),
+      };
 }
