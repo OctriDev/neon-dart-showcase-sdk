@@ -5,5 +5,4 @@
 import '../sdk_utils.dart';
 import 'shared.dart';
 
-part 'shared_endpoint_part1.dart';
-part 'shared_endpoint_part2.dart';
+part 'shared_endpoint_models.dart';

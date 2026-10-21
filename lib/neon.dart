@@ -1905,7 +1905,7 @@ class FunctionsNamespace {
       required String triggerId,
       required TriggerUpdateRequest body,
       RequestOptions? requestOptions}) async {
-    return functions_methods.updateFunctionsTrigger(_config, projectId: projectId, branchId: branchId, triggerId: triggerId, body: body, requestOptions: requestOptions);
+    return functions_methods.updateFunctionTrigger(_config, projectId: projectId, branchId: branchId, triggerId: triggerId, body: body, requestOptions: requestOptions);
   }
 
   /// Deletes a branch-local trigger or writes a branch-local tombstone for an inherited trigger so it does not reappear. Deletion stops future scheduling or storage-event matching but does not cancel invocations already committed for delivery. The supported trigger types are `schedule` and `storage_object_created`. **Note**: This endpoint is currently in Beta.

@@ -7104,8 +7104,8 @@ void main() {
       );
     });
 
-    test("updateFunctionsTrigger reaches the mock and decodes its response", () async {
-      final actual = await sdk_methods_10.updateFunctionsTrigger(
+    test("updateFunctionTrigger reaches the mock and decodes its response", () async {
+      final actual = await sdk_methods_10.updateFunctionTrigger(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),
@@ -7121,12 +7121,12 @@ void main() {
       );
     });
 
-    test("updateFunctionsTrigger answers 418 with its declared error body", () async {
+    test("updateFunctionTrigger answers 418 with its declared error body", () async {
       SdkConfig.getConfig().baseUrl = '$baseUrl/__mockStatus/418';
       addTearDown(() => SdkConfig.getConfig().baseUrl = baseUrl);
       final SdkHttpError error;
       try {
-        await sdk_methods_10.updateFunctionsTrigger(
+        await sdk_methods_10.updateFunctionTrigger(
         config,
         projectId: (jsonDecode("\"a\"") as String),
         branchId: (jsonDecode("\"a\"") as String),

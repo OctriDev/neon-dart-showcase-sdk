@@ -5,4 +5,4 @@
 import '../sdk_utils.dart';
 import 'shared_neon.dart';
 
-part 'auth_legacy_part1.dart';
+part 'auth_legacy_models.dart';

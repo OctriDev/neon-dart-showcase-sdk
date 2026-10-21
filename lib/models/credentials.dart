@@ -5,5 +5,8 @@
 import '../sdk_utils.dart';
 import 'inline.dart';
 
-part 'credentials_part1.dart';
-part 'credentials_part2.dart';
+part 'credentials_create_credential.dart';
+part 'credentials_list_credentials.dart';
+part 'credentials_reveal_credential.dart';
+part 'credentials_shared.dart';
+part 'credentials_rotate_credential.dart';

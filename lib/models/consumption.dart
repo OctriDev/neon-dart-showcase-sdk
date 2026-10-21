@@ -5,5 +5,7 @@
 import '../sdk_utils.dart';
 import 'shared_pagination.dart';
 
-part 'consumption_part1.dart';
-part 'consumption_part2.dart';
+part 'consumption_shared.dart';
+part 'consumption_get_consumption_history_per_branch_v2.dart';
+part 'consumption_get_consumption_history_per_project.dart';
+part 'consumption_get_consumption_history_per_project_v2.dart';

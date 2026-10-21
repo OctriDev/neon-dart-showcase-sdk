@@ -10,5 +10,11 @@ import 'shared_connection.dart';
 import 'shared_endpoint.dart';
 import 'shared_operation.dart';
 
-part 'project_part1.dart';
-part 'project_part2.dart';
+part 'project_accept_project_transfer_request.dart';
+part 'project_add_project_jwks.dart';
+part 'project_shared.dart';
+part 'project_list_projects.dart';
+part 'project_create_project.dart';
+part 'project_grant_project_permission.dart';
+part 'project_set_project_member_role.dart';
+part 'project_update_project.dart';

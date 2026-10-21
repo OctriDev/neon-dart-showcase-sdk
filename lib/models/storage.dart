@@ -5,4 +5,4 @@
 import '../sdk_utils.dart';
 import 'inline.dart';
 
-part 'storage_part1.dart';
+part 'storage_models.dart';

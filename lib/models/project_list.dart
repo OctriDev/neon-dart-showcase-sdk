@@ -7,4 +7,4 @@ import 'project.dart';
 import 'project_project.dart';
 import 'shared_pagination.dart';
 
-part 'project_list_part1.dart';
+part 'project_list_models.dart';

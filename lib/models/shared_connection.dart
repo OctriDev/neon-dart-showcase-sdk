@@ -4,4 +4,4 @@
 // shared_connection domain model library.
 import '../sdk_utils.dart';
 
-part 'shared_connection_part1.dart';
+part 'shared_connection_models.dart';

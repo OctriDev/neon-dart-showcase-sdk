@@ -4,4 +4,4 @@
 // shared_api domain model library.
 import '../sdk_utils.dart';
 
-part 'shared_api_part1.dart';
+part 'shared_api_models.dart';
