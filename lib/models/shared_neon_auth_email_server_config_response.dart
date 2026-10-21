@@ -10,32 +10,61 @@ sealed class NeonAuthEmailServerConfigResponse {
   const NeonAuthEmailServerConfigResponse();
   factory NeonAuthEmailServerConfigResponse.fromJson(Object? json) {
     if (json is Map<String, dynamic>) {
-      try { final value = StandardEmailServerResponse.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(value); } } catch (_) {}
-      try { final value = SharedEmailServer.fromJson(json); if (sdkKeepsEveryKey(json, value.toJson())) { return NeonAuthEmailServerConfigResponseSharedEmailServer(value); } } catch (_) {}
+      try {
+        final value = StandardEmailServerResponse.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(
+              value);
+        }
+      } catch (_) {}
+      try {
+        final value = SharedEmailServer.fromJson(json);
+        if (sdkKeepsEveryKey(json, value.toJson())) {
+          return NeonAuthEmailServerConfigResponseSharedEmailServer(value);
+        }
+      } catch (_) {}
     }
-    try { return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(StandardEmailServerResponse.fromJson(json as Map<String, dynamic>)); } catch (_) {}
-    try { return NeonAuthEmailServerConfigResponseSharedEmailServer(SharedEmailServer.fromJson(json as Map<String, dynamic>)); } catch (_) {}
-    if (json is Map<String, dynamic> && json["type"] is String && !const {"standard", "shared"}.contains(json["type"])) { return UnknownNeonAuthEmailServerConfigResponse(json); }
-    throw FormatException("No variant matched for NeonAuthEmailServerConfigResponse");
+    try {
+      return NeonAuthEmailServerConfigResponseStandardEmailServerResponse(
+          StandardEmailServerResponse.fromJson(json as Map<String, dynamic>));
+    } catch (_) {}
+    try {
+      return NeonAuthEmailServerConfigResponseSharedEmailServer(
+          SharedEmailServer.fromJson(json as Map<String, dynamic>));
+    } catch (_) {}
+    if (json is Map<String, dynamic> &&
+        json["type"] is String &&
+        !const {"standard", "shared"}.contains(json["type"])) {
+      return UnknownNeonAuthEmailServerConfigResponse(json);
+    }
+    throw FormatException(
+        "No variant matched for NeonAuthEmailServerConfigResponse");
   }
   Object? toJson();
 }
 
-final class NeonAuthEmailServerConfigResponseStandardEmailServerResponse extends NeonAuthEmailServerConfigResponse {
+final class NeonAuthEmailServerConfigResponseStandardEmailServerResponse
+    extends NeonAuthEmailServerConfigResponse {
   final StandardEmailServerResponse value;
-  const NeonAuthEmailServerConfigResponseStandardEmailServerResponse(this.value);
-  @override Object? toJson() => value.toJson();
+  const NeonAuthEmailServerConfigResponseStandardEmailServerResponse(
+      this.value);
+  @override
+  Object? toJson() => value.toJson();
 }
 
-final class NeonAuthEmailServerConfigResponseSharedEmailServer extends NeonAuthEmailServerConfigResponse {
+final class NeonAuthEmailServerConfigResponseSharedEmailServer
+    extends NeonAuthEmailServerConfigResponse {
   final SharedEmailServer value;
   const NeonAuthEmailServerConfigResponseSharedEmailServer(this.value);
-  @override Object? toJson() => value.toJson();
+  @override
+  Object? toJson() => value.toJson();
 }
 
 /// A [NeonAuthEmailServerConfigResponse] whose `type` names no branch this SDK knows, kept as received.
-final class UnknownNeonAuthEmailServerConfigResponse extends NeonAuthEmailServerConfigResponse {
+final class UnknownNeonAuthEmailServerConfigResponse
+    extends NeonAuthEmailServerConfigResponse {
   final Map<String, dynamic> raw;
   const UnknownNeonAuthEmailServerConfigResponse(this.raw);
-  @override Object? toJson() => raw;
+  @override
+  Object? toJson() => raw;
 }

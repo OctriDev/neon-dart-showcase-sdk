@@ -8,56 +8,80 @@ part of 'shared.dart';
 class LimitsUnsatisfiedResponseLimitsItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Identifier of the unsatisfied limit. Possible values are: - subscription_type - projects_count - project_region
   final String name;
+
   /// Required value for the limit named by `name`. Compare with `actual` to determine the shortfall.
   final String expected;
+
   /// Current value of the named limit, which does not satisfy the required `expected` value.
   final String actual;
 
-  const LimitsUnsatisfiedResponseLimitsItem({required this.name, required this.expected, required this.actual});
+  const LimitsUnsatisfiedResponseLimitsItem(
+      {required this.name, required this.expected, required this.actual});
 
-  LimitsUnsatisfiedResponseLimitsItem Function({String name, String expected, String actual}) get copyWith => _copyWith;
+  LimitsUnsatisfiedResponseLimitsItem Function(
+      {String name, String expected, String actual}) get copyWith => _copyWith;
 
-  LimitsUnsatisfiedResponseLimitsItem _copyWith({Object? name = sdkOmittedValue, Object? expected = sdkOmittedValue, Object? actual = sdkOmittedValue}) => LimitsUnsatisfiedResponseLimitsItem(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    expected: identical(expected, sdkOmittedValue) ? this.expected : expected as String,
-    actual: identical(actual, sdkOmittedValue) ? this.actual : actual as String,
-  );
+  LimitsUnsatisfiedResponseLimitsItem _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? expected = sdkOmittedValue,
+          Object? actual = sdkOmittedValue}) =>
+      LimitsUnsatisfiedResponseLimitsItem(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        expected: identical(expected, sdkOmittedValue)
+            ? this.expected
+            : expected as String,
+        actual:
+            identical(actual, sdkOmittedValue) ? this.actual : actual as String,
+      );
 
-  factory LimitsUnsatisfiedResponseLimitsItem.fromJson(Map<String, dynamic> json) => LimitsUnsatisfiedResponseLimitsItem(
-    name: (json['name'] as String?)!,
-    expected: (json['expected'] as String?)!,
-    actual: (json['actual'] as String?)!,
-  );
+  factory LimitsUnsatisfiedResponseLimitsItem.fromJson(
+          Map<String, dynamic> json) =>
+      LimitsUnsatisfiedResponseLimitsItem(
+        name: (json['name'] as String?)!,
+        expected: (json['expected'] as String?)!,
+        actual: (json['actual'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'expected': expected,
-    'actual': actual,
-  };
+        'name': name,
+        'expected': expected,
+        'actual': actual,
+      };
 }
 
 /// Typed representation of the `LimitsUnsatisfiedResponse` API schema.
 class LimitsUnsatisfiedResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Plan limits that were not satisfied by the request.
   final List<LimitsUnsatisfiedResponseLimitsItem> limits;
 
   const LimitsUnsatisfiedResponse({required this.limits});
 
-  LimitsUnsatisfiedResponse Function({List<LimitsUnsatisfiedResponseLimitsItem> limits}) get copyWith => _copyWith;
+  LimitsUnsatisfiedResponse Function(
+          {List<LimitsUnsatisfiedResponseLimitsItem> limits})
+      get copyWith => _copyWith;
 
-  LimitsUnsatisfiedResponse _copyWith({Object? limits = sdkOmittedValue}) => LimitsUnsatisfiedResponse(
-    limits: identical(limits, sdkOmittedValue) ? this.limits : limits as List<LimitsUnsatisfiedResponseLimitsItem>,
-  );
+  LimitsUnsatisfiedResponse _copyWith({Object? limits = sdkOmittedValue}) =>
+      LimitsUnsatisfiedResponse(
+        limits: identical(limits, sdkOmittedValue)
+            ? this.limits
+            : limits as List<LimitsUnsatisfiedResponseLimitsItem>,
+      );
 
-  factory LimitsUnsatisfiedResponse.fromJson(Map<String, dynamic> json) => LimitsUnsatisfiedResponse(
-    limits: ((json['limits'] as List?)?.map((e) => LimitsUnsatisfiedResponseLimitsItem.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory LimitsUnsatisfiedResponse.fromJson(Map<String, dynamic> json) =>
+      LimitsUnsatisfiedResponse(
+        limits: ((json['limits'] as List?)
+            ?.map((e) => LimitsUnsatisfiedResponseLimitsItem.fromJson(
+                e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'limits': limits.map((item) => item.toJson()).toList(),
-  };
+        'limits': limits.map((item) => item.toJson()).toList(),
+      };
 }

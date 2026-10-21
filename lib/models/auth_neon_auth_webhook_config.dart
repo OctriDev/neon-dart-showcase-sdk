@@ -8,46 +8,91 @@ part of 'auth.dart';
 class NeonAuthWebhookConfig {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Whether the webhook is active.
   final bool enabled;
+
   /// Destination URL that receives webhook event payloads.
   final SdkOptional<String> webhookUrl;
+
   /// Event types that trigger this webhook. Covers user lifecycle, email/OTP delivery, organization invitations, and phone verification events; see the enum for exact values.
   final SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>> enabledEvents;
+
   /// Maximum time, in seconds, to wait for a response from the webhook endpoint.
   final SdkOptional<int> timeoutSeconds;
 
-  const NeonAuthWebhookConfig({required this.enabled, this.webhookUrl = const SdkOmitted(), this.enabledEvents = const SdkOmitted(), this.timeoutSeconds = const SdkOmitted()});
+  const NeonAuthWebhookConfig(
+      {required this.enabled,
+      this.webhookUrl = const SdkOmitted(),
+      this.enabledEvents = const SdkOmitted(),
+      this.timeoutSeconds = const SdkOmitted()});
 
-  NeonAuthWebhookConfig Function({bool enabled, SdkOptional<String> webhookUrl, SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>> enabledEvents, SdkOptional<int> timeoutSeconds}) get copyWith => _copyWith;
+  NeonAuthWebhookConfig Function(
+      {bool enabled,
+      SdkOptional<String> webhookUrl,
+      SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>> enabledEvents,
+      SdkOptional<int> timeoutSeconds}) get copyWith => _copyWith;
 
-  NeonAuthWebhookConfig _copyWith({Object? enabled = sdkOmittedValue, Object? webhookUrl = sdkOmittedValue, Object? enabledEvents = sdkOmittedValue, Object? timeoutSeconds = sdkOmittedValue}) => NeonAuthWebhookConfig(
-    enabled: identical(enabled, sdkOmittedValue) ? this.enabled : enabled as bool,
-    webhookUrl: identical(webhookUrl, sdkOmittedValue) ? this.webhookUrl : webhookUrl as SdkOptional<String>,
-    enabledEvents: identical(enabledEvents, sdkOmittedValue) ? this.enabledEvents : enabledEvents as SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>>,
-    timeoutSeconds: identical(timeoutSeconds, sdkOmittedValue) ? this.timeoutSeconds : timeoutSeconds as SdkOptional<int>,
-  );
+  NeonAuthWebhookConfig _copyWith(
+          {Object? enabled = sdkOmittedValue,
+          Object? webhookUrl = sdkOmittedValue,
+          Object? enabledEvents = sdkOmittedValue,
+          Object? timeoutSeconds = sdkOmittedValue}) =>
+      NeonAuthWebhookConfig(
+        enabled: identical(enabled, sdkOmittedValue)
+            ? this.enabled
+            : enabled as bool,
+        webhookUrl: identical(webhookUrl, sdkOmittedValue)
+            ? this.webhookUrl
+            : webhookUrl as SdkOptional<String>,
+        enabledEvents: identical(enabledEvents, sdkOmittedValue)
+            ? this.enabledEvents
+            : enabledEvents
+                as SdkOptional<List<NeonAuthWebhookConfigEnabledEventsItem>>,
+        timeoutSeconds: identical(timeoutSeconds, sdkOmittedValue)
+            ? this.timeoutSeconds
+            : timeoutSeconds as SdkOptional<int>,
+      );
 
-  factory NeonAuthWebhookConfig.fromJson(Map<String, dynamic> json) => NeonAuthWebhookConfig(
-    enabled: (json['enabled'] as bool?)!,
-    webhookUrl: json['webhook_url'] != null ? SdkPresent((json['webhook_url'] as String?)!) : const SdkOmitted(),
-    enabledEvents: json['enabled_events'] != null ? SdkPresent(((json['enabled_events'] as List?)?.map((e) => NeonAuthWebhookConfigEnabledEventsItem.fromJson(e as String)).toList())!) : const SdkOmitted(),
-    timeoutSeconds: json['timeout_seconds'] != null ? SdkPresent(((json['timeout_seconds'] as num?)?.toInt())!) : const SdkOmitted(),
-  );
+  factory NeonAuthWebhookConfig.fromJson(Map<String, dynamic> json) =>
+      NeonAuthWebhookConfig(
+        enabled: (json['enabled'] as bool?)!,
+        webhookUrl: json['webhook_url'] != null
+            ? SdkPresent((json['webhook_url'] as String?)!)
+            : const SdkOmitted(),
+        enabledEvents: json['enabled_events'] != null
+            ? SdkPresent(((json['enabled_events'] as List?)
+                ?.map((e) => NeonAuthWebhookConfigEnabledEventsItem.fromJson(
+                    e as String))
+                .toList())!)
+            : const SdkOmitted(),
+        timeoutSeconds: json['timeout_seconds'] != null
+            ? SdkPresent(((json['timeout_seconds'] as num?)?.toInt())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'enabled': enabled,
-    ...switch (webhookUrl) {
-      SdkPresent<String>(value: final value) => {'webhook_url': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (enabledEvents) {
-      SdkPresent<List<NeonAuthWebhookConfigEnabledEventsItem>>(value: final value) => {'enabled_events': value.map((item) => item.toJson()).toList(),},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (timeoutSeconds) {
-      SdkPresent<int>(value: final value) => {'timeout_seconds': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'enabled': enabled,
+        ...switch (webhookUrl) {
+          SdkPresent<String>(value: final value) => {
+              'webhook_url': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (enabledEvents) {
+          SdkPresent<List<NeonAuthWebhookConfigEnabledEventsItem>>(
+            value: final value
+          ) =>
+            {
+              'enabled_events': value.map((item) => item.toJson()).toList(),
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (timeoutSeconds) {
+          SdkPresent<int>(value: final value) => {
+              'timeout_seconds': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

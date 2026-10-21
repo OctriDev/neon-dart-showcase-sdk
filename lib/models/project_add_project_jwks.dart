@@ -8,96 +8,166 @@ part of 'project.dart';
 class AddProjectJWKSRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// URL of the provider's JWKS endpoint used to verify JWTs.
   final String jwksUrl;
+
   /// The name of the authentication provider (e.g., Clerk, Stytch, Auth0)
   final String providerName;
+
   /// The Neon branch ID. Returned as `id` from `GET /projects/{project_id}/branches`.
   final SdkOptional<String> branchId;
+
   /// Expected `aud` claim in incoming JWTs. When set, tokens with a different audience are rejected; tokens with no audience are still accepted. Omit to skip audience validation.
   final SdkOptional<String> jwtAudience;
+
   /// Deprecated. The roles the JWKS should be mapped to. By default, the JWKS is mapped to the `authenticator`, `authenticated`, and `anonymous` roles.
   final SdkOptional<List<String>> roleNames;
+
   /// Deprecated. Only used with Neon RLS. If true, role creation is skipped.
   final SdkOptional<bool> skipRoleCreation;
 
-  const AddProjectJWKSRequest({required this.jwksUrl, required this.providerName, this.branchId = const SdkOmitted(), this.jwtAudience = const SdkOmitted(), this.roleNames = const SdkOmitted(), this.skipRoleCreation = const SdkOmitted()});
+  const AddProjectJWKSRequest(
+      {required this.jwksUrl,
+      required this.providerName,
+      this.branchId = const SdkOmitted(),
+      this.jwtAudience = const SdkOmitted(),
+      this.roleNames = const SdkOmitted(),
+      this.skipRoleCreation = const SdkOmitted()});
 
-  AddProjectJWKSRequest Function({String jwksUrl, String providerName, SdkOptional<String> branchId, SdkOptional<String> jwtAudience, SdkOptional<List<String>> roleNames, SdkOptional<bool> skipRoleCreation}) get copyWith => _copyWith;
+  AddProjectJWKSRequest Function(
+      {String jwksUrl,
+      String providerName,
+      SdkOptional<String> branchId,
+      SdkOptional<String> jwtAudience,
+      SdkOptional<List<String>> roleNames,
+      SdkOptional<bool> skipRoleCreation}) get copyWith => _copyWith;
 
-  AddProjectJWKSRequest _copyWith({Object? jwksUrl = sdkOmittedValue, Object? providerName = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? jwtAudience = sdkOmittedValue, Object? roleNames = sdkOmittedValue, Object? skipRoleCreation = sdkOmittedValue}) => AddProjectJWKSRequest(
-    jwksUrl: identical(jwksUrl, sdkOmittedValue) ? this.jwksUrl : jwksUrl as String,
-    providerName: identical(providerName, sdkOmittedValue) ? this.providerName : providerName as String,
-    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as SdkOptional<String>,
-    jwtAudience: identical(jwtAudience, sdkOmittedValue) ? this.jwtAudience : jwtAudience as SdkOptional<String>,
-    roleNames: identical(roleNames, sdkOmittedValue) ? this.roleNames : roleNames as SdkOptional<List<String>>,
-    skipRoleCreation: identical(skipRoleCreation, sdkOmittedValue) ? this.skipRoleCreation : skipRoleCreation as SdkOptional<bool>,
-  );
+  AddProjectJWKSRequest _copyWith(
+          {Object? jwksUrl = sdkOmittedValue,
+          Object? providerName = sdkOmittedValue,
+          Object? branchId = sdkOmittedValue,
+          Object? jwtAudience = sdkOmittedValue,
+          Object? roleNames = sdkOmittedValue,
+          Object? skipRoleCreation = sdkOmittedValue}) =>
+      AddProjectJWKSRequest(
+        jwksUrl: identical(jwksUrl, sdkOmittedValue)
+            ? this.jwksUrl
+            : jwksUrl as String,
+        providerName: identical(providerName, sdkOmittedValue)
+            ? this.providerName
+            : providerName as String,
+        branchId: identical(branchId, sdkOmittedValue)
+            ? this.branchId
+            : branchId as SdkOptional<String>,
+        jwtAudience: identical(jwtAudience, sdkOmittedValue)
+            ? this.jwtAudience
+            : jwtAudience as SdkOptional<String>,
+        roleNames: identical(roleNames, sdkOmittedValue)
+            ? this.roleNames
+            : roleNames as SdkOptional<List<String>>,
+        skipRoleCreation: identical(skipRoleCreation, sdkOmittedValue)
+            ? this.skipRoleCreation
+            : skipRoleCreation as SdkOptional<bool>,
+      );
 
-  factory AddProjectJWKSRequest.fromJson(Map<String, dynamic> json) => AddProjectJWKSRequest(
-    jwksUrl: (json['jwks_url'] as String?)!,
-    providerName: (json['provider_name'] as String?)!,
-    branchId: json['branch_id'] != null ? SdkPresent((json['branch_id'] as String?)!) : const SdkOmitted(),
-    jwtAudience: json['jwt_audience'] != null ? SdkPresent((json['jwt_audience'] as String?)!) : const SdkOmitted(),
-    roleNames: json['role_names'] != null ? SdkPresent(((json['role_names'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
-    skipRoleCreation: json['skip_role_creation'] != null ? SdkPresent((json['skip_role_creation'] as bool?)!) : const SdkOmitted(),
-  );
+  factory AddProjectJWKSRequest.fromJson(Map<String, dynamic> json) =>
+      AddProjectJWKSRequest(
+        jwksUrl: (json['jwks_url'] as String?)!,
+        providerName: (json['provider_name'] as String?)!,
+        branchId: json['branch_id'] != null
+            ? SdkPresent((json['branch_id'] as String?)!)
+            : const SdkOmitted(),
+        jwtAudience: json['jwt_audience'] != null
+            ? SdkPresent((json['jwt_audience'] as String?)!)
+            : const SdkOmitted(),
+        roleNames: json['role_names'] != null
+            ? SdkPresent(((json['role_names'] as List?)
+                ?.map((e) => e as String)
+                .toList())!)
+            : const SdkOmitted(),
+        skipRoleCreation: json['skip_role_creation'] != null
+            ? SdkPresent((json['skip_role_creation'] as bool?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'jwks_url': jwksUrl,
-    'provider_name': providerName,
-    ...switch (branchId) {
-      SdkPresent<String>(value: final value) => {'branch_id': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (jwtAudience) {
-      SdkPresent<String>(value: final value) => {'jwt_audience': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (roleNames) {
-      SdkPresent<List<String>>(value: final value) => {'role_names': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (skipRoleCreation) {
-      SdkPresent<bool>(value: final value) => {'skip_role_creation': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'jwks_url': jwksUrl,
+        'provider_name': providerName,
+        ...switch (branchId) {
+          SdkPresent<String>(value: final value) => {
+              'branch_id': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (jwtAudience) {
+          SdkPresent<String>(value: final value) => {
+              'jwt_audience': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (roleNames) {
+          SdkPresent<List<String>>(value: final value) => {
+              'role_names': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (skipRoleCreation) {
+          SdkPresent<bool>(value: final value) => {
+              'skip_role_creation': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `JWKSCreationOperation` API schema.
 class JWKSCreationOperation {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// JWKS configuration associated with the project.
   final JWKS jwks;
+
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
 
   const JWKSCreationOperation({required this.jwks, required this.operations});
 
-  JWKSCreationOperation Function({JWKS jwks, List<Operation> operations}) get copyWith => _copyWith;
+  JWKSCreationOperation Function({JWKS jwks, List<Operation> operations})
+      get copyWith => _copyWith;
 
-  JWKSCreationOperation _copyWith({Object? jwks = sdkOmittedValue, Object? operations = sdkOmittedValue}) => JWKSCreationOperation(
-    jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as JWKS,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
+  JWKSCreationOperation _copyWith(
+          {Object? jwks = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      JWKSCreationOperation(
+        jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as JWKS,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
 
-  factory JWKSCreationOperation.fromJson(Map<String, dynamic> json) => JWKSCreationOperation(
-    jwks: (json['jwks'] != null ? JWKS.fromJson(json['jwks'] as Map<String, dynamic>) : null)!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory JWKSCreationOperation.fromJson(Map<String, dynamic> json) =>
+      JWKSCreationOperation(
+        jwks: (json['jwks'] != null
+            ? JWKS.fromJson(json['jwks'] as Map<String, dynamic>)
+            : null)!,
+        operations: ((json['operations'] as List?)
+            ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'jwks': jwks.toJson(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
+        'jwks': jwks.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Typed representation of the `JWKSResponse` API schema.
 class JWKSResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// JWKS configuration associated with the project.
   final JWKS jwks;
 
@@ -106,14 +176,16 @@ class JWKSResponse {
   JWKSResponse Function({JWKS jwks}) get copyWith => _copyWith;
 
   JWKSResponse _copyWith({Object? jwks = sdkOmittedValue}) => JWKSResponse(
-    jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as JWKS,
-  );
+        jwks: identical(jwks, sdkOmittedValue) ? this.jwks : jwks as JWKS,
+      );
 
   factory JWKSResponse.fromJson(Map<String, dynamic> json) => JWKSResponse(
-    jwks: (json['jwks'] != null ? JWKS.fromJson(json['jwks'] as Map<String, dynamic>) : null)!,
-  );
+        jwks: (json['jwks'] != null
+            ? JWKS.fromJson(json['jwks'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'jwks': jwks.toJson(),
-  };
+        'jwks': jwks.toJson(),
+      };
 }

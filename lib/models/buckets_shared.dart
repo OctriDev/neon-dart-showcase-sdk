@@ -8,54 +8,74 @@ part of 'buckets.dart';
 class Bucket {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The bucket name (unique within a branch).
   final String name;
+
   /// Controls anonymous access to objects in the bucket. - `private`: all reads and writes require authenticated requests (default). - `public_read`: anonymous `GetObject`/`HeadObject` requests succeed; listing, writes, and deletes still require authenticated requests.
   final BucketAccessLevel accessLevel;
+
   /// When the bucket was created. For a bucket inherited from an ancestor branch this is the ancestor's creation time (the branch fork never re-creates the bucket).
   final String createdAt;
 
-  const Bucket({required this.name, required this.accessLevel, required this.createdAt});
+  const Bucket(
+      {required this.name, required this.accessLevel, required this.createdAt});
 
-  Bucket Function({String name, BucketAccessLevel accessLevel, String createdAt}) get copyWith => _copyWith;
+  Bucket Function(
+      {String name,
+      BucketAccessLevel accessLevel,
+      String createdAt}) get copyWith => _copyWith;
 
-  Bucket _copyWith({Object? name = sdkOmittedValue, Object? accessLevel = sdkOmittedValue, Object? createdAt = sdkOmittedValue}) => Bucket(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-    accessLevel: identical(accessLevel, sdkOmittedValue) ? this.accessLevel : accessLevel as BucketAccessLevel,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
-  );
+  Bucket _copyWith(
+          {Object? name = sdkOmittedValue,
+          Object? accessLevel = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue}) =>
+      Bucket(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+        accessLevel: identical(accessLevel, sdkOmittedValue)
+            ? this.accessLevel
+            : accessLevel as BucketAccessLevel,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as String,
+      );
 
   factory Bucket.fromJson(Map<String, dynamic> json) => Bucket(
-    name: (json['name'] as String?)!,
-    accessLevel: (json['access_level'] != null ? BucketAccessLevel.fromJson(json['access_level'] as String) : null)!,
-    createdAt: (json['created_at'] as String?)!,
-  );
+        name: (json['name'] as String?)!,
+        accessLevel: (json['access_level'] != null
+            ? BucketAccessLevel.fromJson(json['access_level'] as String)
+            : null)!,
+        createdAt: (json['created_at'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'access_level': accessLevel.toJson(),
-    'created_at': createdAt,
-  };
+        'name': name,
+        'access_level': accessLevel.toJson(),
+        'created_at': createdAt,
+      };
 }
 
 /// Controls anonymous access to objects in the bucket. - `private`: all reads and writes require authenticated requests (default). - `public_read`: anonymous `GetObject`/`HeadObject` requests succeed; listing, writes, and deletes still require authenticated requests.
 final class BucketAccessLevel {
-
   final String value;
 
   const BucketAccessLevel._(this.value);
 
-  factory BucketAccessLevel.fromJson(String value) => BucketAccessLevel._(value);
+  factory BucketAccessLevel.fromJson(String value) =>
+      BucketAccessLevel._(value);
 
   static const private = BucketAccessLevel._('private');
   static const publicRead = BucketAccessLevel._('public_read');
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is BucketAccessLevel && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is BucketAccessLevel && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

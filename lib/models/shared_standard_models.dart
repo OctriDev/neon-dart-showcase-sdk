@@ -8,130 +8,252 @@ part of 'shared_standard.dart';
 class StandardEmailServer {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Hostname of the email server.
   final SdkOptional<String> host;
+
   /// TCP port of the SMTP server. Common values: 25 (SMTP), 465 (SMTPS), 587 (submission).
   final SdkOptional<int> port;
+
   /// Username for authenticating with the SMTP server.
   final SdkOptional<String> username;
+
   /// Password for authenticating with the SMTP server.
   final SdkOptional<String> password;
+
   /// Email address used as the From address on outgoing auth emails.
   final SdkOptional<String> senderEmail;
+
   /// Display name shown as the sender in outgoing emails.
   final SdkOptional<String> senderName;
+
   /// Optional enumerated value serialized in the `type` wire field.
   final SdkOptional<StandardEmailServerType> type_;
 
-  const StandardEmailServer({this.host = const SdkOmitted(), this.port = const SdkOmitted(), this.username = const SdkOmitted(), this.password = const SdkOmitted(), this.senderEmail = const SdkOmitted(), this.senderName = const SdkOmitted(), this.type_ = const SdkOmitted()});
+  const StandardEmailServer(
+      {this.host = const SdkOmitted(),
+      this.port = const SdkOmitted(),
+      this.username = const SdkOmitted(),
+      this.password = const SdkOmitted(),
+      this.senderEmail = const SdkOmitted(),
+      this.senderName = const SdkOmitted(),
+      this.type_ = const SdkOmitted()});
 
-  StandardEmailServer Function({SdkOptional<String> host, SdkOptional<int> port, SdkOptional<String> username, SdkOptional<String> password, SdkOptional<String> senderEmail, SdkOptional<String> senderName, SdkOptional<StandardEmailServerType> type_}) get copyWith => _copyWith;
+  StandardEmailServer Function(
+      {SdkOptional<String> host,
+      SdkOptional<int> port,
+      SdkOptional<String> username,
+      SdkOptional<String> password,
+      SdkOptional<String> senderEmail,
+      SdkOptional<String> senderName,
+      SdkOptional<StandardEmailServerType> type_}) get copyWith => _copyWith;
 
-  StandardEmailServer _copyWith({Object? host = sdkOmittedValue, Object? port = sdkOmittedValue, Object? username = sdkOmittedValue, Object? password = sdkOmittedValue, Object? senderEmail = sdkOmittedValue, Object? senderName = sdkOmittedValue, Object? type_ = sdkOmittedValue}) => StandardEmailServer(
-    host: identical(host, sdkOmittedValue) ? this.host : host as SdkOptional<String>,
-    port: identical(port, sdkOmittedValue) ? this.port : port as SdkOptional<int>,
-    username: identical(username, sdkOmittedValue) ? this.username : username as SdkOptional<String>,
-    password: identical(password, sdkOmittedValue) ? this.password : password as SdkOptional<String>,
-    senderEmail: identical(senderEmail, sdkOmittedValue) ? this.senderEmail : senderEmail as SdkOptional<String>,
-    senderName: identical(senderName, sdkOmittedValue) ? this.senderName : senderName as SdkOptional<String>,
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as SdkOptional<StandardEmailServerType>,
-  );
+  StandardEmailServer _copyWith(
+          {Object? host = sdkOmittedValue,
+          Object? port = sdkOmittedValue,
+          Object? username = sdkOmittedValue,
+          Object? password = sdkOmittedValue,
+          Object? senderEmail = sdkOmittedValue,
+          Object? senderName = sdkOmittedValue,
+          Object? type_ = sdkOmittedValue}) =>
+      StandardEmailServer(
+        host: identical(host, sdkOmittedValue)
+            ? this.host
+            : host as SdkOptional<String>,
+        port: identical(port, sdkOmittedValue)
+            ? this.port
+            : port as SdkOptional<int>,
+        username: identical(username, sdkOmittedValue)
+            ? this.username
+            : username as SdkOptional<String>,
+        password: identical(password, sdkOmittedValue)
+            ? this.password
+            : password as SdkOptional<String>,
+        senderEmail: identical(senderEmail, sdkOmittedValue)
+            ? this.senderEmail
+            : senderEmail as SdkOptional<String>,
+        senderName: identical(senderName, sdkOmittedValue)
+            ? this.senderName
+            : senderName as SdkOptional<String>,
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as SdkOptional<StandardEmailServerType>,
+      );
 
-  factory StandardEmailServer.fromJson(Map<String, dynamic> json) => StandardEmailServer(
-    host: json['host'] != null ? SdkPresent((json['host'] as String?)!) : const SdkOmitted(),
-    port: json['port'] != null ? SdkPresent(((json['port'] as num?)?.toInt())!) : const SdkOmitted(),
-    username: json['username'] != null ? SdkPresent((json['username'] as String?)!) : const SdkOmitted(),
-    password: json['password'] != null ? SdkPresent((json['password'] as String?)!) : const SdkOmitted(),
-    senderEmail: json['sender_email'] != null ? SdkPresent((json['sender_email'] as String?)!) : const SdkOmitted(),
-    senderName: json['sender_name'] != null ? SdkPresent((json['sender_name'] as String?)!) : const SdkOmitted(),
-    type_: json['type'] != null ? SdkPresent((json['type'] != null ? StandardEmailServerType.fromJson(json['type'] as String) : null)!) : const SdkOmitted(),
-  );
+  factory StandardEmailServer.fromJson(Map<String, dynamic> json) =>
+      StandardEmailServer(
+        host: json['host'] != null
+            ? SdkPresent((json['host'] as String?)!)
+            : const SdkOmitted(),
+        port: json['port'] != null
+            ? SdkPresent(((json['port'] as num?)?.toInt())!)
+            : const SdkOmitted(),
+        username: json['username'] != null
+            ? SdkPresent((json['username'] as String?)!)
+            : const SdkOmitted(),
+        password: json['password'] != null
+            ? SdkPresent((json['password'] as String?)!)
+            : const SdkOmitted(),
+        senderEmail: json['sender_email'] != null
+            ? SdkPresent((json['sender_email'] as String?)!)
+            : const SdkOmitted(),
+        senderName: json['sender_name'] != null
+            ? SdkPresent((json['sender_name'] as String?)!)
+            : const SdkOmitted(),
+        type_: json['type'] != null
+            ? SdkPresent((json['type'] != null
+                ? StandardEmailServerType.fromJson(json['type'] as String)
+                : null)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    ...switch (host) {
-      SdkPresent<String>(value: final value) => {'host': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (port) {
-      SdkPresent<int>(value: final value) => {'port': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (username) {
-      SdkPresent<String>(value: final value) => {'username': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (password) {
-      SdkPresent<String>(value: final value) => {'password': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (senderEmail) {
-      SdkPresent<String>(value: final value) => {'sender_email': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (senderName) {
-      SdkPresent<String>(value: final value) => {'sender_name': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (type_) {
-      SdkPresent<StandardEmailServerType>(value: final value) => {'type': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (host) {
+          SdkPresent<String>(value: final value) => {
+              'host': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (port) {
+          SdkPresent<int>(value: final value) => {
+              'port': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (username) {
+          SdkPresent<String>(value: final value) => {
+              'username': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (password) {
+          SdkPresent<String>(value: final value) => {
+              'password': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (senderEmail) {
+          SdkPresent<String>(value: final value) => {
+              'sender_email': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (senderName) {
+          SdkPresent<String>(value: final value) => {
+              'sender_name': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (type_) {
+          SdkPresent<StandardEmailServerType>(value: final value) => {
+              'type': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `StandardEmailServerResponse` API schema.
 class StandardEmailServerResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Hostname of the email server.
   final String host;
+
   /// TCP port of the SMTP server. Common values: 25 (SMTP), 465 (SMTPS), 587 (submission).
   final int port;
+
   /// Username for authenticating with the SMTP server.
   final String username;
+
   /// On GET, returned redacted (empty) for ordinary callers, while callers with project-credential read permission receive the stored password — do not assume this field is empty. Update (PATCH) responses always return it redacted (empty) regardless of permission. Provide a value on update to set or rotate the password.
   final String password;
+
   /// Email address used as the From address on outgoing auth emails.
   final String senderEmail;
+
   /// Display name shown as the sender in outgoing emails.
   final String senderName;
+
   /// Optional enumerated value serialized in the `type` wire field.
   final SdkOptional<StandardEmailServerResponseType> type_;
 
-  const StandardEmailServerResponse({required this.host, required this.port, required this.username, required this.password, required this.senderEmail, required this.senderName, this.type_ = const SdkOmitted()});
+  const StandardEmailServerResponse(
+      {required this.host,
+      required this.port,
+      required this.username,
+      required this.password,
+      required this.senderEmail,
+      required this.senderName,
+      this.type_ = const SdkOmitted()});
 
-  StandardEmailServerResponse Function({String host, int port, String username, String password, String senderEmail, String senderName, SdkOptional<StandardEmailServerResponseType> type_}) get copyWith => _copyWith;
+  StandardEmailServerResponse Function(
+          {String host,
+          int port,
+          String username,
+          String password,
+          String senderEmail,
+          String senderName,
+          SdkOptional<StandardEmailServerResponseType> type_})
+      get copyWith => _copyWith;
 
-  StandardEmailServerResponse _copyWith({Object? host = sdkOmittedValue, Object? port = sdkOmittedValue, Object? username = sdkOmittedValue, Object? password = sdkOmittedValue, Object? senderEmail = sdkOmittedValue, Object? senderName = sdkOmittedValue, Object? type_ = sdkOmittedValue}) => StandardEmailServerResponse(
-    host: identical(host, sdkOmittedValue) ? this.host : host as String,
-    port: identical(port, sdkOmittedValue) ? this.port : port as int,
-    username: identical(username, sdkOmittedValue) ? this.username : username as String,
-    password: identical(password, sdkOmittedValue) ? this.password : password as String,
-    senderEmail: identical(senderEmail, sdkOmittedValue) ? this.senderEmail : senderEmail as String,
-    senderName: identical(senderName, sdkOmittedValue) ? this.senderName : senderName as String,
-    type_: identical(type_, sdkOmittedValue) ? this.type_ : type_ as SdkOptional<StandardEmailServerResponseType>,
-  );
+  StandardEmailServerResponse _copyWith(
+          {Object? host = sdkOmittedValue,
+          Object? port = sdkOmittedValue,
+          Object? username = sdkOmittedValue,
+          Object? password = sdkOmittedValue,
+          Object? senderEmail = sdkOmittedValue,
+          Object? senderName = sdkOmittedValue,
+          Object? type_ = sdkOmittedValue}) =>
+      StandardEmailServerResponse(
+        host: identical(host, sdkOmittedValue) ? this.host : host as String,
+        port: identical(port, sdkOmittedValue) ? this.port : port as int,
+        username: identical(username, sdkOmittedValue)
+            ? this.username
+            : username as String,
+        password: identical(password, sdkOmittedValue)
+            ? this.password
+            : password as String,
+        senderEmail: identical(senderEmail, sdkOmittedValue)
+            ? this.senderEmail
+            : senderEmail as String,
+        senderName: identical(senderName, sdkOmittedValue)
+            ? this.senderName
+            : senderName as String,
+        type_: identical(type_, sdkOmittedValue)
+            ? this.type_
+            : type_ as SdkOptional<StandardEmailServerResponseType>,
+      );
 
-  factory StandardEmailServerResponse.fromJson(Map<String, dynamic> json) => StandardEmailServerResponse(
-    host: (json['host'] as String?)!,
-    port: ((json['port'] as num?)?.toInt())!,
-    username: (json['username'] as String?)!,
-    password: (json['password'] as String?)!,
-    senderEmail: (json['sender_email'] as String?)!,
-    senderName: (json['sender_name'] as String?)!,
-    type_: json['type'] != null ? SdkPresent((json['type'] != null ? StandardEmailServerResponseType.fromJson(json['type'] as String) : null)!) : const SdkOmitted(),
-  );
+  factory StandardEmailServerResponse.fromJson(Map<String, dynamic> json) =>
+      StandardEmailServerResponse(
+        host: (json['host'] as String?)!,
+        port: ((json['port'] as num?)?.toInt())!,
+        username: (json['username'] as String?)!,
+        password: (json['password'] as String?)!,
+        senderEmail: (json['sender_email'] as String?)!,
+        senderName: (json['sender_name'] as String?)!,
+        type_: json['type'] != null
+            ? SdkPresent((json['type'] != null
+                ? StandardEmailServerResponseType.fromJson(
+                    json['type'] as String)
+                : null)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'host': host,
-    'port': port,
-    'username': username,
-    'password': password,
-    'sender_email': senderEmail,
-    'sender_name': senderName,
-    ...switch (type_) {
-      SdkPresent<StandardEmailServerResponseType>(value: final value) => {'type': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'host': host,
+        'port': port,
+        'username': username,
+        'password': password,
+        'sender_email': senderEmail,
+        'sender_name': senderName,
+        ...switch (type_) {
+          SdkPresent<StandardEmailServerResponseType>(value: final value) => {
+              'type': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

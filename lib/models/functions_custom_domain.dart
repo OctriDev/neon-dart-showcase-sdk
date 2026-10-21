@@ -8,69 +8,133 @@ part of 'functions.dart';
 class CustomDomain {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The registered custom domain (normalized, lowercase).
   final String domain;
+
   /// The kind of branch entity the domain targets. Possible values: `function` (v1 supports only `function`). Not an `enum`: new values may ship in later spec versions — treat any undocumented value as unknown.
   final String entityType;
+
   /// The target entity's identifier within the branch. For `function` this is the function slug.
   final String entityId;
+
   /// The hostname the customer must point their custom domain at with a CNAME record. Empty when the serving region has no custom-domains front door configured. This is the activation input: point DNS here and the domain goes live (see `status`) once a certificate is issued on the first request.
   final String cnameTarget;
+
   /// The domain's current validity, computed by a background check: `pending` (still converging — point your CNAME at `cname_target` and wait), `active` (live: DNS resolves to the edge, the CA is authorized, and routing is published), or `error` (a fixable problem — see `status_reason`). Not an `enum`: treat any undocumented value as unknown. May be absent briefly right after registration.
   final SdkOptional<String> status;
+
   /// The DNS + CAA portion of the check: `pending` (no records yet), `ok` (resolves to our edge and the CA is authorized), `misconfigured` (your CNAME does not resolve to our edge), or `caa_blocked` (your CAA records forbid Let's Encrypt). Not an `enum`.
   final SdkOptional<String> dnsStatus;
+
   /// Whether Neon's internal routing for the domain is published: `pending`, `present`, or `missing`. `missing` is an internal fault surfaced for support. Not an `enum`.
   final SdkOptional<String> bindingStatus;
+
   /// A short, stable machine-readable reason for a non-active `status` (e.g. `cname-not-pointing-at-edge`, `caa-blocks-lets-encrypt`, `binding-missing`), suitable for keying an actionable hint. Empty when active or pending.
   final SdkOptional<String> statusReason;
 
-  const CustomDomain({required this.domain, required this.entityType, required this.entityId, required this.cnameTarget, this.status = const SdkOmitted(), this.dnsStatus = const SdkOmitted(), this.bindingStatus = const SdkOmitted(), this.statusReason = const SdkOmitted()});
+  const CustomDomain(
+      {required this.domain,
+      required this.entityType,
+      required this.entityId,
+      required this.cnameTarget,
+      this.status = const SdkOmitted(),
+      this.dnsStatus = const SdkOmitted(),
+      this.bindingStatus = const SdkOmitted(),
+      this.statusReason = const SdkOmitted()});
 
-  CustomDomain Function({String domain, String entityType, String entityId, String cnameTarget, SdkOptional<String> status, SdkOptional<String> dnsStatus, SdkOptional<String> bindingStatus, SdkOptional<String> statusReason}) get copyWith => _copyWith;
+  CustomDomain Function(
+      {String domain,
+      String entityType,
+      String entityId,
+      String cnameTarget,
+      SdkOptional<String> status,
+      SdkOptional<String> dnsStatus,
+      SdkOptional<String> bindingStatus,
+      SdkOptional<String> statusReason}) get copyWith => _copyWith;
 
-  CustomDomain _copyWith({Object? domain = sdkOmittedValue, Object? entityType = sdkOmittedValue, Object? entityId = sdkOmittedValue, Object? cnameTarget = sdkOmittedValue, Object? status = sdkOmittedValue, Object? dnsStatus = sdkOmittedValue, Object? bindingStatus = sdkOmittedValue, Object? statusReason = sdkOmittedValue}) => CustomDomain(
-    domain: identical(domain, sdkOmittedValue) ? this.domain : domain as String,
-    entityType: identical(entityType, sdkOmittedValue) ? this.entityType : entityType as String,
-    entityId: identical(entityId, sdkOmittedValue) ? this.entityId : entityId as String,
-    cnameTarget: identical(cnameTarget, sdkOmittedValue) ? this.cnameTarget : cnameTarget as String,
-    status: identical(status, sdkOmittedValue) ? this.status : status as SdkOptional<String>,
-    dnsStatus: identical(dnsStatus, sdkOmittedValue) ? this.dnsStatus : dnsStatus as SdkOptional<String>,
-    bindingStatus: identical(bindingStatus, sdkOmittedValue) ? this.bindingStatus : bindingStatus as SdkOptional<String>,
-    statusReason: identical(statusReason, sdkOmittedValue) ? this.statusReason : statusReason as SdkOptional<String>,
-  );
+  CustomDomain _copyWith(
+          {Object? domain = sdkOmittedValue,
+          Object? entityType = sdkOmittedValue,
+          Object? entityId = sdkOmittedValue,
+          Object? cnameTarget = sdkOmittedValue,
+          Object? status = sdkOmittedValue,
+          Object? dnsStatus = sdkOmittedValue,
+          Object? bindingStatus = sdkOmittedValue,
+          Object? statusReason = sdkOmittedValue}) =>
+      CustomDomain(
+        domain:
+            identical(domain, sdkOmittedValue) ? this.domain : domain as String,
+        entityType: identical(entityType, sdkOmittedValue)
+            ? this.entityType
+            : entityType as String,
+        entityId: identical(entityId, sdkOmittedValue)
+            ? this.entityId
+            : entityId as String,
+        cnameTarget: identical(cnameTarget, sdkOmittedValue)
+            ? this.cnameTarget
+            : cnameTarget as String,
+        status: identical(status, sdkOmittedValue)
+            ? this.status
+            : status as SdkOptional<String>,
+        dnsStatus: identical(dnsStatus, sdkOmittedValue)
+            ? this.dnsStatus
+            : dnsStatus as SdkOptional<String>,
+        bindingStatus: identical(bindingStatus, sdkOmittedValue)
+            ? this.bindingStatus
+            : bindingStatus as SdkOptional<String>,
+        statusReason: identical(statusReason, sdkOmittedValue)
+            ? this.statusReason
+            : statusReason as SdkOptional<String>,
+      );
 
   factory CustomDomain.fromJson(Map<String, dynamic> json) => CustomDomain(
-    domain: (json['domain'] as String?)!,
-    entityType: (json['entity_type'] as String?)!,
-    entityId: (json['entity_id'] as String?)!,
-    cnameTarget: (json['cname_target'] as String?)!,
-    status: json['status'] != null ? SdkPresent((json['status'] as String?)!) : const SdkOmitted(),
-    dnsStatus: json['dns_status'] != null ? SdkPresent((json['dns_status'] as String?)!) : const SdkOmitted(),
-    bindingStatus: json['binding_status'] != null ? SdkPresent((json['binding_status'] as String?)!) : const SdkOmitted(),
-    statusReason: json['status_reason'] != null ? SdkPresent((json['status_reason'] as String?)!) : const SdkOmitted(),
-  );
+        domain: (json['domain'] as String?)!,
+        entityType: (json['entity_type'] as String?)!,
+        entityId: (json['entity_id'] as String?)!,
+        cnameTarget: (json['cname_target'] as String?)!,
+        status: json['status'] != null
+            ? SdkPresent((json['status'] as String?)!)
+            : const SdkOmitted(),
+        dnsStatus: json['dns_status'] != null
+            ? SdkPresent((json['dns_status'] as String?)!)
+            : const SdkOmitted(),
+        bindingStatus: json['binding_status'] != null
+            ? SdkPresent((json['binding_status'] as String?)!)
+            : const SdkOmitted(),
+        statusReason: json['status_reason'] != null
+            ? SdkPresent((json['status_reason'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'domain': domain,
-    'entity_type': entityType,
-    'entity_id': entityId,
-    'cname_target': cnameTarget,
-    ...switch (status) {
-      SdkPresent<String>(value: final value) => {'status': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (dnsStatus) {
-      SdkPresent<String>(value: final value) => {'dns_status': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (bindingStatus) {
-      SdkPresent<String>(value: final value) => {'binding_status': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (statusReason) {
-      SdkPresent<String>(value: final value) => {'status_reason': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'domain': domain,
+        'entity_type': entityType,
+        'entity_id': entityId,
+        'cname_target': cnameTarget,
+        ...switch (status) {
+          SdkPresent<String>(value: final value) => {
+              'status': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (dnsStatus) {
+          SdkPresent<String>(value: final value) => {
+              'dns_status': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (bindingStatus) {
+          SdkPresent<String>(value: final value) => {
+              'binding_status': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (statusReason) {
+          SdkPresent<String>(value: final value) => {
+              'status_reason': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

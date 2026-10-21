@@ -8,27 +8,42 @@ part of 'branch.dart';
 class GetBranchResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Branch returned by the request.
   final Branch branch;
+
   /// Annotation data associated with the annotated object.
   final AnnotationData annotation;
 
   const GetBranchResponse({required this.branch, required this.annotation});
 
-  GetBranchResponse Function({Branch branch, AnnotationData annotation}) get copyWith => _copyWith;
+  GetBranchResponse Function({Branch branch, AnnotationData annotation})
+      get copyWith => _copyWith;
 
-  GetBranchResponse _copyWith({Object? branch = sdkOmittedValue, Object? annotation = sdkOmittedValue}) => GetBranchResponse(
-    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
-    annotation: identical(annotation, sdkOmittedValue) ? this.annotation : annotation as AnnotationData,
-  );
+  GetBranchResponse _copyWith(
+          {Object? branch = sdkOmittedValue,
+          Object? annotation = sdkOmittedValue}) =>
+      GetBranchResponse(
+        branch:
+            identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+        annotation: identical(annotation, sdkOmittedValue)
+            ? this.annotation
+            : annotation as AnnotationData,
+      );
 
-  factory GetBranchResponse.fromJson(Map<String, dynamic> json) => GetBranchResponse(
-    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
-    annotation: (json['annotation'] != null ? AnnotationData.fromJson(json['annotation'] as Map<String, dynamic>) : null)!,
-  );
+  factory GetBranchResponse.fromJson(Map<String, dynamic> json) =>
+      GetBranchResponse(
+        branch: (json['branch'] != null
+            ? Branch.fromJson(json['branch'] as Map<String, dynamic>)
+            : null)!,
+        annotation: (json['annotation'] != null
+            ? AnnotationData.fromJson(
+                json['annotation'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'branch': branch.toJson(),
-    'annotation': annotation.toJson(),
-  };
+        'branch': branch.toJson(),
+        'annotation': annotation.toJson(),
+      };
 }

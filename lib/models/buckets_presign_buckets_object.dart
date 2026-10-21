@@ -8,77 +8,132 @@ part of 'buckets.dart';
 class PresignRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The transfer direction. `upload` returns a presigned `PUT` URL; `download` returns a presigned `GET` URL.
   final PresignRequestOperation operation;
+
   /// The `Content-Type` to bind into the signed request. Only meaningful for `upload`: when set, the caller MUST send the same `Content-Type` header on the `PUT`, and the value is echoed back in the response `headers`. Ignored for `download`.
   final SdkOptional<String> contentType;
+
   /// How long the presigned URL stays valid, in seconds. Defaults to 900 (15 minutes); capped at 604800 (7 days).
   final SdkOptional<int> expiresInSeconds;
 
-  const PresignRequest({required this.operation, this.contentType = const SdkOmitted(), this.expiresInSeconds = const SdkOmitted()});
+  const PresignRequest(
+      {required this.operation,
+      this.contentType = const SdkOmitted(),
+      this.expiresInSeconds = const SdkOmitted()});
 
-  PresignRequest Function({PresignRequestOperation operation, SdkOptional<String> contentType, SdkOptional<int> expiresInSeconds}) get copyWith => _copyWith;
+  PresignRequest Function(
+      {PresignRequestOperation operation,
+      SdkOptional<String> contentType,
+      SdkOptional<int> expiresInSeconds}) get copyWith => _copyWith;
 
-  PresignRequest _copyWith({Object? operation = sdkOmittedValue, Object? contentType = sdkOmittedValue, Object? expiresInSeconds = sdkOmittedValue}) => PresignRequest(
-    operation: identical(operation, sdkOmittedValue) ? this.operation : operation as PresignRequestOperation,
-    contentType: identical(contentType, sdkOmittedValue) ? this.contentType : contentType as SdkOptional<String>,
-    expiresInSeconds: identical(expiresInSeconds, sdkOmittedValue) ? this.expiresInSeconds : expiresInSeconds as SdkOptional<int>,
-  );
+  PresignRequest _copyWith(
+          {Object? operation = sdkOmittedValue,
+          Object? contentType = sdkOmittedValue,
+          Object? expiresInSeconds = sdkOmittedValue}) =>
+      PresignRequest(
+        operation: identical(operation, sdkOmittedValue)
+            ? this.operation
+            : operation as PresignRequestOperation,
+        contentType: identical(contentType, sdkOmittedValue)
+            ? this.contentType
+            : contentType as SdkOptional<String>,
+        expiresInSeconds: identical(expiresInSeconds, sdkOmittedValue)
+            ? this.expiresInSeconds
+            : expiresInSeconds as SdkOptional<int>,
+      );
 
   factory PresignRequest.fromJson(Map<String, dynamic> json) => PresignRequest(
-    operation: (json['operation'] != null ? PresignRequestOperation.fromJson(json['operation'] as String) : null)!,
-    contentType: json['content_type'] != null ? SdkPresent((json['content_type'] as String?)!) : const SdkOmitted(),
-    expiresInSeconds: json['expires_in_seconds'] != null ? SdkPresent(((json['expires_in_seconds'] as num?)?.toInt())!) : const SdkOmitted(),
-  );
+        operation: (json['operation'] != null
+            ? PresignRequestOperation.fromJson(json['operation'] as String)
+            : null)!,
+        contentType: json['content_type'] != null
+            ? SdkPresent((json['content_type'] as String?)!)
+            : const SdkOmitted(),
+        expiresInSeconds: json['expires_in_seconds'] != null
+            ? SdkPresent(((json['expires_in_seconds'] as num?)?.toInt())!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'operation': operation.toJson(),
-    ...switch (contentType) {
-      SdkPresent<String>(value: final value) => {'content_type': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (expiresInSeconds) {
-      SdkPresent<int>(value: final value) => {'expires_in_seconds': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'operation': operation.toJson(),
+        ...switch (contentType) {
+          SdkPresent<String>(value: final value) => {
+              'content_type': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (expiresInSeconds) {
+          SdkPresent<int>(value: final value) => {
+              'expires_in_seconds': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `PresignResponse` API schema.
 class PresignResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The presigned URL. Transfer the object bytes by issuing `method url` with the returned `headers`.
   final String url;
+
   /// The HTTP method to use against `url`: `PUT` for an upload, `GET` for a download.
   final String method;
+
   /// Headers the caller MUST send verbatim on the request (e.g. `Content-Type` when it was signed on an upload). May be empty.
   final Map<String, String> headers;
+
   /// When the presigned URL stops being valid.
   final String expiresAt;
 
-  const PresignResponse({required this.url, required this.method, required this.headers, required this.expiresAt});
+  const PresignResponse(
+      {required this.url,
+      required this.method,
+      required this.headers,
+      required this.expiresAt});
 
-  PresignResponse Function({String url, String method, Map<String, String> headers, String expiresAt}) get copyWith => _copyWith;
+  PresignResponse Function(
+      {String url,
+      String method,
+      Map<String, String> headers,
+      String expiresAt}) get copyWith => _copyWith;
 
-  PresignResponse _copyWith({Object? url = sdkOmittedValue, Object? method = sdkOmittedValue, Object? headers = sdkOmittedValue, Object? expiresAt = sdkOmittedValue}) => PresignResponse(
-    url: identical(url, sdkOmittedValue) ? this.url : url as String,
-    method: identical(method, sdkOmittedValue) ? this.method : method as String,
-    headers: identical(headers, sdkOmittedValue) ? this.headers : headers as Map<String, String>,
-    expiresAt: identical(expiresAt, sdkOmittedValue) ? this.expiresAt : expiresAt as String,
-  );
+  PresignResponse _copyWith(
+          {Object? url = sdkOmittedValue,
+          Object? method = sdkOmittedValue,
+          Object? headers = sdkOmittedValue,
+          Object? expiresAt = sdkOmittedValue}) =>
+      PresignResponse(
+        url: identical(url, sdkOmittedValue) ? this.url : url as String,
+        method:
+            identical(method, sdkOmittedValue) ? this.method : method as String,
+        headers: identical(headers, sdkOmittedValue)
+            ? this.headers
+            : headers as Map<String, String>,
+        expiresAt: identical(expiresAt, sdkOmittedValue)
+            ? this.expiresAt
+            : expiresAt as String,
+      );
 
-  factory PresignResponse.fromJson(Map<String, dynamic> json) => PresignResponse(
-    url: (json['url'] as String?)!,
-    method: (json['method'] as String?)!,
-    headers: (json['headers'] == null ? null : Map<String, dynamic>.from(json['headers'] as Map).map((key, value) => MapEntry(key, value as String)))!,
-    expiresAt: (json['expires_at'] as String?)!,
-  );
+  factory PresignResponse.fromJson(Map<String, dynamic> json) =>
+      PresignResponse(
+        url: (json['url'] as String?)!,
+        method: (json['method'] as String?)!,
+        headers: (json['headers'] == null
+            ? null
+            : Map<String, dynamic>.from(json['headers'] as Map)
+                .map((key, value) => MapEntry(key, value as String)))!,
+        expiresAt: (json['expires_at'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'url': url,
-    'method': method,
-    'headers': headers,
-    'expires_at': expiresAt,
-  };
+        'url': url,
+        'method': method,
+        'headers': headers,
+        'expires_at': expiresAt,
+      };
 }

@@ -8,32 +8,52 @@ part of 'credentials.dart';
 class CredentialSecret {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Opaque credential id (e.g. nak_live_&lt;32hex&gt;).
   final String tokenId;
+
   /// Bearer token.
   final String apiToken;
+
   /// nsk_live_&lt;64 hex&gt;; the AWS_SECRET_ACCESS_KEY.
   final String s3SecretAccessKey;
 
-  const CredentialSecret({required this.tokenId, required this.apiToken, required this.s3SecretAccessKey});
+  const CredentialSecret(
+      {required this.tokenId,
+      required this.apiToken,
+      required this.s3SecretAccessKey});
 
-  CredentialSecret Function({String tokenId, String apiToken, String s3SecretAccessKey}) get copyWith => _copyWith;
+  CredentialSecret Function(
+      {String tokenId,
+      String apiToken,
+      String s3SecretAccessKey}) get copyWith => _copyWith;
 
-  CredentialSecret _copyWith({Object? tokenId = sdkOmittedValue, Object? apiToken = sdkOmittedValue, Object? s3SecretAccessKey = sdkOmittedValue}) => CredentialSecret(
-    tokenId: identical(tokenId, sdkOmittedValue) ? this.tokenId : tokenId as String,
-    apiToken: identical(apiToken, sdkOmittedValue) ? this.apiToken : apiToken as String,
-    s3SecretAccessKey: identical(s3SecretAccessKey, sdkOmittedValue) ? this.s3SecretAccessKey : s3SecretAccessKey as String,
-  );
+  CredentialSecret _copyWith(
+          {Object? tokenId = sdkOmittedValue,
+          Object? apiToken = sdkOmittedValue,
+          Object? s3SecretAccessKey = sdkOmittedValue}) =>
+      CredentialSecret(
+        tokenId: identical(tokenId, sdkOmittedValue)
+            ? this.tokenId
+            : tokenId as String,
+        apiToken: identical(apiToken, sdkOmittedValue)
+            ? this.apiToken
+            : apiToken as String,
+        s3SecretAccessKey: identical(s3SecretAccessKey, sdkOmittedValue)
+            ? this.s3SecretAccessKey
+            : s3SecretAccessKey as String,
+      );
 
-  factory CredentialSecret.fromJson(Map<String, dynamic> json) => CredentialSecret(
-    tokenId: (json['token_id'] as String?)!,
-    apiToken: (json['api_token'] as String?)!,
-    s3SecretAccessKey: (json['s3_secret_access_key'] as String?)!,
-  );
+  factory CredentialSecret.fromJson(Map<String, dynamic> json) =>
+      CredentialSecret(
+        tokenId: (json['token_id'] as String?)!,
+        apiToken: (json['api_token'] as String?)!,
+        s3SecretAccessKey: (json['s3_secret_access_key'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'token_id': tokenId,
-    'api_token': apiToken,
-    's3_secret_access_key': s3SecretAccessKey,
-  };
+        'token_id': tokenId,
+        'api_token': apiToken,
+        's3_secret_access_key': s3SecretAccessKey,
+      };
 }

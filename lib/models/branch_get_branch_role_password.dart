@@ -8,6 +8,7 @@ part of 'branch.dart';
 class RolePasswordResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The role password
   final String password;
 
@@ -15,15 +16,19 @@ class RolePasswordResponse {
 
   RolePasswordResponse Function({String password}) get copyWith => _copyWith;
 
-  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) => RolePasswordResponse(
-    password: identical(password, sdkOmittedValue) ? this.password : password as String,
-  );
+  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) =>
+      RolePasswordResponse(
+        password: identical(password, sdkOmittedValue)
+            ? this.password
+            : password as String,
+      );
 
-  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) => RolePasswordResponse(
-    password: (json['password'] as String?)!,
-  );
+  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) =>
+      RolePasswordResponse(
+        password: (json['password'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'password': password,
-  };
+        'password': password,
+      };
 }

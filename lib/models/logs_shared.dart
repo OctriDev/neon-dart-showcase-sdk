@@ -10,78 +10,116 @@ part of 'logs.dart';
 class ProjectBranchLogsInvalidQuery {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required `string` value serialized in the `code` wire field.
   final String code;
+
   /// Required `string` value serialized in the `message` wire field.
   final String message;
+
   /// Machine-readable reason why the request was rejected: - `time_range_too_large`: the requested window spans more than seven days. - `invalid_time_range`: `end_time` is not after `start_time`. - `conflicting_time_range`: both `since` and `start_time` were supplied. - `invalid_cursor`: the supplied `cursor` is malformed, expired, or was issued for a different query. - `unknown_field`: the requested `field_name` is not one of the fields the log fields endpoint reports for this branch. - `invalid_logql`: the supplied `logql` expression does not parse, or uses a construct this endpoint does not accept. - `conflicting_filters`: `logql` was supplied alongside one or more structured filters. Use one or the other.
   final ProjectBranchLogsInvalidQueryReason reason;
 
-  const ProjectBranchLogsInvalidQuery({required this.code, required this.message, required this.reason});
+  const ProjectBranchLogsInvalidQuery(
+      {required this.code, required this.message, required this.reason});
 
-  ProjectBranchLogsInvalidQuery Function({String code, String message, ProjectBranchLogsInvalidQueryReason reason}) get copyWith => _copyWith;
+  ProjectBranchLogsInvalidQuery Function(
+      {String code,
+      String message,
+      ProjectBranchLogsInvalidQueryReason reason}) get copyWith => _copyWith;
 
-  ProjectBranchLogsInvalidQuery _copyWith({Object? code = sdkOmittedValue, Object? message = sdkOmittedValue, Object? reason = sdkOmittedValue}) => ProjectBranchLogsInvalidQuery(
-    code: identical(code, sdkOmittedValue) ? this.code : code as String,
-    message: identical(message, sdkOmittedValue) ? this.message : message as String,
-    reason: identical(reason, sdkOmittedValue) ? this.reason : reason as ProjectBranchLogsInvalidQueryReason,
-  );
+  ProjectBranchLogsInvalidQuery _copyWith(
+          {Object? code = sdkOmittedValue,
+          Object? message = sdkOmittedValue,
+          Object? reason = sdkOmittedValue}) =>
+      ProjectBranchLogsInvalidQuery(
+        code: identical(code, sdkOmittedValue) ? this.code : code as String,
+        message: identical(message, sdkOmittedValue)
+            ? this.message
+            : message as String,
+        reason: identical(reason, sdkOmittedValue)
+            ? this.reason
+            : reason as ProjectBranchLogsInvalidQueryReason,
+      );
 
-  factory ProjectBranchLogsInvalidQuery.fromJson(Map<String, dynamic> json) => ProjectBranchLogsInvalidQuery(
-    code: (json['code'] as String?)!,
-    message: (json['message'] as String?)!,
-    reason: (json['reason'] != null ? ProjectBranchLogsInvalidQueryReason.fromJson(json['reason'] as String) : null)!,
-  );
+  factory ProjectBranchLogsInvalidQuery.fromJson(Map<String, dynamic> json) =>
+      ProjectBranchLogsInvalidQuery(
+        code: (json['code'] as String?)!,
+        message: (json['message'] as String?)!,
+        reason: (json['reason'] != null
+            ? ProjectBranchLogsInvalidQueryReason.fromJson(
+                json['reason'] as String)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'code': code,
-    'message': message,
-    'reason': reason.toJson(),
-  };
+        'code': code,
+        'message': message,
+        'reason': reason.toJson(),
+      };
 }
 
 /// Typed representation of the `ProjectBranchLogsNotAvailable` API schema.
 class ProjectBranchLogsNotAvailable {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required `string` value serialized in the `code` wire field.
   final String code;
+
   /// Required `string` value serialized in the `message` wire field.
   final String message;
+
   /// Machine-readable reason why logs cannot be read: - `branch_not_found`: the project or branch does not exist, or the caller does not have access to it. - `telemetry_not_enabled`: the branch exists but is not collecting telemetry, so it has no logs to serve.
   final ProjectBranchLogsNotAvailableReason reason;
 
-  const ProjectBranchLogsNotAvailable({required this.code, required this.message, required this.reason});
+  const ProjectBranchLogsNotAvailable(
+      {required this.code, required this.message, required this.reason});
 
-  ProjectBranchLogsNotAvailable Function({String code, String message, ProjectBranchLogsNotAvailableReason reason}) get copyWith => _copyWith;
+  ProjectBranchLogsNotAvailable Function(
+      {String code,
+      String message,
+      ProjectBranchLogsNotAvailableReason reason}) get copyWith => _copyWith;
 
-  ProjectBranchLogsNotAvailable _copyWith({Object? code = sdkOmittedValue, Object? message = sdkOmittedValue, Object? reason = sdkOmittedValue}) => ProjectBranchLogsNotAvailable(
-    code: identical(code, sdkOmittedValue) ? this.code : code as String,
-    message: identical(message, sdkOmittedValue) ? this.message : message as String,
-    reason: identical(reason, sdkOmittedValue) ? this.reason : reason as ProjectBranchLogsNotAvailableReason,
-  );
+  ProjectBranchLogsNotAvailable _copyWith(
+          {Object? code = sdkOmittedValue,
+          Object? message = sdkOmittedValue,
+          Object? reason = sdkOmittedValue}) =>
+      ProjectBranchLogsNotAvailable(
+        code: identical(code, sdkOmittedValue) ? this.code : code as String,
+        message: identical(message, sdkOmittedValue)
+            ? this.message
+            : message as String,
+        reason: identical(reason, sdkOmittedValue)
+            ? this.reason
+            : reason as ProjectBranchLogsNotAvailableReason,
+      );
 
-  factory ProjectBranchLogsNotAvailable.fromJson(Map<String, dynamic> json) => ProjectBranchLogsNotAvailable(
-    code: (json['code'] as String?)!,
-    message: (json['message'] as String?)!,
-    reason: (json['reason'] != null ? ProjectBranchLogsNotAvailableReason.fromJson(json['reason'] as String) : null)!,
-  );
+  factory ProjectBranchLogsNotAvailable.fromJson(Map<String, dynamic> json) =>
+      ProjectBranchLogsNotAvailable(
+        code: (json['code'] as String?)!,
+        message: (json['message'] as String?)!,
+        reason: (json['reason'] != null
+            ? ProjectBranchLogsNotAvailableReason.fromJson(
+                json['reason'] as String)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'code': code,
-    'message': message,
-    'reason': reason.toJson(),
-  };
+        'code': code,
+        'message': message,
+        'reason': reason.toJson(),
+      };
 }
 
 /// The Neon service that emitted the log record.
 final class ProjectBranchLogSource {
-
   final String value;
 
   const ProjectBranchLogSource._(this.value);
 
-  factory ProjectBranchLogSource.fromJson(String value) => ProjectBranchLogSource._(value);
+  factory ProjectBranchLogSource.fromJson(String value) =>
+      ProjectBranchLogSource._(value);
 
   static const function_ = ProjectBranchLogSource._('function');
   static const storage = ProjectBranchLogSource._('storage');
@@ -89,10 +127,13 @@ final class ProjectBranchLogSource {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ProjectBranchLogSource && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ProjectBranchLogSource && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

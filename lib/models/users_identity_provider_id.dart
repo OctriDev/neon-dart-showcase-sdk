@@ -6,12 +6,12 @@ part of 'users.dart';
 // users domain models
 /// Identity provider id from keycloak
 final class IdentityProviderId {
-
   final String value;
 
   const IdentityProviderId._(this.value);
 
-  factory IdentityProviderId.fromJson(String value) => IdentityProviderId._(value);
+  factory IdentityProviderId.fromJson(String value) =>
+      IdentityProviderId._(value);
 
   static const github = IdentityProviderId._('github');
   static const google = IdentityProviderId._('google');
@@ -23,10 +23,13 @@ final class IdentityProviderId {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is IdentityProviderId && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is IdentityProviderId && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

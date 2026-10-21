@@ -8,123 +8,191 @@ part of 'organizations.dart';
 class ListOrganizationsMembersResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Members of the organization, each combining membership details (role, status) with the associated user's identity.
   final List<MemberWithUser> members;
+
   /// To paginate the response, issue an initial request with `limit` value. Then, add the value returned in the response `.pagination.next` attribute into the request under the `cursor` query parameter to the subsequent request to retrieve next page in pagination. The contents on cursor `next` are opaque, clients are not expected to make any assumptions on the format of the data inside the cursor.
   final SdkOptional<CursorPagination> pagination;
 
-  const ListOrganizationsMembersResponse({required this.members, this.pagination = const SdkOmitted()});
+  const ListOrganizationsMembersResponse(
+      {required this.members, this.pagination = const SdkOmitted()});
 
-  ListOrganizationsMembersResponse Function({List<MemberWithUser> members, SdkOptional<CursorPagination> pagination}) get copyWith => _copyWith;
+  ListOrganizationsMembersResponse Function(
+      {List<MemberWithUser> members,
+      SdkOptional<CursorPagination> pagination}) get copyWith => _copyWith;
 
-  ListOrganizationsMembersResponse _copyWith({Object? members = sdkOmittedValue, Object? pagination = sdkOmittedValue}) => ListOrganizationsMembersResponse(
-    members: identical(members, sdkOmittedValue) ? this.members : members as List<MemberWithUser>,
-    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<CursorPagination>,
-  );
+  ListOrganizationsMembersResponse _copyWith(
+          {Object? members = sdkOmittedValue,
+          Object? pagination = sdkOmittedValue}) =>
+      ListOrganizationsMembersResponse(
+        members: identical(members, sdkOmittedValue)
+            ? this.members
+            : members as List<MemberWithUser>,
+        pagination: identical(pagination, sdkOmittedValue)
+            ? this.pagination
+            : pagination as SdkOptional<CursorPagination>,
+      );
 
-  factory ListOrganizationsMembersResponse.fromJson(Map<String, dynamic> json) => ListOrganizationsMembersResponse(
-    members: ((json['members'] as List?)?.map((e) => MemberWithUser.fromJson(e as Map<String, dynamic>)).toList())!,
-    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? CursorPagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-  );
+  factory ListOrganizationsMembersResponse.fromJson(
+          Map<String, dynamic> json) =>
+      ListOrganizationsMembersResponse(
+        members: ((json['members'] as List?)
+            ?.map((e) => MemberWithUser.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+        pagination: json['pagination'] != null
+            ? SdkPresent((json['pagination'] != null
+                ? CursorPagination.fromJson(
+                    json['pagination'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'members': members.map((item) => item.toJson()).toList(),
-    ...switch (pagination) {
-      SdkPresent<CursorPagination>(value: final value) => {'pagination': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'members': members.map((item) => item.toJson()).toList(),
+        ...switch (pagination) {
+          SdkPresent<CursorPagination>(value: final value) => {
+              'pagination': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `MemberUserInfo` API schema.
 class MemberUserInfo {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Email address of the organization member's user account.
   final String email;
+
   /// Whether the member has MFA (TOTP) enabled
   final SdkOptional<bool> hasMfa;
+
   /// Timestamp of when the user account was deactivated. Absent for active users. When present, the UI should render a "Deactivated" badge inline next to the member.
   final SdkOptional<String> deactivatedAt;
 
-  const MemberUserInfo({required this.email, this.hasMfa = const SdkOmitted(), this.deactivatedAt = const SdkOmitted()});
+  const MemberUserInfo(
+      {required this.email,
+      this.hasMfa = const SdkOmitted(),
+      this.deactivatedAt = const SdkOmitted()});
 
-  MemberUserInfo Function({String email, SdkOptional<bool> hasMfa, SdkOptional<String> deactivatedAt}) get copyWith => _copyWith;
+  MemberUserInfo Function(
+      {String email,
+      SdkOptional<bool> hasMfa,
+      SdkOptional<String> deactivatedAt}) get copyWith => _copyWith;
 
-  MemberUserInfo _copyWith({Object? email = sdkOmittedValue, Object? hasMfa = sdkOmittedValue, Object? deactivatedAt = sdkOmittedValue}) => MemberUserInfo(
-    email: identical(email, sdkOmittedValue) ? this.email : email as String,
-    hasMfa: identical(hasMfa, sdkOmittedValue) ? this.hasMfa : hasMfa as SdkOptional<bool>,
-    deactivatedAt: identical(deactivatedAt, sdkOmittedValue) ? this.deactivatedAt : deactivatedAt as SdkOptional<String>,
-  );
+  MemberUserInfo _copyWith(
+          {Object? email = sdkOmittedValue,
+          Object? hasMfa = sdkOmittedValue,
+          Object? deactivatedAt = sdkOmittedValue}) =>
+      MemberUserInfo(
+        email: identical(email, sdkOmittedValue) ? this.email : email as String,
+        hasMfa: identical(hasMfa, sdkOmittedValue)
+            ? this.hasMfa
+            : hasMfa as SdkOptional<bool>,
+        deactivatedAt: identical(deactivatedAt, sdkOmittedValue)
+            ? this.deactivatedAt
+            : deactivatedAt as SdkOptional<String>,
+      );
 
   factory MemberUserInfo.fromJson(Map<String, dynamic> json) => MemberUserInfo(
-    email: (json['email'] as String?)!,
-    hasMfa: json['has_mfa'] != null ? SdkPresent((json['has_mfa'] as bool?)!) : const SdkOmitted(),
-    deactivatedAt: json['deactivated_at'] != null ? SdkPresent((json['deactivated_at'] as String?)!) : const SdkOmitted(),
-  );
+        email: (json['email'] as String?)!,
+        hasMfa: json['has_mfa'] != null
+            ? SdkPresent((json['has_mfa'] as bool?)!)
+            : const SdkOmitted(),
+        deactivatedAt: json['deactivated_at'] != null
+            ? SdkPresent((json['deactivated_at'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'email': email,
-    ...switch (hasMfa) {
-      SdkPresent<bool>(value: final value) => {'has_mfa': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (deactivatedAt) {
-      SdkPresent<String>(value: final value) => {'deactivated_at': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'email': email,
+        ...switch (hasMfa) {
+          SdkPresent<bool>(value: final value) => {
+              'has_mfa': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (deactivatedAt) {
+          SdkPresent<String>(value: final value) => {
+              'deactivated_at': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
 
 /// Typed representation of the `MemberWithUser` API schema.
 class MemberWithUser {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Membership record for the user in the organization.
   final Member member;
+
   /// Profile information for the organization member.
   final MemberUserInfo user;
 
   const MemberWithUser({required this.member, required this.user});
 
-  MemberWithUser Function({Member member, MemberUserInfo user}) get copyWith => _copyWith;
+  MemberWithUser Function({Member member, MemberUserInfo user}) get copyWith =>
+      _copyWith;
 
-  MemberWithUser _copyWith({Object? member = sdkOmittedValue, Object? user = sdkOmittedValue}) => MemberWithUser(
-    member: identical(member, sdkOmittedValue) ? this.member : member as Member,
-    user: identical(user, sdkOmittedValue) ? this.user : user as MemberUserInfo,
-  );
+  MemberWithUser _copyWith(
+          {Object? member = sdkOmittedValue, Object? user = sdkOmittedValue}) =>
+      MemberWithUser(
+        member:
+            identical(member, sdkOmittedValue) ? this.member : member as Member,
+        user: identical(user, sdkOmittedValue)
+            ? this.user
+            : user as MemberUserInfo,
+      );
 
   factory MemberWithUser.fromJson(Map<String, dynamic> json) => MemberWithUser(
-    member: (json['member'] != null ? Member.fromJson(json['member'] as Map<String, dynamic>) : null)!,
-    user: (json['user'] != null ? MemberUserInfo.fromJson(json['user'] as Map<String, dynamic>) : null)!,
-  );
+        member: (json['member'] != null
+            ? Member.fromJson(json['member'] as Map<String, dynamic>)
+            : null)!,
+        user: (json['user'] != null
+            ? MemberUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'member': member.toJson(),
-    'user': user.toJson(),
-  };
+        'member': member.toJson(),
+        'user': user.toJson(),
+      };
 }
 
 /// Typed representation of the `OrganizationMembersResponse` API schema.
 class OrganizationMembersResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Members of the organization, each combining membership details (role, status) with the associated user's identity.
   final List<MemberWithUser> members;
 
   const OrganizationMembersResponse({required this.members});
 
-  OrganizationMembersResponse Function({List<MemberWithUser> members}) get copyWith => _copyWith;
+  OrganizationMembersResponse Function({List<MemberWithUser> members})
+      get copyWith => _copyWith;
 
-  OrganizationMembersResponse _copyWith({Object? members = sdkOmittedValue}) => OrganizationMembersResponse(
-    members: identical(members, sdkOmittedValue) ? this.members : members as List<MemberWithUser>,
-  );
+  OrganizationMembersResponse _copyWith({Object? members = sdkOmittedValue}) =>
+      OrganizationMembersResponse(
+        members: identical(members, sdkOmittedValue)
+            ? this.members
+            : members as List<MemberWithUser>,
+      );
 
-  factory OrganizationMembersResponse.fromJson(Map<String, dynamic> json) => OrganizationMembersResponse(
-    members: ((json['members'] as List?)?.map((e) => MemberWithUser.fromJson(e as Map<String, dynamic>)).toList())!,
-  );
+  factory OrganizationMembersResponse.fromJson(Map<String, dynamic> json) =>
+      OrganizationMembersResponse(
+        members: ((json['members'] as List?)
+            ?.map((e) => MemberWithUser.fromJson(e as Map<String, dynamic>))
+            .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'members': members.map((item) => item.toJson()).toList(),
-  };
+        'members': members.map((item) => item.toJson()).toList(),
+      };
 }

@@ -8,42 +8,75 @@ part of 'organizations.dart';
 class VPCEndpointDetails {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Cloud provider identifier for the VPC endpoint.
   final String vpcEndpointId;
+
   /// A descriptive label for the VPC endpoint
   final String label;
+
   /// The current state of the VPC endpoint. `new` means the endpoint has just been configured and is pending acceptance by Neon. `accepted` means the VPC connection has been accepted by Neon.
   final String state;
+
   /// The number of projects that are restricted to use this VPC endpoint.
   final int numRestrictedProjects;
+
   /// A list of example projects that are restricted to use this VPC endpoint. There are at most 3 projects in the list, even if more projects are restricted.
   final List<String> exampleRestrictedProjects;
 
-  const VPCEndpointDetails({required this.vpcEndpointId, required this.label, required this.state, required this.numRestrictedProjects, required this.exampleRestrictedProjects});
+  const VPCEndpointDetails(
+      {required this.vpcEndpointId,
+      required this.label,
+      required this.state,
+      required this.numRestrictedProjects,
+      required this.exampleRestrictedProjects});
 
-  VPCEndpointDetails Function({String vpcEndpointId, String label, String state, int numRestrictedProjects, List<String> exampleRestrictedProjects}) get copyWith => _copyWith;
+  VPCEndpointDetails Function(
+      {String vpcEndpointId,
+      String label,
+      String state,
+      int numRestrictedProjects,
+      List<String> exampleRestrictedProjects}) get copyWith => _copyWith;
 
-  VPCEndpointDetails _copyWith({Object? vpcEndpointId = sdkOmittedValue, Object? label = sdkOmittedValue, Object? state = sdkOmittedValue, Object? numRestrictedProjects = sdkOmittedValue, Object? exampleRestrictedProjects = sdkOmittedValue}) => VPCEndpointDetails(
-    vpcEndpointId: identical(vpcEndpointId, sdkOmittedValue) ? this.vpcEndpointId : vpcEndpointId as String,
-    label: identical(label, sdkOmittedValue) ? this.label : label as String,
-    state: identical(state, sdkOmittedValue) ? this.state : state as String,
-    numRestrictedProjects: identical(numRestrictedProjects, sdkOmittedValue) ? this.numRestrictedProjects : numRestrictedProjects as int,
-    exampleRestrictedProjects: identical(exampleRestrictedProjects, sdkOmittedValue) ? this.exampleRestrictedProjects : exampleRestrictedProjects as List<String>,
-  );
+  VPCEndpointDetails _copyWith(
+          {Object? vpcEndpointId = sdkOmittedValue,
+          Object? label = sdkOmittedValue,
+          Object? state = sdkOmittedValue,
+          Object? numRestrictedProjects = sdkOmittedValue,
+          Object? exampleRestrictedProjects = sdkOmittedValue}) =>
+      VPCEndpointDetails(
+        vpcEndpointId: identical(vpcEndpointId, sdkOmittedValue)
+            ? this.vpcEndpointId
+            : vpcEndpointId as String,
+        label: identical(label, sdkOmittedValue) ? this.label : label as String,
+        state: identical(state, sdkOmittedValue) ? this.state : state as String,
+        numRestrictedProjects: identical(numRestrictedProjects, sdkOmittedValue)
+            ? this.numRestrictedProjects
+            : numRestrictedProjects as int,
+        exampleRestrictedProjects:
+            identical(exampleRestrictedProjects, sdkOmittedValue)
+                ? this.exampleRestrictedProjects
+                : exampleRestrictedProjects as List<String>,
+      );
 
-  factory VPCEndpointDetails.fromJson(Map<String, dynamic> json) => VPCEndpointDetails(
-    vpcEndpointId: (json['vpc_endpoint_id'] as String?)!,
-    label: (json['label'] as String?)!,
-    state: (json['state'] as String?)!,
-    numRestrictedProjects: ((json['num_restricted_projects'] as num?)?.toInt())!,
-    exampleRestrictedProjects: ((json['example_restricted_projects'] as List?)?.map((e) => e as String).toList())!,
-  );
+  factory VPCEndpointDetails.fromJson(Map<String, dynamic> json) =>
+      VPCEndpointDetails(
+        vpcEndpointId: (json['vpc_endpoint_id'] as String?)!,
+        label: (json['label'] as String?)!,
+        state: (json['state'] as String?)!,
+        numRestrictedProjects:
+            ((json['num_restricted_projects'] as num?)?.toInt())!,
+        exampleRestrictedProjects:
+            ((json['example_restricted_projects'] as List?)
+                ?.map((e) => e as String)
+                .toList())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'vpc_endpoint_id': vpcEndpointId,
-    'label': label,
-    'state': state,
-    'num_restricted_projects': numRestrictedProjects,
-    'example_restricted_projects': exampleRestrictedProjects,
-  };
+        'vpc_endpoint_id': vpcEndpointId,
+        'label': label,
+        'state': state,
+        'num_restricted_projects': numRestrictedProjects,
+        'example_restricted_projects': exampleRestrictedProjects,
+      };
 }

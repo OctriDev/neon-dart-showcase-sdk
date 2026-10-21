@@ -8,6 +8,7 @@ part of 'branch.dart';
 class DatabaseResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Database object returned by the operation.
   final Database database;
 
@@ -15,15 +16,21 @@ class DatabaseResponse {
 
   DatabaseResponse Function({Database database}) get copyWith => _copyWith;
 
-  DatabaseResponse _copyWith({Object? database = sdkOmittedValue}) => DatabaseResponse(
-    database: identical(database, sdkOmittedValue) ? this.database : database as Database,
-  );
+  DatabaseResponse _copyWith({Object? database = sdkOmittedValue}) =>
+      DatabaseResponse(
+        database: identical(database, sdkOmittedValue)
+            ? this.database
+            : database as Database,
+      );
 
-  factory DatabaseResponse.fromJson(Map<String, dynamic> json) => DatabaseResponse(
-    database: (json['database'] != null ? Database.fromJson(json['database'] as Map<String, dynamic>) : null)!,
-  );
+  factory DatabaseResponse.fromJson(Map<String, dynamic> json) =>
+      DatabaseResponse(
+        database: (json['database'] != null
+            ? Database.fromJson(json['database'] as Map<String, dynamic>)
+            : null)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'database': database.toJson(),
-  };
+        'database': database.toJson(),
+      };
 }

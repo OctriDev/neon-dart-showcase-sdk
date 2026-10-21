@@ -8,30 +8,48 @@ part of 'functions.dart';
 class FunctionTriggerStorageObjectCreated {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The exact object-storage bucket name to watch.
   final String bucketName;
+
   /// Optional object-key prefix of at most 1024 UTF-8 bytes. When omitted, every key in the bucket matches. When present, the full object key must start with these exact bytes; matching is case-sensitive and does not normalize paths or require a path-segment boundary. Match-all responses omit this field rather than returning an empty string.
   final SdkOptional<String> prefix;
 
-  const FunctionTriggerStorageObjectCreated({required this.bucketName, this.prefix = const SdkOmitted()});
+  const FunctionTriggerStorageObjectCreated(
+      {required this.bucketName, this.prefix = const SdkOmitted()});
 
-  FunctionTriggerStorageObjectCreated Function({String bucketName, SdkOptional<String> prefix}) get copyWith => _copyWith;
+  FunctionTriggerStorageObjectCreated Function(
+      {String bucketName,
+      SdkOptional<String> prefix}) get copyWith => _copyWith;
 
-  FunctionTriggerStorageObjectCreated _copyWith({Object? bucketName = sdkOmittedValue, Object? prefix = sdkOmittedValue}) => FunctionTriggerStorageObjectCreated(
-    bucketName: identical(bucketName, sdkOmittedValue) ? this.bucketName : bucketName as String,
-    prefix: identical(prefix, sdkOmittedValue) ? this.prefix : prefix as SdkOptional<String>,
-  );
+  FunctionTriggerStorageObjectCreated _copyWith(
+          {Object? bucketName = sdkOmittedValue,
+          Object? prefix = sdkOmittedValue}) =>
+      FunctionTriggerStorageObjectCreated(
+        bucketName: identical(bucketName, sdkOmittedValue)
+            ? this.bucketName
+            : bucketName as String,
+        prefix: identical(prefix, sdkOmittedValue)
+            ? this.prefix
+            : prefix as SdkOptional<String>,
+      );
 
-  factory FunctionTriggerStorageObjectCreated.fromJson(Map<String, dynamic> json) => FunctionTriggerStorageObjectCreated(
-    bucketName: (json['bucket_name'] as String?)!,
-    prefix: json['prefix'] != null ? SdkPresent((json['prefix'] as String?)!) : const SdkOmitted(),
-  );
+  factory FunctionTriggerStorageObjectCreated.fromJson(
+          Map<String, dynamic> json) =>
+      FunctionTriggerStorageObjectCreated(
+        bucketName: (json['bucket_name'] as String?)!,
+        prefix: json['prefix'] != null
+            ? SdkPresent((json['prefix'] as String?)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'bucket_name': bucketName,
-    ...switch (prefix) {
-      SdkPresent<String>(value: final value) => {'prefix': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'bucket_name': bucketName,
+        ...switch (prefix) {
+          SdkPresent<String>(value: final value) => {
+              'prefix': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

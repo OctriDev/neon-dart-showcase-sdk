@@ -8,22 +8,30 @@ part of 'shared_neon.dart';
 class NeonAuthDeleteDomainFromRedirectURIWhitelistItem {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// URI to remove from the redirect URI whitelist.
   final String domain;
 
-  const NeonAuthDeleteDomainFromRedirectURIWhitelistItem({required this.domain});
+  const NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
+      {required this.domain});
 
-  NeonAuthDeleteDomainFromRedirectURIWhitelistItem Function({String domain}) get copyWith => _copyWith;
+  NeonAuthDeleteDomainFromRedirectURIWhitelistItem Function({String domain})
+      get copyWith => _copyWith;
 
-  NeonAuthDeleteDomainFromRedirectURIWhitelistItem _copyWith({Object? domain = sdkOmittedValue}) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
-    domain: identical(domain, sdkOmittedValue) ? this.domain : domain as String,
-  );
+  NeonAuthDeleteDomainFromRedirectURIWhitelistItem _copyWith(
+          {Object? domain = sdkOmittedValue}) =>
+      NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
+        domain:
+            identical(domain, sdkOmittedValue) ? this.domain : domain as String,
+      );
 
-  factory NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(Map<String, dynamic> json) => NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
-    domain: (json['domain'] as String?)!,
-  );
+  factory NeonAuthDeleteDomainFromRedirectURIWhitelistItem.fromJson(
+          Map<String, dynamic> json) =>
+      NeonAuthDeleteDomainFromRedirectURIWhitelistItem(
+        domain: (json['domain'] as String?)!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'domain': domain,
-  };
+        'domain': domain,
+      };
 }

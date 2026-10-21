@@ -8,6 +8,7 @@ part of 'functions.dart';
 class NeonFunctionUpdateRequest {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// New display name for the function. `null` clears the display name; the function's `name` then falls back to its slug. Leading and trailing whitespace is trimmed; a whitespace-only name is rejected.
   final String? name;
 
@@ -15,15 +16,20 @@ class NeonFunctionUpdateRequest {
 
   NeonFunctionUpdateRequest Function({String? name}) get copyWith => _copyWith;
 
-  NeonFunctionUpdateRequest _copyWith({Object? name = sdkOmittedValue}) => NeonFunctionUpdateRequest(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String?,
-  );
+  NeonFunctionUpdateRequest _copyWith({Object? name = sdkOmittedValue}) =>
+      NeonFunctionUpdateRequest(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String?,
+      );
 
-  factory NeonFunctionUpdateRequest.fromJson(Map<String, dynamic> json) => NeonFunctionUpdateRequest(
-    name: json.containsKey('name') ? json['name'] as String? : throw ArgumentError.value(null, 'name', 'Required property is missing'),
-  );
+  factory NeonFunctionUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      NeonFunctionUpdateRequest(
+        name: json.containsKey('name')
+            ? json['name'] as String?
+            : throw ArgumentError.value(
+                null, 'name', 'Required property is missing'),
+      );
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-  };
+        'name': name,
+      };
 }

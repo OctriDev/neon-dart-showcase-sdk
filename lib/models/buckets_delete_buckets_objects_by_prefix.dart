@@ -8,22 +8,29 @@ part of 'buckets.dart';
 class BucketObjectsDeletePrefixResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The number of objects soft-deleted under the prefix. 0 when no live object matched the prefix on this branch.
   final int deleted;
 
   const BucketObjectsDeletePrefixResponse({required this.deleted});
 
-  BucketObjectsDeletePrefixResponse Function({int deleted}) get copyWith => _copyWith;
+  BucketObjectsDeletePrefixResponse Function({int deleted}) get copyWith =>
+      _copyWith;
 
-  BucketObjectsDeletePrefixResponse _copyWith({Object? deleted = sdkOmittedValue}) => BucketObjectsDeletePrefixResponse(
-    deleted: identical(deleted, sdkOmittedValue) ? this.deleted : deleted as int,
-  );
+  BucketObjectsDeletePrefixResponse _copyWith(
+          {Object? deleted = sdkOmittedValue}) =>
+      BucketObjectsDeletePrefixResponse(
+        deleted:
+            identical(deleted, sdkOmittedValue) ? this.deleted : deleted as int,
+      );
 
-  factory BucketObjectsDeletePrefixResponse.fromJson(Map<String, dynamic> json) => BucketObjectsDeletePrefixResponse(
-    deleted: ((json['deleted'] as num?)?.toInt())!,
-  );
+  factory BucketObjectsDeletePrefixResponse.fromJson(
+          Map<String, dynamic> json) =>
+      BucketObjectsDeletePrefixResponse(
+        deleted: ((json['deleted'] as num?)?.toInt())!,
+      );
 
   Map<String, dynamic> toJson() => {
-    'deleted': deleted,
-  };
+        'deleted': deleted,
+      };
 }

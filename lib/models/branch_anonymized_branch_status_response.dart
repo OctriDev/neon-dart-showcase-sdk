@@ -8,66 +8,129 @@ part of 'branch.dart';
 class AnonymizedBranchStatusResponse {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The ID of the project this branch belongs to.
   final String projectId;
+
   /// The ID of the anonymized branch.
   final String branchId;
+
   /// The current state of the anonymized branch. `created`: branch record exists but setup has not started. `initialized`: setup is complete and the branch is ready for anonymization. `initialization_error`: an error occurred during setup. `anonymizing`: the anonymization process is currently running. `anonymized`: anonymization completed successfully. `error`: an error occurred during anonymization.
   final String state;
+
   /// A descriptive message about the current status or any errors
   final SdkOptional<String> statusMessage;
+
   /// A timestamp indicating when the anonymized branch was created
   final String createdAt;
+
   /// A timestamp indicating when the anonymized branch status was last updated
   final String updatedAt;
+
   /// A timestamp indicating when the anonymized branch operation failed (if applicable)
   final SdkOptional<String> failedAt;
+
   /// Metadata about the most recent anonymization attempt for the branch.
   final SdkOptional<AnonymizationRunMetadata> lastRun;
 
-  const AnonymizedBranchStatusResponse({required this.projectId, required this.branchId, required this.state, this.statusMessage = const SdkOmitted(), required this.createdAt, required this.updatedAt, this.failedAt = const SdkOmitted(), this.lastRun = const SdkOmitted()});
+  const AnonymizedBranchStatusResponse(
+      {required this.projectId,
+      required this.branchId,
+      required this.state,
+      this.statusMessage = const SdkOmitted(),
+      required this.createdAt,
+      required this.updatedAt,
+      this.failedAt = const SdkOmitted(),
+      this.lastRun = const SdkOmitted()});
 
-  AnonymizedBranchStatusResponse Function({String projectId, String branchId, String state, SdkOptional<String> statusMessage, String createdAt, String updatedAt, SdkOptional<String> failedAt, SdkOptional<AnonymizationRunMetadata> lastRun}) get copyWith => _copyWith;
+  AnonymizedBranchStatusResponse Function(
+      {String projectId,
+      String branchId,
+      String state,
+      SdkOptional<String> statusMessage,
+      String createdAt,
+      String updatedAt,
+      SdkOptional<String> failedAt,
+      SdkOptional<AnonymizationRunMetadata> lastRun}) get copyWith => _copyWith;
 
-  AnonymizedBranchStatusResponse _copyWith({Object? projectId = sdkOmittedValue, Object? branchId = sdkOmittedValue, Object? state = sdkOmittedValue, Object? statusMessage = sdkOmittedValue, Object? createdAt = sdkOmittedValue, Object? updatedAt = sdkOmittedValue, Object? failedAt = sdkOmittedValue, Object? lastRun = sdkOmittedValue}) => AnonymizedBranchStatusResponse(
-    projectId: identical(projectId, sdkOmittedValue) ? this.projectId : projectId as String,
-    branchId: identical(branchId, sdkOmittedValue) ? this.branchId : branchId as String,
-    state: identical(state, sdkOmittedValue) ? this.state : state as String,
-    statusMessage: identical(statusMessage, sdkOmittedValue) ? this.statusMessage : statusMessage as SdkOptional<String>,
-    createdAt: identical(createdAt, sdkOmittedValue) ? this.createdAt : createdAt as String,
-    updatedAt: identical(updatedAt, sdkOmittedValue) ? this.updatedAt : updatedAt as String,
-    failedAt: identical(failedAt, sdkOmittedValue) ? this.failedAt : failedAt as SdkOptional<String>,
-    lastRun: identical(lastRun, sdkOmittedValue) ? this.lastRun : lastRun as SdkOptional<AnonymizationRunMetadata>,
-  );
+  AnonymizedBranchStatusResponse _copyWith(
+          {Object? projectId = sdkOmittedValue,
+          Object? branchId = sdkOmittedValue,
+          Object? state = sdkOmittedValue,
+          Object? statusMessage = sdkOmittedValue,
+          Object? createdAt = sdkOmittedValue,
+          Object? updatedAt = sdkOmittedValue,
+          Object? failedAt = sdkOmittedValue,
+          Object? lastRun = sdkOmittedValue}) =>
+      AnonymizedBranchStatusResponse(
+        projectId: identical(projectId, sdkOmittedValue)
+            ? this.projectId
+            : projectId as String,
+        branchId: identical(branchId, sdkOmittedValue)
+            ? this.branchId
+            : branchId as String,
+        state: identical(state, sdkOmittedValue) ? this.state : state as String,
+        statusMessage: identical(statusMessage, sdkOmittedValue)
+            ? this.statusMessage
+            : statusMessage as SdkOptional<String>,
+        createdAt: identical(createdAt, sdkOmittedValue)
+            ? this.createdAt
+            : createdAt as String,
+        updatedAt: identical(updatedAt, sdkOmittedValue)
+            ? this.updatedAt
+            : updatedAt as String,
+        failedAt: identical(failedAt, sdkOmittedValue)
+            ? this.failedAt
+            : failedAt as SdkOptional<String>,
+        lastRun: identical(lastRun, sdkOmittedValue)
+            ? this.lastRun
+            : lastRun as SdkOptional<AnonymizationRunMetadata>,
+      );
 
-  factory AnonymizedBranchStatusResponse.fromJson(Map<String, dynamic> json) => AnonymizedBranchStatusResponse(
-    projectId: (json['project_id'] as String?)!,
-    branchId: (json['branch_id'] as String?)!,
-    state: (json['state'] as String?)!,
-    statusMessage: json['status_message'] != null ? SdkPresent((json['status_message'] as String?)!) : const SdkOmitted(),
-    createdAt: (json['created_at'] as String?)!,
-    updatedAt: (json['updated_at'] as String?)!,
-    failedAt: json['failed_at'] != null ? SdkPresent((json['failed_at'] as String?)!) : const SdkOmitted(),
-    lastRun: json['last_run'] != null ? SdkPresent((json['last_run'] != null ? AnonymizationRunMetadata.fromJson(json['last_run'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-  );
+  factory AnonymizedBranchStatusResponse.fromJson(Map<String, dynamic> json) =>
+      AnonymizedBranchStatusResponse(
+        projectId: (json['project_id'] as String?)!,
+        branchId: (json['branch_id'] as String?)!,
+        state: (json['state'] as String?)!,
+        statusMessage: json['status_message'] != null
+            ? SdkPresent((json['status_message'] as String?)!)
+            : const SdkOmitted(),
+        createdAt: (json['created_at'] as String?)!,
+        updatedAt: (json['updated_at'] as String?)!,
+        failedAt: json['failed_at'] != null
+            ? SdkPresent((json['failed_at'] as String?)!)
+            : const SdkOmitted(),
+        lastRun: json['last_run'] != null
+            ? SdkPresent((json['last_run'] != null
+                ? AnonymizationRunMetadata.fromJson(
+                    json['last_run'] as Map<String, dynamic>)
+                : null)!)
+            : const SdkOmitted(),
+      );
 
   Map<String, dynamic> toJson() => {
-    'project_id': projectId,
-    'branch_id': branchId,
-    'state': state,
-    ...switch (statusMessage) {
-      SdkPresent<String>(value: final value) => {'status_message': value,},
-      _ => const <String, dynamic>{},
-    },
-    'created_at': createdAt,
-    'updated_at': updatedAt,
-    ...switch (failedAt) {
-      SdkPresent<String>(value: final value) => {'failed_at': value,},
-      _ => const <String, dynamic>{},
-    },
-    ...switch (lastRun) {
-      SdkPresent<AnonymizationRunMetadata>(value: final value) => {'last_run': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        'project_id': projectId,
+        'branch_id': branchId,
+        'state': state,
+        ...switch (statusMessage) {
+          SdkPresent<String>(value: final value) => {
+              'status_message': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+        ...switch (failedAt) {
+          SdkPresent<String>(value: final value) => {
+              'failed_at': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+        ...switch (lastRun) {
+          SdkPresent<AnonymizationRunMetadata>(value: final value) => {
+              'last_run': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }
