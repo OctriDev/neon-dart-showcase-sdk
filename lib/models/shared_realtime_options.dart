@@ -8,26 +8,39 @@ part of 'shared.dart';
 class RealtimeOptions implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The browser origins allowed to connect, each `http` or `https` with a host and optional port and no path. An empty list, or `*` alone, allows any origin. Omitted keeps the current or inherited value.
   final SdkOptional<List<String>> allowedOrigins;
 
   const RealtimeOptions({this.allowedOrigins = const SdkOmitted()});
 
-  RealtimeOptions Function({SdkOptional<List<String>> allowedOrigins}) get copyWith => _copyWith;
+  RealtimeOptions Function({SdkOptional<List<String>> allowedOrigins})
+      get copyWith => _copyWith;
 
-  RealtimeOptions _copyWith({Object? allowedOrigins = sdkOmittedValue}) => RealtimeOptions(
-    allowedOrigins: identical(allowedOrigins, sdkOmittedValue) ? this.allowedOrigins : allowedOrigins as SdkOptional<List<String>>,
-  );
+  RealtimeOptions _copyWith({Object? allowedOrigins = sdkOmittedValue}) =>
+      RealtimeOptions(
+        allowedOrigins: identical(allowedOrigins, sdkOmittedValue)
+            ? this.allowedOrigins
+            : allowedOrigins as SdkOptional<List<String>>,
+      );
 
-  factory RealtimeOptions.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(RealtimeOptions(
-    allowedOrigins: json['allowed_origins'] != null ? SdkPresent(((json['allowed_origins'] as List?)?.map((e) => e as String).toList())!) : const SdkOmitted(),
-  ), json);
+  factory RealtimeOptions.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(
+      RealtimeOptions(
+        allowedOrigins: json['allowed_origins'] != null
+            ? SdkPresent(((json['allowed_origins'] as List?)
+                ?.map((e) => e as String)
+                .toList())!)
+            : const SdkOmitted(),
+      ),
+      json);
 
   @override
   Map<String, dynamic> toJson() => {
-    ...switch (allowedOrigins) {
-      SdkPresent<List<String>>(value: final value) => {'allowed_origins': value,},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (allowedOrigins) {
+          SdkPresent<List<String>>(value: final value) => {
+              'allowed_origins': value,
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

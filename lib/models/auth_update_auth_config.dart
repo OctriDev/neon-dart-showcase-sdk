@@ -8,6 +8,7 @@ part of 'auth.dart';
 class NeonAuthConfigResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The application name used in auth emails and communications.
   final String name;
 
@@ -15,24 +16,29 @@ class NeonAuthConfigResponse implements SdkJsonModel {
 
   NeonAuthConfigResponse Function({String name}) get copyWith => _copyWith;
 
-  NeonAuthConfigResponse _copyWith({Object? name = sdkOmittedValue}) => NeonAuthConfigResponse(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-  );
+  NeonAuthConfigResponse _copyWith({Object? name = sdkOmittedValue}) =>
+      NeonAuthConfigResponse(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+      );
 
-  factory NeonAuthConfigResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(NeonAuthConfigResponse(
-    name: (json['name'] as String?)!,
-  ), json);
+  factory NeonAuthConfigResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          NeonAuthConfigResponse(
+            name: (json['name'] as String?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'name': name,
-  };
+        'name': name,
+      };
 }
 
 /// Typed representation of the `NeonAuthConfigUpdate` API schema.
 class NeonAuthConfigUpdate implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The application name used in auth emails and communications.
   final String name;
 
@@ -40,16 +46,20 @@ class NeonAuthConfigUpdate implements SdkJsonModel {
 
   NeonAuthConfigUpdate Function({String name}) get copyWith => _copyWith;
 
-  NeonAuthConfigUpdate _copyWith({Object? name = sdkOmittedValue}) => NeonAuthConfigUpdate(
-    name: identical(name, sdkOmittedValue) ? this.name : name as String,
-  );
+  NeonAuthConfigUpdate _copyWith({Object? name = sdkOmittedValue}) =>
+      NeonAuthConfigUpdate(
+        name: identical(name, sdkOmittedValue) ? this.name : name as String,
+      );
 
-  factory NeonAuthConfigUpdate.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(NeonAuthConfigUpdate(
-    name: (json['name'] as String?)!,
-  ), json);
+  factory NeonAuthConfigUpdate.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          NeonAuthConfigUpdate(
+            name: (json['name'] as String?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'name': name,
-  };
+        'name': name,
+      };
 }

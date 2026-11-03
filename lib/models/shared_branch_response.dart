@@ -8,6 +8,7 @@ part of 'shared_branch.dart';
 class BranchResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Branch returned by the request.
   final Branch branch;
 
@@ -15,16 +16,22 @@ class BranchResponse implements SdkJsonModel {
 
   BranchResponse Function({Branch branch}) get copyWith => _copyWith;
 
-  BranchResponse _copyWith({Object? branch = sdkOmittedValue}) => BranchResponse(
-    branch: identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
-  );
+  BranchResponse _copyWith({Object? branch = sdkOmittedValue}) =>
+      BranchResponse(
+        branch:
+            identical(branch, sdkOmittedValue) ? this.branch : branch as Branch,
+      );
 
-  factory BranchResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(BranchResponse(
-    branch: (json['branch'] != null ? Branch.fromJson(json['branch'] as Map<String, dynamic>) : null)!,
-  ), json);
+  factory BranchResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(
+      BranchResponse(
+        branch: (json['branch'] != null
+            ? Branch.fromJson(json['branch'] as Map<String, dynamic>)
+            : null)!,
+      ),
+      json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'branch': branch.toJson(),
-  };
+        'branch': branch.toJson(),
+      };
 }

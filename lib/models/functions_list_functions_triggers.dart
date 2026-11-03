@@ -8,23 +8,33 @@ part of 'functions.dart';
 class TriggersListResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required array value serialized in the `triggers` wire field.
   final List<Trigger> triggers;
 
   const TriggersListResponse({required this.triggers});
 
-  TriggersListResponse Function({List<Trigger> triggers}) get copyWith => _copyWith;
+  TriggersListResponse Function({List<Trigger> triggers}) get copyWith =>
+      _copyWith;
 
-  TriggersListResponse _copyWith({Object? triggers = sdkOmittedValue}) => TriggersListResponse(
-    triggers: identical(triggers, sdkOmittedValue) ? this.triggers : triggers as List<Trigger>,
-  );
+  TriggersListResponse _copyWith({Object? triggers = sdkOmittedValue}) =>
+      TriggersListResponse(
+        triggers: identical(triggers, sdkOmittedValue)
+            ? this.triggers
+            : triggers as List<Trigger>,
+      );
 
-  factory TriggersListResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(TriggersListResponse(
-    triggers: ((json['triggers'] as List?)?.map((e) => Trigger.fromJson(e)).toList())!,
-  ), json);
+  factory TriggersListResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          TriggersListResponse(
+            triggers: ((json['triggers'] as List?)
+                ?.map((e) => Trigger.fromJson(e))
+                .toList())!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'triggers': triggers.map((item) => item.toJson()).toList(),
-  };
+        'triggers': triggers.map((item) => item.toJson()).toList(),
+      };
 }

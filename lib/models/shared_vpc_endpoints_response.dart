@@ -8,23 +8,33 @@ part of 'shared.dart';
 class VPCEndpointsResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// List of VPC endpoints returned by the request.
   final List<VPCEndpoint> endpoints;
 
   const VPCEndpointsResponse({required this.endpoints});
 
-  VPCEndpointsResponse Function({List<VPCEndpoint> endpoints}) get copyWith => _copyWith;
+  VPCEndpointsResponse Function({List<VPCEndpoint> endpoints}) get copyWith =>
+      _copyWith;
 
-  VPCEndpointsResponse _copyWith({Object? endpoints = sdkOmittedValue}) => VPCEndpointsResponse(
-    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as List<VPCEndpoint>,
-  );
+  VPCEndpointsResponse _copyWith({Object? endpoints = sdkOmittedValue}) =>
+      VPCEndpointsResponse(
+        endpoints: identical(endpoints, sdkOmittedValue)
+            ? this.endpoints
+            : endpoints as List<VPCEndpoint>,
+      );
 
-  factory VPCEndpointsResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(VPCEndpointsResponse(
-    endpoints: ((json['endpoints'] as List?)?.map((e) => VPCEndpoint.fromJson(e as Map<String, dynamic>)).toList())!,
-  ), json);
+  factory VPCEndpointsResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          VPCEndpointsResponse(
+            endpoints: ((json['endpoints'] as List?)
+                ?.map((e) => VPCEndpoint.fromJson(e as Map<String, dynamic>))
+                .toList())!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'endpoints': endpoints.map((item) => item.toJson()).toList(),
-  };
+        'endpoints': endpoints.map((item) => item.toJson()).toList(),
+      };
 }

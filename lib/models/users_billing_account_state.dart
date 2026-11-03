@@ -6,12 +6,12 @@ part of 'users.dart';
 // users domain models
 /// State of the billing account.
 final class BillingAccountState {
-
   final String value;
 
   const BillingAccountState._(this.value);
 
-  factory BillingAccountState.fromJson(String value) => BillingAccountState._(value);
+  factory BillingAccountState.fromJson(String value) =>
+      BillingAccountState._(value);
 
   static const unknown = BillingAccountState._('UNKNOWN');
   static const active = BillingAccountState._('active');
@@ -21,10 +21,13 @@ final class BillingAccountState {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is BillingAccountState && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is BillingAccountState && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

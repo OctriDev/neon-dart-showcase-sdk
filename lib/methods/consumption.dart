@@ -58,18 +58,18 @@ import '../types.dart';
 ///   comma-separated list in a single parameter value. - As an array of parameter
 ///   values: `metrics=cpu_seconds&metrics=ram_bytes` - As a comma-separated list
 ///   in a single parameter value: `metrics=cpu_seconds,ram_bytes`
-Future<GetConsumptionHistoryPerProjectResponse>
-    getConsumptionHistoryPerProject(ClientConfig config,
-        {required String from,
-        required String to,
-        required ConsumptionHistoryGranularity granularity,
-        SdkOptional<String> cursor = const SdkOmitted(),
-        SdkOptional<int> limit = const SdkOmitted(),
-        SdkOptional<List<String>> projectIds = const SdkOmitted(),
-        SdkOptional<String> orgId = const SdkOmitted(),
-        SdkOptional<bool> includeV1Metrics = const SdkOmitted(),
-        SdkOptional<List<String>> metrics = const SdkOmitted(),
-        RequestOptions? requestOptions}) async {
+Future<GetConsumptionHistoryPerProjectResponse> getConsumptionHistoryPerProject(
+    ClientConfig config,
+    {required String from,
+    required String to,
+    required ConsumptionHistoryGranularity granularity,
+    SdkOptional<String> cursor = const SdkOmitted(),
+    SdkOptional<int> limit = const SdkOmitted(),
+    SdkOptional<List<String>> projectIds = const SdkOmitted(),
+    SdkOptional<String> orgId = const SdkOmitted(),
+    SdkOptional<bool> includeV1Metrics = const SdkOmitted(),
+    SdkOptional<List<String>> metrics = const SdkOmitted(),
+    RequestOptions? requestOptions}) async {
   sdkValidateDateTime('from', from);
   sdkValidateDateTime('to', to);
   if (limit is SdkPresent<int>) {
@@ -88,22 +88,43 @@ Future<GetConsumptionHistoryPerProjectResponse>
           query: {
             'from': SdkQueryValue(from, style: 'form', explode: true),
             'to': SdkQueryValue(to, style: 'form', explode: true),
-            'granularity': SdkQueryValue(granularity, style: 'form', explode: true),
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true),
-            'project_ids': SdkQueryValue(SdkUtils.unwrapOptional(projectIds), style: 'form', explode: true),
-            'org_id': SdkQueryValue(SdkUtils.unwrapOptional(orgId), style: 'form', explode: true),
-            'include_v1_metrics': SdkQueryValue(SdkUtils.unwrapOptional(includeV1Metrics), style: 'form', explode: true),
-            'metrics': SdkQueryValue(SdkUtils.unwrapOptional(metrics), style: 'form', explode: true)
+            'granularity':
+                SdkQueryValue(granularity, style: 'form', explode: true),
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
+                style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
+                style: 'form', explode: true),
+            'project_ids': SdkQueryValue(SdkUtils.unwrapOptional(projectIds),
+                style: 'form', explode: true),
+            'org_id': SdkQueryValue(SdkUtils.unwrapOptional(orgId),
+                style: 'form', explode: true),
+            'include_v1_metrics': SdkQueryValue(
+                SdkUtils.unwrapOptional(includeV1Metrics),
+                style: 'form',
+                explode: true),
+            'metrics': SdkQueryValue(SdkUtils.unwrapOptional(metrics),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'getConsumptionHistoryPerProject',
-          fromJsonRaw: (value) => GetConsumptionHistoryPerProjectResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              GetConsumptionHistoryPerProjectResponse.fromJson(
+                  value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'403': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '406': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '429': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            '403': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '404': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '406': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '429': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Returns consumption metrics for up to `limit` projects per page. If `project_ids` is omitted, projects in the organization are included across pages (use `cursor`). If `project_ids` is provided, the response is limited to those projects (up to 100). Available for accounts on Launch, Scale, Agent, Business, and Enterprise plans. History starts when the account upgrades to an eligible plan. The `metrics` query parameter is required. Supported values: `compute_unit_seconds`, `root_branch_bytes_month`, `child_branch_bytes_month`, `instant_restore_bytes_month`, `public_network_transfer_bytes`, `private_network_transfer_bytes`, `extra_branches_month`, `snapshot_storage_bytes_month`. Consumption metrics within each project are returned in ascending time order (oldest first). This request does not wake project computes.
 ///
@@ -176,21 +197,37 @@ Future<GetConsumptionHistoryPerProjectV2Response>
           query: {
             'from': SdkQueryValue(from, style: 'form', explode: true),
             'to': SdkQueryValue(to, style: 'form', explode: true),
-            'granularity': SdkQueryValue(granularity, style: 'form', explode: true),
+            'granularity':
+                SdkQueryValue(granularity, style: 'form', explode: true),
             'org_id': SdkQueryValue(orgId, style: 'form', explode: true),
             'metrics': SdkQueryValue(metrics, style: 'form', explode: true),
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true),
-            'project_ids': SdkQueryValue(SdkUtils.unwrapOptional(projectIds), style: 'form', explode: true)
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
+                style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
+                style: 'form', explode: true),
+            'project_ids': SdkQueryValue(SdkUtils.unwrapOptional(projectIds),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'getConsumptionHistoryPerProjectV2',
-          fromJsonRaw: (value) => GetConsumptionHistoryPerProjectV2Response.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              GetConsumptionHistoryPerProjectV2Response.fromJson(
+                  value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'403': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '406': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '429': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            '403': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '404': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '406': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '429': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Returns consumption metrics for each branch across one or more projects listed in `project_ids` (1 to 100 projects). Available for accounts on paid usage-based Launch, Scale, Agent, and Enterprise plans. History starts when the account first ingests branch-level consumption data. The `metrics` query parameter is required. Only these six values are supported on this endpoint: `compute_unit_seconds`, `root_branch_bytes_month`, `child_branch_bytes_month`, `instant_restore_bytes_month`, `public_network_transfer_bytes`, `private_network_transfer_bytes`. This endpoint does not support `extra_branches_month` or `snapshot_storage_bytes_month`. Use `GET /consumption_history/v2/projects` for those. Consumption metrics within each branch are returned in ascending time order (oldest first). This request does not wake project computes.
 ///
@@ -269,20 +306,38 @@ Future<GetConsumptionHistoryPerBranchV2Response>
           'GET', '/consumption_history/v2/branches',
           config: config,
           query: {
-            'project_ids': SdkQueryValue(projectIds, style: 'form', explode: true),
+            'project_ids':
+                SdkQueryValue(projectIds, style: 'form', explode: true),
             'from': SdkQueryValue(from, style: 'form', explode: true),
             'to': SdkQueryValue(to, style: 'form', explode: true),
-            'granularity': SdkQueryValue(granularity, style: 'form', explode: true),
+            'granularity':
+                SdkQueryValue(granularity, style: 'form', explode: true),
             'org_id': SdkQueryValue(orgId, style: 'form', explode: true),
             'metrics': SdkQueryValue(metrics, style: 'form', explode: true),
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true),
-            'branch_ids': SdkQueryValue(SdkUtils.unwrapOptional(branchIds), style: 'form', explode: true)
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
+                style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
+                style: 'form', explode: true),
+            'branch_ids': SdkQueryValue(SdkUtils.unwrapOptional(branchIds),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'getConsumptionHistoryPerBranchV2',
-          fromJsonRaw: (value) => GetConsumptionHistoryPerBranchV2Response.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              GetConsumptionHistoryPerBranchV2Response.fromJson(
+                  value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'403': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '404': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '406': (value) => GeneralError.fromJson(value as Map<String, dynamic>), '429': (value) => GeneralError.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            '403': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '404': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '406': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            '429': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>),
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }

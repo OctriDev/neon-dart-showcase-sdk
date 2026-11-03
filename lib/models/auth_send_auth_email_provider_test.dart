@@ -8,23 +8,33 @@ part of 'auth.dart';
 class SendNeonAuthEmailProviderTestRequest implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The email address to send the test email to.
   final String recipientEmail;
 
   const SendNeonAuthEmailProviderTestRequest({required this.recipientEmail});
 
-  SendNeonAuthEmailProviderTestRequest Function({String recipientEmail}) get copyWith => _copyWith;
+  SendNeonAuthEmailProviderTestRequest Function({String recipientEmail})
+      get copyWith => _copyWith;
 
-  SendNeonAuthEmailProviderTestRequest _copyWith({Object? recipientEmail = sdkOmittedValue}) => SendNeonAuthEmailProviderTestRequest(
-    recipientEmail: identical(recipientEmail, sdkOmittedValue) ? this.recipientEmail : recipientEmail as String,
-  );
+  SendNeonAuthEmailProviderTestRequest _copyWith(
+          {Object? recipientEmail = sdkOmittedValue}) =>
+      SendNeonAuthEmailProviderTestRequest(
+        recipientEmail: identical(recipientEmail, sdkOmittedValue)
+            ? this.recipientEmail
+            : recipientEmail as String,
+      );
 
-  factory SendNeonAuthEmailProviderTestRequest.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(SendNeonAuthEmailProviderTestRequest(
-    recipientEmail: (json['recipient_email'] as String?)!,
-  ), json);
+  factory SendNeonAuthEmailProviderTestRequest.fromJson(
+          Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          SendNeonAuthEmailProviderTestRequest(
+            recipientEmail: (json['recipient_email'] as String?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'recipient_email': recipientEmail,
-  };
+        'recipient_email': recipientEmail,
+      };
 }

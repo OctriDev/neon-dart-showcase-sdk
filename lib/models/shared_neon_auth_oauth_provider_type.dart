@@ -6,22 +6,25 @@ part of 'shared_neon.dart';
 // shared_neon domain models
 /// Typed representation of the `NeonAuthOauthProviderType` API schema.
 final class NeonAuthOauthProviderType {
-
   final String value;
 
   const NeonAuthOauthProviderType._(this.value);
 
-  factory NeonAuthOauthProviderType.fromJson(String value) => NeonAuthOauthProviderType._(value);
+  factory NeonAuthOauthProviderType.fromJson(String value) =>
+      NeonAuthOauthProviderType._(value);
 
   static const standard = NeonAuthOauthProviderType._('standard');
   static const shared = NeonAuthOauthProviderType._('shared');
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is NeonAuthOauthProviderType && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is NeonAuthOauthProviderType && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

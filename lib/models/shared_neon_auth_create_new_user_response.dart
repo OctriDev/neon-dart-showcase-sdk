@@ -8,6 +8,7 @@ part of 'shared_neon.dart';
 class NeonAuthCreateNewUserResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// ID of newly created user
   final String id;
 
@@ -15,16 +16,20 @@ class NeonAuthCreateNewUserResponse implements SdkJsonModel {
 
   NeonAuthCreateNewUserResponse Function({String id}) get copyWith => _copyWith;
 
-  NeonAuthCreateNewUserResponse _copyWith({Object? id = sdkOmittedValue}) => NeonAuthCreateNewUserResponse(
-    id: identical(id, sdkOmittedValue) ? this.id : id as String,
-  );
+  NeonAuthCreateNewUserResponse _copyWith({Object? id = sdkOmittedValue}) =>
+      NeonAuthCreateNewUserResponse(
+        id: identical(id, sdkOmittedValue) ? this.id : id as String,
+      );
 
-  factory NeonAuthCreateNewUserResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(NeonAuthCreateNewUserResponse(
-    id: (json['id'] as String?)!,
-  ), json);
+  factory NeonAuthCreateNewUserResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          NeonAuthCreateNewUserResponse(
+            id: (json['id'] as String?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'id': id,
-  };
+        'id': id,
+      };
 }

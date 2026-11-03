@@ -8,6 +8,7 @@ part of 'branch.dart';
 class RolePasswordResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The role password
   final String password;
 
@@ -15,16 +16,22 @@ class RolePasswordResponse implements SdkJsonModel {
 
   RolePasswordResponse Function({String password}) get copyWith => _copyWith;
 
-  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) => RolePasswordResponse(
-    password: identical(password, sdkOmittedValue) ? this.password : password as String,
-  );
+  RolePasswordResponse _copyWith({Object? password = sdkOmittedValue}) =>
+      RolePasswordResponse(
+        password: identical(password, sdkOmittedValue)
+            ? this.password
+            : password as String,
+      );
 
-  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(RolePasswordResponse(
-    password: (json['password'] as String?)!,
-  ), json);
+  factory RolePasswordResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          RolePasswordResponse(
+            password: (json['password'] as String?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'password': password,
-  };
+        'password': password,
+      };
 }

@@ -8,23 +8,33 @@ part of 'shared.dart';
 class EndpointsResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Compute endpoints in the project. Each includes `id`, `branch_id`, `host`, and `type`.
   final List<Endpoint> endpoints;
 
   const EndpointsResponse({required this.endpoints});
 
-  EndpointsResponse Function({List<Endpoint> endpoints}) get copyWith => _copyWith;
+  EndpointsResponse Function({List<Endpoint> endpoints}) get copyWith =>
+      _copyWith;
 
-  EndpointsResponse _copyWith({Object? endpoints = sdkOmittedValue}) => EndpointsResponse(
-    endpoints: identical(endpoints, sdkOmittedValue) ? this.endpoints : endpoints as List<Endpoint>,
-  );
+  EndpointsResponse _copyWith({Object? endpoints = sdkOmittedValue}) =>
+      EndpointsResponse(
+        endpoints: identical(endpoints, sdkOmittedValue)
+            ? this.endpoints
+            : endpoints as List<Endpoint>,
+      );
 
-  factory EndpointsResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(EndpointsResponse(
-    endpoints: ((json['endpoints'] as List?)?.map((e) => Endpoint.fromJson(e as Map<String, dynamic>)).toList())!,
-  ), json);
+  factory EndpointsResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          EndpointsResponse(
+            endpoints: ((json['endpoints'] as List?)
+                ?.map((e) => Endpoint.fromJson(e as Map<String, dynamic>))
+                .toList())!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'endpoints': endpoints.map((item) => item.toJson()).toList(),
-  };
+        'endpoints': endpoints.map((item) => item.toJson()).toList(),
+      };
 }

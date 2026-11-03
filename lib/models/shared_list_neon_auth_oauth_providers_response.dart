@@ -8,23 +8,36 @@ part of 'shared.dart';
 class ListNeonAuthOauthProvidersResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// OAuth providers configured for Neon Auth on the project.
   final List<NeonAuthOauthProvider> providers;
 
   const ListNeonAuthOauthProvidersResponse({required this.providers});
 
-  ListNeonAuthOauthProvidersResponse Function({List<NeonAuthOauthProvider> providers}) get copyWith => _copyWith;
+  ListNeonAuthOauthProvidersResponse Function(
+      {List<NeonAuthOauthProvider> providers}) get copyWith => _copyWith;
 
-  ListNeonAuthOauthProvidersResponse _copyWith({Object? providers = sdkOmittedValue}) => ListNeonAuthOauthProvidersResponse(
-    providers: identical(providers, sdkOmittedValue) ? this.providers : providers as List<NeonAuthOauthProvider>,
-  );
+  ListNeonAuthOauthProvidersResponse _copyWith(
+          {Object? providers = sdkOmittedValue}) =>
+      ListNeonAuthOauthProvidersResponse(
+        providers: identical(providers, sdkOmittedValue)
+            ? this.providers
+            : providers as List<NeonAuthOauthProvider>,
+      );
 
-  factory ListNeonAuthOauthProvidersResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(ListNeonAuthOauthProvidersResponse(
-    providers: ((json['providers'] as List?)?.map((e) => NeonAuthOauthProvider.fromJson(e as Map<String, dynamic>)).toList())!,
-  ), json);
+  factory ListNeonAuthOauthProvidersResponse.fromJson(
+          Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          ListNeonAuthOauthProvidersResponse(
+            providers: ((json['providers'] as List?)
+                ?.map((e) =>
+                    NeonAuthOauthProvider.fromJson(e as Map<String, dynamic>))
+                .toList())!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'providers': providers.map((item) => item.toJson()).toList(),
-  };
+        'providers': providers.map((item) => item.toJson()).toList(),
+      };
 }

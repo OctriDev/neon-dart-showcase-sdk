@@ -6,12 +6,12 @@ part of 'project_project.dart';
 // project_project domain models
 /// The caller's effective permission for a project when per-project permissions are enabled. `VIEWER` grants read access, `EDITOR` adds update access, and `ADMIN` grants full management. Omitted for personal projects, flag-off organizations, and non-user subjects.
 final class ProjectPermissionLevel {
-
   final String value;
 
   const ProjectPermissionLevel._(this.value);
 
-  factory ProjectPermissionLevel.fromJson(String value) => ProjectPermissionLevel._(value);
+  factory ProjectPermissionLevel.fromJson(String value) =>
+      ProjectPermissionLevel._(value);
 
   static const viewer = ProjectPermissionLevel._('VIEWER');
   static const editor = ProjectPermissionLevel._('EDITOR');
@@ -19,10 +19,13 @@ final class ProjectPermissionLevel {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ProjectPermissionLevel && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ProjectPermissionLevel && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

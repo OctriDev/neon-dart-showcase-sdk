@@ -33,7 +33,8 @@ Future<DataAPICreateResponse> createDataApi(ClientConfig config,
     {required String projectId,
     required String branchId,
     required String databaseName,
-    SdkOptional<DataAPICreateRequestAuthProvider> authProvider = const SdkOmitted(),
+    SdkOptional<DataAPICreateRequestAuthProvider> authProvider =
+        const SdkOmitted(),
     SdkOptional<String> jwksUrl = const SdkOmitted(),
     SdkOptional<String> providerName = const SdkOmitted(),
     SdkOptional<String> jwtAudience = const SdkOmitted(),
@@ -61,12 +62,15 @@ Future<DataAPICreateResponse> createDataApi(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'createDataApi',
-          fromJsonRaw: (value) => DataAPICreateResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              DataAPICreateResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Updates the Neon Data API configuration for the specified branch. You can optionally provide settings to update the Data API configuration. The schema cache is always refreshed as part of this operation.
 ///
@@ -91,10 +95,12 @@ Future<Map<String, dynamic>> updateDataApi(ClientConfig config,
           operationId: 'updateDataApi',
           fromJsonRaw: (value) => value as Map<String, dynamic>,
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deletes the Neon Data API for the specified branch. Existing connections using the Data API endpoint will fail after deletion.
 ///
@@ -116,10 +122,12 @@ Future<Map<String, dynamic>> deleteDataApi(ClientConfig config,
           operationId: 'deleteDataApi',
           fromJsonRaw: (value) => value as Map<String, dynamic>,
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves the Neon Data API configuration for the specified branch, including endpoint URL, enabled state, and database settings.
 ///
@@ -141,6 +149,9 @@ Future<DataAPIReponse> getDataApi(ClientConfig config,
           operationId: 'getDataApi',
           fromJsonRaw: (value) => DataAPIReponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }

@@ -8,36 +8,54 @@ part of 'endpoint.dart';
 class EndpointOperations implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Compute endpoint created or retrieved, including its current lifecycle state.
   final Endpoint endpoint;
+
   /// Required array value serialized in the `operations` wire field.
   final List<Operation> operations;
 
   const EndpointOperations({required this.endpoint, required this.operations});
 
-  EndpointOperations Function({Endpoint endpoint, List<Operation> operations}) get copyWith => _copyWith;
+  EndpointOperations Function({Endpoint endpoint, List<Operation> operations})
+      get copyWith => _copyWith;
 
-  EndpointOperations _copyWith({Object? endpoint = sdkOmittedValue, Object? operations = sdkOmittedValue}) => EndpointOperations(
-    endpoint: identical(endpoint, sdkOmittedValue) ? this.endpoint : endpoint as Endpoint,
-    operations: identical(operations, sdkOmittedValue) ? this.operations : operations as List<Operation>,
-  );
+  EndpointOperations _copyWith(
+          {Object? endpoint = sdkOmittedValue,
+          Object? operations = sdkOmittedValue}) =>
+      EndpointOperations(
+        endpoint: identical(endpoint, sdkOmittedValue)
+            ? this.endpoint
+            : endpoint as Endpoint,
+        operations: identical(operations, sdkOmittedValue)
+            ? this.operations
+            : operations as List<Operation>,
+      );
 
-  factory EndpointOperations.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(EndpointOperations(
-    endpoint: (json['endpoint'] != null ? Endpoint.fromJson(json['endpoint'] as Map<String, dynamic>) : null)!,
-    operations: ((json['operations'] as List?)?.map((e) => Operation.fromJson(e as Map<String, dynamic>)).toList())!,
-  ), json);
+  factory EndpointOperations.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          EndpointOperations(
+            endpoint: (json['endpoint'] != null
+                ? Endpoint.fromJson(json['endpoint'] as Map<String, dynamic>)
+                : null)!,
+            operations: ((json['operations'] as List?)
+                ?.map((e) => Operation.fromJson(e as Map<String, dynamic>))
+                .toList())!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'endpoint': endpoint.toJson(),
-    'operations': operations.map((item) => item.toJson()).toList(),
-  };
+        'endpoint': endpoint.toJson(),
+        'operations': operations.map((item) => item.toJson()).toList(),
+      };
 }
 
 /// Typed representation of the `EndpointResponse` API schema.
 class EndpointResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Compute endpoint created or retrieved, including its current lifecycle state.
   final Endpoint endpoint;
 
@@ -45,16 +63,24 @@ class EndpointResponse implements SdkJsonModel {
 
   EndpointResponse Function({Endpoint endpoint}) get copyWith => _copyWith;
 
-  EndpointResponse _copyWith({Object? endpoint = sdkOmittedValue}) => EndpointResponse(
-    endpoint: identical(endpoint, sdkOmittedValue) ? this.endpoint : endpoint as Endpoint,
-  );
+  EndpointResponse _copyWith({Object? endpoint = sdkOmittedValue}) =>
+      EndpointResponse(
+        endpoint: identical(endpoint, sdkOmittedValue)
+            ? this.endpoint
+            : endpoint as Endpoint,
+      );
 
-  factory EndpointResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(EndpointResponse(
-    endpoint: (json['endpoint'] != null ? Endpoint.fromJson(json['endpoint'] as Map<String, dynamic>) : null)!,
-  ), json);
+  factory EndpointResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          EndpointResponse(
+            endpoint: (json['endpoint'] != null
+                ? Endpoint.fromJson(json['endpoint'] as Map<String, dynamic>)
+                : null)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'endpoint': endpoint.toJson(),
-  };
+        'endpoint': endpoint.toJson(),
+      };
 }

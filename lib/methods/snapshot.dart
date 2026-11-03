@@ -33,19 +33,26 @@ Future<CreateSnapshotResponse> createSnapshot(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/snapshot',
           config: config,
           query: {
-            'lsn': SdkQueryValue(SdkUtils.unwrapOptional(lsn), style: 'form', explode: true),
-            'timestamp': SdkQueryValue(SdkUtils.unwrapOptional(timestamp), style: 'form', explode: true),
-            'name': SdkQueryValue(SdkUtils.unwrapOptional(name), style: 'form', explode: true),
-            'expires_at': SdkQueryValue(SdkUtils.unwrapOptional(expiresAt), style: 'form', explode: true)
+            'lsn': SdkQueryValue(SdkUtils.unwrapOptional(lsn),
+                style: 'form', explode: true),
+            'timestamp': SdkQueryValue(SdkUtils.unwrapOptional(timestamp),
+                style: 'form', explode: true),
+            'name': SdkQueryValue(SdkUtils.unwrapOptional(name),
+                style: 'form', explode: true),
+            'expires_at': SdkQueryValue(SdkUtils.unwrapOptional(expiresAt),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'createSnapshot',
-          fromJsonRaw: (value) => CreateSnapshotResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              CreateSnapshotResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Lists the snapshots for the specified project. Each snapshot represents a point-in-time backup of the project data.
 ///
@@ -59,12 +66,15 @@ Future<ListSnapshotsResponse> listSnapshots(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listSnapshots',
-          fromJsonRaw: (value) => ListSnapshotsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              ListSnapshotsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deletes a specified snapshot from a project. Use `project_id` and `snapshot_id` to identify the project and snapshot. Deletion is asynchronous; the response includes operation details for tracking progress.
 ///
@@ -86,10 +96,12 @@ Future<OperationsResponse> deleteSnapshot(ClientConfig config,
           operationId: 'deleteSnapshot',
           fromJsonRaw: (value) => OperationsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates the name or expiration time of a project snapshot. Supply the `snapshot` object with the fields to change; omitting `expires_at` leaves the current expiration unchanged, while sending `null` clears it. A 200 response returns the updated snapshot.
 ///
@@ -113,12 +125,15 @@ Future<UpdateSnapshotResponse> updateSnapshot(ClientConfig config,
           body: {'snapshot': snapshot},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateSnapshot',
-          fromJsonRaw: (value) => UpdateSnapshotResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              UpdateSnapshotResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Restores the specified snapshot to a new branch, and optionally finalizes the restore operation to replace the original branch.
 ///
@@ -151,7 +166,8 @@ Future<RestoreSnapshotResponse> restoreSnapshot(ClientConfig config,
           '/projects/${Uri.encodeComponent(projectId.toString())}/snapshots/${Uri.encodeComponent(snapshotId.toString())}/restore',
           config: config,
           query: {
-            'name': SdkQueryValue(SdkUtils.unwrapOptional(name), style: 'form', explode: true)
+            'name': SdkQueryValue(SdkUtils.unwrapOptional(name),
+                style: 'form', explode: true)
           },
           body: {
             'name': SdkUtils.unwrapOptional(name_2),
@@ -160,12 +176,15 @@ Future<RestoreSnapshotResponse> restoreSnapshot(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'restoreSnapshot',
-          fromJsonRaw: (value) => RestoreSnapshotResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              RestoreSnapshotResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Returns the backup schedule for the specified branch, including the configured snapshot frequencies.
 ///
@@ -185,10 +204,12 @@ Future<BackupSchedule> getSnapshotSchedule(ClientConfig config,
           operationId: 'getSnapshotSchedule',
           fromJsonRaw: (value) => BackupSchedule.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates the backup schedule for the specified branch. The schedule defines how often automatic snapshots are created (for example, `daily` or `weekly`). Requires a paid plan.
 ///
@@ -212,6 +233,9 @@ Future<Map<String, dynamic>> setSnapshotSchedule(ClientConfig config,
           operationId: 'setSnapshotSchedule',
           fromJsonRaw: (value) => value as Map<String, dynamic>,
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }

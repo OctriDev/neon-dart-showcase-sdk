@@ -8,23 +8,32 @@ part of 'project.dart';
 class SetProjectMemberRoleRequest implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Per-project role. `viewer` maps to `VIEWER`, `editor` maps to `EDITOR`, and `admin` maps to `ADMIN`.
   final ProjectRole role;
 
   const SetProjectMemberRoleRequest({required this.role});
 
-  SetProjectMemberRoleRequest Function({ProjectRole role}) get copyWith => _copyWith;
+  SetProjectMemberRoleRequest Function({ProjectRole role}) get copyWith =>
+      _copyWith;
 
-  SetProjectMemberRoleRequest _copyWith({Object? role = sdkOmittedValue}) => SetProjectMemberRoleRequest(
-    role: identical(role, sdkOmittedValue) ? this.role : role as ProjectRole,
-  );
+  SetProjectMemberRoleRequest _copyWith({Object? role = sdkOmittedValue}) =>
+      SetProjectMemberRoleRequest(
+        role:
+            identical(role, sdkOmittedValue) ? this.role : role as ProjectRole,
+      );
 
-  factory SetProjectMemberRoleRequest.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(SetProjectMemberRoleRequest(
-    role: (json['role'] != null ? ProjectRole.fromJson(json['role'] as String) : null)!,
-  ), json);
+  factory SetProjectMemberRoleRequest.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          SetProjectMemberRoleRequest(
+            role: (json['role'] != null
+                ? ProjectRole.fromJson(json['role'] as String)
+                : null)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'role': role.toJson(),
-  };
+        'role': role.toJson(),
+      };
 }

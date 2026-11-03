@@ -8,28 +8,42 @@ part of 'auth.dart';
 class NeonAuthOAuthClientSecret implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// The OAuth client ID.
   final String clientId;
+
   /// The new client secret. Shown only once.
   final String clientSecret;
 
-  const NeonAuthOAuthClientSecret({required this.clientId, required this.clientSecret});
+  const NeonAuthOAuthClientSecret(
+      {required this.clientId, required this.clientSecret});
 
-  NeonAuthOAuthClientSecret Function({String clientId, String clientSecret}) get copyWith => _copyWith;
+  NeonAuthOAuthClientSecret Function({String clientId, String clientSecret})
+      get copyWith => _copyWith;
 
-  NeonAuthOAuthClientSecret _copyWith({Object? clientId = sdkOmittedValue, Object? clientSecret = sdkOmittedValue}) => NeonAuthOAuthClientSecret(
-    clientId: identical(clientId, sdkOmittedValue) ? this.clientId : clientId as String,
-    clientSecret: identical(clientSecret, sdkOmittedValue) ? this.clientSecret : clientSecret as String,
-  );
+  NeonAuthOAuthClientSecret _copyWith(
+          {Object? clientId = sdkOmittedValue,
+          Object? clientSecret = sdkOmittedValue}) =>
+      NeonAuthOAuthClientSecret(
+        clientId: identical(clientId, sdkOmittedValue)
+            ? this.clientId
+            : clientId as String,
+        clientSecret: identical(clientSecret, sdkOmittedValue)
+            ? this.clientSecret
+            : clientSecret as String,
+      );
 
-  factory NeonAuthOAuthClientSecret.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(NeonAuthOAuthClientSecret(
-    clientId: (json['client_id'] as String?)!,
-    clientSecret: (json['client_secret'] as String?)!,
-  ), json);
+  factory NeonAuthOAuthClientSecret.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          NeonAuthOAuthClientSecret(
+            clientId: (json['client_id'] as String?)!,
+            clientSecret: (json['client_secret'] as String?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'client_id': clientId,
-    'client_secret': clientSecret,
-  };
+        'client_id': clientId,
+        'client_secret': clientSecret,
+      };
 }

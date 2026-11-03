@@ -6,12 +6,12 @@ part of 'project_project.dart';
 // project_project domain models
 /// Typed representation of the `ProjectAuditLogLevel` API schema.
 final class ProjectAuditLogLevel {
-
   final String value;
 
   const ProjectAuditLogLevel._(this.value);
 
-  factory ProjectAuditLogLevel.fromJson(String value) => ProjectAuditLogLevel._(value);
+  factory ProjectAuditLogLevel.fromJson(String value) =>
+      ProjectAuditLogLevel._(value);
 
   static const base_ = ProjectAuditLogLevel._('base');
   static const extended = ProjectAuditLogLevel._('extended');
@@ -19,10 +19,13 @@ final class ProjectAuditLogLevel {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ProjectAuditLogLevel && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ProjectAuditLogLevel && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

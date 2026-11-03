@@ -8,23 +8,32 @@ part of 'auth.dart';
 class NeonAuthOAuthProviderResource implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Absolute URL identifying a protected resource. Issued access tokens carry it as their audience.
   final String identifier;
 
   const NeonAuthOAuthProviderResource({required this.identifier});
 
-  NeonAuthOAuthProviderResource Function({String identifier}) get copyWith => _copyWith;
+  NeonAuthOAuthProviderResource Function({String identifier}) get copyWith =>
+      _copyWith;
 
-  NeonAuthOAuthProviderResource _copyWith({Object? identifier = sdkOmittedValue}) => NeonAuthOAuthProviderResource(
-    identifier: identical(identifier, sdkOmittedValue) ? this.identifier : identifier as String,
-  );
+  NeonAuthOAuthProviderResource _copyWith(
+          {Object? identifier = sdkOmittedValue}) =>
+      NeonAuthOAuthProviderResource(
+        identifier: identical(identifier, sdkOmittedValue)
+            ? this.identifier
+            : identifier as String,
+      );
 
-  factory NeonAuthOAuthProviderResource.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(NeonAuthOAuthProviderResource(
-    identifier: (json['identifier'] as String?)!,
-  ), json);
+  factory NeonAuthOAuthProviderResource.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          NeonAuthOAuthProviderResource(
+            identifier: (json['identifier'] as String?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'identifier': identifier,
-  };
+        'identifier': identifier,
+      };
 }

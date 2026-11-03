@@ -8,6 +8,7 @@ part of 'functions.dart';
 class FunctionTriggerSchedule implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Numeric five-field cron expression (minute through day-of-week), interpreted in UTC.
   final String cron;
 
@@ -15,16 +16,20 @@ class FunctionTriggerSchedule implements SdkJsonModel {
 
   FunctionTriggerSchedule Function({String cron}) get copyWith => _copyWith;
 
-  FunctionTriggerSchedule _copyWith({Object? cron = sdkOmittedValue}) => FunctionTriggerSchedule(
-    cron: identical(cron, sdkOmittedValue) ? this.cron : cron as String,
-  );
+  FunctionTriggerSchedule _copyWith({Object? cron = sdkOmittedValue}) =>
+      FunctionTriggerSchedule(
+        cron: identical(cron, sdkOmittedValue) ? this.cron : cron as String,
+      );
 
-  factory FunctionTriggerSchedule.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(FunctionTriggerSchedule(
-    cron: (json['cron'] as String?)!,
-  ), json);
+  factory FunctionTriggerSchedule.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          FunctionTriggerSchedule(
+            cron: (json['cron'] as String?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'cron': cron,
-  };
+        'cron': cron,
+      };
 }

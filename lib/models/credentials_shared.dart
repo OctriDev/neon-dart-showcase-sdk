@@ -6,12 +6,12 @@ part of 'credentials.dart';
 // credentials domain models
 /// A single capability a credential actually carries, as reported by responses that describe an existing credential. This set is a superset of `CredentialScope` (the requestable set) because a credential's scopes are not limited to what this API offers: the platform accepts additional scopes for customer-managed (`user`) credentials, so one may exist on your branch that was not issued through this endpoint. Responses must be able to report such a credential rather than fail to describe it — a client that rejected the value would, on rotate, discard the replacement secret after the rotation had already committed. Treat unknown values as opaque.
 final class GrantedCredentialScope {
-
   final String value;
 
   const GrantedCredentialScope._(this.value);
 
-  factory GrantedCredentialScope.fromJson(String value) => GrantedCredentialScope._(value);
+  factory GrantedCredentialScope.fromJson(String value) =>
+      GrantedCredentialScope._(value);
 
   static const storageRead = GrantedCredentialScope._('storage:read');
   static const storageWrite = GrantedCredentialScope._('storage:write');
@@ -21,10 +21,13 @@ final class GrantedCredentialScope {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is GrantedCredentialScope && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is GrantedCredentialScope && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

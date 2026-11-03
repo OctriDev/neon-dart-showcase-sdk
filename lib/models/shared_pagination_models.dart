@@ -8,6 +8,7 @@ part of 'shared_pagination.dart';
 class Pagination implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Cursor marking the last item in this response. Pass it unchanged as the `cursor` query parameter to fetch the next page.
   final String cursor;
 
@@ -16,43 +17,61 @@ class Pagination implements SdkJsonModel {
   Pagination Function({String cursor}) get copyWith => _copyWith;
 
   Pagination _copyWith({Object? cursor = sdkOmittedValue}) => Pagination(
-    cursor: identical(cursor, sdkOmittedValue) ? this.cursor : cursor as String,
-  );
+        cursor:
+            identical(cursor, sdkOmittedValue) ? this.cursor : cursor as String,
+      );
 
-  factory Pagination.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(Pagination(
-    cursor: (json['cursor'] as String?)!,
-  ), json);
+  factory Pagination.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(
+      Pagination(
+        cursor: (json['cursor'] as String?)!,
+      ),
+      json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'cursor': cursor,
-  };
+        'cursor': cursor,
+      };
 }
 
 /// Typed representation of the `PaginationResponse` API schema.
 class PaginationResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Cursor-based pagination. The `cursor` value reflects the endpoint's sort field (for example, an ID or timestamp), so pass it back unchanged.
   final SdkOptional<Pagination> pagination;
 
   const PaginationResponse({this.pagination = const SdkOmitted()});
 
-  PaginationResponse Function({SdkOptional<Pagination> pagination}) get copyWith => _copyWith;
+  PaginationResponse Function({SdkOptional<Pagination> pagination})
+      get copyWith => _copyWith;
 
-  PaginationResponse _copyWith({Object? pagination = sdkOmittedValue}) => PaginationResponse(
-    pagination: identical(pagination, sdkOmittedValue) ? this.pagination : pagination as SdkOptional<Pagination>,
-  );
+  PaginationResponse _copyWith({Object? pagination = sdkOmittedValue}) =>
+      PaginationResponse(
+        pagination: identical(pagination, sdkOmittedValue)
+            ? this.pagination
+            : pagination as SdkOptional<Pagination>,
+      );
 
-  factory PaginationResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(PaginationResponse(
-    pagination: json['pagination'] != null ? SdkPresent((json['pagination'] != null ? Pagination.fromJson(json['pagination'] as Map<String, dynamic>) : null)!) : const SdkOmitted(),
-  ), json);
+  factory PaginationResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          PaginationResponse(
+            pagination: json['pagination'] != null
+                ? SdkPresent((json['pagination'] != null
+                    ? Pagination.fromJson(
+                        json['pagination'] as Map<String, dynamic>)
+                    : null)!)
+                : const SdkOmitted(),
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    ...switch (pagination) {
-      SdkPresent<Pagination>(value: final value) => {'pagination': value.toJson(),},
-      _ => const <String, dynamic>{},
-    },
-  };
+        ...switch (pagination) {
+          SdkPresent<Pagination>(value: final value) => {
+              'pagination': value.toJson(),
+            },
+          _ => const <String, dynamic>{},
+        },
+      };
 }

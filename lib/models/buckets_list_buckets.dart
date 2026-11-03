@@ -8,23 +8,33 @@ part of 'buckets.dart';
 class BucketsListResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required array value serialized in the `buckets` wire field.
   final List<Bucket> buckets;
 
   const BucketsListResponse({required this.buckets});
 
-  BucketsListResponse Function({List<Bucket> buckets}) get copyWith => _copyWith;
+  BucketsListResponse Function({List<Bucket> buckets}) get copyWith =>
+      _copyWith;
 
-  BucketsListResponse _copyWith({Object? buckets = sdkOmittedValue}) => BucketsListResponse(
-    buckets: identical(buckets, sdkOmittedValue) ? this.buckets : buckets as List<Bucket>,
-  );
+  BucketsListResponse _copyWith({Object? buckets = sdkOmittedValue}) =>
+      BucketsListResponse(
+        buckets: identical(buckets, sdkOmittedValue)
+            ? this.buckets
+            : buckets as List<Bucket>,
+      );
 
-  factory BucketsListResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(BucketsListResponse(
-    buckets: ((json['buckets'] as List?)?.map((e) => Bucket.fromJson(e as Map<String, dynamic>)).toList())!,
-  ), json);
+  factory BucketsListResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          BucketsListResponse(
+            buckets: ((json['buckets'] as List?)
+                ?.map((e) => Bucket.fromJson(e as Map<String, dynamic>))
+                .toList())!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'buckets': buckets.map((item) => item.toJson()).toList(),
-  };
+        'buckets': buckets.map((item) => item.toJson()).toList(),
+      };
 }

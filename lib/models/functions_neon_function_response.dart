@@ -8,23 +8,34 @@ part of 'functions.dart';
 class NeonFunctionResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required object value serialized in the `function` wire field.
   final NeonFunction function_;
 
   const NeonFunctionResponse({required this.function_});
 
-  NeonFunctionResponse Function({NeonFunction function_}) get copyWith => _copyWith;
+  NeonFunctionResponse Function({NeonFunction function_}) get copyWith =>
+      _copyWith;
 
-  NeonFunctionResponse _copyWith({Object? function_ = sdkOmittedValue}) => NeonFunctionResponse(
-    function_: identical(function_, sdkOmittedValue) ? this.function_ : function_ as NeonFunction,
-  );
+  NeonFunctionResponse _copyWith({Object? function_ = sdkOmittedValue}) =>
+      NeonFunctionResponse(
+        function_: identical(function_, sdkOmittedValue)
+            ? this.function_
+            : function_ as NeonFunction,
+      );
 
-  factory NeonFunctionResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(NeonFunctionResponse(
-    function_: (json['function'] != null ? NeonFunction.fromJson(json['function'] as Map<String, dynamic>) : null)!,
-  ), json);
+  factory NeonFunctionResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          NeonFunctionResponse(
+            function_: (json['function'] != null
+                ? NeonFunction.fromJson(
+                    json['function'] as Map<String, dynamic>)
+                : null)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'function': function_.toJson(),
-  };
+        'function': function_.toJson(),
+      };
 }

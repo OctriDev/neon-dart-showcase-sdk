@@ -12,12 +12,15 @@ class EmptyResponse implements SdkJsonModel {
 
   const EmptyResponse({this.additionalProperties = const <String, dynamic>{}});
 
-  factory EmptyResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(EmptyResponse(
-    additionalProperties: Map.of(json)..removeWhere((key, _) => const <String>{}.contains(key)),
-  ), json);
+  factory EmptyResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(
+      EmptyResponse(
+        additionalProperties: Map.of(json)
+          ..removeWhere((key, _) => const <String>{}.contains(key)),
+      ),
+      json);
 
   @override
   Map<String, dynamic> toJson() => {
-    ...additionalProperties,
-  };
+        ...additionalProperties,
+      };
 }

@@ -13,12 +13,15 @@ Future<CurrentUserInfoResponse> getCurrentUserInfo(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getCurrentUserInfo',
-          fromJsonRaw: (value) => CurrentUserInfoResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              CurrentUserInfoResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves the organizations that the currently authenticated user belongs to. When called with an organization- or project-scoped API key (which is not tied to a user), this returns the single organization that owns the key.
 Future<OrganizationsResponse> getCurrentUserOrganizations(ClientConfig config,
@@ -28,12 +31,15 @@ Future<OrganizationsResponse> getCurrentUserOrganizations(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getCurrentUserOrganizations',
-          fromJsonRaw: (value) => OrganizationsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              OrganizationsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Deprecated. Personal accounts have been migrated to organizations, so this operation no longer applies. Removal scheduled for July 1, 2026.
 ///
@@ -46,7 +52,8 @@ Future<Map<String, dynamic>> transferUsersProjects(ClientConfig config,
     {required String destinationOrgId,
     required List<String> projectIds,
     RequestOptions? requestOptions}) async {
-  sdkValidatePattern('destination_org_id', destinationOrgId, '^[a-z0-9-]{1,60}\$');
+  sdkValidatePattern(
+      'destination_org_id', destinationOrgId, '^[a-z0-9-]{1,60}\$');
   validateItems('project_ids', projectIds, min: 1, max: 400);
 
   return (await sdkRequest<Map<String, dynamic>>(
@@ -60,10 +67,16 @@ Future<Map<String, dynamic>> transferUsersProjects(ClientConfig config,
           operationId: 'transferUsersProjects',
           fromJsonRaw: (value) => value as Map<String, dynamic>,
           options: requestOptions,
-          errors: {'406': (value) => LimitsUnsatisfiedResponse.fromJson(value as Map<String, dynamic>), '422': (value) => ProjectsWithIntegrationResponse.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            '406': (value) => LimitsUnsatisfiedResponse.fromJson(
+                value as Map<String, dynamic>),
+            '422': (value) => ProjectsWithIntegrationResponse.fromJson(
+                value as Map<String, dynamic>),
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Returns authentication details for the credentials used in the request, including the credential type (API key, Bearer token, or OAuth session) and the associated identity.
 Future<AuthDetailsResponse> getAuthDetails(ClientConfig config,
@@ -72,8 +85,12 @@ Future<AuthDetailsResponse> getAuthDetails(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getAuthDetails',
-          fromJsonRaw: (value) => AuthDetailsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              AuthDetailsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }

@@ -8,6 +8,7 @@ part of 'functions.dart';
 class TriggerResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// A branch-effective trigger discriminated by `type`. The supported trigger types are `schedule` and `storage_object_created`.
   final Trigger trigger;
 
@@ -15,16 +16,23 @@ class TriggerResponse implements SdkJsonModel {
 
   TriggerResponse Function({Trigger trigger}) get copyWith => _copyWith;
 
-  TriggerResponse _copyWith({Object? trigger = sdkOmittedValue}) => TriggerResponse(
-    trigger: identical(trigger, sdkOmittedValue) ? this.trigger : trigger as Trigger,
-  );
+  TriggerResponse _copyWith({Object? trigger = sdkOmittedValue}) =>
+      TriggerResponse(
+        trigger: identical(trigger, sdkOmittedValue)
+            ? this.trigger
+            : trigger as Trigger,
+      );
 
-  factory TriggerResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(TriggerResponse(
-    trigger: (json['trigger'] != null ? Trigger.fromJson(json['trigger']) : null)!,
-  ), json);
+  factory TriggerResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(
+      TriggerResponse(
+        trigger: (json['trigger'] != null
+            ? Trigger.fromJson(json['trigger'])
+            : null)!,
+      ),
+      json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'trigger': trigger.toJson(),
-  };
+        'trigger': trigger.toJson(),
+      };
 }

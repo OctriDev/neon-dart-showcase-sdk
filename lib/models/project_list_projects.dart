@@ -6,7 +6,6 @@ part of 'project.dart';
 // project domain models
 /// Type of application integration
 final class ApplicationType {
-
   final String value;
 
   const ApplicationType._(this.value);
@@ -20,10 +19,13 @@ final class ApplicationType {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is ApplicationType && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is ApplicationType && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

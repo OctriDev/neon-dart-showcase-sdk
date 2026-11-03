@@ -8,23 +8,33 @@ part of 'organizations.dart';
 class SpendingLimitUpdateRequest implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Monthly spending cap in cents. Must be positive. To remove a previously configured limit, send a DELETE request to the spending_limit endpoint — `0` and `null` are rejected here. The cap is alert-only: notifications fire at 80% and 100%, but computes are not suspended. Setting a cap below the period's already-accrued spend is permitted and will trigger the over-limit notification on the next worker run.
   final int spendingLimitCents;
 
   const SpendingLimitUpdateRequest({required this.spendingLimitCents});
 
-  SpendingLimitUpdateRequest Function({int spendingLimitCents}) get copyWith => _copyWith;
+  SpendingLimitUpdateRequest Function({int spendingLimitCents}) get copyWith =>
+      _copyWith;
 
-  SpendingLimitUpdateRequest _copyWith({Object? spendingLimitCents = sdkOmittedValue}) => SpendingLimitUpdateRequest(
-    spendingLimitCents: identical(spendingLimitCents, sdkOmittedValue) ? this.spendingLimitCents : spendingLimitCents as int,
-  );
+  SpendingLimitUpdateRequest _copyWith(
+          {Object? spendingLimitCents = sdkOmittedValue}) =>
+      SpendingLimitUpdateRequest(
+        spendingLimitCents: identical(spendingLimitCents, sdkOmittedValue)
+            ? this.spendingLimitCents
+            : spendingLimitCents as int,
+      );
 
-  factory SpendingLimitUpdateRequest.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(SpendingLimitUpdateRequest(
-    spendingLimitCents: ((json['spending_limit_cents'] as num?)?.toInt())!,
-  ), json);
+  factory SpendingLimitUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          SpendingLimitUpdateRequest(
+            spendingLimitCents:
+                ((json['spending_limit_cents'] as num?)?.toInt())!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'spending_limit_cents': spendingLimitCents,
-  };
+        'spending_limit_cents': spendingLimitCents,
+      };
 }

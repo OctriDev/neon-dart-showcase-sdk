@@ -60,7 +60,8 @@ Future<ProjectBranchLogsQueryResponse> queryLogs(ClientConfig config,
     SdkOptional<String> endTime = const SdkOmitted(),
     SdkOptional<int> limit = const SdkOmitted(),
     SdkOptional<String> cursor = const SdkOmitted(),
-    SdkOptional<ProjectBranchLogsQueryRequestSortOrder> sortOrder = const SdkOmitted(),
+    SdkOptional<ProjectBranchLogsQueryRequestSortOrder> sortOrder =
+        const SdkOmitted(),
     SdkOptional<ProjectBranchLogSource> source = const SdkOmitted(),
     SdkOptional<String> serviceName = const SdkOmitted(),
     SdkOptional<String> scopeName = const SdkOmitted(),
@@ -121,12 +122,19 @@ Future<ProjectBranchLogsQueryResponse> queryLogs(ClientConfig config,
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'queryLogs',
-          fromJsonRaw: (value) => ProjectBranchLogsQueryResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectBranchLogsQueryResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'400': (value) => ProjectBranchLogsInvalidQuery.fromJson(value as Map<String, dynamic>), '404': (value) => ProjectBranchLogsNotAvailable.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            '400': (value) => ProjectBranchLogsInvalidQuery.fromJson(
+                value as Map<String, dynamic>),
+            '404': (value) => ProjectBranchLogsNotAvailable.fromJson(
+                value as Map<String, dynamic>),
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Lists the low-cardinality log fields observed on this branch whose distinct values can be discovered with the log field-values endpoint. The set is computed per branch and grows as new fields are observed, so treat it as data rather than a fixed list: discover a field here, then pass it as `field_name` to the field-values endpoint. **Note**: This endpoint is currently in Private Beta.
 ///
@@ -144,12 +152,17 @@ Future<ProjectBranchLogFieldsResponse> listLogsFields(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listLogsFields',
-          fromJsonRaw: (value) => ProjectBranchLogFieldsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectBranchLogFieldsResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'404': (value) => ProjectBranchLogsNotAvailable.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        '404': (value) => ProjectBranchLogsNotAvailable.fromJson(
+            value as Map<String, dynamic>),
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Lists the distinct values observed for a low-cardinality log field in the requested time range. Call the log fields endpoint first to learn which `field_name` values this branch supports; a field that branch has never emitted is rejected with `unknown_field`. Give the window either as `since` or as an explicit `start_time`; supplying both is rejected. If neither is given, the previous six hours are used. The maximum supported time range is seven days. **Note**: This endpoint is currently in Private Beta.
 ///
@@ -167,17 +180,17 @@ Future<ProjectBranchLogFieldsResponse> listLogsFields(ClientConfig config,
 /// [limit] Maximum number of distinct values to return. The response sets
 ///   `is_truncated` when this bound, or the server's own scan cap, cut the list
 ///   short.
-Future<ProjectBranchLogFieldValuesResponse>
-    listLogsFieldValues(ClientConfig config,
-        {required String projectId,
-        required String branchId,
-        required String fieldName,
-        SdkOptional<String> since = const SdkOmitted(),
-        SdkOptional<String> startTime = const SdkOmitted(),
-        SdkOptional<String> endTime = const SdkOmitted(),
-        SdkOptional<ProjectBranchLogSource> source = const SdkOmitted(),
-        SdkOptional<int> limit = const SdkOmitted(),
-        RequestOptions? requestOptions}) async {
+Future<ProjectBranchLogFieldValuesResponse> listLogsFieldValues(
+    ClientConfig config,
+    {required String projectId,
+    required String branchId,
+    required String fieldName,
+    SdkOptional<String> since = const SdkOmitted(),
+    SdkOptional<String> startTime = const SdkOmitted(),
+    SdkOptional<String> endTime = const SdkOmitted(),
+    SdkOptional<ProjectBranchLogSource> source = const SdkOmitted(),
+    SdkOptional<int> limit = const SdkOmitted(),
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('project_id', projectId, '^[a-z0-9-]{1,60}\$');
   sdkValidatePattern('branch_id', branchId, '^[a-z0-9-]{1,60}\$');
   validateLength('field_name', fieldName, min: 1);
@@ -198,16 +211,29 @@ Future<ProjectBranchLogFieldValuesResponse>
           '/projects/${Uri.encodeComponent(projectId.toString())}/branches/${Uri.encodeComponent(branchId.toString())}/logs/fields/${Uri.encodeComponent(fieldName.toString())}/values',
           config: config,
           query: {
-            'since': SdkQueryValue(SdkUtils.unwrapOptional(since), style: 'form', explode: true),
-            'start_time': SdkQueryValue(SdkUtils.unwrapOptional(startTime), style: 'form', explode: true),
-            'end_time': SdkQueryValue(SdkUtils.unwrapOptional(endTime), style: 'form', explode: true),
-            'source': SdkQueryValue(SdkUtils.unwrapOptional(source), style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true)
+            'since': SdkQueryValue(SdkUtils.unwrapOptional(since),
+                style: 'form', explode: true),
+            'start_time': SdkQueryValue(SdkUtils.unwrapOptional(startTime),
+                style: 'form', explode: true),
+            'end_time': SdkQueryValue(SdkUtils.unwrapOptional(endTime),
+                style: 'form', explode: true),
+            'source': SdkQueryValue(SdkUtils.unwrapOptional(source),
+                style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listLogsFieldValues',
-          fromJsonRaw: (value) => ProjectBranchLogFieldValuesResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ProjectBranchLogFieldValuesResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'400': (value) => ProjectBranchLogsInvalidQuery.fromJson(value as Map<String, dynamic>), '404': (value) => ProjectBranchLogsNotAvailable.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            '400': (value) => ProjectBranchLogsInvalidQuery.fromJson(
+                value as Map<String, dynamic>),
+            '404': (value) => ProjectBranchLogsNotAvailable.fromJson(
+                value as Map<String, dynamic>),
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }

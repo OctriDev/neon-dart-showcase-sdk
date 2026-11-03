@@ -8,23 +8,33 @@ part of 'logs.dart';
 class ProjectBranchLogFieldsResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Log field names observed on this branch, each usable as `field_name` on the log field-values endpoint. Computed per branch rather than fixed by this specification, so clients should not assume a particular set.
   final List<String> fields;
 
   const ProjectBranchLogFieldsResponse({required this.fields});
 
-  ProjectBranchLogFieldsResponse Function({List<String> fields}) get copyWith => _copyWith;
+  ProjectBranchLogFieldsResponse Function({List<String> fields}) get copyWith =>
+      _copyWith;
 
-  ProjectBranchLogFieldsResponse _copyWith({Object? fields = sdkOmittedValue}) => ProjectBranchLogFieldsResponse(
-    fields: identical(fields, sdkOmittedValue) ? this.fields : fields as List<String>,
-  );
+  ProjectBranchLogFieldsResponse _copyWith(
+          {Object? fields = sdkOmittedValue}) =>
+      ProjectBranchLogFieldsResponse(
+        fields: identical(fields, sdkOmittedValue)
+            ? this.fields
+            : fields as List<String>,
+      );
 
-  factory ProjectBranchLogFieldsResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(ProjectBranchLogFieldsResponse(
-    fields: ((json['fields'] as List?)?.map((e) => e as String).toList())!,
-  ), json);
+  factory ProjectBranchLogFieldsResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          ProjectBranchLogFieldsResponse(
+            fields:
+                ((json['fields'] as List?)?.map((e) => e as String).toList())!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'fields': fields,
-  };
+        'fields': fields,
+      };
 }

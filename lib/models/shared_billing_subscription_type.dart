@@ -6,12 +6,12 @@ part of 'shared.dart';
 // shared domain models
 /// Type of subscription to Neon Cloud. Notice that for users without billing account this will be "UNKNOWN"
 final class BillingSubscriptionType {
-
   final String value;
 
   const BillingSubscriptionType._(this.value);
 
-  factory BillingSubscriptionType.fromJson(String value) => BillingSubscriptionType._(value);
+  factory BillingSubscriptionType.fromJson(String value) =>
+      BillingSubscriptionType._(value);
 
   static const unknown = BillingSubscriptionType._('UNKNOWN');
   static const directSales = BillingSubscriptionType._('direct_sales');
@@ -29,10 +29,13 @@ final class BillingSubscriptionType {
 
   String toJson() => value;
 
-  @override String toString() => value.toString();
+  @override
+  String toString() => value.toString();
 
-  @override bool operator ==(Object other) => other is BillingSubscriptionType && other.value == value;
+  @override
+  bool operator ==(Object other) =>
+      other is BillingSubscriptionType && other.value == value;
 
-  @override int get hashCode => value.hashCode;
-
+  @override
+  int get hashCode => value.hashCode;
 }

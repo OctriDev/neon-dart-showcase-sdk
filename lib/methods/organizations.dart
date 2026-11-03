@@ -19,18 +19,23 @@ Future<Organization> getOrganization(ClientConfig config,
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'getOrganization',
-          fromJsonRaw: (value) => Organization.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              Organization.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves the API keys for the specified organization. The response does not include API key tokens. A token is only provided when creating an API key. API keys can also be managed in the Neon Console. For more information, see [Manage API keys](https://neon.com/docs/manage/api-keys/).
 ///
 /// [orgId] The Neon organization ID
-Future<List<OrgApiKeysListResponseItem>> listOrganizationsApiKeys(ClientConfig config,
-    {required String orgId, RequestOptions? requestOptions}) async {
+Future<List<OrgApiKeysListResponseItem>> listOrganizationsApiKeys(
+    ClientConfig config,
+    {required String orgId,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('org_id', orgId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<List<OrgApiKeysListResponseItem>>('GET',
@@ -38,12 +43,17 @@ Future<List<OrgApiKeysListResponseItem>> listOrganizationsApiKeys(ClientConfig c
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listOrganizationsApiKeys',
-          fromJsonRaw: (value) => (value as List).map((item) => OrgApiKeysListResponseItem.fromJson(item as Map<String, dynamic>)).toList(),
+          fromJsonRaw: (value) => (value as List)
+              .map((item) => OrgApiKeysListResponseItem.fromJson(
+                  item as Map<String, dynamic>))
+              .toList(),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Creates an API key for the specified organization. The `key_name` is a user-specified name for the key. Returns an `id` and `key`; the `key` is a randomly generated, 64-bit token required to access the Neon API. Store the key securely — it is only returned once. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/).
 ///
@@ -60,12 +70,15 @@ Future<OrgApiKeyCreateResponse> createOrganizationsApiKey(ClientConfig config,
           body: body,
           decoder: SdkResponseDecoder.json,
           operationId: 'createOrganizationsApiKey',
-          fromJsonRaw: (value) => OrgApiKeyCreateResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              OrgApiKeyCreateResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Revokes the specified organization API key. An API key that is no longer needed can be revoked. This action cannot be reversed. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/).
 ///
@@ -84,10 +97,12 @@ Future<OrgApiKeyRevokeResponse> revokeOrganizationsApiKey(ClientConfig config,
           operationId: 'revokeOrganizationsApiKey',
           fromJsonRaw: (value) => OrgApiKeyRevokeResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Returns the configured monthly spending limit for the specified organization. `spending_limit_cents: null` indicates that no limit is currently set. Available to organization members with read access on Launch and Scale plans only.
 ///
@@ -103,10 +118,12 @@ Future<SpendingLimitResponse> getOrganizationSpendingLimit(ClientConfig config,
           operationId: 'getOrganizationSpendingLimit',
           fromJsonRaw: (value) => SpendingLimitResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Sets the monthly spending limit for the specified organization. To remove a previously configured limit, send a DELETE request to this endpoint. When a limit is configured, email notifications are sent at 80% and 100% of the limit. Computes are not suspended when the limit is reached. Available to organization admins on Launch and Scale plans only.
 ///
@@ -131,18 +148,23 @@ Future<SpendingLimitResponse> setOrganizationSpendingLimit(ClientConfig config,
           body: {'spending_limit_cents': spendingLimitCents},
           decoder: SdkResponseDecoder.json,
           operationId: 'setOrganizationSpendingLimit',
-          fromJsonRaw: (value) => SpendingLimitResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              SpendingLimitResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Removes the configured monthly spending limit for the specified organization. Idempotent — removing an already-unset limit still succeeds. Available to organization admins on Launch and Scale plans only.
 ///
 /// [orgId] The Neon organization ID
-Future<Map<String, dynamic>> deleteOrganizationSpendingLimit(ClientConfig config,
-    {required String orgId, RequestOptions? requestOptions}) async {
+Future<Map<String, dynamic>> deleteOrganizationSpendingLimit(
+    ClientConfig config,
+    {required String orgId,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('org_id', orgId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<Map<String, dynamic>>('DELETE',
@@ -152,10 +174,12 @@ Future<Map<String, dynamic>> deleteOrganizationSpendingLimit(ClientConfig config
           operationId: 'deleteOrganizationSpendingLimit',
           fromJsonRaw: (value) => value as Map<String, dynamic>,
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves a paginated list of members for the specified organization.
 ///
@@ -166,14 +190,14 @@ Future<Map<String, dynamic>> deleteOrganizationSpendingLimit(ClientConfig config
 ///   fetch next page of the list.
 /// [sortOrder] Defines the sorting order of entities.
 /// [limit] The maximum number of members to return in the response
-Future<ListOrganizationsMembersResponse>
-    listOrganizationsMembers(ClientConfig config,
-        {required String orgId,
-        SdkOptional<ListOrganizationsMembersSortBy> sortBy = const SdkOmitted(),
-        SdkOptional<String> cursor = const SdkOmitted(),
-        SdkOptional<SchemaSchema> sortOrder = const SdkOmitted(),
-        SdkOptional<int> limit = const SdkOmitted(),
-        RequestOptions? requestOptions}) async {
+Future<ListOrganizationsMembersResponse> listOrganizationsMembers(
+    ClientConfig config,
+    {required String orgId,
+    SdkOptional<ListOrganizationsMembersSortBy> sortBy = const SdkOmitted(),
+    SdkOptional<String> cursor = const SdkOmitted(),
+    SdkOptional<SchemaSchema> sortOrder = const SdkOmitted(),
+    SdkOptional<int> limit = const SdkOmitted(),
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('org_id', orgId, '^[a-z0-9-]{1,60}\$');
   if (limit is SdkPresent<int>) {
     validateRange('limit', limit.value, min: 1, max: 500);
@@ -183,19 +207,26 @@ Future<ListOrganizationsMembersResponse>
           '/organizations/${Uri.encodeComponent(orgId.toString())}/members',
           config: config,
           query: {
-            'sort_by': SdkQueryValue(SdkUtils.unwrapOptional(sortBy), style: 'form', explode: true),
-            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor), style: 'form', explode: true),
-            'sort_order': SdkQueryValue(SdkUtils.unwrapOptional(sortOrder), style: 'form', explode: true),
-            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit), style: 'form', explode: true)
+            'sort_by': SdkQueryValue(SdkUtils.unwrapOptional(sortBy),
+                style: 'form', explode: true),
+            'cursor': SdkQueryValue(SdkUtils.unwrapOptional(cursor),
+                style: 'form', explode: true),
+            'sort_order': SdkQueryValue(SdkUtils.unwrapOptional(sortOrder),
+                style: 'form', explode: true),
+            'limit': SdkQueryValue(SdkUtils.unwrapOptional(limit),
+                style: 'form', explode: true)
           },
           decoder: SdkResponseDecoder.json,
           operationId: 'listOrganizationsMembers',
-          fromJsonRaw: (value) => ListOrganizationsMembersResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => ListOrganizationsMembersResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves information about the specified organization member.
 ///
@@ -215,10 +246,12 @@ Future<Member> getOrganizationMember(ClientConfig config,
           operationId: 'getOrganizationMember',
           fromJsonRaw: (value) => Member.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Updates the role of an existing member in the specified organization. The requested role must be valid for the organization. Only organization admins can call this endpoint.
 ///
@@ -242,12 +275,15 @@ Future<Member> updateOrganizationMember(ClientConfig config,
           body: {'role': role},
           decoder: SdkResponseDecoder.json,
           operationId: 'updateOrganizationMember',
-          fromJsonRaw: (value) => Member.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) =>
+              Member.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Removes the specified member from the organization. Only organization admins can perform this action. The last admin in an organization cannot be removed.
 ///
@@ -267,16 +303,20 @@ Future<Map<String, dynamic>> removeOrganizationMember(ClientConfig config,
           operationId: 'removeOrganizationMember',
           fromJsonRaw: (value) => value as Map<String, dynamic>,
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves pending and accepted invitations for the specified organization.
 ///
 /// [orgId] The Neon organization ID
-Future<OrganizationInvitationsResponse> listOrganizationsInvitations(ClientConfig config,
-    {required String orgId, RequestOptions? requestOptions}) async {
+Future<OrganizationInvitationsResponse> listOrganizationsInvitations(
+    ClientConfig config,
+    {required String orgId,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('org_id', orgId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<OrganizationInvitationsResponse>('GET',
@@ -284,22 +324,25 @@ Future<OrganizationInvitationsResponse> listOrganizationsInvitations(ClientConfi
           config: config,
           decoder: SdkResponseDecoder.json,
           operationId: 'listOrganizationsInvitations',
-          fromJsonRaw: (value) => OrganizationInvitationsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => OrganizationInvitationsResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Creates invitations for a specific organization. If the invited user has an existing account, they automatically join as a member. If they don't yet have an account, they are invited to create one, after which they become a member. Each invited user receives an email notification.
 ///
 /// [orgId] The Neon organization ID
 /// [invitations] Invitations to create for the organization.
-Future<OrganizationInvitationsResponse>
-    createOrganizationInvitations(ClientConfig config,
-        {required String orgId,
-        required List<OrganizationInviteCreateRequest> invitations,
-        RequestOptions? requestOptions}) async {
+Future<OrganizationInvitationsResponse> createOrganizationInvitations(
+    ClientConfig config,
+    {required String orgId,
+    required List<OrganizationInviteCreateRequest> invitations,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('org_id', orgId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<OrganizationInvitationsResponse>('POST',
@@ -308,12 +351,15 @@ Future<OrganizationInvitationsResponse>
           body: {'invitations': invitations},
           decoder: SdkResponseDecoder.json,
           operationId: 'createOrganizationInvitations',
-          fromJsonRaw: (value) => OrganizationInvitationsResponse.fromJson(value as Map<String, dynamic>),
+          fromJsonRaw: (value) => OrganizationInvitationsResponse.fromJson(
+              value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Transfers selected projects, identified by their IDs, from your organization to another specified organization.
 ///
@@ -328,7 +374,8 @@ Future<Map<String, dynamic>> transferOrganizationsProjects(ClientConfig config,
     required List<String> projectIds,
     RequestOptions? requestOptions}) async {
   sdkValidatePattern('source_org_id', sourceOrgId, '^[a-z0-9-]{1,60}\$');
-  sdkValidatePattern('destination_org_id', destinationOrgId, '^[a-z0-9-]{1,60}\$');
+  sdkValidatePattern(
+      'destination_org_id', destinationOrgId, '^[a-z0-9-]{1,60}\$');
   validateItems('project_ids', projectIds, min: 1, max: 400);
 
   return (await sdkRequest<Map<String, dynamic>>('POST',
@@ -342,16 +389,24 @@ Future<Map<String, dynamic>> transferOrganizationsProjects(ClientConfig config,
           operationId: 'transferOrganizationsProjects',
           fromJsonRaw: (value) => value as Map<String, dynamic>,
           options: requestOptions,
-          errors: {'406': (value) => LimitsUnsatisfiedResponse.fromJson(value as Map<String, dynamic>), '422': (value) => ProjectsWithIntegrationResponse.fromJson(value as Map<String, dynamic>), 'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            '406': (value) => LimitsUnsatisfiedResponse.fromJson(
+                value as Map<String, dynamic>),
+            '422': (value) => ProjectsWithIntegrationResponse.fromJson(
+                value as Map<String, dynamic>),
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Retrieves the list of VPC endpoints for the specified Neon organization across all regions.
 ///
 /// [orgId] The Neon organization ID
-Future<VPCEndpointsWithRegionResponse> listOrganizationVpcEndpointsAllRegions(ClientConfig config,
-    {required String orgId, RequestOptions? requestOptions}) async {
+Future<VPCEndpointsWithRegionResponse> listOrganizationVpcEndpointsAllRegions(
+    ClientConfig config,
+    {required String orgId,
+    RequestOptions? requestOptions}) async {
   sdkValidatePattern('org_id', orgId, '^[a-z0-9-]{1,60}\$');
 
   return (await sdkRequest<VPCEndpointsWithRegionResponse>('GET',
@@ -361,10 +416,12 @@ Future<VPCEndpointsWithRegionResponse> listOrganizationVpcEndpointsAllRegions(Cl
           operationId: 'listOrganizationVpcEndpointsAllRegions',
           fromJsonRaw: (value) => VPCEndpointsWithRegionResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves the list of VPC endpoints for the specified Neon organization.
 ///
@@ -383,10 +440,12 @@ Future<VPCEndpointsResponse> listOrganizationVpcEndpoints(ClientConfig config,
           operationId: 'listOrganizationVpcEndpoints',
           fromJsonRaw: (value) => VPCEndpointsResponse.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Retrieves the current state and configuration details of a specified VPC endpoint.
 ///
@@ -407,10 +466,12 @@ Future<VPCEndpointDetails> getOrganizationsVpcEndpoint(ClientConfig config,
           operationId: 'getOrganizationsVpcEndpoint',
           fromJsonRaw: (value) => VPCEndpointDetails.fromJson(value as Map<String, dynamic>),
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }
-
 
 /// Assigns a VPC endpoint to a Neon organization or updates its existing assignment.
 ///
@@ -434,10 +495,12 @@ Future<void> assignOrganizationVpcEndpoint(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'assignOrganizationVpcEndpoint',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+            'default': (value) =>
+                GeneralError.fromJson(value as Map<String, dynamic>)
+          }))
       .data;
 }
-
 
 /// Deletes the VPC endpoint from the specified Neon organization. If you delete a VPC endpoint from a Neon organization, that VPC endpoint cannot be added back to the Neon organization.
 ///
@@ -457,6 +520,9 @@ Future<void> deleteOrganizationVpcEndpoint(ClientConfig config,
           decoder: SdkResponseDecoder.empty,
           operationId: 'deleteOrganizationVpcEndpoint',
           options: requestOptions,
-          errors: {'default': (value) => GeneralError.fromJson(value as Map<String, dynamic>)}))
+          errors: {
+        'default': (value) =>
+            GeneralError.fromJson(value as Map<String, dynamic>)
+      }))
       .data;
 }

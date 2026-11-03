@@ -8,8 +8,10 @@ part of 'users.dart';
 class PlanVersion implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Required `integer` value serialized in the `major` wire field.
   final int major;
+
   /// Required `integer` value serialized in the `minor` wire field.
   final int minor;
 
@@ -17,19 +19,23 @@ class PlanVersion implements SdkJsonModel {
 
   PlanVersion Function({int major, int minor}) get copyWith => _copyWith;
 
-  PlanVersion _copyWith({Object? major = sdkOmittedValue, Object? minor = sdkOmittedValue}) => PlanVersion(
-    major: identical(major, sdkOmittedValue) ? this.major : major as int,
-    minor: identical(minor, sdkOmittedValue) ? this.minor : minor as int,
-  );
+  PlanVersion _copyWith(
+          {Object? major = sdkOmittedValue, Object? minor = sdkOmittedValue}) =>
+      PlanVersion(
+        major: identical(major, sdkOmittedValue) ? this.major : major as int,
+        minor: identical(minor, sdkOmittedValue) ? this.minor : minor as int,
+      );
 
-  factory PlanVersion.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(PlanVersion(
-    major: ((json['major'] as num?)?.toInt())!,
-    minor: ((json['minor'] as num?)?.toInt())!,
-  ), json);
+  factory PlanVersion.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(
+      PlanVersion(
+        major: ((json['major'] as num?)?.toInt())!,
+        minor: ((json['minor'] as num?)?.toInt())!,
+      ),
+      json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'major': major,
-    'minor': minor,
-  };
+        'major': major,
+        'minor': minor,
+      };
 }

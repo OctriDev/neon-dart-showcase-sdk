@@ -8,23 +8,32 @@ part of 'auth.dart';
 class NeonAuthAllowLocalhostResponse implements SdkJsonModel {
   /// This model is constructed from named fields in one call.
   static const String constructionSurface = 'named';
+
   /// Whether to allow localhost connections
   final bool allowLocalhost;
 
   const NeonAuthAllowLocalhostResponse({required this.allowLocalhost});
 
-  NeonAuthAllowLocalhostResponse Function({bool allowLocalhost}) get copyWith => _copyWith;
+  NeonAuthAllowLocalhostResponse Function({bool allowLocalhost}) get copyWith =>
+      _copyWith;
 
-  NeonAuthAllowLocalhostResponse _copyWith({Object? allowLocalhost = sdkOmittedValue}) => NeonAuthAllowLocalhostResponse(
-    allowLocalhost: identical(allowLocalhost, sdkOmittedValue) ? this.allowLocalhost : allowLocalhost as bool,
-  );
+  NeonAuthAllowLocalhostResponse _copyWith(
+          {Object? allowLocalhost = sdkOmittedValue}) =>
+      NeonAuthAllowLocalhostResponse(
+        allowLocalhost: identical(allowLocalhost, sdkOmittedValue)
+            ? this.allowLocalhost
+            : allowLocalhost as bool,
+      );
 
-  factory NeonAuthAllowLocalhostResponse.fromJson(Map<String, dynamic> json) => sdkKeepRawJson(NeonAuthAllowLocalhostResponse(
-    allowLocalhost: (json['allow_localhost'] as bool?)!,
-  ), json);
+  factory NeonAuthAllowLocalhostResponse.fromJson(Map<String, dynamic> json) =>
+      sdkKeepRawJson(
+          NeonAuthAllowLocalhostResponse(
+            allowLocalhost: (json['allow_localhost'] as bool?)!,
+          ),
+          json);
 
   @override
   Map<String, dynamic> toJson() => {
-    'allow_localhost': allowLocalhost,
-  };
+        'allow_localhost': allowLocalhost,
+      };
 }
